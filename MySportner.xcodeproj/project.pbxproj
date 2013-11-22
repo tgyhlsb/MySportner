@@ -21,6 +21,10 @@
 		5ADCF246184004D300E6C8D2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF228184004D300E6C8D2 /* UIKit.framework */; };
 		5ADCF24E184004D300E6C8D2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF24C184004D300E6C8D2 /* InfoPlist.strings */; };
 		5ADCF250184004D300E6C8D2 /* MySportnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF24F184004D300E6C8D2 /* MySportnerTests.m */; };
+		5ADCF2641840051300E6C8D2 /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF25C1840051300E6C8D2 /* MMDrawerBarButtonItem.m */; };
+		5ADCF2651840051300E6C8D2 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF25F1840051300E6C8D2 /* MMDrawerController.m */; };
+		5ADCF2661840051300E6C8D2 /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2611840051300E6C8D2 /* MMDrawerVisualState.m */; };
+		5ADCF2671840051300E6C8D2 /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2631840051300E6C8D2 /* UIViewController+MMDrawerController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,15 @@
 		5ADCF24B184004D300E6C8D2 /* MySportnerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MySportnerTests-Info.plist"; sourceTree = "<group>"; };
 		5ADCF24D184004D300E6C8D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5ADCF24F184004D300E6C8D2 /* MySportnerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySportnerTests.m; sourceTree = "<group>"; };
+		5ADCF25B1840051300E6C8D2 /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
+		5ADCF25C1840051300E6C8D2 /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
+		5ADCF25D1840051300E6C8D2 /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
+		5ADCF25E1840051300E6C8D2 /* MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerController.h; sourceTree = "<group>"; };
+		5ADCF25F1840051300E6C8D2 /* MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerController.m; sourceTree = "<group>"; };
+		5ADCF2601840051300E6C8D2 /* MMDrawerVisualState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerVisualState.h; sourceTree = "<group>"; };
+		5ADCF2611840051300E6C8D2 /* MMDrawerVisualState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerVisualState.m; sourceTree = "<group>"; };
+		5ADCF2621840051300E6C8D2 /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
+		5ADCF2631840051300E6C8D2 /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +95,7 @@
 		5ADCF218184004D300E6C8D2 = {
 			isa = PBXGroup;
 			children = (
+				5ADCF2591840050600E6C8D2 /* Libraries */,
 				5ADCF22A184004D300E6C8D2 /* MySportner */,
 				5ADCF249184004D300E6C8D2 /* MySportnerTests */,
 				5ADCF223184004D300E6C8D2 /* Frameworks */,
@@ -150,6 +164,30 @@
 				5ADCF24C184004D300E6C8D2 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5ADCF2591840050600E6C8D2 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF25A1840051300E6C8D2 /* MMDrawerController */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		5ADCF25A1840051300E6C8D2 /* MMDrawerController */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF25B1840051300E6C8D2 /* MMDrawerBarButtonItem.h */,
+				5ADCF25C1840051300E6C8D2 /* MMDrawerBarButtonItem.m */,
+				5ADCF25D1840051300E6C8D2 /* MMDrawerController+Subclass.h */,
+				5ADCF25E1840051300E6C8D2 /* MMDrawerController.h */,
+				5ADCF25F1840051300E6C8D2 /* MMDrawerController.m */,
+				5ADCF2601840051300E6C8D2 /* MMDrawerVisualState.h */,
+				5ADCF2611840051300E6C8D2 /* MMDrawerVisualState.m */,
+				5ADCF2621840051300E6C8D2 /* UIViewController+MMDrawerController.h */,
+				5ADCF2631840051300E6C8D2 /* UIViewController+MMDrawerController.m */,
+			);
+			path = MMDrawerController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,7 +288,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ADCF2661840051300E6C8D2 /* MMDrawerVisualState.m in Sources */,
 				5ADCF235184004D300E6C8D2 /* MSAppDelegate.m in Sources */,
+				5ADCF2671840051300E6C8D2 /* UIViewController+MMDrawerController.m in Sources */,
+				5ADCF2651840051300E6C8D2 /* MMDrawerController.m in Sources */,
+				5ADCF2641840051300E6C8D2 /* MMDrawerBarButtonItem.m in Sources */,
 				5ADCF23B184004D300E6C8D2 /* MSViewController.m in Sources */,
 				5ADCF231184004D300E6C8D2 /* main.m in Sources */,
 			);
@@ -382,6 +424,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MySportner/MySportner-Prefix.pch";
 				INFOPLIST_FILE = "MySportner/MySportner-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -395,6 +438,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MySportner/MySportner-Prefix.pch";
 				INFOPLIST_FILE = "MySportner/MySportner-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

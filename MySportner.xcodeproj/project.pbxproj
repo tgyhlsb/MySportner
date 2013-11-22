@@ -14,7 +14,6 @@
 		5ADCF231184004D300E6C8D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF230184004D300E6C8D2 /* main.m */; };
 		5ADCF235184004D300E6C8D2 /* MSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF234184004D300E6C8D2 /* MSAppDelegate.m */; };
 		5ADCF238184004D300E6C8D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF236184004D300E6C8D2 /* Main.storyboard */; };
-		5ADCF23B184004D300E6C8D2 /* MSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF23A184004D300E6C8D2 /* MSViewController.m */; };
 		5ADCF23D184004D300E6C8D2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF23C184004D300E6C8D2 /* Images.xcassets */; };
 		5ADCF244184004D300E6C8D2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF243184004D300E6C8D2 /* XCTest.framework */; };
 		5ADCF245184004D300E6C8D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF224184004D300E6C8D2 /* Foundation.framework */; };
@@ -25,6 +24,18 @@
 		5ADCF2651840051300E6C8D2 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF25F1840051300E6C8D2 /* MMDrawerController.m */; };
 		5ADCF2661840051300E6C8D2 /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2611840051300E6C8D2 /* MMDrawerVisualState.m */; };
 		5ADCF2671840051300E6C8D2 /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2631840051300E6C8D2 /* UIViewController+MMDrawerController.m */; };
+		5ADCF2831840140000E6C8D2 /* MSProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2821840140000E6C8D2 /* MSProfileVC.m */; };
+		5ADCF2851840141700E6C8D2 /* MSProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2841840141700E6C8D2 /* MSProfileVC.xib */; };
+		5ADCF28A1840144D00E6C8D2 /* MSDrawerMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2881840144D00E6C8D2 /* MSDrawerMenuVC.m */; };
+		5ADCF28B1840144D00E6C8D2 /* MSDrawerMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2891840144D00E6C8D2 /* MSDrawerMenuVC.xib */; };
+		5ADCF28F1840178900E6C8D2 /* MSActivitiesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF28E1840178900E6C8D2 /* MSActivitiesVC.xib */; };
+		5ADCF293184017A700E6C8D2 /* MSActivitiesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF292184017A700E6C8D2 /* MSActivitiesVC.m */; };
+		5ADCF29618401A0300E6C8D2 /* MSDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF29518401A0300E6C8D2 /* MSDrawerController.m */; };
+		5ADCF29918401CD000E6C8D2 /* MSNavigationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF29818401CD000E6C8D2 /* MSNavigationVC.m */; };
+		5ADCF29C18401D1800E6C8D2 /* MSNotificationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF29B18401D1800E6C8D2 /* MSNotificationsVC.m */; };
+		5ADCF29E18401D2300E6C8D2 /* MSNotificationsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF29D18401D2300E6C8D2 /* MSNotificationsVC.xib */; };
+		5ADCF2A318401E1C00E6C8D2 /* MSSetAGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2A218401E1C00E6C8D2 /* MSSetAGameVC.m */; };
+		5ADCF2A518401E2800E6C8D2 /* MSSetAGameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2A418401E2800E6C8D2 /* MSSetAGameVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,11 +57,9 @@
 		5ADCF22E184004D300E6C8D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5ADCF230184004D300E6C8D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5ADCF232184004D300E6C8D2 /* MySportner-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MySportner-Prefix.pch"; sourceTree = "<group>"; };
-		5ADCF233184004D300E6C8D2 /* MSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSAppDelegate.h; sourceTree = "<group>"; };
-		5ADCF234184004D300E6C8D2 /* MSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSAppDelegate.m; sourceTree = "<group>"; };
+		5ADCF233184004D300E6C8D2 /* MSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MSAppDelegate.h; path = MySportner/MSAppDelegate.h; sourceTree = "<group>"; };
+		5ADCF234184004D300E6C8D2 /* MSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MSAppDelegate.m; path = MySportner/MSAppDelegate.m; sourceTree = "<group>"; };
 		5ADCF237184004D300E6C8D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5ADCF239184004D300E6C8D2 /* MSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSViewController.h; sourceTree = "<group>"; };
-		5ADCF23A184004D300E6C8D2 /* MSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSViewController.m; sourceTree = "<group>"; };
 		5ADCF23C184004D300E6C8D2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5ADCF242184004D300E6C8D2 /* MySportnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MySportnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ADCF243184004D300E6C8D2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -66,6 +75,25 @@
 		5ADCF2611840051300E6C8D2 /* MMDrawerVisualState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerVisualState.m; sourceTree = "<group>"; };
 		5ADCF2621840051300E6C8D2 /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
 		5ADCF2631840051300E6C8D2 /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
+		5ADCF2811840140000E6C8D2 /* MSProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSProfileVC.h; path = Controllers/MSProfileVC/MSProfileVC.h; sourceTree = "<group>"; };
+		5ADCF2821840140000E6C8D2 /* MSProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSProfileVC.m; path = Controllers/MSProfileVC/MSProfileVC.m; sourceTree = "<group>"; };
+		5ADCF2841840141700E6C8D2 /* MSProfileVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSProfileVC.xib; path = Controllers/MSProfileVC/MSProfileVC.xib; sourceTree = "<group>"; };
+		5ADCF2871840144D00E6C8D2 /* MSDrawerMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSDrawerMenuVC.h; path = Controllers/MSDrawerMenuVC/MSDrawerMenuVC.h; sourceTree = "<group>"; };
+		5ADCF2881840144D00E6C8D2 /* MSDrawerMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSDrawerMenuVC.m; path = Controllers/MSDrawerMenuVC/MSDrawerMenuVC.m; sourceTree = "<group>"; };
+		5ADCF2891840144D00E6C8D2 /* MSDrawerMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSDrawerMenuVC.xib; path = Controllers/MSDrawerMenuVC/MSDrawerMenuVC.xib; sourceTree = "<group>"; };
+		5ADCF28E1840178900E6C8D2 /* MSActivitiesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSActivitiesVC.xib; path = Controllers/MSActivitiesVC/MSActivitiesVC.xib; sourceTree = "<group>"; };
+		5ADCF291184017A700E6C8D2 /* MSActivitiesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSActivitiesVC.h; path = Controllers/MSActivitiesVC/MSActivitiesVC.h; sourceTree = "<group>"; };
+		5ADCF292184017A700E6C8D2 /* MSActivitiesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSActivitiesVC.m; path = Controllers/MSActivitiesVC/MSActivitiesVC.m; sourceTree = "<group>"; };
+		5ADCF29418401A0300E6C8D2 /* MSDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSDrawerController.h; path = MySportner/MSDrawerController.h; sourceTree = SOURCE_ROOT; };
+		5ADCF29518401A0300E6C8D2 /* MSDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSDrawerController.m; path = MySportner/MSDrawerController.m; sourceTree = SOURCE_ROOT; };
+		5ADCF29718401CD000E6C8D2 /* MSNavigationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSNavigationVC.h; path = Controllers/MSNavigationVC.h; sourceTree = "<group>"; };
+		5ADCF29818401CD000E6C8D2 /* MSNavigationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSNavigationVC.m; path = Controllers/MSNavigationVC.m; sourceTree = "<group>"; };
+		5ADCF29A18401D1800E6C8D2 /* MSNotificationsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSNotificationsVC.h; path = Controllers/MSNotificationsVC/MSNotificationsVC.h; sourceTree = "<group>"; };
+		5ADCF29B18401D1800E6C8D2 /* MSNotificationsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSNotificationsVC.m; path = Controllers/MSNotificationsVC/MSNotificationsVC.m; sourceTree = "<group>"; };
+		5ADCF29D18401D2300E6C8D2 /* MSNotificationsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSNotificationsVC.xib; path = Controllers/MSNotificationsVC/MSNotificationsVC.xib; sourceTree = "<group>"; };
+		5ADCF2A118401E1C00E6C8D2 /* MSSetAGameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSetAGameVC.h; path = Controllers/MSSetAGameVC/MSSetAGameVC.h; sourceTree = "<group>"; };
+		5ADCF2A218401E1C00E6C8D2 /* MSSetAGameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSetAGameVC.m; path = Controllers/MSSetAGameVC/MSSetAGameVC.m; sourceTree = "<group>"; };
+		5ADCF2A418401E2800E6C8D2 /* MSSetAGameVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSSetAGameVC.xib; path = Controllers/MSSetAGameVC/MSSetAGameVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +123,9 @@
 		5ADCF218184004D300E6C8D2 = {
 			isa = PBXGroup;
 			children = (
+				5ADCF233184004D300E6C8D2 /* MSAppDelegate.h */,
+				5ADCF234184004D300E6C8D2 /* MSAppDelegate.m */,
+				5ADCF236184004D300E6C8D2 /* Main.storyboard */,
 				5ADCF2591840050600E6C8D2 /* Libraries */,
 				5ADCF22A184004D300E6C8D2 /* MySportner */,
 				5ADCF249184004D300E6C8D2 /* MySportnerTests */,
@@ -126,11 +157,8 @@
 		5ADCF22A184004D300E6C8D2 /* MySportner */ = {
 			isa = PBXGroup;
 			children = (
-				5ADCF233184004D300E6C8D2 /* MSAppDelegate.h */,
-				5ADCF234184004D300E6C8D2 /* MSAppDelegate.m */,
-				5ADCF236184004D300E6C8D2 /* Main.storyboard */,
-				5ADCF239184004D300E6C8D2 /* MSViewController.h */,
-				5ADCF23A184004D300E6C8D2 /* MSViewController.m */,
+				5ADCF277184011A500E6C8D2 /* Views */,
+				5ADCF268184005FE00E6C8D2 /* Controllers */,
 				5ADCF23C184004D300E6C8D2 /* Images.xcassets */,
 				5ADCF22B184004D300E6C8D2 /* Supporting Files */,
 			);
@@ -186,8 +214,89 @@
 				5ADCF2611840051300E6C8D2 /* MMDrawerVisualState.m */,
 				5ADCF2621840051300E6C8D2 /* UIViewController+MMDrawerController.h */,
 				5ADCF2631840051300E6C8D2 /* UIViewController+MMDrawerController.m */,
+				5ADCF29418401A0300E6C8D2 /* MSDrawerController.h */,
+				5ADCF29518401A0300E6C8D2 /* MSDrawerController.m */,
 			);
 			path = MMDrawerController;
+			sourceTree = "<group>";
+		};
+		5ADCF268184005FE00E6C8D2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF29718401CD000E6C8D2 /* MSNavigationVC.h */,
+				5ADCF29818401CD000E6C8D2 /* MSNavigationVC.m */,
+				5ADCF2A618401E2C00E6C8D2 /* MSSetAGameVC */,
+				5ADCF2A018401D4900E6C8D2 /* MSNotificationsVC */,
+				5ADCF2901840179A00E6C8D2 /* MSActivitiesVC */,
+				5ADCF27418400CF500E6C8D2 /* MSDrawerMenuVC */,
+				5ADCF2861840141D00E6C8D2 /* MSProfileVC */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		5ADCF27418400CF500E6C8D2 /* MSDrawerMenuVC */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF2871840144D00E6C8D2 /* MSDrawerMenuVC.h */,
+				5ADCF2881840144D00E6C8D2 /* MSDrawerMenuVC.m */,
+				5ADCF2891840144D00E6C8D2 /* MSDrawerMenuVC.xib */,
+			);
+			name = MSDrawerMenuVC;
+			sourceTree = "<group>";
+		};
+		5ADCF277184011A500E6C8D2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF278184011AC00E6C8D2 /* Cells */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		5ADCF278184011AC00E6C8D2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		5ADCF2861840141D00E6C8D2 /* MSProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF2811840140000E6C8D2 /* MSProfileVC.h */,
+				5ADCF2821840140000E6C8D2 /* MSProfileVC.m */,
+				5ADCF2841840141700E6C8D2 /* MSProfileVC.xib */,
+			);
+			name = MSProfileVC;
+			sourceTree = "<group>";
+		};
+		5ADCF2901840179A00E6C8D2 /* MSActivitiesVC */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF291184017A700E6C8D2 /* MSActivitiesVC.h */,
+				5ADCF292184017A700E6C8D2 /* MSActivitiesVC.m */,
+				5ADCF28E1840178900E6C8D2 /* MSActivitiesVC.xib */,
+			);
+			name = MSActivitiesVC;
+			sourceTree = "<group>";
+		};
+		5ADCF2A018401D4900E6C8D2 /* MSNotificationsVC */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF29A18401D1800E6C8D2 /* MSNotificationsVC.h */,
+				5ADCF29B18401D1800E6C8D2 /* MSNotificationsVC.m */,
+				5ADCF29D18401D2300E6C8D2 /* MSNotificationsVC.xib */,
+			);
+			name = MSNotificationsVC;
+			sourceTree = "<group>";
+		};
+		5ADCF2A618401E2C00E6C8D2 /* MSSetAGameVC */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF2A118401E1C00E6C8D2 /* MSSetAGameVC.h */,
+				5ADCF2A218401E1C00E6C8D2 /* MSSetAGameVC.m */,
+				5ADCF2A418401E2800E6C8D2 /* MSSetAGameVC.xib */,
+			);
+			name = MSSetAGameVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,7 +377,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ADCF23D184004D300E6C8D2 /* Images.xcassets in Resources */,
+				5ADCF2A518401E2800E6C8D2 /* MSSetAGameVC.xib in Resources */,
 				5ADCF22F184004D300E6C8D2 /* InfoPlist.strings in Resources */,
+				5ADCF2851840141700E6C8D2 /* MSProfileVC.xib in Resources */,
+				5ADCF29E18401D2300E6C8D2 /* MSNotificationsVC.xib in Resources */,
+				5ADCF28B1840144D00E6C8D2 /* MSDrawerMenuVC.xib in Resources */,
+				5ADCF28F1840178900E6C8D2 /* MSActivitiesVC.xib in Resources */,
 				5ADCF238184004D300E6C8D2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,12 +402,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ADCF29918401CD000E6C8D2 /* MSNavigationVC.m in Sources */,
+				5ADCF29618401A0300E6C8D2 /* MSDrawerController.m in Sources */,
+				5ADCF293184017A700E6C8D2 /* MSActivitiesVC.m in Sources */,
 				5ADCF2661840051300E6C8D2 /* MMDrawerVisualState.m in Sources */,
 				5ADCF235184004D300E6C8D2 /* MSAppDelegate.m in Sources */,
+				5ADCF29C18401D1800E6C8D2 /* MSNotificationsVC.m in Sources */,
 				5ADCF2671840051300E6C8D2 /* UIViewController+MMDrawerController.m in Sources */,
+				5ADCF2A318401E1C00E6C8D2 /* MSSetAGameVC.m in Sources */,
+				5ADCF28A1840144D00E6C8D2 /* MSDrawerMenuVC.m in Sources */,
+				5ADCF2831840140000E6C8D2 /* MSProfileVC.m in Sources */,
 				5ADCF2651840051300E6C8D2 /* MMDrawerController.m in Sources */,
 				5ADCF2641840051300E6C8D2 /* MMDrawerBarButtonItem.m in Sources */,
-				5ADCF23B184004D300E6C8D2 /* MSViewController.m in Sources */,
 				5ADCF231184004D300E6C8D2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,6 +451,7 @@
 				5ADCF237184004D300E6C8D2 /* Base */,
 			);
 			name = Main.storyboard;
+			path = MySportner;
 			sourceTree = "<group>";
 		};
 		5ADCF24C184004D300E6C8D2 /* InfoPlist.strings */ = {

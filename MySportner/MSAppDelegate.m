@@ -7,12 +7,46 @@
 //
 
 #import "MSAppDelegate.h"
+#import "MSDrawerController.h"
+#import "MMDrawerVisualState.h"
+#import "MSNavigationVC.h"
+#import "MSDrawerMenuVC.h"
+#import "MSActivitiesVC.h"
+
+#define STORYBOARD_NAME @"Main"
+
+@interface MSAppDelegate()
+@property (nonatomic,strong) MMDrawerController * drawerController;
+
+@end
 
 @implementation MSAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // Override point for customization after application launch.
+-(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    
+    MSDrawerMenuVC * leftSideDrawerViewController = [MSDrawerMenuVC newController];
+    
+    UIViewController * centerViewController = [MSActivitiesVC newController];
+    
+    UIViewController * rightSideDrawerViewController = nil;
+    
+    UINavigationController * navigationController = [[MSNavigationVC alloc] initWithRootViewController:centerViewController];
+    //[navigationController setRestorationIdentifier:@"MMExampleCenterNavigationControllerRestorationKey"];
+
+    self.drawerController = [[MSDrawerController alloc]
+                             initWithCenterViewController:navigationController
+                             leftDrawerViewController:leftSideDrawerViewController
+                             rightDrawerViewController:rightSideDrawerViewController];
+    
+    [self.drawerController setRestorationIdentifier:@"MSDrawer"];
+    [self.drawerController setMaximumRightDrawerWidth:200.0];
+    [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window setRootViewController:self.drawerController];
+    
     return YES;
 }
 							

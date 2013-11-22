@@ -24,11 +24,11 @@
 @implementation UIViewController (MMDrawerController)
 
 
--(MMDrawerController*)mm_drawerController{
+-(MSDrawerController*)mm_drawerController{
     UIViewController *parentViewController = self.parentViewController;
     while (parentViewController != nil) {
-        if([parentViewController isKindOfClass:[MMDrawerController class]]){
-            return (MMDrawerController *)parentViewController;
+        if([parentViewController isKindOfClass:[MSDrawerController class]]){
+            return (MSDrawerController *)parentViewController;
         }
         parentViewController = parentViewController.parentViewController;
     }

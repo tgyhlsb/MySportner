@@ -1,5 +1,5 @@
 //
-//  MSViewController.h
+//  MSNavigationVC.h
 //  MySportner
 //
 //  Created by Tanguy Hélesbeux on 22/11/2013.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSViewController : UIViewController
+@interface MSNavigationVC : UINavigationController
 
 @end

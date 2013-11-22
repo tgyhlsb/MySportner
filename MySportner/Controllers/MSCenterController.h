@@ -1,5 +1,5 @@
 //
-//  MSNotificationsVC.h
+//  MSCenterController.h
 //  MySportner
 //
 //  Created by Tanguy Hélesbeux on 23/11/2013.
@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSCenterController.h"
+#import "UIViewController+MMDrawerController.h"
 
-@interface MSNotificationsVC : MSCenterController
-
-+ (MSNotificationsVC *)newController;
+@interface MSCenterController : UIViewController
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSCenterController.h"
 
-@interface MSSetAGameVC : UIViewController
+@interface MSSetAGameVC : MSCenterController
 
 + (MSSetAGameVC *)newController;
 

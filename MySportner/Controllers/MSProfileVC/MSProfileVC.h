@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSCenterController.h"
 
-@interface MSProfileVC : UIViewController
+@interface MSProfileVC : MSCenterController
 
 + (MSProfileVC *)newController;
 

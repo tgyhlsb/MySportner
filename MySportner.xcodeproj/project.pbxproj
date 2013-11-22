@@ -36,6 +36,7 @@
 		5ADCF29E18401D2300E6C8D2 /* MSNotificationsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF29D18401D2300E6C8D2 /* MSNotificationsVC.xib */; };
 		5ADCF2A318401E1C00E6C8D2 /* MSSetAGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2A218401E1C00E6C8D2 /* MSSetAGameVC.m */; };
 		5ADCF2A518401E2800E6C8D2 /* MSSetAGameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2A418401E2800E6C8D2 /* MSSetAGameVC.xib */; };
+		5ADCF2A918401FF800E6C8D2 /* MSCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2A818401FF800E6C8D2 /* MSCenterController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,8 @@
 		5ADCF2A118401E1C00E6C8D2 /* MSSetAGameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSetAGameVC.h; path = Controllers/MSSetAGameVC/MSSetAGameVC.h; sourceTree = "<group>"; };
 		5ADCF2A218401E1C00E6C8D2 /* MSSetAGameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSetAGameVC.m; path = Controllers/MSSetAGameVC/MSSetAGameVC.m; sourceTree = "<group>"; };
 		5ADCF2A418401E2800E6C8D2 /* MSSetAGameVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSSetAGameVC.xib; path = Controllers/MSSetAGameVC/MSSetAGameVC.xib; sourceTree = "<group>"; };
+		5ADCF2A718401FF800E6C8D2 /* MSCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCenterController.h; path = Controllers/MSCenterController.h; sourceTree = "<group>"; };
+		5ADCF2A818401FF800E6C8D2 /* MSCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCenterController.m; path = Controllers/MSCenterController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,10 +228,12 @@
 			children = (
 				5ADCF29718401CD000E6C8D2 /* MSNavigationVC.h */,
 				5ADCF29818401CD000E6C8D2 /* MSNavigationVC.m */,
+				5ADCF2A718401FF800E6C8D2 /* MSCenterController.h */,
+				5ADCF2A818401FF800E6C8D2 /* MSCenterController.m */,
+				5ADCF27418400CF500E6C8D2 /* MSDrawerMenuVC */,
 				5ADCF2A618401E2C00E6C8D2 /* MSSetAGameVC */,
 				5ADCF2A018401D4900E6C8D2 /* MSNotificationsVC */,
 				5ADCF2901840179A00E6C8D2 /* MSActivitiesVC */,
-				5ADCF27418400CF500E6C8D2 /* MSDrawerMenuVC */,
 				5ADCF2861840141D00E6C8D2 /* MSProfileVC */,
 			);
 			name = Controllers;
@@ -406,6 +411,7 @@
 				5ADCF29618401A0300E6C8D2 /* MSDrawerController.m in Sources */,
 				5ADCF293184017A700E6C8D2 /* MSActivitiesVC.m in Sources */,
 				5ADCF2661840051300E6C8D2 /* MMDrawerVisualState.m in Sources */,
+				5ADCF2A918401FF800E6C8D2 /* MSCenterController.m in Sources */,
 				5ADCF235184004D300E6C8D2 /* MSAppDelegate.m in Sources */,
 				5ADCF29C18401D1800E6C8D2 /* MSNotificationsVC.m in Sources */,
 				5ADCF2671840051300E6C8D2 /* UIViewController+MMDrawerController.m in Sources */,

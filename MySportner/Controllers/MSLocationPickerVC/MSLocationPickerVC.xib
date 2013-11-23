@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSLocationPickerVC">
+            <connections>
+                <outlet property="mapView" destination="M1Q-fM-R8r" id="BRE-9q-HpH"/>
+                <outlet property="searchBar" destination="Few-2r-cU2" id="4ul-EM-UEM"/>
+                <outlet property="tableView" destination="iWx-GU-518" id="cF0-3E-jd4"/>
+                <outlet property="view" destination="2ZJ-CD-ODs" id="aEY-DK-J4s"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2ZJ-CD-ODs">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cK-s3-iI0">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="Ybf-ZM-3MN"/>
+                    </constraints>
+                    <items>
+                        <navigationItem title="CHOOSE YOUR LOCATION" id="94o-Nn-1MI">
+                            <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="PIU-ol-LXv">
+                                <connections>
+                                    <action selector="cancelButtonPress:" destination="-1" id="HSR-ps-tas"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Few-2r-cU2">
+                    <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="uUi-WB-D7x"/>
+                    </constraints>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="M1Q-fM-R8r">
+                    <rect key="frame" x="0.0" y="108" width="320" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="128" id="HIe-wG-PMz"/>
+                    </constraints>
+                </mapView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="iWx-GU-518">
+                    <rect key="frame" x="0.0" y="236" width="320" height="332"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="iWx-GU-518" firstAttribute="top" secondItem="M1Q-fM-R8r" secondAttribute="bottom" id="1fl-ka-Fwr"/>
+                <constraint firstAttribute="trailing" secondItem="iWx-GU-518" secondAttribute="trailing" id="GTz-NS-g4u"/>
+                <constraint firstItem="M1Q-fM-R8r" firstAttribute="top" secondItem="Few-2r-cU2" secondAttribute="bottom" id="IMZ-tP-E5S"/>
+                <constraint firstItem="iWx-GU-518" firstAttribute="leading" secondItem="2ZJ-CD-ODs" secondAttribute="leading" id="IyE-gK-9Pk"/>
+                <constraint firstItem="8cK-s3-iI0" firstAttribute="top" secondItem="2ZJ-CD-ODs" secondAttribute="top" id="JB4-c1-fAF"/>
+                <constraint firstAttribute="trailing" secondItem="M1Q-fM-R8r" secondAttribute="trailing" id="MG8-hE-bEs"/>
+                <constraint firstAttribute="trailing" secondItem="Few-2r-cU2" secondAttribute="trailing" id="TIu-NR-R8z"/>
+                <constraint firstItem="M1Q-fM-R8r" firstAttribute="leading" secondItem="2ZJ-CD-ODs" secondAttribute="leading" id="VDy-99-ADD"/>
+                <constraint firstAttribute="trailing" secondItem="8cK-s3-iI0" secondAttribute="trailing" id="Xkz-YC-QwM"/>
+                <constraint firstItem="Few-2r-cU2" firstAttribute="top" secondItem="8cK-s3-iI0" secondAttribute="bottom" id="ZIZ-ml-dJh"/>
+                <constraint firstItem="Few-2r-cU2" firstAttribute="leading" secondItem="2ZJ-CD-ODs" secondAttribute="leading" id="olt-IA-HZm"/>
+                <constraint firstAttribute="bottom" secondItem="iWx-GU-518" secondAttribute="bottom" id="rAU-B0-zbp"/>
+                <constraint firstItem="8cK-s3-iI0" firstAttribute="leading" secondItem="2ZJ-CD-ODs" secondAttribute="leading" id="xHH-Bn-3qc"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

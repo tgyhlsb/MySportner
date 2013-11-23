@@ -9,6 +9,7 @@
 #import "MSActivitiesFilterCell.h"
 
 #define IDENTIFIER @"MSActivitiesFilterCell"
+#define HEIGHT 44;
 
 @implementation MSActivitiesFilterCell
 
@@ -37,6 +38,11 @@
 + (NSString *)reusableIdentifier
 {
     return IDENTIFIER;
+}
+
++ (CGFloat)height
+{
+    return HEIGHT;
 }
 
 @end

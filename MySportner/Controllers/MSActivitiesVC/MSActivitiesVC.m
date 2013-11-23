@@ -116,7 +116,7 @@
 {
     switch (indexPath.section) {
         case 0:
-            return 44;
+            return [MSActivitiesFilterCell height];
         case 1:
             return [MSActivityCell height];
             

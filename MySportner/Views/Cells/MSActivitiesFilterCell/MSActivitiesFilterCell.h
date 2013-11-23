@@ -15,4 +15,5 @@
 
 + (void)registerToTableView:(UITableView *)tableView;
 + (NSString *)reusableIdentifier;
++ (CGFloat)height;
 @end

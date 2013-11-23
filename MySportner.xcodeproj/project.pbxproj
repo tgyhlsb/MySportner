@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A3DE7C118412E82001054EB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3DE7C018412E82001054EB /* FacebookSDK.framework */; };
+		5A3DE7C4184133E1001054EB /* MSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3DE7C3184133E1001054EB /* MSUser.m */; };
 		5ADCF225184004D300E6C8D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF224184004D300E6C8D2 /* Foundation.framework */; };
 		5ADCF227184004D300E6C8D2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF226184004D300E6C8D2 /* CoreGraphics.framework */; };
 		5ADCF229184004D300E6C8D2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF228184004D300E6C8D2 /* UIKit.framework */; };
@@ -80,6 +81,8 @@
 
 /* Begin PBXFileReference section */
 		5A3DE7C018412E82001054EB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		5A3DE7C2184133E1001054EB /* MSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSUser.h; path = Model/MSUser.h; sourceTree = "<group>"; };
+		5A3DE7C3184133E1001054EB /* MSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSUser.m; path = Model/MSUser.m; sourceTree = "<group>"; };
 		5ADCF221184004D300E6C8D2 /* MySportner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySportner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ADCF224184004D300E6C8D2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5ADCF226184004D300E6C8D2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -413,6 +416,8 @@
 				5ADCF2B118402B4500E6C8D2 /* MSActivity.m */,
 				5ADCF30C1840F17600E6C8D2 /* MSVenue.h */,
 				5ADCF30D1840F17600E6C8D2 /* MSVenue.m */,
+				5A3DE7C2184133E1001054EB /* MSUser.h */,
+				5A3DE7C3184133E1001054EB /* MSUser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -638,6 +643,7 @@
 			files = (
 				5ADCF29918401CD000E6C8D2 /* MSNavigationVC.m in Sources */,
 				5ADCF30E1840F17600E6C8D2 /* MSVenue.m in Sources */,
+				5A3DE7C4184133E1001054EB /* MSUser.m in Sources */,
 				5ADCF2CD1840B4FD00E6C8D2 /* MSActivitiesFilterCell.m in Sources */,
 				5ADCF29618401A0300E6C8D2 /* MSDrawerController.m in Sources */,
 				5ADCF3081840E80500E6C8D2 /* MSFourSquareKeyFactory.m in Sources */,

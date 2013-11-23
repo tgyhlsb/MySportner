@@ -31,7 +31,7 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
-	<key>FacebookAppId</key>
+	<key>FacebookAppID</key>
 	<string>697476786938239</string>
 	<key>FacebookDisplayName</key>
 	<string>MySportner</string>

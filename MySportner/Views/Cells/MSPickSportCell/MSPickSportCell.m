@@ -10,7 +10,7 @@
 #import "MSSmallSportCell.h"
 
 #define IDENTIFIER @"MSPickSportCell"
-#define HEIGHT 88
+#define HEIGHT 120
 
 @interface MSPickSportCell() <UICollectionViewDataSource, UICollectionViewDelegate>
 

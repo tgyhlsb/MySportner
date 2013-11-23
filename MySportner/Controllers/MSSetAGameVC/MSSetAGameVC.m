@@ -90,6 +90,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     MSTextFieldPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
                     
                     [cell initialize];
+                    cell.textField.placeholder = @"Day";
                     
                     return cell;
                 }
@@ -99,6 +100,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     MSTextFieldPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
                     
                     [cell initialize];
+                    cell.textField.placeholder = @"Time";
                     
                     return cell;
                 }
@@ -108,6 +110,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     MSTextFieldPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
                     
                     [cell initialize];
+                    cell.textField.placeholder = @"Repeat";
                     
                     return cell;
                 }
@@ -117,6 +120,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     MSTextFieldPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
                     
                     [cell initialize];
+                    cell.textField.placeholder = @"Location";
                     
                     return cell;
                 }
@@ -134,18 +138,6 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
             return nil;
     }
 }
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    switch (section) {
-        case MSSetAGameSectionPickSport:
-            return @"PICK A SPORT";
-            
-        default:
-            return nil;
-    }
-}
-
 
 #pragma mark UITableViewDelegate
 

@@ -7,15 +7,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSPickSportCell"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="88" id="NGq-pw-NaS" customClass="MSPickSportCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="120" id="NGq-pw-NaS" customClass="MSPickSportCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NGq-pw-NaS" id="6bq-0r-a0j">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="iy0-fn-v9E">
-                        <rect key="frame" x="20" y="0.0" width="280" height="88"/>
+                        <rect key="frame" x="20" y="25" width="280" height="94"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="9" minimumInteritemSpacing="9" id="WsZ-ao-cxw">
                             <size key="itemSize" width="70" height="70"/>
@@ -25,12 +25,18 @@
                         </collectionViewFlowLayout>
                         <cells/>
                     </collectionView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PICK A SPORT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4x-AY-aRq">
+                        <rect key="frame" x="20" y="6" width="117" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="iy0-fn-v9E" secondAttribute="bottom" id="DJ9-n1-iwC"/>
                     <constraint firstAttribute="trailing" secondItem="iy0-fn-v9E" secondAttribute="trailing" constant="20" id="LOh-ut-enb"/>
                     <constraint firstItem="iy0-fn-v9E" firstAttribute="leading" secondItem="6bq-0r-a0j" secondAttribute="leading" constant="20" id="hxC-eY-Owp"/>
-                    <constraint firstItem="iy0-fn-v9E" firstAttribute="top" secondItem="6bq-0r-a0j" secondAttribute="top" id="kxu-aj-85H"/>
+                    <constraint firstItem="iy0-fn-v9E" firstAttribute="top" secondItem="6bq-0r-a0j" secondAttribute="top" constant="25" id="vjs-P3-Ug7"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

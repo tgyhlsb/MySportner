@@ -50,6 +50,8 @@
 		5ADCF2D51840BA7600E6C8D2 /* MSPickSportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2D41840BA7600E6C8D2 /* MSPickSportCell.xib */; };
 		5ADCF2D81840BDAD00E6C8D2 /* MSSmallSportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2D71840BDAD00E6C8D2 /* MSSmallSportCell.m */; };
 		5ADCF2DA1840BDBB00E6C8D2 /* MSSmallSportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2D91840BDBB00E6C8D2 /* MSSmallSportCell.xib */; };
+		5ADCF2DF1840C87A00E6C8D2 /* MSDayPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2DE1840C87A00E6C8D2 /* MSDayPickerCell.m */; };
+		5ADCF2E11840C88A00E6C8D2 /* MSDayPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2E01840C88A00E6C8D2 /* MSDayPickerCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +132,9 @@
 		5ADCF2D61840BDAD00E6C8D2 /* MSSmallSportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSmallSportCell.h; path = Views/Cells/MSSmallSportCell/MSSmallSportCell.h; sourceTree = "<group>"; };
 		5ADCF2D71840BDAD00E6C8D2 /* MSSmallSportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSmallSportCell.m; path = Views/Cells/MSSmallSportCell/MSSmallSportCell.m; sourceTree = "<group>"; };
 		5ADCF2D91840BDBB00E6C8D2 /* MSSmallSportCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSSmallSportCell.xib; path = Views/Cells/MSSmallSportCell/MSSmallSportCell.xib; sourceTree = "<group>"; };
+		5ADCF2DD1840C87A00E6C8D2 /* MSDayPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSDayPickerCell.h; path = Views/Cells/MSDayPickerCell/MSDayPickerCell.h; sourceTree = "<group>"; };
+		5ADCF2DE1840C87A00E6C8D2 /* MSDayPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSDayPickerCell.m; path = Views/Cells/MSDayPickerCell/MSDayPickerCell.m; sourceTree = "<group>"; };
+		5ADCF2E01840C88A00E6C8D2 /* MSDayPickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSDayPickerCell.xib; path = Views/Cells/MSDayPickerCell/MSDayPickerCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +305,7 @@
 				5ADCF2D01840B51C00E6C8D2 /* MSActivitiesFilterCell */,
 				5ADCF2DC1840BEBB00E6C8D2 /* MSPickSportCell */,
 				5ADCF2DB1840BDC500E6C8D2 /* MSSmallSportCell */,
+				5ADCF2E21840C89200E6C8D2 /* MSDayPickerCell */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -413,6 +419,16 @@
 			name = MSPickSportCell;
 			sourceTree = "<group>";
 		};
+		5ADCF2E21840C89200E6C8D2 /* MSDayPickerCell */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF2DD1840C87A00E6C8D2 /* MSDayPickerCell.h */,
+				5ADCF2DE1840C87A00E6C8D2 /* MSDayPickerCell.m */,
+				5ADCF2E01840C88A00E6C8D2 /* MSDayPickerCell.xib */,
+			);
+			name = MSDayPickerCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -496,6 +512,7 @@
 				5ADCF22F184004D300E6C8D2 /* InfoPlist.strings in Resources */,
 				5ADCF2851840141700E6C8D2 /* MSProfileVC.xib in Resources */,
 				5ADCF2D51840BA7600E6C8D2 /* MSPickSportCell.xib in Resources */,
+				5ADCF2E11840C88A00E6C8D2 /* MSDayPickerCell.xib in Resources */,
 				5ADCF29E18401D2300E6C8D2 /* MSNotificationsVC.xib in Resources */,
 				5ADCF28B1840144D00E6C8D2 /* MSDrawerMenuVC.xib in Resources */,
 				5ADCF28F1840178900E6C8D2 /* MSActivitiesVC.xib in Resources */,
@@ -526,6 +543,7 @@
 				5ADCF2CD1840B4FD00E6C8D2 /* MSActivitiesFilterCell.m in Sources */,
 				5ADCF29618401A0300E6C8D2 /* MSDrawerController.m in Sources */,
 				5ADCF2D31840BA6400E6C8D2 /* MSPickSportCell.m in Sources */,
+				5ADCF2DF1840C87A00E6C8D2 /* MSDayPickerCell.m in Sources */,
 				5ADCF293184017A700E6C8D2 /* MSActivitiesVC.m in Sources */,
 				5ADCF2C31840ADF700E6C8D2 /* MSActivityVC.m in Sources */,
 				5ADCF2661840051300E6C8D2 /* MMDrawerVisualState.m in Sources */,

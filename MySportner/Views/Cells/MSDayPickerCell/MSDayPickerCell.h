@@ -1,5 +1,5 @@
 //
-//  MSPickSportCell.h
+//  MSDayPickerCell.h
 //  MySportner
 //
 //  Created by Tanguy Hélesbeux on 23/11/2013.
@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSPickSportCell : UITableViewCell
-
-@property (strong, nonatomic) NSString *sport;
+@interface MSDayPickerCell : UITableViewCell
 
 - (void)initialize;
 

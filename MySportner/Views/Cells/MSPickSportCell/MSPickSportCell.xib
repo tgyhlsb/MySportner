@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="iy0-fn-v9E">
-                        <rect key="frame" x="10" y="0.0" width="300" height="88"/>
+                        <rect key="frame" x="20" y="0.0" width="280" height="88"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="9" minimumInteritemSpacing="9" id="WsZ-ao-cxw">
                             <size key="itemSize" width="70" height="70"/>
@@ -28,11 +28,12 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="iy0-fn-v9E" secondAttribute="bottom" id="DJ9-n1-iwC"/>
-                    <constraint firstAttribute="trailing" secondItem="iy0-fn-v9E" secondAttribute="trailing" constant="10" id="LOh-ut-enb"/>
-                    <constraint firstItem="iy0-fn-v9E" firstAttribute="leading" secondItem="6bq-0r-a0j" secondAttribute="leading" constant="10" id="hxC-eY-Owp"/>
+                    <constraint firstAttribute="trailing" secondItem="iy0-fn-v9E" secondAttribute="trailing" constant="20" id="LOh-ut-enb"/>
+                    <constraint firstItem="iy0-fn-v9E" firstAttribute="leading" secondItem="6bq-0r-a0j" secondAttribute="leading" constant="20" id="hxC-eY-Owp"/>
                     <constraint firstItem="iy0-fn-v9E" firstAttribute="top" secondItem="6bq-0r-a0j" secondAttribute="top" id="kxu-aj-85H"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="collectionView" destination="iy0-fn-v9E" id="pzR-Fd-cqx"/>
             </connections>

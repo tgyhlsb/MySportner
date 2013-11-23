@@ -14,16 +14,22 @@
                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3K-Wb-tcd">
-                        <rect key="frame" x="19" y="52" width="42" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3K-Wb-tcd">
+                        <rect key="frame" x="0.0" y="52" width="80" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="W3K-Wb-tcd" secondAttribute="bottom" constant="7" id="5e6-Vc-oCy"/>
+                <constraint firstItem="W3K-Wb-tcd" firstAttribute="top" secondItem="m1O-g0-3Go" secondAttribute="top" constant="52" id="F4h-eI-qLx"/>
+                <constraint firstAttribute="trailing" secondItem="W3K-Wb-tcd" secondAttribute="trailing" id="rGj-gN-HBy"/>
+                <constraint firstItem="W3K-Wb-tcd" firstAttribute="leading" secondItem="m1O-g0-3Go" secondAttribute="leading" id="xdd-Oq-ejf"/>
+            </constraints>
             <connections>
                 <outlet property="titleLabel" destination="W3K-Wb-tcd" id="6EG-If-niE"/>
             </connections>

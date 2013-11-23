@@ -8,6 +8,7 @@
 
 #import "MSSetAGameVC.h"
 #import "MSPickSportCell.h"
+#import "MSDayPickerCell.h"
 
 #define NIB_NAME @"MSSetAGameVC"
 
@@ -33,6 +34,7 @@ typedef NS_ENUM(int, MSSetAGameSection) {
     self.tableView.dataSource = self;
 	
     [MSPickSportCell registerToTableView:self.tableView];
+    [MSDayPickerCell registerToTableView:self.tableView];
 }
 
 + (MSSetAGameVC *)newController
@@ -44,7 +46,7 @@ typedef NS_ENUM(int, MSSetAGameSection) {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -53,7 +55,7 @@ typedef NS_ENUM(int, MSSetAGameSection) {
         case MSSetAGameSectionPickSport:
             return 1;
         case MSSetAGameSectionTextField:
-            return 0;
+            return 4;
         case MSSetAGameSectionSizePicker:
             return 0;
             
@@ -75,7 +77,11 @@ typedef NS_ENUM(int, MSSetAGameSection) {
         }
         case MSSetAGameSectionTextField:
         {
+            MSDayPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSDayPickerCell reusableIdentifier] forIndexPath:indexPath];
             
+            [cell initialize];
+            
+            return cell;
         }
         case MSSetAGameSectionSizePicker:
         {
@@ -106,6 +112,9 @@ typedef NS_ENUM(int, MSSetAGameSection) {
     switch (indexPath.section) {
         case MSSetAGameSectionPickSport:
             return [MSPickSportCell height];
+            
+        case MSSetAGameSectionTextField:
+            return [MSDayPickerCell height];
             
         default:
             return 44;

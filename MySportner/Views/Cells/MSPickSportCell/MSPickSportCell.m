@@ -29,6 +29,9 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
+    self.collectionView.allowsSelection = YES;
+    self.collectionView.allowsMultipleSelection = NO;
+    
     self.data = @[@"Basket", @"Foot", @"Tennis", @"Swimming", @"Running"];
 }
 
@@ -79,6 +82,10 @@
 
 #pragma mark UICollectionViewDelegate
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.sport = [self.data objectAtIndex:indexPath.item];
+}
 
 
 @end

@@ -31,4 +31,18 @@
     return CGSizeMake(WIDTH, HEIGHT);
 }
 
+- (void)setSelected:(BOOL)selected
+{
+    [super setSelected:selected];
+    
+    if (selected)
+    {
+        self.backgroundColor = [UIColor yellowColor];
+    }
+    else
+    {
+        self.backgroundColor = [UIColor grayColor];
+    }
+}
+
 @end

@@ -120,7 +120,7 @@
     MSVenue *venue = [self.data objectAtIndex:indexPath.row];
     
     cell.titleLabel.text = venue.name;
-    cell.subtitleLabel.text = [NSString stringWithFormat:@"%@, %@, %@", venue.city, venue.state, venue.country];
+    cell.subtitleLabel.text = [NSString stringWithFormat:@"%@, %@, %@, %@", venue.address, venue.city, venue.state, venue.country];
     
     return cell;
 }

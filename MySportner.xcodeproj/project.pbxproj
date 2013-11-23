@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A3DE7C118412E82001054EB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3DE7C018412E82001054EB /* FacebookSDK.framework */; };
 		5ADCF225184004D300E6C8D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF224184004D300E6C8D2 /* Foundation.framework */; };
 		5ADCF227184004D300E6C8D2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF226184004D300E6C8D2 /* CoreGraphics.framework */; };
 		5ADCF229184004D300E6C8D2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF228184004D300E6C8D2 /* UIKit.framework */; };
@@ -78,6 +79,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A3DE7C018412E82001054EB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		5ADCF221184004D300E6C8D2 /* MySportner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySportner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ADCF224184004D300E6C8D2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5ADCF226184004D300E6C8D2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -178,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ADCF2F81840DB3A00E6C8D2 /* MapKit.framework in Frameworks */,
+				5A3DE7C118412E82001054EB /* FacebookSDK.framework in Frameworks */,
 				5ADCF227184004D300E6C8D2 /* CoreGraphics.framework in Frameworks */,
 				5ADCF229184004D300E6C8D2 /* UIKit.framework in Frameworks */,
 				5ADCF225184004D300E6C8D2 /* Foundation.framework in Frameworks */,
@@ -220,6 +223,7 @@
 		5ADCF223184004D300E6C8D2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5A3DE7C018412E82001054EB /* FacebookSDK.framework */,
 				5ADCF2F71840DB3A00E6C8D2 /* MapKit.framework */,
 				5ADCF224184004D300E6C8D2 /* Foundation.framework */,
 				5ADCF226184004D300E6C8D2 /* CoreGraphics.framework */,
@@ -789,6 +793,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/tanguyhelesbeux/Documents/Source\\ tree/MySportner/App/MySportner",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MySportner/MySportner-Prefix.pch";
 				INFOPLIST_FILE = "MySportner/MySportner-Info.plist";
@@ -803,6 +811,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/tanguyhelesbeux/Documents/Source\\ tree/MySportner/App/MySportner",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MySportner/MySportner-Prefix.pch";
 				INFOPLIST_FILE = "MySportner/MySportner-Info.plist";

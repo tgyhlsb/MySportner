@@ -6,18 +6,17 @@
 //  Copyright (c) 2013 MySportner. All rights reserved.
 //
 
-#import "MSDayPickerCell.h"
+#import "MSTextFieldPickerCell.h"
 
-#define IDENTIFIER @"MSDayPickerCell"
+#define IDENTIFIER @"MSTextFieldPickerCell"
 #define HEIGT 60
 
-@interface MSDayPickerCell() <UITextFieldDelegate>
+@interface MSTextFieldPickerCell() <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end
 
-@implementation MSDayPickerCell
+@implementation MSTextFieldPickerCell
 
 - (void)initialize
 {
@@ -34,7 +33,7 @@
 + (void)registerToTableView:(UITableView *)tableView
 {
     UINib *nib = [UINib nibWithNibName:IDENTIFIER bundle:nil];
-    [tableView registerNib:nib forCellReuseIdentifier:[MSDayPickerCell reusableIdentifier]];
+    [tableView registerNib:nib forCellReuseIdentifier:[MSTextFieldPickerCell reusableIdentifier]];
 }
 
 + (NSString *)reusableIdentifier

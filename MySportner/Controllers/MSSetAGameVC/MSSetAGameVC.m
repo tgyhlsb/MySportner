@@ -8,7 +8,7 @@
 
 #import "MSSetAGameVC.h"
 #import "MSPickSportCell.h"
-#import "MSDayPickerCell.h"
+#import "MSTextFieldPickerCell.h"
 
 #define NIB_NAME @"MSSetAGameVC"
 
@@ -16,6 +16,13 @@ typedef NS_ENUM(int, MSSetAGameSection) {
     MSSetAGameSectionPickSport,
     MSSetAGameSectionTextField,
     MSSetAGameSectionSizePicker
+};
+
+typedef NS_ENUM(int, MSSetAGameTextFieldType) {
+    MSSetAGameTextFieldTypeDay,
+    MSSetAGameTextFieldTypeTime,
+    MSSetAGameTextFieldTypeRepeat,
+    MSSetAGameTextFieldTypeLocation
 };
 
 @interface MSSetAGameVC () <UITableViewDataSource, UITableViewDelegate>
@@ -34,7 +41,7 @@ typedef NS_ENUM(int, MSSetAGameSection) {
     self.tableView.dataSource = self;
 	
     [MSPickSportCell registerToTableView:self.tableView];
-    [MSDayPickerCell registerToTableView:self.tableView];
+    [MSTextFieldPickerCell registerToTableView:self.tableView];
 }
 
 + (MSSetAGameVC *)newController
@@ -77,11 +84,46 @@ typedef NS_ENUM(int, MSSetAGameSection) {
         }
         case MSSetAGameSectionTextField:
         {
-            MSDayPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSDayPickerCell reusableIdentifier] forIndexPath:indexPath];
-            
-            [cell initialize];
-            
-            return cell;
+            switch (indexPath.row) {
+                case MSSetAGameTextFieldTypeDay:
+                {
+                    MSTextFieldPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
+                    
+                    [cell initialize];
+                    
+                    return cell;
+                }
+                    
+                case MSSetAGameTextFieldTypeTime:
+                {
+                    MSTextFieldPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
+                    
+                    [cell initialize];
+                    
+                    return cell;
+                }
+                    
+                case MSSetAGameTextFieldTypeRepeat:
+                {
+                    MSTextFieldPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
+                    
+                    [cell initialize];
+                    
+                    return cell;
+                }
+                    
+                case MSSetAGameTextFieldTypeLocation:
+                {
+                    MSTextFieldPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
+                    
+                    [cell initialize];
+                    
+                    return cell;
+                }
+                    
+                default:
+                    return nil;
+            }
         }
         case MSSetAGameSectionSizePicker:
         {
@@ -114,7 +156,7 @@ typedef NS_ENUM(int, MSSetAGameSection) {
             return [MSPickSportCell height];
             
         case MSSetAGameSectionTextField:
-            return [MSDayPickerCell height];
+            return [MSTextFieldPickerCell height];
             
         default:
             return 44;

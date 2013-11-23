@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSDayPickerCell : UITableViewCell
+@interface MSTextFieldPickerCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 - (void)initialize;
 

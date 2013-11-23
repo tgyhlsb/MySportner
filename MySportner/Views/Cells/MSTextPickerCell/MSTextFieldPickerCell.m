@@ -11,16 +11,16 @@
 #define IDENTIFIER @"MSTextFieldPickerCell"
 #define HEIGT 60
 
-@interface MSTextFieldPickerCell() <UITextFieldDelegate>
-
+@interface MSTextFieldPickerCell()
 
 @end
 
 @implementation MSTextFieldPickerCell
 
-- (void)initialize
+- (void)initializeWithViewcontroller:(UIViewController *)viewController
 {
     self.textField.delegate = self;
+    self.viewController = viewController;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

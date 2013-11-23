@@ -9,6 +9,7 @@
 #import "MSSetAGameVC.h"
 #import "MSPickSportCell.h"
 #import "MSTextFieldPickerCell.h"
+#import "MSLocationPickerCell.h"
 
 #define NIB_NAME @"MSSetAGameVC"
 
@@ -40,6 +41,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 	
+    [MSLocationPickerCell registerToTableView:self.tableView];
     [MSPickSportCell registerToTableView:self.tableView];
     [MSTextFieldPickerCell registerToTableView:self.tableView];
 }
@@ -89,7 +91,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                 {
                     MSTextFieldPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
                     
-                    [cell initialize];
+                    [cell initializeWithViewcontroller:self];
                     cell.textField.placeholder = @"Day";
                     
                     return cell;
@@ -99,7 +101,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                 {
                     MSTextFieldPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
                     
-                    [cell initialize];
+                    [cell initializeWithViewcontroller:self];
                     cell.textField.placeholder = @"Time";
                     
                     return cell;
@@ -109,7 +111,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                 {
                     MSTextFieldPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
                     
-                    [cell initialize];
+                    [cell initializeWithViewcontroller:self];
                     cell.textField.placeholder = @"Repeat";
                     
                     return cell;
@@ -117,9 +119,9 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     
                 case MSSetAGameTextFieldTypeLocation:
                 {
-                    MSTextFieldPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
+                    MSLocationPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSLocationPickerCell reusableIdentifier] forIndexPath:indexPath];
                     
-                    [cell initialize];
+                    [cell initializeWithViewcontroller:self];
                     cell.textField.placeholder = @"Location";
                     
                     return cell;

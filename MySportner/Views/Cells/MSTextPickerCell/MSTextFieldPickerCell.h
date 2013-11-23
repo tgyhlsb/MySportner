@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSTextFieldPickerCell : UITableViewCell
+@interface MSTextFieldPickerCell : UITableViewCell <UITextFieldDelegate>
+
+@property (weak, nonatomic) UIViewController *viewController;
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
-- (void)initialize;
+- (void)initializeWithViewcontroller:(UIViewController *)viewController;
 
 + (void)registerToTableView:(UITableView *)tableView;
 + (NSString *)reusableIdentifier;

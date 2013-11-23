@@ -11,6 +11,8 @@
 #import "MMDrawerBarButtonItem.h"
 #import "MSactivity.h"
 #import "MSActivityCell.h"
+#import "MSActivitiesFilterCell.h"
+#import "MSActivityVC.h"
 
 #define NIB_NAME @"MSActivitiesVC"
 
@@ -30,6 +32,7 @@
     self.tableView.delegate = self;
     
     [MSActivityCell registerToTableview:self.tableView];
+    [MSActivitiesFilterCell registerToTableView:self.tableView];
     
     [self generateSampleData];
 }
@@ -62,25 +65,48 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.data count];
+    switch (section) {
+        case 0:
+            return 1;
+        case 1:
+            return [self.data count];
+            
+        default:
+            return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = [MSActivityCell reusableIdentifier];
-    MSActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    switch (indexPath.section) {
+        case 0:
+        {
+            NSString *identifier = [MSActivitiesFilterCell reusableIdentifier];
+            MSActivitiesFilterCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+            
+            
+            
+            return cell;
+        }
+            
+        default:
+        {
+            NSString *identifier = [MSActivityCell reusableIdentifier];
+            MSActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+            
+            MSActivity *activity = [self.data objectAtIndex:indexPath.row];
+            
+            cell.titleLabel.text = activity.title;
+            cell.placeLabel.text = activity.place;
+            return cell;
+        }
+    }
     
-    MSActivity *activity = [self.data objectAtIndex:indexPath.row];
-    
-    cell.titleLabel.text = activity.title;
-    cell.placeLabel.text = activity.place;
-    
-    return cell;
 }
 
 #pragma mark UITableViewDelegate
@@ -88,12 +114,24 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [MSActivityCell height];
+    switch (indexPath.section) {
+        case 0:
+            return 44;
+        case 1:
+            return [MSActivityCell height];
+            
+        default:
+            return 0;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    MSActivityVC *destinationVC = [MSActivityVC newController];
+    
+    [self.navigationController pushViewController:destinationVC animated:YES];
 }
 
 @end

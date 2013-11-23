@@ -37,4 +37,10 @@
     return HEIGHT;
 }
 
+- (IBAction)joinButtonPress:(UIButton *)sender
+{
+    
+}
+
+
 @end

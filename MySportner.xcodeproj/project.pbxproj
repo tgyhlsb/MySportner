@@ -41,7 +41,11 @@
 		5ADCF2AE184025BB00E6C8D2 /* MSWelcomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2AD184025BB00E6C8D2 /* MSWelcomeVC.xib */; };
 		5ADCF2B218402B4500E6C8D2 /* MSActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2B118402B4500E6C8D2 /* MSActivity.m */; };
 		5ADCF2B818402CC500E6C8D2 /* MSActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2B718402CC500E6C8D2 /* MSActivityCell.xib */; };
-		5ADCF2BD18402CED00E6C8D2 /* MSActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2BC18402CED00E6C8D2 /* MSActivityCell.m */; };
+		5ADCF2C31840ADF700E6C8D2 /* MSActivityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2C21840ADF700E6C8D2 /* MSActivityVC.m */; };
+		5ADCF2C51840AE0800E6C8D2 /* MSActivityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2C41840AE0800E6C8D2 /* MSActivityVC.xib */; };
+		5ADCF2CA1840AF5300E6C8D2 /* MSActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2C91840AF5300E6C8D2 /* MSActivityCell.m */; };
+		5ADCF2CD1840B4FD00E6C8D2 /* MSActivitiesFilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2CC1840B4FD00E6C8D2 /* MSActivitiesFilterCell.m */; };
+		5ADCF2CF1840B50D00E6C8D2 /* MSActivitiesFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2CE1840B50D00E6C8D2 /* MSActivitiesFilterCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,8 +112,14 @@
 		5ADCF2B018402B4500E6C8D2 /* MSActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSActivity.h; path = Model/MSActivity.h; sourceTree = "<group>"; };
 		5ADCF2B118402B4500E6C8D2 /* MSActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSActivity.m; path = Model/MSActivity.m; sourceTree = "<group>"; };
 		5ADCF2B718402CC500E6C8D2 /* MSActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSActivityCell.xib; path = Views/Cells/MSActivityCell/MSActivityCell.xib; sourceTree = "<group>"; };
-		5ADCF2BB18402CED00E6C8D2 /* MSActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSActivityCell.h; path = Views/Cells/MSActivityCell/MSActivityCell.h; sourceTree = "<group>"; };
-		5ADCF2BC18402CED00E6C8D2 /* MSActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSActivityCell.m; path = Views/Cells/MSActivityCell/MSActivityCell.m; sourceTree = "<group>"; };
+		5ADCF2C11840ADF700E6C8D2 /* MSActivityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSActivityVC.h; path = Controllers/MSActivityVC/MSActivityVC.h; sourceTree = "<group>"; };
+		5ADCF2C21840ADF700E6C8D2 /* MSActivityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSActivityVC.m; path = Controllers/MSActivityVC/MSActivityVC.m; sourceTree = "<group>"; };
+		5ADCF2C41840AE0800E6C8D2 /* MSActivityVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSActivityVC.xib; path = Controllers/MSActivityVC/MSActivityVC.xib; sourceTree = "<group>"; };
+		5ADCF2C81840AF5300E6C8D2 /* MSActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSActivityCell.h; path = Views/Cells/MSActivityCell/MSActivityCell.h; sourceTree = "<group>"; };
+		5ADCF2C91840AF5300E6C8D2 /* MSActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSActivityCell.m; path = Views/Cells/MSActivityCell/MSActivityCell.m; sourceTree = "<group>"; };
+		5ADCF2CB1840B4FD00E6C8D2 /* MSActivitiesFilterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSActivitiesFilterCell.h; path = Views/Cells/MSActivitiesFilterCell/MSActivitiesFilterCell.h; sourceTree = "<group>"; };
+		5ADCF2CC1840B4FD00E6C8D2 /* MSActivitiesFilterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSActivitiesFilterCell.m; path = Views/Cells/MSActivitiesFilterCell/MSActivitiesFilterCell.m; sourceTree = "<group>"; };
+		5ADCF2CE1840B50D00E6C8D2 /* MSActivitiesFilterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSActivitiesFilterCell.xib; path = Views/Cells/MSActivitiesFilterCell/MSActivitiesFilterCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +254,7 @@
 				5ADCF29818401CD000E6C8D2 /* MSNavigationVC.m */,
 				5ADCF2A718401FF800E6C8D2 /* MSCenterController.h */,
 				5ADCF2A818401FF800E6C8D2 /* MSCenterController.m */,
+				5ADCF2C61840AE0D00E6C8D2 /* MSActivityVC */,
 				5ADCF2AF184025C000E6C8D2 /* MSWelcomeVC */,
 				5ADCF27418400CF500E6C8D2 /* MSDrawerMenuVC */,
 				5ADCF2A618401E2C00E6C8D2 /* MSSetAGameVC */,
@@ -275,9 +286,8 @@
 		5ADCF278184011AC00E6C8D2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				5ADCF2BB18402CED00E6C8D2 /* MSActivityCell.h */,
-				5ADCF2BC18402CED00E6C8D2 /* MSActivityCell.m */,
-				5ADCF2B718402CC500E6C8D2 /* MSActivityCell.xib */,
+				5ADCF2C71840AF4700E6C8D2 /* MSActivityCell */,
+				5ADCF2D01840B51C00E6C8D2 /* MSActivitiesFilterCell */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -339,6 +349,36 @@
 				5ADCF2B118402B4500E6C8D2 /* MSActivity.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		5ADCF2C61840AE0D00E6C8D2 /* MSActivityVC */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF2C11840ADF700E6C8D2 /* MSActivityVC.h */,
+				5ADCF2C21840ADF700E6C8D2 /* MSActivityVC.m */,
+				5ADCF2C41840AE0800E6C8D2 /* MSActivityVC.xib */,
+			);
+			name = MSActivityVC;
+			sourceTree = "<group>";
+		};
+		5ADCF2C71840AF4700E6C8D2 /* MSActivityCell */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF2C81840AF5300E6C8D2 /* MSActivityCell.h */,
+				5ADCF2C91840AF5300E6C8D2 /* MSActivityCell.m */,
+				5ADCF2B718402CC500E6C8D2 /* MSActivityCell.xib */,
+			);
+			name = MSActivityCell;
+			sourceTree = "<group>";
+		};
+		5ADCF2D01840B51C00E6C8D2 /* MSActivitiesFilterCell */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF2CB1840B4FD00E6C8D2 /* MSActivitiesFilterCell.h */,
+				5ADCF2CC1840B4FD00E6C8D2 /* MSActivitiesFilterCell.m */,
+				5ADCF2CE1840B50D00E6C8D2 /* MSActivitiesFilterCell.xib */,
+			);
+			name = MSActivitiesFilterCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,12 +460,14 @@
 			files = (
 				5ADCF23D184004D300E6C8D2 /* Images.xcassets in Resources */,
 				5ADCF2A518401E2800E6C8D2 /* MSSetAGameVC.xib in Resources */,
+				5ADCF2CF1840B50D00E6C8D2 /* MSActivitiesFilterCell.xib in Resources */,
 				5ADCF22F184004D300E6C8D2 /* InfoPlist.strings in Resources */,
 				5ADCF2851840141700E6C8D2 /* MSProfileVC.xib in Resources */,
 				5ADCF29E18401D2300E6C8D2 /* MSNotificationsVC.xib in Resources */,
 				5ADCF28B1840144D00E6C8D2 /* MSDrawerMenuVC.xib in Resources */,
 				5ADCF28F1840178900E6C8D2 /* MSActivitiesVC.xib in Resources */,
 				5ADCF2AE184025BB00E6C8D2 /* MSWelcomeVC.xib in Resources */,
+				5ADCF2C51840AE0800E6C8D2 /* MSActivityVC.xib in Resources */,
 				5ADCF2B818402CC500E6C8D2 /* MSActivityCell.xib in Resources */,
 				5ADCF238184004D300E6C8D2 /* Main.storyboard in Resources */,
 			);
@@ -447,12 +489,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ADCF29918401CD000E6C8D2 /* MSNavigationVC.m in Sources */,
+				5ADCF2CD1840B4FD00E6C8D2 /* MSActivitiesFilterCell.m in Sources */,
 				5ADCF29618401A0300E6C8D2 /* MSDrawerController.m in Sources */,
 				5ADCF293184017A700E6C8D2 /* MSActivitiesVC.m in Sources */,
+				5ADCF2C31840ADF700E6C8D2 /* MSActivityVC.m in Sources */,
 				5ADCF2661840051300E6C8D2 /* MMDrawerVisualState.m in Sources */,
 				5ADCF2B218402B4500E6C8D2 /* MSActivity.m in Sources */,
+				5ADCF2CA1840AF5300E6C8D2 /* MSActivityCell.m in Sources */,
 				5ADCF2A918401FF800E6C8D2 /* MSCenterController.m in Sources */,
-				5ADCF2BD18402CED00E6C8D2 /* MSActivityCell.m in Sources */,
 				5ADCF235184004D300E6C8D2 /* MSAppDelegate.m in Sources */,
 				5ADCF29C18401D1800E6C8D2 /* MSNotificationsVC.m in Sources */,
 				5ADCF2AC184025AE00E6C8D2 /* MSWelcomeVC.m in Sources */,

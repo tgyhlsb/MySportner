@@ -7,6 +7,9 @@
 //
 
 #import "MSWelcomeVC.h"
+#import "MSAppDelegate.h"
+
+#define NIB_NAME @"MSWelcomeVC"
 
 @interface MSWelcomeVC ()
 
@@ -29,10 +32,24 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
++ (MSWelcomeVC *)newcontroller
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return [[MSWelcomeVC alloc] initWithNibName:NIB_NAME bundle:nil];
 }
 
+- (void)performLogin
+{
+    MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+//    UIStoryboardSegue *segue = [UIStoryboardSegue segueWithIdentifier:@"loginSegue" source:self destination:appDelegate.drawerController performHandler:nil];
+    
+    appDelegate.drawerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
+    [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
+}
+
+- (IBAction)loginButtonPress:(UIButton *)sender
+{
+    [self performLogin];
+}
 @end

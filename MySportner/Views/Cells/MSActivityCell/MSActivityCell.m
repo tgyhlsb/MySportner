@@ -8,22 +8,33 @@
 
 #import "MSActivityCell.h"
 
+#define IDENTIFIER @"MSActivityCell"
+#define HEIGHT 88.0
+
 @implementation MSActivityCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
++ (void)registerToTableview:(UITableView *)tableView
+{
+    UINib *nib = [UINib nibWithNibName:IDENTIFIER bundle:nil];
+    [tableView registerNib:nib forCellReuseIdentifier:[MSActivityCell reusableIdentifier]];
+}
+
++ (NSString *)reusableIdentifier
+{
+    return IDENTIFIER;
+}
+
++ (CGFloat)height
+{
+    return HEIGHT;
 }
 
 @end

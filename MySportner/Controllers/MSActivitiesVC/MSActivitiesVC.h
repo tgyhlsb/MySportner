@@ -11,6 +11,9 @@
 
 @interface MSActivitiesVC : MSCenterController
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+
 + (MSActivitiesVC *)newController;
 
 @end

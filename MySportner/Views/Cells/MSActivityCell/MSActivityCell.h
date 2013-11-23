@@ -10,4 +10,13 @@
 
 @interface MSActivityCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *placeLabel;
+
+
++ (void)registerToTableview:(UITableView *)tableView;
++ (NSString *)reusableIdentifier;
++ (CGFloat)height;
+
 @end

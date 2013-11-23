@@ -10,4 +10,8 @@
 
 @interface MSActivity : NSObject
 
+@property (strong, nonatomic) NSString *date;
+@property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *place;
+
 @end

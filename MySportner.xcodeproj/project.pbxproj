@@ -37,6 +37,11 @@
 		5ADCF2A318401E1C00E6C8D2 /* MSSetAGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2A218401E1C00E6C8D2 /* MSSetAGameVC.m */; };
 		5ADCF2A518401E2800E6C8D2 /* MSSetAGameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2A418401E2800E6C8D2 /* MSSetAGameVC.xib */; };
 		5ADCF2A918401FF800E6C8D2 /* MSCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2A818401FF800E6C8D2 /* MSCenterController.m */; };
+		5ADCF2AC184025AE00E6C8D2 /* MSWelcomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2AB184025AE00E6C8D2 /* MSWelcomeVC.m */; };
+		5ADCF2AE184025BB00E6C8D2 /* MSWelcomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2AD184025BB00E6C8D2 /* MSWelcomeVC.xib */; };
+		5ADCF2B218402B4500E6C8D2 /* MSActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2B118402B4500E6C8D2 /* MSActivity.m */; };
+		5ADCF2B818402CC500E6C8D2 /* MSActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2B718402CC500E6C8D2 /* MSActivityCell.xib */; };
+		5ADCF2BD18402CED00E6C8D2 /* MSActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2BC18402CED00E6C8D2 /* MSActivityCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +102,14 @@
 		5ADCF2A418401E2800E6C8D2 /* MSSetAGameVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSSetAGameVC.xib; path = Controllers/MSSetAGameVC/MSSetAGameVC.xib; sourceTree = "<group>"; };
 		5ADCF2A718401FF800E6C8D2 /* MSCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCenterController.h; path = Controllers/MSCenterController.h; sourceTree = "<group>"; };
 		5ADCF2A818401FF800E6C8D2 /* MSCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCenterController.m; path = Controllers/MSCenterController.m; sourceTree = "<group>"; };
+		5ADCF2AA184025AE00E6C8D2 /* MSWelcomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSWelcomeVC.h; path = Controllers/MSWelcomeVC/MSWelcomeVC.h; sourceTree = "<group>"; };
+		5ADCF2AB184025AE00E6C8D2 /* MSWelcomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSWelcomeVC.m; path = Controllers/MSWelcomeVC/MSWelcomeVC.m; sourceTree = "<group>"; };
+		5ADCF2AD184025BB00E6C8D2 /* MSWelcomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSWelcomeVC.xib; path = Controllers/MSWelcomeVC/MSWelcomeVC.xib; sourceTree = "<group>"; };
+		5ADCF2B018402B4500E6C8D2 /* MSActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSActivity.h; path = Model/MSActivity.h; sourceTree = "<group>"; };
+		5ADCF2B118402B4500E6C8D2 /* MSActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSActivity.m; path = Model/MSActivity.m; sourceTree = "<group>"; };
+		5ADCF2B718402CC500E6C8D2 /* MSActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSActivityCell.xib; path = Views/Cells/MSActivityCell/MSActivityCell.xib; sourceTree = "<group>"; };
+		5ADCF2BB18402CED00E6C8D2 /* MSActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSActivityCell.h; path = Views/Cells/MSActivityCell/MSActivityCell.h; sourceTree = "<group>"; };
+		5ADCF2BC18402CED00E6C8D2 /* MSActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSActivityCell.m; path = Views/Cells/MSActivityCell/MSActivityCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +173,7 @@
 		5ADCF22A184004D300E6C8D2 /* MySportner */ = {
 			isa = PBXGroup;
 			children = (
+				5ADCF2B318402B4B00E6C8D2 /* Model */,
 				5ADCF277184011A500E6C8D2 /* Views */,
 				5ADCF268184005FE00E6C8D2 /* Controllers */,
 				5ADCF23C184004D300E6C8D2 /* Images.xcassets */,
@@ -230,6 +244,7 @@
 				5ADCF29818401CD000E6C8D2 /* MSNavigationVC.m */,
 				5ADCF2A718401FF800E6C8D2 /* MSCenterController.h */,
 				5ADCF2A818401FF800E6C8D2 /* MSCenterController.m */,
+				5ADCF2AF184025C000E6C8D2 /* MSWelcomeVC */,
 				5ADCF27418400CF500E6C8D2 /* MSDrawerMenuVC */,
 				5ADCF2A618401E2C00E6C8D2 /* MSSetAGameVC */,
 				5ADCF2A018401D4900E6C8D2 /* MSNotificationsVC */,
@@ -260,6 +275,9 @@
 		5ADCF278184011AC00E6C8D2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				5ADCF2BB18402CED00E6C8D2 /* MSActivityCell.h */,
+				5ADCF2BC18402CED00E6C8D2 /* MSActivityCell.m */,
+				5ADCF2B718402CC500E6C8D2 /* MSActivityCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -302,6 +320,25 @@
 				5ADCF2A418401E2800E6C8D2 /* MSSetAGameVC.xib */,
 			);
 			name = MSSetAGameVC;
+			sourceTree = "<group>";
+		};
+		5ADCF2AF184025C000E6C8D2 /* MSWelcomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF2AA184025AE00E6C8D2 /* MSWelcomeVC.h */,
+				5ADCF2AB184025AE00E6C8D2 /* MSWelcomeVC.m */,
+				5ADCF2AD184025BB00E6C8D2 /* MSWelcomeVC.xib */,
+			);
+			name = MSWelcomeVC;
+			sourceTree = "<group>";
+		};
+		5ADCF2B318402B4B00E6C8D2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF2B018402B4500E6C8D2 /* MSActivity.h */,
+				5ADCF2B118402B4500E6C8D2 /* MSActivity.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,6 +425,8 @@
 				5ADCF29E18401D2300E6C8D2 /* MSNotificationsVC.xib in Resources */,
 				5ADCF28B1840144D00E6C8D2 /* MSDrawerMenuVC.xib in Resources */,
 				5ADCF28F1840178900E6C8D2 /* MSActivitiesVC.xib in Resources */,
+				5ADCF2AE184025BB00E6C8D2 /* MSWelcomeVC.xib in Resources */,
+				5ADCF2B818402CC500E6C8D2 /* MSActivityCell.xib in Resources */,
 				5ADCF238184004D300E6C8D2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,9 +450,12 @@
 				5ADCF29618401A0300E6C8D2 /* MSDrawerController.m in Sources */,
 				5ADCF293184017A700E6C8D2 /* MSActivitiesVC.m in Sources */,
 				5ADCF2661840051300E6C8D2 /* MMDrawerVisualState.m in Sources */,
+				5ADCF2B218402B4500E6C8D2 /* MSActivity.m in Sources */,
 				5ADCF2A918401FF800E6C8D2 /* MSCenterController.m in Sources */,
+				5ADCF2BD18402CED00E6C8D2 /* MSActivityCell.m in Sources */,
 				5ADCF235184004D300E6C8D2 /* MSAppDelegate.m in Sources */,
 				5ADCF29C18401D1800E6C8D2 /* MSNotificationsVC.m in Sources */,
+				5ADCF2AC184025AE00E6C8D2 /* MSWelcomeVC.m in Sources */,
 				5ADCF2671840051300E6C8D2 /* UIViewController+MMDrawerController.m in Sources */,
 				5ADCF2A318401E1C00E6C8D2 /* MSSetAGameVC.m in Sources */,
 				5ADCF28A1840144D00E6C8D2 /* MSDrawerMenuVC.m in Sources */,
@@ -632,6 +674,7 @@
 				5ADCF255184004D300E6C8D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5ADCF256184004D300E6C8D2 /* Build configuration list for PBXNativeTarget "MySportnerTests" */ = {
 			isa = XCConfigurationList;
@@ -640,6 +683,7 @@
 				5ADCF258184004D300E6C8D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

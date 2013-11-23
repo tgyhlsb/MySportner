@@ -7,16 +7,15 @@
 //
 
 #import "MSAppDelegate.h"
-#import "MSDrawerController.h"
 #import "MMDrawerVisualState.h"
 #import "MSNavigationVC.h"
 #import "MSDrawerMenuVC.h"
 #import "MSActivitiesVC.h"
+#import "MSWelcomeVC.h"
 
 #define STORYBOARD_NAME @"Main"
 
 @interface MSAppDelegate()
-@property (nonatomic,strong) MMDrawerController * drawerController;
 
 @end
 
@@ -45,7 +44,10 @@
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self.window setRootViewController:self.drawerController];
+    
+    MSWelcomeVC *mainVC = [MSWelcomeVC newcontroller];
+    
+    [self.window setRootViewController:mainVC];
     
     return YES;
 }

@@ -9,10 +9,14 @@
 #import "MSActivitiesVC.h"
 #import "UIViewController+MMDrawerController.h"
 #import "MMDrawerBarButtonItem.h"
+#import "MSactivity.h"
+#import "MSActivityCell.h"
 
 #define NIB_NAME @"MSActivitiesVC"
 
-@interface MSActivitiesVC ()
+@interface MSActivitiesVC () <UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) NSArray *data;
 
 @end
 
@@ -21,11 +25,75 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    [MSActivityCell registerToTableview:self.tableView];
+    
+    [self generateSampleData];
+}
+
+- (void)generateSampleData
+{
+    NSMutableArray *tempData = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 20; i++)
+    {
+        MSActivity *activity = [[MSActivity alloc] init];
+        activity.title = @"Tennis Match";
+        activity.place = @"Paris, France";
+        [tempData addObject:activity];
+    }
+    self.data = tempData;
+    [self reloadData];
+}
+
+- (void)reloadData
+{
+    [self.tableView reloadData];
 }
 
 + (MSActivitiesVC *)newController
 {
     return [[MSActivitiesVC alloc] initWithNibName:NIB_NAME bundle:nil];
+}
+
+#pragma mark UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.data count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *identifier = [MSActivityCell reusableIdentifier];
+    MSActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    
+    MSActivity *activity = [self.data objectAtIndex:indexPath.row];
+    
+    cell.titleLabel.text = activity.title;
+    cell.placeLabel.text = activity.place;
+    
+    return cell;
+}
+
+#pragma mark UITableViewDelegate
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [MSActivityCell height];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

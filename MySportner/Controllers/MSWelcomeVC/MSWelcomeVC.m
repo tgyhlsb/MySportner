@@ -9,6 +9,7 @@
 #import "MSWelcomeVC.h"
 #import "MSAppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "MSUser.h"
 
 #define NIB_NAME @"MSWelcomeVC"
 
@@ -64,6 +65,8 @@
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user
 {
     NSLog(@"Fetched info\n%@", user);
+    [MSUser logInWithFacebookInfo:user];
+    [self performLogin];
 }
 
 - (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error

@@ -7,12 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface MSUser : NSObject
 
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
-@property (strong, nonatomic) NSString *identifier;
+@property (strong, nonatomic) NSString *facebookID;
 
+- (id)initWithFacebookInfo:(id<FBGraphUser>)userInfo;
++ (void)logInWithFacebookInfo:(id<FBGraphUser>)userInfo;
++ (void)logOut;
+
++ (MSUser *)sharedUser;
 
 @end

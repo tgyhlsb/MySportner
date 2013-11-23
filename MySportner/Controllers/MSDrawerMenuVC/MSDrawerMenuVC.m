@@ -10,10 +10,15 @@
 #import "UIViewController+MMDrawerController.h"
 #import "MSDrawerController.h"
 #import "MSProfileVC.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import "MSUser.h"
 
 #define NIB_NAME @"MSDrawerMenuVC"
 
 @interface MSDrawerMenuVC ()
+@property (weak, nonatomic) IBOutlet FBProfilePictureView *fbProfilePictureView;
+@property (weak, nonatomic) IBOutlet UILabel *lastNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *firstNameLabel;
 
 @end
 
@@ -23,6 +28,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self updateViewWithUser:[MSUser sharedUser]];
+}
+
+- (void)updateViewWithUser:(MSUser *)user
+{
+    self.fbProfilePictureView.profileID = user.facebookID;
+    self.firstNameLabel.text = user.firstName;
+    self.lastNameLabel.text = user.lastName;
 }
 
 

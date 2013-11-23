@@ -58,7 +58,13 @@
 		5ADCF2F51840D9C200E6C8D2 /* MSLocationPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2F41840D9C200E6C8D2 /* MSLocationPickerCell.xib */; };
 		5ADCF2F81840DB3A00E6C8D2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF2F71840DB3A00E6C8D2 /* MapKit.framework */; };
 		5ADCF3011840E38D00E6C8D2 /* MSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2FD1840E38D00E6C8D2 /* MSURLConnection.m */; };
-		5ADCF3021840E38D00E6C8D2 /* AFIURLConnectionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2FF1840E38D00E6C8D2 /* AFIURLConnectionFactory.m */; };
+		5ADCF3051840E60300E6C8D2 /* MSFourSquareRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF3041840E60300E6C8D2 /* MSFourSquareRequestFactory.m */; };
+		5ADCF3081840E80500E6C8D2 /* MSFourSquareKeyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF3071840E80500E6C8D2 /* MSFourSquareKeyFactory.m */; };
+		5ADCF30B1840EBEF00E6C8D2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF30A1840EBEF00E6C8D2 /* MBProgressHUD.m */; };
+		5ADCF30E1840F17600E6C8D2 /* MSVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF30D1840F17600E6C8D2 /* MSVenue.m */; };
+		5ADCF3111840F6A300E6C8D2 /* MSFourSquareParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF3101840F6A300E6C8D2 /* MSFourSquareParser.m */; };
+		5ADCF3141840F8DA00E6C8D2 /* MSVenueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF3131840F8DA00E6C8D2 /* MSVenueCell.m */; };
+		5ADCF3161840F8E900E6C8D2 /* MSVenueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF3151840F8E900E6C8D2 /* MSVenueCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,8 +157,19 @@
 		5ADCF2F71840DB3A00E6C8D2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5ADCF2FC1840E38D00E6C8D2 /* MSURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSURLConnection.h; sourceTree = "<group>"; };
 		5ADCF2FD1840E38D00E6C8D2 /* MSURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSURLConnection.m; sourceTree = "<group>"; };
-		5ADCF2FE1840E38D00E6C8D2 /* AFIURLConnectionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFIURLConnectionFactory.h; sourceTree = "<group>"; };
-		5ADCF2FF1840E38D00E6C8D2 /* AFIURLConnectionFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFIURLConnectionFactory.m; sourceTree = "<group>"; };
+		5ADCF3031840E60300E6C8D2 /* MSFourSquareRequestFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFourSquareRequestFactory.h; sourceTree = "<group>"; };
+		5ADCF3041840E60300E6C8D2 /* MSFourSquareRequestFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFourSquareRequestFactory.m; sourceTree = "<group>"; };
+		5ADCF3061840E80500E6C8D2 /* MSFourSquareKeyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFourSquareKeyFactory.h; sourceTree = "<group>"; };
+		5ADCF3071840E80500E6C8D2 /* MSFourSquareKeyFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFourSquareKeyFactory.m; sourceTree = "<group>"; };
+		5ADCF3091840EBEF00E6C8D2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		5ADCF30A1840EBEF00E6C8D2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		5ADCF30C1840F17600E6C8D2 /* MSVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSVenue.h; path = Model/MSVenue.h; sourceTree = "<group>"; };
+		5ADCF30D1840F17600E6C8D2 /* MSVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSVenue.m; path = Model/MSVenue.m; sourceTree = "<group>"; };
+		5ADCF30F1840F6A300E6C8D2 /* MSFourSquareParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFourSquareParser.h; sourceTree = "<group>"; };
+		5ADCF3101840F6A300E6C8D2 /* MSFourSquareParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFourSquareParser.m; sourceTree = "<group>"; };
+		5ADCF3121840F8DA00E6C8D2 /* MSVenueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSVenueCell.h; path = Views/Cells/MSVenueCell/MSVenueCell.h; sourceTree = "<group>"; };
+		5ADCF3131840F8DA00E6C8D2 /* MSVenueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSVenueCell.m; path = Views/Cells/MSVenueCell/MSVenueCell.m; sourceTree = "<group>"; };
+		5ADCF3151840F8E900E6C8D2 /* MSVenueCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSVenueCell.xib; path = Views/Cells/MSVenueCell/MSVenueCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +277,8 @@
 		5ADCF2591840050600E6C8D2 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				5ADCF3091840EBEF00E6C8D2 /* MBProgressHUD.h */,
+				5ADCF30A1840EBEF00E6C8D2 /* MBProgressHUD.m */,
 				5ADCF25A1840051300E6C8D2 /* MMDrawerController */,
 			);
 			name = Libraries;
@@ -328,6 +347,7 @@
 				5ADCF2DC1840BEBB00E6C8D2 /* MSPickSportCell */,
 				5ADCF2DB1840BDC500E6C8D2 /* MSSmallSportCell */,
 				5ADCF2E21840C89200E6C8D2 /* MSTextFieldPickerCell */,
+				5ADCF3171840F8F300E6C8D2 /* MSVenueCell */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -387,6 +407,8 @@
 			children = (
 				5ADCF2B018402B4500E6C8D2 /* MSActivity.h */,
 				5ADCF2B118402B4500E6C8D2 /* MSActivity.m */,
+				5ADCF30C1840F17600E6C8D2 /* MSVenue.h */,
+				5ADCF30D1840F17600E6C8D2 /* MSVenue.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -477,10 +499,24 @@
 			children = (
 				5ADCF2FC1840E38D00E6C8D2 /* MSURLConnection.h */,
 				5ADCF2FD1840E38D00E6C8D2 /* MSURLConnection.m */,
-				5ADCF2FE1840E38D00E6C8D2 /* AFIURLConnectionFactory.h */,
-				5ADCF2FF1840E38D00E6C8D2 /* AFIURLConnectionFactory.m */,
+				5ADCF3031840E60300E6C8D2 /* MSFourSquareRequestFactory.h */,
+				5ADCF3041840E60300E6C8D2 /* MSFourSquareRequestFactory.m */,
+				5ADCF3061840E80500E6C8D2 /* MSFourSquareKeyFactory.h */,
+				5ADCF3071840E80500E6C8D2 /* MSFourSquareKeyFactory.m */,
+				5ADCF30F1840F6A300E6C8D2 /* MSFourSquareParser.h */,
+				5ADCF3101840F6A300E6C8D2 /* MSFourSquareParser.m */,
 			);
 			path = Connection;
+			sourceTree = "<group>";
+		};
+		5ADCF3171840F8F300E6C8D2 /* MSVenueCell */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF3121840F8DA00E6C8D2 /* MSVenueCell.h */,
+				5ADCF3131840F8DA00E6C8D2 /* MSVenueCell.m */,
+				5ADCF3151840F8E900E6C8D2 /* MSVenueCell.xib */,
+			);
+			name = MSVenueCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -575,6 +611,7 @@
 				5ADCF2F51840D9C200E6C8D2 /* MSLocationPickerCell.xib in Resources */,
 				5ADCF2DA1840BDBB00E6C8D2 /* MSSmallSportCell.xib in Resources */,
 				5ADCF2C51840AE0800E6C8D2 /* MSActivityVC.xib in Resources */,
+				5ADCF3161840F8E900E6C8D2 /* MSVenueCell.xib in Resources */,
 				5ADCF2B818402CC500E6C8D2 /* MSActivityCell.xib in Resources */,
 				5ADCF238184004D300E6C8D2 /* Main.storyboard in Resources */,
 			);
@@ -596,8 +633,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ADCF29918401CD000E6C8D2 /* MSNavigationVC.m in Sources */,
+				5ADCF30E1840F17600E6C8D2 /* MSVenue.m in Sources */,
 				5ADCF2CD1840B4FD00E6C8D2 /* MSActivitiesFilterCell.m in Sources */,
 				5ADCF29618401A0300E6C8D2 /* MSDrawerController.m in Sources */,
+				5ADCF3081840E80500E6C8D2 /* MSFourSquareKeyFactory.m in Sources */,
 				5ADCF2D31840BA6400E6C8D2 /* MSPickSportCell.m in Sources */,
 				5ADCF293184017A700E6C8D2 /* MSActivitiesVC.m in Sources */,
 				5ADCF3011840E38D00E6C8D2 /* MSURLConnection.m in Sources */,
@@ -608,19 +647,22 @@
 				5ADCF2CA1840AF5300E6C8D2 /* MSActivityCell.m in Sources */,
 				5ADCF2A918401FF800E6C8D2 /* MSCenterController.m in Sources */,
 				5ADCF2D81840BDAD00E6C8D2 /* MSSmallSportCell.m in Sources */,
+				5ADCF3051840E60300E6C8D2 /* MSFourSquareRequestFactory.m in Sources */,
 				5ADCF235184004D300E6C8D2 /* MSAppDelegate.m in Sources */,
 				5ADCF29C18401D1800E6C8D2 /* MSNotificationsVC.m in Sources */,
 				5ADCF2AC184025AE00E6C8D2 /* MSWelcomeVC.m in Sources */,
 				5ADCF2671840051300E6C8D2 /* UIViewController+MMDrawerController.m in Sources */,
+				5ADCF3141840F8DA00E6C8D2 /* MSVenueCell.m in Sources */,
 				5ADCF2A318401E1C00E6C8D2 /* MSSetAGameVC.m in Sources */,
 				5ADCF28A1840144D00E6C8D2 /* MSDrawerMenuVC.m in Sources */,
 				5ADCF2831840140000E6C8D2 /* MSProfileVC.m in Sources */,
 				5ADCF2651840051300E6C8D2 /* MMDrawerController.m in Sources */,
 				5ADCF2641840051300E6C8D2 /* MMDrawerBarButtonItem.m in Sources */,
-				5ADCF3021840E38D00E6C8D2 /* AFIURLConnectionFactory.m in Sources */,
 				5ADCF2EA1840D38B00E6C8D2 /* MSLocationPickerVC.m in Sources */,
 				5ADCF2E61840D23A00E6C8D2 /* MSTextFieldPickerCell.m in Sources */,
+				5ADCF3111840F6A300E6C8D2 /* MSFourSquareParser.m in Sources */,
 				5ADCF231184004D300E6C8D2 /* main.m in Sources */,
+				5ADCF30B1840EBEF00E6C8D2 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

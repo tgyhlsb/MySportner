@@ -16,80 +16,36 @@
 
 @implementation MSURLConnection
 
-- (id)initWithRequest:(NSMutableURLRequest *)request
-             delegate:(id)delegate
-                login:(NSString *)login
-          andPassword:(NSString *)password
+- (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate
 {
-    _login = login;
-    _password = password;
-    _afiDelegate = delegate;
-    [self setHTTPAuthorizationHeaderToRequest:request];
     self = [super initWithRequest:request delegate:self];
     if (self) {
-        
+        _connectionDelegate = delegate;
     }
     return self;
 }
 
-+ (MSURLConnection *)connectionWithRequest:(NSMutableURLRequest *)request
-                                   delegate:(id)delegate
-                                      login:(NSString *)login
-                                andPassword:(NSString *)password
-{
-    MSURLConnection *connection = [[MSURLConnection alloc] initWithRequest:request
-                                                                    delegate:delegate
-                                                                       login:login
-                                                                 andPassword:password];
-    return connection;
-}
-
-- (id)initWithRequest:(NSMutableURLRequest *)request delegate:(id)delegate
-{
-    AFIUser *user = [AFIUser sharedUser];
-    
-    self = [self initWithRequest:request delegate:delegate login:user.login andPassword:user.password];
-    if (self) {
-        
-    }
-    return self;
-}
-
-+ (MSURLConnection *)connectionWithRequest:(NSMutableURLRequest *)request delegate:(id)delegate
++ (MSURLConnection *)connectionWithRequest:(NSURLRequest *)request delegate:(id)delegate
 {
     return [[MSURLConnection alloc] initWithRequest:request delegate:delegate];
 }
 
 - (void)startConnection
 {
-    NSLog(@"%@:%@\n%@", self.login, self.password, self);
     self.data = [[NSMutableData alloc] init];
     [super start];
-    if ([self.afiDelegate respondsToSelector:@selector(connectionDidStart:)])
+    if ([self.connectionDelegate respondsToSelector:@selector(connectionDidStart:)])
     {
-        [self.afiDelegate connectionDidStart:self];
+        [self.connectionDelegate connectionDidStart:self];
     }
-}
-
-- (void)setHTTPAuthorizationHeaderToRequest:(NSMutableURLRequest *)request
-{
-    NSString *loginPassword = [NSString stringWithFormat:@"%@:%@",self.login,self.password];
-    
-    NSData *plainData = [loginPassword dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *base64String = [plainData base64EncodedStringWithOptions:0];
-    
-    NSString *value = [NSString stringWithFormat:@"Basic %@",base64String];
-    
-    NSLog(@"Authorization = %@", value);
-    [request setValue:value forHTTPHeaderField:@"Authorization"];
 }
 
 #pragma mark NSURLConnectionDataDelegate
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    if ([self.afiDelegate respondsToSelector:@selector(connection:didFailWithError:)]) {
-        [self.afiDelegate connection:self didFailWithError:error];
+    if ([self.connectionDelegate respondsToSelector:@selector(connection:didFailWithError:)]) {
+        [self.connectionDelegate connection:self didFailWithError:error];
     }
 }
 
@@ -101,8 +57,19 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     //NSLog([NSString stringWithUTF8String:[data bytes]]);
-    if ([self.afiDelegate respondsToSelector:@selector(connection:didReceiveData:)]) {
-        [self.afiDelegate connection:self didReceiveData:self.data];
+    if ([self.connectionDelegate respondsToSelector:@selector(connection:didReceiveData:)]) {
+        [self.connectionDelegate connection:self didReceiveData:self.data];
+    }
+    if ([self.connectionDelegate respondsToSelector:@selector(connection:didReceiveJson:)]) {
+        
+        NSError* error;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:self.data options:kNilOptions error:&error];
+        
+        if (error) {
+            [self connection:connection didFailWithError:error];
+        } else {
+            [self.connectionDelegate connection:connection didReceiveJson:json];
+        }
     }
 }
 

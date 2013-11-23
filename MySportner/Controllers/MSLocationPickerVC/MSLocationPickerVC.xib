@@ -25,7 +25,7 @@
                         <constraint firstAttribute="height" constant="64" id="Ybf-ZM-3MN"/>
                     </constraints>
                     <items>
-                        <navigationItem title="Choose your location" id="94o-Nn-1MI">
+                        <navigationItem title="CHOOSE YOUR LOCATION" id="94o-Nn-1MI">
                             <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="PIU-ol-LXv">
                                 <connections>
                                     <action selector="cancelButtonPress:" destination="-1" id="HSR-ps-tas"/>

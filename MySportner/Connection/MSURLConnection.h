@@ -8,41 +8,32 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol AFIURLConnectionDelegate;
+@protocol MSURLConnectionDelegate;
 
 @interface MSURLConnection : NSURLConnection <NSURLConnectionDataDelegate>
 
-@property (weak, nonatomic) id <AFIURLConnectionDelegate> afiDelegate;
-
-@property (strong, nonatomic) NSString *login;
-@property (strong, nonatomic) NSString *password;
-
-- (id)initWithRequest:(NSMutableURLRequest *)request
-             delegate:(id) delegate
-                login:(NSString *)login
-          andPassword:(NSString *)password;
-
-+ (MSURLConnection *)connectionWithRequest:(NSMutableURLRequest *)request
-                                   delegate:(id)delegate login:(NSString *)login
-                                andPassword:(NSString *)password;
+@property (weak, nonatomic) id <MSURLConnectionDelegate> connectionDelegate;
 
 - (id)initWithRequest:(NSURLRequest *)request
              delegate:(id)delegate;
 
-+ (MSURLConnection *)connectionWithRequest:(NSMutableURLRequest *)request
++ (MSURLConnection *)connectionWithRequest:(NSURLRequest *)request
                                    delegate:(id)delegate;
 
-- (void)setHTTPAuthorizationHeaderToRequest:(NSMutableURLRequest *)request;
 
 - (void)startConnection;
 
 @end
 
-@protocol AFIURLConnectionDelegate <NSObject>
+@protocol MSURLConnectionDelegate <NSObject>
 
 - (void)connectionDidStart:(MSURLConnection *)connection;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
+
+@optional
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
+- (void)connection:(NSURLConnection *)connection didReceiveJson:(NSDictionary *)json;
 
 @end
 

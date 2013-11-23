@@ -9,7 +9,7 @@
 #import "MSTextFieldPickerCell.h"
 
 #define IDENTIFIER @"MSTextFieldPickerCell"
-#define HEIGT 60
+#define HEIGHT 60
 
 @interface MSTextFieldPickerCell()
 
@@ -43,7 +43,7 @@
 
 + (CGFloat)height
 {
-    return HEIGT;
+    return HEIGHT;
 }
 
 #pragma mark UITextFieldDelegate

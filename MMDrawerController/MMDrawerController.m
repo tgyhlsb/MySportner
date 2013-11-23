@@ -902,7 +902,8 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
 
 #pragma mark - Gesture Handlers
 
--(void)tapGestureCallback:(UITapGestureRecognizer *)tapGesture{
+-(void)tapGestureCallback:(UITapGestureRecognizer *)tapGesture
+{
     if(self.openSide != MMDrawerSideNone){
         [self closeDrawerAnimated:YES completion:^(BOOL finished) {
             if(self.gestureCompletion){

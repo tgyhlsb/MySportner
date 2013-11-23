@@ -63,8 +63,8 @@
 		5ADCF22E184004D300E6C8D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5ADCF230184004D300E6C8D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5ADCF232184004D300E6C8D2 /* MySportner-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MySportner-Prefix.pch"; sourceTree = "<group>"; };
-		5ADCF233184004D300E6C8D2 /* MSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MSAppDelegate.h; path = MySportner/MSAppDelegate.h; sourceTree = "<group>"; };
-		5ADCF234184004D300E6C8D2 /* MSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MSAppDelegate.m; path = MySportner/MSAppDelegate.m; sourceTree = "<group>"; };
+		5ADCF233184004D300E6C8D2 /* MSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSAppDelegate.h; sourceTree = "<group>"; };
+		5ADCF234184004D300E6C8D2 /* MSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSAppDelegate.m; sourceTree = "<group>"; };
 		5ADCF237184004D300E6C8D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5ADCF23C184004D300E6C8D2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5ADCF242184004D300E6C8D2 /* MySportnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MySportnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,9 +139,6 @@
 		5ADCF218184004D300E6C8D2 = {
 			isa = PBXGroup;
 			children = (
-				5ADCF233184004D300E6C8D2 /* MSAppDelegate.h */,
-				5ADCF234184004D300E6C8D2 /* MSAppDelegate.m */,
-				5ADCF236184004D300E6C8D2 /* Main.storyboard */,
 				5ADCF2591840050600E6C8D2 /* Libraries */,
 				5ADCF22A184004D300E6C8D2 /* MySportner */,
 				5ADCF249184004D300E6C8D2 /* MySportnerTests */,
@@ -173,6 +170,9 @@
 		5ADCF22A184004D300E6C8D2 /* MySportner */ = {
 			isa = PBXGroup;
 			children = (
+				5ADCF233184004D300E6C8D2 /* MSAppDelegate.h */,
+				5ADCF234184004D300E6C8D2 /* MSAppDelegate.m */,
+				5ADCF236184004D300E6C8D2 /* Main.storyboard */,
 				5ADCF2B318402B4B00E6C8D2 /* Model */,
 				5ADCF277184011A500E6C8D2 /* Views */,
 				5ADCF268184005FE00E6C8D2 /* Controllers */,
@@ -499,7 +499,6 @@
 				5ADCF237184004D300E6C8D2 /* Base */,
 			);
 			name = Main.storyboard;
-			path = MySportner;
 			sourceTree = "<group>";
 		};
 		5ADCF24C184004D300E6C8D2 /* InfoPlist.strings */ = {

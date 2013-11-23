@@ -23,6 +23,19 @@
 
 -(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     
+    [self setDrawerMenu];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    MSWelcomeVC *mainVC = [MSWelcomeVC newcontroller];
+    
+    [self.window setRootViewController:mainVC];
+    
+    return YES;
+}
+
+- (void)setDrawerMenu
+{
     MSDrawerMenuVC * leftSideDrawerViewController = [MSDrawerMenuVC newController];
     
     UIViewController * centerViewController = [MSActivitiesVC newController];
@@ -31,7 +44,7 @@
     
     UINavigationController * navigationController = [[MSNavigationVC alloc] initWithRootViewController:centerViewController];
     //[navigationController setRestorationIdentifier:@"MMExampleCenterNavigationControllerRestorationKey"];
-
+    
     self.drawerController = [[MSDrawerController alloc]
                              initWithCenterViewController:navigationController
                              leftDrawerViewController:leftSideDrawerViewController
@@ -41,15 +54,6 @@
     [self.drawerController setMaximumRightDrawerWidth:200.0];
     [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-    
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    MSWelcomeVC *mainVC = [MSWelcomeVC newcontroller];
-    
-    [self.window setRootViewController:mainVC];
-    
-    return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

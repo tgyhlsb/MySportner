@@ -14,4 +14,6 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,strong) MSDrawerController * drawerController;
 
+- (void)setDrawerMenu;
+
 @end

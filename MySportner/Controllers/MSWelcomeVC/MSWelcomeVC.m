@@ -41,7 +41,8 @@
 {
     MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
-//    UIStoryboardSegue *segue = [UIStoryboardSegue segueWithIdentifier:@"loginSegue" source:self destination:appDelegate.drawerController performHandler:nil];
+    
+    [appDelegate setDrawerMenu];
     
     appDelegate.drawerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     

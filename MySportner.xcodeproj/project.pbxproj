@@ -46,6 +46,10 @@
 		5ADCF2CA1840AF5300E6C8D2 /* MSActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2C91840AF5300E6C8D2 /* MSActivityCell.m */; };
 		5ADCF2CD1840B4FD00E6C8D2 /* MSActivitiesFilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2CC1840B4FD00E6C8D2 /* MSActivitiesFilterCell.m */; };
 		5ADCF2CF1840B50D00E6C8D2 /* MSActivitiesFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2CE1840B50D00E6C8D2 /* MSActivitiesFilterCell.xib */; };
+		5ADCF2D31840BA6400E6C8D2 /* MSPickSportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2D21840BA6400E6C8D2 /* MSPickSportCell.m */; };
+		5ADCF2D51840BA7600E6C8D2 /* MSPickSportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2D41840BA7600E6C8D2 /* MSPickSportCell.xib */; };
+		5ADCF2D81840BDAD00E6C8D2 /* MSSmallSportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2D71840BDAD00E6C8D2 /* MSSmallSportCell.m */; };
+		5ADCF2DA1840BDBB00E6C8D2 /* MSSmallSportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2D91840BDBB00E6C8D2 /* MSSmallSportCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +124,12 @@
 		5ADCF2CB1840B4FD00E6C8D2 /* MSActivitiesFilterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSActivitiesFilterCell.h; path = Views/Cells/MSActivitiesFilterCell/MSActivitiesFilterCell.h; sourceTree = "<group>"; };
 		5ADCF2CC1840B4FD00E6C8D2 /* MSActivitiesFilterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSActivitiesFilterCell.m; path = Views/Cells/MSActivitiesFilterCell/MSActivitiesFilterCell.m; sourceTree = "<group>"; };
 		5ADCF2CE1840B50D00E6C8D2 /* MSActivitiesFilterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSActivitiesFilterCell.xib; path = Views/Cells/MSActivitiesFilterCell/MSActivitiesFilterCell.xib; sourceTree = "<group>"; };
+		5ADCF2D11840BA6400E6C8D2 /* MSPickSportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSPickSportCell.h; path = Views/Cells/MSPickSportCell/MSPickSportCell.h; sourceTree = "<group>"; };
+		5ADCF2D21840BA6400E6C8D2 /* MSPickSportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSPickSportCell.m; path = Views/Cells/MSPickSportCell/MSPickSportCell.m; sourceTree = "<group>"; };
+		5ADCF2D41840BA7600E6C8D2 /* MSPickSportCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSPickSportCell.xib; path = Views/Cells/MSPickSportCell/MSPickSportCell.xib; sourceTree = "<group>"; };
+		5ADCF2D61840BDAD00E6C8D2 /* MSSmallSportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSmallSportCell.h; path = Views/Cells/MSSmallSportCell/MSSmallSportCell.h; sourceTree = "<group>"; };
+		5ADCF2D71840BDAD00E6C8D2 /* MSSmallSportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSmallSportCell.m; path = Views/Cells/MSSmallSportCell/MSSmallSportCell.m; sourceTree = "<group>"; };
+		5ADCF2D91840BDBB00E6C8D2 /* MSSmallSportCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSSmallSportCell.xib; path = Views/Cells/MSSmallSportCell/MSSmallSportCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +298,8 @@
 			children = (
 				5ADCF2C71840AF4700E6C8D2 /* MSActivityCell */,
 				5ADCF2D01840B51C00E6C8D2 /* MSActivitiesFilterCell */,
+				5ADCF2DC1840BEBB00E6C8D2 /* MSPickSportCell */,
+				5ADCF2DB1840BDC500E6C8D2 /* MSSmallSportCell */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -381,6 +393,26 @@
 			name = MSActivitiesFilterCell;
 			sourceTree = "<group>";
 		};
+		5ADCF2DB1840BDC500E6C8D2 /* MSSmallSportCell */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF2D61840BDAD00E6C8D2 /* MSSmallSportCell.h */,
+				5ADCF2D71840BDAD00E6C8D2 /* MSSmallSportCell.m */,
+				5ADCF2D91840BDBB00E6C8D2 /* MSSmallSportCell.xib */,
+			);
+			name = MSSmallSportCell;
+			sourceTree = "<group>";
+		};
+		5ADCF2DC1840BEBB00E6C8D2 /* MSPickSportCell */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF2D11840BA6400E6C8D2 /* MSPickSportCell.h */,
+				5ADCF2D21840BA6400E6C8D2 /* MSPickSportCell.m */,
+				5ADCF2D41840BA7600E6C8D2 /* MSPickSportCell.xib */,
+			);
+			name = MSPickSportCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -463,10 +495,12 @@
 				5ADCF2CF1840B50D00E6C8D2 /* MSActivitiesFilterCell.xib in Resources */,
 				5ADCF22F184004D300E6C8D2 /* InfoPlist.strings in Resources */,
 				5ADCF2851840141700E6C8D2 /* MSProfileVC.xib in Resources */,
+				5ADCF2D51840BA7600E6C8D2 /* MSPickSportCell.xib in Resources */,
 				5ADCF29E18401D2300E6C8D2 /* MSNotificationsVC.xib in Resources */,
 				5ADCF28B1840144D00E6C8D2 /* MSDrawerMenuVC.xib in Resources */,
 				5ADCF28F1840178900E6C8D2 /* MSActivitiesVC.xib in Resources */,
 				5ADCF2AE184025BB00E6C8D2 /* MSWelcomeVC.xib in Resources */,
+				5ADCF2DA1840BDBB00E6C8D2 /* MSSmallSportCell.xib in Resources */,
 				5ADCF2C51840AE0800E6C8D2 /* MSActivityVC.xib in Resources */,
 				5ADCF2B818402CC500E6C8D2 /* MSActivityCell.xib in Resources */,
 				5ADCF238184004D300E6C8D2 /* Main.storyboard in Resources */,
@@ -491,12 +525,14 @@
 				5ADCF29918401CD000E6C8D2 /* MSNavigationVC.m in Sources */,
 				5ADCF2CD1840B4FD00E6C8D2 /* MSActivitiesFilterCell.m in Sources */,
 				5ADCF29618401A0300E6C8D2 /* MSDrawerController.m in Sources */,
+				5ADCF2D31840BA6400E6C8D2 /* MSPickSportCell.m in Sources */,
 				5ADCF293184017A700E6C8D2 /* MSActivitiesVC.m in Sources */,
 				5ADCF2C31840ADF700E6C8D2 /* MSActivityVC.m in Sources */,
 				5ADCF2661840051300E6C8D2 /* MMDrawerVisualState.m in Sources */,
 				5ADCF2B218402B4500E6C8D2 /* MSActivity.m in Sources */,
 				5ADCF2CA1840AF5300E6C8D2 /* MSActivityCell.m in Sources */,
 				5ADCF2A918401FF800E6C8D2 /* MSCenterController.m in Sources */,
+				5ADCF2D81840BDAD00E6C8D2 /* MSSmallSportCell.m in Sources */,
 				5ADCF235184004D300E6C8D2 /* MSAppDelegate.m in Sources */,
 				5ADCF29C18401D1800E6C8D2 /* MSNotificationsVC.m in Sources */,
 				5ADCF2AC184025AE00E6C8D2 /* MSWelcomeVC.m in Sources */,

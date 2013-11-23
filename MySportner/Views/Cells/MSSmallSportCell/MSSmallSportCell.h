@@ -10,6 +10,8 @@
 
 @interface MSSmallSportCell : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
 + (void)registerToCollectionView:(UICollectionView *)collectionView;
 + (NSString *)reusableIdentifier;
 + (CGSize)size;

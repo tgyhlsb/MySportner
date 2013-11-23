@@ -9,8 +9,8 @@
 #import "MSSmallSportCell.h"
 
 #define IDENTIFIER @"MSSmallSportCell"
-#define HEIGHT 50
-#define WIDTH 50
+#define HEIGHT 80
+#define WIDTH 80
 
 
 @implementation MSSmallSportCell

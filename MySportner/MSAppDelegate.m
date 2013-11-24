@@ -12,6 +12,7 @@
 #import "MSDrawerMenuVC.h"
 #import "MSActivitiesVC.h"
 #import "MSWelcomeVC.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 #define STORYBOARD_NAME @"Main"
 
@@ -21,7 +22,11 @@
 
 @implementation MSAppDelegate
 
--(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+-(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // Override point for customization after application launch.
+    [FBLoginView class];
+    [FBProfilePictureView class];
     
     [self setDrawerMenu];
     
@@ -81,6 +86,17 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+    
+    // add app-specific handling code here
+    return wasHandled;
 }
 
 @end

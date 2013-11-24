@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSWelcomeVC">
             <connections>
-                <outlet property="fbLoginview" destination="TOR-Wm-HKf" id="yNj-kX-vrD"/>
                 <outlet property="view" destination="C6N-oI-cKQ" id="wqF-St-5qV"/>
             </connections>
         </placeholder>
@@ -26,11 +25,6 @@
                         <action selector="loginButtonPress:" destination="-1" eventType="touchUpInside" id="2UB-Ew-4n4"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TOR-Wm-HKf" customClass="FBLoginView">
-                    <rect key="frame" x="20" y="361" width="280" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.1049949745" green="0.1280746324" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

@@ -7,7 +7,7 @@
 //
 
 #import "MSUser.h"
-#import <Parse/Parse.h>
+#import <Parse/PFObject+Subclass.h>
 
 #define FACEBOOK_VALUE_GENDER_MALE @"male"
 #define FACEBOOK_KEY_GENDER @"gender"
@@ -37,29 +37,24 @@
 
 @implementation MSUser
 
-- (id)initWithFacebookInfo:(id<FBGraphUser>)userInfo
-{
-    self = [super init];
-    if (self) {
-        [self setWithFacebookInfo:userInfo];
-    }
-    return self;
-}
+@dynamic delegate;
+@dynamic isLoggingIn;
 
 - (void)setWithFacebookInfo:(id<FBGraphUser>)userInfo
 {
-    _facebookID = userInfo.id;
-    _firstName = userInfo.first_name;
-    _lastName = userInfo.last_name;
+    NSLog(@"%@", userInfo);
+    self.facebookID = userInfo.id;
+    self.firstName = userInfo.first_name;
+    self.lastName = userInfo.last_name;
     if ([userInfo[FACEBOOK_KEY_GENDER] isEqualToString:FACEBOOK_VALUE_GENDER_MALE])
     {
-        _gender = MSUserGenderMale;
+        self.gender = MSUserGenderMale;
     }
     else{
-        _gender = MSUserGenderFemale;
+        self.gender = MSUserGenderFemale;
     }
-    _email = [userInfo objectForKey:FACEBOOK_KEY_EMAIL];
-    _birthday = [self stringToDate:[userInfo objectForKey:FACEBOOK_KEY_BIRTHDAY]];
+    self.email = [userInfo objectForKey:FACEBOOK_KEY_EMAIL];
+    self.birthday = [self stringToDate:[userInfo objectForKey:FACEBOOK_KEY_BIRTHDAY]];
 }
 
 - (NSDate *)stringToDate:(NSString *)stringDate
@@ -72,11 +67,21 @@
 
 #pragma mark Lazy instantiation
 
+@synthesize firstName = _firstName;
+
 - (NSString *)firstName
 {
     if (!_firstName) _firstName = DEFAULT_FIRSTNAME;
     return _firstName;
 }
+
+- (void)setFirstName:(NSString *)firstName
+{
+    _firstName = firstName;
+    self[@"firstname"] = firstName;
+}
+
+@synthesize lastName = _lastName;
 
 - (NSString *)lastName
 {
@@ -84,23 +89,27 @@
     return _lastName;
 }
 
+- (void)setLastName:(NSString *)lastName
+{
+    _lastName = lastName;
+    self[@"lastname"] = lastName;
+}
+
+@synthesize facebookID = _facebookID;
+
 - (NSString *)facebookID
 {
     if (!_facebookID) _facebookID = DEFAULT_FACEBOOKID;
     return _facebookID;
 }
 
-- (NSString *)password
+- (void)setFacebookID:(NSString *)facebookID
 {
-    if (!_password) _password = DEFAULT_PASSWORD;
-    return _password;
+    _facebookID = facebookID;
+    self[@"facebookID"] = facebookID;
 }
 
-- (NSString *)email
-{
-    if (_email) _email = DEFAULT_EMAIL;
-    return _email;
-}
+@synthesize birthday = _birthday;
 
 - (NSDate *)birthday
 {
@@ -108,93 +117,62 @@
     return _birthday;
 }
 
+- (void)setBirthday:(NSDate *)birthday
+{
+    _birthday = birthday;
+    self[@"birthday"] = birthday;
+}
+
+@synthesize gender = _gender;
+
+- (MSUserGender)gender
+{
+    return _gender;
+}
+
+- (void)setGender:(MSUserGender)gender
+{
+    _gender = gender;
+    self[@"gender"] = @(gender);
+}
+
 #pragma mark Shared Instances
 
-+ (MSUser *)sharedUser
++ (MSUser *)currentUser
 {
-    static MSUser *SharedUser = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        
-        if (!SharedUser) {
-            SharedUser = [[MSUser alloc] init];
-        } else {
-            NSLog(@"/!\\ Did not unarchive user.");
-        }
-        
-    });
-    return SharedUser;
+    return (MSUser *)[PFUser currentUser];
 }
-
-+ (void)logInWithFacebookInfo:(id<FBGraphUser>)userInfo
-{
-    [[MSUser sharedUser] setWithFacebookInfo:userInfo];
-}
-
-+ (void)logOut
-{
-    [FBSession.activeSession closeAndClearTokenInformation];
-}
-
-#pragma mark FBLoginViewDelegate
-
-- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
-{
-    NSLog(@"Log in");
-}
-
-- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView
-{
-    NSLog(@"Log out");
-}
-
-- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user
-{
-    NSLog(@"Fetched info");
-    if (!self.isLoggingIn) {
-        NSLog(@"Manages info");
-        self.isLoggingIn = YES;
-        [self setWithFacebookInfo:user];
-        [self signUpToBackEnd];
-    }
-}
-
-- (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error
-{
-    NSString *alertMessage, *alertTitle;
-    if (error.fberrorShouldNotifyUser) {
-        // If the SDK has a message for the user, surface it. This conveniently
-        // handles cases like password change or iOS6 app slider state.
-        alertTitle = @"Facebook Error";
-        alertMessage = error.fberrorUserMessage;
-    } else if (error.fberrorCategory == FBErrorCategoryAuthenticationReopenSession) {
-        // It is important to handle session closures since they can happen
-        // outside of the app. You can inspect the error for more context
-        // but this sample generically notifies the user.
-        alertTitle = @"Session Error";
-        alertMessage = @"Your current session is no longer valid. Please log in again.";
-    } else if (error.fberrorCategory == FBErrorCategoryUserCancelled) {
-        // The user has cancelled a login. You can inspect the error
-        // for more context. For this sample, we will simply ignore it.
-        NSLog(@"user cancelled login");
-    } else {
-        // For simplicity, this sample treats other errors blindly.
-        alertTitle  = @"Unknown Error";
-        alertMessage = @"Error. Please try again later.";
-        NSLog(@"Unexpected error:%@", error);
-    }
-    
-    if (alertMessage) {
-        [[[UIAlertView alloc] initWithTitle:alertTitle
-                                    message:alertMessage
-                                   delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil] show];
-    }
-}
-
 
 #pragma mark Parse mecanisms
+
+- (void)requestFacebookInformations
+{
+    [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if (!error) {
+            [[MSUser currentUser] setWithFacebookInfo:result];
+            [[MSUser currentUser] saveInBackground];
+        }
+    }];
+}
+
+- (void)tryLoginWithFacebook
+{
+    [PFFacebookUtils logInWithPermissions:FACEBOOK_READ_PERMISIONS block:^(PFUser *user, NSError *error) {
+        if (!user) {
+            NSLog(@"Uh oh. The user cancelled the Facebook login.");
+        } else if (user.isNew) {
+            NSLog(@"User signed up and logged in through Facebook!");
+            [self requestFacebookInformations];
+        } else {
+            NSLog(@"User logged in through Facebook!");
+        }
+    }];
+}
+
++ (void)tryLoginWithFacebook
+{
+    [[MSUser currentUser] tryLoginWithFacebook];
+}
 
 - (NSString *)username
 {

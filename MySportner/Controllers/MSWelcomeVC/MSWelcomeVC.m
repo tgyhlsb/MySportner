@@ -26,7 +26,7 @@
     [super viewDidLoad];
 	
     [self.fbLoginview setReadPermissions:FACEBOOK_READ_PERMISIONS];
-    self.fbLoginview.delegate = [MSUser sharedUser];
+//    self.fbLoginview.delegate = [MSUser sharedUser];
 }
 
 + (MSWelcomeVC *)newcontroller
@@ -48,7 +48,8 @@
 
 - (IBAction)loginButtonPress:(UIButton *)sender
 {
-    [self performLogin];
+    [MSUser tryLoginWithFacebook];
+//    [self performLogin];
 }
 
 

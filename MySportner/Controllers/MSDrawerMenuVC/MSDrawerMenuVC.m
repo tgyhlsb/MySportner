@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     
-    [self updateViewWithUser:[MSUser sharedUser]];
+    [self updateViewWithUser:[MSUser currentUser]];
 }
 
 - (void)updateViewWithUser:(MSUser *)user

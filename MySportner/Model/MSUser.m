@@ -21,6 +21,20 @@
 #define PARSE_KEY_BIRTHDAY @"birthday"
 #define PARSE_KEY_GENDER @"gender"
 
+#define DEFAULT_FIRSTNAME @""
+#define DEFAULT_LASTNAME @""
+#define DEFAULT_FACEBOOKID @""
+#define DEFAULT_PASSWORD @""
+#define DEFAULT_EMAIL @""
+#define DEFAULT_BIRTHDAY [NSDate dateWithTimeIntervalSince1970:0]
+#define DEFAULT_GENDER 0
+
+@interface MSUser()
+
+@property (nonatomic) BOOL isLoggingIn;
+
+@end
+
 @implementation MSUser
 
 - (id)initWithFacebookInfo:(id<FBGraphUser>)userInfo
@@ -52,7 +66,46 @@
 {
     NSDateFormatter* fbDateFormatter = [[NSDateFormatter alloc] init];
     [fbDateFormatter setDateFormat:FACEBOOK_BIRTHDAY_FORMAT];
+    [fbDateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     return [fbDateFormatter dateFromString:stringDate];
+}
+
+#pragma mark Lazy instantiation
+
+- (NSString *)firstName
+{
+    if (!_firstName) _firstName = DEFAULT_FIRSTNAME;
+    return _firstName;
+}
+
+- (NSString *)lastName
+{
+    if (!_lastName) _lastName = DEFAULT_LASTNAME;
+    return _lastName;
+}
+
+- (NSString *)facebookID
+{
+    if (!_facebookID) _facebookID = DEFAULT_FACEBOOKID;
+    return _facebookID;
+}
+
+- (NSString *)password
+{
+    if (!_password) _password = DEFAULT_PASSWORD;
+    return _password;
+}
+
+- (NSString *)email
+{
+    if (_email) _email = DEFAULT_EMAIL;
+    return _email;
+}
+
+- (NSDate *)birthday
+{
+    if (!_birthday) _birthday = DEFAULT_BIRTHDAY;
+    return _birthday;
 }
 
 #pragma mark Shared Instances
@@ -98,7 +151,12 @@
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user
 {
     NSLog(@"Fetched info");
-    [MSUser logInWithFacebookInfo:user];
+    if (!self.isLoggingIn) {
+        NSLog(@"Manages info");
+        self.isLoggingIn = YES;
+        [self setWithFacebookInfo:user];
+        [self signUpToBackEnd];
+    }
 }
 
 - (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error
@@ -140,11 +198,11 @@
 
 - (NSString *)username
 {
-    if (self.facebookID && ![self.facebookID isEqualToString:@""])
+    if (self.facebookID && ![self.facebookID isEqualToString:DEFAULT_FACEBOOKID])
     {
         return self.facebookID;
     }
-    else if (self.email && ![self.email isEqualToString:@""])
+    else if (self.email && ![self.email isEqualToString:DEFAULT_EMAIL])
     {
         return self.email;
     }
@@ -168,13 +226,16 @@
     user[PARSE_KEY_BIRTHDAY] = self.birthday;
     user[PARSE_KEY_GENDER] = @(self.gender);
     
-    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            [self signUpToBackEndDidSucceed];
-        } else {
-            [self signUpToBackEndDidFailWithError:error];
-        }
-    }];
+    [user signUpInBackgroundWithTarget:self
+                              selector:@selector(handleSignUp:error:)];
+}
+
+- (void)handleSignUp:(NSNumber *)result error:(NSError *)error {
+    if (!error) {
+        [self signUpToBackEndDidSucceed];
+    } else {
+        [self signUpToBackEndDidFailWithError:error];
+    }
 }
 
 - (void)signUpToBackEndDidSucceed
@@ -182,6 +243,7 @@
     if ([self.delegate respondsToSelector:@selector(userDidSignUp:)]) {
         [self.delegate userDidSignUp:self];
     }
+    self.isLoggingIn = NO;
 }
 
 - (void)signUpToBackEndDidFailWithError:(NSError *)error
@@ -189,6 +251,7 @@
     if ([self.delegate respondsToSelector:@selector(userSignUpDidFailWithError:)]) {
         [self.delegate userSignUpDidFailWithError:error];
     }
+    self.isLoggingIn = NO;
 }
 
 @end

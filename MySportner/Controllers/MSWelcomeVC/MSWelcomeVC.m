@@ -9,6 +9,7 @@
 #import "MSWelcomeVC.h"
 #import "MSAppDelegate.h"
 #import "MSUser.h"
+#import "MSCreateAccountVC.h"
 
 #define NIB_NAME @"MSWelcomeVC"
 
@@ -31,7 +32,13 @@
     }
 }
 
-+ (MSWelcomeVC *)newcontroller
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
++ (MSWelcomeVC *)newController
 {
     return [[MSWelcomeVC alloc] initWithNibName:NIB_NAME bundle:nil];
 }
@@ -53,7 +60,7 @@
 
 - (IBAction)signUpButtonPress:(UIButton *)sender
 {
-    
+    [self.navigationController pushViewController:[MSCreateAccountVC newController] animated:YES];
 }
 
 - (IBAction)signInButtonPress:(UIButton *)sender

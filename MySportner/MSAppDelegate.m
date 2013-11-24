@@ -40,7 +40,8 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    MSWelcomeVC *mainVC = [MSWelcomeVC newcontroller];
+    
+    UINavigationController *mainVC = [[UINavigationController alloc] initWithRootViewController:[MSWelcomeVC newController]];
     
     [self.window setRootViewController:mainVC];
     

@@ -10,6 +10,6 @@
 
 @interface MSWelcomeVC : UIViewController
 
-+ (MSWelcomeVC *)newcontroller;
++ (MSWelcomeVC *)newController;
 
 @end

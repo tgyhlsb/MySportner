@@ -35,6 +35,12 @@
 
 @implementation MSUser
 
+@dynamic firstName;
+@dynamic lastName;
+@dynamic facebookID;
+@dynamic birthday;
+@dynamic gender;
+
 - (void)setWithFacebookInfo:(id<FBGraphUser>)userInfo
 {
 //    NSLog(@"%@", userInfo);
@@ -61,75 +67,75 @@
 }
 
 #pragma mark Lazy instantiation
-
-@synthesize firstName = _firstName;
-
-- (NSString *)firstName
-{
-    if (!_firstName) _firstName = DEFAULT_FIRSTNAME;
-    return self[@"firstName"];
-}
-
-- (void)setFirstName:(NSString *)firstName
-{
-    _firstName = firstName;
-    self[@"firstName"] = firstName;
-}
-
-@synthesize lastName = _lastName;
-
-- (NSString *)lastName
-{
-    if (!_lastName) self.lastName = DEFAULT_LASTNAME;
-    return self[@"lastName"];
-}
-
-- (void)setLastName:(NSString *)lastName
-{
-    _lastName = lastName;
-    self[@"lastName"] = lastName;
-}
-
-@synthesize facebookID = _facebookID;
-
-- (NSString *)facebookID
-{
-    if (!_facebookID) self.facebookID = DEFAULT_FACEBOOKID;
-    return self[@"facebookID"];
-}
-
-- (void)setFacebookID:(NSString *)facebookID
-{
-    _facebookID = facebookID;
-    self[@"facebookID"] = facebookID;
-}
-
-@synthesize birthday = _birthday;
-
-- (NSDate *)birthday
-{
-    if (!_birthday) self.birthday = DEFAULT_BIRTHDAY;
-    return self[@"birthday"];
-}
-
-- (void)setBirthday:(NSDate *)birthday
-{
-    _birthday = birthday;
-    self[@"birthday"] = birthday;
-}
-
-@synthesize gender = _gender;
-
-- (MSUserGender)gender
-{
-    return [self[@"gender"] intValue];
-}
-
-- (void)setGender:(MSUserGender)gender
-{
-    _gender = gender;
-    self[@"gender"] = @(gender);
-}
+//
+//@synthesize firstName = _firstName;
+//
+//- (NSString *)firstName
+//{
+//    if (!_firstName) _firstName = DEFAULT_FIRSTNAME;
+//    return self[@"firstName"];
+//}
+//
+//- (void)setFirstName:(NSString *)firstName
+//{
+//    _firstName = firstName;
+//    self[@"firstName"] = firstName;
+//}
+//
+//@synthesize lastName = _lastName;
+//
+//- (NSString *)lastName
+//{
+//    if (!_lastName) self.lastName = DEFAULT_LASTNAME;
+//    return self[@"lastName"];
+//}
+//
+//- (void)setLastName:(NSString *)lastName
+//{
+//    _lastName = lastName;
+//    self[@"lastName"] = lastName;
+//}
+//
+//@synthesize facebookID = _facebookID;
+//
+//- (NSString *)facebookID
+//{
+//    if (!_facebookID) self.facebookID = DEFAULT_FACEBOOKID;
+//    return self[@"facebookID"];
+//}
+//
+//- (void)setFacebookID:(NSString *)facebookID
+//{
+//    _facebookID = facebookID;
+//    self[@"facebookID"] = facebookID;
+//}
+//
+//@synthesize birthday = _birthday;
+//
+//- (NSDate *)birthday
+//{
+//    if (!_birthday) self.birthday = DEFAULT_BIRTHDAY;
+//    return self[@"birthday"];
+//}
+//
+//- (void)setBirthday:(NSDate *)birthday
+//{
+//    _birthday = birthday;
+//    self[@"birthday"] = birthday;
+//}
+//
+//@synthesize gender = _gender;
+//
+//- (MSUserGender)gender
+//{
+//    return [self[@"gender"] intValue];
+//}
+//
+//- (void)setGender:(MSUserGender)gender
+//{
+//    _gender = gender;
+//    self[@"gender"] = @(gender);
+//}
 
 @synthesize delegate = _delegate;
 
@@ -190,26 +196,10 @@
     }];
 }
 
-- (NSString *)username
-{
-    if (self.facebookID && ![self.facebookID isEqualToString:DEFAULT_FACEBOOKID])
-    {
-        return self.facebookID;
-    }
-    else if (self.email && ![self.email isEqualToString:DEFAULT_EMAIL])
-    {
-        return self.email;
-    }
-    else
-    {
-        return nil;
-    }
-}
-
 - (void)signUpToBackEnd
 {
     PFUser *user = [PFUser user];
-    user.username = [self username];
+    user.username = self.email;
     user.password = self.password;
     user.email = self.email;
     

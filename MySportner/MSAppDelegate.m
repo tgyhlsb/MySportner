@@ -13,6 +13,7 @@
 #import "MSActivitiesVC.h"
 #import "MSWelcomeVC.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import <Parse/Parse.h>
 
 #define STORYBOARD_NAME @"Main"
 
@@ -27,6 +28,9 @@
     // Override point for customization after application launch.
     [FBLoginView class];
     [FBProfilePictureView class];
+    
+    [Parse setApplicationId:@"mXxe3WBY2KqxbWjjnBruVUyJGtyKjgjDpfuX6pAA"
+                  clientKey:@"EFLTeHfWnuHxmwzKbg1xfsfYRRFSksMiWGlKYloM"];
     
     [self setDrawerMenu];
     

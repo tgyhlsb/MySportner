@@ -47,7 +47,6 @@
 {
     MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
-    
     [appDelegate setDrawerMenu];
     
     [self presentViewController:appDelegate.drawerController animated:YES completion:nil];

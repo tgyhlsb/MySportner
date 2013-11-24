@@ -7,6 +7,7 @@
 //
 
 #import "MSCreateAccountVC.h"
+#import "MSChooseSportsVC.h"
 
 #define NIB_NAME @"MSCreateAccountVC"
 
@@ -129,7 +130,7 @@
 
 - (void)nextButtonHandler
 {
-    
+    [self.navigationController pushViewController:[MSChooseSportsVC newController] animated:YES];
 }
 
 + (MSCreateAccountVC *)newController

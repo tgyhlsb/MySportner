@@ -10,4 +10,6 @@
 
 @interface MSChooseSportsVC : UIViewController
 
++ (MSChooseSportsVC *)newController;
+
 @end

@@ -80,6 +80,8 @@
 		5ADCF3161840F8E900E6C8D2 /* MSVenueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF3151840F8E900E6C8D2 /* MSVenueCell.xib */; };
 		5AFE43EE18426A8F001376C7 /* MSChooseSportsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFE43ED18426A8F001376C7 /* MSChooseSportsVC.m */; };
 		5AFE43F218426ABD001376C7 /* MSChooseSportsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AFE43F118426ABD001376C7 /* MSChooseSportsVC.xib */; };
+		5AFE43F618426CC6001376C7 /* MSBigSportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFE43F518426CC6001376C7 /* MSBigSportCell.m */; };
+		5AFE43F818426CD4001376C7 /* MSBigSportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AFE43F718426CD4001376C7 /* MSBigSportCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,6 +205,9 @@
 		5AFE43EC18426A8F001376C7 /* MSChooseSportsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSChooseSportsVC.h; path = Controllers/MSChooseSportsVC/MSChooseSportsVC.h; sourceTree = "<group>"; };
 		5AFE43ED18426A8F001376C7 /* MSChooseSportsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSChooseSportsVC.m; path = Controllers/MSChooseSportsVC/MSChooseSportsVC.m; sourceTree = "<group>"; };
 		5AFE43F118426ABD001376C7 /* MSChooseSportsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSChooseSportsVC.xib; path = Controllers/MSChooseSportsVC/MSChooseSportsVC.xib; sourceTree = "<group>"; };
+		5AFE43F418426CC6001376C7 /* MSBigSportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSBigSportCell.h; path = Views/Cells/MSBigSportCell/MSBigSportCell.h; sourceTree = "<group>"; };
+		5AFE43F518426CC6001376C7 /* MSBigSportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSBigSportCell.m; path = Views/Cells/MSBigSportCell/MSBigSportCell.m; sourceTree = "<group>"; };
+		5AFE43F718426CD4001376C7 /* MSBigSportCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSBigSportCell.xib; path = Views/Cells/MSBigSportCell/MSBigSportCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,6 +377,7 @@
 				5ADCF29818401CD000E6C8D2 /* MSNavigationVC.m */,
 				5ADCF2A718401FF800E6C8D2 /* MSCenterController.h */,
 				5ADCF2A818401FF800E6C8D2 /* MSCenterController.m */,
+				5AFE43FF18427055001376C7 /* MSFindFriendsVC */,
 				5AFE43F318426AC4001376C7 /* MSChooseSportsVC */,
 				5A0F9119184242C30049BBD5 /* MSCreateAccountVC */,
 				5ADCF2ED1840D3A300E6C8D2 /* MSLocationPickerVC */,
@@ -413,6 +419,7 @@
 				5ADCF2DB1840BDC500E6C8D2 /* MSSmallSportCell */,
 				5ADCF2E21840C89200E6C8D2 /* MSTextFieldPickerCell */,
 				5ADCF3171840F8F300E6C8D2 /* MSVenueCell */,
+				5AFE43F918426CDA001376C7 /* MSBigSportCell */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -596,6 +603,23 @@
 			name = MSChooseSportsVC;
 			sourceTree = "<group>";
 		};
+		5AFE43F918426CDA001376C7 /* MSBigSportCell */ = {
+			isa = PBXGroup;
+			children = (
+				5AFE43F418426CC6001376C7 /* MSBigSportCell.h */,
+				5AFE43F518426CC6001376C7 /* MSBigSportCell.m */,
+				5AFE43F718426CD4001376C7 /* MSBigSportCell.xib */,
+			);
+			name = MSBigSportCell;
+			sourceTree = "<group>";
+		};
+		5AFE43FF18427055001376C7 /* MSFindFriendsVC */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MSFindFriendsVC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -676,6 +700,7 @@
 				5ADCF23D184004D300E6C8D2 /* Images.xcassets in Resources */,
 				5ADCF2E71840D23A00E6C8D2 /* MSTextFieldPickerCell.xib in Resources */,
 				5ADCF2A518401E2800E6C8D2 /* MSSetAGameVC.xib in Resources */,
+				5AFE43F818426CD4001376C7 /* MSBigSportCell.xib in Resources */,
 				5ADCF2CF1840B50D00E6C8D2 /* MSActivitiesFilterCell.xib in Resources */,
 				5ADCF22F184004D300E6C8D2 /* InfoPlist.strings in Resources */,
 				5ADCF2851840141700E6C8D2 /* MSProfileVC.xib in Resources */,
@@ -718,6 +743,7 @@
 				5ADCF29618401A0300E6C8D2 /* MSDrawerController.m in Sources */,
 				5ADCF3081840E80500E6C8D2 /* MSFourSquareKeyFactory.m in Sources */,
 				5ADCF2D31840BA6400E6C8D2 /* MSPickSportCell.m in Sources */,
+				5AFE43F618426CC6001376C7 /* MSBigSportCell.m in Sources */,
 				5ADCF293184017A700E6C8D2 /* MSActivitiesVC.m in Sources */,
 				5AFE43EE18426A8F001376C7 /* MSChooseSportsVC.m in Sources */,
 				5ADCF3011840E38D00E6C8D2 /* MSURLConnection.m in Sources */,

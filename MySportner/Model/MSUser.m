@@ -140,7 +140,14 @@
 
 + (MSUser *)currentUser
 {
-    return (MSUser *)[PFUser currentUser];
+    if ([PFUser currentUser])
+    {
+        return (MSUser *)[PFUser currentUser];
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 #pragma mark Parse mecanisms
@@ -155,23 +162,18 @@
     }];
 }
 
-- (void)tryLoginWithFacebook
++ (void)tryLoginWithFacebook
 {
     [PFFacebookUtils logInWithPermissions:FACEBOOK_READ_PERMISIONS block:^(PFUser *user, NSError *error) {
         if (!user) {
             NSLog(@"Uh oh. The user cancelled the Facebook login.");
         } else if (user.isNew) {
             NSLog(@"User signed up and logged in through Facebook!");
-            [self requestFacebookInformations];
+            [[MSUser currentUser] requestFacebookInformations];
         } else {
             NSLog(@"User logged in through Facebook!");
         }
     }];
-}
-
-+ (void)tryLoginWithFacebook
-{
-    [[MSUser currentUser] tryLoginWithFacebook];
 }
 
 - (NSString *)username
@@ -216,6 +218,8 @@
     }
 }
 
+#pragma mark Delegate notifications
+
 - (void)signUpToBackEndDidSucceed
 {
     if ([self.delegate respondsToSelector:@selector(userDidSignUp:)]) {
@@ -230,6 +234,22 @@
         [self.delegate userSignUpDidFailWithError:error];
     }
     self.isLoggingIn = NO;
+}
+
+- (void)logInDidSucceed
+{
+    if ([self.delegate respondsToSelector:@selector(userDidLogIn)])
+    {
+        [self.delegate userDidLogIn];
+    }
+}
+
+- (void)logOutDidSucceed
+{
+    if ([self.delegate respondsToSelector:@selector(userDidLogOut)])
+    {
+        [self.delegate userDidLogOut];
+    }
 }
 
 @end

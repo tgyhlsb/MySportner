@@ -12,7 +12,7 @@
 
 #define FACEBOOK_READ_PERMISIONS @[@"email", @"user_birthday"]
 
-@protocol MSUserDelegate;
+@protocol MSUserAuthentificationDelegate;
 
 
 typedef NS_ENUM(int, MSUserGender) {
@@ -22,7 +22,7 @@ typedef NS_ENUM(int, MSUserGender) {
 
 @interface MSUser : PFUser <PFSubclassing>
 
-@property (weak, nonatomic) id<MSUserDelegate> delegate;
+@property (weak, nonatomic) id<MSUserAuthentificationDelegate> delegate;
 
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
@@ -30,16 +30,17 @@ typedef NS_ENUM(int, MSUserGender) {
 @property (strong, nonatomic) NSDate *birthday;
 @property (nonatomic) MSUserGender gender;
 
-- (void)tryLoginWithFacebook;
 + (void)tryLoginWithFacebook;
 
 + (MSUser *)currentUser;
 
 @end
 
-@protocol MSUserDelegate <NSObject>
+@protocol MSUserAuthentificationDelegate <NSObject>
 
-- (void)userDidLogIn:(MSUser *)user;
+@optional
+
+- (void)userDidLogIn;
 - (void)userDidLogOut;
 
 - (void)userDidSignUp:(MSUser *)user;

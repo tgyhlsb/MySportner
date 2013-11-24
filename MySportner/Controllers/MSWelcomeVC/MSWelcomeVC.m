@@ -8,14 +8,11 @@
 
 #import "MSWelcomeVC.h"
 #import "MSAppDelegate.h"
-#import <FacebookSDK/FacebookSDK.h>
 #import "MSUser.h"
 
 #define NIB_NAME @"MSWelcomeVC"
 
-@interface MSWelcomeVC ()
-
-@property (weak, nonatomic) IBOutlet FBLoginView *fbLoginview;
+@interface MSWelcomeVC () <MSUserAuthentificationDelegate>
 
 @end
 
@@ -24,9 +21,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    [self.fbLoginview setReadPermissions:FACEBOOK_READ_PERMISIONS];
-//    self.fbLoginview.delegate = [MSUser sharedUser];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if ([MSUser currentUser])
+    {
+        [self performLogin];
+    }
 }
 
 + (MSWelcomeVC *)newcontroller
@@ -41,16 +43,39 @@
     
     [appDelegate setDrawerMenu];
     
-    appDelegate.drawerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    
     [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
 }
 
-- (IBAction)loginButtonPress:(UIButton *)sender
+- (IBAction)logInWithFacebookButtonPress:(UIButton *)sender
 {
     [MSUser tryLoginWithFacebook];
-//    [self performLogin];
 }
 
+- (IBAction)signUpButtonPress:(UIButton *)sender
+{
+    
+}
+
+- (IBAction)signInButtonPress:(UIButton *)sender
+{
+    
+}
+
+#pragma mark MSUserAuthentificationDelegate
+
+- (void)userDidLogIn
+{
+    [self performLogin];
+}
+
+- (void)userDidSignUp:(MSUser *)user
+{
+    [self performLogin];
+}
+
+- (void)userSignUpDidFailWithError:(NSError *)error
+{
+    [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[error description] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
+}
 
 @end

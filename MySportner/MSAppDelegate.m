@@ -67,6 +67,7 @@
     [self.drawerController setMaximumRightDrawerWidth:200.0];
     [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    self.drawerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -87,6 +87,7 @@
 - (IBAction)logoutButtonPress:(UIButton *)sender
 {
     [MSUser logOut];
+    [((UINavigationController *)self.presentingViewController) popToRootViewControllerAnimated:NO];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

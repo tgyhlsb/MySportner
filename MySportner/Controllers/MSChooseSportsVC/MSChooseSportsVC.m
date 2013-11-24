@@ -8,6 +8,7 @@
 
 #import "MSChooseSportsVC.h"
 #import "MSBigSportCell.h"
+#import "MSFindFriendsVC.h"
 
 #define SAMPLE_SPORTS @[@"Basket", @"Swimming", @"Running", @"Tennis", @"Soccer", @"FootBall", @"Nap"]
 
@@ -46,7 +47,7 @@
 
 - (IBAction)nextButtonPress:(UIButton *)sender
 {
-    
+    [self.navigationController pushViewController:[MSFindFriendsVC newController] animated:YES];
 }
 
 #pragma mark UICollectionViewDataSource

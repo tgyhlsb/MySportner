@@ -10,4 +10,6 @@
 
 @interface MSFindFriendsVC : UIViewController
 
++ (MSFindFriendsVC *)newController;
+
 @end

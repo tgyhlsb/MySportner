@@ -7,6 +7,9 @@
 //
 
 #import "MSFindFriendsVC.h"
+#import "MSAppDelegate.h"
+
+#define NIB_NAME @"MSFindFriendsVC"
 
 @interface MSFindFriendsVC ()
 
@@ -14,25 +17,29 @@
 
 @implementation MSFindFriendsVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
+- (void)performLogin
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    [appDelegate setDrawerMenu];
+    
+    [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
+}
+
+- (IBAction)validateButtonPress:(UIButton *)sender
+{
+    [self performLogin];
+}
+
++ (MSFindFriendsVC *)newController
+{
+    return [[MSFindFriendsVC alloc] initWithNibName:NIB_NAME bundle:Nil];
 }
 
 @end

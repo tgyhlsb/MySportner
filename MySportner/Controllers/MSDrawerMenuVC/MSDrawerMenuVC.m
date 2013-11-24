@@ -28,15 +28,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self updateViewWithUser:[MSUser currentUser]];
 }
 
-- (void)updateViewWithUser:(MSUser *)user
+- (void)viewWillAppear:(BOOL)animated
 {
-    self.fbProfilePictureView.profileID = user.facebookID;
-    self.firstNameLabel.text = user.firstName;
-    self.lastNameLabel.text = user.lastName;
+    [super viewWillAppear:animated];
+    
+    [self updateView];
+}
+
+- (void)updateView
+{
+    self.fbProfilePictureView.profileID = [MSUser currentUser].facebookID;
+    self.firstNameLabel.text = [MSUser currentUser].firstName;
+    self.lastNameLabel.text = [MSUser currentUser].lastName;
 }
 
 

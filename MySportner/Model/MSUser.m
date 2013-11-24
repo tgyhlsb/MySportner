@@ -31,18 +31,13 @@
 
 @interface MSUser()
 
-@property (nonatomic) BOOL isLoggingIn;
-
 @end
 
 @implementation MSUser
 
-@dynamic delegate;
-@dynamic isLoggingIn;
-
 - (void)setWithFacebookInfo:(id<FBGraphUser>)userInfo
 {
-    NSLog(@"%@", userInfo);
+//    NSLog(@"%@", userInfo);
     self.facebookID = userInfo.id;
     self.firstName = userInfo.first_name;
     self.lastName = userInfo.last_name;
@@ -72,35 +67,35 @@
 - (NSString *)firstName
 {
     if (!_firstName) _firstName = DEFAULT_FIRSTNAME;
-    return _firstName;
+    return self[@"firstName"];
 }
 
 - (void)setFirstName:(NSString *)firstName
 {
     _firstName = firstName;
-    self[@"firstname"] = firstName;
+    self[@"firstName"] = firstName;
 }
 
 @synthesize lastName = _lastName;
 
 - (NSString *)lastName
 {
-    if (!_lastName) _lastName = DEFAULT_LASTNAME;
-    return _lastName;
+    if (!_lastName) self.lastName = DEFAULT_LASTNAME;
+    return self[@"lastName"];
 }
 
 - (void)setLastName:(NSString *)lastName
 {
     _lastName = lastName;
-    self[@"lastname"] = lastName;
+    self[@"lastName"] = lastName;
 }
 
 @synthesize facebookID = _facebookID;
 
 - (NSString *)facebookID
 {
-    if (!_facebookID) _facebookID = DEFAULT_FACEBOOKID;
-    return _facebookID;
+    if (!_facebookID) self.facebookID = DEFAULT_FACEBOOKID;
+    return self[@"facebookID"];
 }
 
 - (void)setFacebookID:(NSString *)facebookID
@@ -113,8 +108,8 @@
 
 - (NSDate *)birthday
 {
-    if (!_birthday) _birthday = DEFAULT_BIRTHDAY;
-    return _birthday;
+    if (!_birthday) self.birthday = DEFAULT_BIRTHDAY;
+    return self[@"birthday"];
 }
 
 - (void)setBirthday:(NSDate *)birthday
@@ -127,13 +122,25 @@
 
 - (MSUserGender)gender
 {
-    return _gender;
+    return [self[@"gender"] intValue];
 }
 
 - (void)setGender:(MSUserGender)gender
 {
     _gender = gender;
     self[@"gender"] = @(gender);
+}
+
+@synthesize delegate = _delegate;
+
+- (id<MSUserAuthentificationDelegate>)delegate
+{
+    return _delegate;
+}
+
+- (void)setDelegate:(id<MSUserAuthentificationDelegate>)delegate
+{
+    _delegate = delegate;
 }
 
 #pragma mark Shared Instances
@@ -156,22 +163,29 @@
 {
     [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
         if (!error) {
-            [[MSUser currentUser] setWithFacebookInfo:result];
-            [[MSUser currentUser] saveInBackground];
+            [self setWithFacebookInfo:result];
+            [self saveInBackground];
         }
     }];
 }
 
-+ (void)tryLoginWithFacebook
++ (void)tryLoginWithFacebook:(id<MSUserAuthentificationDelegate>)sender
 {
     [PFFacebookUtils logInWithPermissions:FACEBOOK_READ_PERMISIONS block:^(PFUser *user, NSError *error) {
         if (!user) {
             NSLog(@"Uh oh. The user cancelled the Facebook login.");
-        } else if (user.isNew) {
-            NSLog(@"User signed up and logged in through Facebook!");
-            [[MSUser currentUser] requestFacebookInformations];
         } else {
-            NSLog(@"User logged in through Facebook!");
+            MSUser *user = [MSUser currentUser];
+            user.delegate = sender;
+            
+            if (user.isNew) {
+                NSLog(@"User signed up and logged in through Facebook!");
+                [user requestFacebookInformations];
+                [user signUpToBackEndDidSucceed];
+            } else {
+                NSLog(@"User logged in through Facebook!");
+                [user logInDidSucceed];
+            }
         }
     }];
 }
@@ -225,7 +239,6 @@
     if ([self.delegate respondsToSelector:@selector(userDidSignUp:)]) {
         [self.delegate userDidSignUp:self];
     }
-    self.isLoggingIn = NO;
 }
 
 - (void)signUpToBackEndDidFailWithError:(NSError *)error
@@ -233,7 +246,6 @@
     if ([self.delegate respondsToSelector:@selector(userSignUpDidFailWithError:)]) {
         [self.delegate userSignUpDidFailWithError:error];
     }
-    self.isLoggingIn = NO;
 }
 
 - (void)logInDidSucceed

@@ -30,7 +30,7 @@ typedef NS_ENUM(int, MSUserGender) {
 @property (strong, nonatomic) NSDate *birthday;
 @property (nonatomic) MSUserGender gender;
 
-+ (void)tryLoginWithFacebook;
++ (void)tryLoginWithFacebook:(id<MSUserAuthentificationDelegate>)sender;
 
 + (MSUser *)currentUser;
 

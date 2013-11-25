@@ -47,7 +47,11 @@
 
 - (IBAction)nextButtonPress:(UIButton *)sender
 {
-    [self.navigationController pushViewController:[MSFindFriendsVC newController] animated:YES];
+    MSFindFriendsVC *destinationVC = [MSFindFriendsVC newController];
+    
+    destinationVC.user = self.user;
+    
+    [self.navigationController pushViewController:destinationVC animated:YES];
 }
 
 #pragma mark UICollectionViewDataSource

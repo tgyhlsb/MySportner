@@ -8,6 +8,7 @@
 
 #import "MSCreateAccountVC.h"
 #import "MSChooseSportsVC.h"
+#import "MSUser.h"
 
 #define NIB_NAME @"MSCreateAccountVC"
 
@@ -130,7 +131,19 @@
 
 - (void)nextButtonHandler
 {
-    [self.navigationController pushViewController:[MSChooseSportsVC newController] animated:YES];
+    MSChooseSportsVC *destinationVC = [MSChooseSportsVC newController];
+    
+    destinationVC.user = [[MSUser alloc] init];
+    
+    destinationVC.user.firstName = self.firstnameTextField.text;
+    destinationVC.user.lastName = self.lastnameTextField.text;
+    destinationVC.user.email = self.emailTextField.text;
+    destinationVC.user.password = self.passwordTextField.text;
+    destinationVC.user.birthday = [NSDate date];
+    destinationVC.user.gender = self.genderControl.selectedSegmentIndex;
+    destinationVC.user.username = destinationVC.user.email;
+    
+    [self.navigationController pushViewController:destinationVC animated:YES];
 }
 
 + (MSCreateAccountVC *)newController

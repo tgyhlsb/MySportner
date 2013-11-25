@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSUser.h"
 
 @interface MSFindFriendsVC : UIViewController
+
+@property (strong, nonatomic) MSUser *user;
 
 + (MSFindFriendsVC *)newController;
 

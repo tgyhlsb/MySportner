@@ -198,23 +198,24 @@
 
 - (void)signUpToBackEnd
 {
-    PFUser *user = [PFUser user];
-    user.username = self.email;
-    user.password = self.password;
-    user.email = self.email;
+//    PFUser *user = [PFUser user];
+//    user.username = self.email;
+//    user.password = self.password;
+//    user.email = self.email;
+//    
+//    // other fields can be set just like with PFObject
+//    user[PARSE_KEY_FIRSTNAME] = self.firstName;
+//    user[PARSE_KEY_LASTNAME] = self.lastName;
+//    user[PARSE_KEY_FACEBOOKID] = self.facebookID;
+//    user[PARSE_KEY_BIRTHDAY] = self.birthday;
+//    user[PARSE_KEY_GENDER] = @(self.gender);
     
-    // other fields can be set just like with PFObject
-    user[PARSE_KEY_FIRSTNAME] = self.firstName;
-    user[PARSE_KEY_LASTNAME] = self.lastName;
-    user[PARSE_KEY_FACEBOOKID] = self.facebookID;
-    user[PARSE_KEY_BIRTHDAY] = self.birthday;
-    user[PARSE_KEY_GENDER] = @(self.gender);
-    
-    [user signUpInBackgroundWithTarget:self
+    [self signUpInBackgroundWithTarget:self
                               selector:@selector(handleSignUp:error:)];
 }
 
-- (void)handleSignUp:(NSNumber *)result error:(NSError *)error {
+- (void)handleSignUp:(NSNumber *)result error:(NSError *)error
+{
     if (!error) {
         [self signUpToBackEndDidSucceed];
     } else {

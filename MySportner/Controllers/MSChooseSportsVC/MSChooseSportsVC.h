@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSUser.h"
 
 @interface MSChooseSportsVC : UIViewController
+
+@property (strong, nonatomic) MSUser *user;
 
 + (MSChooseSportsVC *)newController;
 

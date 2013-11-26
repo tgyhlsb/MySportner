@@ -12,4 +12,6 @@
 
 + (MSWelcomeVC *)newController;
 
+- (void)performLogin;
+
 @end

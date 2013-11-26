@@ -82,7 +82,7 @@
     
     formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
     formSheet.shadowRadius = 2.0;
-    formSheet.shadowOpacity = 0.1;
+    formSheet.shadowOpacity = 0.5;
     formSheet.shouldDismissOnBackgroundViewTap = YES;
     formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
     formSheet.shouldCenterVertically = YES;

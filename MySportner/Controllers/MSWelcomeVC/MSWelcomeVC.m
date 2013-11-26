@@ -11,10 +11,13 @@
 #import "MSUser.h"
 #import "MSCreateAccountVC.h"
 #import "MBProgressHUD.h"
+#import "MZFormSheetController.h"
+#import "MSLoginFormVC.h"
+
 
 #define NIB_NAME @"MSWelcomeVC"
 
-@interface MSWelcomeVC () <MSUserAuthentificationDelegate>
+@interface MSWelcomeVC () <MSUserAuthentificationDelegate, MZFormSheetBackgroundWindowDelegate>
 
 @property (strong, nonatomic) MBProgressHUD *loadingView;
 
@@ -70,6 +73,30 @@
 - (IBAction)signInButtonPress:(UIButton *)sender
 {
     
+}
+- (IBAction)showLoginFormSheet:(UIButton *)sender
+{
+    UIViewController *vc = [MSLoginFormVC newController];
+    
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+    
+    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
+    formSheet.shadowRadius = 2.0;
+    formSheet.shadowOpacity = 0.1;
+    formSheet.shouldDismissOnBackgroundViewTap = YES;
+    formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
+    formSheet.shouldCenterVertically = YES;
+    //    formSheet.shouldMoveToTopWhenKeyboardAppears = NO;
+    
+    formSheet.willPresentCompletionHandler = ^(UIViewController *presentedFSViewController) {
+        
+    };
+    
+    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
+    
+    [self presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        
+    }];
 }
 
 #pragma mark MSUserAuthentificationDelegate

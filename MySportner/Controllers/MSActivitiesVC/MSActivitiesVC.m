@@ -9,14 +9,17 @@
 #import "MSActivitiesVC.h"
 #import "UIViewController+MMDrawerController.h"
 #import "MMDrawerBarButtonItem.h"
-#import "MSactivity.h"
+#import "MSActivity.h"
 #import "MSActivityCell.h"
 #import "MSActivitiesFilterCell.h"
 #import "MSActivityVC.h"
+#import "MBProgressHUD.h"
 
 #define NIB_NAME @"MSActivitiesVC"
 
 @interface MSActivitiesVC () <UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) MBProgressHUD *loadingView;
 
 @property (strong, nonatomic) NSArray *data;
 
@@ -33,8 +36,13 @@
     
     [MSActivityCell registerToTableview:self.tableView];
     [MSActivitiesFilterCell registerToTableView:self.tableView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
-    [self generateSampleData];
+    [self requestActivitiesFromBackEnd];
 }
 
 - (void)generateSampleData
@@ -58,7 +66,34 @@
 
 + (MSActivitiesVC *)newController
 {
-    return [[MSActivitiesVC alloc] initWithNibName:NIB_NAME bundle:nil];
+    MSActivitiesVC *activitiesVC = [[MSActivitiesVC alloc] initWithNibName:NIB_NAME bundle:nil];
+    activitiesVC.hasDirectAccessToDrawer = YES;
+    return activitiesVC;
+}
+
+
+#pragma mark Back end process
+
+- (void)findCallback:(NSArray *)objects error:(NSError *)error
+{
+    [self hideLoadingView];
+    
+    if (!error) {
+        self.data = objects;
+        [self reloadData];
+    } else {
+        NSLog(@"Error: %@ %@", error, [error userInfo]);
+    }
+}
+
+- (void)requestActivitiesFromBackEnd
+{
+    PFQuery *query = [PFQuery queryWithClassName:PARSE_CLASSNAME_ACTIVITY];
+    
+    [self showLoadingViewInView:self.view];
+    
+    [query findObjectsInBackgroundWithTarget:self
+                                    selector:@selector(findCallback:error:)];
 }
 
 #pragma mark UITableViewDataSource
@@ -132,6 +167,33 @@
     MSActivityVC *destinationVC = [MSActivityVC newController];
     
     [self.navigationController pushViewController:destinationVC animated:YES];
+}
+
+
+
+#pragma mark - MBProgressHUD
+
+- (void) showLoadingViewInView:(UIView*)v
+{
+    UIView *targetV = (v ? v : self.view);
+    
+    if (!self.loadingView) {
+        self.loadingView = [[MBProgressHUD alloc] initWithView:targetV];
+        self.loadingView.minShowTime = 1.0f;
+        self.loadingView.mode = MBProgressHUDModeIndeterminate;
+        self.loadingView.removeFromSuperViewOnHide = YES;
+        self.loadingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
+    }
+    if(!self.loadingView.superview) {
+        self.loadingView.frame = targetV.bounds;
+        [targetV addSubview:self.loadingView];
+    }
+    [self.loadingView show:YES];
+}
+- (void) hideLoadingView
+{
+    if (self.loadingView.superview)
+        [self.loadingView hide:YES];
 }
 
 @end

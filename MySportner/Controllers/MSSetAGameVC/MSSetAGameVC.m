@@ -12,6 +12,7 @@
 #import "MSLocationPickerCell.h"
 #import "MSActivity.h"
 #import "MBProgressHUD.h"
+#import "MSActivityVC.h"
 
 #define NIB_NAME @"MSSetAGameVC"
 
@@ -64,7 +65,9 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 
 + (MSSetAGameVC *)newController
 {
-    return [[MSSetAGameVC alloc] initWithNibName:NIB_NAME bundle:nil];
+    MSSetAGameVC *setAGameVC = [[MSSetAGameVC alloc] initWithNibName:NIB_NAME bundle:nil];
+    setAGameVC.hasDirectAccessToDrawer = YES;
+    return setAGameVC;
 }
 
 - (void)createActivity
@@ -86,6 +89,19 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 - (void)handleActivityCreation:(BOOL)succeed error:(NSError *)error
 {
     [self hideLoadingView];
+    if (!error) {
+        [self activityCreationDidSucceed];
+    } else {
+        NSLog(@"%@", error);
+    }
+}
+
+- (void)activityCreationDidSucceed
+{
+    MSActivityVC *destinationVC = [MSActivityVC newController];
+    destinationVC.hasDirectAccessToDrawer = YES;
+    
+    [self.navigationController setViewControllers:@[destinationVC] animated:YES];
 }
 
 #pragma mark UITableViewDataSource
@@ -118,6 +134,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
             MSPickSportCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSPickSportCell reusableIdentifier] forIndexPath:indexPath];
             
             [cell initialize];
+            self.sportCell = cell;
             
             return cell;
         }

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MSCenterController.h"
 
-@interface MSActivityVC : UIViewController
+@interface MSActivityVC : MSCenterController
 
 
 + (MSActivityVC *)newController;

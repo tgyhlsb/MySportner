@@ -24,7 +24,9 @@
 {
     [super viewDidLoad];
     
-    [self setupLeftMenuButton];
+    if (self.hasDirectAccessToDrawer) {
+        [self setupLeftMenuButton];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

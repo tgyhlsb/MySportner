@@ -9,7 +9,6 @@
 #import "MSActivity.h"
 #import <Parse/PFObject+Subclass.h>
 
-#define PARSE_CLASSNAME @"MSActivity"
 
 @implementation MSActivity
 
@@ -24,7 +23,7 @@
 
 + (NSString *)parseClassName
 {
-    return PARSE_CLASSNAME;
+    return PARSE_CLASSNAME_ACTIVITY;
 }
 
 @end

@@ -23,7 +23,9 @@
 
 + (MSNotificationsVC *)newController
 {
-    return [[MSNotificationsVC alloc] initWithNibName:NIB_NAME bundle:nil];
+    MSNotificationsVC *notificationsVC = [[MSNotificationsVC alloc] initWithNibName:NIB_NAME bundle:nil];
+    notificationsVC.hasDirectAccessToDrawer = YES;
+    return notificationsVC;
 }
 
 @end

@@ -49,7 +49,9 @@
 
 + (MSProfileVC *)newController
 {
-    return [[MSProfileVC alloc] initWithNibName:NIB_NAME bundle:nil];
+    MSProfileVC *profileVC = [[MSProfileVC alloc] initWithNibName:NIB_NAME bundle:nil];
+    profileVC.hasDirectAccessToDrawer = YES;
+    return profileVC;
 }
 
 @end

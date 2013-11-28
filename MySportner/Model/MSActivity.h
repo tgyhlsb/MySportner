@@ -11,6 +11,8 @@
 #import "MSUser.h"
 #import "MSVenue.h"
 
+#define PARSE_CLASSNAME_ACTIVITY @"MSActivity"
+
 @interface MSActivity : PFObject <PFSubclassing>
 
 @property (strong, nonatomic) NSString *day;

@@ -9,7 +9,7 @@
 #import "MSCenterController.h"
 #import "MMDrawerBarButtonItem.h"
 
-#define TOOLBAR_ALPHA 0.8f
+#define TOOLBAR_ALPHA 0.6f
 
 @interface MSCenterController ()
 
@@ -38,7 +38,7 @@
 {
     if (!_topToolBar)
     {
-        _topToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
+        _topToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 64)];
         _topToolBar.alpha = TOOLBAR_ALPHA;
     }
     return _topToolBar;
@@ -48,10 +48,19 @@
 {
     if (!_navigationToolBar)
     {
-        _navigationToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
-        MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
-        [_navigationToolBar setItems:@[leftDrawerButton]];
-        _navigationToolBar.alpha = TOOLBAR_ALPHA;
+        _navigationToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 64)];
+//        MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setTitle:@"Ok" forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(leftDrawerButtonPress:) forControlEvents:UIControlEventTouchUpInside];
+        
+        button.frame = CGRectMake(15, 20, 34, 34);
+        
+//        UIBarButtonItem *leftDrawerButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+        
+        [_navigationToolBar addSubview:button];
+        self.navigationToolBar.alpha = TOOLBAR_ALPHA;
     }
     return _navigationToolBar;
 }
@@ -60,7 +69,7 @@
 {
     [self.navigationController setNavigationBarHidden:YES];
     
-    [self.view addSubview:self.topToolBar];
+//    [self.view addSubview:self.topToolBar];
     [self.view addSubview:self.navigationToolBar];
 }
 
@@ -68,7 +77,7 @@
 {
     [self.navigationController setNavigationBarHidden:NO];
     
-    [self.topToolBar removeFromSuperview];
+//    [self.topToolBar removeFromSuperview];
     [self.navigationToolBar removeFromSuperview];
 }
 

@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "MSVenue.h"
 
 @interface MSLocationPickerVC : UIViewController
+
+@property (nonatomic, strong) void (^closeBlock)(void);
+@property (strong, nonatomic) MSVenue *selectedVenue;
 
 + (MSLocationPickerVC *)newController;
 

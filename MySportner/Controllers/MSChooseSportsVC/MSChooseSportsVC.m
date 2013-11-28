@@ -38,6 +38,15 @@
     self.collectionView.allowsMultipleSelection = YES;
     
     self.data = SAMPLE_SPORTS;
+    
+    self.title = @"CHOOSE YOUR SPORTS";
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 + (MSChooseSportsVC *)newController

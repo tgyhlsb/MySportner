@@ -12,7 +12,6 @@
 #import "MBProgressHUD.h"
 #import "MSFourSquareParser.h"
 #import "MSVenueCell.h"
-#import "MSVenue.h"
 
 @interface MSLocationPickerVC () <MSURLConnectionDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -130,6 +129,16 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [MSVenueCell height];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.selectedVenue = [self.data objectAtIndex:indexPath.row];
+    
+    if (self.closeBlock) {
+        self.closeBlock();
+        self.closeBlock = nil;
+    }
 }
 
 #pragma mark - MBProgressHUD

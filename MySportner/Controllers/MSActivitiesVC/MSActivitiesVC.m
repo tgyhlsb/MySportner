@@ -43,7 +43,7 @@
     for (int i = 0; i < 20; i++)
     {
         MSActivity *activity = [[MSActivity alloc] init];
-        activity.title = @"Tennis Match";
+        activity.sport = @"Tennis Match";
         activity.place = @"Paris, France";
         [tempData addObject:activity];
     }
@@ -101,7 +101,7 @@
             
             MSActivity *activity = [self.data objectAtIndex:indexPath.row];
             
-            cell.titleLabel.text = activity.title;
+            cell.titleLabel.text = activity.sport;
             cell.placeLabel.text = activity.place;
             return cell;
         }

@@ -13,6 +13,7 @@
 #import "MBProgressHUD.h"
 #import "MZFormSheetController.h"
 #import "MSLoginFormVC.h"
+#import "MSChooseSportsVC.h"
 
 
 #define NIB_NAME @"MSWelcomeVC"
@@ -108,7 +109,13 @@
 
 - (void)userDidSignUp:(MSUser *)user
 {
-    [self performLogin];
+    MSChooseSportsVC *destinationVC = [MSChooseSportsVC newController];
+    
+    destinationVC.user = [MSUser currentUser];
+    
+    [self.navigationController pushViewController:destinationVC animated:YES];
+    
+    [destinationVC.navigationItem setHidesBackButton:YES];
 }
 
 - (void)userSignUpDidFailWithError:(NSError *)error

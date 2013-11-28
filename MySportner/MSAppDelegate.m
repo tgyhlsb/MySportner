@@ -15,6 +15,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <Parse/Parse.h>
 #import "MSUser.h"
+#import "MSActivity.h"
 
 #define STORYBOARD_NAME @"Main"
 
@@ -31,6 +32,7 @@
     [FBProfilePictureView class];
     
     [MSUser registerSubclass];
+    [MSActivity registerSubclass];
     [Parse setApplicationId:@"mXxe3WBY2KqxbWjjnBruVUyJGtyKjgjDpfuX6pAA"
                   clientKey:@"EFLTeHfWnuHxmwzKbg1xfsfYRRFSksMiWGlKYloM"];
     

@@ -7,7 +7,24 @@
 //
 
 #import "MSActivity.h"
+#import <Parse/PFObject+Subclass.h>
+
+#define PARSE_CLASSNAME @"MSActivity"
 
 @implementation MSActivity
+
+@dynamic day;
+@dynamic time;
+@dynamic place;
+@dynamic sport;
+
+@dynamic owner;
+@dynamic guests;
+@dynamic participants;
+
++ (NSString *)parseClassName
+{
+    return PARSE_CLASSNAME;
+}
 
 @end

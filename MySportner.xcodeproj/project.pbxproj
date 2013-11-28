@@ -28,6 +28,8 @@
 		5A31C2051842153C00868188 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C2031842153C00868188 /* SystemConfiguration.framework */; };
 		5A3DE7C118412E82001054EB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3DE7C018412E82001054EB /* FacebookSDK.framework */; };
 		5A3DE7C4184133E1001054EB /* MSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3DE7C3184133E1001054EB /* MSUser.m */; };
+		5AD1FC5318472ADD001D3DFE /* runner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5AD1FC5218472ADD001D3DFE /* runner.jpg */; };
+		5AD1FC5A1847318B001D3DFE /* MSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD1FC591847318B001D3DFE /* MSNavigationBar.m */; };
 		5ADCF225184004D300E6C8D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF224184004D300E6C8D2 /* Foundation.framework */; };
 		5ADCF227184004D300E6C8D2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF226184004D300E6C8D2 /* CoreGraphics.framework */; };
 		5ADCF229184004D300E6C8D2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF228184004D300E6C8D2 /* UIKit.framework */; };
@@ -135,6 +137,9 @@
 		5A3DE7C018412E82001054EB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		5A3DE7C2184133E1001054EB /* MSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSUser.h; path = Model/MSUser.h; sourceTree = "<group>"; };
 		5A3DE7C3184133E1001054EB /* MSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSUser.m; path = Model/MSUser.m; sourceTree = "<group>"; };
+		5AD1FC5218472ADD001D3DFE /* runner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = runner.jpg; path = Images/runner.jpg; sourceTree = "<group>"; };
+		5AD1FC581847318B001D3DFE /* MSNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSNavigationBar.h; path = Views/MSNavigationBar.h; sourceTree = "<group>"; };
+		5AD1FC591847318B001D3DFE /* MSNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSNavigationBar.m; path = Views/MSNavigationBar.m; sourceTree = "<group>"; };
 		5ADCF221184004D300E6C8D2 /* MySportner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySportner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ADCF224184004D300E6C8D2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5ADCF226184004D300E6C8D2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -320,6 +325,14 @@
 			name = MSLoginFormVC;
 			sourceTree = "<group>";
 		};
+		5AD1FC5418472AE1001D3DFE /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5AD1FC5218472ADD001D3DFE /* runner.jpg */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		5ADCF218184004D300E6C8D2 = {
 			isa = PBXGroup;
 			children = (
@@ -381,6 +394,7 @@
 		5ADCF22B184004D300E6C8D2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5AD1FC5418472AE1001D3DFE /* Images */,
 				5ADCF22C184004D300E6C8D2 /* MySportner-Info.plist */,
 				5ADCF22D184004D300E6C8D2 /* InfoPlist.strings */,
 				5ADCF230184004D300E6C8D2 /* main.m */,
@@ -473,6 +487,8 @@
 			isa = PBXGroup;
 			children = (
 				5ADCF278184011AC00E6C8D2 /* Cells */,
+				5AD1FC581847318B001D3DFE /* MSNavigationBar.h */,
+				5AD1FC591847318B001D3DFE /* MSNavigationBar.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -786,6 +802,7 @@
 				5ADCF2DA1840BDBB00E6C8D2 /* MSSmallSportCell.xib in Resources */,
 				5ADCF2C51840AE0800E6C8D2 /* MSActivityVC.xib in Resources */,
 				5A0F9118184242BD0049BBD5 /* MSCreateAccountVC.xib in Resources */,
+				5AD1FC5318472ADD001D3DFE /* runner.jpg in Resources */,
 				5ADCF3161840F8E900E6C8D2 /* MSVenueCell.xib in Resources */,
 				5ADCF2B818402CC500E6C8D2 /* MSActivityCell.xib in Resources */,
 				5AFE43F218426ABD001376C7 /* MSChooseSportsVC.xib in Resources */,
@@ -821,6 +838,7 @@
 				5A1B73721844AB6200555FE4 /* MZFormSheetController.m in Sources */,
 				5AFE43EE18426A8F001376C7 /* MSChooseSportsVC.m in Sources */,
 				5ADCF3011840E38D00E6C8D2 /* MSURLConnection.m in Sources */,
+				5AD1FC5A1847318B001D3DFE /* MSNavigationBar.m in Sources */,
 				5ADCF2C31840ADF700E6C8D2 /* MSActivityVC.m in Sources */,
 				5ADCF2661840051300E6C8D2 /* MMDrawerVisualState.m in Sources */,
 				5A1B73701844AB6200555FE4 /* NSInvocation+Copy.m in Sources */,

@@ -11,4 +11,8 @@
 
 @interface MSCenterController : UIViewController
 
+- (void)setTranslucentNavigationBar;
+
+- (void)setNormalNavigationBar;
+
 @end

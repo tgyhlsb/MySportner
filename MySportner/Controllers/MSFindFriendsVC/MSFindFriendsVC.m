@@ -52,6 +52,8 @@
     [self hideLoadingView];
     if (!error) {
         [self performLogin];
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[error description] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
     }
 }
 

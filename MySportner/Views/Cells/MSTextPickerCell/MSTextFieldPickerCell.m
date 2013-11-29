@@ -50,7 +50,7 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    return NO;
+    return YES;
 }
 
 @end

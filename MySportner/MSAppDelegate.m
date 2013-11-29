@@ -13,6 +13,9 @@
 #import "MSActivitiesVC.h"
 #import "MSWelcomeVC.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import <Parse/Parse.h>
+#import "MSUser.h"
+#import "MSActivity.h"
 
 #define STORYBOARD_NAME @"Main"
 
@@ -28,11 +31,19 @@
     [FBLoginView class];
     [FBProfilePictureView class];
     
+    [MSUser registerSubclass];
+    [MSActivity registerSubclass];
+    [Parse setApplicationId:@"mXxe3WBY2KqxbWjjnBruVUyJGtyKjgjDpfuX6pAA"
+                  clientKey:@"EFLTeHfWnuHxmwzKbg1xfsfYRRFSksMiWGlKYloM"];
+    
+    [PFFacebookUtils initializeFacebook];
+    
     [self setDrawerMenu];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    MSWelcomeVC *mainVC = [MSWelcomeVC newcontroller];
+    
+    UINavigationController *mainVC = [[UINavigationController alloc] initWithRootViewController:[MSWelcomeVC newController]];
     
     [self.window setRootViewController:mainVC];
     
@@ -59,6 +70,7 @@
     [self.drawerController setMaximumRightDrawerWidth:200.0];
     [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    self.drawerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -88,15 +100,13 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
-    
-    BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
-    
-    // add app-specific handling code here
-    return wasHandled;
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [PFFacebookUtils handleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [PFFacebookUtils handleOpenURL:url];
 }
 
 @end

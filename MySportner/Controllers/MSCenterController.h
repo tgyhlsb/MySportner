@@ -11,4 +11,10 @@
 
 @interface MSCenterController : UIViewController
 
+@property (nonatomic) BOOL hasDirectAccessToDrawer;
+
+- (void)setTranslucentNavigationBar;
+
+- (void)setNormalNavigationBar;
+
 @end

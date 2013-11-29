@@ -7,11 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
+#import "MSUser.h"
+#import "MSVenue.h"
 
-@interface MSActivity : NSObject
+#define PARSE_CLASSNAME_ACTIVITY @"MSActivity"
 
-@property (strong, nonatomic) NSString *date;
-@property (strong, nonatomic) NSString *title;
+@interface MSActivity : PFObject <PFSubclassing>
+
+@property (strong, nonatomic) NSString *day;
+@property (strong, nonatomic) NSString *time;
 @property (strong, nonatomic) NSString *place;
+@property (strong, nonatomic) NSString *sport;
+
+@property (strong, nonatomic) MSUser *owner;
+@property (strong, nonatomic) NSArray *guests; // of MSUser
+@property (strong, nonatomic) NSArray *participants;  // of MSUser
+
+
++ (NSString *)parseClassName;
 
 @end

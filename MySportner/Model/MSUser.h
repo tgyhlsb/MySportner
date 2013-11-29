@@ -8,17 +8,42 @@
 
 #import <Foundation/Foundation.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import <Parse/Parse.h>
 
-@interface MSUser : NSObject
+#define FACEBOOK_READ_PERMISIONS @[@"email", @"user_birthday"]
+
+@protocol MSUserAuthentificationDelegate;
+
+
+typedef NS_ENUM(int, MSUserGender) {
+    MSUserGenderFemale,
+    MSUserGenderMale,
+};
+
+@interface MSUser : PFUser <PFSubclassing>
+
+@property (weak, nonatomic) id<MSUserAuthentificationDelegate> delegate;
 
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *facebookID;
+@property (strong, nonatomic) NSDate *birthday;
+@property (nonatomic) MSUserGender gender;
 
-- (id)initWithFacebookInfo:(id<FBGraphUser>)userInfo;
-+ (void)logInWithFacebookInfo:(id<FBGraphUser>)userInfo;
-+ (void)logOut;
++ (void)tryLoginWithFacebook:(id<MSUserAuthentificationDelegate>)sender;
 
-+ (MSUser *)sharedUser;
++ (MSUser *)currentUser;
+
+@end
+
+@protocol MSUserAuthentificationDelegate <NSObject>
+
+@optional
+
+- (void)userDidLogIn;
+- (void)userDidLogOut;
+
+- (void)userDidSignUp:(MSUser *)user;
+- (void)userSignUpDidFailWithError:(NSError *)error;
 
 @end

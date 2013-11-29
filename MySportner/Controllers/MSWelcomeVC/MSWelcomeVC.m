@@ -8,14 +8,19 @@
 
 #import "MSWelcomeVC.h"
 #import "MSAppDelegate.h"
-#import <FacebookSDK/FacebookSDK.h>
 #import "MSUser.h"
+#import "MSCreateAccountVC.h"
+#import "MBProgressHUD.h"
+#import "MZFormSheetController.h"
+#import "MSLoginFormVC.h"
+#import "MSChooseSportsVC.h"
+
 
 #define NIB_NAME @"MSWelcomeVC"
 
-@interface MSWelcomeVC () <FBLoginViewDelegate>
+@interface MSWelcomeVC () <MSUserAuthentificationDelegate, MZFormSheetBackgroundWindowDelegate>
 
-@property (weak, nonatomic) IBOutlet FBLoginView *fbLoginview;
+@property (strong, nonatomic) MBProgressHUD *loadingView;
 
 @end
 
@@ -24,83 +29,123 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    self.fbLoginview.delegate = self;
 }
 
-+ (MSWelcomeVC *)newcontroller
+- (void)viewDidAppear:(BOOL)animated
+{
+    if ([MSUser currentUser])
+    {
+        [self performLogin];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
++ (MSWelcomeVC *)newController
 {
     return [[MSWelcomeVC alloc] initWithNibName:NIB_NAME bundle:nil];
 }
 
 - (void)performLogin
 {
+    [self hideLoadingView];
     MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
-    
     [appDelegate setDrawerMenu];
-    
-    appDelegate.drawerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
     [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
 }
 
-- (IBAction)loginButtonPress:(UIButton *)sender
+- (IBAction)logInWithFacebookButtonPress:(UIButton *)sender
 {
-    [self performLogin];
+    [self showLoadingViewInView:self.view];
+    [MSUser tryLoginWithFacebook:self];
 }
 
-#pragma mark FBLoginViewDelegate
-
-- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
+- (IBAction)signUpButtonPress:(UIButton *)sender
 {
-    NSLog(@"Log in");
+    [self.navigationController pushViewController:[MSCreateAccountVC newController] animated:YES];
 }
 
-- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView
+- (IBAction)signInButtonPress:(UIButton *)sender
 {
-    NSLog(@"Log out");
-}
-
-- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user
-{
-    NSLog(@"Fetched info\n%@", user);
-    [MSUser logInWithFacebookInfo:user];
-    [self performLogin];
-}
-
-- (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error
-{
-    NSString *alertMessage, *alertTitle;
-    if (error.fberrorShouldNotifyUser) {
-        // If the SDK has a message for the user, surface it. This conveniently
-        // handles cases like password change or iOS6 app slider state.
-        alertTitle = @"Facebook Error";
-        alertMessage = error.fberrorUserMessage;
-    } else if (error.fberrorCategory == FBErrorCategoryAuthenticationReopenSession) {
-        // It is important to handle session closures since they can happen
-        // outside of the app. You can inspect the error for more context
-        // but this sample generically notifies the user.
-        alertTitle = @"Session Error";
-        alertMessage = @"Your current session is no longer valid. Please log in again.";
-    } else if (error.fberrorCategory == FBErrorCategoryUserCancelled) {
-        // The user has cancelled a login. You can inspect the error
-        // for more context. For this sample, we will simply ignore it.
-        NSLog(@"user cancelled login");
-    } else {
-        // For simplicity, this sample treats other errors blindly.
-        alertTitle  = @"Unknown Error";
-        alertMessage = @"Error. Please try again later.";
-        NSLog(@"Unexpected error:%@", error);
-    }
     
-    if (alertMessage) {
-        [[[UIAlertView alloc] initWithTitle:alertTitle
-                                    message:alertMessage
-                                   delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil] show];
+}
+- (IBAction)showLoginFormSheet:(UIButton *)sender
+{
+    UIViewController *vc = [MSLoginFormVC newController];
+    
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+    
+    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
+    formSheet.shadowRadius = 2.0;
+    formSheet.shadowOpacity = 0.5;
+    formSheet.shouldDismissOnBackgroundViewTap = YES;
+    formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
+    formSheet.shouldCenterVertically = YES;
+    //    formSheet.shouldMoveToTopWhenKeyboardAppears = NO;
+    
+    formSheet.willPresentCompletionHandler = ^(UIViewController *presentedFSViewController) {
+        
+    };
+    
+    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
+    
+    [self presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        
+    }];
+}
+
+#pragma mark MSUserAuthentificationDelegate
+
+- (void)userDidLogIn
+{
+    [self performLogin];
+}
+
+- (void)userDidSignUp:(MSUser *)user
+{
+    MSChooseSportsVC *destinationVC = [MSChooseSportsVC newController];
+    
+    destinationVC.user = [MSUser currentUser];
+    
+    [self.navigationController pushViewController:destinationVC animated:YES];
+    
+    [destinationVC.navigationItem setHidesBackButton:YES];
+}
+
+- (void)userSignUpDidFailWithError:(NSError *)error
+{
+    [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[error description] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
+}
+
+#pragma mark - MBProgressHUD
+
+- (void) showLoadingViewInView:(UIView*)v
+{
+    UIView *targetV = (v ? v : self.view);
+    
+    if (!self.loadingView) {
+        self.loadingView = [[MBProgressHUD alloc] initWithView:targetV];
+        self.loadingView.minShowTime = 1.0f;
+        self.loadingView.mode = MBProgressHUDModeIndeterminate;
+        self.loadingView.removeFromSuperViewOnHide = YES;
+        self.loadingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
     }
+    if(!self.loadingView.superview) {
+        self.loadingView.frame = targetV.bounds;
+        [targetV addSubview:self.loadingView];
+    }
+    [self.loadingView show:YES];
+}
+- (void) hideLoadingView
+{
+    if (self.loadingView.superview)
+        [self.loadingView hide:YES];
 }
 
 @end

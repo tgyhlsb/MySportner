@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSWelcomeVC">
             <connections>
-                <outlet property="fbLoginview" destination="TOR-Wm-HKf" id="yNj-kX-vrD"/>
                 <outlet property="view" destination="C6N-oI-cKQ" id="wqF-St-5qV"/>
             </connections>
         </placeholder>
@@ -17,20 +16,36 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v7c-ml-F4f">
-                    <rect key="frame" x="139" y="413" width="43" height="30"/>
+                    <rect key="frame" x="86" y="369" width="148" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Log in">
+                    <state key="normal" title="Log in with Facebook">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="loginButtonPress:" destination="-1" eventType="touchUpInside" id="2UB-Ew-4n4"/>
+                        <action selector="logInWithFacebookButtonPress:" destination="-1" eventType="touchUpInside" id="6Cd-Yy-8fu"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TOR-Wm-HKf" customClass="FBLoginView">
-                    <rect key="frame" x="20" y="361" width="280" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5Q-R2-uOY">
+                    <rect key="frame" x="137" y="407" width="53" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.1049949745" green="0.1280746324" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
+                    <state key="normal" title="Sign up">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="signUpButtonPress:" destination="-1" eventType="touchUpInside" id="cVU-24-5H1"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqk-31-Md8">
+                    <rect key="frame" x="140" y="445" width="47" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Sign in">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="showLoginFormSheet:" destination="-1" eventType="touchUpInside" id="CQr-fT-k3V"/>
+                        <action selector="signInButtonPress:" destination="-1" eventType="touchUpInside" id="vS8-Mj-q7c"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

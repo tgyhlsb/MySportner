@@ -7,7 +7,10 @@
 //
 
 #import "MSTextFieldPickerCell.h"
+#import "MSVenue.h"
 
 @interface MSLocationPickerCell : MSTextFieldPickerCell
+
+@property (strong, nonatomic) MSVenue *venue;
 
 @end

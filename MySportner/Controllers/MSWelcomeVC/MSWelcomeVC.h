@@ -10,6 +10,8 @@
 
 @interface MSWelcomeVC : UIViewController
 
-+ (MSWelcomeVC *)newcontroller;
++ (MSWelcomeVC *)newController;
+
+- (void)performLogin;
 
 @end

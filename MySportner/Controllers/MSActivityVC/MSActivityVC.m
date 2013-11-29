@@ -19,11 +19,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"GAME PROFILE";
 }
 
 + (MSActivityVC *)newController
 {
-    return [[MSActivityVC alloc] initWithNibName:NIB_NAME bundle:nil];
+    MSActivityVC *activityVC = [[MSActivityVC alloc] initWithNibName:NIB_NAME bundle:nil];
+    activityVC.hasDirectAccessToDrawer = NO;
+    return activityVC;
 }
 
 @end

@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
+@property (nonatomic) int level;
 
 + (void)registerToCollectionView:(UICollectionView *)collectionView;
 + (NSString *)reusableIdentifier;

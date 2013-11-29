@@ -14,6 +14,7 @@
 
 @interface MSBigSportCell()
 
+@property (weak, nonatomic) IBOutlet UILabel *sportLevelLabel;
 
 @end
 
@@ -35,9 +36,18 @@
     return CGSizeMake(WIDTH, HEIGHT);
 }
 
+- (void)setLevel:(int)level
+{
+    _level = level;
+    
+    self.sportLevelLabel.text = [NSString stringWithFormat:@"%d", level];
+}
+
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
+    
+    self.sportLevelLabel.hidden = !selected;
     
     if (selected)
     {

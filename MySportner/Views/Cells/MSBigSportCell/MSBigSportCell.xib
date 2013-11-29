@@ -21,11 +21,26 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63C-cE-W4x">
+                        <rect key="frame" x="81" y="7" width="42" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="CkK-in-ZmF"/>
+                            <constraint firstAttribute="width" constant="42" id="i0p-Fx-iVr"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="63C-cE-W4x" secondAttribute="trailing" constant="7" id="ouQ-zQ-lbH"/>
+                <constraint firstItem="63C-cE-W4x" firstAttribute="top" secondItem="WJX-H0-A7y" secondAttribute="top" constant="7" id="uQH-Ce-auC"/>
+            </constraints>
             <connections>
+                <outlet property="sportLevelLabel" destination="63C-cE-W4x" id="txZ-km-cbv"/>
                 <outlet property="titleLabel" destination="6YX-D6-zAK" id="AGA-a5-f4W"/>
             </connections>
         </collectionViewCell>

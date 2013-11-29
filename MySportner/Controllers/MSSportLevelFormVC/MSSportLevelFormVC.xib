@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSSportLevelFormVC">
+            <connections>
+                <outlet property="commentLabel" destination="BU3-pN-AxM" id="oFE-jt-wzE"/>
+                <outlet property="levelLabel" destination="jTi-Ni-nGW" id="Xx0-Ms-PtU"/>
+                <outlet property="navigationBar" destination="Gso-wV-Bco" id="d9I-uE-qi4"/>
+                <outlet property="tempRatingView" destination="xaM-Uv-sAf" id="eWv-Qs-QfJ"/>
+                <outlet property="view" destination="Rir-d7-dmu" id="smw-aA-P8d"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Rir-d7-dmu">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gso-wV-Bco">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="R3r-QI-wGm"/>
+                    </constraints>
+                    <items>
+                        <navigationItem title="Title" id="MXa-XJ-unK"/>
+                    </items>
+                </navigationBar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaM-Uv-sAf">
+                    <rect key="frame" x="40" y="74" width="240" height="60"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" red="0.47843137250000001" green="0.75686274509999996" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="055-Gc-s8B"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOr-bB-mYC">
+                    <rect key="frame" x="60" y="225" width="200" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="CSU-6r-1hF"/>
+                        <constraint firstAttribute="width" constant="200" id="Yjt-l0-QVa"/>
+                    </constraints>
+                    <state key="normal" title="DONE">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="validateButtonPress:" destination="-1" eventType="touchUpInside" id="K6P-MJ-dFE"/>
+                    </connections>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTi-Ni-nGW">
+                    <rect key="frame" x="20" y="154" width="280" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="RwX-kB-qg7"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BU3-pN-AxM">
+                    <rect key="frame" x="20" y="184" width="280" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="op5-FV-IDq"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ZOr-bB-mYC" firstAttribute="top" secondItem="BU3-pN-AxM" secondAttribute="bottom" constant="20" id="4wh-Ne-3Vj"/>
+                <constraint firstItem="BU3-pN-AxM" firstAttribute="top" secondItem="jTi-Ni-nGW" secondAttribute="bottom" id="7Cr-MM-V89"/>
+                <constraint firstAttribute="trailing" secondItem="Gso-wV-Bco" secondAttribute="trailing" id="A2I-Fc-c58"/>
+                <constraint firstItem="xaM-Uv-sAf" firstAttribute="leading" secondItem="Rir-d7-dmu" secondAttribute="leading" constant="40" id="DjT-ps-SYH"/>
+                <constraint firstItem="Gso-wV-Bco" firstAttribute="top" secondItem="Rir-d7-dmu" secondAttribute="top" id="Kkm-q3-VAt"/>
+                <constraint firstAttribute="trailing" secondItem="xaM-Uv-sAf" secondAttribute="trailing" constant="40" id="Pes-dA-Bvw"/>
+                <constraint firstItem="jTi-Ni-nGW" firstAttribute="top" secondItem="xaM-Uv-sAf" secondAttribute="bottom" constant="20" id="cgA-Oo-GIx"/>
+                <constraint firstItem="Gso-wV-Bco" firstAttribute="leading" secondItem="Rir-d7-dmu" secondAttribute="leading" id="mf9-qv-xJV"/>
+                <constraint firstItem="jTi-Ni-nGW" firstAttribute="leading" secondItem="Rir-d7-dmu" secondAttribute="leading" constant="20" id="oV7-05-GY9"/>
+                <constraint firstAttribute="centerX" secondItem="ZOr-bB-mYC" secondAttribute="centerX" id="qN7-7o-57g"/>
+                <constraint firstAttribute="trailing" secondItem="BU3-pN-AxM" secondAttribute="trailing" constant="20" id="rc9-cJ-Xea"/>
+                <constraint firstItem="BU3-pN-AxM" firstAttribute="leading" secondItem="Rir-d7-dmu" secondAttribute="leading" constant="20" id="rfg-3x-KAR"/>
+                <constraint firstAttribute="trailing" secondItem="jTi-Ni-nGW" secondAttribute="trailing" constant="20" id="sVz-ZC-fQR"/>
+                <constraint firstItem="xaM-Uv-sAf" firstAttribute="top" secondItem="Gso-wV-Bco" secondAttribute="bottom" constant="30" id="vYr-7O-1qh"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

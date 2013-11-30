@@ -34,9 +34,9 @@
     self.faceColor = [UIColor colorWithRed:0.333 green:0.631 blue:0.851 alpha:1.0];
     self.sideColor = [UIColor colorWithRed:0.310 green:0.498 blue:0.702 alpha:1.0];
     
-    self.radius = 6.0;
-    self.margin = 4.0;
-    self.depth = 3.0;
+    self.radius = 3.0;
+    self.margin = 2.0;
+    self.depth = 1.0;
     
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }

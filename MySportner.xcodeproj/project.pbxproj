@@ -35,6 +35,9 @@
 		5A3DE7C118412E82001054EB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3DE7C018412E82001054EB /* FacebookSDK.framework */; };
 		5A3DE7C4184133E1001054EB /* MSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3DE7C3184133E1001054EB /* MSUser.m */; };
 		5A96744C1849CD180079EAC1 /* QBFlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A96744B1849CD180079EAC1 /* QBFlatButton.m */; };
+		5A96744F1849D20C0079EAC1 /* MSColorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A96744E1849D20C0079EAC1 /* MSColorFactory.m */; };
+		5A9674521849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9674511849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m */; };
+		5A9674551849D8740079EAC1 /* MSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9674541849D8740079EAC1 /* MSTextField.m */; };
 		5AD1FC5318472ADD001D3DFE /* runner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5AD1FC5218472ADD001D3DFE /* runner.jpg */; };
 		5AD1FC5A1847318B001D3DFE /* MSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD1FC591847318B001D3DFE /* MSNavigationBar.m */; };
 		5ADCF225184004D300E6C8D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF224184004D300E6C8D2 /* Foundation.framework */; };
@@ -155,6 +158,12 @@
 		5A3DE7C3184133E1001054EB /* MSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSUser.m; path = Model/MSUser.m; sourceTree = "<group>"; };
 		5A96744A1849CD180079EAC1 /* QBFlatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBFlatButton.h; sourceTree = "<group>"; };
 		5A96744B1849CD180079EAC1 /* QBFlatButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBFlatButton.m; sourceTree = "<group>"; };
+		5A96744D1849D20C0079EAC1 /* MSColorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSColorFactory.h; sourceTree = "<group>"; };
+		5A96744E1849D20C0079EAC1 /* MSColorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSColorFactory.m; sourceTree = "<group>"; };
+		5A9674501849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+MSTextFieldAppearance.h"; sourceTree = "<group>"; };
+		5A9674511849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+MSTextFieldAppearance.m"; sourceTree = "<group>"; };
+		5A9674531849D8740079EAC1 /* MSTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSTextField.h; path = Views/MSTextField.h; sourceTree = "<group>"; };
+		5A9674541849D8740079EAC1 /* MSTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSTextField.m; path = Views/MSTextField.m; sourceTree = "<group>"; };
 		5AD1FC5218472ADD001D3DFE /* runner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = runner.jpg; path = Images/runner.jpg; sourceTree = "<group>"; };
 		5AD1FC581847318B001D3DFE /* MSNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSNavigationBar.h; path = Views/MSNavigationBar.h; sourceTree = "<group>"; };
 		5AD1FC591847318B001D3DFE /* MSNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSNavigationBar.m; path = Views/MSNavigationBar.m; sourceTree = "<group>"; };
@@ -438,6 +447,8 @@
 				5ADCF233184004D300E6C8D2 /* MSAppDelegate.h */,
 				5ADCF234184004D300E6C8D2 /* MSAppDelegate.m */,
 				5ADCF236184004D300E6C8D2 /* Main.storyboard */,
+				5A96744D1849D20C0079EAC1 /* MSColorFactory.h */,
+				5A96744E1849D20C0079EAC1 /* MSColorFactory.m */,
 				5ADCF2F91840E38D00E6C8D2 /* Connection */,
 				5ADCF2B318402B4B00E6C8D2 /* Model */,
 				5ADCF277184011A500E6C8D2 /* Views */,
@@ -488,6 +499,8 @@
 				5ADCF25A1840051300E6C8D2 /* MMDrawerController */,
 				5A173FE01849C97D00144DB8 /* UIView+MSRoundedView.h */,
 				5A173FE11849C97D00144DB8 /* UIView+MSRoundedView.m */,
+				5A9674501849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.h */,
+				5A9674511849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -550,6 +563,8 @@
 				5ADCF278184011AC00E6C8D2 /* Cells */,
 				5AD1FC581847318B001D3DFE /* MSNavigationBar.h */,
 				5AD1FC591847318B001D3DFE /* MSNavigationBar.m */,
+				5A9674531849D8740079EAC1 /* MSTextField.h */,
+				5A9674541849D8740079EAC1 /* MSTextField.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -896,6 +911,7 @@
 				5ADCF29618401A0300E6C8D2 /* MSDrawerController.m in Sources */,
 				5A1B73711844AB6200555FE4 /* MZFormSheetBackgroundWindow.m in Sources */,
 				5ADCF3081840E80500E6C8D2 /* MSFourSquareKeyFactory.m in Sources */,
+				5A9674521849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m in Sources */,
 				5ADCF2D31840BA6400E6C8D2 /* MSPickSportCell.m in Sources */,
 				5AFE43F618426CC6001376C7 /* MSBigSportCell.m in Sources */,
 				5ADCF293184017A700E6C8D2 /* MSActivitiesVC.m in Sources */,
@@ -917,6 +933,8 @@
 				5ADCF29C18401D1800E6C8D2 /* MSNotificationsVC.m in Sources */,
 				5ADCF2AC184025AE00E6C8D2 /* MSWelcomeVC.m in Sources */,
 				5ADCF2671840051300E6C8D2 /* UIViewController+MMDrawerController.m in Sources */,
+				5A96744F1849D20C0079EAC1 /* MSColorFactory.m in Sources */,
+				5A9674551849D8740079EAC1 /* MSTextField.m in Sources */,
 				5ADCF3141840F8DA00E6C8D2 /* MSVenueCell.m in Sources */,
 				5ADCF2A318401E1C00E6C8D2 /* MSSetAGameVC.m in Sources */,
 				5ADCF28A1840144D00E6C8D2 /* MSDrawerMenuVC.m in Sources */,

@@ -14,6 +14,8 @@
 #import "MZFormSheetController.h"
 #import "MSLoginFormVC.h"
 #import "MSChooseSportsVC.h"
+#import "QBFlatButton.h"
+#import "MSColorFactory.h"
 
 
 #define NIB_NAME @"MSWelcomeVC"
@@ -21,6 +23,9 @@
 @interface MSWelcomeVC () <MSUserAuthentificationDelegate, MZFormSheetBackgroundWindowDelegate>
 
 @property (strong, nonatomic) MBProgressHUD *loadingView;
+@property (weak, nonatomic) IBOutlet QBFlatButton *facebookLoginButton;
+@property (weak, nonatomic) IBOutlet QBFlatButton *createAccountButton;
+@property (weak, nonatomic) IBOutlet QBFlatButton *loginButton;
 
 @end
 
@@ -29,6 +34,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.facebookLoginButton setTitle:@"CONNECT VIA FACEBOOK" forState:UIControlStateNormal];
+    [self.createAccountButton setTitle:@"CREATE ACCOUNT" forState:UIControlStateNormal];
+    [self.loginButton setTitle:@"LOGIN" forState:UIControlStateNormal];
+    
+    [self setButtonsAppearance];
+    
+    self.view.backgroundColor = [MSColorFactory mainColor];
+    
+}
+
+- (void)setButtonsAppearance
+{
+    self.facebookLoginButton.faceColor = [MSColorFactory facebookColorLight];
+    self.facebookLoginButton.sideColor = [MSColorFactory facebookColorDark];
+    
+    self.createAccountButton.faceColor = [MSColorFactory whiteLight];
+    self.createAccountButton.sideColor = [MSColorFactory whiteDark];
+    [self.createAccountButton setTitleColor:[MSColorFactory mainColor] forState:UIControlStateNormal];
+    
+    self.loginButton.faceColor = [MSColorFactory whiteLight];
+    self.loginButton.sideColor = [MSColorFactory whiteDark];
+    [self.loginButton setTitleColor:[MSColorFactory mainColor] forState:UIControlStateNormal];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -78,12 +106,13 @@
 - (IBAction)showLoginFormSheet:(UIButton *)sender
 {
     UIViewController *vc = [MSLoginFormVC newController];
+    CGSize formSheetSize = CGSizeMake(280, 300);
     
-    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithSize:formSheetSize viewController:vc];
     
     formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
-    formSheet.shadowRadius = 2.0;
-    formSheet.shadowOpacity = 0.5;
+    formSheet.shadowRadius = 1.0;
+    formSheet.shadowOpacity = 0.2;
     formSheet.shouldDismissOnBackgroundViewTap = YES;
     formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
     formSheet.shouldCenterVertically = YES;

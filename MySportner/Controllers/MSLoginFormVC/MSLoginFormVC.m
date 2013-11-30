@@ -10,14 +10,19 @@
 #import "MBProgressHUD.h"
 #import "MSUser.h"
 #import "MSWelcomeVC.h"
+#import "MSColorFactory.h"
+#import "QBFlatButton.h"
+#import "UITextField+MSTextFieldAppearance.h"
+#import "MSTextField.h"
 
 #define NIB_NAME @"MSLoginFormVC"
 
 @interface MSLoginFormVC ()
-@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (weak, nonatomic) IBOutlet MSTextField *emailTextField;
+@property (weak, nonatomic) IBOutlet MSTextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UILabel *forgotPasswordLabel;
-@property (weak, nonatomic) IBOutlet UIButton *connectButton;
+@property (weak, nonatomic) IBOutlet QBFlatButton *connectButton;
 
 @property (strong, nonatomic) MBProgressHUD *loadingView;
 
@@ -28,9 +33,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
-    [self.view setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.8]];
+    self.navigationBar.topItem.title = @"LOGIN";
+    
+    [self.view setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.9]];
+    
+    [self setAppearance];
+}
+
+- (void)setAppearance
+{
+    self.connectButton.faceColor = [MSColorFactory redLight];
+    self.connectButton.sideColor = [MSColorFactory redDark];
+    [self.connectButton setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
+    
+    self.emailTextField.focusBorderColor = [MSColorFactory redLight];
+    self.emailTextField.textColor = [MSColorFactory redLight];
+    
+    self.passwordTextField.focusBorderColor = [MSColorFactory redLight];
+    self.passwordTextField.textColor = [MSColorFactory redLight];
+    
+    self.forgotPasswordLabel.textColor = [MSColorFactory redLight];
 }
 
 - (void)viewWillAppear:(BOOL)animated

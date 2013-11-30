@@ -7,6 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSWelcomeVC">
             <connections>
+                <outlet property="createAccountButton" destination="Z5Q-R2-uOY" id="5lo-uy-CzE"/>
+                <outlet property="facebookLoginButton" destination="v7c-ml-F4f" id="BX7-Z9-5gm"/>
+                <outlet property="loginButton" destination="yqk-31-Md8" id="VNa-cc-1o3"/>
                 <outlet property="view" destination="C6N-oI-cKQ" id="wqF-St-5qV"/>
             </connections>
         </placeholder>
@@ -15,9 +18,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v7c-ml-F4f">
-                    <rect key="frame" x="86" y="369" width="148" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v7c-ml-F4f" customClass="QBFlatButton">
+                    <rect key="frame" x="20" y="343" width="280" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Pix-Xu-bph"/>
+                        <constraint firstAttribute="width" constant="280" id="UZi-b1-k5J"/>
+                    </constraints>
                     <state key="normal" title="Log in with Facebook">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -25,9 +32,13 @@
                         <action selector="logInWithFacebookButtonPress:" destination="-1" eventType="touchUpInside" id="6Cd-Yy-8fu"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5Q-R2-uOY">
-                    <rect key="frame" x="137" y="407" width="53" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5Q-R2-uOY" customClass="QBFlatButton">
+                    <rect key="frame" x="20" y="423" width="280" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="1TX-AW-NVa"/>
+                        <constraint firstAttribute="height" constant="50" id="Y4S-RK-47f"/>
+                    </constraints>
                     <state key="normal" title="Sign up">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -35,9 +46,13 @@
                         <action selector="signUpButtonPress:" destination="-1" eventType="touchUpInside" id="cVU-24-5H1"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqk-31-Md8">
-                    <rect key="frame" x="140" y="445" width="47" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqk-31-Md8" customClass="QBFlatButton">
+                    <rect key="frame" x="20" y="488" width="280" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="ETm-3u-7Ol"/>
+                        <constraint firstAttribute="height" constant="50" id="hF9-Kq-WHp"/>
+                    </constraints>
                     <state key="normal" title="Sign in">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -48,6 +63,14 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Z5Q-R2-uOY" firstAttribute="top" secondItem="v7c-ml-F4f" secondAttribute="bottom" constant="30" id="Xhh-II-upp"/>
+                <constraint firstAttribute="centerX" secondItem="v7c-ml-F4f" secondAttribute="centerX" id="fLG-un-53i"/>
+                <constraint firstAttribute="centerX" secondItem="Z5Q-R2-uOY" secondAttribute="centerX" id="hfC-7k-bIw"/>
+                <constraint firstAttribute="bottom" secondItem="yqk-31-Md8" secondAttribute="bottom" constant="30" id="kPY-70-nk9"/>
+                <constraint firstItem="yqk-31-Md8" firstAttribute="top" secondItem="Z5Q-R2-uOY" secondAttribute="bottom" constant="15" id="n8x-Xy-PGV"/>
+                <constraint firstAttribute="centerX" secondItem="yqk-31-Md8" secondAttribute="centerX" id="yEL-ct-hCm"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>

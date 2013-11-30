@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIView *roundView;
 @property (weak, nonatomic) IBOutlet QBFlatButton *actionButton;
 
+@property (nonatomic) BOOL oddIndex;
+
 
 @end
 
@@ -28,9 +30,21 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    [super setSelected:selected animated:animated];
+    // do nothing
+}
 
-    // Configure the view for the selected state
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+    if (highlighted) {
+        self.backgroundColor = [UIColor lightGrayColor];
+    } else {
+        if (self.oddIndex) {
+            self.backgroundColor = [MSColorFactory backgroundColorGrayLight];
+        } else {
+            self.backgroundColor = [MSColorFactory whiteLight];
+        }
+    }
+    
 }
 
 - (void)setAppearanceWithOddIndex:(BOOL)oddIndex
@@ -48,11 +62,9 @@
     self.actionButton.depth = 0.0f;
     self.actionButton.radius = 3.0f;
     
-    if (oddIndex) {
-        self.backgroundColor = [MSColorFactory backgroundColorGrayLight];
-    } else {
-        self.backgroundColor = [MSColorFactory whiteLight];
-    }
+    self.oddIndex = oddIndex;
+    [self setHighlighted:NO animated:NO];
+
 }
 
 + (void)registerToTableview:(UITableView *)tableView

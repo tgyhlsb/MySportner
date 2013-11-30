@@ -136,7 +136,7 @@
 {
     self.fbProfilePictureView.profileID = [MSUser currentUser].facebookID;
     self.welcomeLabel.text = @"HELLO";
-    self.userNameLabel.text = [[MSUser currentUser] fullName];
+    self.userNameLabel.text = [[[MSUser currentUser] fullName] uppercaseString];
 }
 
 

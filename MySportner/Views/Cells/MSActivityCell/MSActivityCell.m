@@ -41,6 +41,8 @@
     self.roundView.backgroundColor = [MSColorFactory redLight];
     self.ownerProfilePictureView.backgroundColor = [UIColor clearColor];
     
+    self.titleLabel.textColor = [MSColorFactory redLight];
+    
     self.actionButton.faceColor = [MSColorFactory redLight];
     self.actionButton.margin = 0.0f;
     self.actionButton.depth = 0.0f;

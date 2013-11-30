@@ -35,7 +35,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 
 @property (strong, nonatomic) IBOutlet UITextField *dayTextField;
 @property (strong, nonatomic) IBOutlet UITextField *timeTextField;
-@property (strong, nonatomic) IBOutlet UITextField *repaetTextField;
+@property (strong, nonatomic) IBOutlet UITextField *repeatTextField;
 @property (strong, nonatomic) IBOutlet MSLocationPickerCell *venueCell;
 @property (strong, nonatomic) IBOutlet MSPickSportCell *sportCell;
 
@@ -169,7 +169,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     
                     [cell initializeWithViewcontroller:self];
                     cell.textField.placeholder = @"Repeat";
-                    self.repaetTextField = cell.textField;
+                    self.repeatTextField = cell.textField;
                     
                     return cell;
                 }

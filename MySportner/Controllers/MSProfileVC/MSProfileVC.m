@@ -10,8 +10,11 @@
 #import "MSUser.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "UIView+MSRoundedView.h"
+#import "UIImage+BlurredFrame.h"
 
 #define NIB_NAME @"MSProfileVC"
+
+#define COVER_BLUR_HEIGHT 140
 
 @interface MSProfileVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -27,9 +30,17 @@
 {
     [super viewDidLoad];
     
-    self.coverPictureView.image = [UIImage imageNamed:@"runner.jpg"];
     self.profilePictureView.profileID = [MSUser currentUser].facebookID;
     [self.profilePictureView setRounded];
+    
+    [self setCoverPictureWithImage:[UIImage imageNamed:@"runner.jpg"]];
+}
+
+- (void)setCoverPictureWithImage:(UIImage *)image
+{
+    CGRect frame = CGRectMake(0, image.size.height - COVER_BLUR_HEIGHT, image.size.width, COVER_BLUR_HEIGHT);
+    
+    self.coverPictureView.image = [image applyLightEffectAtFrame:frame];
 }
 
 - (void)viewWillAppear:(BOOL)animated

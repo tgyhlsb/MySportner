@@ -38,6 +38,8 @@
 		5A96744F1849D20C0079EAC1 /* MSColorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A96744E1849D20C0079EAC1 /* MSColorFactory.m */; };
 		5A9674521849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9674511849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m */; };
 		5A9674551849D8740079EAC1 /* MSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9674541849D8740079EAC1 /* MSTextField.m */; };
+		5A96745B184A0ECA0079EAC1 /* UIImage+BlurredFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A967458184A0ECA0079EAC1 /* UIImage+BlurredFrame.m */; };
+		5A96745C184A0ECA0079EAC1 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A96745A184A0ECA0079EAC1 /* UIImage+ImageEffects.m */; };
 		5AD1FC5318472ADD001D3DFE /* runner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5AD1FC5218472ADD001D3DFE /* runner.jpg */; };
 		5AD1FC5A1847318B001D3DFE /* MSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD1FC591847318B001D3DFE /* MSNavigationBar.m */; };
 		5ADCF225184004D300E6C8D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF224184004D300E6C8D2 /* Foundation.framework */; };
@@ -164,6 +166,10 @@
 		5A9674511849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+MSTextFieldAppearance.m"; sourceTree = "<group>"; };
 		5A9674531849D8740079EAC1 /* MSTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSTextField.h; path = Views/MSTextField.h; sourceTree = "<group>"; };
 		5A9674541849D8740079EAC1 /* MSTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSTextField.m; path = Views/MSTextField.m; sourceTree = "<group>"; };
+		5A967457184A0ECA0079EAC1 /* UIImage+BlurredFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BlurredFrame.h"; sourceTree = "<group>"; };
+		5A967458184A0ECA0079EAC1 /* UIImage+BlurredFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BlurredFrame.m"; sourceTree = "<group>"; };
+		5A967459184A0ECA0079EAC1 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		5A96745A184A0ECA0079EAC1 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		5AD1FC5218472ADD001D3DFE /* runner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = runner.jpg; path = Images/runner.jpg; sourceTree = "<group>"; };
 		5AD1FC581847318B001D3DFE /* MSNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSNavigationBar.h; path = Views/MSNavigationBar.h; sourceTree = "<group>"; };
 		5AD1FC591847318B001D3DFE /* MSNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSNavigationBar.m; path = Views/MSNavigationBar.m; sourceTree = "<group>"; };
@@ -389,6 +395,17 @@
 			path = QBFlatButton;
 			sourceTree = "<group>";
 		};
+		5A967456184A0ECA0079EAC1 /* UIImage+BlurredFrame */ = {
+			isa = PBXGroup;
+			children = (
+				5A967457184A0ECA0079EAC1 /* UIImage+BlurredFrame.h */,
+				5A967458184A0ECA0079EAC1 /* UIImage+BlurredFrame.m */,
+				5A967459184A0ECA0079EAC1 /* UIImage+ImageEffects.h */,
+				5A96745A184A0ECA0079EAC1 /* UIImage+ImageEffects.m */,
+			);
+			path = "UIImage+BlurredFrame";
+			sourceTree = "<group>";
+		};
 		5AD1FC5418472AE1001D3DFE /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,6 +509,7 @@
 		5ADCF2591840050600E6C8D2 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				5A967456184A0ECA0079EAC1 /* UIImage+BlurredFrame */,
 				5A9674491849CD180079EAC1 /* QBFlatButton */,
 				5A29CAEA18491F4D002A8B60 /* RatingView */,
 				5A1B73611844AB6200555FE4 /* MZFormSheetController */,
@@ -912,6 +930,7 @@
 				5A1B73711844AB6200555FE4 /* MZFormSheetBackgroundWindow.m in Sources */,
 				5ADCF3081840E80500E6C8D2 /* MSFourSquareKeyFactory.m in Sources */,
 				5A9674521849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m in Sources */,
+				5A96745C184A0ECA0079EAC1 /* UIImage+ImageEffects.m in Sources */,
 				5ADCF2D31840BA6400E6C8D2 /* MSPickSportCell.m in Sources */,
 				5AFE43F618426CC6001376C7 /* MSBigSportCell.m in Sources */,
 				5ADCF293184017A700E6C8D2 /* MSActivitiesVC.m in Sources */,
@@ -920,6 +939,7 @@
 				5ADCF3011840E38D00E6C8D2 /* MSURLConnection.m in Sources */,
 				5AD1FC5A1847318B001D3DFE /* MSNavigationBar.m in Sources */,
 				5ADCF2C31840ADF700E6C8D2 /* MSActivityVC.m in Sources */,
+				5A96745B184A0ECA0079EAC1 /* UIImage+BlurredFrame.m in Sources */,
 				5ADCF2661840051300E6C8D2 /* MMDrawerVisualState.m in Sources */,
 				5A29CAF418492071002A8B60 /* MSSportLevelFormVC.m in Sources */,
 				5A1B73701844AB6200555FE4 /* NSInvocation+Copy.m in Sources */,

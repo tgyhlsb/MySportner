@@ -24,20 +24,20 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <view key="tableHeaderView" contentMode="scaleToFill" id="C7x-0G-Ob2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="310"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P1n-Ks-zFC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="310"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MyY-pT-9Tl" customClass="FBProfilePictureView">
-                                <rect key="frame" x="200" y="130" width="100" height="100"/>
+                                <rect key="frame" x="180" y="160" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="FKO-bQ-Yfh"/>
-                                    <constraint firstAttribute="width" constant="100" id="KAB-WS-BNt"/>
+                                    <constraint firstAttribute="height" constant="120" id="FKO-bQ-Yfh"/>
+                                    <constraint firstAttribute="width" constant="120" id="KAB-WS-BNt"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -48,7 +48,7 @@
                             <constraint firstAttribute="bottom" secondItem="P1n-Ks-zFC" secondAttribute="bottom" id="jtT-8a-uNr"/>
                             <constraint firstAttribute="trailing" secondItem="MyY-pT-9Tl" secondAttribute="trailing" constant="20" id="naO-FU-A5h"/>
                             <constraint firstItem="P1n-Ks-zFC" firstAttribute="leading" secondItem="C7x-0G-Ob2" secondAttribute="leading" id="pdw-o2-Lxo"/>
-                            <constraint firstAttribute="bottom" secondItem="MyY-pT-9Tl" secondAttribute="bottom" constant="20" id="wCa-4N-uMy"/>
+                            <constraint firstAttribute="bottom" secondItem="MyY-pT-9Tl" secondAttribute="bottom" constant="30" id="wCa-4N-uMy"/>
                         </constraints>
                     </view>
                 </tableView>

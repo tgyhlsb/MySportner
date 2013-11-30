@@ -18,8 +18,8 @@
 
 @interface MSDrawerMenuVC ()
 @property (weak, nonatomic) IBOutlet FBProfilePictureView *fbProfilePictureView;
-@property (weak, nonatomic) IBOutlet UILabel *lastNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *firstNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *welcomeLabel;
 
 @end
 
@@ -31,6 +31,39 @@
     [super viewDidLoad];
     
     [self.fbProfilePictureView setRounded];
+    
+    [self setGestureRecognizer];
+    
+    [self setAppearance];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+- (void)setGestureRecognizer
+{
+    UITapGestureRecognizer *profileTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(profileTapHandler)];
+    UITapGestureRecognizer *pictureTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(profileTapHandler)];
+    UITapGestureRecognizer *welcomeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(profileTapHandler)];
+    
+    [self.fbProfilePictureView addGestureRecognizer:pictureTap];
+    self.fbProfilePictureView.userInteractionEnabled = YES;
+    [self.userNameLabel addGestureRecognizer:profileTap];
+    self.userNameLabel.userInteractionEnabled = YES;
+    [self.welcomeLabel addGestureRecognizer:welcomeTap];
+    self.welcomeLabel.userInteractionEnabled = YES;
+}
+
+- (void)setAppearance
+{
+    
+}
+
+- (void)profileTapHandler
+{
+    [self profileButtonPress:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -43,8 +76,8 @@
 - (void)updateView
 {
     self.fbProfilePictureView.profileID = [MSUser currentUser].facebookID;
-    self.firstNameLabel.text = [MSUser currentUser].firstName;
-    self.lastNameLabel.text = [MSUser currentUser].lastName;
+    self.welcomeLabel.text = @"HELLO";
+    self.userNameLabel.text = [[MSUser currentUser] fullName];
 }
 
 

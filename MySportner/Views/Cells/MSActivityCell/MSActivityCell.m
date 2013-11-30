@@ -8,18 +8,17 @@
 
 #import "MSActivityCell.h"
 #import "UIView+MSRoundedView.h"
-#import <FacebookSDK/FacebookSDK.h>
 #import "QBFlatButton.h"
+#import "MSColorFactory.h"
+
 
 #define IDENTIFIER @"MSActivityCell"
-#define HEIGHT 88.0
+#define HEIGHT 100.0
 
 @interface MSActivityCell()
 
 @property (weak, nonatomic) IBOutlet UIView *roundView;
-@property (weak, nonatomic) IBOutlet FBProfilePictureView *ownerProfilePictureView;
 @property (weak, nonatomic) IBOutlet QBFlatButton *actionButton;
-@property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
 
 
 @end
@@ -32,6 +31,20 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setAppearance
+{
+    [self.roundView setRounded];
+    [self.ownerProfilePictureView setRounded];
+    
+    self.roundView.backgroundColor = [MSColorFactory redLight];
+    self.ownerProfilePictureView.backgroundColor = [UIColor clearColor];
+    
+    self.actionButton.faceColor = [MSColorFactory redLight];
+    self.actionButton.margin = 0.0f;
+    self.actionButton.depth = 0.0f;
+    self.actionButton.radius = 3.0f;
 }
 
 + (void)registerToTableview:(UITableView *)tableView

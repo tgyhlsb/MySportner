@@ -14,6 +14,7 @@
 #import "MSActivitiesFilterCell.h"
 #import "MSActivityVC.h"
 #import "MBProgressHUD.h"
+//#import <FacebookSDK/FacebookSDK.h>
 
 #define NIB_NAME @"MSActivitiesVC"
 
@@ -31,6 +32,8 @@
 {
     [super viewDidLoad];
     
+    [self requestActivitiesFromBackEnd];
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
@@ -41,8 +44,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [self requestActivitiesFromBackEnd];
 }
 
 - (void)generateSampleData
@@ -74,12 +75,26 @@
 
 #pragma mark Back end process
 
-- (void)findCallback:(NSArray *)objects error:(NSError *)error
+- (void)activitiesCallback:(NSArray *)objects error:(NSError *)error
+{
+    if (!error) {
+        NSMutableArray *objectsToFetch = [[NSMutableArray alloc] initWithCapacity:[objects count]];
+        for (MSActivity *activity in objects)
+        {
+            [objectsToFetch addObject:activity.owner];
+        }
+        [PFObject fetchAllIfNeededInBackground:objectsToFetch target:self selector:@selector(ownerCallBack:error:)];
+        self.data = objects;
+    } else {
+        NSLog(@"Error: %@ %@", error, [error userInfo]);
+    }
+}
+
+- (void)ownerCallBack:(NSArray *)objects error:(NSError *)error
 {
     [self hideLoadingView];
     
     if (!error) {
-        self.data = objects;
         [self reloadData];
     } else {
         NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -93,7 +108,7 @@
     [self showLoadingViewInView:self.view];
     
     [query findObjectsInBackgroundWithTarget:self
-                                    selector:@selector(findCallback:error:)];
+                                    selector:@selector(activitiesCallback:error:)];
 }
 
 #pragma mark UITableViewDataSource
@@ -138,6 +153,10 @@
             
             cell.titleLabel.text = activity.sport;
             cell.placeLabel.text = activity.place;
+            cell.ownerNameLabel.text = [activity.owner fullName];
+            cell.ownerProfilePictureView.profileID = activity.owner.facebookID;
+            
+            [cell setAppearance];
             return cell;
         }
     }

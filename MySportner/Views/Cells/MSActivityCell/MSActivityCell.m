@@ -7,9 +7,22 @@
 //
 
 #import "MSActivityCell.h"
+#import "UIView+MSRoundedView.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import "QBFlatButton.h"
 
 #define IDENTIFIER @"MSActivityCell"
 #define HEIGHT 88.0
+
+@interface MSActivityCell()
+
+@property (weak, nonatomic) IBOutlet UIView *roundView;
+@property (weak, nonatomic) IBOutlet FBProfilePictureView *ownerProfilePictureView;
+@property (weak, nonatomic) IBOutlet QBFlatButton *actionButton;
+@property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
+
+
+@end
 
 @implementation MSActivityCell
 

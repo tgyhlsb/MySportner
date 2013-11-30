@@ -14,6 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *placeLabel;
 
+- (void)setAppearance;
+
 
 + (void)registerToTableview:(UITableView *)tableView;
 + (NSString *)reusableIdentifier;

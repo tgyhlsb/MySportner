@@ -183,7 +183,7 @@
 - (IBAction)fiendFriendsButtonPress:(UIButton *)sender
 {
     [self.mm_drawerController displayCenterControlerForView:MSCenterViewFiendFriends];
-    self.selectedButton = (QBFlatButton *)sender;
+    self.selectedButton = nil;
 }
 
 - (IBAction)logoutButtonPress:(UIButton *)sender

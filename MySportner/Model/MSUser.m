@@ -58,6 +58,11 @@
     self.birthday = [self stringToDate:[userInfo objectForKey:FACEBOOK_KEY_BIRTHDAY]];
 }
 
+- (NSString *)fullName
+{
+    return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
+}
+
 - (NSDate *)stringToDate:(NSString *)stringDate
 {
     NSDateFormatter* fbDateFormatter = [[NSDateFormatter alloc] init];

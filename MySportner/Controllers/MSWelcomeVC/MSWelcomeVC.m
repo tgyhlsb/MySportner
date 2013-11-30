@@ -109,14 +109,15 @@
     CGSize formSheetSize = CGSizeMake(280, 300);
     
     MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithSize:formSheetSize viewController:vc];
+//    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
     
     formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
     formSheet.shadowRadius = 1.0;
     formSheet.shadowOpacity = 0.2;
+    formSheet.cornerRadius = 3.0;
     formSheet.shouldDismissOnBackgroundViewTap = YES;
     formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
     formSheet.shouldCenterVertically = YES;
-    //    formSheet.shouldMoveToTopWhenKeyboardAppears = NO;
     
     formSheet.willPresentCompletionHandler = ^(UIViewController *presentedFSViewController) {
         

@@ -49,16 +49,16 @@
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FORGOT YOUR PASSWORD ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7g-wu-zPB">
-                    <rect key="frame" x="20" y="194" width="280" height="21"/>
+                    <rect key="frame" x="20" y="477" width="280" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="gar-g2-GZw"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcA-Ts-uYG" customClass="QBFlatButton">
-                    <rect key="frame" x="20" y="235" width="280" height="40"/>
+                    <rect key="frame" x="20" y="508" width="280" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="LYM-mY-yUC"/>
@@ -74,13 +74,13 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="YxP-xT-J6D" firstAttribute="top" secondItem="1vj-6k-23C" secondAttribute="bottom" constant="20" id="0Eb-af-mdK"/>
-                <constraint firstItem="WcA-Ts-uYG" firstAttribute="top" secondItem="O7g-wu-zPB" secondAttribute="bottom" constant="20" id="2f6-B1-Wok"/>
                 <constraint firstItem="O7g-wu-zPB" firstAttribute="leading" secondItem="wBO-WP-DdA" secondAttribute="leading" constant="20" id="5I0-Xg-0iO"/>
                 <constraint firstItem="r7Q-fG-0YR" firstAttribute="leading" secondItem="wBO-WP-DdA" secondAttribute="leading" id="9PW-54-0qb"/>
+                <constraint firstAttribute="bottom" secondItem="WcA-Ts-uYG" secondAttribute="bottom" constant="20" id="B4p-2E-oI7"/>
                 <constraint firstItem="WcA-Ts-uYG" firstAttribute="leading" secondItem="wBO-WP-DdA" secondAttribute="leading" constant="20" id="LQ6-sk-2gX"/>
                 <constraint firstItem="1vj-6k-23C" firstAttribute="top" secondItem="r7Q-fG-0YR" secondAttribute="bottom" constant="20" id="LZe-XP-B5n"/>
                 <constraint firstAttribute="trailing" secondItem="YxP-xT-J6D" secondAttribute="trailing" constant="20" id="MmS-EY-UxS"/>
-                <constraint firstItem="O7g-wu-zPB" firstAttribute="top" secondItem="YxP-xT-J6D" secondAttribute="bottom" constant="30" id="OAs-04-qjb"/>
+                <constraint firstItem="WcA-Ts-uYG" firstAttribute="top" secondItem="O7g-wu-zPB" secondAttribute="bottom" constant="10" id="PXP-Cb-rp8"/>
                 <constraint firstAttribute="trailing" secondItem="r7Q-fG-0YR" secondAttribute="trailing" id="R0O-KQ-7H7"/>
                 <constraint firstItem="r7Q-fG-0YR" firstAttribute="top" secondItem="wBO-WP-DdA" secondAttribute="top" id="XlM-qv-coL"/>
                 <constraint firstAttribute="trailing" secondItem="1vj-6k-23C" secondAttribute="trailing" constant="20" id="fHv-Pl-Uis"/>

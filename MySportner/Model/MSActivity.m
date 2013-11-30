@@ -26,25 +26,4 @@
     return PARSE_CLASSNAME_ACTIVITY;
 }
 
-//+ (void)queryActivities
-//{
-//    
-//    PFQuery *query = [PFQuery queryWithClassName:PARSE_CLASSNAME_ACTIVITY];
-//    
-//    [query findObjectsInBackgroundWithTarget:self
-//                                    selector:@selector(findCallback:error:)];
-//}
-//
-//- (void)findCallback:(NSArray *)objects error:(NSError *)error
-//{
-//    [self hideLoadingView];
-//    
-//    if (!error) {
-//        self.data = objects;
-//        [self reloadData];
-//    } else {
-//        NSLog(@"Error: %@ %@", error, [error userInfo]);
-//    }
-//}
-
 @end

@@ -33,7 +33,7 @@
     // Configure the view for the selected state
 }
 
-- (void)setAppearance
+- (void)setAppearanceWithOddIndex:(BOOL)oddIndex
 {
     [self.roundView setRounded];
     [self.ownerProfilePictureView setRounded];
@@ -45,6 +45,12 @@
     self.actionButton.margin = 0.0f;
     self.actionButton.depth = 0.0f;
     self.actionButton.radius = 3.0f;
+    
+    if (oddIndex) {
+        self.backgroundColor = [MSColorFactory backgroundColorGrayLight];
+    } else {
+        self.backgroundColor = [MSColorFactory whiteLight];
+    }
 }
 
 + (void)registerToTableview:(UITableView *)tableView

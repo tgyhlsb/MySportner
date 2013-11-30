@@ -27,6 +27,4 @@
 
 + (NSString *)parseClassName;
 
-+ (void)queryActivities;
-
 @end

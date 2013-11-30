@@ -21,5 +21,10 @@
 + (UIColor *)redLight;
 + (UIColor *)redDark;
 
++ (UIColor *)navigationColorLight;
++ (UIColor *)navigationColorDark;
+
++ (UIColor *)backgroundColorGrayLight;
+
 
 @end

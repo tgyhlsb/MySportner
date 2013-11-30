@@ -8,6 +8,7 @@
 
 #import "MSCenterController.h"
 #import "MMDrawerBarButtonItem.h"
+#import "MSColorFactory.h"
 
 #define TOOLBAR_ALPHA 0.6f
 
@@ -85,11 +86,13 @@
 
 -(void)setupLeftMenuButton{
     MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
+    leftDrawerButton.tintColor = [MSColorFactory whiteLight];
     [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
 }
 
 -(void)setupRightMenuButton{
     MMDrawerBarButtonItem * rightDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(rightDrawerButtonPress:)];
+    rightDrawerButton.tintColor = [MSColorFactory whiteLight];
     [self.navigationItem setRightBarButtonItem:rightDrawerButton animated:YES];
 }
 

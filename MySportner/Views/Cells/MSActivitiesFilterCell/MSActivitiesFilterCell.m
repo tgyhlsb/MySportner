@@ -7,26 +7,16 @@
 //
 
 #import "MSActivitiesFilterCell.h"
+#import "MSColorFactory.h"
 
 #define IDENTIFIER @"MSActivitiesFilterCell"
 #define HEIGHT 44;
 
 @implementation MSActivitiesFilterCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    // do nothing
 }
 
 + (void)registerToTableView:(UITableView *)tableView
@@ -43,6 +33,11 @@
 + (CGFloat)height
 {
     return HEIGHT;
+}
+
+- (void)setAppearance
+{
+    self.segmentedControl.tintColor = [MSColorFactory redLight];
 }
 
 @end

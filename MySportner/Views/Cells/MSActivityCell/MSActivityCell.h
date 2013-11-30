@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet FBProfilePictureView *ownerProfilePictureView;
 @property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
 
-- (void)setAppearance;
+- (void)setAppearanceWithOddIndex:(BOOL)oddIndex;
 
 
 + (void)registerToTableview:(UITableView *)tableView;

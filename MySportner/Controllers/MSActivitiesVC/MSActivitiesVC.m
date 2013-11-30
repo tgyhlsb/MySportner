@@ -37,6 +37,8 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    self.title = @"ACTIVITIES";
+    
     [MSActivityCell registerToTableview:self.tableView];
     [MSActivitiesFilterCell registerToTableView:self.tableView];
 }
@@ -139,7 +141,7 @@
             NSString *identifier = [MSActivitiesFilterCell reusableIdentifier];
             MSActivitiesFilterCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
             
-            
+            [cell setAppearance];
             
             return cell;
         }
@@ -156,7 +158,7 @@
             cell.ownerNameLabel.text = [activity.owner fullName];
             cell.ownerProfilePictureView.profileID = activity.owner.facebookID;
             
-            [cell setAppearance];
+            [cell setAppearanceWithOddIndex:(indexPath.row % 2)];
             return cell;
         }
     }

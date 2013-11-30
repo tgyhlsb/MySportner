@@ -45,4 +45,19 @@
     return [UIColor colorWithRed:0.78f green:0.33f blue:0.27f alpha:1.00f];
 }
 
++ (UIColor *)navigationColorLight
+{
+    return [UIColor colorWithRed:0.33f green:0.78f blue:0.73f alpha:1.00f];
+}
+
++ (UIColor *)navigationColorDark
+{
+    return [UIColor colorWithRed:0.34f green:0.73f blue:0.69f alpha:1.00f];
+}
+
++ (UIColor *)backgroundColorGrayLight
+{
+    return [UIColor colorWithRed:0.95f green:0.95f blue:0.95f alpha:1.00f];
+}
+
 @end

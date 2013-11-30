@@ -73,7 +73,8 @@
 - (void)setAppearance
 {
     self.view.backgroundColor = [UIColor colorWithRed:0.45f green:0.51f blue:0.53f alpha:1.00f];
-    self.bottomContainerView.backgroundColor = [UIColor colorWithRed:0.40f green:0.43f blue:0.49f alpha:1.00f];;
+    self.bottomContainerView.backgroundColor = [UIColor colorWithRed:0.40f green:0.43f blue:0.49f alpha:1.00f];
+    self.fbProfilePictureView.backgroundColor = [UIColor clearColor];
     
     [self.activitiesButton setTitle:@"ACTIVITIES" forState:UIControlStateNormal];
     self.activitiesButton.faceColor = [UIColor clearColor];

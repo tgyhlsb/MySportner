@@ -9,6 +9,7 @@
 #import "MSProfileVC.h"
 #import "MSUser.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "UIView+MSRoundedView.h"
 
 #define NIB_NAME @"MSProfileVC"
 
@@ -28,6 +29,7 @@
     
     self.coverPictureView.image = [UIImage imageNamed:@"runner.jpg"];
     self.profilePictureView.profileID = [MSUser currentUser].facebookID;
+    [self.profilePictureView setRounded];
 }
 
 - (void)viewWillAppear:(BOOL)animated

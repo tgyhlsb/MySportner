@@ -12,6 +12,7 @@
 #import "MSProfileVC.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "MSUser.h"
+#import "UIView+MSRoundedView.h"
 
 #define NIB_NAME @"MSDrawerMenuVC"
 
@@ -28,6 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.fbProfilePictureView setRounded];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -43,6 +46,7 @@
     self.firstNameLabel.text = [MSUser currentUser].firstName;
     self.lastNameLabel.text = [MSUser currentUser].lastName;
 }
+
 
 
 #pragma mark Class methods

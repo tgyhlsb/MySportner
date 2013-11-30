@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5A0F9116184242AF0049BBD5 /* MSCreateAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0F9115184242AF0049BBD5 /* MSCreateAccountVC.m */; };
 		5A0F9118184242BD0049BBD5 /* MSCreateAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0F9117184242BD0049BBD5 /* MSCreateAccountVC.xib */; };
+		5A173FE21849C97D00144DB8 /* UIView+MSRoundedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A173FE11849C97D00144DB8 /* UIView+MSRoundedView.m */; };
 		5A1B736F1844AB6200555FE4 /* MZAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1B73641844AB6200555FE4 /* MZAppearance.m */; };
 		5A1B73701844AB6200555FE4 /* NSInvocation+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1B73661844AB6200555FE4 /* NSInvocation+Copy.m */; };
 		5A1B73711844AB6200555FE4 /* MZFormSheetBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1B73681844AB6200555FE4 /* MZFormSheetBackgroundWindow.m */; };
@@ -33,6 +34,7 @@
 		5A31C2051842153C00868188 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C2031842153C00868188 /* SystemConfiguration.framework */; };
 		5A3DE7C118412E82001054EB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3DE7C018412E82001054EB /* FacebookSDK.framework */; };
 		5A3DE7C4184133E1001054EB /* MSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3DE7C3184133E1001054EB /* MSUser.m */; };
+		5A96744C1849CD180079EAC1 /* QBFlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A96744B1849CD180079EAC1 /* QBFlatButton.m */; };
 		5AD1FC5318472ADD001D3DFE /* runner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5AD1FC5218472ADD001D3DFE /* runner.jpg */; };
 		5AD1FC5A1847318B001D3DFE /* MSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD1FC591847318B001D3DFE /* MSNavigationBar.m */; };
 		5ADCF225184004D300E6C8D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF224184004D300E6C8D2 /* Foundation.framework */; };
@@ -115,6 +117,8 @@
 		5A0F9114184242AF0049BBD5 /* MSCreateAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCreateAccountVC.h; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.h; sourceTree = "<group>"; };
 		5A0F9115184242AF0049BBD5 /* MSCreateAccountVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCreateAccountVC.m; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.m; sourceTree = "<group>"; };
 		5A0F9117184242BD0049BBD5 /* MSCreateAccountVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSCreateAccountVC.xib; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.xib; sourceTree = "<group>"; };
+		5A173FE01849C97D00144DB8 /* UIView+MSRoundedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MSRoundedView.h"; sourceTree = "<group>"; };
+		5A173FE11849C97D00144DB8 /* UIView+MSRoundedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MSRoundedView.m"; sourceTree = "<group>"; };
 		5A1B73631844AB6200555FE4 /* MZAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZAppearance.h; sourceTree = "<group>"; };
 		5A1B73641844AB6200555FE4 /* MZAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZAppearance.m; sourceTree = "<group>"; };
 		5A1B73651844AB6200555FE4 /* NSInvocation+Copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+Copy.h"; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 		5A3DE7C018412E82001054EB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		5A3DE7C2184133E1001054EB /* MSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSUser.h; path = Model/MSUser.h; sourceTree = "<group>"; };
 		5A3DE7C3184133E1001054EB /* MSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSUser.m; path = Model/MSUser.m; sourceTree = "<group>"; };
+		5A96744A1849CD180079EAC1 /* QBFlatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBFlatButton.h; sourceTree = "<group>"; };
+		5A96744B1849CD180079EAC1 /* QBFlatButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBFlatButton.m; sourceTree = "<group>"; };
 		5AD1FC5218472ADD001D3DFE /* runner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = runner.jpg; path = Images/runner.jpg; sourceTree = "<group>"; };
 		5AD1FC581847318B001D3DFE /* MSNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSNavigationBar.h; path = Views/MSNavigationBar.h; sourceTree = "<group>"; };
 		5AD1FC591847318B001D3DFE /* MSNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSNavigationBar.m; path = Views/MSNavigationBar.m; sourceTree = "<group>"; };
@@ -260,10 +266,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A31C2011842152600868188 /* QuartzCore.framework in Frameworks */,
 				5A31C2051842153C00868188 /* SystemConfiguration.framework in Frameworks */,
 				5A31C2041842153C00868188 /* Security.framework in Frameworks */,
 				5A31C2001842152600868188 /* MobileCoreServices.framework in Frameworks */,
-				5A31C2011842152600868188 /* QuartzCore.framework in Frameworks */,
 				5A31C1FD1842151300868188 /* libz.1.1.3.dylib in Frameworks */,
 				5A31C1FB1842150100868188 /* CoreLocation.framework in Frameworks */,
 				5A31C1F91842149A00868188 /* CFNetwork.framework in Frameworks */,
@@ -354,6 +360,24 @@
 				5A29CAF518492080002A8B60 /* MSSportLevelFormVC.xib */,
 			);
 			name = MSSportLevelFormVC;
+			sourceTree = "<group>";
+		};
+		5A29CAF81849380C002A8B60 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				5ADCF3091840EBEF00E6C8D2 /* MBProgressHUD.h */,
+				5ADCF30A1840EBEF00E6C8D2 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		5A9674491849CD180079EAC1 /* QBFlatButton */ = {
+			isa = PBXGroup;
+			children = (
+				5A96744A1849CD180079EAC1 /* QBFlatButton.h */,
+				5A96744B1849CD180079EAC1 /* QBFlatButton.m */,
+			);
+			path = QBFlatButton;
 			sourceTree = "<group>";
 		};
 		5AD1FC5418472AE1001D3DFE /* Images */ = {
@@ -457,11 +481,13 @@
 		5ADCF2591840050600E6C8D2 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				5A9674491849CD180079EAC1 /* QBFlatButton */,
 				5A29CAEA18491F4D002A8B60 /* RatingView */,
 				5A1B73611844AB6200555FE4 /* MZFormSheetController */,
-				5ADCF3091840EBEF00E6C8D2 /* MBProgressHUD.h */,
-				5ADCF30A1840EBEF00E6C8D2 /* MBProgressHUD.m */,
+				5A29CAF81849380C002A8B60 /* MBProgressHUD */,
 				5ADCF25A1840051300E6C8D2 /* MMDrawerController */,
+				5A173FE01849C97D00144DB8 /* UIView+MSRoundedView.h */,
+				5A173FE11849C97D00144DB8 /* UIView+MSRoundedView.m */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -901,6 +927,7 @@
 				5A1B73731844AB6200555FE4 /* MZFormSheetSegue.m in Sources */,
 				5A1B73771844AC2700555FE4 /* MSLoginFormVC.m in Sources */,
 				5AFE44071842714D001376C7 /* MSFindFriendsVC.m in Sources */,
+				5A173FE21849C97D00144DB8 /* UIView+MSRoundedView.m in Sources */,
 				5ADCF2EA1840D38B00E6C8D2 /* MSLocationPickerVC.m in Sources */,
 				5ADCF2E61840D23A00E6C8D2 /* MSTextFieldPickerCell.m in Sources */,
 				5A0F9116184242AF0049BBD5 /* MSCreateAccountVC.m in Sources */,
@@ -909,6 +936,7 @@
 				5ADCF231184004D300E6C8D2 /* main.m in Sources */,
 				5A1B736F1844AB6200555FE4 /* MZAppearance.m in Sources */,
 				5ADCF30B1840EBEF00E6C8D2 /* MBProgressHUD.m in Sources */,
+				5A96744C1849CD180079EAC1 /* QBFlatButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,4 +27,6 @@
 
 + (NSString *)parseClassName;
 
+- (NSComparisonResult)compareWithCreationDate:(MSActivity *)otherActivity;
+
 @end

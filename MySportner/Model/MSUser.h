@@ -12,6 +12,8 @@
 
 #define FACEBOOK_READ_PERMISIONS @[@"email", @"user_birthday"]
 
+#define FACEBOOK_DEFAULT_ID @[@"moufle.troufle", @"100007174114158"]
+
 @protocol MSUserAuthentificationDelegate;
 
 

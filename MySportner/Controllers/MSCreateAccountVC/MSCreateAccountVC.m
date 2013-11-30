@@ -142,6 +142,7 @@
     destinationVC.user.birthday = [NSDate date];
     destinationVC.user.gender = self.genderControl.selectedSegmentIndex;
     destinationVC.user.username = destinationVC.user.email;
+    destinationVC.user.facebookID = FACEBOOK_DEFAULT_ID[destinationVC.user.gender]; // default IDs to get a fb picture according to your gender
     
     [self.navigationController pushViewController:destinationVC animated:YES];
 }

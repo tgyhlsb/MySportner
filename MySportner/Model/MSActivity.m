@@ -26,4 +26,9 @@
     return PARSE_CLASSNAME_ACTIVITY;
 }
 
+- (NSComparisonResult)compareWithCreationDate:(MSActivity *)otherActivity
+{
+    return [otherActivity.createdAt compare:self.createdAt];
+}
+
 @end

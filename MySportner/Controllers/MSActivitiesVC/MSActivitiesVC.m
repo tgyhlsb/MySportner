@@ -86,7 +86,7 @@
             [objectsToFetch addObject:activity.owner];
         }
         [PFObject fetchAllIfNeededInBackground:objectsToFetch target:self selector:@selector(ownerCallBack:error:)];
-        self.data = objects;
+        self.data = [objects sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
     } else {
         NSLog(@"Error: %@ %@", error, [error userInfo]);
     }

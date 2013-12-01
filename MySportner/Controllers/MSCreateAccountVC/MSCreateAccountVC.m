@@ -154,6 +154,9 @@
     self.imageView.backgroundColor = [UIColor grayColor];
     self.imageView.image = [UIImage imageNamed:@"pick_a_pic.png"];
     self.imageView.backgroundColor = [UIColor clearColor];
+    UITapGestureRecognizer *pictureTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pictureTapHandler)];
+    [self.imageView addGestureRecognizer:pictureTapGesture];
+    self.imageView.userInteractionEnabled = YES;
     [self.scrollView addSubview:self.imageView];
     
     
@@ -239,6 +242,12 @@
     } else {
         [self performTransitionToNextScreen];
     }
+}
+
+
+- (void)pictureTapHandler
+{
+    [[[UIAlertView alloc] initWithTitle:@"Not available" message:@"This feature is coming up soon !" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
 #pragma mark UIAlertViewDelegate

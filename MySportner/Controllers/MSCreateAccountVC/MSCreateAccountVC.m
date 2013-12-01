@@ -235,6 +235,7 @@
                                    delegate:self
                           cancelButtonTitle:cancel
                           otherButtonTitles:nil] show];
+        [self performTransitionToNextScreen];
     } else {
         [self performTransitionToNextScreen];
     }
@@ -300,7 +301,7 @@
     destinationVC.user.email = self.emailTextField.text;
     destinationVC.user.password = self.passwordTextField.text;
     destinationVC.user.birthday = self.datePicker.date;
-    destinationVC.user.gender = self.genderControl.isOn ? MSUserGenderFemale : MSUserGenderMale;
+    destinationVC.user.gender = self.genderControl.isOn ? MSUserGenderMale : MSUserGenderFemale;
     destinationVC.user.username = destinationVC.user.email;
     destinationVC.user.facebookID = FACEBOOK_DEFAULT_ID[destinationVC.user.gender]; // default IDs to get a fb picture according to your gender
     

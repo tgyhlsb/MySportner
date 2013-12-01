@@ -37,7 +37,7 @@
 #define PLACEHOLDER_PASSWORD @"Password"
 #define PLACEHOLDER_BIRTHDAY @"Birthday"
 
-@interface MSCreateAccountVC () <UITextFieldDelegate>
+@interface MSCreateAccountVC () <UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -200,35 +200,27 @@
     if (![self.firstnameTextField.text length])
     {
         message = @"Please fill in your first name";
-        [self.firstnameTextField becomeFirstResponder];
     }
     else if (![self.lastnameTextField.text length])
     {
         message = @"Please fill in your last name";
-        [self.lastnameTextField becomeFirstResponder];
     }
     else if (![self.emailTextField.text length])
     {
         message = @"Please fill in your email";
-        [self.emailTextField becomeFirstResponder];
     }
     else if (![self NSStringIsValidEmail:self.emailTextField.text])
     {
         title = @"Error";
         message = @"Your email address is invalid";
-        [self.emailTextField becomeFirstResponder];
     }
     else if (![self.passwordTextField.text length])
     {
         message = @"Please fill in your password";
-        [self.passwordTextField becomeFirstResponder];
     }
     else if (![self.birthdayTextField.text length])
     {
         message = @"Please fill in your birthday";
-        if (self.datePicker.hidden) {
-            [self openDatePicker];
-        }
     }
     
     
@@ -241,6 +233,43 @@
                           otherButtonTitles:nil] show];
     } else {
         [self performTransitionToNextScreen];
+    }
+}
+
+#pragma mark UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [self SetFocusOnFailedField];
+}
+
+- (void)SetFocusOnFailedField
+{
+    if (![self.firstnameTextField.text length])
+    {
+        [self.firstnameTextField becomeFirstResponder];
+    }
+    else if (![self.lastnameTextField.text length])
+    {
+        [self.lastnameTextField becomeFirstResponder];
+    }
+    else if (![self.emailTextField.text length])
+    {
+        [self.emailTextField becomeFirstResponder];
+    }
+    else if (![self NSStringIsValidEmail:self.emailTextField.text])
+    {
+        [self.emailTextField becomeFirstResponder];
+    }
+    else if (![self.passwordTextField.text length])
+    {
+        [self.passwordTextField becomeFirstResponder];
+    }
+    else if (![self.birthdayTextField.text length])
+    {
+        if (self.datePicker.hidden) {
+            [self openDatePicker];
+        }
     }
 }
 
@@ -266,7 +295,7 @@
     destinationVC.user.lastName = self.lastnameTextField.text;
     destinationVC.user.email = self.emailTextField.text;
     destinationVC.user.password = self.passwordTextField.text;
-    destinationVC.user.birthday = [NSDate date];
+    destinationVC.user.birthday = self.datePicker.date;
     destinationVC.user.gender = self.genderControl.isOn ? MSUserGenderFemale : MSUserGenderMale;
     destinationVC.user.username = destinationVC.user.email;
     destinationVC.user.facebookID = FACEBOOK_DEFAULT_ID[destinationVC.user.gender]; // default IDs to get a fb picture according to your gender

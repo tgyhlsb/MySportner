@@ -12,7 +12,8 @@
 
 @property (strong, nonatomic) UIColor *focusBorderColor;
 @property (strong, nonatomic) UIColor *normalBorderColor;
-
+@property (strong, nonatomic) UIColor *textFocusedColor;
+@property (strong, nonatomic) UIColor *textNormalColor;
 
 - (void)setFocused:(BOOL)focused;
 

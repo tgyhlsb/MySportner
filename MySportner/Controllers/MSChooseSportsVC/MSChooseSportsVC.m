@@ -44,6 +44,8 @@
     self.data = SAMPLE_SPORTS;
     
     self.title = @"CHOOSE YOUR SPORTS";
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iOS_blur.png"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated

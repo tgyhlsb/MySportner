@@ -25,6 +25,8 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.backBarButtonItem.title = @" ";
+    
     if (self.hasDirectAccessToDrawer) {
         [self setupLeftMenuButton];
     }

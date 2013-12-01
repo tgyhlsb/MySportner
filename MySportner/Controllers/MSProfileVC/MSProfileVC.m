@@ -7,20 +7,25 @@
 //
 
 #import "MSProfileVC.h"
-#import "MSUser.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "UIView+MSRoundedView.h"
 #import "UIImage+BlurredFrame.h"
+#import "MSColorFactory.h"
+#import "MSActivityCell.h"
+#import "MSActivityVC.h"
 
 #define NIB_NAME @"MSProfileVC"
 
 #define COVER_BLUR_HEIGHT 140
 
-@interface MSProfileVC ()
+@interface MSProfileVC () <UITableViewDataSource, UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UIImageView *coverPictureView;
 @property (weak, nonatomic) IBOutlet FBProfilePictureView *profilePictureView;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
 @end
 
@@ -30,10 +35,49 @@
 {
     [super viewDidLoad];
     
-    self.profilePictureView.profileID = [MSUser currentUser].facebookID;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [MSActivityCell registerToTableview:self.tableView];
+    
+    [self setAppearance];
+    [self reloadView];
+}
+
+- (void)setAppearance
+{
     [self.profilePictureView setRounded];
     
-    [self setCoverPictureWithImage:[UIImage imageNamed:@"runner.jpg"]];
+    self.locationLabel.textColor = [MSColorFactory whiteLight];
+    
+    self.userNameLabel.textColor = [MSColorFactory whiteLight];
+    
+    
+}
+
+@synthesize user = _user;
+
+- (MSUser *)user
+{
+    if (!_user) self.user = [MSUser currentUser];
+    return _user;
+}
+
+- (void)setUser:(MSUser *)user
+{
+    _user = user;
+    
+    [self reloadView];
+}
+
+- (void)reloadView
+{
+    if (self.user) {
+        [self setCoverPictureWithImage:[UIImage imageNamed:@"runner.jpg"]];
+        self.profilePictureView.profileID = self.user.facebookID;
+        self.userNameLabel.text = [self.user fullName];
+        self.locationLabel.text = @"Lyon, France";
+    }
 }
 
 - (void)setCoverPictureWithImage:(UIImage *)image
@@ -65,6 +109,46 @@
     MSProfileVC *profileVC = [[MSProfileVC alloc] initWithNibName:NIB_NAME bundle:nil];
     profileVC.hasDirectAccessToDrawer = YES;
     return profileVC;
+}
+
+#pragma mark UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *identifier = [MSActivityCell reusableIdentifier];
+    MSActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    
+    cell.titleLabel.text = @"Sport";
+    cell.placeLabel.text = @"Location";
+    cell.ownerNameLabel.text = @"Anonymous";
+    cell.ownerProfilePictureView.profileID = FACEBOOK_DEFAULT_ID[1];
+    
+    [cell setAppearanceWithOddIndex:(indexPath.row % 2)];
+    return cell;
+}
+
+#pragma mark
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [MSActivityCell height];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MSActivityVC *destinationVC = [MSActivityVC newController];
+    
+    [self.navigationController pushViewController:destinationVC animated:YES];
 }
 
 @end

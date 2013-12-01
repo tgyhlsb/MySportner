@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "MSCenterController.h"
+#import "MSUser.h"
 
 @interface MSProfileVC : MSCenterController
+
+@property (strong, nonatomic) MSUser *user;
 
 + (MSProfileVC *)newController;
 

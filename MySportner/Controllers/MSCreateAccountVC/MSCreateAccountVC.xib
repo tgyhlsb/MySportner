@@ -24,10 +24,14 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="UnR-Mk-Fi3" secondAttribute="trailing" id="An1-Qo-HwI"/>
                 <constraint firstAttribute="trailing" secondItem="UnR-Mk-Fi3" secondAttribute="trailing" id="Vz8-3D-hyW"/>
                 <constraint firstAttribute="bottom" secondItem="UnR-Mk-Fi3" secondAttribute="bottom" id="Zxx-ga-j3v"/>
                 <constraint firstItem="UnR-Mk-Fi3" firstAttribute="top" secondItem="mOK-Gs-VbK" secondAttribute="top" id="f7h-dJ-CvX"/>
                 <constraint firstItem="UnR-Mk-Fi3" firstAttribute="leading" secondItem="mOK-Gs-VbK" secondAttribute="leading" id="j3t-ww-zRy"/>
+                <constraint firstAttribute="bottom" secondItem="UnR-Mk-Fi3" secondAttribute="bottom" id="jKu-GI-y89"/>
+                <constraint firstItem="UnR-Mk-Fi3" firstAttribute="top" secondItem="mOK-Gs-VbK" secondAttribute="top" id="vs2-pa-vGd"/>
+                <constraint firstItem="UnR-Mk-Fi3" firstAttribute="leading" secondItem="mOK-Gs-VbK" secondAttribute="leading" id="z0c-1m-jPS"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

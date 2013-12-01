@@ -13,4 +13,6 @@
 
 @property (strong, nonatomic) MSVenue *venue;
 
+- (void)initializeLocation;
+
 @end

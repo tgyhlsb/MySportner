@@ -16,6 +16,9 @@
 #import <Parse/Parse.h>
 #import "MSUser.h"
 #import "MSActivity.h"
+#import "MSColorFactory.h"
+#import "MSFontFactory.h"
+#import "MSTextField.h"
 
 #define STORYBOARD_NAME @"Main"
 
@@ -39,6 +42,7 @@
     [PFFacebookUtils initializeFacebook];
     
     [self setDrawerMenu];
+    [self setAppearance];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -48,6 +52,24 @@
     [self.window setRootViewController:mainVC];
     
     return YES;
+}
+
+- (void)setAppearance
+{
+    NSShadow *titleShadow = [[NSShadow alloc] init];
+    titleShadow.shadowColor = [UIColor grayColor];
+    titleShadow.shadowOffset = CGSizeMake(0.5, 0.5);
+    NSDictionary *navbarTitleTextAttributes = @{NSForegroundColorAttributeName:[MSColorFactory whiteLight],
+                                                NSShadowAttributeName:titleShadow};
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
+    [[UINavigationBar appearance] setTintColor:[MSColorFactory whiteLight]];
+//    [[UINavigationBar appearance] setBackgroundColor:[MSColorFactory mainColor]];
+    [[UINavigationBar appearance] setBarTintColor:[MSColorFactory mainColor]];
+    
+    [[MSTextField appearance] setFont:[MSFontFactory fontForFormTextField]];
+    
+    
 }
 
 - (void)setDrawerMenu

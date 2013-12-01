@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) void (^closeBlock)(void);
 @property (strong, nonatomic) MSVenue *selectedVenue;
+@property (strong, nonatomic) CLLocation *location;
 
 + (MSLocationPickerVC *)newController;
 

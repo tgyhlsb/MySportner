@@ -125,7 +125,7 @@
     self.passwordTextField.focusBorderColor = focusBorderColor;
     self.passwordTextField.textColor = textFieldTextColor;
     [self.passwordTextField initializeAppearanceWithShadow:YES];
-    self.passwordTextField.returnKeyType = UIReturnKeyDefault;
+    self.passwordTextField.returnKeyType = UIReturnKeyNext;
     //    self.passwordTextField.font = [UIFont preferredFontForTextStyle:FONT_IDENTIFIER_TEXTFIELD];
     [self.scrollView addSubview:self.passwordTextField];
     
@@ -193,6 +193,71 @@
 
 - (void)nextButtonHandler
 {
+    NSString *message = nil;
+    NSString *title = @"Profile incomplete";
+    NSString *cancel = @"Cancel";
+    
+    if (![self.firstnameTextField.text length])
+    {
+        message = @"Please fill in your first name";
+        [self.firstnameTextField becomeFirstResponder];
+    }
+    else if (![self.lastnameTextField.text length])
+    {
+        message = @"Please fill in your last name";
+        [self.lastnameTextField becomeFirstResponder];
+    }
+    else if (![self.emailTextField.text length])
+    {
+        message = @"Please fill in your email";
+        [self.emailTextField becomeFirstResponder];
+    }
+    else if (![self NSStringIsValidEmail:self.emailTextField.text])
+    {
+        title = @"Error";
+        message = @"Your email address is invalid";
+        [self.emailTextField becomeFirstResponder];
+    }
+    else if (![self.passwordTextField.text length])
+    {
+        message = @"Please fill in your password";
+        [self.passwordTextField becomeFirstResponder];
+    }
+    else if (![self.birthdayTextField.text length])
+    {
+        message = @"Please fill in your birthday";
+        if (self.datePicker.hidden) {
+            [self openDatePicker];
+        }
+    }
+    
+    
+    if (message && title)
+    {
+        [[[UIAlertView alloc] initWithTitle:title
+                                    message:message
+                                   delegate:self
+                          cancelButtonTitle:cancel
+                          otherButtonTitles:nil] show];
+    } else {
+        [self performTransitionToNextScreen];
+    }
+}
+
+
+// Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
+// Stack overflow http://stackoverflow.com/questions/3139619/check-that-an-email-address-is-valid-on-ios
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString
+{
+    BOOL stricterFilter = YES;     NSString *stricterFilterString = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
+    NSString *laxString = @".+@([A-Za-z0-9]+\\.)+[A-Za-z]{2}[A-Za-z]*";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
+}
+
+- (void)performTransitionToNextScreen
+{
     MSChooseSportsVC *destinationVC = [MSChooseSportsVC newController];
     
     destinationVC.user = [[MSUser alloc] init];
@@ -222,6 +287,7 @@
         
         self.datePicker.datePickerMode = UIDatePickerModeDate;
         self.datePicker.hidden = YES;
+        self.datePicker.maximumDate = [NSDate date];
         [self.scrollView insertSubview:self.datePicker belowSubview:self.birthdayTextField];
         [self.datePicker addTarget:self action:@selector(datePickerValueDidChange) forControlEvents:UIControlEventValueChanged];
         
@@ -249,6 +315,29 @@
         }
         return YES;
     }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if ([textField isEqual:self.firstnameTextField])
+    {
+        [self.lastnameTextField becomeFirstResponder];
+    }
+    else if ([textField isEqual:self.lastnameTextField])
+    {
+        [self.emailTextField becomeFirstResponder];
+    }
+    else if ([textField isEqual:self.emailTextField])
+    {
+        [self.passwordTextField becomeFirstResponder];
+    }
+    else if ([textField isEqual:self.passwordTextField])
+    {
+        [textField resignFirstResponder];
+        [self openDatePicker];
+    }
+    
+    return YES;
 }
 
 - (void)toogleDatePicker

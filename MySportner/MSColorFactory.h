@@ -12,6 +12,7 @@
 @interface MSColorFactory : NSObject
 
 + (UIColor *)mainColor;
++ (UIColor *)mainColorDark;
 
 + (UIColor *)facebookColorLight;
 + (UIColor *)facebookColorDark;
@@ -26,6 +27,8 @@
 + (UIColor *)navigationColorDark;
 
 + (UIColor *)backgroundColorGrayLight;
+
++ (UIColor *)gray;
 
 
 @end

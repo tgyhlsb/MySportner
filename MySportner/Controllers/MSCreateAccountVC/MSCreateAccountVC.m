@@ -13,6 +13,7 @@
 #import "MSColorFactory.h"
 #import "MSFontFactory.h"
 #import "QBFlatButton.h"
+#import "NKColorSwitch.h"
 
 #define NIB_NAME @"MSCreateAccountVC"
 
@@ -20,13 +21,15 @@
 #define CONTROL_WIDTH_BIG 270
 #define CONTROL_WIDTH_SMALL 150
 
-#define CONTROL_WIDTH_GENDER 125
-#define CONTROL_WITH_BIRTHDAY 130
+#define CONTROL_WIDTH_GENDER 85
+#define CONTROL_WITH_PASSWORD 170
 
 #define IMAGE_SIZE 105
 #define IMAGE_MARGIN_LEFT 15
 
 #define PADDING 25
+
+#define DATEPICKER_HEIGHT 100
 
 #define PLACEHOLDER_FIRSTNAME @"First Name"
 #define PLACEHOLDER_LASTNAME @"Last Name"
@@ -44,9 +47,10 @@
 @property (strong, nonatomic) MSTextField *emailTextField;
 @property (strong, nonatomic) MSTextField *passwordTextField;
 @property (strong, nonatomic) MSTextField *birthdayTextField;
-@property (strong, nonatomic) UISwitch *genderControl;
+@property (strong, nonatomic) NKColorSwitch *genderControl;
 @property (strong, nonatomic) UILabel *commentLabel;
 @property (strong, nonatomic) QBFlatButton *nextButton;
+@property (strong, nonatomic) UIDatePicker *datePicker;
 
 @property (weak, nonatomic) UITextField *activeTextField;
 
@@ -86,6 +90,7 @@
     self.firstnameTextField.focusBorderColor = focusBorderColor;
     self.firstnameTextField.textColor = textFieldTextColor;
     [self.firstnameTextField initializeAppearanceWithShadow:YES];
+    self.firstnameTextField.returnKeyType = UIReturnKeyNext;
     [self.scrollView addSubview:self.firstnameTextField];
     
     self.lastnameTextField = [[MSTextField alloc] initWithFrame:CGRectMake(PADDING, self.firstnameTextField.frame.origin.y+self.firstnameTextField.frame.size.height+PADDING, CONTROL_WIDTH_SMALL, CONTROL_HEIGHT)];
@@ -95,6 +100,7 @@
     self.lastnameTextField.focusBorderColor = focusBorderColor;
     self.lastnameTextField.textColor = textFieldTextColor;
     [self.lastnameTextField initializeAppearanceWithShadow:YES];
+    self.lastnameTextField.returnKeyType = UIReturnKeyNext;
     [self.scrollView addSubview:self.lastnameTextField];
     
     self.emailTextField = [[MSTextField alloc] initWithFrame:CGRectMake(PADDING, self.lastnameTextField.frame.origin.y+self.lastnameTextField.frame.size.height+PADDING, CONTROL_WIDTH_BIG, CONTROL_HEIGHT)];
@@ -104,24 +110,14 @@
     self.emailTextField.focusBorderColor = focusBorderColor;
     self.emailTextField.textColor = textFieldTextColor;
     [self.emailTextField initializeAppearanceWithShadow:YES];
-//    self.emailTextField.font = [UIFont preferredFontForTextStyle:FONT_IDENTIFIER_TEXTFIELD];
+    //    self.emailTextField.font = [UIFont preferredFontForTextStyle:FONT_IDENTIFIER_TEXTFIELD];
     [self.emailTextField setKeyboardType:UIKeyboardTypeEmailAddress];
+    self.emailTextField.returnKeyType = UIReturnKeyNext;
     [self.scrollView addSubview:self.emailTextField];
     
-    self.birthdayTextField = [[MSTextField alloc] initWithFrame:CGRectMake(PADDING, self.emailTextField.frame.origin.y+self.emailTextField.frame.size.height+PADDING, CONTROL_WITH_BIRTHDAY, CONTROL_HEIGHT)];
-    self.birthdayTextField.borderStyle = UITextBorderStyleRoundedRect;
-    self.birthdayTextField.delegate = self;
-    self.birthdayTextField.placeholder = PLACEHOLDER_BIRTHDAY;
-    self.birthdayTextField.focusBorderColor = focusBorderColor;
-    self.birthdayTextField.textColor = textFieldTextColor;
-    [self.birthdayTextField initializeAppearanceWithShadow:YES];
-//    self.birthdayTextField.font = [UIFont preferredFontForTextStyle:FONT_IDENTIFIER_TEXTFIELD];
-    [self.scrollView addSubview:self.birthdayTextField];
     
-    self.genderControl = [[UISwitch alloc] initWithFrame:CGRectMake(self.birthdayTextField.frame.origin.x+self.birthdayTextField.frame.size.width+IMAGE_MARGIN_LEFT, self.emailTextField.frame.origin.y+self.emailTextField.frame.size.height+PADDING, CONTROL_WIDTH_GENDER, CONTROL_HEIGHT)];
-    [self.scrollView addSubview:self.genderControl];
-    
-    self.passwordTextField = [[MSTextField alloc] initWithFrame:CGRectMake(PADDING, self.birthdayTextField.frame.origin.y+self.birthdayTextField.frame.size.height+PADDING, CONTROL_WIDTH_BIG, CONTROL_HEIGHT)];
+    CGRect smallFrame = CGRectMake(PADDING, self.emailTextField.frame.origin.y+self.emailTextField.frame.size.height+PADDING, CONTROL_WITH_PASSWORD, CONTROL_HEIGHT);
+    self.passwordTextField = [[MSTextField alloc] initWithFrame:smallFrame];
     self.passwordTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordTextField.secureTextEntry = YES;
     self.passwordTextField.delegate = self;
@@ -129,8 +125,26 @@
     self.passwordTextField.focusBorderColor = focusBorderColor;
     self.passwordTextField.textColor = textFieldTextColor;
     [self.passwordTextField initializeAppearanceWithShadow:YES];
+    self.passwordTextField.returnKeyType = UIReturnKeyDefault;
     //    self.passwordTextField.font = [UIFont preferredFontForTextStyle:FONT_IDENTIFIER_TEXTFIELD];
     [self.scrollView addSubview:self.passwordTextField];
+    
+    self.genderControl = [[NKColorSwitch alloc] initWithFrame:CGRectMake(self.passwordTextField.frame.origin.x+self.passwordTextField.frame.size.width+IMAGE_MARGIN_LEFT, self.passwordTextField.frame.origin.y, CONTROL_WIDTH_GENDER, CONTROL_HEIGHT)];
+    [self.genderControl setTintColor:[MSColorFactory mainColor]];
+    [self.genderControl setOnTintColor:[MSColorFactory redLight]];
+    [self.genderControl setThumbTintColor:[MSColorFactory whiteLight]];
+    [self.scrollView addSubview:self.genderControl];
+    
+    
+    self.birthdayTextField = [[MSTextField alloc] initWithFrame:CGRectMake(PADDING, self.passwordTextField.frame.origin.y+self.passwordTextField.frame.size.height+PADDING, CONTROL_WIDTH_BIG, CONTROL_HEIGHT)];
+    self.birthdayTextField.borderStyle = UITextBorderStyleRoundedRect;
+    self.birthdayTextField.delegate = self;
+    self.birthdayTextField.placeholder = PLACEHOLDER_BIRTHDAY;
+    self.birthdayTextField.focusBorderColor = focusBorderColor;
+    self.birthdayTextField.textColor = textFieldTextColor;
+    [self.birthdayTextField initializeAppearanceWithShadow:YES];
+    //    self.birthdayTextField.font = [UIFont preferredFontForTextStyle:FONT_IDENTIFIER_TEXTFIELD];
+    [self.scrollView addSubview:self.birthdayTextField];
     
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.firstnameTextField.frame.origin.x+self.firstnameTextField.frame.size.width+IMAGE_MARGIN_LEFT, PADDING, IMAGE_SIZE, IMAGE_SIZE)];
     self.imageView.backgroundColor = [UIColor grayColor];
@@ -138,26 +152,43 @@
     self.imageView.backgroundColor = [UIColor clearColor];
     [self.scrollView addSubview:self.imageView];
     
-    CGRect frame = CGRectMake(PADDING, self.view.frame.size.height-PADDING-CONTROL_HEIGHT-64, self.view.frame.size.width-PADDING, CONTROL_HEIGHT);
-    self.nextButton = [[QBFlatButton alloc] initWithFrame:frame];
+    
+    self.nextButton = [[QBFlatButton alloc] initWithFrame:[self nextButtonNormalFrame]];
     [self.nextButton setTitle:@"Next" forState:UIControlStateNormal];
     [self.nextButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.nextButton addTarget:self action:@selector(nextButtonHandler) forControlEvents:UIControlEventTouchUpInside];
     self.nextButton.faceColor = [MSColorFactory mainColor];
-    self.nextButton.sideColor = [MSColorFactory mainColor];
+    self.nextButton.sideColor = [MSColorFactory mainColorDark];
+    [self.nextButton setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
     [self.scrollView addSubview:self.nextButton];
     
     
-    self.commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(PADDING, self.nextButton.frame.origin.y-CONTROL_HEIGHT, 280, CONTROL_HEIGHT)];
-    self.commentLabel.text = @"Terms and conditions";
+    self.commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(PADDING, self.nextButton.frame.origin.y-80, 280, 80)];
+    self.commentLabel.text = @"By clicking in next button, you  accept the general terms and conditions of use.";
     self.commentLabel.textAlignment = NSTextAlignmentCenter;
-    [self.scrollView addSubview:self.commentLabel];
+    [self.commentLabel setFont:[MSFontFactory fontForCommentLabel]];
+    self.commentLabel.textColor = [MSColorFactory gray];
+    self.commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.commentLabel.numberOfLines = 0;
+    //    [self.scrollView addSubview:self.commentLabel];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tap];
+}
+
+- (CGRect)nextButtonNormalFrame
+{
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    return CGRectMake(PADDING, screenBound.size.height-PADDING-CONTROL_HEIGHT-64, screenBound.size.width-PADDING*2, CONTROL_HEIGHT);
+}
+
+- (CGRect)nextButtonDownFrame
+{
+    CGRect tempFrame = [self nextButtonNormalFrame];
+    return CGRectMake(tempFrame.origin.x, tempFrame.origin.y+DATEPICKER_HEIGHT, tempFrame.size.width, tempFrame.size.height);
 }
 
 - (void)nextButtonHandler
@@ -183,29 +214,94 @@
     return [[MSCreateAccountVC alloc] initWithNibName:NIB_NAME bundle:nil];
 }
 
+- (UIDatePicker *)datePicker
+{
+    if (!_datePicker) {
+        CGRect frame = CGRectMake(0, self.birthdayTextField.frame.origin.y, self.scrollView.frame.size.width, DATEPICKER_HEIGHT);
+        self.datePicker = [[UIDatePicker alloc] initWithFrame:frame];
+        
+        self.datePicker.datePickerMode = UIDatePickerModeDate;
+        self.datePicker.hidden = YES;
+        [self.scrollView insertSubview:self.datePicker belowSubview:self.birthdayTextField];
+        [self.datePicker addTarget:self action:@selector(datePickerValueDidChange) forControlEvents:UIControlEventValueChanged];
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(datePickerDidTap)];
+        
+        [self.datePicker addGestureRecognizer:tapGesture];
+    }
+    return _datePicker;
+}
+
 #pragma mark UITextFieldDelegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     if ([textField isEqual:self.birthdayTextField])
     {
-        return YES;
+        [self toogleDatePicker];
+        
+        return NO;
     }
     else
     {
+        if (!self.datePicker.hidden) {
+            [self closeDatePicker];
+        }
         return YES;
     }
+}
+
+- (void)toogleDatePicker
+{
+    self.datePicker.hidden ? [self openDatePicker] : [self closeDatePicker];
+}
+
+- (void)openDatePicker
+{
+    [self.activeTextField resignFirstResponder];
+    [self.birthdayTextField setFocused:YES];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.datePicker.hidden = NO;
+        self.nextButton.frame = [self nextButtonDownFrame];
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.frame.size.height+DATEPICKER_HEIGHT-64);
+    }];
+}
+
+- (void)closeDatePicker
+{
+    [self.birthdayTextField setFocused:NO];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.datePicker.hidden = YES;
+        self.nextButton.frame = [self nextButtonNormalFrame];
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.frame.size.height-DATEPICKER_HEIGHT);
+    }];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.activeTextField = textField;
-    [self.scrollView scrollRectToVisible:textField.frame animated:YES];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     self.activeTextField = nil;
+}
+
+#pragma mark DatePicker Handler
+
+
+- (void)datePickerValueDidChange
+{
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd - MM - yyyy"];
+    self.birthdayTextField.text = [dateFormat stringFromDate:self.datePicker.date];
+}
+
+- (void)datePickerDidTap
+{
+    [self closeDatePicker];
 }
 
 #pragma mark Keyboard
@@ -231,6 +327,8 @@
     
     // -64 is for nav bar
     self.scrollView.contentSize = CGSizeMake(320, self.scrollView.frame.size.height + kbSize.height - 64);
+    CGRect destinationFrame = CGRectMake(0, self.activeTextField.frame.origin.y, 320, self.activeTextField.frame.size.height+kbSize.height+PADDING);
+    [self.scrollView scrollRectToVisible:destinationFrame animated:YES];
 }
 
 // Called when the UIKeyboardWillHideNotification is sent

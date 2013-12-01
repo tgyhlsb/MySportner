@@ -15,4 +15,16 @@
     return [UIFont fontWithName:@"ProximaNova-Regular" size:13.5];
 }
 
++ (UIFont *)fontForCommentLabel
+{
+    return [UIFont fontWithName:@"ProximaNova-Regular" size:11.5];
+}
+
+
++ (UIFont *)fontForNavigationTitle
+{
+    return [UIFont fontWithName:@"ProximaNova-Semibold" size:14];
+}
+
+
 @end

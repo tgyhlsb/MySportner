@@ -45,6 +45,11 @@
     [self initializeAppearance];
 }
 
+- (void)setFocused:(BOOL)focused
+{
+    [self setBorderColor:focused ? self.focusBorderColor : self.normalBorderColor];
+}
+
 - (void)initializeAppearance
 {
     [self setBorderColor:self.normalBorderColor];

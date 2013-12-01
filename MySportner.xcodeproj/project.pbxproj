@@ -46,6 +46,8 @@
 		5AA60A05184B56BD00B09ADD /* iOS_blur.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AA60A03184B56BD00B09ADD /* iOS_blur.png */; };
 		5AA60A06184B56BD00B09ADD /* iOS_blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AA60A04184B56BD00B09ADD /* iOS_blur@2x.png */; };
 		5AA60A08184B5A3100B09ADD /* pick_a_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AA60A07184B5A3100B09ADD /* pick_a_pic.png */; };
+		5AA60A0A184B623B00B09ADD /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5AA60A09184B623700B09ADD /* ProximaNova-Semibold.otf */; };
+		5AA60A0E184B67E700B09ADD /* NKColorSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA60A0D184B67E700B09ADD /* NKColorSwitch.m */; };
 		5AD1FC5318472ADD001D3DFE /* runner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5AD1FC5218472ADD001D3DFE /* runner.jpg */; };
 		5AD1FC5A1847318B001D3DFE /* MSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD1FC591847318B001D3DFE /* MSNavigationBar.m */; };
 		5ADCF225184004D300E6C8D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF224184004D300E6C8D2 /* Foundation.framework */; };
@@ -184,6 +186,9 @@
 		5AA60A03184B56BD00B09ADD /* iOS_blur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iOS_blur.png; sourceTree = "<group>"; };
 		5AA60A04184B56BD00B09ADD /* iOS_blur@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS_blur@2x.png"; sourceTree = "<group>"; };
 		5AA60A07184B5A3100B09ADD /* pick_a_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pick_a_pic.png; sourceTree = "<group>"; };
+		5AA60A09184B623700B09ADD /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
+		5AA60A0C184B67E700B09ADD /* NKColorSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKColorSwitch.h; sourceTree = "<group>"; };
+		5AA60A0D184B67E700B09ADD /* NKColorSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKColorSwitch.m; sourceTree = "<group>"; };
 		5AD1FC5218472ADD001D3DFE /* runner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = runner.jpg; path = Images/runner.jpg; sourceTree = "<group>"; };
 		5AD1FC581847318B001D3DFE /* MSNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSNavigationBar.h; path = Views/MSNavigationBar.h; sourceTree = "<group>"; };
 		5AD1FC591847318B001D3DFE /* MSNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSNavigationBar.m; path = Views/MSNavigationBar.m; sourceTree = "<group>"; };
@@ -423,9 +428,19 @@
 		5AA60A01184B548900B09ADD /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				5AA60A09184B623700B09ADD /* ProximaNova-Semibold.otf */,
 				5AA60A00184B548600B09ADD /* ProximaNova-Regular.otf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		5AA60A0B184B67E700B09ADD /* NKColorSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				5AA60A0C184B67E700B09ADD /* NKColorSwitch.h */,
+				5AA60A0D184B67E700B09ADD /* NKColorSwitch.m */,
+			);
+			path = NKColorSwitch;
 			sourceTree = "<group>";
 		};
 		5AD1FC5418472AE1001D3DFE /* Images */ = {
@@ -537,6 +552,7 @@
 		5ADCF2591840050600E6C8D2 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				5AA60A0B184B67E700B09ADD /* NKColorSwitch */,
 				5A967456184A0ECA0079EAC1 /* UIImage+BlurredFrame */,
 				5A9674491849CD180079EAC1 /* QBFlatButton */,
 				5A29CAEA18491F4D002A8B60 /* RatingView */,
@@ -938,6 +954,7 @@
 				5A29CAF118491F82002A8B60 /* unSelected.png in Resources */,
 				5AFE43F218426ABD001376C7 /* MSChooseSportsVC.xib in Resources */,
 				5ADCF238184004D300E6C8D2 /* Main.storyboard in Resources */,
+				5AA60A0A184B623B00B09ADD /* ProximaNova-Semibold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -984,6 +1001,7 @@
 				5ADCF2A918401FF800E6C8D2 /* MSCenterController.m in Sources */,
 				5ADCF2D81840BDAD00E6C8D2 /* MSSmallSportCell.m in Sources */,
 				5ADCF3051840E60300E6C8D2 /* MSFourSquareRequestFactory.m in Sources */,
+				5AA60A0E184B67E700B09ADD /* NKColorSwitch.m in Sources */,
 				5ADCF235184004D300E6C8D2 /* MSAppDelegate.m in Sources */,
 				5ADCF29C18401D1800E6C8D2 /* MSNotificationsVC.m in Sources */,
 				5ADCF2AC184025AE00E6C8D2 /* MSWelcomeVC.m in Sources */,

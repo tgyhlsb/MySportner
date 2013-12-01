@@ -51,6 +51,8 @@
     
     [self.window setRootViewController:mainVC];
     
+//    [self checkFontsName];
+    
     return YES;
 }
 
@@ -59,8 +61,10 @@
     NSShadow *titleShadow = [[NSShadow alloc] init];
     titleShadow.shadowColor = [UIColor grayColor];
     titleShadow.shadowOffset = CGSizeMake(0.5, 0.5);
-    NSDictionary *navbarTitleTextAttributes = @{NSForegroundColorAttributeName:[MSColorFactory whiteLight],
-                                                NSShadowAttributeName:titleShadow};
+    NSDictionary *navbarTitleTextAttributes = @{
+                                                NSForegroundColorAttributeName:[MSColorFactory whiteLight],
+                                                NSShadowAttributeName:titleShadow,
+                                                UITextAttributeFont:[MSFontFactory fontForNavigationTitle]};
     
     [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
     [[UINavigationBar appearance] setTintColor:[MSColorFactory whiteLight]];
@@ -70,6 +74,19 @@
     [[MSTextField appearance] setFont:[MSFontFactory fontForFormTextField]];
     
     
+}
+
+- (void)checkFontsName
+{
+    for (NSString* family in [UIFont familyNames])
+    {
+        NSLog(@"%@", family);
+        
+        for (NSString* name in [UIFont fontNamesForFamilyName: family])
+        {
+            NSLog(@"  %@", name);
+        }
+    }
 }
 
 - (void)setDrawerMenu

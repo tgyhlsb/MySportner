@@ -67,6 +67,24 @@
     [self setFormViews];
     
     [self registerForKeyboardNotifications];
+    
+    [self setBackButton];
+}
+
+- (void)setBackButton
+{
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *backBtnImage = [UIImage imageNamed:@"arrow.png"]  ;
+    [backBtn setBackgroundImage:backBtnImage forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(goback) forControlEvents:UIControlEventTouchUpInside];
+    backBtn.frame = CGRectMake(0, 0, 49, 30);
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:backBtn] ;
+    self.navigationItem.leftBarButtonItem = backButton;
+}
+
+- (void)goback
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -77,7 +95,7 @@
 
 - (void)setFormViews
 {
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iOS_blur.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_blur_light.png"]];
     self.scrollView.backgroundColor = [UIColor clearColor];
     
     UIColor *focusBorderColor = [MSColorFactory redLight];
@@ -138,8 +156,12 @@
     [self.genderControl setTintColor:[MSColorFactory mainColor]];
     [self.genderControl setOnTintColor:[MSColorFactory redLight]];
     [self.genderControl setThumbTintColor:[MSColorFactory whiteLight]];
-    self.genderControl.leftText = @"M";
-    self.genderControl.rightText = @"F";
+    self.genderControl.leftLabel.text = @"F";
+    self.genderControl.rightLabel.text = @"M";
+    self.genderControl.leftLabel.shadowOffset = CGSizeMake(0.2, 1.8);
+    self.genderControl.rightLabel.shadowOffset = CGSizeMake(0.2, 1.8);
+    self.genderControl.leftLabel.shadowColor = [MSColorFactory mainColorShadow];
+    self.genderControl.rightLabel.shadowColor = [MSColorFactory redShadow];
     self.genderControl.textColor = [MSColorFactory whiteLight];
     self.genderControl.textFont = [MSFontFactory fontForButton];
     [self.scrollView addSubview:self.genderControl];
@@ -172,6 +194,9 @@
     [self.nextButton addTarget:self action:@selector(nextButtonHandler) forControlEvents:UIControlEventTouchUpInside];
     self.nextButton.faceColor = [MSColorFactory mainColor];
     self.nextButton.sideColor = [MSColorFactory mainColorDark];
+    self.nextButton.titleLabel.font = [MSFontFactory fontForButton];
+    [self.nextButton setTitleShadowColor:[MSColorFactory mainColorShadow] forState:UIControlStateNormal];
+    self.nextButton.titleLabel.shadowOffset = CGSizeMake(0.2, 1.8);
     [self.nextButton setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
     [self.scrollView addSubview:self.nextButton];
     
@@ -195,7 +220,7 @@
 - (CGRect)nextButtonNormalFrame
 {
     CGRect screenBound = [[UIScreen mainScreen] bounds];
-    return CGRectMake(PADDING, screenBound.size.height-PADDING-CONTROL_HEIGHT-64, screenBound.size.width-PADDING*2, CONTROL_HEIGHT);
+    return CGRectMake(PADDING, screenBound.size.height-PADDING-CONTROL_HEIGHT-64, screenBound.size.width-PADDING*2, CONTROL_HEIGHT+10);
 }
 
 - (CGRect)nextButtonDownFrame
@@ -244,7 +269,7 @@
                                    delegate:self
                           cancelButtonTitle:cancel
                           otherButtonTitles:nil] show];
-        [self performTransitionToNextScreen];
+        //        [self performTransitionToNextScreen];
     } else {
         [self performTransitionToNextScreen];
     }
@@ -254,7 +279,7 @@
 - (void)pictureTapHandler
 {
     [self closeAllResponders];
-//    [[[UIAlertView alloc] initWithTitle:@"Not available" message:@"This feature is coming up soon !" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    //    [[[UIAlertView alloc] initWithTitle:@"Not available" message:@"This feature is coming up soon !" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
 #pragma mark UIAlertViewDelegate
@@ -317,7 +342,7 @@
     destinationVC.user.email = self.emailTextField.text;
     destinationVC.user.password = self.passwordTextField.text;
     destinationVC.user.birthday = self.datePicker.date;
-    destinationVC.user.gender = self.genderControl.isOn ? MSUserGenderMale : MSUserGenderFemale;
+    destinationVC.user.gender = self.genderControl.isOn ? MSUserGenderFemale : MSUserGenderMale;
     destinationVC.user.username = destinationVC.user.email;
     destinationVC.user.facebookID = FACEBOOK_DEFAULT_ID[destinationVC.user.gender]; // default IDs to get a fb picture according to your gender
     
@@ -340,7 +365,7 @@
         self.datePicker.maximumDate = [NSDate date];
         [self.scrollView insertSubview:self.datePicker belowSubview:self.birthdayTextField];
         [self.datePicker addTarget:self action:@selector(datePickerValueDidChange) forControlEvents:UIControlEventValueChanged];
-//        [self.datePicker addTarget:self action:@selector(datePickerValueDidChange) forControlEvents:UIControlEventTouchDragInside];
+        //        [self.datePicker addTarget:self action:@selector(datePickerValueDidChange) forControlEvents:UIControlEventTouchDragInside];
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(datePickerDidTap)];
         

@@ -17,7 +17,12 @@
 
 + (UIColor *)mainColorDark
 {
-    return [UIColor colorWithRed:0.05f green:0.66f blue:0.44f alpha:1.00f];
+    return [UIColor colorWithRed:0.27f green:0.67f blue:0.64f alpha:1.00f];
+}
+
++ (UIColor *)mainColorShadow
+{
+    return [UIColor colorWithRed:0.27f green:0.67f blue:0.64f alpha:0.2f];
 }
 
 + (UIColor *)facebookColorLight
@@ -48,6 +53,11 @@
 + (UIColor *)redDark
 {
     return [UIColor colorWithRed:0.78f green:0.33f blue:0.27f alpha:1.00f];
+}
+
++ (UIColor *)redShadow
+{
+    return [UIColor colorWithRed:0.78f green:0.33f blue:0.27f alpha:0.2f];
 }
 
 + (UIColor *)navigationColorLight

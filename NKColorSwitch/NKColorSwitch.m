@@ -19,9 +19,6 @@ static const CGFloat kSwitchBorderWidth = 1.75f;
 @property (nonatomic, strong) UIView *onBackgroundView;
 @property (nonatomic, strong) UIView *offBackgroundView;
 @property (nonatomic, strong) UIView *thumbView;
-
-@property (strong, nonatomic) UILabel *leftLabel;
-@property (strong, nonatomic) UILabel *rightLabel;
 @end
 
 @implementation NKColorSwitch
@@ -108,7 +105,6 @@ static const CGFloat kSwitchBorderWidth = 1.75f;
     self.leftLabel.textAlignment = NSTextAlignmentCenter;
     self.leftLabel.textColor = self.textColor;
     self.leftLabel.font = self.textFont;
-    self.leftLabel.text = self.leftText;
     [self insertSubview:self.leftLabel belowSubview:self.thumbView];
     
     
@@ -117,7 +113,6 @@ static const CGFloat kSwitchBorderWidth = 1.75f;
     self.rightLabel.textAlignment = NSTextAlignmentCenter;
     self.rightLabel.textColor = self.textColor;
     self.rightLabel.font = self.textFont;
-    self.rightLabel.text = self.rightText;
     [self insertSubview:self.rightLabel belowSubview:self.thumbView];
     
     // Handle Thumb Tap Gesture
@@ -177,18 +172,6 @@ static const CGFloat kSwitchBorderWidth = 1.75f;
     _textFont = textFont;
     self.leftLabel.font = textFont;
     self.rightLabel.font = textFont;
-}
-
-- (void)setLeftText:(NSString *)leftText
-{
-    _leftText = leftText;
-    self.leftLabel.text = leftText;
-}
-
-- (void)setRightText:(NSString *)rightText
-{
-    _rightText = rightText;
-    self.rightLabel.text = rightText;
 }
 
 - (void)setOnTintColor:(UIColor *)color

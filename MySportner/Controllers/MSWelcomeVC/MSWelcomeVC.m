@@ -16,7 +16,7 @@
 #import "MSChooseSportsVC.h"
 #import "QBFlatButton.h"
 #import "MSColorFactory.h"
-
+#import "MSFontFactory.h"
 
 #define NIB_NAME @"MSWelcomeVC"
 
@@ -49,13 +49,16 @@
 {
     self.facebookLoginButton.faceColor = [MSColorFactory facebookColorLight];
     self.facebookLoginButton.sideColor = [MSColorFactory facebookColorDark];
+    self.facebookLoginButton.titleLabel.font = [MSFontFactory fontForNavigationTitle];
     
     self.createAccountButton.faceColor = [MSColorFactory whiteLight];
     self.createAccountButton.sideColor = [MSColorFactory whiteDark];
+    self.createAccountButton.titleLabel.font = [MSFontFactory fontForButton];
     [self.createAccountButton setTitleColor:[MSColorFactory mainColor] forState:UIControlStateNormal];
     
     self.loginButton.faceColor = [MSColorFactory whiteLight];
     self.loginButton.sideColor = [MSColorFactory whiteDark];
+    self.loginButton.titleLabel.font = [MSFontFactory fontForButton];
     [self.loginButton setTitleColor:[MSColorFactory mainColor] forState:UIControlStateNormal];
 }
 

@@ -73,6 +73,9 @@
     
     [[MSTextField appearance] setFont:[MSFontFactory fontForFormTextField]];
     
+    [[UILabel appearanceWhenContainedIn:[UIButton class], nil] setShadowOffset:CGSizeMake(0, 2)];
+    [[UILabel appearanceWhenContainedIn:[UIButton class], nil] setFont:[MSFontFactory fontForButton]];
+    
     
 }
 

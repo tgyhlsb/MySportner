@@ -26,5 +26,10 @@
     return [UIFont fontWithName:@"ProximaNova-Semibold" size:14];
 }
 
++ (UIFont *)fontForButton
+{
+    return [UIFont fontWithName:@"ProximaNova-Semibold" size:18];
+}
+
 
 @end

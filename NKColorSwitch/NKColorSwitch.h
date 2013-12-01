@@ -39,4 +39,10 @@ typedef enum {
 /* The border color used to tint the appearance of the switch when it is turned on. */
 @property (nonatomic, strong) UIColor *onTintBorderColor;
 
+@property (nonatomic, strong) UIColor *textColor;
+@property (nonatomic, strong) UIFont *textFont;
+
+@property (nonatomic, strong) NSString *leftText;
+@property (nonatomic, strong) NSString *rightText;
+
 @end

@@ -19,6 +19,9 @@ static const CGFloat kSwitchBorderWidth = 1.75f;
 @property (nonatomic, strong) UIView *onBackgroundView;
 @property (nonatomic, strong) UIView *offBackgroundView;
 @property (nonatomic, strong) UIView *thumbView;
+
+@property (strong, nonatomic) UILabel *leftLabel;
+@property (strong, nonatomic) UILabel *rightLabel;
 @end
 
 @implementation NKColorSwitch
@@ -98,6 +101,25 @@ static const CGFloat kSwitchBorderWidth = 1.75f;
     // Default to OFF position
     [self.thumbView setCenter:CGPointMake(self.thumbView.frame.size.width/2, self.frame.size.height/2)];
     
+    // @Tanguy
+    // add labels
+    CGRect onFrame = CGRectMake(kHorizontalAdjustment, 2, self.thumbView.frame.size.width, self.thumbView.frame.size.height);
+    self.leftLabel = [[UILabel alloc] initWithFrame:onFrame];
+    self.leftLabel.textAlignment = NSTextAlignmentCenter;
+    self.leftLabel.textColor = self.textColor;
+    self.leftLabel.font = self.textFont;
+    self.leftLabel.text = self.leftText;
+    [self insertSubview:self.leftLabel belowSubview:self.thumbView];
+    
+    
+    CGRect offFrame = CGRectMake(self.onBackgroundView.frame.size.width - self.thumbView.frame.size.width-kHorizontalAdjustment, 2, self.thumbView.frame.size.width, self.thumbView.frame.size.height);
+    self.rightLabel = [[UILabel alloc] initWithFrame:offFrame];
+    self.rightLabel.textAlignment = NSTextAlignmentCenter;
+    self.rightLabel.textColor = self.textColor;
+    self.rightLabel.font = self.textFont;
+    self.rightLabel.text = self.rightText;
+    [self insertSubview:self.rightLabel belowSubview:self.thumbView];
+    
     // Handle Thumb Tap Gesture
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwitchTap:)];
 	[tapGestureRecognizer setDelegate:self];
@@ -141,6 +163,32 @@ static const CGFloat kSwitchBorderWidth = 1.75f;
         
         self.thumbView.center = CGPointMake((self.thumbView.frame.size.width+kHorizontalAdjustment)/2, self.thumbView.center.y);
     }
+}
+
+- (void)setTextColor:(UIColor *)textColor
+{
+    _textColor = textColor;
+    self.leftLabel.textColor = textColor;
+    self.rightLabel.textColor = textColor;
+}
+
+- (void)setTextFont:(UIFont *)textFont
+{
+    _textFont = textFont;
+    self.leftLabel.font = textFont;
+    self.rightLabel.font = textFont;
+}
+
+- (void)setLeftText:(NSString *)leftText
+{
+    _leftText = leftText;
+    self.leftLabel.text = leftText;
+}
+
+- (void)setRightText:(NSString *)rightText
+{
+    _rightText = rightText;
+    self.rightLabel.text = rightText;
 }
 
 - (void)setOnTintColor:(UIColor *)color

@@ -133,6 +133,10 @@
     [self.genderControl setTintColor:[MSColorFactory mainColor]];
     [self.genderControl setOnTintColor:[MSColorFactory redLight]];
     [self.genderControl setThumbTintColor:[MSColorFactory whiteLight]];
+    self.genderControl.leftText = @"M";
+    self.genderControl.rightText = @"F";
+    self.genderControl.textColor = [MSColorFactory whiteLight];
+    self.genderControl.textFont = [MSFontFactory fontForButton];
     [self.scrollView addSubview:self.genderControl];
     
     
@@ -154,7 +158,7 @@
     
     
     self.nextButton = [[QBFlatButton alloc] initWithFrame:[self nextButtonNormalFrame]];
-    [self.nextButton setTitle:@"Next" forState:UIControlStateNormal];
+    [self.nextButton setTitle:@"NEXT" forState:UIControlStateNormal];
     [self.nextButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.nextButton addTarget:self action:@selector(nextButtonHandler) forControlEvents:UIControlEventTouchUpInside];
     self.nextButton.faceColor = [MSColorFactory mainColor];

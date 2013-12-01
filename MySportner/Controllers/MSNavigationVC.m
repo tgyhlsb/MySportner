@@ -25,18 +25,8 @@
 
 - (void)setAppearance
 {
-    UIColor *navBarColor = [MSColorFactory navigationColorDark];
-    self.navigationBar.backgroundColor = navBarColor;
-    self.navigationBar.barTintColor = navBarColor;
     
-    NSShadow *titleShadow = [[NSShadow alloc] init];
-    titleShadow.shadowColor = [UIColor grayColor];
-    titleShadow.shadowOffset = CGSizeMake(0.5, 0.5);
-    NSDictionary *navbarTitleTextAttributes = @{NSForegroundColorAttributeName:[MSColorFactory whiteLight],
-                                                NSShadowAttributeName:titleShadow};
-    
-    [self.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
-    self.navigationBar.tintColor = [MSColorFactory whiteLight];
+
 }
 
 @end

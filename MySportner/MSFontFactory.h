@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#define FONT_IDENTIFIER_TEXTFIELD @"textFieldFont"
+
 @interface MSFontFactory : NSObject
+
++ (UIFont *)fontForFormTextField;
 
 @end

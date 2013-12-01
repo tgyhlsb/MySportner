@@ -9,6 +9,8 @@
 #import "MSTextField.h"
 #import "UITextField+MSTextFieldAppearance.h"
 
+#import "MSColorFactory.h"
+
 #define DEFAULT_BORDER_WIDTH 1.0
 #define DEFAULT_CORNER_RADIUS 5.0
 
@@ -26,7 +28,7 @@
 
 - (UIColor *)normalBorderColor
 {
-    if (!_normalBorderColor) _normalBorderColor = [UIColor colorWithRed:0.80f green:0.80f blue:0.80f alpha:1.00f];;
+    if (!_normalBorderColor) _normalBorderColor = [MSColorFactory whiteLight];
     
     return _normalBorderColor;
 }
@@ -48,6 +50,21 @@
     [self setBorderColor:self.normalBorderColor];
     [self setBorderWidth:DEFAULT_BORDER_WIDTH];
     [self setCornerRadius:DEFAULT_CORNER_RADIUS];
+}
+
+- (void)initializeAppearanceWithShadow:(BOOL)shadow
+{
+    [self setBorderColor:self.normalBorderColor];
+    [self setBorderWidth:DEFAULT_BORDER_WIDTH];
+    [self setCornerRadius:DEFAULT_CORNER_RADIUS];
+    
+    if (shadow) {
+        self.clipsToBounds = NO;
+        [self.layer setShadowColor:[[UIColor blackColor] CGColor]];
+        [self.layer setShadowRadius:3.0f];
+        [self.layer setShadowOffset:CGSizeMake(0, 0)];
+        [self.layer setShadowOpacity:0.1f];
+    }
 }
 
 - (BOOL)canBecomeFirstResponder

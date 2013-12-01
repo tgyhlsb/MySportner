@@ -45,7 +45,7 @@
 
 - (void)setSelected:(BOOL)selected
 {
-    [super setSelected:selected];
+//    [super setSelected:rselected];
     
     self.sportLevelLabel.hidden = !selected;
     

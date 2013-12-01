@@ -9,19 +9,23 @@
 #import "MSCreateAccountVC.h"
 #import "MSChooseSportsVC.h"
 #import "MSUser.h"
+#import "MSTextField.h"
+#import "MSColorFactory.h"
+#import "MSFontFactory.h"
 
 #define NIB_NAME @"MSCreateAccountVC"
 
 #define CONTROL_HEIGHT 40
-#define CONTROL_WIDTH_BIG 280
-#define CONTROL_WIDTH_SMALL 160
+#define CONTROL_WIDTH_BIG 270
+#define CONTROL_WIDTH_SMALL 150
 
-#define CONTROL_WIDTH_GENDER 130
+#define CONTROL_WIDTH_GENDER 125
 #define CONTROL_WITH_BIRTHDAY 130
 
-#define IMAGE_SIZE 100
+#define IMAGE_SIZE 105
+#define IMAGE_MARGIN_LEFT 15
 
-#define PADDING 20
+#define PADDING 25
 
 #define PLACEHOLDER_FIRSTNAME @"First Name"
 #define PLACEHOLDER_LASTNAME @"Last Name"
@@ -34,12 +38,12 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (strong, nonatomic) UIImageView *imageView;
-@property (strong, nonatomic) UITextField *firstnameTextField;
-@property (strong, nonatomic) UITextField *lastnameTextField;
-@property (strong, nonatomic) UITextField *emailTextField;
-@property (strong, nonatomic) UITextField *passwordTextField;
-@property (strong, nonatomic) UITextField *birthdayTextField;
-@property (strong, nonatomic) UISegmentedControl *genderControl;
+@property (strong, nonatomic) MSTextField *firstnameTextField;
+@property (strong, nonatomic) MSTextField *lastnameTextField;
+@property (strong, nonatomic) MSTextField *emailTextField;
+@property (strong, nonatomic) MSTextField *passwordTextField;
+@property (strong, nonatomic) MSTextField *birthdayTextField;
+@property (strong, nonatomic) UISwitch *genderControl;
 @property (strong, nonatomic) UILabel *commentLabel;
 @property (strong, nonatomic) UIButton *nextButton;
 
@@ -68,45 +72,70 @@
 
 - (void)setFormViews
 {
-    self.firstnameTextField = [[UITextField alloc] initWithFrame:CGRectMake(PADDING, PADDING, CONTROL_WIDTH_SMALL, CONTROL_HEIGHT)];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iOS_blur.png"]];
+    self.scrollView.backgroundColor = [UIColor clearColor];
+    self.scrollView.frame = self.view.bounds;
+    
+    UIColor *focusBorderColor = [MSColorFactory redLight];
+    UIColor *textFieldTextColor = [MSColorFactory redLight];
+    
+    self.firstnameTextField = [[MSTextField alloc] initWithFrame:CGRectMake(PADDING, PADDING, CONTROL_WIDTH_SMALL, CONTROL_HEIGHT)];
     self.firstnameTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.firstnameTextField.delegate = self;
     self.firstnameTextField.placeholder = PLACEHOLDER_FIRSTNAME;
+    self.firstnameTextField.focusBorderColor = focusBorderColor;
+    self.firstnameTextField.textColor = textFieldTextColor;
+    [self.firstnameTextField initializeAppearanceWithShadow:YES];
     [self.scrollView addSubview:self.firstnameTextField];
     
-    self.lastnameTextField = [[UITextField alloc] initWithFrame:CGRectMake(PADDING, self.firstnameTextField.frame.origin.y+self.firstnameTextField.frame.size.height+PADDING, CONTROL_WIDTH_SMALL, CONTROL_HEIGHT)];
+    self.lastnameTextField = [[MSTextField alloc] initWithFrame:CGRectMake(PADDING, self.firstnameTextField.frame.origin.y+self.firstnameTextField.frame.size.height+PADDING, CONTROL_WIDTH_SMALL, CONTROL_HEIGHT)];
     self.lastnameTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.lastnameTextField.delegate = self;
     self.lastnameTextField.placeholder = PLACEHOLDER_LASTNAME;
+    self.lastnameTextField.focusBorderColor = focusBorderColor;
+    self.lastnameTextField.textColor = textFieldTextColor;
+    [self.lastnameTextField initializeAppearanceWithShadow:YES];
     [self.scrollView addSubview:self.lastnameTextField];
     
-    self.emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(PADDING, self.lastnameTextField.frame.origin.y+self.lastnameTextField.frame.size.height+PADDING, CONTROL_WIDTH_BIG, CONTROL_HEIGHT)];
+    self.emailTextField = [[MSTextField alloc] initWithFrame:CGRectMake(PADDING, self.lastnameTextField.frame.origin.y+self.lastnameTextField.frame.size.height+PADDING, CONTROL_WIDTH_BIG, CONTROL_HEIGHT)];
     self.emailTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.emailTextField.delegate = self;
     self.emailTextField.placeholder = PLACEHOLDER_EMAIL;
+    self.emailTextField.focusBorderColor = focusBorderColor;
+    self.emailTextField.textColor = textFieldTextColor;
+    [self.emailTextField initializeAppearanceWithShadow:YES];
+//    self.emailTextField.font = [UIFont preferredFontForTextStyle:FONT_IDENTIFIER_TEXTFIELD];
     [self.emailTextField setKeyboardType:UIKeyboardTypeEmailAddress];
     [self.scrollView addSubview:self.emailTextField];
     
-    self.passwordTextField = [[UITextField alloc] initWithFrame:CGRectMake(PADDING, self.emailTextField.frame.origin.y+self.emailTextField.frame.size.height+PADDING, CONTROL_WIDTH_BIG, CONTROL_HEIGHT)];
+    self.birthdayTextField = [[MSTextField alloc] initWithFrame:CGRectMake(PADDING, self.emailTextField.frame.origin.y+self.emailTextField.frame.size.height+PADDING, CONTROL_WITH_BIRTHDAY, CONTROL_HEIGHT)];
+    self.birthdayTextField.borderStyle = UITextBorderStyleRoundedRect;
+    self.birthdayTextField.delegate = self;
+    self.birthdayTextField.placeholder = PLACEHOLDER_BIRTHDAY;
+    self.birthdayTextField.focusBorderColor = focusBorderColor;
+    self.birthdayTextField.textColor = textFieldTextColor;
+    [self.birthdayTextField initializeAppearanceWithShadow:YES];
+//    self.birthdayTextField.font = [UIFont preferredFontForTextStyle:FONT_IDENTIFIER_TEXTFIELD];
+    [self.scrollView addSubview:self.birthdayTextField];
+    
+    self.genderControl = [[UISwitch alloc] initWithFrame:CGRectMake(self.birthdayTextField.frame.origin.x+self.birthdayTextField.frame.size.width+IMAGE_MARGIN_LEFT, self.emailTextField.frame.origin.y+self.emailTextField.frame.size.height+PADDING, CONTROL_WIDTH_GENDER, CONTROL_HEIGHT)];
+    [self.scrollView addSubview:self.genderControl];
+    
+    self.passwordTextField = [[MSTextField alloc] initWithFrame:CGRectMake(PADDING, self.birthdayTextField.frame.origin.y+self.birthdayTextField.frame.size.height+PADDING, CONTROL_WIDTH_BIG, CONTROL_HEIGHT)];
     self.passwordTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordTextField.secureTextEntry = YES;
     self.passwordTextField.delegate = self;
     self.passwordTextField.placeholder = PLACEHOLDER_PASSWORD;
+    self.passwordTextField.focusBorderColor = focusBorderColor;
+    self.passwordTextField.textColor = textFieldTextColor;
+    [self.passwordTextField initializeAppearanceWithShadow:YES];
+    //    self.passwordTextField.font = [UIFont preferredFontForTextStyle:FONT_IDENTIFIER_TEXTFIELD];
     [self.scrollView addSubview:self.passwordTextField];
     
-    self.birthdayTextField = [[UITextField alloc] initWithFrame:CGRectMake(PADDING, self.passwordTextField.frame.origin.y+self.passwordTextField.frame.size.height+PADDING, CONTROL_WITH_BIRTHDAY, CONTROL_HEIGHT)];
-    self.birthdayTextField.borderStyle = UITextBorderStyleRoundedRect;
-    self.birthdayTextField.delegate = self;
-    self.birthdayTextField.placeholder = PLACEHOLDER_BIRTHDAY;
-    [self.scrollView addSubview:self.birthdayTextField];
-    
-    self.genderControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Female", @"Male", nil]];
-    self.genderControl.frame = CGRectMake(self.birthdayTextField.frame.origin.x+self.birthdayTextField.frame.size.width+PADDING, self.passwordTextField.frame.origin.y+self.passwordTextField.frame.size.height+PADDING, CONTROL_WIDTH_GENDER, CONTROL_HEIGHT);
-    self.genderControl.selectedSegmentIndex = 0;
-    [self.scrollView addSubview:self.genderControl];
-    
-    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.firstnameTextField.frame.origin.x+self.firstnameTextField.frame.size.width+PADDING, PADDING, IMAGE_SIZE, IMAGE_SIZE)];
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.firstnameTextField.frame.origin.x+self.firstnameTextField.frame.size.width+IMAGE_MARGIN_LEFT, PADDING, IMAGE_SIZE, IMAGE_SIZE)];
     self.imageView.backgroundColor = [UIColor grayColor];
+    self.imageView.image = [UIImage imageNamed:@"pick_a_pic.png"];
+    self.imageView.backgroundColor = [UIColor clearColor];
     [self.scrollView addSubview:self.imageView];
     
     CGRect frame = CGRectMake(PADDING, self.view.frame.size.height-PADDING-CONTROL_HEIGHT-64, self.view.frame.size.width-PADDING, CONTROL_HEIGHT);
@@ -140,7 +169,7 @@
     destinationVC.user.email = self.emailTextField.text;
     destinationVC.user.password = self.passwordTextField.text;
     destinationVC.user.birthday = [NSDate date];
-    destinationVC.user.gender = self.genderControl.selectedSegmentIndex;
+    destinationVC.user.gender = self.genderControl.isOn ? MSUserGenderFemale : MSUserGenderMale;
     destinationVC.user.username = destinationVC.user.email;
     destinationVC.user.facebookID = FACEBOOK_DEFAULT_ID[destinationVC.user.gender]; // default IDs to get a fb picture according to your gender
     

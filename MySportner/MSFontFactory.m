@@ -10,4 +10,9 @@
 
 @implementation MSFontFactory
 
++ (UIFont *)fontForFormTextField
+{
+    return [UIFont fontWithName:@"ProximaNova-Regular" size:13.5];
+}
+
 @end

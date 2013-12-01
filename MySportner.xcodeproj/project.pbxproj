@@ -30,6 +30,8 @@
 		5A29CAF618492080002A8B60 /* MSSportLevelFormVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A29CAF518492080002A8B60 /* MSSportLevelFormVC.xib */; };
 		5A2B1BBA184BF21100413B01 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B1BB8184BF21100413B01 /* arrow.png */; };
 		5A2B1BBB184BF21100413B01 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B1BB9184BF21100413B01 /* arrow@2x.png */; };
+		5A2B1BBE184BF90A00413B01 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B1BBC184BF90A00413B01 /* Montserrat-Bold.ttf */; };
+		5A2B1BBF184BF90A00413B01 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B1BBD184BF90A00413B01 /* Montserrat-Regular.ttf */; };
 		5A31C1F51842147D00868188 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C1F41842147D00868188 /* Parse.framework */; };
 		5A31C1F71842149100868188 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C1F61842149100868188 /* AudioToolbox.framework */; };
 		5A31C1F91842149A00868188 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C1F81842149A00868188 /* CFNetwork.framework */; };
@@ -168,6 +170,8 @@
 		5A29CAF518492080002A8B60 /* MSSportLevelFormVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSSportLevelFormVC.xib; path = Controllers/MSSportLevelFormVC/MSSportLevelFormVC.xib; sourceTree = "<group>"; };
 		5A2B1BB8184BF21100413B01 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = SOURCE_ROOT; };
 		5A2B1BB9184BF21100413B01 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = SOURCE_ROOT; };
+		5A2B1BBC184BF90A00413B01 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		5A2B1BBD184BF90A00413B01 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		5A31C1F41842147D00868188 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		5A31C1F61842149100868188 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5A31C1F81842149A00868188 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -442,6 +446,8 @@
 		5AA60A01184B548900B09ADD /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				5A2B1BBC184BF90A00413B01 /* Montserrat-Bold.ttf */,
+				5A2B1BBD184BF90A00413B01 /* Montserrat-Regular.ttf */,
 				5A299A82184BDF1400005733 /* ProximaNova-Bold.otf */,
 				5AA60A09184B623700B09ADD /* ProximaNova-Semibold.otf */,
 				5AA60A00184B548600B09ADD /* ProximaNova-Regular.otf */,
@@ -962,8 +968,10 @@
 				5ADCF2EC1840D39C00E6C8D2 /* MSLocationPickerVC.xib in Resources */,
 				5A29CAF618492080002A8B60 /* MSSportLevelFormVC.xib in Resources */,
 				5AFE440918427158001376C7 /* MSFindFriendsVC.xib in Resources */,
+				5A2B1BBF184BF90A00413B01 /* Montserrat-Regular.ttf in Resources */,
 				5A1B73791844AC3500555FE4 /* MSLoginFormVC.xib in Resources */,
 				5AA60A08184B5A3100B09ADD /* pick_a_pic.png in Resources */,
+				5A2B1BBE184BF90A00413B01 /* Montserrat-Bold.ttf in Resources */,
 				5ADCF29E18401D2300E6C8D2 /* MSNotificationsVC.xib in Resources */,
 				5ADCF28B1840144D00E6C8D2 /* MSDrawerMenuVC.xib in Resources */,
 				5ADCF28F1840178900E6C8D2 /* MSActivitiesVC.xib in Resources */,

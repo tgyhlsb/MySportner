@@ -14,6 +14,7 @@
 #import "QBFlatButton.h"
 #import "UITextField+MSTextFieldAppearance.h"
 #import "MSTextField.h"
+#import "MSFontFactory.h"
 
 #define NIB_NAME @"MSLoginFormVC"
 
@@ -45,6 +46,7 @@
 {
     self.connectButton.faceColor = [MSColorFactory redLight];
     self.connectButton.sideColor = [MSColorFactory redDark];
+    self.connectButton.titleLabel.font = [MSFontFactory fontForButton];
     [self.connectButton setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
     
     self.emailTextField.focusBorderColor = [MSColorFactory redLight];

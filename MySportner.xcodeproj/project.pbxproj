@@ -40,6 +40,7 @@
 		5A9674551849D8740079EAC1 /* MSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9674541849D8740079EAC1 /* MSTextField.m */; };
 		5A96745B184A0ECA0079EAC1 /* UIImage+BlurredFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A967458184A0ECA0079EAC1 /* UIImage+BlurredFrame.m */; };
 		5A96745C184A0ECA0079EAC1 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A96745A184A0ECA0079EAC1 /* UIImage+ImageEffects.m */; };
+		5A967462184A34160079EAC1 /* MSVenue+MapKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A967461184A34160079EAC1 /* MSVenue+MapKit.m */; };
 		5AD1FC5318472ADD001D3DFE /* runner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5AD1FC5218472ADD001D3DFE /* runner.jpg */; };
 		5AD1FC5A1847318B001D3DFE /* MSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD1FC591847318B001D3DFE /* MSNavigationBar.m */; };
 		5ADCF225184004D300E6C8D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF224184004D300E6C8D2 /* Foundation.framework */; };
@@ -170,6 +171,8 @@
 		5A967458184A0ECA0079EAC1 /* UIImage+BlurredFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BlurredFrame.m"; sourceTree = "<group>"; };
 		5A967459184A0ECA0079EAC1 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		5A96745A184A0ECA0079EAC1 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		5A967460184A34160079EAC1 /* MSVenue+MapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MSVenue+MapKit.h"; path = "Model/MSVenue+MapKit.h"; sourceTree = "<group>"; };
+		5A967461184A34160079EAC1 /* MSVenue+MapKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MSVenue+MapKit.m"; path = "Model/MSVenue+MapKit.m"; sourceTree = "<group>"; };
 		5AD1FC5218472ADD001D3DFE /* runner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = runner.jpg; path = Images/runner.jpg; sourceTree = "<group>"; };
 		5AD1FC581847318B001D3DFE /* MSNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSNavigationBar.h; path = Views/MSNavigationBar.h; sourceTree = "<group>"; };
 		5AD1FC591847318B001D3DFE /* MSNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSNavigationBar.m; path = Views/MSNavigationBar.m; sourceTree = "<group>"; };
@@ -658,6 +661,8 @@
 				5ADCF2B118402B4500E6C8D2 /* MSActivity.m */,
 				5ADCF30C1840F17600E6C8D2 /* MSVenue.h */,
 				5ADCF30D1840F17600E6C8D2 /* MSVenue.m */,
+				5A967460184A34160079EAC1 /* MSVenue+MapKit.h */,
+				5A967461184A34160079EAC1 /* MSVenue+MapKit.m */,
 				5A3DE7C2184133E1001054EB /* MSUser.h */,
 				5A3DE7C3184133E1001054EB /* MSUser.m */,
 			);
@@ -924,6 +929,7 @@
 			files = (
 				5ADCF29918401CD000E6C8D2 /* MSNavigationVC.m in Sources */,
 				5ADCF30E1840F17600E6C8D2 /* MSVenue.m in Sources */,
+				5A967462184A34160079EAC1 /* MSVenue+MapKit.m in Sources */,
 				5A3DE7C4184133E1001054EB /* MSUser.m in Sources */,
 				5ADCF2CD1840B4FD00E6C8D2 /* MSActivitiesFilterCell.m in Sources */,
 				5ADCF29618401A0300E6C8D2 /* MSDrawerController.m in Sources */,

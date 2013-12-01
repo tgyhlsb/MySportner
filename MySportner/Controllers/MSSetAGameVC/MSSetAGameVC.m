@@ -63,6 +63,11 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     [self registerForKeyboardNotifications];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
 + (MSSetAGameVC *)newController
 {
     MSSetAGameVC *setAGameVC = [[MSSetAGameVC alloc] initWithNibName:NIB_NAME bundle:nil];
@@ -181,6 +186,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     [cell initializeWithViewcontroller:self];
                     cell.textField.placeholder = @"Location";
                     self.venueCell = cell;
+                    [cell initializeLocation];
                     
                     return cell;
                 }
@@ -252,6 +258,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 {
     [self resignFirstResponder];
 }
+
 
 #pragma mark - MBProgressHUD
 

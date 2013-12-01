@@ -12,6 +12,7 @@
 #import "UIImage+BlurredFrame.h"
 #import "MSColorFactory.h"
 #import "MSActivityCell.h"
+#import "MSActivityVC.h"
 
 #define NIB_NAME @"MSProfileVC"
 
@@ -141,6 +142,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [MSActivityCell height];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MSActivityVC *destinationVC = [MSActivityVC newController];
+    
+    [self.navigationController pushViewController:destinationVC animated:YES];
 }
 
 @end

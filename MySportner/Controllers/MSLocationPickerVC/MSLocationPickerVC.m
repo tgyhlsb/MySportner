@@ -12,8 +12,9 @@
 #import "MBProgressHUD.h"
 #import "MSFourSquareParser.h"
 #import "MSVenueCell.h"
+#import "MSVenue+MapKit.h"
 
-@interface MSLocationPickerVC () <MSURLConnectionDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface MSLocationPickerVC () <MSURLConnectionDelegate, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -32,6 +33,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    NSLog(@"%@", self.location);
 }
 
 + (MSLocationPickerVC *)newController
@@ -51,6 +54,7 @@
 	
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.mapView.delegate = self;
     
     [self.fourSquareConnection startConnection];
     
@@ -60,6 +64,8 @@
 - (void)reloadData
 {
     [self.tableView reloadData];
+    
+    [self.mapView addAnnotations:self.data];
 }
 
 - (IBAction)cancelButtonPress:(UIBarButtonItem *)sender
@@ -72,7 +78,7 @@
 - (MSURLConnection *)fourSquareConnection
 {
     if (!_fourSquareConnection) {
-        CGPoint location = CGPointMake(45.758901,4.801025);
+        CGPoint location = CGPointMake(self.location.coordinate.latitude, self.location.coordinate.longitude);
         _fourSquareConnection = [MSFourSquareRequestFactory requestVenuesNear:location
                                                                  withCategory:MSFourSquareCategoryBasketBall
                                                                   andDelegate:self];
@@ -139,6 +145,23 @@
         self.closeBlock();
         self.closeBlock = nil;
     }
+}
+
+#pragma mark MKMapViewDelegate
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    NSString *identfiier = @"venueAnnotation";
+    MKAnnotationView *pinView = [mapView dequeueReusableAnnotationViewWithIdentifier:identfiier];
+    
+    if (!pinView) {
+        pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identfiier];
+    }
+    
+    pinView.annotation = annotation;
+    NSLog(@"\n%f%f", annotation.coordinate.latitude, annotation.coordinate.longitude);
+    
+    return pinView;
 }
 
 #pragma mark - MBProgressHUD

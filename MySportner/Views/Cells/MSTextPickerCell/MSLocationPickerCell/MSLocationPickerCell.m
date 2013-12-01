@@ -11,7 +11,9 @@
 
 #define IDENTIFIER @"MSLocationPickerCell"
 
-@interface MSLocationPickerCell()
+@interface MSLocationPickerCell() <CLLocationManagerDelegate>
+
+@property (strong, nonatomic) CLLocation *location;
 
 @end
 
@@ -61,7 +63,29 @@
         [weakModalVC dismissViewControllerAnimated:YES completion:nil];
     };
     
+    modalVC.location = self.location;
     [self.viewController presentViewController:modalVC animated:YES completion:nil];
+}
+
+
+- (void)initializeLocation
+{
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
+    locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+    [locationManager startUpdatingLocation];
+    self.location = [locationManager location];
+}
+
+
+
+#pragma mark CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    self.location = [locations lastObject];
+    [manager stopUpdatingLocation];
 }
 
 @end

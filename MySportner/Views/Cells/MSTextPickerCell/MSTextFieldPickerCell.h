@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSTextField.h"
 
 @interface MSTextFieldPickerCell : UITableViewCell <UITextFieldDelegate>
 
 @property (weak, nonatomic) UIViewController *viewController;
 
-@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet MSTextField *textField;
 
 - (void)initializeWithViewcontroller:(UIViewController *)viewController;
 

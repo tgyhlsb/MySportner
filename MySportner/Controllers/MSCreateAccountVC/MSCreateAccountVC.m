@@ -12,6 +12,7 @@
 #import "MSTextField.h"
 #import "MSColorFactory.h"
 #import "MSFontFactory.h"
+#import "QBFlatButton.h"
 
 #define NIB_NAME @"MSCreateAccountVC"
 
@@ -45,7 +46,7 @@
 @property (strong, nonatomic) MSTextField *birthdayTextField;
 @property (strong, nonatomic) UISwitch *genderControl;
 @property (strong, nonatomic) UILabel *commentLabel;
-@property (strong, nonatomic) UIButton *nextButton;
+@property (strong, nonatomic) QBFlatButton *nextButton;
 
 @property (weak, nonatomic) UITextField *activeTextField;
 
@@ -74,7 +75,6 @@
 {
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iOS_blur.png"]];
     self.scrollView.backgroundColor = [UIColor clearColor];
-    self.scrollView.frame = self.view.bounds;
     
     UIColor *focusBorderColor = [MSColorFactory redLight];
     UIColor *textFieldTextColor = [MSColorFactory redLight];
@@ -139,10 +139,12 @@
     [self.scrollView addSubview:self.imageView];
     
     CGRect frame = CGRectMake(PADDING, self.view.frame.size.height-PADDING-CONTROL_HEIGHT-64, self.view.frame.size.width-PADDING, CONTROL_HEIGHT);
-    self.nextButton = [[UIButton alloc] initWithFrame:frame];
+    self.nextButton = [[QBFlatButton alloc] initWithFrame:frame];
     [self.nextButton setTitle:@"Next" forState:UIControlStateNormal];
     [self.nextButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.nextButton addTarget:self action:@selector(nextButtonHandler) forControlEvents:UIControlEventTouchUpInside];
+    self.nextButton.faceColor = [MSColorFactory mainColor];
+    self.nextButton.sideColor = [MSColorFactory mainColor];
     [self.scrollView addSubview:self.nextButton];
     
     

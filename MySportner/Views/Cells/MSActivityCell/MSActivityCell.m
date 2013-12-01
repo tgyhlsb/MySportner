@@ -36,7 +36,7 @@
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
     if (highlighted) {
-        self.backgroundColor = [UIColor lightGrayColor];
+        self.backgroundColor = [MSColorFactory redDark];
     } else {
         if (self.oddIndex) {
             self.backgroundColor = [MSColorFactory backgroundColorGrayLight];

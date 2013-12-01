@@ -14,6 +14,8 @@
 @property (strong, nonatomic) UIColor *normalBorderColor;
 
 
+- (void)setFocused:(BOOL)focused;
+
 - (void)initializeAppearanceWithShadow:(BOOL)shadow;
 
 @end

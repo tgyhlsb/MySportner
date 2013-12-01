@@ -13,5 +13,8 @@
 @interface MSFontFactory : NSObject
 
 + (UIFont *)fontForFormTextField;
++ (UIFont *)fontForCommentLabel;
++ (UIFont *)fontForNavigationTitle;
++ (UIFont *)fontForButton;
 
 @end

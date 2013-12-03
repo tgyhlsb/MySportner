@@ -233,7 +233,6 @@
 {
     NSString *message = nil;
     NSString *title = @"Profile incomplete";
-    NSString *cancel = @"Cancel";
     
     if (![self.firstnameTextField.text length])
     {
@@ -264,12 +263,12 @@
     
     if (message && title)
     {
-        [[[UIAlertView alloc] initWithTitle:title
-                                    message:message
-                                   delegate:self
-                          cancelButtonTitle:cancel
-                          otherButtonTitles:nil] show];
-        //        [self performTransitionToNextScreen];
+//        [[[UIAlertView alloc] initWithTitle:title
+//                                    message:message
+//                                   delegate:self
+//                          cancelButtonTitle:cancel
+//                          otherButtonTitles:nil] show];
+        [self performTransitionToNextScreen];
     } else {
         [self performTransitionToNextScreen];
     }

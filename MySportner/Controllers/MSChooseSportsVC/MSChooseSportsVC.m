@@ -11,8 +11,11 @@
 #import "MSFindFriendsVC.h"
 #import "MZFormSheetController.h"
 #import "MSSportLevelFormVC.h"
+#import "QBFlatButton.h"
+#import "MSColorFactory.h"
+#import "MSFontFactory.h"
 
-#define SAMPLE_SPORTS @[@"Basket", @"Swimming", @"Running", @"Tennis", @"Soccer", @"FootBall", @"Nap"]
+#define SAMPLE_SPORTS @[@"soccer", @"basketball", @"football", @"Tennis", @"Swimming", @"Cycle Racing", @"Nap", @"BodyBuilding"]
 
 #define DEFAULT_SPORT_LEVEL 2
 
@@ -21,7 +24,7 @@
 @interface MSChooseSportsVC () <UICollectionViewDataSource, UICollectionViewDelegate, MZFormSheetBackgroundWindowDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet UIButton *nextButton;
+@property (weak, nonatomic) IBOutlet QBFlatButton *nextButton;
 
 @property (strong, nonatomic) NSArray *data;
 
@@ -43,9 +46,39 @@
     
     self.data = SAMPLE_SPORTS;
     
+    [self setAppearance];
+    [self setBackButton];
+}
+
+- (void)setBackButton
+{
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *backBtnImage = [UIImage imageNamed:@"arrow.png"]  ;
+    [backBtn setBackgroundImage:backBtnImage forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(goback) forControlEvents:UIControlEventTouchUpInside];
+    backBtn.frame = CGRectMake(0, 0, 49, 30);
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:backBtn] ;
+    self.navigationItem.leftBarButtonItem = backButton;
+}
+
+- (void)goback
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)setAppearance
+{
     self.title = @"CHOOSE YOUR SPORTS";
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iOS_blur.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_blur_light.png"]];
+    self.collectionView.backgroundColor = [UIColor clearColor];
+    
+    self.nextButton.faceColor = [MSColorFactory mainColor];
+    self.nextButton.sideColor = [MSColorFactory mainColorDark];
+    self.nextButton.titleLabel.font = [MSFontFactory fontForButton];
+    [self.nextButton setTitleShadowColor:[MSColorFactory mainColorShadow] forState:UIControlStateNormal];
+    self.nextButton.titleLabel.shadowOffset = CGSizeMake(0.2, 1.8);
+    [self.nextButton setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -86,7 +119,10 @@
     MSBigSportCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MSBigSportCell reusableIdentifier] forIndexPath:indexPath];
     
     cell.level = DEFAULT_SPORT_LEVEL;
-    cell.titleLabel.text = [self.data objectAtIndex:indexPath.item];
+    NSString *sport = [self.data objectAtIndex:indexPath.item];
+    cell.titleLabel.text = [sport uppercaseString];
+    cell.imageNameNormal = [sport stringByAppendingString:@".png"];
+    cell.imageNameSelected = [sport stringByAppendingString:@"_selected.png"];
     
     return cell;
 }

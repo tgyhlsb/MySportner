@@ -36,5 +36,9 @@
     return [UIFont fontWithName:@"Montserrat-Regular" size:15];
 }
 
++ (UIFont *)fontForCellTitle
+{
+    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:9.5];
+}
 
 @end

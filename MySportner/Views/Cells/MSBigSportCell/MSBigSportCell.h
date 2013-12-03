@@ -14,6 +14,9 @@
 
 @property (nonatomic) int level;
 
+@property (strong, nonatomic) NSString *imageNameNormal;
+@property (strong, nonatomic) NSString *imageNameSelected;
+
 + (void)registerToCollectionView:(UICollectionView *)collectionView;
 + (NSString *)reusableIdentifier;
 + (CGSize)size;

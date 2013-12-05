@@ -16,4 +16,9 @@
     self.layer.cornerRadius = self.frame.size.width / 2.0;
 }
 
+- (void)setCornerRadius:(CGFloat)radius
+{
+    self.layer.cornerRadius = radius;
+}
+
 @end

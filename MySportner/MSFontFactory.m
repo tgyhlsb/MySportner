@@ -23,13 +23,22 @@
 
 + (UIFont *)fontForNavigationTitle
 {
-    return [UIFont fontWithName:@"ProximaNova-Semibold" size:14];
+    return [UIFont fontWithName:@"Montserrat-Regular" size:14];
 }
 
 + (UIFont *)fontForButton
 {
-    return [UIFont fontWithName:@"ProximaNova-Semibold" size:18];
+    return [UIFont fontWithName:@"Montserrat-Regular" size:17];
 }
 
++ (UIFont *)fontForButtonLight
+{
+    return [UIFont fontWithName:@"Montserrat-Regular" size:15];
+}
+
++ (UIFont *)fontForCellTitle
+{
+    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:9.5];
+}
 
 @end

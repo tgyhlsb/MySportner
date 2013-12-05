@@ -19,6 +19,8 @@
 #import "MSColorFactory.h"
 #import "MSFontFactory.h"
 #import "MSTextField.h"
+#import "QBFlatButton.h"
+#import "MSNavigationVC.h"
 
 #define STORYBOARD_NAME @"Main"
 
@@ -47,7 +49,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     
-    UINavigationController *mainVC = [[UINavigationController alloc] initWithRootViewController:[MSWelcomeVC newController]];
+    MSNavigationVC *mainVC = [[MSNavigationVC alloc] initWithRootViewController:[MSWelcomeVC newController]];
     
     [self.window setRootViewController:mainVC];
     
@@ -58,23 +60,9 @@
 
 - (void)setAppearance
 {
-    NSShadow *titleShadow = [[NSShadow alloc] init];
-    titleShadow.shadowColor = [UIColor grayColor];
-    titleShadow.shadowOffset = CGSizeMake(0.5, 0.5);
-    NSDictionary *navbarTitleTextAttributes = @{
-                                                NSForegroundColorAttributeName:[MSColorFactory whiteLight],
-                                                NSShadowAttributeName:titleShadow,
-                                                UITextAttributeFont:[MSFontFactory fontForNavigationTitle]};
-    
-    [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
-    [[UINavigationBar appearance] setTintColor:[MSColorFactory whiteLight]];
-//    [[UINavigationBar appearance] setBackgroundColor:[MSColorFactory mainColor]];
-    [[UINavigationBar appearance] setBarTintColor:[MSColorFactory mainColor]];
     
     [[MSTextField appearance] setFont:[MSFontFactory fontForFormTextField]];
-    
-    [[UILabel appearanceWhenContainedIn:[UIButton class], nil] setShadowOffset:CGSizeMake(0, 2)];
-    [[UILabel appearanceWhenContainedIn:[UIButton class], nil] setFont:[MSFontFactory fontForButton]];
+
     
     
 }

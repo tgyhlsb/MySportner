@@ -13,6 +13,7 @@
 
 + (UIColor *)mainColor;
 + (UIColor *)mainColorDark;
++ (UIColor *)mainColorShadow;
 
 + (UIColor *)facebookColorLight;
 + (UIColor *)facebookColorDark;
@@ -22,6 +23,7 @@
 
 + (UIColor *)redLight;
 + (UIColor *)redDark;
++ (UIColor *)redShadow;
 
 + (UIColor *)navigationColorLight;
 + (UIColor *)navigationColorDark;
@@ -29,6 +31,8 @@
 + (UIColor *)backgroundColorGrayLight;
 
 + (UIColor *)gray;
++ (UIColor *)grayLight;
++ (UIColor *)grayExtraLight;
 
 
 @end

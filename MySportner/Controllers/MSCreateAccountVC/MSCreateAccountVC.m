@@ -67,6 +67,24 @@
     [self setFormViews];
     
     [self registerForKeyboardNotifications];
+    
+    [self setBackButton];
+}
+
+- (void)setBackButton
+{
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *backBtnImage = [UIImage imageNamed:@"arrow.png"]  ;
+    [backBtn setBackgroundImage:backBtnImage forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(goback) forControlEvents:UIControlEventTouchUpInside];
+    backBtn.frame = CGRectMake(0, 0, 49, 30);
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:backBtn] ;
+    self.navigationItem.leftBarButtonItem = backButton;
+}
+
+- (void)goback
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -77,18 +95,20 @@
 
 - (void)setFormViews
 {
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iOS_blur.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_blur_light.png"]];
     self.scrollView.backgroundColor = [UIColor clearColor];
     
     UIColor *focusBorderColor = [MSColorFactory redLight];
-    UIColor *textFieldTextColor = [MSColorFactory redLight];
+    UIColor *textFieldTextColorFocused = [MSColorFactory redLight];
+    UIColor *textFieldTextColorNormal = [MSColorFactory gray];
     
     self.firstnameTextField = [[MSTextField alloc] initWithFrame:CGRectMake(PADDING, PADDING, CONTROL_WIDTH_SMALL, CONTROL_HEIGHT)];
     self.firstnameTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.firstnameTextField.delegate = self;
     self.firstnameTextField.placeholder = PLACEHOLDER_FIRSTNAME;
     self.firstnameTextField.focusBorderColor = focusBorderColor;
-    self.firstnameTextField.textColor = textFieldTextColor;
+    self.firstnameTextField.textFocusedColor = textFieldTextColorFocused;
+    self.firstnameTextField.textNormalColor = textFieldTextColorNormal;
     [self.firstnameTextField initializeAppearanceWithShadow:YES];
     self.firstnameTextField.returnKeyType = UIReturnKeyNext;
     [self.scrollView addSubview:self.firstnameTextField];
@@ -98,7 +118,8 @@
     self.lastnameTextField.delegate = self;
     self.lastnameTextField.placeholder = PLACEHOLDER_LASTNAME;
     self.lastnameTextField.focusBorderColor = focusBorderColor;
-    self.lastnameTextField.textColor = textFieldTextColor;
+    self.lastnameTextField.textFocusedColor = textFieldTextColorFocused;
+    self.lastnameTextField.textNormalColor = textFieldTextColorNormal;
     [self.lastnameTextField initializeAppearanceWithShadow:YES];
     self.lastnameTextField.returnKeyType = UIReturnKeyNext;
     [self.scrollView addSubview:self.lastnameTextField];
@@ -108,7 +129,8 @@
     self.emailTextField.delegate = self;
     self.emailTextField.placeholder = PLACEHOLDER_EMAIL;
     self.emailTextField.focusBorderColor = focusBorderColor;
-    self.emailTextField.textColor = textFieldTextColor;
+    self.emailTextField.textFocusedColor = textFieldTextColorFocused;
+    self.emailTextField.textNormalColor = textFieldTextColorNormal;
     [self.emailTextField initializeAppearanceWithShadow:YES];
     //    self.emailTextField.font = [UIFont preferredFontForTextStyle:FONT_IDENTIFIER_TEXTFIELD];
     [self.emailTextField setKeyboardType:UIKeyboardTypeEmailAddress];
@@ -123,7 +145,8 @@
     self.passwordTextField.delegate = self;
     self.passwordTextField.placeholder = PLACEHOLDER_PASSWORD;
     self.passwordTextField.focusBorderColor = focusBorderColor;
-    self.passwordTextField.textColor = textFieldTextColor;
+    self.passwordTextField.textFocusedColor = textFieldTextColorFocused;
+    self.passwordTextField.textNormalColor = textFieldTextColorNormal;
     [self.passwordTextField initializeAppearanceWithShadow:YES];
     self.passwordTextField.returnKeyType = UIReturnKeyNext;
     //    self.passwordTextField.font = [UIFont preferredFontForTextStyle:FONT_IDENTIFIER_TEXTFIELD];
@@ -133,8 +156,12 @@
     [self.genderControl setTintColor:[MSColorFactory mainColor]];
     [self.genderControl setOnTintColor:[MSColorFactory redLight]];
     [self.genderControl setThumbTintColor:[MSColorFactory whiteLight]];
-    self.genderControl.leftText = @"M";
-    self.genderControl.rightText = @"F";
+    self.genderControl.leftLabel.text = @"F";
+    self.genderControl.rightLabel.text = @"M";
+    self.genderControl.leftLabel.shadowOffset = CGSizeMake(0.2, 1.8);
+    self.genderControl.rightLabel.shadowOffset = CGSizeMake(0.2, 1.8);
+    self.genderControl.leftLabel.shadowColor = [MSColorFactory mainColorShadow];
+    self.genderControl.rightLabel.shadowColor = [MSColorFactory redShadow];
     self.genderControl.textColor = [MSColorFactory whiteLight];
     self.genderControl.textFont = [MSFontFactory fontForButton];
     [self.scrollView addSubview:self.genderControl];
@@ -145,7 +172,8 @@
     self.birthdayTextField.delegate = self;
     self.birthdayTextField.placeholder = PLACEHOLDER_BIRTHDAY;
     self.birthdayTextField.focusBorderColor = focusBorderColor;
-    self.birthdayTextField.textColor = textFieldTextColor;
+    self.birthdayTextField.textFocusedColor = textFieldTextColorFocused;
+    self.birthdayTextField.textNormalColor = textFieldTextColorNormal;
     [self.birthdayTextField initializeAppearanceWithShadow:YES];
     //    self.birthdayTextField.font = [UIFont preferredFontForTextStyle:FONT_IDENTIFIER_TEXTFIELD];
     [self.scrollView addSubview:self.birthdayTextField];
@@ -166,6 +194,9 @@
     [self.nextButton addTarget:self action:@selector(nextButtonHandler) forControlEvents:UIControlEventTouchUpInside];
     self.nextButton.faceColor = [MSColorFactory mainColor];
     self.nextButton.sideColor = [MSColorFactory mainColorDark];
+    self.nextButton.titleLabel.font = [MSFontFactory fontForButton];
+    [self.nextButton setTitleShadowColor:[MSColorFactory mainColorShadow] forState:UIControlStateNormal];
+    self.nextButton.titleLabel.shadowOffset = CGSizeMake(0.2, 1.8);
     [self.nextButton setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
     [self.scrollView addSubview:self.nextButton];
     
@@ -181,7 +212,7 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
-                                   action:@selector(dismissKeyboard)];
+                                   action:@selector(closeAllResponders)];
     
     [self.view addGestureRecognizer:tap];
 }
@@ -189,7 +220,7 @@
 - (CGRect)nextButtonNormalFrame
 {
     CGRect screenBound = [[UIScreen mainScreen] bounds];
-    return CGRectMake(PADDING, screenBound.size.height-PADDING-CONTROL_HEIGHT-64, screenBound.size.width-PADDING*2, CONTROL_HEIGHT);
+    return CGRectMake(PADDING, screenBound.size.height-PADDING-CONTROL_HEIGHT-64, screenBound.size.width-PADDING*2, CONTROL_HEIGHT+10);
 }
 
 - (CGRect)nextButtonDownFrame
@@ -202,7 +233,6 @@
 {
     NSString *message = nil;
     NSString *title = @"Profile incomplete";
-    NSString *cancel = @"Cancel";
     
     if (![self.firstnameTextField.text length])
     {
@@ -233,11 +263,11 @@
     
     if (message && title)
     {
-        [[[UIAlertView alloc] initWithTitle:title
-                                    message:message
-                                   delegate:self
-                          cancelButtonTitle:cancel
-                          otherButtonTitles:nil] show];
+//        [[[UIAlertView alloc] initWithTitle:title
+//                                    message:message
+//                                   delegate:self
+//                          cancelButtonTitle:cancel
+//                          otherButtonTitles:nil] show];
         [self performTransitionToNextScreen];
     } else {
         [self performTransitionToNextScreen];
@@ -247,7 +277,8 @@
 
 - (void)pictureTapHandler
 {
-    [[[UIAlertView alloc] initWithTitle:@"Not available" message:@"This feature is coming up soon !" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    [self closeAllResponders];
+    //    [[[UIAlertView alloc] initWithTitle:@"Not available" message:@"This feature is coming up soon !" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
 #pragma mark UIAlertViewDelegate
@@ -310,7 +341,7 @@
     destinationVC.user.email = self.emailTextField.text;
     destinationVC.user.password = self.passwordTextField.text;
     destinationVC.user.birthday = self.datePicker.date;
-    destinationVC.user.gender = self.genderControl.isOn ? MSUserGenderMale : MSUserGenderFemale;
+    destinationVC.user.gender = self.genderControl.isOn ? MSUserGenderFemale : MSUserGenderMale;
     destinationVC.user.username = destinationVC.user.email;
     destinationVC.user.facebookID = FACEBOOK_DEFAULT_ID[destinationVC.user.gender]; // default IDs to get a fb picture according to your gender
     
@@ -333,6 +364,7 @@
         self.datePicker.maximumDate = [NSDate date];
         [self.scrollView insertSubview:self.datePicker belowSubview:self.birthdayTextField];
         [self.datePicker addTarget:self action:@selector(datePickerValueDidChange) forControlEvents:UIControlEventValueChanged];
+        //        [self.datePicker addTarget:self action:@selector(datePickerValueDidChange) forControlEvents:UIControlEventTouchDragInside];
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(datePickerDidTap)];
         
@@ -342,6 +374,16 @@
 }
 
 #pragma mark UITextFieldDelegate
+
+
+- (void)closeAllResponders
+{
+    [self.activeTextField resignFirstResponder];
+    if (!self.datePicker.hidden)
+    {
+        [self closeDatePicker];
+    }
+}
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
@@ -419,6 +461,7 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     self.activeTextField = nil;
+    textField.textColor = [MSColorFactory gray];
 }
 
 #pragma mark DatePicker Handler
@@ -469,11 +512,6 @@
     [UIView animateWithDuration:0.2 animations:^{
         self.scrollView.contentSize = CGSizeMake(320, self.scrollView.frame.size.height - 64);
     }];
-}
-
-- (void)dismissKeyboard
-{
-    [self.activeTextField resignFirstResponder];
 }
 
 @end

@@ -16,5 +16,7 @@
 + (UIFont *)fontForCommentLabel;
 + (UIFont *)fontForNavigationTitle;
 + (UIFont *)fontForButton;
++ (UIFont *)fontForButtonLight;
++ (UIFont *)fontForCellTitle;
 
 @end

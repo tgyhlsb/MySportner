@@ -22,17 +22,21 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="fUP-vL-mav">
-                        <size key="itemSize" width="130" height="130"/>
+                        <size key="itemSize" width="125" height="90"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="84"/>
+                        <inset key="sectionInset" minX="25" minY="20" maxX="25" maxY="90"/>
                     </collectionViewFlowLayout>
                     <cells/>
                 </collectionView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCe-cy-Uug">
-                    <rect key="frame" x="84" y="504" width="152" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCe-cy-Uug" customClass="QBFlatButton">
+                    <rect key="frame" x="25" y="498" width="270" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="bRt-g9-Ndz"/>
+                        <constraint firstAttribute="width" constant="270" id="ced-nJ-n7g"/>
+                    </constraints>
                     <state key="normal" title="NEXT">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -43,9 +47,11 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="KCe-cy-Uug" secondAttribute="bottom" constant="20" id="5lt-EI-x3B"/>
                 <constraint firstAttribute="trailing" secondItem="Ggk-7T-XJJ" secondAttribute="trailing" id="Jw8-wa-ezW"/>
                 <constraint firstItem="Ggk-7T-XJJ" firstAttribute="leading" secondItem="5bp-jd-HOJ" secondAttribute="leading" id="LNe-Su-Sky"/>
                 <constraint firstAttribute="bottom" secondItem="Ggk-7T-XJJ" secondAttribute="bottom" id="OH6-AA-61l"/>
+                <constraint firstAttribute="centerX" secondItem="KCe-cy-Uug" secondAttribute="centerX" id="Xd9-qH-jlI"/>
                 <constraint firstItem="Ggk-7T-XJJ" firstAttribute="top" secondItem="5bp-jd-HOJ" secondAttribute="top" id="amK-yt-XXY"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

@@ -42,7 +42,7 @@ typedef enum {
 @property (nonatomic, strong) UIColor *textColor;
 @property (nonatomic, strong) UIFont *textFont;
 
-@property (nonatomic, strong) NSString *leftText;
-@property (nonatomic, strong) NSString *rightText;
+@property (strong, nonatomic) UILabel *leftLabel;
+@property (strong, nonatomic) UILabel *rightLabel;
 
 @end

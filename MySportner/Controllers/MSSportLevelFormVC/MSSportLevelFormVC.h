@@ -13,6 +13,9 @@
 
 @property (nonatomic) int level;
 
-@property (nonatomic, strong) void (^closeBlock)(void);
+@property (nonatomic) BOOL showUnSelectButton;
+
+@property (nonatomic, strong) void (^doneBlock)(void);
+@property (nonatomic, strong) void (^unSelectBlock)(void);
 
 @end

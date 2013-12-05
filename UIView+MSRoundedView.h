@@ -12,4 +12,6 @@
 
 -(void)setRounded;
 
+- (void)setCornerRadius:(CGFloat)radius;
+
 @end

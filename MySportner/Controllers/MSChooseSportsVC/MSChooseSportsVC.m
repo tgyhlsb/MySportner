@@ -11,17 +11,21 @@
 #import "MSFindFriendsVC.h"
 #import "MZFormSheetController.h"
 #import "MSSportLevelFormVC.h"
+#import "QBFlatButton.h"
+#import "MSColorFactory.h"
+#import "MSFontFactory.h"
+#import "MSStyleFactory.h"
 
-#define SAMPLE_SPORTS @[@"Basket", @"Swimming", @"Running", @"Tennis", @"Soccer", @"FootBall", @"Nap"]
+#define SAMPLE_SPORTS @[@"foot", @"basketball", @"football", @"tennis", @"swimming", @"cycle", @"gym", @"rugby"]
 
-#define DEFAULT_SPORT_LEVEL 2
+#define DEFAULT_SPORT_LEVEL -1
 
 #define NIB_NAME @"MSChooseSportsVC"
 
 @interface MSChooseSportsVC () <UICollectionViewDataSource, UICollectionViewDelegate, MZFormSheetBackgroundWindowDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet UIButton *nextButton;
+@property (weak, nonatomic) IBOutlet QBFlatButton *nextButton;
 
 @property (strong, nonatomic) NSArray *data;
 
@@ -43,7 +47,34 @@
     
     self.data = SAMPLE_SPORTS;
     
+    [self setAppearance];
+    [self setBackButton];
+}
+
+- (void)setBackButton
+{
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *backBtnImage = [UIImage imageNamed:@"arrow.png"]  ;
+    [backBtn setBackgroundImage:backBtnImage forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(goback) forControlEvents:UIControlEventTouchUpInside];
+    backBtn.frame = CGRectMake(0, 0, 49, 30);
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:backBtn] ;
+    self.navigationItem.leftBarButtonItem = backButton;
+}
+
+- (void)goback
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)setAppearance
+{
     self.title = @"CHOOSE YOUR SPORTS";
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_blur_light.png"]];
+    self.collectionView.backgroundColor = [UIColor clearColor];
+    
+    [MSStyleFactory setQBFlatButton:self.nextButton withStyle:MSFlatButtonStyleGreen];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -84,7 +115,13 @@
     MSBigSportCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MSBigSportCell reusableIdentifier] forIndexPath:indexPath];
     
     cell.level = DEFAULT_SPORT_LEVEL;
-    cell.titleLabel.text = [self.data objectAtIndex:indexPath.item];
+    NSString *sport = [self.data objectAtIndex:indexPath.item];
+    cell.titleLabel.text = [sport uppercaseString];
+    cell.imageNameNormal = [sport stringByAppendingString:@".png"];
+    cell.imageNameSelected = [sport stringByAppendingString:@"(select).png"];
+    
+    cell.layer.shouldRasterize = YES;
+    cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
     
     return cell;
 }
@@ -93,16 +130,21 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self showSportLevelPickerControllerForIndexPath:indexPath];
+    [self showSportLevelPickerControllerForIndexPath:indexPath withUnSelectButton:NO];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self showSportLevelPickerControllerForIndexPath:indexPath withUnSelectButton:YES];
 }
 
 #pragma mark MZFormSheetBackgroundWindowDelegate
 
-- (void)showSportLevelPickerControllerForIndexPath:(NSIndexPath *)indexPath
+- (void)showSportLevelPickerControllerForIndexPath:(NSIndexPath *)indexPath withUnSelectButton:(BOOL)showUnSelectButton
 {
     MSSportLevelFormVC *vc = [MSSportLevelFormVC new];
     
-    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithSize:CGSizeMake(280, 350) viewController:vc];
     
     formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
     formSheet.shadowRadius = 2.0;
@@ -115,8 +157,14 @@
     
     __weak MSBigSportCell *weakSportCell = (MSBigSportCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
     __weak MSSportLevelFormVC *weakFormSheet = vc;
-    vc.closeBlock = ^{
+    
+    vc.doneBlock = ^{
         weakSportCell.level = weakFormSheet.level;
+        [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
+    };
+    
+    vc.unSelectBlock = ^{
+        weakSportCell.level = -1;
         [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
     };
     

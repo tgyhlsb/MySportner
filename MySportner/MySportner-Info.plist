@@ -41,6 +41,9 @@
 	<array>
 		<string>ProximaNova-Regular.otf</string>
 		<string>ProximaNova-Semibold.otf</string>
+		<string>ProximaNova-Bold.otf</string>
+		<string>Montserrat-Regular.ttf</string>
+		<string>Montserrat-Bold.ttf</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>

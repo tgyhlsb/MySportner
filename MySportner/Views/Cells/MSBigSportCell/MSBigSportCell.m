@@ -7,18 +7,34 @@
 //
 
 #import "MSBigSportCell.h"
+#import "UIView+MSRoundedView.h"
+#import "MSColorFactory.h"
+#import "MSFontFactory.h"
 
 #define IDENTIFIER @"MSBigSportCell"
 #define HEIGHT 130
 #define WIDTH 130
 
+#define BACKGROUND_COLOR_NORMAL [MSColorFactory grayExtraLight]
+#define BACKGROUND_COLOR_SELECTED [MSColorFactory redLight]
+#define TEXT_COLOR_NORMAL [MSColorFactory grayLight]
+#define TEXT_COLOR_SELECTED [MSColorFactory whiteLight]
+
 @interface MSBigSportCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *sportLevelLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 
 @end
 
 @implementation MSBigSportCell
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    [self setAppearance];
+}
 
 + (void)registerToCollectionView:(UICollectionView *)collectionView
 {
@@ -31,6 +47,41 @@
     return IDENTIFIER;
 }
 
+- (void)setAppearance
+{
+    [self setCornerRadius:3.0];
+    
+    self.clipsToBounds = NO;
+    [self.layer setShadowColor:[[UIColor blackColor] CGColor]];
+    [self.layer setShadowRadius:0.5f];
+    [self.layer setShadowOffset:CGSizeMake(0.1, 1)];
+    [self.layer setShadowOpacity:0.07f];
+    
+    self.titleLabel.font = [MSFontFactory fontForCellTitle];
+    
+    self.backgroundColor = BACKGROUND_COLOR_NORMAL;
+    
+    self.titleLabel.textColor = TEXT_COLOR_NORMAL;
+}
+
+- (void)setImageNameNormal:(NSString *)imageNameNormal
+{
+    _imageNameNormal = imageNameNormal;
+    
+    if (!self.selected) {
+        self.iconImageView.image = [UIImage imageNamed:_imageNameNormal];
+    }
+}
+
+- (void)setImageNameSelected:(NSString *)imageNameSelected
+{
+    _imageNameSelected = imageNameSelected;
+    
+    if (self.selected) {
+        self.iconImageView.image = [UIImage imageNamed:_imageNameSelected];
+    }
+}
+
 + (CGSize)size
 {
     return CGSizeMake(WIDTH, HEIGHT);
@@ -41,22 +92,25 @@
     _level = level;
     
     self.sportLevelLabel.text = [NSString stringWithFormat:@"%d", level];
+    
+    if (level >= 0)
+    {
+        self.backgroundColor = BACKGROUND_COLOR_SELECTED;
+        self.titleLabel.textColor = TEXT_COLOR_SELECTED;
+        self.iconImageView.image = [UIImage imageNamed:self.imageNameSelected];
+    }
+    else
+    {
+        self.backgroundColor = BACKGROUND_COLOR_NORMAL;
+        self.titleLabel.textColor = TEXT_COLOR_NORMAL;
+        self.iconImageView.image = [UIImage imageNamed:self.imageNameNormal];
+    }
 }
 
 - (void)setSelected:(BOOL)selected
 {
-//    [super setSelected:rselected];
-    
-    self.sportLevelLabel.hidden = !selected;
-    
-    if (selected)
-    {
-        self.backgroundColor = [UIColor yellowColor];
-    }
-    else
-    {
-        self.backgroundColor = [UIColor grayColor];
-    }
+    //[super setSelected:selected];
+    // do nothing
 }
 
 

@@ -37,6 +37,18 @@
             button.backgroundColor = [UIColor clearColor];
             break;
         }
+        case MSFlatButtonStyleRoundedGreen:
+        {
+//            button.faceColor = [MSColorFactory mainColor];
+//            button.sideColor = [MSColorFactory mainColorDark];
+//            button.titleLabel.font = [MSFontFactory fontForButton];
+//            [button setTitleShadowColor:[MSColorFactory mainColorShadow] forState:UIControlStateNormal];
+//            button.titleLabel.shadowOffset = CGSizeMake(0.2, 1.8);
+//            [button setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
+//            button.backgroundColor = [UIColor clearColor];
+//            button.radius = button.frame.size.width/2;
+            break;
+        }
         case MSFlatButtonStyleWhite:
         {
             button.faceColor = [MSColorFactory whiteLight];

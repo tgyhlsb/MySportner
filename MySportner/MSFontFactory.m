@@ -36,9 +36,19 @@
     return [UIFont fontWithName:@"Montserrat-Regular" size:15];
 }
 
-+ (UIFont *)fontForCellTitle
++ (UIFont *)fontForCellSportTitle
 {
     return [UIFont fontWithName:@"ProximaNova-SemiBold" size:9.5];
+}
+
++ (UIFont *)fontForCellInfo
+{
+    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:9.5];
+}
+
++ (UIFont *)fontForCellAcivityTitle
+{
+    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:15];
 }
 
 @end

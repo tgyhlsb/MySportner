@@ -156,6 +156,12 @@
 		5AFE688818507BE300E40541 /* tennis(select).png in Resources */ = {isa = PBXBuildFile; fileRef = 5AFE686818507BE300E40541 /* tennis(select).png */; };
 		5AFE688918507BE300E40541 /* tennis(select)@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AFE686918507BE300E40541 /* tennis(select)@2x.png */; };
 		5AFE688A18507BE300E40541 /* tennis@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AFE686A18507BE300E40541 /* tennis@2x.png */; };
+		5AFE688D1850883500E40541 /* vertical_gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AFE688B1850883500E40541 /* vertical_gradient.png */; };
+		5AFE688E1850883500E40541 /* vertical_gradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AFE688C1850883500E40541 /* vertical_gradient@2x.png */; };
+		5AFE68911850897D00E40541 /* plus_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AFE688F1850897D00E40541 /* plus_button.png */; };
+		5AFE68921850897D00E40541 /* plus_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AFE68901850897D00E40541 /* plus_button@2x.png */; };
+		5AFE689518508EAC00E40541 /* plus_button_press.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AFE689318508EAC00E40541 /* plus_button_press.png */; };
+		5AFE689618508EAC00E40541 /* plus_button_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AFE689418508EAC00E40541 /* plus_button_press@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -378,6 +384,12 @@
 		5AFE686818507BE300E40541 /* tennis(select).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tennis(select).png"; sourceTree = "<group>"; };
 		5AFE686918507BE300E40541 /* tennis(select)@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tennis(select)@2x.png"; sourceTree = "<group>"; };
 		5AFE686A18507BE300E40541 /* tennis@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tennis@2x.png"; sourceTree = "<group>"; };
+		5AFE688B1850883500E40541 /* vertical_gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vertical_gradient.png; path = Images/vertical_gradient.png; sourceTree = "<group>"; };
+		5AFE688C1850883500E40541 /* vertical_gradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vertical_gradient@2x.png"; path = "Images/vertical_gradient@2x.png"; sourceTree = "<group>"; };
+		5AFE688F1850897D00E40541 /* plus_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus_button.png; path = Images/plus_button.png; sourceTree = "<group>"; };
+		5AFE68901850897D00E40541 /* plus_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plus_button@2x.png"; path = "Images/plus_button@2x.png"; sourceTree = "<group>"; };
+		5AFE689318508EAC00E40541 /* plus_button_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus_button_press.png; path = Images/plus_button_press.png; sourceTree = "<group>"; };
+		5AFE689418508EAC00E40541 /* plus_button_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plus_button_press@2x.png"; path = "Images/plus_button_press@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -534,6 +546,12 @@
 		5AD1FC5418472AE1001D3DFE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5AFE689318508EAC00E40541 /* plus_button_press.png */,
+				5AFE689418508EAC00E40541 /* plus_button_press@2x.png */,
+				5AFE688F1850897D00E40541 /* plus_button.png */,
+				5AFE68901850897D00E40541 /* plus_button@2x.png */,
+				5AFE688B1850883500E40541 /* vertical_gradient.png */,
+				5AFE688C1850883500E40541 /* vertical_gradient@2x.png */,
 				5AFE682A1850774B00E40541 /* Icons */,
 				5A2B1BB8184BF21100413B01 /* arrow.png */,
 				5A2B1BB9184BF21100413B01 /* arrow@2x.png */,
@@ -1068,6 +1086,7 @@
 				5AFE687C18507BE300E40541 /* gym(select).png in Resources */,
 				5AA60A02184B549C00B09ADD /* ProximaNova-Regular.otf in Resources */,
 				5ADCF2E71840D23A00E6C8D2 /* MSTextFieldPickerCell.xib in Resources */,
+				5AFE689518508EAC00E40541 /* plus_button_press.png in Resources */,
 				5ADCF2A518401E2800E6C8D2 /* MSSetAGameVC.xib in Resources */,
 				5AFE687D18507BE300E40541 /* gym(select)@2x.png in Resources */,
 				5AA60A05184B56BD00B09ADD /* iOS_blur.png in Resources */,
@@ -1084,6 +1103,7 @@
 				5ADCF2CF1840B50D00E6C8D2 /* MSActivitiesFilterCell.xib in Resources */,
 				5AFE687A18507BE300E40541 /* football@2x.png in Resources */,
 				5A299A8F184BE8B100005733 /* back_button@2x.png in Resources */,
+				5AFE688D1850883500E40541 /* vertical_gradient.png in Resources */,
 				5ADCF22F184004D300E6C8D2 /* InfoPlist.strings in Resources */,
 				5ADCF2851840141700E6C8D2 /* MSProfileVC.xib in Resources */,
 				5ADCF2D51840BA7600E6C8D2 /* MSPickSportCell.xib in Resources */,
@@ -1095,6 +1115,7 @@
 				5A2B1BBF184BF90A00413B01 /* Montserrat-Regular.ttf in Resources */,
 				5A1B73791844AC3500555FE4 /* MSLoginFormVC.xib in Resources */,
 				5AA60A08184B5A3100B09ADD /* pick_a_pic.png in Resources */,
+				5AFE68921850897D00E40541 /* plus_button@2x.png in Resources */,
 				5AFE688918507BE300E40541 /* tennis(select)@2x.png in Resources */,
 				5A2B1BBE184BF90A00413B01 /* Montserrat-Bold.ttf in Resources */,
 				5ADCF29E18401D2300E6C8D2 /* MSNotificationsVC.xib in Resources */,
@@ -1119,18 +1140,21 @@
 				5ADCF2B818402CC500E6C8D2 /* MSActivityCell.xib in Resources */,
 				5AFE687B18507BE300E40541 /* gym.png in Resources */,
 				5A29CAF118491F82002A8B60 /* unSelected.png in Resources */,
+				5AFE68911850897D00E40541 /* plus_button.png in Resources */,
 				5AFE43F218426ABD001376C7 /* MSChooseSportsVC.xib in Resources */,
 				5AFE688A18507BE300E40541 /* tennis@2x.png in Resources */,
 				5A299A83184BDF9A00005733 /* ProximaNova-Bold.otf in Resources */,
 				5A2B1BBA184BF21100413B01 /* arrow.png in Resources */,
 				5AFE688418507BE300E40541 /* swimming(select).png in Resources */,
 				5AFE687718507BE300E40541 /* football.png in Resources */,
+				5AFE689618508EAC00E40541 /* plus_button_press@2x.png in Resources */,
 				5ADCF238184004D300E6C8D2 /* Main.storyboard in Resources */,
 				5AFE686C18507BE300E40541 /* basketball(select).png in Resources */,
 				5AFE686E18507BE300E40541 /* basketball@2x.png in Resources */,
 				5AA60A0A184B623B00B09ADD /* ProximaNova-Semibold.otf in Resources */,
 				5A2B1BBB184BF21100413B01 /* arrow@2x.png in Resources */,
 				5AFE688818507BE300E40541 /* tennis(select).png in Resources */,
+				5AFE688E1850883500E40541 /* vertical_gradient@2x.png in Resources */,
 				5AFE687F18507BE300E40541 /* rugby.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

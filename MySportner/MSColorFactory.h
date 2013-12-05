@@ -33,6 +33,7 @@
 + (UIColor *)gray;
 + (UIColor *)grayLight;
 + (UIColor *)grayExtraLight;
++ (UIColor *)grayDark;
 
 
 @end

@@ -10,6 +10,7 @@
 #import "UIView+MSRoundedView.h"
 #import "QBFlatButton.h"
 #import "MSColorFactory.h"
+#import "MSFontFactory.h"
 
 
 #define IDENTIFIER @"MSActivityCell"
@@ -37,12 +38,20 @@
 {
     if (highlighted) {
         self.backgroundColor = [MSColorFactory redDark];
+        self.roundView.backgroundColor = [MSColorFactory whiteLight];
+        self.titleLabel.textColor = [MSColorFactory whiteLight];
+        self.ownerNameLabel.textColor = [MSColorFactory whiteLight];
+        self.ownerNameLabel.textColor = [MSColorFactory whiteLight];
     } else {
         if (self.oddIndex) {
             self.backgroundColor = [MSColorFactory backgroundColorGrayLight];
         } else {
             self.backgroundColor = [MSColorFactory whiteLight];
         }
+        self.roundView.backgroundColor = [MSColorFactory redLight];
+        self.titleLabel.textColor = [MSColorFactory redLight];
+        self.ownerNameLabel.textColor = [MSColorFactory grayDark];
+        self.placeLabel.textColor = [MSColorFactory grayDark];
     }
     
 }
@@ -56,6 +65,10 @@
     self.ownerProfilePictureView.backgroundColor = [UIColor clearColor];
     
     self.titleLabel.textColor = [MSColorFactory redLight];
+    
+    self.ownerNameLabel.font = [MSFontFactory fontForCellInfo];
+    self.placeLabel.font = [MSFontFactory fontForCellInfo];
+    self.titleLabel.font = [MSFontFactory fontForCellAcivityTitle];
     
     self.actionButton.faceColor = [MSColorFactory redLight];
     self.actionButton.margin = 0.0f;

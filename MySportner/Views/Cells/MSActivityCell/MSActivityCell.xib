@@ -15,10 +15,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BhG-Xk-CXe">
-                        <rect key="frame" x="105" y="10" width="159" height="21"/>
+                        <rect key="frame" x="105" y="16" width="159" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="GHY-0O-Jzw"/>
+                            <constraint firstAttribute="height" constant="20" id="GHY-0O-Jzw"/>
                             <constraint firstAttribute="width" constant="159" id="jS0-rL-ejb"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -26,7 +26,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iep-Lb-jk0">
-                        <rect key="frame" x="115" y="33" width="140" height="21"/>
+                        <rect key="frame" x="115" y="31" width="140" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="bTQ-Ue-4e9"/>
@@ -58,16 +58,16 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPI-uc-l8w" customClass="FBProfilePictureView">
-                        <rect key="frame" x="105" y="60" width="20" height="20"/>
+                        <rect key="frame" x="105" y="55" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="20" id="6Dq-O1-ynj"/>
-                            <constraint firstAttribute="height" constant="20" id="uPT-j0-J0M"/>
+                            <constraint firstAttribute="width" constant="25" id="6Dq-O1-ynj"/>
+                            <constraint firstAttribute="height" constant="25" id="uPT-j0-J0M"/>
                         </constraints>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4d-ez-VOC">
-                        <rect key="frame" x="133" y="60" width="120" height="20"/>
+                        <rect key="frame" x="135" y="58" width="120" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="OAf-1L-czO"/>
@@ -83,15 +83,15 @@
                     <constraint firstItem="gDv-H3-aVW" firstAttribute="leading" secondItem="iep-Lb-jk0" secondAttribute="trailing" constant="5" id="1ii-VH-FBn"/>
                     <constraint firstItem="ZLf-TH-5q0" firstAttribute="top" secondItem="mF4-Fg-SOQ" secondAttribute="top" constant="15" id="38d-kf-7fa"/>
                     <constraint firstAttribute="bottom" secondItem="ZLf-TH-5q0" secondAttribute="bottom" constant="15" id="3E9-P3-3Mv"/>
-                    <constraint firstAttribute="bottom" secondItem="y4d-ez-VOC" secondAttribute="bottom" constant="20" id="73J-x7-EZV"/>
+                    <constraint firstAttribute="bottom" secondItem="y4d-ez-VOC" secondAttribute="bottom" constant="22" id="73J-x7-EZV"/>
                     <constraint firstItem="fPI-uc-l8w" firstAttribute="leading" secondItem="ZLf-TH-5q0" secondAttribute="trailing" constant="15" id="8DS-pw-gun"/>
                     <constraint firstAttribute="bottom" secondItem="fPI-uc-l8w" secondAttribute="bottom" constant="20" id="DL0-cF-qmI"/>
                     <constraint firstAttribute="trailing" secondItem="gDv-H3-aVW" secondAttribute="trailing" constant="10" id="M3d-0n-EYe"/>
                     <constraint firstItem="iep-Lb-jk0" firstAttribute="leading" secondItem="ZLf-TH-5q0" secondAttribute="trailing" constant="25" id="Uij-Cr-CMj"/>
-                    <constraint firstItem="y4d-ez-VOC" firstAttribute="leading" secondItem="fPI-uc-l8w" secondAttribute="trailing" constant="8" id="VZc-Qh-sFh"/>
+                    <constraint firstItem="y4d-ez-VOC" firstAttribute="leading" secondItem="fPI-uc-l8w" secondAttribute="trailing" constant="5" id="VZc-Qh-sFh"/>
                     <constraint firstAttribute="centerY" secondItem="gDv-H3-aVW" secondAttribute="centerY" id="XmH-gq-Kya"/>
-                    <constraint firstItem="BhG-Xk-CXe" firstAttribute="top" secondItem="mF4-Fg-SOQ" secondAttribute="top" constant="10" id="XvL-hk-QbL"/>
-                    <constraint firstItem="iep-Lb-jk0" firstAttribute="top" secondItem="BhG-Xk-CXe" secondAttribute="bottom" constant="2" id="ckj-Lp-bC5"/>
+                    <constraint firstItem="BhG-Xk-CXe" firstAttribute="top" secondItem="mF4-Fg-SOQ" secondAttribute="top" constant="16" id="XvL-hk-QbL"/>
+                    <constraint firstItem="iep-Lb-jk0" firstAttribute="top" secondItem="BhG-Xk-CXe" secondAttribute="bottom" constant="-5" id="ckj-Lp-bC5"/>
                     <constraint firstItem="ZLf-TH-5q0" firstAttribute="leading" secondItem="mF4-Fg-SOQ" secondAttribute="leading" constant="20" id="riS-ad-j60"/>
                 </constraints>
             </tableViewCellContentView>

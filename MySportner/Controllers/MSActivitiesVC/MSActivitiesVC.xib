@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSActivitiesVC">
             <connections>
+                <outlet property="plusButton" destination="Mxj-DB-u2K" id="j5J-wg-DCw"/>
                 <outlet property="tableView" destination="rTi-kP-ZFE" id="Wcp-BP-1yU"/>
                 <outlet property="view" destination="kML-8h-3qq" id="EIW-pz-zzh"/>
             </connections>
@@ -21,9 +22,37 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vertical_gradient.png" translatesAutoresizingMaskIntoConstraints="NO" id="kzu-5Q-tQn">
+                    <rect key="frame" x="0.0" y="368" width="320" height="200"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="GOs-dd-XZD"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxj-DB-u2K">
+                    <rect key="frame" x="130" y="488" width="60" height="60"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="O7l-rs-Ygl"/>
+                        <constraint firstAttribute="height" constant="60" id="vOM-VK-J8X"/>
+                    </constraints>
+                    <state key="normal" title="+">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="kzu-5Q-tQn" firstAttribute="leading" secondItem="kML-8h-3qq" secondAttribute="leading" id="34t-ET-oZV"/>
+                <constraint firstAttribute="trailing" secondItem="kzu-5Q-tQn" secondAttribute="trailing" id="OoB-qH-53J"/>
+                <constraint firstAttribute="bottom" secondItem="Mxj-DB-u2K" secondAttribute="bottom" constant="20" id="cZz-JD-Ii6"/>
+                <constraint firstAttribute="bottom" secondItem="kzu-5Q-tQn" secondAttribute="bottom" id="psu-O1-v8S"/>
+                <constraint firstAttribute="centerX" secondItem="Mxj-DB-u2K" secondAttribute="centerX" id="s8N-bX-9pE"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="vertical_gradient.png" width="320" height="153"/>
+    </resources>
 </document>

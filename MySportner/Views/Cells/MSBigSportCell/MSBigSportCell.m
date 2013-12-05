@@ -57,7 +57,7 @@
     [self.layer setShadowOffset:CGSizeMake(0.1, 1)];
     [self.layer setShadowOpacity:0.07f];
     
-    self.titleLabel.font = [MSFontFactory fontForCellTitle];
+    self.titleLabel.font = [MSFontFactory fontForCellSportTitle];
     
     self.backgroundColor = BACKGROUND_COLOR_NORMAL;
     

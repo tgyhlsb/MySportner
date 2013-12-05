@@ -14,6 +14,8 @@
 #import "MSActivitiesFilterCell.h"
 #import "MSActivityVC.h"
 #import "MBProgressHUD.h"
+#import "QBFlatButton.h"
+#import "MSStyleFactory.h"
 //#import <FacebookSDK/FacebookSDK.h>
 
 #define NIB_NAME @"MSActivitiesVC"
@@ -21,6 +23,7 @@
 @interface MSActivitiesVC () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) MBProgressHUD *loadingView;
+@property (weak, nonatomic) IBOutlet UIButton *plusButton;
 
 @property (strong, nonatomic) NSArray *data;
 
@@ -41,25 +44,13 @@
     
     [MSActivityCell registerToTableview:self.tableView];
     [MSActivitiesFilterCell registerToTableView:self.tableView];
+    
+    [self setAppearance];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-}
-
-- (void)generateSampleData
-{
-    NSMutableArray *tempData = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 20; i++)
-    {
-        MSActivity *activity = [[MSActivity alloc] init];
-        activity.sport = @"Tennis Match";
-        activity.place = @"Paris, France";
-        [tempData addObject:activity];
-    }
-    self.data = tempData;
-    [self reloadData];
 }
 
 - (void)reloadData
@@ -74,6 +65,13 @@
     return activitiesVC;
 }
 
+- (void)setAppearance
+{
+    
+    [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button.png"] forState:UIControlStateNormal];
+    [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button_press.png"] forState:UIControlStateHighlighted|UIControlStateHighlighted];
+    [self.plusButton setTitle:@"" forState:UIControlStateNormal];
+}
 
 #pragma mark Back end process
 
@@ -117,34 +115,32 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
-        case 0:
-            return 1;
-        case 1:
-            return [self.data count];
+//        case 0:
+//            return 1;
             
         default:
-            return 0;
+            return [self.data count];
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section) {
-        case 0:
-        {
-            NSString *identifier = [MSActivitiesFilterCell reusableIdentifier];
-            MSActivitiesFilterCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-            
-            [cell setAppearance];
-            
-            return cell;
-        }
+//        case 0:
+//        {
+//            NSString *identifier = [MSActivitiesFilterCell reusableIdentifier];
+//            MSActivitiesFilterCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+//            
+//            [cell setAppearance];
+//            
+//            return cell;
+//        }
             
         default:
         {
@@ -171,13 +167,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section) {
-        case 0:
-            return [MSActivitiesFilterCell height];
-        case 1:
-            return [MSActivityCell height];
+//        case 0:
+//            return [MSActivitiesFilterCell height];
             
         default:
-            return 0;
+            return [MSActivityCell height];
     }
 }
 

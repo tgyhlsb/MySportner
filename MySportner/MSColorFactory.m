@@ -90,4 +90,9 @@
     return [UIColor colorWithRed:0.97f green:0.97f blue:0.97f alpha:1.00f];
 }
 
++ (UIColor *)grayDark
+{
+    return [UIColor colorWithRed:0.31f green:0.36f blue:0.40f alpha:1.00f];
+}
+
 @end

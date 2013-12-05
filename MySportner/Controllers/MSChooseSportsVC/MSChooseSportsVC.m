@@ -16,9 +16,9 @@
 #import "MSFontFactory.h"
 #import "MSStyleFactory.h"
 
-#define SAMPLE_SPORTS @[@"soccer", @"basketball", @"football", @"Tennis", @"Swimming", @"Cycle Racing", @"Nap", @"BodyBuilding"]
+#define SAMPLE_SPORTS @[@"foot", @"basketball", @"football", @"tennis", @"swimming", @"cycle", @"gym", @"rugby"]
 
-#define DEFAULT_SPORT_LEVEL 2
+#define DEFAULT_SPORT_LEVEL -1
 
 #define NIB_NAME @"MSChooseSportsVC"
 
@@ -118,7 +118,10 @@
     NSString *sport = [self.data objectAtIndex:indexPath.item];
     cell.titleLabel.text = [sport uppercaseString];
     cell.imageNameNormal = [sport stringByAppendingString:@".png"];
-    cell.imageNameSelected = [sport stringByAppendingString:@"_selected.png"];
+    cell.imageNameSelected = [sport stringByAppendingString:@"(select).png"];
+    
+    cell.layer.shouldRasterize = YES;
+    cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
     
     return cell;
 }
@@ -127,12 +130,17 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self showSportLevelPickerControllerForIndexPath:indexPath];
+    [self showSportLevelPickerControllerForIndexPath:indexPath withUnSelectButton:NO];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self showSportLevelPickerControllerForIndexPath:indexPath withUnSelectButton:YES];
 }
 
 #pragma mark MZFormSheetBackgroundWindowDelegate
 
-- (void)showSportLevelPickerControllerForIndexPath:(NSIndexPath *)indexPath
+- (void)showSportLevelPickerControllerForIndexPath:(NSIndexPath *)indexPath withUnSelectButton:(BOOL)showUnSelectButton
 {
     MSSportLevelFormVC *vc = [MSSportLevelFormVC new];
     
@@ -149,8 +157,14 @@
     
     __weak MSBigSportCell *weakSportCell = (MSBigSportCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
     __weak MSSportLevelFormVC *weakFormSheet = vc;
-    vc.closeBlock = ^{
+    
+    vc.doneBlock = ^{
         weakSportCell.level = weakFormSheet.level;
+        [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
+    };
+    
+    vc.unSelectBlock = ^{
+        weakSportCell.level = -1;
         [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
     };
     

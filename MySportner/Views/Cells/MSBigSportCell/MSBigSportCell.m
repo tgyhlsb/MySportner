@@ -92,13 +92,8 @@
     _level = level;
     
     self.sportLevelLabel.text = [NSString stringWithFormat:@"%d", level];
-}
-
-- (void)setSelected:(BOOL)selected
-{
-    [super setSelected:selected];
     
-    if (selected)
+    if (level >= 0)
     {
         self.backgroundColor = BACKGROUND_COLOR_SELECTED;
         self.titleLabel.textColor = TEXT_COLOR_SELECTED;
@@ -110,6 +105,12 @@
         self.titleLabel.textColor = TEXT_COLOR_NORMAL;
         self.iconImageView.image = [UIImage imageNamed:self.imageNameNormal];
     }
+}
+
+- (void)setSelected:(BOOL)selected
+{
+    //[super setSelected:selected];
+    // do nothing
 }
 
 

@@ -14,6 +14,8 @@
 #define LEVEL_STATUS @[@"BEGINNER", @"CASUAL", @"INTERMEDIATE", @"GOOD", @"PRO"]
 #define LEVEL_COMMENTS @[@"I have never played", @"I played few times", @"I Think I'm good enough", @"I'll handle this", @"Trust me..."]
 
+#define DEFAULT_LEVEL 2
+
 
 @interface MSSportLevelFormVC () <RatingViewDelegate>
 
@@ -70,24 +72,47 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
 
     });
-    if (!self.showUnSelectButton) {
-        self.doneButton.frame = self.unSelectButton.frame;
+    
+    if (!_showUnSelectButton) {
+        self.doneButton.frame = CGRectMake(0, 0, 200, 50);
         self.unSelectButton.hidden = YES;
     }
 }
 
 - (void)setLevel:(int)level
 {
-    _level = level;
+    if (level >= 0) {
+        _level = level;
+        self.showUnSelectButton = YES;
+    } else {
+        _level = DEFAULT_LEVEL;
+        self.showUnSelectButton = NO;
+    }
     
     self.levelLabel.text = [LEVEL_STATUS objectAtIndex:_level];
     self.commentLabel.text = [LEVEL_COMMENTS objectAtIndex:_level];
 }
 
+- (void)setShowUnSelectButton:(BOOL)showUnSelectButton
+{
+    _showUnSelectButton = showUnSelectButton;
+    
+    if (!_showUnSelectButton) {
+        self.doneButton.frame = CGRectMake(0, 0, 200, 50);
+        self.unSelectButton.hidden = YES;
+    }
+}
+
 - (IBAction)validateButtonPress:(UIButton *)sender
 {
-    if (self.closeBlock) {
-        self.closeBlock();
+    if (self.doneBlock) {
+        self.doneBlock();
+    }
+}
+- (IBAction)unSelectButtonPress:(QBFlatButton *)sender
+{
+    if (self.unSelectBlock) {
+        self.unSelectBlock();
     }
 }
 

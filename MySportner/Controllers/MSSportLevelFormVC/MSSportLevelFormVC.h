@@ -15,6 +15,7 @@
 
 @property (nonatomic) BOOL showUnSelectButton;
 
-@property (nonatomic, strong) void (^closeBlock)(void);
+@property (nonatomic, strong) void (^doneBlock)(void);
+@property (nonatomic, strong) void (^unSelectBlock)(void);
 
 @end

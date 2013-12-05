@@ -8,6 +8,8 @@
 
 #import "MSSportLevelFormVC.h"
 #import "RatingView.h"
+#import "QBFlatButton.h"
+#import "MSStyleFactory.h"
 
 #define LEVEL_STATUS @[@"BEGINNER", @"CASUAL", @"INTERMEDIATE", @"GOOD", @"PRO"]
 #define LEVEL_COMMENTS @[@"I have never played", @"I played few times", @"I Think I'm good enough", @"I'll handle this", @"Trust me..."]
@@ -19,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIView *tempRatingView;
 @property (weak, nonatomic) IBOutlet UILabel *levelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+@property (weak, nonatomic) IBOutlet QBFlatButton *unSelectButton;
+@property (weak, nonatomic) IBOutlet QBFlatButton *doneButton;
 
 @property (strong, nonatomic) RatingView *ratingView;
 
@@ -32,6 +36,18 @@
     
     self.navigationBar.topItem.title = @"CHOOSE YOUR LEVEL";
     self.tempRatingView.hidden = YES;
+    
+    [self setAppearance];
+    
+}
+
+- (void)setAppearance
+{
+    [MSStyleFactory setQBFlatButton:self.doneButton withStyle:MSFlatButtonStyleGreen];
+    [self.doneButton setTitle:@"DONE" forState:UIControlStateNormal];
+    
+    [MSStyleFactory setQBFlatButton:self.unSelectButton withStyle:MSFlatButtonStyleRed];
+    [self.unSelectButton setTitle:@"UNSELECT" forState:UIControlStateNormal];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -48,6 +64,16 @@
     self.ratingView.delegate = self;
     self.ratingView.value = self.level + 1;
     [self.view addSubview:self.ratingView];
+    
+    double delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+
+    });
+    if (!self.showUnSelectButton) {
+        self.doneButton.frame = self.unSelectButton.frame;
+        self.unSelectButton.hidden = YES;
+    }
 }
 
 - (void)setLevel:(int)level

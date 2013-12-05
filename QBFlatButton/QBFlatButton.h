@@ -25,4 +25,5 @@
 - (UIColor *)faceColorForState:(UIControlState)state;
 - (UIColor *)sideColorForState:(UIControlState)state;
 
+
 @end

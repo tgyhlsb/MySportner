@@ -14,6 +14,7 @@
 #import "QBFlatButton.h"
 #import "MSColorFactory.h"
 #import "MSFontFactory.h"
+#import "MSStyleFactory.h"
 
 #define SAMPLE_SPORTS @[@"soccer", @"basketball", @"football", @"Tennis", @"Swimming", @"Cycle Racing", @"Nap", @"BodyBuilding"]
 
@@ -73,12 +74,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_blur_light.png"]];
     self.collectionView.backgroundColor = [UIColor clearColor];
     
-    self.nextButton.faceColor = [MSColorFactory mainColor];
-    self.nextButton.sideColor = [MSColorFactory mainColorDark];
-    self.nextButton.titleLabel.font = [MSFontFactory fontForButton];
-    [self.nextButton setTitleShadowColor:[MSColorFactory mainColorShadow] forState:UIControlStateNormal];
-    self.nextButton.titleLabel.shadowOffset = CGSizeMake(0.2, 1.8);
-    [self.nextButton setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
+    [MSStyleFactory setQBFlatButton:self.nextButton withStyle:MSFlatButtonStyleGreen];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -140,7 +136,7 @@
 {
     MSSportLevelFormVC *vc = [MSSportLevelFormVC new];
     
-    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithSize:CGSizeMake(280, 350) viewController:vc];
     
     formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
     formSheet.shadowRadius = 2.0;

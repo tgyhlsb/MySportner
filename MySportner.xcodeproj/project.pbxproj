@@ -23,6 +23,7 @@
 		5A21001A184E3C7900CDF460 /* soccer.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A210016184E3C7900CDF460 /* soccer.png */; };
 		5A21001B184E3C7900CDF460 /* swimming.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A210017184E3C7900CDF460 /* swimming.png */; };
 		5A21001D184E3DEF00CDF460 /* swimming_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A21001C184E3DEF00CDF460 /* swimming_selected.png */; };
+		5A210020184E421800CDF460 /* MSStyleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A21001F184E421800CDF460 /* MSStyleFactory.m */; };
 		5A299A83184BDF9A00005733 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5A299A82184BDF1400005733 /* ProximaNova-Bold.otf */; };
 		5A299A8E184BE8B100005733 /* back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A299A8C184BE8B100005733 /* back_button.png */; };
 		5A299A8F184BE8B100005733 /* back_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A299A8D184BE8B100005733 /* back_button@2x.png */; };
@@ -166,6 +167,8 @@
 		5A210016184E3C7900CDF460 /* soccer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soccer.png; sourceTree = "<group>"; };
 		5A210017184E3C7900CDF460 /* swimming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swimming.png; sourceTree = "<group>"; };
 		5A21001C184E3DEF00CDF460 /* swimming_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swimming_selected.png; sourceTree = "<group>"; };
+		5A21001E184E421800CDF460 /* MSStyleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSStyleFactory.h; sourceTree = "<group>"; };
+		5A21001F184E421800CDF460 /* MSStyleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSStyleFactory.m; sourceTree = "<group>"; };
 		5A299A82184BDF1400005733 /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Bold.otf"; sourceTree = "<group>"; };
 		5A299A8C184BE8B100005733 /* back_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_button.png; sourceTree = SOURCE_ROOT; };
 		5A299A8D184BE8B100005733 /* back_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_button@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -550,6 +553,8 @@
 				5A96744E1849D20C0079EAC1 /* MSColorFactory.m */,
 				5AA609FD184B50A100B09ADD /* MSFontFactory.h */,
 				5AA609FE184B50A100B09ADD /* MSFontFactory.m */,
+				5A21001E184E421800CDF460 /* MSStyleFactory.h */,
+				5A21001F184E421800CDF460 /* MSStyleFactory.m */,
 				5ADCF2F91840E38D00E6C8D2 /* Connection */,
 				5ADCF2B318402B4B00E6C8D2 /* Model */,
 				5ADCF277184011A500E6C8D2 /* Views */,
@@ -1062,6 +1067,7 @@
 				5ADCF29C18401D1800E6C8D2 /* MSNotificationsVC.m in Sources */,
 				5ADCF2AC184025AE00E6C8D2 /* MSWelcomeVC.m in Sources */,
 				5ADCF2671840051300E6C8D2 /* UIViewController+MMDrawerController.m in Sources */,
+				5A210020184E421800CDF460 /* MSStyleFactory.m in Sources */,
 				5A96744F1849D20C0079EAC1 /* MSColorFactory.m in Sources */,
 				5A9674551849D8740079EAC1 /* MSTextField.m in Sources */,
 				5ADCF3141840F8DA00E6C8D2 /* MSVenueCell.m in Sources */,

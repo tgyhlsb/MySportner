@@ -20,7 +20,6 @@
     return [UIFont fontWithName:@"ProximaNova-Regular" size:11.5];
 }
 
-
 + (UIFont *)fontForNavigationTitle
 {
     return [UIFont fontWithName:@"Montserrat-Regular" size:14];
@@ -54,6 +53,16 @@
 + (UIFont *)fontForDrawerMenu
 {
     return [UIFont fontWithName:@"ProximaNova-Semibold" size:15];
+}
+
++ (UIFont *)fontForGameProfileSportTitle
+{
+    return [UIFont fontWithName:@"ProximaNova-Semibold" size:20];
+}
+
++ (UIFont *)fontForGameProfileSportInfo
+{
+    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:12.5];
 }
 
 @end

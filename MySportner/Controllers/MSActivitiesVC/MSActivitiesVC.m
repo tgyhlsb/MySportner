@@ -71,11 +71,6 @@
     [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button.png"] forState:UIControlStateNormal];
     [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button_press.png"] forState:UIControlStateHighlighted|UIControlStateHighlighted];
     [self.plusButton setTitle:@"" forState:UIControlStateNormal];
-    
-    
-    // removes title from pushed VC
-    UIBarButtonItem *emptyBackButton = [[UIBarButtonItem alloc] initWithTitle: @"" style: UIBarButtonItemStyleBordered target: nil action: nil];
-    [[self navigationItem] setBackBarButtonItem: emptyBackButton];
 }
 
 #pragma mark Back end process
@@ -160,6 +155,10 @@
             cell.ownerProfilePictureView.profileID = activity.owner.facebookID;
             
             [cell setAppearanceWithOddIndex:(indexPath.row % 2)];
+            
+            cell.layer.shouldRasterize = YES;
+            cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+            
             return cell;
         }
     }
@@ -185,6 +184,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     MSActivityVC *destinationVC = [MSActivityVC newController];
+    destinationVC.activity = [self.data objectAtIndex:indexPath.row];
     
     [self.navigationController pushViewController:destinationVC animated:YES];
 }

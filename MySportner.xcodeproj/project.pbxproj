@@ -527,6 +527,16 @@
 			path = "UIImage+BlurredFrame";
 			sourceTree = "<group>";
 		};
+		5A9B2DAB18539F3100AE45D9 /* MSGameProfileCell */ = {
+			isa = PBXGroup;
+			children = (
+				5A9B2DA618539A0700AE45D9 /* MSGameProfileCell.h */,
+				5A9B2DA718539A0700AE45D9 /* MSGameProfileCell.m */,
+				5A9B2DA918539A1A00AE45D9 /* MSGameProfileCell.xib */,
+			);
+			name = MSGameProfileCell;
+			sourceTree = "<group>";
+		};
 		5AA60A01184B548900B09ADD /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -761,9 +771,7 @@
 				5ADCF2E21840C89200E6C8D2 /* MSTextFieldPickerCell */,
 				5ADCF3171840F8F300E6C8D2 /* MSVenueCell */,
 				5AFE43F918426CDA001376C7 /* MSBigSportCell */,
-				5A9B2DA618539A0700AE45D9 /* MSGameProfileCell.h */,
-				5A9B2DA718539A0700AE45D9 /* MSGameProfileCell.m */,
-				5A9B2DA918539A1A00AE45D9 /* MSGameProfileCell.xib */,
+				5A9B2DAB18539F3100AE45D9 /* MSGameProfileCell */,
 			);
 			name = Cells;
 			sourceTree = "<group>";

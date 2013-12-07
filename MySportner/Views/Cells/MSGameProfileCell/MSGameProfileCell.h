@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSActivity.h"
 
 @interface MSGameProfileCell : UITableViewCell
+
+@property (strong, nonatomic) MSActivity *activity;
 
 + (void)registerToTableView:(UITableView *)tableView;
 + (NSString *)reusableIdentifier;

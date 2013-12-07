@@ -29,6 +29,9 @@
     
     [MSGameProfileCell registerToTableView:self.tableView];
     
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iOS_blur.png"]];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    
 }
 
 + (MSActivityVC *)newController
@@ -54,7 +57,10 @@
 {
     NSString *identifier = [MSGameProfileCell reusableIdentifier];
     MSGameProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    cell.activity = self.activity;
     
+//    cell.layer.shouldRasterize = YES;
+//    cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
     
     return cell;
 }

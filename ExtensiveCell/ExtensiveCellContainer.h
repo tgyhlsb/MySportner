@@ -16,4 +16,6 @@
 
 - (void)addContentView:(UIView *)contentView;
 
+- (void)hideView:(BOOL)hide;
+
 @end

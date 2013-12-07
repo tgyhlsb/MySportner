@@ -13,6 +13,8 @@
 
 @property (strong, nonatomic) NSIndexPath *selectedRowIndexPath;
 
+@property (strong, nonatomic) ExtensiveCellContainer *cellContainer;
+
 @end
 
 @implementation ECViewController
@@ -57,6 +59,12 @@
 
 - (void)extendCellAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([[self.tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[ExtensiveCellContainer class]])
+    {
+        [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section]];
+    }
+    [self.cellContainer hideView:YES];
+    
     if (indexPath) {
         [self.tableView beginUpdates];
         
@@ -83,10 +91,14 @@
         
         [self.tableView endUpdates];
     }
+    [self.cellContainer hideView:NO];
+    
+    
 }
 
 - (void)insertCellBelowIndexPath:(NSIndexPath *)indexPath
 {
+    //    [self.cellContainer hideView:NO];
     indexPath = [NSIndexPath indexPathForRow:(indexPath.row+1) inSection:indexPath.section];
     NSArray *pathsArray = @[indexPath];
     [self.tableView insertRowsAtIndexPaths:pathsArray withRowAnimation:UITableViewRowAnimationTop];
@@ -94,6 +106,7 @@
 
 - (void)removeCellBelowIndexPath:(NSIndexPath *)indexPath
 {
+    //    [self.cellContainer hideView:YES];
     indexPath = [NSIndexPath indexPathForRow:(indexPath.row+1) inSection:indexPath.section];
     NSArray *pathsArray = @[indexPath];
     [self.tableView deleteRowsAtIndexPaths:pathsArray withRowAnimation:UITableViewRowAnimationTop];
@@ -125,14 +138,22 @@
     }
 }
 
+//- (ExtensiveCellContainer *)cellContainer
+//{
+//    if (!_cellContainer) {
+//        _cellContainer = [self.tableView dequeueReusableCellWithIdentifier:[ExtensiveCellContainer reusableIdentifier]];
+//    }
+//    return _cellContainer;
+//}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     if ([self isExtendedCellIndexPath:indexPath])
     {
-        NSString *identifier = [ExtensiveCellContainer reusableIdentifier];
-        ExtensiveCellContainer *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+        ExtensiveCellContainer *cell = [tableView dequeueReusableCellWithIdentifier:[ExtensiveCellContainer reusableIdentifier] forIndexPath:indexPath];
         [cell addContentView:[self viewForContainerAtIndexPath:indexPath]];
+        self.cellContainer = cell;
         return cell;
     } else {
         UITableViewCell *cell = [self extensiveCellForRowIndexPath:indexPath];

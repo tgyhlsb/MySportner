@@ -136,6 +136,9 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 {
     if (!_dayPicker) {
         _dayPicker = [[UIDatePicker alloc] init];
+        CGRect tempFrame = _dayPicker.frame;
+        tempFrame.origin.y = -50;
+        _dayPicker.frame = tempFrame;
         _dayPicker.datePickerMode = UIDatePickerModeDate;
     }
     return _dayPicker;
@@ -145,6 +148,9 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 {
     if (!_timePicker) {
         _timePicker = [[UIDatePicker alloc] init];
+        CGRect tempFrame = _timePicker.frame;
+        tempFrame.origin.y = -50;
+        _timePicker.frame = tempFrame;
         _timePicker.datePickerMode = UIDatePickerModeTime;
     }
     return _timePicker;

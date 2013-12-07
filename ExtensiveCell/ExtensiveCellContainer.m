@@ -49,10 +49,17 @@
 
 - (void)setViewToDisplay:(UIView *)viewToDisplay
 {
-    [_viewToDisplay removeFromSuperview];
-    _viewToDisplay = viewToDisplay;
-    [self.contentView addSubview:_viewToDisplay];
-    
+    if (viewToDisplay != _viewToDisplay)
+    {
+        [_viewToDisplay removeFromSuperview];
+        _viewToDisplay = viewToDisplay;
+        [self.contentView addSubview:_viewToDisplay];
+    }
+}
+
+- (void)hideView:(BOOL)hide
+{
+    self.viewToDisplay.hidden = hide;
 }
 
 

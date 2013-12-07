@@ -73,18 +73,10 @@
 
 - (void)setBackButton
 {
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *backBtnImage = [UIImage imageNamed:@"arrow.png"]  ;
-    [backBtn setBackgroundImage:backBtnImage forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(goback) forControlEvents:UIControlEventTouchUpInside];
-    backBtn.frame = CGRectMake(0, 0, 49, 30);
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:backBtn] ;
-    self.navigationItem.leftBarButtonItem = backButton;
-}
-
-- (void)goback
-{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    // removes title from pushed VC
+    UIBarButtonItem *emptyBackButton = [[UIBarButtonItem alloc] initWithTitle: @"" style: UIBarButtonItemStyleBordered target: nil action: nil];
+    [[self navigationItem] setBackBarButtonItem: emptyBackButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated

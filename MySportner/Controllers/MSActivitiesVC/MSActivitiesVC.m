@@ -71,6 +71,11 @@
     [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button.png"] forState:UIControlStateNormal];
     [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button_press.png"] forState:UIControlStateHighlighted|UIControlStateHighlighted];
     [self.plusButton setTitle:@"" forState:UIControlStateNormal];
+    
+    
+    // removes title from pushed VC
+    UIBarButtonItem *emptyBackButton = [[UIBarButtonItem alloc] initWithTitle: @"" style: UIBarButtonItemStyleBordered target: nil action: nil];
+    [[self navigationItem] setBackBarButtonItem: emptyBackButton];
 }
 
 #pragma mark Back end process

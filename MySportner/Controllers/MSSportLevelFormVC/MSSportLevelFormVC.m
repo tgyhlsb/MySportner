@@ -10,6 +10,8 @@
 #import "RatingView.h"
 #import "QBFlatButton.h"
 #import "MSStyleFactory.h"
+#import "MSFontFactory.h"
+#import "MSColorFactory.h"
 
 #define LEVEL_STATUS @[@"BEGINNER", @"CASUAL", @"INTERMEDIATE", @"GOOD", @"PRO"]
 #define LEVEL_COMMENTS @[@"I have never played", @"I played few times", @"I Think I'm good enough", @"I'll handle this", @"Trust me..."]
@@ -25,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet QBFlatButton *unSelectButton;
 @property (weak, nonatomic) IBOutlet QBFlatButton *doneButton;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 
 @property (strong, nonatomic) RatingView *ratingView;
 
@@ -50,6 +53,23 @@
     
     [MSStyleFactory setQBFlatButton:self.unSelectButton withStyle:MSFlatButtonStyleRed];
     [self.unSelectButton setTitle:@"UNSELECT" forState:UIControlStateNormal];
+    
+    [self.levelLabel setFont:[MSFontFactory fontForGameProfileSportTitle]];
+    [self.levelLabel setTextColor:[MSColorFactory redLight]];
+    
+    [self.commentLabel setFont:[MSFontFactory fontForGameProfileSportInfo]];
+    [self.commentLabel setTextColor:[MSColorFactory grayDark]];
+    
+    // Navigation bar
+    NSDictionary *navbarTitleTextAttributes = @{
+                                                NSForegroundColorAttributeName:[MSColorFactory grayLight],
+                                                UITextAttributeFont:[MSFontFactory fontForNavigationTitle]};
+    
+    [self.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
+    [self.navigationBar setTintColor:[MSColorFactory whiteLight]];
+    [self.navigationBar setBarTintColor:[MSColorFactory whiteLight]];
+    
+    self.view.backgroundColor = [UIColor colorWithWhite:1 alpha:0.85];
 }
 
 - (void)viewDidAppear:(BOOL)animated

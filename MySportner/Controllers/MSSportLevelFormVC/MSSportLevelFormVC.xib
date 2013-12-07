@@ -40,12 +40,12 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOr-bB-mYC" customClass="QBFlatButton">
-                    <rect key="frame" x="60" y="280" width="200" height="50"/>
+                    <rect key="frame" x="40" y="289" width="240" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="CSU-6r-1hF"/>
-                        <constraint firstAttribute="width" constant="200" id="Yjt-l0-QVa"/>
+                        <constraint firstAttribute="height" constant="44" id="CSU-6r-1hF"/>
+                        <constraint firstAttribute="width" constant="240" id="Yjt-l0-QVa"/>
                     </constraints>
                     <state key="normal" title="DONE">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -74,11 +74,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vjs-X9-2xV" customClass="QBFlatButton">
-                    <rect key="frame" x="60" y="215" width="200" height="50"/>
+                    <rect key="frame" x="40" y="235" width="240" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="94x-xK-3DP"/>
-                        <constraint firstAttribute="width" constant="200" id="cRv-Cf-Oby"/>
+                        <constraint firstAttribute="height" constant="44" id="94x-xK-3DP"/>
+                        <constraint firstAttribute="width" constant="240" id="cRv-Cf-Oby"/>
                     </constraints>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,10 +95,10 @@
                 <constraint firstItem="xaM-Uv-sAf" firstAttribute="leading" secondItem="Rir-d7-dmu" secondAttribute="leading" constant="40" id="DjT-ps-SYH"/>
                 <constraint firstItem="Gso-wV-Bco" firstAttribute="top" secondItem="Rir-d7-dmu" secondAttribute="top" id="Kkm-q3-VAt"/>
                 <constraint firstAttribute="trailing" secondItem="xaM-Uv-sAf" secondAttribute="trailing" constant="40" id="Pes-dA-Bvw"/>
-                <constraint firstItem="Vjs-X9-2xV" firstAttribute="top" secondItem="BU3-pN-AxM" secondAttribute="bottom" constant="10" id="Wfs-AO-4kf"/>
+                <constraint firstItem="Vjs-X9-2xV" firstAttribute="top" secondItem="BU3-pN-AxM" secondAttribute="bottom" constant="30" id="Wfs-AO-4kf"/>
                 <constraint firstItem="jTi-Ni-nGW" firstAttribute="top" secondItem="xaM-Uv-sAf" secondAttribute="bottom" constant="20" id="cgA-Oo-GIx"/>
                 <constraint firstAttribute="centerX" secondItem="Vjs-X9-2xV" secondAttribute="centerX" id="f08-Zv-VFt"/>
-                <constraint firstItem="ZOr-bB-mYC" firstAttribute="top" secondItem="Vjs-X9-2xV" secondAttribute="bottom" constant="15" id="mUX-wc-4Vl"/>
+                <constraint firstItem="ZOr-bB-mYC" firstAttribute="top" secondItem="Vjs-X9-2xV" secondAttribute="bottom" constant="10" id="mUX-wc-4Vl"/>
                 <constraint firstItem="Gso-wV-Bco" firstAttribute="leading" secondItem="Rir-d7-dmu" secondAttribute="leading" id="mf9-qv-xJV"/>
                 <constraint firstItem="jTi-Ni-nGW" firstAttribute="leading" secondItem="Rir-d7-dmu" secondAttribute="leading" constant="20" id="oV7-05-GY9"/>
                 <constraint firstAttribute="centerX" secondItem="ZOr-bB-mYC" secondAttribute="centerX" id="qN7-7o-57g"/>

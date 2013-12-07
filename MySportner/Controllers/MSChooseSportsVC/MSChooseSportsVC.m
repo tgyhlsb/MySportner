@@ -143,6 +143,7 @@
     formSheet.shouldDismissOnBackgroundViewTap = YES;
     formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
     formSheet.shouldCenterVertically = YES;
+    formSheet.cornerRadius = 3.0f;
     
     [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
     

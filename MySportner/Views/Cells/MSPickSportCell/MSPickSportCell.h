@@ -12,8 +12,6 @@
 
 @property (strong, nonatomic) NSString *sport;
 
-- (void)initialize;
-
 + (void)registerToTableView:(UITableView *)tableView;
 + (NSString *)reusableIdentifier;
 + (CGFloat)height;

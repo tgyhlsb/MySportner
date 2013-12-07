@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSCenterController.h"
+#import "ECViewController.h"
 
-@interface MSSetAGameVC : MSCenterController
+@interface MSSetAGameVC : ECViewController
 
 + (MSSetAGameVC *)newController;
 

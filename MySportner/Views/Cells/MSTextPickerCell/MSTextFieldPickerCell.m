@@ -9,6 +9,7 @@
 #import "MSTextFieldPickerCell.h"
 #import "MSColorFactory.h"
 #import "UITextField+MSTextFieldAppearance.h"
+#import "MSStyleFactory.h"
 
 #define IDENTIFIER @"MSTextFieldPickerCell"
 #define HEIGHT 60
@@ -24,14 +25,14 @@
     self.textField.delegate = self;
     self.viewController = viewController;
     
-    UIColor *focusBorderColor = [MSColorFactory redLight];
-    UIColor *textFieldTextColor = [MSColorFactory redLight];
-    
-    self.textField.borderStyle = UITextBorderStyleRoundedRect;
-    self.textField.delegate = self;
-    self.textField.focusBorderColor = focusBorderColor;
-    self.textField.textColor = textFieldTextColor;
-    [self.textField initializeAppearanceWithShadow:YES];
+    [MSStyleFactory setMSTextField:self.textField withStyle:MSTextFieldStyleWhiteForm];
+}
+
+- (void)awakeFromNib
+{
+    self.backgroundColor = [UIColor clearColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
+    self.backgroundView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

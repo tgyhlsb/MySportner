@@ -61,6 +61,8 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     [self.navigationItem setRightBarButtonItem:validateButton];
     
     [self registerForKeyboardNotifications];
+    
+    self.tableView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -138,7 +140,6 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
         {
             MSPickSportCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSPickSportCell reusableIdentifier] forIndexPath:indexPath];
             
-            [cell initialize];
             self.sportCell = cell;
             
             return cell;

@@ -22,7 +22,8 @@
 
 @implementation MSPickSportCell
 
-- (void)initialize
+
+- (void)awakeFromNib
 {
     [MSSmallSportCell registerToCollectionView:self.collectionView];
     
@@ -33,6 +34,11 @@
     self.collectionView.allowsMultipleSelection = NO;
     
     self.data = @[@"Basket", @"Foot", @"Tennis", @"Swimming", @"Running"];
+    
+    self.backgroundColor = [UIColor clearColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
+    self.backgroundView.backgroundColor = [UIColor clearColor];
+    self.collectionView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

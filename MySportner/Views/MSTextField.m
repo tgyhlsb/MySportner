@@ -69,8 +69,7 @@
     [self setTextColor:self.textNormalColor];
     self.borderStyle = UITextBorderStyleRoundedRect;
     [self setBorderWidth:DEFAULT_BORDER_WIDTH];
-    [self setCornerRadius:DEFAULT_CORNER_RADIUS];
-}
+    [self setCornerRadius:DEFAULT_CORNER_RADIUS];}
 
 - (void)initializeAppearanceWithShadow:(BOOL)shadow
 {
@@ -83,6 +82,11 @@
         [self.layer setShadowOffset:CGSizeMake(0.1, 1)];
         [self.layer setShadowOpacity:0.07f];
     }
+}
+
+- (CGRect)textRectForBounds:(CGRect)bounds
+{
+    return CGRectInset( bounds , 20 , 10 );
 }
 
 - (BOOL)canBecomeFirstResponder

@@ -23,13 +23,13 @@ typedef NS_ENUM(int, MSSetAGameSection) {
 };
 
 typedef NS_ENUM(int, MSSetAGameTextFieldType) {
+    MSSetAGameTextFieldTypeRepeat,
     MSSetAGameTextFieldTypeDay,
     MSSetAGameTextFieldTypeTime,
-    MSSetAGameTextFieldTypeRepeat,
     MSSetAGameTextFieldTypeLocation
 };
 
-@interface MSSetAGameVC () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface MSSetAGameVC () <UITableViewDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -45,6 +45,8 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 
 @property (strong, nonatomic) MBProgressHUD *loadingView;
 
+@property (weak, nonatomic) MSTextField *activeTextField;
+
 @end
 
 @implementation MSSetAGameVC
@@ -53,8 +55,6 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 {
     [super viewDidLoad];
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
 	
     [MSLocationPickerCell registerToTableView:self.tableView];
     [MSPickSportCell registerToTableView:self.tableView];
@@ -119,19 +119,17 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 
 - (UIView *)viewForContainerAtIndexPath:(NSIndexPath *)indexPath
 {
-//    switch (indexPath.row) {
-//        case 0:
-//            return self.dayPicker;
-//        case 1:
-//            return self.timePicker;
-//        case 2:
-//            return self.repeatPicker;
-//            
-//        default:
-//            return nil;
-//    }
-    NSLog(@"%@", indexPath);
-    return self.timePicker;
+    switch (indexPath.row - 1) {
+        case MSSetAGameTextFieldTypeDay:
+            return self.dayPicker;
+        case MSSetAGameTextFieldTypeTime:
+            return self.timePicker;
+        case MSSetAGameTextFieldTypeRepeat:
+            return self.repeatPicker;
+            
+        default:
+            return nil;
+    }
 }
 
 - (UIDatePicker *)dayPicker
@@ -277,21 +275,30 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 {
     if ([textField isEqual:self.dayTextField])
     {
-        [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+        [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:MSSetAGameTextFieldTypeDay inSection:MSSetAGameSectionTextField]];
     }
     else if ([textField isEqual:self.timeTextField])
     {
-        [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+        [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:MSSetAGameTextFieldTypeTime inSection:MSSetAGameSectionTextField]];
     }
     else if ([textField isEqual:self.repeatTextField])
     {
-        [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]];
+        [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:MSSetAGameTextFieldTypeRepeat inSection:MSSetAGameSectionTextField]];
     }
     else
     {
         
     }
+    
+    self.activeTextField = (MSTextField *)textField;
     return NO;
+}
+
+- (void)setActiveTextField:(MSTextField *)activeTextField
+{
+    [_activeTextField setFocused:NO];
+    _activeTextField = [activeTextField isEqual:_activeTextField] ? Nil : activeTextField;
+    [_activeTextField setFocused:YES];
 }
 
 #pragma mark Keyboard

@@ -29,7 +29,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     MSSetAGameTextFieldTypeLocation
 };
 
-@interface MSSetAGameVC () <UITableViewDataSource, UITableViewDelegate>
+@interface MSSetAGameVC () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -111,14 +111,20 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     [self.navigationController setViewControllers:@[destinationVC] animated:YES];
 }
 
+
+- (UIView *)viewForContainerAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [[UIDatePicker alloc] init];
+}
+
 #pragma mark UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSections
 {
     return 2;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
         case MSSetAGameSectionPickSport:
@@ -133,12 +139,12 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)extensiveCellForRowIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section) {
         case MSSetAGameSectionPickSport:
         {
-            MSPickSportCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSPickSportCell reusableIdentifier] forIndexPath:indexPath];
+            MSPickSportCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSPickSportCell reusableIdentifier] forIndexPath:indexPath];
             
             self.sportCell = cell;
             
@@ -149,7 +155,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
             switch (indexPath.row) {
                 case MSSetAGameTextFieldTypeDay:
                 {
-                    MSTextFieldPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
+                    MSTextFieldPickerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
                     
                     [cell initializeWithViewcontroller:self];
                     cell.textField.placeholder = @"Day";
@@ -160,7 +166,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     
                 case MSSetAGameTextFieldTypeTime:
                 {
-                    MSTextFieldPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
+                    MSTextFieldPickerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
                     
                     [cell initializeWithViewcontroller:self];
                     cell.textField.placeholder = @"Time";
@@ -171,7 +177,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     
                 case MSSetAGameTextFieldTypeRepeat:
                 {
-                    MSTextFieldPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
+                    MSTextFieldPickerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
                     
                     [cell initializeWithViewcontroller:self];
                     cell.textField.placeholder = @"Repeat";
@@ -182,7 +188,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     
                 case MSSetAGameTextFieldTypeLocation:
                 {
-                    MSLocationPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:[MSLocationPickerCell reusableIdentifier] forIndexPath:indexPath];
+                    MSLocationPickerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSLocationPickerCell reusableIdentifier] forIndexPath:indexPath];
                     
                     [cell initializeWithViewcontroller:self];
                     cell.textField.placeholder = @"Location";
@@ -208,7 +214,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 
 #pragma mark UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)heightForExtensiveCellAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section) {
         case MSSetAGameSectionPickSport:
@@ -220,6 +226,14 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
         default:
             return 44;
     }
+}
+
+#pragma mark UITextFieldDelegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+    return NO;
 }
 
 #pragma mark Keyboard

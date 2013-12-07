@@ -15,7 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet MSTextField *textField;
 
-- (void)initializeWithViewcontroller:(UIViewController *)viewController;
+- (void)initializeWithViewcontroller:(UIViewController<UITextFieldDelegate> *)viewController;
 
 + (void)registerToTableView:(UITableView *)tableView;
 + (NSString *)reusableIdentifier;

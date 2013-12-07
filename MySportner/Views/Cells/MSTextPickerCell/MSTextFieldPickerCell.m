@@ -20,9 +20,9 @@
 
 @implementation MSTextFieldPickerCell
 
-- (void)initializeWithViewcontroller:(UIViewController *)viewController
+- (void)initializeWithViewcontroller:(UIViewController<UITextFieldDelegate> *)viewController
 {
-    self.textField.delegate = self;
+    self.textField.delegate = viewController;
     self.viewController = viewController;
     
     [MSStyleFactory setMSTextField:self.textField withStyle:MSTextFieldStyleWhiteForm];

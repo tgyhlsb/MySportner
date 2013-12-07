@@ -16,7 +16,7 @@
 #define WIDTH 130
 
 #define BACKGROUND_COLOR_NORMAL [MSColorFactory grayExtraLight]
-#define BACKGROUND_COLOR_SELECTED [MSColorFactory redLight]
+#define BACKGROUND_COLOR_SELECTED [MSColorFactory redSoft]
 #define TEXT_COLOR_NORMAL [MSColorFactory grayLight]
 #define TEXT_COLOR_SELECTED [MSColorFactory whiteLight]
 

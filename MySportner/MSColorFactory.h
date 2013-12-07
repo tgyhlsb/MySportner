@@ -24,6 +24,7 @@
 + (UIColor *)redLight;
 + (UIColor *)redDark;
 + (UIColor *)redShadow;
++ (UIColor *)redSoft;
 
 + (UIColor *)navigationColorLight;
 + (UIColor *)navigationColorDark;

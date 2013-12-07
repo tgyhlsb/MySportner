@@ -60,10 +60,52 @@
             button.backgroundColor = [UIColor clearColor];
             break;
         }
+        case MSFlatButtonStyleDrawerMenu:
+        {
+            button.faceColor = [UIColor clearColor];
+            button.sideColor = [UIColor clearColor];
+            button.titleLabel.font = [MSFontFactory fontForDrawerMenu];
+            [button setTitleShadowColor:[MSColorFactory mainColorShadow] forState:UIControlStateNormal];
+            button.titleLabel.shadowOffset = CGSizeMake(0.2, 1.8);
+            [button setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
+            button.backgroundColor = [UIColor clearColor];
+            button.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+            button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+            break;
+        }
+        case MSFlatButtonStyleDrawerMenuLight:
+        {
+            button.faceColor = [UIColor clearColor];
+            button.sideColor = [UIColor clearColor];
+            button.titleLabel.font = [MSFontFactory fontForDrawerMenu];
+            [button setTitleShadowColor:[MSColorFactory mainColorShadow] forState:UIControlStateNormal];
+            button.titleLabel.shadowOffset = CGSizeMake(0.2, 1.8);
+            [button setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
+            button.backgroundColor = [UIColor clearColor];
+            button.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+            button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+            break;
+        }
             
         default:
             break;
     }
 }
+
++ (void)setUILabel:(UILabel *)label withStyle:(MSLabelStyle)style
+{
+    switch (style) {
+        case MSLabelStyleUserName:
+        {
+            label.font = [MSFontFactory fontForDrawerMenu];
+            [label setShadowColor:[MSColorFactory grayLight]];
+            [label setShadowOffset:CGSizeMake(0.1, 0.9)];
+        }
+            
+        default:
+            break;
+    }
+}
+
 
 @end

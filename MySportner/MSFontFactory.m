@@ -51,4 +51,9 @@
     return [UIFont fontWithName:@"ProximaNova-SemiBold" size:15];
 }
 
++ (UIFont *)fontForDrawerMenu
+{
+    return [UIFont fontWithName:@"ProximaNova-Semibold" size:15];
+}
+
 @end

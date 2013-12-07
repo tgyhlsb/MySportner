@@ -15,6 +15,8 @@
 #import "UIView+MSRoundedView.h"
 #import "QBFlatButton.h"
 #import "MSColorFactory.h"
+#import "MSStyleFactory.h"
+#import "MSFontFactory.h"
 
 #define NIB_NAME @"MSDrawerMenuVC"
 
@@ -27,8 +29,8 @@
 @property (weak, nonatomic) IBOutlet QBFlatButton *setAGameButton;
 @property (weak, nonatomic) IBOutlet QBFlatButton *settingsButton;
 @property (weak, nonatomic) IBOutlet UIView *bottomContainerView;
-@property (weak, nonatomic) IBOutlet UIButton *fiendFriendsButton;
-@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (weak, nonatomic) IBOutlet QBFlatButton *fiendFriendsButton;
+@property (weak, nonatomic) IBOutlet QBFlatButton *logoutButton;
 
 @property (weak, nonatomic) QBFlatButton *selectedButton;
 
@@ -76,38 +78,28 @@
     self.bottomContainerView.backgroundColor = [UIColor colorWithRed:0.40f green:0.43f blue:0.49f alpha:1.00f];
     self.fbProfilePictureView.backgroundColor = [UIColor clearColor];
     
+    [MSStyleFactory setUILabel:self.userNameLabel withStyle:MSLabelStyleUserName];
+    
     [self.activitiesButton setTitle:@"ACTIVITIES" forState:UIControlStateNormal];
-    self.activitiesButton.faceColor = [UIColor clearColor];
-    self.activitiesButton.sideColor = [UIColor clearColor];
-    self.activitiesButton.margin = 0.0f;
-    self.activitiesButton.depth = 0.0f;
+    [MSStyleFactory setQBFlatButton:self.activitiesButton withStyle:MSFlatButtonStyleDrawerMenu];
     
     [self.notificationsButton setTitle:@"NOTIFICATIONS" forState:UIControlStateNormal];
-    self.notificationsButton.faceColor = [UIColor clearColor];
-    self.notificationsButton.sideColor = [UIColor clearColor];
-    self.notificationsButton.margin = 0.0f;
-    self.notificationsButton.depth = 0.0f;
+    [MSStyleFactory setQBFlatButton:self.notificationsButton withStyle:MSFlatButtonStyleDrawerMenu];
     
     [self.setAGameButton setTitle:@"SET A GAME" forState:UIControlStateNormal];
-    self.setAGameButton.faceColor = [UIColor clearColor];
-    self.setAGameButton.sideColor = [UIColor clearColor];
-    self.setAGameButton.margin = 0.0f;
-    self.setAGameButton.depth = 0.0f;
+    [MSStyleFactory setQBFlatButton:self.setAGameButton withStyle:MSFlatButtonStyleDrawerMenu];
     
     [self.settingsButton setTitle:@"SETTINGS" forState:UIControlStateNormal];
-    self.settingsButton.faceColor = [UIColor clearColor];
-    self.settingsButton.sideColor = [UIColor clearColor];
-    self.settingsButton.margin = 0.0f;
-    self.settingsButton.depth = 0.0f;
+    [MSStyleFactory setQBFlatButton:self.settingsButton withStyle:MSFlatButtonStyleDrawerMenu];
     
     self.welcomeLabel.textColor = [MSColorFactory whiteLight];
     self.userNameLabel.textColor = [MSColorFactory whiteLight];
     
     [self.fiendFriendsButton setTitle:@"FIEND FRIENDS" forState:UIControlStateNormal];
-    [self.fiendFriendsButton setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
+    [MSStyleFactory setQBFlatButton:self.fiendFriendsButton withStyle:MSFlatButtonStyleDrawerMenuLight];
     
     [self.logoutButton setTitle:@"LOG OUT" forState:UIControlStateNormal];
-    [self.logoutButton setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
+    [MSStyleFactory setQBFlatButton:self.logoutButton withStyle:MSFlatButtonStyleDrawerMenuLight];
 }
 
 - (void)setSelectedButton:(QBFlatButton *)selectedButton

@@ -26,11 +26,11 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEz-bw-CvX" customClass="QBFlatButton">
-                    <rect key="frame" x="30" y="160" width="180" height="40"/>
+                    <rect key="frame" x="15" y="160" width="230" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="LW4-gD-cRP"/>
-                        <constraint firstAttribute="width" constant="180" id="jfR-G8-mCM"/>
+                        <constraint firstAttribute="width" constant="230" id="jfR-G8-mCM"/>
                     </constraints>
                     <state key="normal" title="Activities">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,11 +40,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uE7-UK-NOb" customClass="QBFlatButton">
-                    <rect key="frame" x="30" y="210" width="180" height="40"/>
+                    <rect key="frame" x="15" y="210" width="230" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Jgj-Ge-vG8"/>
-                        <constraint firstAttribute="width" constant="180" id="L0t-MY-MIv"/>
+                        <constraint firstAttribute="width" constant="230" id="L0t-MY-MIv"/>
                     </constraints>
                     <state key="normal" title="Notifications">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -54,10 +54,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uj3-LR-Wa4" customClass="QBFlatButton">
-                    <rect key="frame" x="30" y="260" width="180" height="40"/>
+                    <rect key="frame" x="15" y="260" width="230" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="180" id="TT8-3U-FmF"/>
+                        <constraint firstAttribute="width" constant="230" id="TT8-3U-FmF"/>
                         <constraint firstAttribute="height" constant="40" id="loU-uH-wg0"/>
                     </constraints>
                     <state key="normal" title="Set a game">
@@ -68,10 +68,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3YE-jl-z6E" customClass="QBFlatButton">
-                    <rect key="frame" x="30" y="310" width="180" height="40"/>
+                    <rect key="frame" x="15" y="310" width="230" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="180" id="hYj-Nf-Y53"/>
+                        <constraint firstAttribute="width" constant="230" id="hYj-Nf-Y53"/>
                         <constraint firstAttribute="height" constant="40" id="lp2-lE-nvF"/>
                     </constraints>
                     <state key="normal" title="Settings">
@@ -85,8 +85,8 @@
                     <rect key="frame" x="0.0" y="463" width="320" height="105"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRR-Hr-qfP">
-                            <rect key="frame" x="60" y="55" width="180" height="40"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRR-Hr-qfP" customClass="QBFlatButton">
+                            <rect key="frame" x="15" y="55" width="180" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="cfb-g6-LbA"/>
@@ -99,14 +99,14 @@
                                 <action selector="logoutButtonPress:" destination="-1" eventType="touchUpInside" id="j5V-cD-gIQ"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="byE-Yk-nKK">
-                            <rect key="frame" x="60" y="10" width="180" height="40"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="byE-Yk-nKK" customClass="QBFlatButton">
+                            <rect key="frame" x="15" y="10" width="180" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="IDc-Wx-Ur0"/>
                                 <constraint firstAttribute="width" constant="180" id="ie2-FS-lnH"/>
                             </constraints>
-                            <state key="normal" title="Fiend friends">
+                            <state key="normal" title="Find friends">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -118,8 +118,8 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="105" id="BM1-ED-0gh"/>
                         <constraint firstItem="byE-Yk-nKK" firstAttribute="top" secondItem="wia-c0-z3Y" secondAttribute="top" constant="10" id="Ldd-vf-hBV"/>
-                        <constraint firstItem="byE-Yk-nKK" firstAttribute="leading" secondItem="wia-c0-z3Y" secondAttribute="leading" constant="60" id="UZb-4y-YuS"/>
-                        <constraint firstItem="tRR-Hr-qfP" firstAttribute="leading" secondItem="wia-c0-z3Y" secondAttribute="leading" constant="60" id="gvo-rD-kmc"/>
+                        <constraint firstItem="byE-Yk-nKK" firstAttribute="leading" secondItem="wia-c0-z3Y" secondAttribute="leading" constant="15" id="UZb-4y-YuS"/>
+                        <constraint firstItem="tRR-Hr-qfP" firstAttribute="leading" secondItem="wia-c0-z3Y" secondAttribute="leading" constant="15" id="gvo-rD-kmc"/>
                         <constraint firstItem="tRR-Hr-qfP" firstAttribute="top" secondItem="byE-Yk-nKK" secondAttribute="bottom" constant="5" id="mzV-QT-o2O"/>
                     </constraints>
                 </view>
@@ -160,16 +160,16 @@
                 <constraint firstItem="qeB-FM-VP7" firstAttribute="top" secondItem="JnX-ri-IdB" secondAttribute="top" constant="45" id="Bnv-7V-L6G"/>
                 <constraint firstItem="wia-c0-z3Y" firstAttribute="leading" secondItem="JnX-ri-IdB" secondAttribute="leading" id="CTN-a0-VNs"/>
                 <constraint firstItem="3YE-jl-z6E" firstAttribute="top" secondItem="Uj3-LR-Wa4" secondAttribute="bottom" constant="10" id="CxI-6o-SVT"/>
-                <constraint firstItem="uE7-UK-NOb" firstAttribute="leading" secondItem="JnX-ri-IdB" secondAttribute="leading" constant="30" id="EDD-Ft-thS"/>
+                <constraint firstItem="uE7-UK-NOb" firstAttribute="leading" secondItem="JnX-ri-IdB" secondAttribute="leading" constant="15" id="EDD-Ft-thS"/>
                 <constraint firstItem="xXS-Jt-I2B" firstAttribute="leading" secondItem="3Xe-SG-mOP" secondAttribute="trailing" constant="10" id="FAx-B0-spL"/>
                 <constraint firstItem="3Xe-SG-mOP" firstAttribute="leading" secondItem="JnX-ri-IdB" secondAttribute="leading" constant="30" id="HNs-LJ-LBU"/>
                 <constraint firstItem="xXS-Jt-I2B" firstAttribute="top" secondItem="qeB-FM-VP7" secondAttribute="bottom" constant="8" id="MEI-xk-VCG"/>
                 <constraint firstAttribute="bottom" secondItem="wia-c0-z3Y" secondAttribute="bottom" id="QAY-kn-dXI"/>
                 <constraint firstAttribute="trailing" secondItem="wia-c0-z3Y" secondAttribute="trailing" id="TtE-lC-hOu"/>
-                <constraint firstItem="XEz-bw-CvX" firstAttribute="leading" secondItem="JnX-ri-IdB" secondAttribute="leading" constant="30" id="eZ0-tD-X8X"/>
+                <constraint firstItem="XEz-bw-CvX" firstAttribute="leading" secondItem="JnX-ri-IdB" secondAttribute="leading" constant="15" id="eZ0-tD-X8X"/>
                 <constraint firstItem="qeB-FM-VP7" firstAttribute="leading" secondItem="3Xe-SG-mOP" secondAttribute="trailing" constant="10" id="fNS-qo-PEh"/>
-                <constraint firstItem="3YE-jl-z6E" firstAttribute="leading" secondItem="JnX-ri-IdB" secondAttribute="leading" constant="30" id="hYt-fQ-Hiq"/>
-                <constraint firstItem="Uj3-LR-Wa4" firstAttribute="leading" secondItem="JnX-ri-IdB" secondAttribute="leading" constant="30" id="so7-CS-JcK"/>
+                <constraint firstItem="3YE-jl-z6E" firstAttribute="leading" secondItem="JnX-ri-IdB" secondAttribute="leading" constant="15" id="hYt-fQ-Hiq"/>
+                <constraint firstItem="Uj3-LR-Wa4" firstAttribute="leading" secondItem="JnX-ri-IdB" secondAttribute="leading" constant="15" id="so7-CS-JcK"/>
                 <constraint firstItem="Uj3-LR-Wa4" firstAttribute="top" secondItem="uE7-UK-NOb" secondAttribute="bottom" constant="10" id="tU5-jF-iS6"/>
                 <constraint firstItem="3Xe-SG-mOP" firstAttribute="top" secondItem="JnX-ri-IdB" secondAttribute="top" constant="40" id="yHR-NZ-5Fv"/>
                 <constraint firstItem="uE7-UK-NOb" firstAttribute="top" secondItem="XEz-bw-CvX" secondAttribute="bottom" constant="10" id="yj1-yv-ubB"/>

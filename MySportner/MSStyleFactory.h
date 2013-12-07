@@ -14,12 +14,19 @@ typedef NS_ENUM(int, MSFlatButtonStyle) {
     MSFlatButtonStyleRed,
     MSFlatButtonStyleGreen,
     MSFlatButtonStyleRoundedGreen,
-    MSFlatButtonStyleWhite
+    MSFlatButtonStyleWhite,
+    MSFlatButtonStyleDrawerMenu,
+    MSFlatButtonStyleDrawerMenuLight
+};
+typedef NS_ENUM(int, MSLabelStyle) {
+    MSLabelStyleUserName
 };
 
 
 @interface MSStyleFactory : NSObject
 
 + (void)setQBFlatButton:(QBFlatButton *)button withStyle:(MSFlatButtonStyle)style;
+
++ (void)setUILabel:(UILabel *)label withStyle:(MSLabelStyle)style;
 
 @end

@@ -29,6 +29,13 @@
                     </collectionViewFlowLayout>
                     <cells/>
                 </collectionView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vertical_gradient.png" translatesAutoresizingMaskIntoConstraints="NO" id="4jl-XH-JRm">
+                    <rect key="frame" x="0.0" y="368" width="320" height="200"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="l9F-W8-2w5"/>
+                    </constraints>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCe-cy-Uug" customClass="QBFlatButton">
                     <rect key="frame" x="25" y="498" width="270" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -53,8 +60,14 @@
                 <constraint firstAttribute="bottom" secondItem="Ggk-7T-XJJ" secondAttribute="bottom" id="OH6-AA-61l"/>
                 <constraint firstAttribute="centerX" secondItem="KCe-cy-Uug" secondAttribute="centerX" id="Xd9-qH-jlI"/>
                 <constraint firstItem="Ggk-7T-XJJ" firstAttribute="top" secondItem="5bp-jd-HOJ" secondAttribute="top" id="amK-yt-XXY"/>
+                <constraint firstItem="4jl-XH-JRm" firstAttribute="leading" secondItem="5bp-jd-HOJ" secondAttribute="leading" id="meH-qO-JeN"/>
+                <constraint firstAttribute="bottom" secondItem="4jl-XH-JRm" secondAttribute="bottom" id="whj-j8-oVd"/>
+                <constraint firstAttribute="trailing" secondItem="4jl-XH-JRm" secondAttribute="trailing" id="y6Y-W5-Egw"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="vertical_gradient.png" width="320" height="153"/>
+    </resources>
 </document>

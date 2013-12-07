@@ -97,7 +97,8 @@
                              rightDrawerViewController:rightSideDrawerViewController];
     
     [self.drawerController setRestorationIdentifier:@"MSDrawer"];
-    [self.drawerController setMaximumRightDrawerWidth:200.0];
+    [self.drawerController setMaximumLeftDrawerWidth:260.0];
+    [self.drawerController setShowsShadow:YES];
     [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     self.drawerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;

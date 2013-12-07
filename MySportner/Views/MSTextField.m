@@ -86,7 +86,7 @@
 
 - (CGRect)textRectForBounds:(CGRect)bounds
 {
-    return CGRectInset( bounds , 20 , 10 );
+    return CGRectInset( bounds , 15 , 10 );
 }
 
 - (BOOL)canBecomeFirstResponder

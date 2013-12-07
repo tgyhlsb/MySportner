@@ -8,6 +8,8 @@
 
 #import "MSPickSportCell.h"
 #import "MSSmallSportCell.h"
+#import "MSFontFactory.h"
+#import "MSColorFactory.h"
 
 #define IDENTIFIER @"MSPickSportCell"
 #define HEIGHT 120
@@ -39,6 +41,9 @@
     self.contentView.backgroundColor = [UIColor clearColor];
     self.backgroundView.backgroundColor = [UIColor clearColor];
     self.collectionView.backgroundColor = [UIColor clearColor];
+    
+//    self.titleLabel.font = [MSFontFactory fontForCellSportTitle];
+//    self.titleLabel.textColor = [MSColorFactory grayDark];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -80,6 +85,9 @@
     MSSmallSportCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
     cell.titleLabel.text = [self.data objectAtIndex:indexPath.row];
+    
+    cell.layer.shouldRasterize = YES;
+    cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
     
     return cell;
 }

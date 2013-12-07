@@ -7,6 +7,9 @@
 //
 
 #import "MSSmallSportCell.h"
+#import "UIView+MSRoundedView.h"
+#import "MSColorFactory.h"
+#import "MSFontFactory.h"
 
 #define IDENTIFIER @"MSSmallSportCell"
 #define HEIGHT 80
@@ -37,12 +40,22 @@
     
     if (selected)
     {
-        self.backgroundColor = [UIColor yellowColor];
+        self.titleLabel.textColor = [MSColorFactory whiteLight];
+        self.backgroundColor = [MSColorFactory redLight];
     }
     else
     {
-        self.backgroundColor = [UIColor grayColor];
+        self.titleLabel.textColor = [MSColorFactory grayDark];
+        self.backgroundColor = [MSColorFactory whiteLight];
     }
+}
+
+- (void)awakeFromNib
+{
+    [self setCornerRadius:3.0f];
+    self.titleLabel.font = [MSFontFactory fontForCellInfo];
+    self.titleLabel.textColor = [MSColorFactory grayDark];
+    self.backgroundColor = [MSColorFactory whiteLight];
 }
 
 @end

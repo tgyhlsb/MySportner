@@ -21,16 +21,10 @@
                             <size key="itemSize" width="70" height="70"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="20" minY="3" maxX="40" maxY="0.0"/>
+                            <inset key="sectionInset" minX="20" minY="3" maxX="20" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells/>
                     </collectionView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PICK A SPORT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4x-AY-aRq">
-                        <rect key="frame" x="20" y="6" width="117" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="iy0-fn-v9E" secondAttribute="bottom" id="DJ9-n1-iwC"/>

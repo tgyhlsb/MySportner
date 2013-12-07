@@ -33,6 +33,9 @@
     self.backgroundColor = [UIColor clearColor];
     self.contentView.backgroundColor = [UIColor clearColor];
     self.backgroundView.backgroundColor = [UIColor clearColor];
+    
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [UIScreen mainScreen].scale;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

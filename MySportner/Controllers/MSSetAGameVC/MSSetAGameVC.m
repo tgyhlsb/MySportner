@@ -39,6 +39,10 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 @property (strong, nonatomic) IBOutlet MSLocationPickerCell *venueCell;
 @property (strong, nonatomic) IBOutlet MSPickSportCell *sportCell;
 
+@property (strong, nonatomic) UIDatePicker *dayPicker;
+@property (strong, nonatomic) UIDatePicker *timePicker;
+@property (strong, nonatomic) UIPickerView *repeatPicker;
+
 @property (strong, nonatomic) MBProgressHUD *loadingView;
 
 @end
@@ -111,10 +115,49 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     [self.navigationController setViewControllers:@[destinationVC] animated:YES];
 }
 
+#pragma mark ExtensiveCellDelegate
 
 - (UIView *)viewForContainerAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [[UIDatePicker alloc] init];
+//    switch (indexPath.row) {
+//        case 0:
+//            return self.dayPicker;
+//        case 1:
+//            return self.timePicker;
+//        case 2:
+//            return self.repeatPicker;
+//            
+//        default:
+//            return nil;
+//    }
+    NSLog(@"%@", indexPath);
+    return self.timePicker;
+}
+
+- (UIDatePicker *)dayPicker
+{
+    if (!_dayPicker) {
+        _dayPicker = [[UIDatePicker alloc] init];
+        _dayPicker.datePickerMode = UIDatePickerModeDate;
+    }
+    return _dayPicker;
+}
+
+- (UIDatePicker *)timePicker
+{
+    if (!_timePicker) {
+        _timePicker = [[UIDatePicker alloc] init];
+        _timePicker.datePickerMode = UIDatePickerModeTime;
+    }
+    return _timePicker;
+}
+
+- (UIPickerView *)repeatPicker
+{
+    if (!_repeatPicker) {
+        _repeatPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+    }
+    return _repeatPicker;
 }
 
 #pragma mark UITableViewDataSource
@@ -232,7 +275,22 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+    if ([textField isEqual:self.dayTextField])
+    {
+        [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    }
+    else if ([textField isEqual:self.timeTextField])
+    {
+        [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+    }
+    else if ([textField isEqual:self.repeatTextField])
+    {
+        [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]];
+    }
+    else
+    {
+        
+    }
     return NO;
 }
 

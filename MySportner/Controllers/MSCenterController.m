@@ -35,6 +35,8 @@
     // removes title from pushed VC
     UIBarButtonItem *emptyBackButton = [[UIBarButtonItem alloc] initWithTitle: @"" style: UIBarButtonItemStyleBordered target: nil action: nil];
     [[self navigationItem] setBackBarButtonItem: emptyBackButton];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iOS_blur.png"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -10,8 +10,10 @@
 
 @interface UIView (MSRoundedView)
 
--(void)setRounded;
+- (void)setRounded;
 
 - (void)setCornerRadius:(CGFloat)radius;
+
+- (void)setShadow;
 
 @end

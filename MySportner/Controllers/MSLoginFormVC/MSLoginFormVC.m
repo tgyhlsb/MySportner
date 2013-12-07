@@ -15,10 +15,11 @@
 #import "UITextField+MSTextFieldAppearance.h"
 #import "MSTextField.h"
 #import "MSFontFactory.h"
+#import "MSStyleFactory.h"
 
 #define NIB_NAME @"MSLoginFormVC"
 
-@interface MSLoginFormVC ()
+@interface MSLoginFormVC () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet MSTextField *emailTextField;
 @property (weak, nonatomic) IBOutlet MSTextField *passwordTextField;
@@ -49,13 +50,29 @@
     self.connectButton.titleLabel.font = [MSFontFactory fontForButton];
     [self.connectButton setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
     
-    self.emailTextField.focusBorderColor = [MSColorFactory redLight];
-    self.emailTextField.textColor = [MSColorFactory redLight];
+    [MSStyleFactory setMSTextField:self.emailTextField withStyle:MSTextFieldStyleWhiteForm];
+    self.emailTextField.placeholder = @"Email";
+    self.emailTextField.returnKeyType = UIReturnKeyNext;
+    self.emailTextField.delegate = self;
     
-    self.passwordTextField.focusBorderColor = [MSColorFactory redLight];
-    self.passwordTextField.textColor = [MSColorFactory redLight];
+    [MSStyleFactory setMSTextField:self.passwordTextField withStyle:MSTextFieldStyleWhiteForm];
+    self.passwordTextField.placeholder = @"Password";
+    self.passwordTextField.returnKeyType = UIReturnKeyGo;
+    self.passwordTextField.delegate = self;
     
     self.forgotPasswordLabel.textColor = [MSColorFactory redLight];
+    self.forgotPasswordLabel.font = [MSFontFactory fontForFormTextField];
+    
+    // Navigation bar
+    NSDictionary *navbarTitleTextAttributes = @{
+                                                NSForegroundColorAttributeName:[MSColorFactory grayLight],
+                                                UITextAttributeFont:[MSFontFactory fontForNavigationTitle]};
+    
+    [self.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
+    [self.navigationBar setTintColor:[MSColorFactory whiteLight]];
+    [self.navigationBar setBarTintColor:[MSColorFactory whiteLight]];
+    
+    self.view.backgroundColor = [UIColor colorWithWhite:1 alpha:0.85];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -94,6 +111,23 @@
         [[[UIAlertView alloc] initWithTitle:@"Error" message:[error description] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
     }
 }
+
+#pragma mark UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if ([textField isEqual:self.emailTextField])
+    {
+        [self.passwordTextField becomeFirstResponder];
+    }
+    else if ([textField isEqual:self.passwordTextField])
+    {
+        [self connectButtonPress:self.connectButton];
+    }
+    
+    return YES;
+}
+
 
 #pragma mark - MBProgressHUD
 

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "QBFlatButton.h"
+#import "MSTextField.h"
 
 
 typedef NS_ENUM(int, MSFlatButtonStyle) {
@@ -21,6 +22,9 @@ typedef NS_ENUM(int, MSFlatButtonStyle) {
 typedef NS_ENUM(int, MSLabelStyle) {
     MSLabelStyleUserName
 };
+typedef NS_ENUM(int, MSTextFieldStyle) {
+    MSTextFieldStyleWhiteForm
+};
 
 
 @interface MSStyleFactory : NSObject
@@ -28,5 +32,7 @@ typedef NS_ENUM(int, MSLabelStyle) {
 + (void)setQBFlatButton:(QBFlatButton *)button withStyle:(MSFlatButtonStyle)style;
 
 + (void)setUILabel:(UILabel *)label withStyle:(MSLabelStyle)style;
+
++ (void)setMSTextField:(MSTextField *)textField withStyle:(MSTextFieldStyle)style;
 
 @end

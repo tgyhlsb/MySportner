@@ -29,9 +29,7 @@
     
     [MSGameProfileCell registerToTableView:self.tableView];
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iOS_blur.png"]];
     self.tableView.backgroundColor = [UIColor clearColor];
-    
 }
 
 + (MSActivityVC *)newController

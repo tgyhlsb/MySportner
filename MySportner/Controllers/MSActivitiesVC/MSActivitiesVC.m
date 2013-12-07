@@ -67,6 +67,7 @@
 
 - (void)setAppearance
 {
+    self.tableView.backgroundColor = [UIColor clearColor];
     
     [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button.png"] forState:UIControlStateNormal];
     [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button_press.png"] forState:UIControlStateHighlighted|UIControlStateHighlighted];

@@ -68,6 +68,14 @@
     [MSStyleFactory setQBFlatButton:self.nextButton withStyle:MSFlatButtonStyleGreen];
 }
 
+- (MSUser *)user
+{
+    if (!_user) {
+        _user = [MSUser currentUser];
+    }
+    return _user;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

@@ -49,7 +49,7 @@
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FORGOT YOUR PASSWORD ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7g-wu-zPB">
-                    <rect key="frame" x="20" y="467" width="280" height="21"/>
+                    <rect key="frame" x="20" y="457" width="280" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="gar-g2-GZw"/>
@@ -80,7 +80,7 @@
                 <constraint firstItem="WcA-Ts-uYG" firstAttribute="leading" secondItem="wBO-WP-DdA" secondAttribute="leading" constant="20" id="LQ6-sk-2gX"/>
                 <constraint firstItem="1vj-6k-23C" firstAttribute="top" secondItem="r7Q-fG-0YR" secondAttribute="bottom" constant="20" id="LZe-XP-B5n"/>
                 <constraint firstAttribute="trailing" secondItem="YxP-xT-J6D" secondAttribute="trailing" constant="20" id="MmS-EY-UxS"/>
-                <constraint firstItem="WcA-Ts-uYG" firstAttribute="top" secondItem="O7g-wu-zPB" secondAttribute="bottom" constant="10" id="PXP-Cb-rp8"/>
+                <constraint firstItem="WcA-Ts-uYG" firstAttribute="top" secondItem="O7g-wu-zPB" secondAttribute="bottom" constant="20" id="PXP-Cb-rp8"/>
                 <constraint firstAttribute="trailing" secondItem="r7Q-fG-0YR" secondAttribute="trailing" id="R0O-KQ-7H7"/>
                 <constraint firstItem="r7Q-fG-0YR" firstAttribute="top" secondItem="wBO-WP-DdA" secondAttribute="top" id="XlM-qv-coL"/>
                 <constraint firstAttribute="trailing" secondItem="1vj-6k-23C" secondAttribute="trailing" constant="20" id="fHv-Pl-Uis"/>

@@ -21,4 +21,9 @@
     self.layer.cornerRadius = radius;
 }
 
+- (void)setShadow
+{
+    
+}
+
 @end

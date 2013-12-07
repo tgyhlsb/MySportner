@@ -100,6 +100,29 @@
             label.font = [MSFontFactory fontForDrawerMenu];
             [label setShadowColor:[MSColorFactory grayLight]];
             [label setShadowOffset:CGSizeMake(0.1, 0.9)];
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
+
++ (void)setMSTextField:(MSTextField *)textField withStyle:(MSTextFieldStyle)style
+{
+    switch (style) {
+        case MSTextFieldStyleWhiteForm:
+        {
+            UIColor *focusBorderColor = [MSColorFactory redLight];
+            UIColor *textFieldTextColorFocused = [MSColorFactory redLight];
+            UIColor *textFieldTextColorNormal = [MSColorFactory gray];
+            
+            textField.borderStyle = UITextBorderStyleRoundedRect;
+            textField.focusBorderColor = focusBorderColor;
+            textField.textFocusedColor = textFieldTextColorFocused;
+            textField.textNormalColor = textFieldTextColorNormal;
+            [textField initializeAppearanceWithShadow:YES];
+            break;
         }
             
         default:

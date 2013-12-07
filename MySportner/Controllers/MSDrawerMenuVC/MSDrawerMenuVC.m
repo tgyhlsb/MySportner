@@ -74,8 +74,12 @@
 
 - (void)setAppearance
 {
-    self.view.backgroundColor = [UIColor colorWithRed:0.45f green:0.51f blue:0.53f alpha:1.00f];
-    self.bottomContainerView.backgroundColor = [UIColor colorWithRed:0.40f green:0.43f blue:0.49f alpha:1.00f];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iOS_blur.png"]];
+    //self.view.backgroundColor = [UIColor colorWithRed:0.45f green:0.51f blue:0.53f alpha:1.00f];
+    UIView *grayView = [[UIView alloc] initWithFrame:self.view.bounds];
+    [grayView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.4]];
+    [self.view insertSubview:grayView atIndex:0];
+    self.bottomContainerView.backgroundColor = [UIColor colorWithRed:0.40f green:0.43f blue:0.49f alpha:0.5f];
     self.fbProfilePictureView.backgroundColor = [UIColor clearColor];
     
     [MSStyleFactory setUILabel:self.userNameLabel withStyle:MSLabelStyleUserName];

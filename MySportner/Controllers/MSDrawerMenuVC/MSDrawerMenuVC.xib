@@ -82,11 +82,11 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wia-c0-z3Y">
-                    <rect key="frame" x="0.0" y="463" width="320" height="105"/>
+                    <rect key="frame" x="0.0" y="438" width="320" height="130"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRR-Hr-qfP" customClass="QBFlatButton">
-                            <rect key="frame" x="15" y="55" width="180" height="40"/>
+                            <rect key="frame" x="15" y="70" width="180" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="cfb-g6-LbA"/>
@@ -100,7 +100,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="byE-Yk-nKK" customClass="QBFlatButton">
-                            <rect key="frame" x="15" y="10" width="180" height="40"/>
+                            <rect key="frame" x="15" y="25" width="180" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="IDc-Wx-Ur0"/>
@@ -116,8 +116,8 @@
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="105" id="BM1-ED-0gh"/>
-                        <constraint firstItem="byE-Yk-nKK" firstAttribute="top" secondItem="wia-c0-z3Y" secondAttribute="top" constant="10" id="Ldd-vf-hBV"/>
+                        <constraint firstAttribute="height" constant="130" id="BM1-ED-0gh"/>
+                        <constraint firstItem="byE-Yk-nKK" firstAttribute="top" secondItem="wia-c0-z3Y" secondAttribute="top" constant="25" id="Ldd-vf-hBV"/>
                         <constraint firstItem="byE-Yk-nKK" firstAttribute="leading" secondItem="wia-c0-z3Y" secondAttribute="leading" constant="15" id="UZb-4y-YuS"/>
                         <constraint firstItem="tRR-Hr-qfP" firstAttribute="leading" secondItem="wia-c0-z3Y" secondAttribute="leading" constant="15" id="gvo-rD-kmc"/>
                         <constraint firstItem="tRR-Hr-qfP" firstAttribute="top" secondItem="byE-Yk-nKK" secondAttribute="bottom" constant="5" id="mzV-QT-o2O"/>

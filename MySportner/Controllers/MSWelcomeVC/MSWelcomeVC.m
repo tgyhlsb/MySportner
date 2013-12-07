@@ -60,6 +60,11 @@
     self.loginButton.sideColor = [MSColorFactory whiteDark];
     self.loginButton.titleLabel.font = [MSFontFactory fontForButtonLight];
     [self.loginButton setTitleColor:[MSColorFactory mainColor] forState:UIControlStateNormal];
+    
+    
+    // removes title from pushed VC
+    UIBarButtonItem *emptyBackButton = [[UIBarButtonItem alloc] initWithTitle: @"" style: UIBarButtonItemStyleBordered target: nil action: nil];
+    [[self navigationItem] setBackBarButtonItem: emptyBackButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated

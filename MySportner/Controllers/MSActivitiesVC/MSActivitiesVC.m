@@ -155,6 +155,10 @@
             cell.ownerProfilePictureView.profileID = activity.owner.facebookID;
             
             [cell setAppearanceWithOddIndex:(indexPath.row % 2)];
+            
+            cell.layer.shouldRasterize = YES;
+            cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+            
             return cell;
         }
     }
@@ -180,6 +184,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     MSActivityVC *destinationVC = [MSActivityVC newController];
+    destinationVC.activity = [self.data objectAtIndex:indexPath.row];
     
     [self.navigationController pushViewController:destinationVC animated:YES];
 }

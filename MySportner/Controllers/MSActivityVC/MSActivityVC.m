@@ -7,10 +7,12 @@
 //
 
 #import "MSActivityVC.h"
+#import "MSGameProfileCell.h"
 
 #define NIB_NAME @"MSActivityVC"
 
-@interface MSActivityVC ()
+@interface MSActivityVC () <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -21,6 +23,15 @@
     [super viewDidLoad];
     
     self.title = @"GAME PROFILE";
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    [MSGameProfileCell registerToTableView:self.tableView];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iOS_blur.png"]];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    
 }
 
 + (MSActivityVC *)newController
@@ -28,6 +39,37 @@
     MSActivityVC *activityVC = [[MSActivityVC alloc] initWithNibName:NIB_NAME bundle:nil];
     activityVC.hasDirectAccessToDrawer = NO;
     return activityVC;
+}
+
+#pragma mark UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *identifier = [MSGameProfileCell reusableIdentifier];
+    MSGameProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    cell.activity = self.activity;
+    
+//    cell.layer.shouldRasterize = YES;
+//    cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    
+    return cell;
+}
+
+#pragma mark UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [MSGameProfileCell height];
 }
 
 @end

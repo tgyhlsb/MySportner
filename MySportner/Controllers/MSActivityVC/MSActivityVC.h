@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "MSCenterController.h"
+#import "MSActivity.h"
 
 @interface MSActivityVC : MSCenterController
+
+@property (strong, nonatomic) MSActivity *activity;
 
 
 + (MSActivityVC *)newController;

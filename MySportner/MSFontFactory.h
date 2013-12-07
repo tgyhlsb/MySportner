@@ -21,5 +21,7 @@
 + (UIFont *)fontForCellInfo;
 + (UIFont *)fontForCellAcivityTitle;
 + (UIFont *)fontForDrawerMenu;
++ (UIFont *)fontForGameProfileSportTitle;
++ (UIFont *)fontForGameProfileSportInfo;
 
 @end

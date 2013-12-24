@@ -59,7 +59,10 @@
 
 - (void)hideView:(BOOL)hide
 {
-    self.viewToDisplay.hidden = hide;
+    [UIView animateWithDuration:1.0 animations:^{
+        self.viewToDisplay.hidden = hide;
+    }];
+    
 }
 
 

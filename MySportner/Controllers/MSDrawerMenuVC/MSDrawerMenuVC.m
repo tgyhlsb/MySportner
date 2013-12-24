@@ -99,7 +99,7 @@
     self.welcomeLabel.textColor = [MSColorFactory whiteLight];
     self.userNameLabel.textColor = [MSColorFactory whiteLight];
     
-    [self.fiendFriendsButton setTitle:@"FIEND FRIENDS" forState:UIControlStateNormal];
+    [self.fiendFriendsButton setTitle:@"FIND FRIENDS" forState:UIControlStateNormal];
     [MSStyleFactory setQBFlatButton:self.fiendFriendsButton withStyle:MSFlatButtonStyleDrawerMenuLight];
     
     [self.logoutButton setTitle:@"LOG OUT" forState:UIControlStateNormal];

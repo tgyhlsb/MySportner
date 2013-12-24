@@ -63,7 +63,6 @@
     {
         [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section]];
     }
-    [self.cellContainer hideView:YES];
     
     if (indexPath) {
         [self.tableView beginUpdates];
@@ -91,22 +90,23 @@
         
         [self.tableView endUpdates];
     }
-    [self.cellContainer hideView:NO];
+//    [self.cellContainer hideView:NO];
+//    [self.cellContainer setHidden:NO];
     
     
 }
 
 - (void)insertCellBelowIndexPath:(NSIndexPath *)indexPath
 {
-    //    [self.cellContainer hideView:NO];
     indexPath = [NSIndexPath indexPathForRow:(indexPath.row+1) inSection:indexPath.section];
     NSArray *pathsArray = @[indexPath];
     [self.tableView insertRowsAtIndexPaths:pathsArray withRowAnimation:UITableViewRowAnimationTop];
+    [self.cellContainer hideView:NO];
 }
 
 - (void)removeCellBelowIndexPath:(NSIndexPath *)indexPath
 {
-    //    [self.cellContainer hideView:YES];
+    [self.cellContainer hideView:YES];
     indexPath = [NSIndexPath indexPathForRow:(indexPath.row+1) inSection:indexPath.section];
     NSArray *pathsArray = @[indexPath];
     [self.tableView deleteRowsAtIndexPaths:pathsArray withRowAnimation:UITableViewRowAnimationTop];

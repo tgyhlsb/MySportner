@@ -92,6 +92,7 @@
     [super viewWillAppear:animated];
     
     [self setNormalNavigationBar];
+    self.navigationItem.title = [[self.user fullName] uppercaseString];
     //[self setTranslucentNavigationBar];
 }
 

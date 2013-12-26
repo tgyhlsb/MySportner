@@ -84,11 +84,6 @@
     }
 }
 
-- (CGRect)textRectForBounds:(CGRect)bounds
-{
-    return CGRectInset( bounds , 15 , 10 );
-}
-
 - (BOOL)canBecomeFirstResponder
 {
     [self setBorderColor:self.focusBorderColor];

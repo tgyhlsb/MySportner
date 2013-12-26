@@ -91,7 +91,6 @@
 {
     [super viewWillAppear:animated];
     
-    
     [self setNormalNavigationBar];
     //[self setTranslucentNavigationBar];
 }

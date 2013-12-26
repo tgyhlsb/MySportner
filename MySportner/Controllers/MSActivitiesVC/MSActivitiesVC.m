@@ -16,6 +16,7 @@
 #import "MBProgressHUD.h"
 #import "QBFlatButton.h"
 #import "MSStyleFactory.h"
+#import "MSSetAGameVC.h"
 //#import <FacebookSDK/FacebookSDK.h>
 
 #define NIB_NAME @"MSActivitiesVC"
@@ -73,8 +74,15 @@
     [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button_press.png"] forState:UIControlStateHighlighted|UIControlStateHighlighted];
     [self.plusButton setTitle:@"" forState:UIControlStateNormal];
 }
+- (IBAction)plusButtonHandler:(id)sender
+{
+    MSSetAGameVC *destinationVC = [MSSetAGameVC newController];
+    destinationVC.hasDirectAccessToDrawer = NO;
+    [self.navigationController pushViewController:destinationVC animated:YES];
+}
 
-#pragma mark Back end process
+
+#pragma mark BackEnd process
 
 - (void)activitiesCallback:(NSArray *)objects error:(NSError *)error
 {

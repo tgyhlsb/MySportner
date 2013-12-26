@@ -11,6 +11,7 @@
 #import "MSActivitiesVC.h"
 #import "MSNotificationsVC.h"
 #import "MSSetAGameVC.h"
+#import "MSFindFriendsVC.h"
 
 @interface MSDrawerController ()
 
@@ -20,7 +21,7 @@
 
 - (void)displayCenterControlerForView:(MSCenterView)view
 {
-    UIViewController *newCenterVC = nil;
+    MSCenterController *newCenterVC = nil;
     switch (view) {
         case MSCenterViewProfile:
         {
@@ -48,6 +49,8 @@
         }
         case MSCenterViewFiendFriends:
         {
+            newCenterVC = [MSFindFriendsVC newController];
+            ((MSFindFriendsVC *)newCenterVC).hasDirectAccessToDrawer = YES;
             break;
         }
             

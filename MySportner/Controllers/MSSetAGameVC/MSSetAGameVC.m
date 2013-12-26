@@ -66,6 +66,8 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     
     [self registerForKeyboardNotifications];
     
+    self.navigationItem.title = @"SET A GAME";
+    
     self.tableView.backgroundColor = [UIColor clearColor];
 }
 

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MSUser.h"
+#import "MSCenterController.h"
 
-@interface MSFindFriendsVC : UIViewController
+@interface MSFindFriendsVC : MSCenterController
 
 @property (strong, nonatomic) MSUser *user;
 

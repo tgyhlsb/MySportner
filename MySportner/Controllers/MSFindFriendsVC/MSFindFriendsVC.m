@@ -41,6 +41,8 @@
     
     [MSStyleFactory setQBFlatButton:self.nextButton withStyle:MSFlatButtonStyleGreen];
     [MSFacebookFriendCell registerToTableView:self.tableView];
+    
+    self.nextButton.hidden = self.hasDirectAccessToDrawer;
 }
 
 - (void)performLogin
@@ -50,6 +52,12 @@
     [appDelegate setDrawerMenu];
     
     [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
+}
+
+- (void)setHasDirectAccessToDrawer:(BOOL)hasDirectAccessToDrawer
+{
+    self.nextButton.hidden = hasDirectAccessToDrawer;
+    [super setHasDirectAccessToDrawer:hasDirectAccessToDrawer];
 }
 
 - (void)reloadData
@@ -121,7 +129,9 @@
 
 + (MSFindFriendsVC *)newController
 {
-    return [[MSFindFriendsVC alloc] initWithNibName:NIB_NAME bundle:Nil];
+    MSFindFriendsVC *newVC = [[MSFindFriendsVC alloc] initWithNibName:NIB_NAME bundle:Nil];
+    newVC.hasDirectAccessToDrawer = NO;
+    return newVC;
 }
 
 #pragma mark UITableViewDataSource

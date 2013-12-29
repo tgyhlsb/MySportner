@@ -12,6 +12,7 @@
 
 @implementation MSActivity
 
+@dynamic date;
 @dynamic day;
 @dynamic time;
 @dynamic place;

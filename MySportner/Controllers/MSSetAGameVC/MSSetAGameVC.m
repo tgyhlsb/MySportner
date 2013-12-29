@@ -50,8 +50,9 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 @property (strong, nonatomic) MBProgressHUD *loadingView;
 
 @property (weak, nonatomic) MSTextField *activeTextField;
-@property (strong, nonatomic) NSDate *activityDate;
 @property (nonatomic) NSInteger repeatMode;
+
+@property (strong, nonatomic) MSActivity *activity;
 
 @end
 
@@ -98,10 +99,10 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     self.repeatTextField.text = [REPEAT_VALUES objectAtIndex:self.repeatMode];
 }
 
-- (NSDate *)activityDate
+- (MSActivity *)activity
 {
-    if (!_activityDate) _activityDate = [NSDate date];
-    return _activityDate;
+    if (!_activity) _activity = [[MSActivity alloc] init];
+    return _activity;
 }
 
 + (MSSetAGameVC *)newController
@@ -113,18 +114,14 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 
 - (void)createActivity
 {
-    MSActivity *activity = [[MSActivity alloc] init];
-    
-    activity.day = self.dayTextField.text;
-    activity.time = self.timeTextField.text;
-    activity.sport = self.sportCell.sport;
-    activity.place = self.venueCell.venue.name;
-    activity.owner = [MSUser currentUser];
-    activity.guests = [[NSArray alloc] init];
-    activity.participants = [[NSArray alloc] init];
+    self.activity.sport = self.sportCell.sport;
+    self.activity.place = self.venueCell.venue.name;
+    self.activity.owner = [MSUser currentUser];
+    self.activity.guests = [[NSArray alloc] init];
+    self.activity.participants = [[NSArray alloc] init];
     
     [self showLoadingViewInView:self.navigationController.view];
-    [activity saveInBackgroundWithTarget:self selector:@selector(handleActivityCreation:error:)];
+    [self.activity saveInBackgroundWithTarget:self selector:@selector(handleActivityCreation:error:)];
 }
 
 - (void)handleActivityCreation:(BOOL)succeed error:(NSError *)error
@@ -141,6 +138,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 {
     MSActivityVC *destinationVC = [MSActivityVC newController];
     destinationVC.hasDirectAccessToDrawer = YES;
+    destinationVC.activity = self.activity;
     
     [self.navigationController setViewControllers:@[destinationVC] animated:YES];
 }
@@ -157,7 +155,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     [dayComponents setMinute:timeComponents.minute];
     [dayComponents setSecond:0];
     
-    self.activityDate = [calendar dateFromComponents:dayComponents];    
+    self.activity.date = [calendar dateFromComponents:dayComponents];
 }
 
 - (void)dayPickerValueDidChange
@@ -165,7 +163,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     [self updateAcitivityDate];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"dd - MM - yyyy"];
-    self.dayTextField.text = [dateFormat stringFromDate:self.activityDate];
+    self.dayTextField.text = [dateFormat stringFromDate:self.activity.date];
 }
 
 - (void)dayPickerDidTap
@@ -178,7 +176,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     [self updateAcitivityDate];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"hh:mm"];
-    self.timeTextField.text = [dateFormat stringFromDate:self.activityDate];
+    self.timeTextField.text = [dateFormat stringFromDate:self.activity.date];
 }
 
 - (void)timePickerDidTap

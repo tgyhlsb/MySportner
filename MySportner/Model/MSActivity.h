@@ -15,6 +15,7 @@
 
 @interface MSActivity : PFObject <PFSubclassing>
 
+@property (strong, nonatomic) NSDate *date;
 @property (strong, nonatomic) NSString *day;
 @property (strong, nonatomic) NSString *time;
 @property (strong, nonatomic) NSString *place;

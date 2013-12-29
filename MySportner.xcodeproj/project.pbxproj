@@ -46,6 +46,8 @@
 		5A31C2051842153C00868188 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C2031842153C00868188 /* SystemConfiguration.framework */; };
 		5A3DE7C118412E82001054EB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3DE7C018412E82001054EB /* FacebookSDK.framework */; };
 		5A3DE7C4184133E1001054EB /* MSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3DE7C3184133E1001054EB /* MSUser.m */; };
+		5A4CE2B9187099AE0081AA1E /* MSButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4CE2B8187099AE0081AA1E /* MSButtonCell.m */; };
+		5A4CE2BB187099C50081AA1E /* MSButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A4CE2BA187099C50081AA1E /* MSButtonCell.xib */; };
 		5A96744C1849CD180079EAC1 /* QBFlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A96744B1849CD180079EAC1 /* QBFlatButton.m */; };
 		5A96744F1849D20C0079EAC1 /* MSColorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A96744E1849D20C0079EAC1 /* MSColorFactory.m */; };
 		5A9674521849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9674511849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m */; };
@@ -235,6 +237,9 @@
 		5A3DE7C018412E82001054EB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		5A3DE7C2184133E1001054EB /* MSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSUser.h; path = Model/MSUser.h; sourceTree = "<group>"; };
 		5A3DE7C3184133E1001054EB /* MSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSUser.m; path = Model/MSUser.m; sourceTree = "<group>"; };
+		5A4CE2B7187099AE0081AA1E /* MSButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSButtonCell.h; path = Views/Cells/MSButtonCell/MSButtonCell.h; sourceTree = "<group>"; };
+		5A4CE2B8187099AE0081AA1E /* MSButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSButtonCell.m; path = Views/Cells/MSButtonCell/MSButtonCell.m; sourceTree = "<group>"; };
+		5A4CE2BA187099C50081AA1E /* MSButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSButtonCell.xib; path = Views/Cells/MSButtonCell/MSButtonCell.xib; sourceTree = "<group>"; };
 		5A96744A1849CD180079EAC1 /* QBFlatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBFlatButton.h; sourceTree = "<group>"; };
 		5A96744B1849CD180079EAC1 /* QBFlatButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBFlatButton.m; sourceTree = "<group>"; };
 		5A96744D1849D20C0079EAC1 /* MSColorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSColorFactory.h; sourceTree = "<group>"; };
@@ -530,6 +535,16 @@
 			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		5A4CE2BC187099CE0081AA1E /* MSButtonCell */ = {
+			isa = PBXGroup;
+			children = (
+				5A4CE2B7187099AE0081AA1E /* MSButtonCell.h */,
+				5A4CE2B8187099AE0081AA1E /* MSButtonCell.m */,
+				5A4CE2BA187099C50081AA1E /* MSButtonCell.xib */,
+			);
+			name = MSButtonCell;
+			sourceTree = "<group>";
+		};
 		5A9674491849CD180079EAC1 /* QBFlatButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -809,6 +824,7 @@
 				5AFE43F918426CDA001376C7 /* MSBigSportCell */,
 				5A9B2DAB18539F3100AE45D9 /* MSGameProfileCell */,
 				5A23BB0B186CD1D700FFF0E0 /* MSFacebookFriendCell */,
+				5A4CE2BC187099CE0081AA1E /* MSButtonCell */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1143,6 +1159,7 @@
 				5ADCF2E71840D23A00E6C8D2 /* MSTextFieldPickerCell.xib in Resources */,
 				5AFE689518508EAC00E40541 /* plus_button_press.png in Resources */,
 				5ADCF2A518401E2800E6C8D2 /* MSSetAGameVC.xib in Resources */,
+				5A4CE2BB187099C50081AA1E /* MSButtonCell.xib in Resources */,
 				5AFE687D18507BE300E40541 /* gym(select)@2x.png in Resources */,
 				5AA60A05184B56BD00B09ADD /* iOS_blur.png in Resources */,
 				5AFE687818507BE300E40541 /* football(select).png in Resources */,
@@ -1241,6 +1258,7 @@
 				5A9674521849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m in Sources */,
 				5A96745C184A0ECA0079EAC1 /* UIImage+ImageEffects.m in Sources */,
 				5ADCF2D31840BA6400E6C8D2 /* MSPickSportCell.m in Sources */,
+				5A4CE2B9187099AE0081AA1E /* MSButtonCell.m in Sources */,
 				5AFE43F618426CC6001376C7 /* MSBigSportCell.m in Sources */,
 				5ADCF293184017A700E6C8D2 /* MSActivitiesVC.m in Sources */,
 				5A1B73721844AB6200555FE4 /* MZFormSheetController.m in Sources */,

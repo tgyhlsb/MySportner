@@ -13,6 +13,7 @@
 #import "MSActivity.h"
 #import "MBProgressHUD.h"
 #import "MSActivityVC.h"
+#import "MSButtonCell.h"
 
 #define NIB_NAME @"MSSetAGameVC"
 
@@ -28,7 +29,8 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     MSSetAGameTextFieldTypeRepeat,
     MSSetAGameTextFieldTypeDay,
     MSSetAGameTextFieldTypeTime,
-    MSSetAGameTextFieldTypeLocation
+    MSSetAGameTextFieldTypeLocation,
+    MSSetAGameTextFieldTypeButton
 };
 
 @interface MSSetAGameVC () <UITableViewDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
@@ -63,10 +65,11 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     [MSLocationPickerCell registerToTableView:self.tableView];
     [MSPickSportCell registerToTableView:self.tableView];
     [MSTextFieldPickerCell registerToTableView:self.tableView];
+    [MSButtonCell registerToTableView:self.tableView];
     
-    UIBarButtonItem *validateButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(createActivity)];
-    
-    [self.navigationItem setRightBarButtonItem:validateButton];
+//    UIBarButtonItem *validateButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(createActivity)];
+//    
+//    [self.navigationItem setRightBarButtonItem:validateButton];
     
     [self registerForKeyboardNotifications];
     
@@ -246,7 +249,6 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
-    return [REPEAT_VALUES count];
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
@@ -279,7 +281,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
         case MSSetAGameSectionPickSport:
             return 1;
         case MSSetAGameSectionTextField:
-            return 4;
+            return MSSetAGameTextFieldTypeButton + 1;
         case MSSetAGameSectionSizePicker:
             return 0;
             
@@ -343,6 +345,15 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     cell.textField.placeholder = @"Location";
                     self.venueCell = cell;
                     [cell initializeLocation];
+                    
+                    return cell;
+                }
+                    
+                case MSSetAGameTextFieldTypeButton:
+                {
+                    MSButtonCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSButtonCell reusableIdentifier] forIndexPath:indexPath];
+                    [cell.button addTarget:self action:@selector(createActivity) forControlEvents:UIControlEventTouchUpInside];
+                    [cell.button setTitle:@"NEXT" forState:UIControlStateNormal];
                     
                     return cell;
                 }

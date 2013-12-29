@@ -6,23 +6,23 @@
 //  Copyright (c) 2013 MySportner. All rights reserved.
 //
 
-#import "MSLocationPickerCell.h"
-#import "MSLocationPickerVC.h"
+#import "MSVenuePickerCell.h"
+#import "MSVenuePickerVC.h"
 
 #define IDENTIFIER @"MSLocationPickerCell"
 
-@interface MSLocationPickerCell() <CLLocationManagerDelegate>
+@interface MSVenuePickerCell() <CLLocationManagerDelegate>
 
 @property (strong, nonatomic) CLLocation *location;
 
 @end
 
-@implementation MSLocationPickerCell
+@implementation MSVenuePickerCell
 
 + (void)registerToTableView:(UITableView *)tableView
 {
     UINib *nib = [UINib nibWithNibName:IDENTIFIER bundle:nil];
-    [tableView registerNib:nib forCellReuseIdentifier:[MSLocationPickerCell reusableIdentifier]];
+    [tableView registerNib:nib forCellReuseIdentifier:[MSVenuePickerCell reusableIdentifier]];
 }
 
 + (NSString *)reusableIdentifier
@@ -53,10 +53,10 @@
 
 - (void)startLocationPickerProcess
 {
-    __weak MSLocationPickerCell *weakSelf = self;
+    __weak MSVenuePickerCell *weakSelf = self;
     
-    MSLocationPickerVC *modalVC = [[MSLocationPickerVC alloc] init];
-    __weak MSLocationPickerVC *weakModalVC = modalVC;
+    MSVenuePickerVC *modalVC = [[MSVenuePickerVC alloc] init];
+    __weak MSVenuePickerVC *weakModalVC = modalVC;
     
     modalVC.closeBlock = ^{
         weakSelf.venue = weakModalVC.selectedVenue;

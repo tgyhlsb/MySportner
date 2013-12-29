@@ -9,7 +9,7 @@
 #import "MSSetAGameVC.h"
 #import "MSPickSportCell.h"
 #import "MSTextFieldPickerCell.h"
-#import "MSLocationPickerCell.h"
+#import "MSVenuePickerCell.h"
 #import "MSActivity.h"
 #import "MBProgressHUD.h"
 #import "MSActivityVC.h"
@@ -40,7 +40,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 @property (strong, nonatomic) IBOutlet UITextField *dayTextField;
 @property (strong, nonatomic) IBOutlet UITextField *timeTextField;
 @property (strong, nonatomic) IBOutlet UITextField *repeatTextField;
-@property (strong, nonatomic) IBOutlet MSLocationPickerCell *venueCell;
+@property (strong, nonatomic) IBOutlet MSVenuePickerCell *venueCell;
 @property (strong, nonatomic) IBOutlet MSPickSportCell *sportCell;
 
 @property (strong, nonatomic) UIDatePicker *dayPicker;
@@ -63,7 +63,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     [super viewDidLoad];
     
 	
-    [MSLocationPickerCell registerToTableView:self.tableView];
+    [MSVenuePickerCell registerToTableView:self.tableView];
     [MSPickSportCell registerToTableView:self.tableView];
     [MSTextFieldPickerCell registerToTableView:self.tableView];
     [MSButtonCell registerToTableView:self.tableView];
@@ -337,7 +337,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     
                 case MSSetAGameTextFieldTypeLocation:
                 {
-                    MSLocationPickerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSLocationPickerCell reusableIdentifier] forIndexPath:indexPath];
+                    MSVenuePickerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSVenuePickerCell reusableIdentifier] forIndexPath:indexPath];
                     
                     [cell initializeWithViewcontroller:self];
                     cell.textField.placeholder = @"Location";

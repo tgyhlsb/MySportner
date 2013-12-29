@@ -99,7 +99,7 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MySportner/Controllers/MSLocationPickerVC/MSLocationPickerVC.m"
+            filePath = "MySportner/Controllers/MSLocationPickerVC/MSVenuePickerVC.m"
             timestampString = "407516758.02894"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"

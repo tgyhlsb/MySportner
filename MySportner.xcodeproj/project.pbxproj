@@ -114,10 +114,10 @@
 		5ADCF2DA1840BDBB00E6C8D2 /* MSSmallSportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2D91840BDBB00E6C8D2 /* MSSmallSportCell.xib */; };
 		5ADCF2E61840D23A00E6C8D2 /* MSTextFieldPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2E41840D23A00E6C8D2 /* MSTextFieldPickerCell.m */; };
 		5ADCF2E71840D23A00E6C8D2 /* MSTextFieldPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2E51840D23A00E6C8D2 /* MSTextFieldPickerCell.xib */; };
-		5ADCF2EA1840D38B00E6C8D2 /* MSLocationPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2E91840D38B00E6C8D2 /* MSLocationPickerVC.m */; };
-		5ADCF2EC1840D39C00E6C8D2 /* MSLocationPickerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2EB1840D39C00E6C8D2 /* MSLocationPickerVC.xib */; };
-		5ADCF2F31840D52C00E6C8D2 /* MSLocationPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2F21840D52C00E6C8D2 /* MSLocationPickerCell.m */; };
-		5ADCF2F51840D9C200E6C8D2 /* MSLocationPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2F41840D9C200E6C8D2 /* MSLocationPickerCell.xib */; };
+		5ADCF2EA1840D38B00E6C8D2 /* MSVenuePickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2E91840D38B00E6C8D2 /* MSVenuePickerVC.m */; };
+		5ADCF2EC1840D39C00E6C8D2 /* MSVenuePickerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2EB1840D39C00E6C8D2 /* MSVenuePickerVC.xib */; };
+		5ADCF2F31840D52C00E6C8D2 /* MSVenuePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2F21840D52C00E6C8D2 /* MSVenuePickerCell.m */; };
+		5ADCF2F51840D9C200E6C8D2 /* MSVenuePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF2F41840D9C200E6C8D2 /* MSVenuePickerCell.xib */; };
 		5ADCF2F81840DB3A00E6C8D2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF2F71840DB3A00E6C8D2 /* MapKit.framework */; };
 		5ADCF3011840E38D00E6C8D2 /* MSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF2FD1840E38D00E6C8D2 /* MSURLConnection.m */; };
 		5ADCF3051840E60300E6C8D2 /* MSFourSquareRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF3041840E60300E6C8D2 /* MSFourSquareRequestFactory.m */; };
@@ -344,12 +344,12 @@
 		5ADCF2E31840D23A00E6C8D2 /* MSTextFieldPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSTextFieldPickerCell.h; path = Views/Cells/MSTextPickerCell/MSTextFieldPickerCell.h; sourceTree = "<group>"; };
 		5ADCF2E41840D23A00E6C8D2 /* MSTextFieldPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSTextFieldPickerCell.m; path = Views/Cells/MSTextPickerCell/MSTextFieldPickerCell.m; sourceTree = "<group>"; };
 		5ADCF2E51840D23A00E6C8D2 /* MSTextFieldPickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSTextFieldPickerCell.xib; path = Views/Cells/MSTextPickerCell/MSTextFieldPickerCell.xib; sourceTree = "<group>"; };
-		5ADCF2E81840D38B00E6C8D2 /* MSLocationPickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSLocationPickerVC.h; path = Controllers/MSLocationPickerVC/MSLocationPickerVC.h; sourceTree = "<group>"; };
-		5ADCF2E91840D38B00E6C8D2 /* MSLocationPickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSLocationPickerVC.m; path = Controllers/MSLocationPickerVC/MSLocationPickerVC.m; sourceTree = "<group>"; };
-		5ADCF2EB1840D39C00E6C8D2 /* MSLocationPickerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSLocationPickerVC.xib; path = Controllers/MSLocationPickerVC/MSLocationPickerVC.xib; sourceTree = "<group>"; };
-		5ADCF2F11840D52C00E6C8D2 /* MSLocationPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSLocationPickerCell.h; path = Views/Cells/MSTextPickerCell/MSLocationPickerCell/MSLocationPickerCell.h; sourceTree = "<group>"; };
-		5ADCF2F21840D52C00E6C8D2 /* MSLocationPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSLocationPickerCell.m; path = Views/Cells/MSTextPickerCell/MSLocationPickerCell/MSLocationPickerCell.m; sourceTree = "<group>"; };
-		5ADCF2F41840D9C200E6C8D2 /* MSLocationPickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSLocationPickerCell.xib; path = Views/Cells/MSTextPickerCell/MSLocationPickerCell/MSLocationPickerCell.xib; sourceTree = "<group>"; };
+		5ADCF2E81840D38B00E6C8D2 /* MSVenuePickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSVenuePickerVC.h; path = Controllers/MSLocationPickerVC/MSVenuePickerVC.h; sourceTree = "<group>"; };
+		5ADCF2E91840D38B00E6C8D2 /* MSVenuePickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSVenuePickerVC.m; path = Controllers/MSLocationPickerVC/MSVenuePickerVC.m; sourceTree = "<group>"; };
+		5ADCF2EB1840D39C00E6C8D2 /* MSVenuePickerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSVenuePickerVC.xib; path = Controllers/MSLocationPickerVC/MSVenuePickerVC.xib; sourceTree = "<group>"; };
+		5ADCF2F11840D52C00E6C8D2 /* MSVenuePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSVenuePickerCell.h; path = Views/Cells/MSTextPickerCell/MSLocationPickerCell/MSVenuePickerCell.h; sourceTree = "<group>"; };
+		5ADCF2F21840D52C00E6C8D2 /* MSVenuePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSVenuePickerCell.m; path = Views/Cells/MSTextPickerCell/MSLocationPickerCell/MSVenuePickerCell.m; sourceTree = "<group>"; };
+		5ADCF2F41840D9C200E6C8D2 /* MSVenuePickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSVenuePickerCell.xib; path = Views/Cells/MSTextPickerCell/MSLocationPickerCell/MSVenuePickerCell.xib; sourceTree = "<group>"; };
 		5ADCF2F71840DB3A00E6C8D2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5ADCF2FC1840E38D00E6C8D2 /* MSURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSURLConnection.h; sourceTree = "<group>"; };
 		5ADCF2FD1840E38D00E6C8D2 /* MSURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSURLConnection.m; sourceTree = "<group>"; };
@@ -958,9 +958,9 @@
 		5ADCF2ED1840D3A300E6C8D2 /* MSLocationPickerVC */ = {
 			isa = PBXGroup;
 			children = (
-				5ADCF2E81840D38B00E6C8D2 /* MSLocationPickerVC.h */,
-				5ADCF2E91840D38B00E6C8D2 /* MSLocationPickerVC.m */,
-				5ADCF2EB1840D39C00E6C8D2 /* MSLocationPickerVC.xib */,
+				5ADCF2E81840D38B00E6C8D2 /* MSVenuePickerVC.h */,
+				5ADCF2E91840D38B00E6C8D2 /* MSVenuePickerVC.m */,
+				5ADCF2EB1840D39C00E6C8D2 /* MSVenuePickerVC.xib */,
 			);
 			name = MSLocationPickerVC;
 			sourceTree = "<group>";
@@ -968,9 +968,9 @@
 		5ADCF2F61840D9C800E6C8D2 /* MSLocationPickerCell */ = {
 			isa = PBXGroup;
 			children = (
-				5ADCF2F11840D52C00E6C8D2 /* MSLocationPickerCell.h */,
-				5ADCF2F21840D52C00E6C8D2 /* MSLocationPickerCell.m */,
-				5ADCF2F41840D9C200E6C8D2 /* MSLocationPickerCell.xib */,
+				5ADCF2F11840D52C00E6C8D2 /* MSVenuePickerCell.h */,
+				5ADCF2F21840D52C00E6C8D2 /* MSVenuePickerCell.m */,
+				5ADCF2F41840D9C200E6C8D2 /* MSVenuePickerCell.xib */,
 			);
 			name = MSLocationPickerCell;
 			sourceTree = "<group>";
@@ -1179,7 +1179,7 @@
 				5ADCF22F184004D300E6C8D2 /* InfoPlist.strings in Resources */,
 				5ADCF2851840141700E6C8D2 /* MSProfileVC.xib in Resources */,
 				5ADCF2D51840BA7600E6C8D2 /* MSPickSportCell.xib in Resources */,
-				5ADCF2EC1840D39C00E6C8D2 /* MSLocationPickerVC.xib in Resources */,
+				5ADCF2EC1840D39C00E6C8D2 /* MSVenuePickerVC.xib in Resources */,
 				5A29CAF618492080002A8B60 /* MSSportLevelFormVC.xib in Resources */,
 				5AFE440918427158001376C7 /* MSFindFriendsVC.xib in Resources */,
 				5A23BB0A186CD1CF00FFF0E0 /* MSFacebookFriendCell.xib in Resources */,
@@ -1198,7 +1198,7 @@
 				5ADCF28F1840178900E6C8D2 /* MSActivitiesVC.xib in Resources */,
 				5AFE687418507BE300E40541 /* foot(select).png in Resources */,
 				5ADCF2AE184025BB00E6C8D2 /* MSWelcomeVC.xib in Resources */,
-				5ADCF2F51840D9C200E6C8D2 /* MSLocationPickerCell.xib in Resources */,
+				5ADCF2F51840D9C200E6C8D2 /* MSVenuePickerCell.xib in Resources */,
 				5ADCF2DA1840BDBB00E6C8D2 /* MSSmallSportCell.xib in Resources */,
 				5ADCF2C51840AE0800E6C8D2 /* MSActivityVC.xib in Resources */,
 				5AFE688118507BE300E40541 /* rugby(select)@2x.png in Resources */,
@@ -1273,7 +1273,7 @@
 				5A29CAF418492071002A8B60 /* MSSportLevelFormVC.m in Sources */,
 				5A1B73701844AB6200555FE4 /* NSInvocation+Copy.m in Sources */,
 				5ADCF2B218402B4500E6C8D2 /* MSActivity.m in Sources */,
-				5ADCF2F31840D52C00E6C8D2 /* MSLocationPickerCell.m in Sources */,
+				5ADCF2F31840D52C00E6C8D2 /* MSVenuePickerCell.m in Sources */,
 				5ADCF2CA1840AF5300E6C8D2 /* MSActivityCell.m in Sources */,
 				5ADCF2A918401FF800E6C8D2 /* MSCenterController.m in Sources */,
 				5ADCF2D81840BDAD00E6C8D2 /* MSSmallSportCell.m in Sources */,
@@ -1300,7 +1300,7 @@
 				5A1B73771844AC2700555FE4 /* MSLoginFormVC.m in Sources */,
 				5AFE44071842714D001376C7 /* MSFindFriendsVC.m in Sources */,
 				5A173FE21849C97D00144DB8 /* UIView+MSRoundedView.m in Sources */,
-				5ADCF2EA1840D38B00E6C8D2 /* MSLocationPickerVC.m in Sources */,
+				5ADCF2EA1840D38B00E6C8D2 /* MSVenuePickerVC.m in Sources */,
 				5ADCF2E61840D23A00E6C8D2 /* MSTextFieldPickerCell.m in Sources */,
 				5A0F9116184242AF0049BBD5 /* MSCreateAccountVC.m in Sources */,
 				5ADCF3111840F6A300E6C8D2 /* MSFourSquareParser.m in Sources */,

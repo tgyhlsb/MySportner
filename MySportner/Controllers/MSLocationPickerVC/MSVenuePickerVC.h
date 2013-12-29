@@ -10,13 +10,13 @@
 #import <MapKit/MapKit.h>
 #import "MSVenue.h"
 
-@interface MSLocationPickerVC : UIViewController
+@interface MSVenuePickerVC : UIViewController
 
 @property (nonatomic, strong) void (^closeBlock)(void);
 @property (strong, nonatomic) MSVenue *selectedVenue;
 @property (strong, nonatomic) CLLocation *location;
 
-+ (MSLocationPickerVC *)newController;
++ (MSVenuePickerVC *)newController;
 
 + (void)presentFromViewController:(UIViewController *)viewController;
 

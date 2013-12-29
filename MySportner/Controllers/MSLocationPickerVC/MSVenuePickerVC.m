@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 MySportner. All rights reserved.
 //
 
-#import "MSLocationPickerVC.h"
+#import "MSVenuePickerVC.h"
 #import "MSFourSquareRequestFactory.h"
 #import "MSURLConnection.h"
 #import "MBProgressHUD.h"
@@ -14,7 +14,7 @@
 #import "MSVenueCell.h"
 #import "MSVenue+MapKit.h"
 
-@interface MSLocationPickerVC () <MSURLConnectionDelegate, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate>
+@interface MSVenuePickerVC () <MSURLConnectionDelegate, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -28,7 +28,7 @@
 
 @end
 
-@implementation MSLocationPickerVC
+@implementation MSVenuePickerVC
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -37,14 +37,14 @@
     NSLog(@"%@", self.location);
 }
 
-+ (MSLocationPickerVC *)newController
++ (MSVenuePickerVC *)newController
 {
-    return [[MSLocationPickerVC alloc] init];
+    return [[MSVenuePickerVC alloc] init];
 }
 
 + (void)presentFromViewController:(UIViewController *)viewController
 {
-    MSLocationPickerVC *destinationVC = [[MSLocationPickerVC alloc] init];
+    MSVenuePickerVC *destinationVC = [[MSVenuePickerVC alloc] init];
     [viewController presentViewController:destinationVC animated:YES completion:nil];
 }
 

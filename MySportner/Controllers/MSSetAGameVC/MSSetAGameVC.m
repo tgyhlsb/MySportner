@@ -46,6 +46,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 @property (strong, nonatomic) MBProgressHUD *loadingView;
 
 @property (weak, nonatomic) MSTextField *activeTextField;
+@property (strong, nonatomic) NSDate *activityDate;
 
 @end
 
@@ -74,6 +75,14 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self dayPickerValueDidChange];
+    [self timePickerValueDidChange];
+}
+
+- (NSDate *)activityDate
+{
+    if (!_activityDate) _activityDate = [NSDate date];
+    return _activityDate;
 }
 
 + (MSSetAGameVC *)newController
@@ -117,6 +126,47 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     [self.navigationController setViewControllers:@[destinationVC] animated:YES];
 }
 
+#pragma mark DatePickers Handlers
+
+- (void)updateAcitivityDate
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *dayComponents = [calendar components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSMinuteCalendarUnit|NSHourCalendarUnit|NSSecondCalendarUnit) fromDate:self.dayPicker.date];
+    NSDateComponents *timeComponents = [calendar components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSMinuteCalendarUnit|NSHourCalendarUnit|NSSecondCalendarUnit) fromDate:self.timePicker.date];
+    
+    [dayComponents setHour:timeComponents.hour];
+    [dayComponents setMinute:timeComponents.minute];
+    [dayComponents setSecond:0];
+    
+    self.activityDate = [calendar dateFromComponents:dayComponents];    
+}
+
+- (void)dayPickerValueDidChange
+{
+    [self updateAcitivityDate];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd - MM - yyyy"];
+    self.dayTextField.text = [dateFormat stringFromDate:self.activityDate];
+}
+
+- (void)dayPickerDidTap
+{
+    
+}
+
+- (void)timePickerValueDidChange
+{
+    [self updateAcitivityDate];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"hh:mm"];
+    self.timeTextField.text = [dateFormat stringFromDate:self.activityDate];
+}
+
+- (void)timePickerDidTap
+{
+    
+}
+
 #pragma mark ExtensiveCellDelegate
 
 - (UIView *)viewForContainerAtIndexPath:(NSIndexPath *)indexPath
@@ -142,6 +192,10 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
         tempFrame.origin.y = -50;
         _dayPicker.frame = tempFrame;
         _dayPicker.datePickerMode = UIDatePickerModeDate;
+        _dayPicker.minimumDate = [NSDate date];
+        [_dayPicker addTarget:self action:@selector(dayPickerValueDidChange) forControlEvents:UIControlEventValueChanged];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dayPickerDidTap)];
+        [_dayPicker addGestureRecognizer:tapGesture];
     }
     return _dayPicker;
 }
@@ -154,6 +208,9 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
         tempFrame.origin.y = -50;
         _timePicker.frame = tempFrame;
         _timePicker.datePickerMode = UIDatePickerModeTime;
+        [_timePicker addTarget:self action:@selector(timePickerValueDidChange) forControlEvents:UIControlEventValueChanged];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(timePickerDidTap)];
+        [_timePicker addGestureRecognizer:tapGesture];
     }
     return _timePicker;
 }

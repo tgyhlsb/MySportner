@@ -16,6 +16,8 @@
 
 #define NIB_NAME @"MSSetAGameVC"
 
+#define REPEAT_VALUES @[@"Never", @"Weekly", @"Monthly"]
+
 typedef NS_ENUM(int, MSSetAGameSection) {
     MSSetAGameSectionPickSport,
     MSSetAGameSectionTextField,
@@ -29,7 +31,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     MSSetAGameTextFieldTypeLocation
 };
 
-@interface MSSetAGameVC () <UITableViewDelegate, UITextFieldDelegate>
+@interface MSSetAGameVC () <UITableViewDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -47,6 +49,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 
 @property (weak, nonatomic) MSTextField *activeTextField;
 @property (strong, nonatomic) NSDate *activityDate;
+@property (nonatomic) NSInteger repeatMode;
 
 @end
 
@@ -75,8 +78,21 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self initializePickers];
+}
+
+- (void)initializePickers
+{
+    self.repeatMode = 0;
     [self dayPickerValueDidChange];
     [self timePickerValueDidChange];
+}
+
+- (void)setRepeatMode:(NSInteger)repeatMode
+{
+    _repeatMode = repeatMode;
+    
+    self.repeatTextField.text = [REPEAT_VALUES objectAtIndex:self.repeatMode];
 }
 
 - (NSDate *)activityDate
@@ -218,9 +234,36 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 - (UIPickerView *)repeatPicker
 {
     if (!_repeatPicker) {
-        _repeatPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+        _repeatPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, -30, 320, 10)];
+        _repeatPicker.delegate = self;
+        _repeatPicker.dataSource = self;
     }
     return _repeatPicker;
+}
+
+#pragma mark UIPickerViewDataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+    return [REPEAT_VALUES count];
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [REPEAT_VALUES count];
+}
+
+#pragma mark UIPickerViewDelegate
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [REPEAT_VALUES objectAtIndex:row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    self.repeatMode = row;
 }
 
 #pragma mark UITableViewDataSource

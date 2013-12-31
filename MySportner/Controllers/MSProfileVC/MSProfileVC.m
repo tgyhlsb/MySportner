@@ -47,6 +47,7 @@
 - (void)setAppearance
 {
     [self.profilePictureView setRounded];
+    self.profilePictureView.backgroundColor = [UIColor clearColor];
     
     self.locationLabel.textColor = [MSColorFactory whiteLight];
     

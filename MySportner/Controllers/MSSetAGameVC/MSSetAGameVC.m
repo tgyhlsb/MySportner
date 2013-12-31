@@ -14,6 +14,7 @@
 #import "MBProgressHUD.h"
 #import "MSActivityVC.h"
 #import "MSButtonCell.h"
+#import "MSLocationPickerVC.h"
 
 #define NIB_NAME @"MSSetAGameVC"
 
@@ -33,13 +34,14 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     MSSetAGameTextFieldTypeButton
 };
 
-@interface MSSetAGameVC () <UITableViewDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface MSSetAGameVC () <UITableViewDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, MSLocationPickerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) IBOutlet UITextField *dayTextField;
 @property (strong, nonatomic) IBOutlet UITextField *timeTextField;
 @property (strong, nonatomic) IBOutlet UITextField *repeatTextField;
+@property (strong, nonatomic) IBOutlet UITextField *locationTextField;
 @property (strong, nonatomic) IBOutlet MSVenuePickerCell *venueCell;
 @property (strong, nonatomic) IBOutlet MSPickSportCell *sportCell;
 
@@ -54,6 +56,8 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 
 @property (strong, nonatomic) MSActivity *activity;
 
+@property (strong, nonatomic) NSString *location;
+
 @end
 
 @implementation MSSetAGameVC
@@ -67,10 +71,6 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     [MSPickSportCell registerToTableView:self.tableView];
     [MSTextFieldPickerCell registerToTableView:self.tableView];
     [MSButtonCell registerToTableView:self.tableView];
-    
-//    UIBarButtonItem *validateButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(createActivity)];
-//    
-//    [self.navigationItem setRightBarButtonItem:validateButton];
     
     [self registerForKeyboardNotifications];
     
@@ -337,12 +337,19 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     
                 case MSSetAGameTextFieldTypeLocation:
                 {
-                    MSVenuePickerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSVenuePickerCell reusableIdentifier] forIndexPath:indexPath];
+//                    MSVenuePickerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSVenuePickerCell reusableIdentifier] forIndexPath:indexPath];
+//                    
+//                    [cell initializeWithViewcontroller:self];
+//                    cell.textField.placeholder = @"Location";
+//                    self.venueCell = cell;
+//                    [cell initializeLocation];
+                    
+                    
+                    MSTextFieldPickerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
                     
                     [cell initializeWithViewcontroller:self];
                     cell.textField.placeholder = @"Location";
-                    self.venueCell = cell;
-                    [cell initializeLocation];
+                    self.locationTextField = cell.textField;
                     
                     return cell;
                 }
@@ -386,6 +393,14 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     }
 }
 
+#pragma mark MSLocationPickerDelegate
+
+- (void)didSelectLocation:(NSString *)location
+{
+    self.locationTextField.text = location;
+    self.activity.place = location;
+}
+
 #pragma mark UITextFieldDelegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -402,9 +417,11 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     {
         [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:MSSetAGameTextFieldTypeRepeat inSection:MSSetAGameSectionTextField]];
     }
-    else
+    else if ([textField isEqual:self.locationTextField])
     {
-        
+        MSLocationPickerVC *destinationVC = [MSLocationPickerVC newControler];
+        destinationVC.delegate = self;
+        [self.navigationController pushViewController:destinationVC animated:YES];
     }
     
     self.activeTextField = (MSTextField *)textField;

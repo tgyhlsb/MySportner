@@ -9,7 +9,7 @@
 #import "MSVenuePickerCell.h"
 #import "MSVenuePickerVC.h"
 
-#define IDENTIFIER @"MSLocationPickerCell"
+#define IDENTIFIER @"MSVenuePickerCell"
 
 @interface MSVenuePickerCell() <CLLocationManagerDelegate>
 

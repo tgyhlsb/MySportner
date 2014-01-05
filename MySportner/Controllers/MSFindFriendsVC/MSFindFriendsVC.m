@@ -13,6 +13,7 @@
 #import "MSUser.h"
 #import "MSFacebookFriendCell.h"
 #import "MSStyleFactory.h"
+#import "TKAlertCenter.h"
 
 #define NIB_NAME @"MSFindFriendsVC"
 
@@ -110,20 +111,23 @@
 {
     if (self.user) {
         [self showLoadingViewInView:self.view];
-        [self.user signUpInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
+        [self.user saveInBackgroundWithTarget:self selector:@selector(handleUserSave:error:)];
+//        [self.user signUpInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
     } else {
-        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't sign up" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
+//        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't sign up" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection lost"];
     }
 }
          
 
-- (void)handleSignUp:(NSNumber *)result error:(NSError *)error
+- (void)handleUserSave:(NSNumber *)result error:(NSError *)error
 {
     [self hideLoadingView];
     if (!error) {
         [self performLogin];
     } else {
-        [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[error description] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
+//        [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[error description] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:[error.userInfo objectForKey:@"error"]];
     }
 }
 

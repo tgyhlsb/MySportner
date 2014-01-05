@@ -31,6 +31,8 @@
 		5A29CAF118491F82002A8B60 /* unSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A29CAEF18491F82002A8B60 /* unSelected.png */; };
 		5A29CAF418492071002A8B60 /* MSSportLevelFormVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A29CAF318492071002A8B60 /* MSSportLevelFormVC.m */; };
 		5A29CAF618492080002A8B60 /* MSSportLevelFormVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A29CAF518492080002A8B60 /* MSSportLevelFormVC.xib */; };
+		5A29E32E1879ACE9008A8919 /* TKAlertCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A29E32B1879ACE9008A8919 /* TKAlertCenter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5A29E32F1879ACE9008A8919 /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A29E32D1879ACE9008A8919 /* UIView+TKCategory.m */; };
 		5A2B1BBA184BF21100413B01 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B1BB8184BF21100413B01 /* arrow.png */; };
 		5A2B1BBB184BF21100413B01 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B1BB9184BF21100413B01 /* arrow@2x.png */; };
 		5A2B1BBE184BF90A00413B01 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B1BBC184BF90A00413B01 /* Montserrat-Bold.ttf */; };
@@ -225,6 +227,10 @@
 		5A29CAF218492071002A8B60 /* MSSportLevelFormVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSportLevelFormVC.h; path = Controllers/MSSportLevelFormVC/MSSportLevelFormVC.h; sourceTree = "<group>"; };
 		5A29CAF318492071002A8B60 /* MSSportLevelFormVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSportLevelFormVC.m; path = Controllers/MSSportLevelFormVC/MSSportLevelFormVC.m; sourceTree = "<group>"; };
 		5A29CAF518492080002A8B60 /* MSSportLevelFormVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSSportLevelFormVC.xib; path = Controllers/MSSportLevelFormVC/MSSportLevelFormVC.xib; sourceTree = "<group>"; };
+		5A29E32A1879ACE9008A8919 /* TKAlertCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKAlertCenter.h; sourceTree = "<group>"; };
+		5A29E32B1879ACE9008A8919 /* TKAlertCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKAlertCenter.m; sourceTree = "<group>"; };
+		5A29E32C1879ACE9008A8919 /* UIView+TKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TKCategory.h"; sourceTree = "<group>"; };
+		5A29E32D1879ACE9008A8919 /* UIView+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TKCategory.m"; sourceTree = "<group>"; };
 		5A2B1BB8184BF21100413B01 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = SOURCE_ROOT; };
 		5A2B1BB9184BF21100413B01 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = SOURCE_ROOT; };
 		5A2B1BBC184BF90A00413B01 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
@@ -545,6 +551,17 @@
 			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		5A29E3291879ACE9008A8919 /* TKAlertCenter */ = {
+			isa = PBXGroup;
+			children = (
+				5A29E32A1879ACE9008A8919 /* TKAlertCenter.h */,
+				5A29E32B1879ACE9008A8919 /* TKAlertCenter.m */,
+				5A29E32C1879ACE9008A8919 /* UIView+TKCategory.h */,
+				5A29E32D1879ACE9008A8919 /* UIView+TKCategory.m */,
+			);
+			path = TKAlertCenter;
+			sourceTree = "<group>";
+		};
 		5A4CE2BC187099CE0081AA1E /* MSButtonCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -752,6 +769,7 @@
 		5ADCF2591840050600E6C8D2 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				5A29E3291879ACE9008A8919 /* TKAlertCenter */,
 				5A9B2DAC1853B8A400AE45D9 /* ExtensiveCell */,
 				5AA60A0B184B67E700B09ADD /* NKColorSwitch */,
 				5A967456184A0ECA0079EAC1 /* UIImage+BlurredFrame */,
@@ -1296,6 +1314,7 @@
 				5A9B2DA818539A0700AE45D9 /* MSGameProfileCell.m in Sources */,
 				5ADCF2C31840ADF700E6C8D2 /* MSActivityVC.m in Sources */,
 				5A96745B184A0ECA0079EAC1 /* UIImage+BlurredFrame.m in Sources */,
+				5A29E32F1879ACE9008A8919 /* UIView+TKCategory.m in Sources */,
 				5ADCF2661840051300E6C8D2 /* MMDrawerVisualState.m in Sources */,
 				5A29CAF418492071002A8B60 /* MSSportLevelFormVC.m in Sources */,
 				5A1B73701844AB6200555FE4 /* NSInvocation+Copy.m in Sources */,
@@ -1333,6 +1352,7 @@
 				5A0F9116184242AF0049BBD5 /* MSCreateAccountVC.m in Sources */,
 				5ADCF3111840F6A300E6C8D2 /* MSFourSquareParser.m in Sources */,
 				5A1B73741844AB6200555FE4 /* UIImage+Additional.m in Sources */,
+				5A29E32E1879ACE9008A8919 /* TKAlertCenter.m in Sources */,
 				5ADCF231184004D300E6C8D2 /* main.m in Sources */,
 				5A1B736F1844AB6200555FE4 /* MZAppearance.m in Sources */,
 				5ADCF30B1840EBEF00E6C8D2 /* MBProgressHUD.m in Sources */,

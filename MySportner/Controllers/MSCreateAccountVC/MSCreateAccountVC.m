@@ -14,6 +14,8 @@
 #import "MSFontFactory.h"
 #import "QBFlatButton.h"
 #import "NKColorSwitch.h"
+#import "MBProgressHUD.h"
+#import "TKAlertCenter.h"
 
 #define NIB_NAME @"MSCreateAccountVC"
 
@@ -53,6 +55,10 @@
 @property (strong, nonatomic) UIDatePicker *datePicker;
 
 @property (weak, nonatomic) UITextField *activeTextField;
+
+@property (strong,nonatomic) MSUser *user;
+
+@property (strong, nonatomic) MBProgressHUD *loadingView;
 
 @end
 
@@ -221,6 +227,12 @@
     return CGRectMake(tempFrame.origin.x, tempFrame.origin.y+DATEPICKER_HEIGHT, tempFrame.size.width, tempFrame.size.height);
 }
 
+- (MSUser *)user
+{
+    if (!_user) _user = [[MSUser alloc] init];
+    return _user;
+}
+
 - (void)nextButtonHandler
 {
     NSString *message = nil;
@@ -260,9 +272,21 @@
 //                                   delegate:self
 //                          cancelButtonTitle:@"Cancel"
 //                          otherButtonTitles:nil] show];
-        [self performTransitionToNextScreen];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:message];
+        [self SetFocusOnFailedField];
     } else {
-        [self performTransitionToNextScreen];
+        [self showLoadingViewInView:self.view];
+        
+        self.user = [[MSUser alloc] init];
+        self.user.firstName = self.firstnameTextField.text;
+        self.user.lastName = self.lastnameTextField.text;
+        self.user.email = self.emailTextField.text;
+        self.user.password = self.passwordTextField.text;
+        self.user.birthday = self.datePicker.date;
+        self.user.gender = self.genderControl.isOn ? MSUserGenderFemale : MSUserGenderMale;
+        self.user.username = self.user.email;
+        self.user.facebookID = FACEBOOK_DEFAULT_ID[self.user.gender]; // default IDs to get a fb picture according to your gender
+        [self.user signUpInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
     }
 }
 
@@ -326,18 +350,34 @@
 {
     MSChooseSportsVC *destinationVC = [MSChooseSportsVC newController];
     
-    destinationVC.user = [[MSUser alloc] init];
-    
-    destinationVC.user.firstName = self.firstnameTextField.text;
-    destinationVC.user.lastName = self.lastnameTextField.text;
-    destinationVC.user.email = self.emailTextField.text;
-    destinationVC.user.password = self.passwordTextField.text;
-    destinationVC.user.birthday = self.datePicker.date;
-    destinationVC.user.gender = self.genderControl.isOn ? MSUserGenderFemale : MSUserGenderMale;
-    destinationVC.user.username = destinationVC.user.email;
-    destinationVC.user.facebookID = FACEBOOK_DEFAULT_ID[destinationVC.user.gender]; // default IDs to get a fb picture according to your gender
+    destinationVC.user = self.user;
     
     [self.navigationController pushViewController:destinationVC animated:YES];
+}
+
+
+
+- (IBAction)validateButtonPress:(UIButton *)sender
+{
+    if (self.user) {
+        [self showLoadingViewInView:self.view];
+        [self.user signUpInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't sign up" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
+    }
+}
+
+
+- (void)handleSignUp:(NSNumber *)result error:(NSError *)error
+{
+    [self hideLoadingView];
+    if (!error) {
+        [self performTransitionToNextScreen];
+    } else {
+        NSString *errorMessage = [error.userInfo objectForKey:@"error"];
+//        [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[error description] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:errorMessage];
+    }
 }
 
 + (MSCreateAccountVC *)newController
@@ -356,7 +396,7 @@
         self.datePicker.maximumDate = [NSDate date];
         [self.scrollView insertSubview:self.datePicker belowSubview:self.birthdayTextField];
         [self.datePicker addTarget:self action:@selector(datePickerValueDidChange) forControlEvents:UIControlEventValueChanged];
-        //        [self.datePicker addTarget:self action:@selector(datePickerValueDidChange) forControlEvents:UIControlEventTouchDragInside];
+        self.datePicker.date = [NSDate dateWithTimeIntervalSince1970:0];
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(datePickerDidTap)];
         
@@ -426,6 +466,7 @@
 {
     [self.activeTextField resignFirstResponder];
     [self.birthdayTextField setFocused:YES];
+    [self datePickerValueDidChange];
     
     [UIView animateWithDuration:0.3 animations:^{
         self.datePicker.hidden = NO;
@@ -504,6 +545,31 @@
     [UIView animateWithDuration:0.2 animations:^{
         self.scrollView.contentSize = CGSizeMake(320, self.scrollView.frame.size.height - 64);
     }];
+}
+
+#pragma mark - MBProgressHUD
+
+- (void) showLoadingViewInView:(UIView*)v
+{
+    UIView *targetV = (v ? v : self.view);
+    
+    if (!self.loadingView) {
+        self.loadingView = [[MBProgressHUD alloc] initWithView:targetV];
+        self.loadingView.minShowTime = 1.0f;
+        self.loadingView.mode = MBProgressHUDModeIndeterminate;
+        self.loadingView.removeFromSuperViewOnHide = YES;
+        self.loadingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
+    }
+    if(!self.loadingView.superview) {
+        self.loadingView.frame = targetV.bounds;
+        [targetV addSubview:self.loadingView];
+    }
+    [self.loadingView show:YES];
+}
+- (void) hideLoadingView
+{
+    if (self.loadingView.superview)
+        [self.loadingView hide:YES];
 }
 
 @end

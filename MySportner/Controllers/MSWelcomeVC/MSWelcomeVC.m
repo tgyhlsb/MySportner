@@ -17,6 +17,7 @@
 #import "QBFlatButton.h"
 #import "MSColorFactory.h"
 #import "MSFontFactory.h"
+#import "TKAlertCenter.h"
 
 #define NIB_NAME @"MSWelcomeVC"
 
@@ -111,6 +112,12 @@
 {
     
 }
+
+- (void)applicationIsBackFromBackground
+{
+    [self hideLoadingView];
+}
+
 - (IBAction)showLoginFormSheet:(UIButton *)sender
 {
     UIViewController *vc = [MSLoginFormVC newController];
@@ -158,7 +165,9 @@
 
 - (void)userSignUpDidFailWithError:(NSError *)error
 {
-    [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[error description] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
+//    [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[error description] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
+    [[TKAlertCenter defaultCenter] postAlertWithMessage:[error.userInfo objectForKey:@"error"]];
+    
 }
 
 #pragma mark - MBProgressHUD

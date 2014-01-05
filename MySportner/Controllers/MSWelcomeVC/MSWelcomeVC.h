@@ -14,4 +14,6 @@
 
 - (void)performLogin;
 
+- (void)applicationIsBackFromBackground;
+
 @end

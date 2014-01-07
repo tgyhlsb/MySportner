@@ -7,6 +7,7 @@
 //
 
 #import "MSUser.h"
+#import "MSSport.h"
 #import <Parse/PFObject+Subclass.h>
 
 #define FACEBOOK_VALUE_GENDER_MALE @"male"
@@ -40,6 +41,37 @@
 @dynamic facebookID;
 @dynamic birthday;
 @dynamic gender;
+@dynamic sportLevels;
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+//        self.sportLevels = [[NSDictionary alloc] init];
+    }
+    return self;
+}
+
+- (void)setSport:(NSInteger)sportKey withLevel:(NSInteger)level
+{
+    if (!self.sportLevels) {
+        self.sportLevels = [[NSDictionary alloc] init];
+    }
+    NSMutableDictionary *tempSportLevels = [self.sportLevels mutableCopy];
+    NSString *sportKeyString = [NSString stringWithFormat:@"%ld", sportKey];
+    [tempSportLevels setObject:@(level) forKey:sportKeyString];
+    self.sportLevels = tempSportLevels;
+}
+
+- (NSArray *)getSports
+{
+    NSMutableArray *sports = [[NSMutableArray alloc] init];
+    for (NSString *sportKeyString in self.sportLevels) {
+        NSInteger sportKey = [sportKeyString integerValue];
+        [sports addObject:[MSSport sportNameForKey:sportKey]];
+    }
+    return sports;
+}
 
 - (void)setWithFacebookInfo:(id<FBGraphUser>)userInfo
 {

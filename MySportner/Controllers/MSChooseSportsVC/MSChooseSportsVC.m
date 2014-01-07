@@ -15,8 +15,7 @@
 #import "MSColorFactory.h"
 #import "MSFontFactory.h"
 #import "MSStyleFactory.h"
-
-#define SAMPLE_SPORTS @[@"foot", @"basketball", @"football", @"tennis", @"swimming", @"cycle", @"gym", @"rugby"]
+#import "MSSport.h"
 
 #define DEFAULT_SPORT_LEVEL -1
 
@@ -160,6 +159,9 @@
     
     vc.doneBlock = ^{
         weakSportCell.level = weakFormSheet.level;
+        
+        NSInteger sportKey = [MSSport keyForSportName:weakSportCell.titleLabel.text];
+        [self.user setSport:sportKey withLevel:weakFormSheet.level];
         [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
     };
     

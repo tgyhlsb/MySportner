@@ -31,12 +31,16 @@ typedef NS_ENUM(int, MSUserGender) {
 @property (strong, nonatomic) NSString *facebookID;
 @property (strong, nonatomic) NSDate *birthday;
 @property (nonatomic) MSUserGender gender;
+@property (strong, nonatomic) NSDictionary *sportLevels;
 
 - (NSString *)fullName;
 
 + (void)tryLoginWithFacebook:(id<MSUserAuthentificationDelegate>)sender;
 
 + (MSUser *)currentUser;
+
+- (void)setSport:(NSInteger)sportKey withLevel:(NSInteger)level;
+- (NSArray *)getSports;
 
 @end
 

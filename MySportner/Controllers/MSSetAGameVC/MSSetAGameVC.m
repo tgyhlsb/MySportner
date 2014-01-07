@@ -15,6 +15,7 @@
 #import "MSActivityVC.h"
 #import "MSButtonCell.h"
 #import "MSLocationPickerVC.h"
+#import "TKAlertCenter.h"
 
 #define NIB_NAME @"MSSetAGameVC"
 
@@ -114,14 +115,25 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 
 - (void)createActivity
 {
-    self.activity.sport = self.sportCell.sport;
-    self.activity.place = self.venueCell.venue.name;
-    self.activity.owner = [MSUser currentUser];
-    self.activity.guests = [[NSArray alloc] init];
-    self.activity.participants = [[NSArray alloc] init];
+    BOOL fieldsOK = YES;
+    if (!self.sportCell.sport || ![self.sportCell.sport length]) {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Pick a sport"];
+        fieldsOK = NO;
+    } else if (![self.locationTextField.text length]) {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Pick a place"];
+        fieldsOK = NO;
+    }
     
-    [self showLoadingViewInView:self.navigationController.view];
-    [self.activity saveInBackgroundWithTarget:self selector:@selector(handleActivityCreation:error:)];
+    if (fieldsOK) {
+        self.activity.sport = self.sportCell.sport;
+        self.activity.place = self.locationTextField.text;
+        self.activity.owner = [MSUser currentUser];
+        self.activity.guests = [[NSArray alloc] init];
+        self.activity.participants = [[NSArray alloc] init];
+        
+        [self showLoadingViewInView:self.navigationController.view];
+        [self.activity saveInBackgroundWithTarget:self selector:@selector(handleActivityCreation:error:)];
+    }
 }
 
 - (void)handleActivityCreation:(BOOL)succeed error:(NSError *)error
@@ -422,6 +434,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
         MSLocationPickerVC *destinationVC = [MSLocationPickerVC newControler];
         destinationVC.delegate = self;
         [self.navigationController pushViewController:destinationVC animated:YES];
+        self.activeTextField = nil;
     }
     
     self.activeTextField = (MSTextField *)textField;

@@ -9,10 +9,14 @@
 #import "MSLocationPickerVC.h"
 #import "MSLocationCell.h"
 
-@interface MSLocationPickerVC () <UITableViewDataSource, UITableViewDelegate>
+@interface MSLocationPickerVC () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (strong, nonatomic) NSArray *data;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
+@property (strong, nonatomic) NSString *searchText;
+@property (weak, nonatomic) MSLocationCell *searchDisplayCell;
 
 @end
 
@@ -32,13 +36,24 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [MSLocationCell registerToTableView:self.tableView];
+    
+    self.searchBar.delegate = self;
 }
 
 #pragma mark UITableViewDataSoure
 
+- (BOOL)hasMultipleSections
+{
+    return (self.searchText && [self.searchText length]);
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    if ([self hasMultipleSections]) {
+        return 2;
+    } else {
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -51,8 +66,28 @@
     NSString *identifier = [MSLocationCell reusableIdentifier];
     MSLocationCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
-    cell.textLabel.text = @"Lyon, France";
-    return cell;
+    if ([self hasMultipleSections]) {
+        switch (indexPath.section) {
+            case 0:
+            {
+                cell.textLabel.text = self.searchText;
+                self.searchDisplayCell = cell;
+                return cell;
+            }
+            
+            case 1:
+            {
+                cell.textLabel.text = @"Lyon, France";
+                return cell;
+            }
+                
+            default:
+                return nil;
+        }
+    } else {
+        cell.textLabel.text = @"Lyon, France";
+        return cell;
+    }
 }
 
 #pragma mark UITableViewDelegate
@@ -63,6 +98,39 @@
     
     [self.delegate didSelectLocation:cell.textLabel.text];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if ([self hasMultipleSections]) {
+        switch (section) {
+            case 1:
+                return @"SUggestions";
+                
+            default:
+                return nil;
+        }
+    } else {
+        return @"Suggetions";
+    }
+}
+
+#pragma mark UISearchBarDelegate
+
+- (void)setSearchText:(NSString *)searchText
+{
+    _searchText = searchText;
+    self.searchDisplayCell.textLabel.text = searchText;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    BOOL oldMultiplesection = [self hasMultipleSections];
+    self.searchText = searchText;
+    if (oldMultiplesection != [self hasMultipleSections]) {
+        [self.tableView reloadData];
+        
+    }
 }
 
 @end

@@ -66,6 +66,7 @@
 		5A9B2DB21853B8A400AE45D9 /* ECViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9B2DAE1853B8A400AE45D9 /* ECViewController.m */; };
 		5A9B2DB31853B8A400AE45D9 /* ExtensiveCellContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9B2DB01853B8A400AE45D9 /* ExtensiveCellContainer.m */; };
 		5A9B2DB41853B8A400AE45D9 /* ExtensiveCellContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A9B2DB11853B8A400AE45D9 /* ExtensiveCellContainer.xib */; };
+		5A9C90F8187C4C1E00065DBA /* MSSport.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9C90F7187C4C1E00065DBA /* MSSport.m */; };
 		5AA609FF184B50A100B09ADD /* MSFontFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA609FE184B50A100B09ADD /* MSFontFactory.m */; };
 		5AA60A02184B549C00B09ADD /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5AA60A00184B548600B09ADD /* ProximaNova-Regular.otf */; };
 		5AA60A05184B56BD00B09ADD /* iOS_blur.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AA60A03184B56BD00B09ADD /* iOS_blur.png */; };
@@ -278,6 +279,8 @@
 		5A9B2DAF1853B8A400AE45D9 /* ExtensiveCellContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensiveCellContainer.h; sourceTree = "<group>"; };
 		5A9B2DB01853B8A400AE45D9 /* ExtensiveCellContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensiveCellContainer.m; sourceTree = "<group>"; };
 		5A9B2DB11853B8A400AE45D9 /* ExtensiveCellContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtensiveCellContainer.xib; sourceTree = "<group>"; };
+		5A9C90F6187C4C1E00065DBA /* MSSport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSport.h; path = Model/MSSport.h; sourceTree = "<group>"; };
+		5A9C90F7187C4C1E00065DBA /* MSSport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSport.m; path = Model/MSSport.m; sourceTree = "<group>"; };
 		5AA609FD184B50A100B09ADD /* MSFontFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFontFactory.h; sourceTree = "<group>"; };
 		5AA609FE184B50A100B09ADD /* MSFontFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFontFactory.m; sourceTree = "<group>"; };
 		5AA60A00184B548600B09ADD /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
@@ -816,7 +819,7 @@
 				5AFE43FF18427055001376C7 /* MSFindFriendsVC */,
 				5AFE43F318426AC4001376C7 /* MSChooseSportsVC */,
 				5A0F9119184242C30049BBD5 /* MSCreateAccountVC */,
-				5ADCF2ED1840D3A300E6C8D2 /* MSLocationPickerVC */,
+				5ADCF2ED1840D3A300E6C8D2 /* MSVenuePickerVC */,
 				5ADCF2C61840AE0D00E6C8D2 /* MSActivityVC */,
 				5ADCF2AF184025C000E6C8D2 /* MSWelcomeVC */,
 				5ADCF27418400CF500E6C8D2 /* MSDrawerMenuVC */,
@@ -932,6 +935,8 @@
 				5A967461184A34160079EAC1 /* MSVenue+MapKit.m */,
 				5A3DE7C2184133E1001054EB /* MSUser.h */,
 				5A3DE7C3184133E1001054EB /* MSUser.m */,
+				5A9C90F6187C4C1E00065DBA /* MSSport.h */,
+				5A9C90F7187C4C1E00065DBA /* MSSport.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -997,14 +1002,14 @@
 			name = MSTextFieldPickerCell;
 			sourceTree = "<group>";
 		};
-		5ADCF2ED1840D3A300E6C8D2 /* MSLocationPickerVC */ = {
+		5ADCF2ED1840D3A300E6C8D2 /* MSVenuePickerVC */ = {
 			isa = PBXGroup;
 			children = (
 				5ADCF2E81840D38B00E6C8D2 /* MSVenuePickerVC.h */,
 				5ADCF2E91840D38B00E6C8D2 /* MSVenuePickerVC.m */,
 				5ADCF2EB1840D39C00E6C8D2 /* MSVenuePickerVC.xib */,
 			);
-			name = MSLocationPickerVC;
+			name = MSVenuePickerVC;
 			sourceTree = "<group>";
 		};
 		5ADCF2F61840D9C800E6C8D2 /* MSLocationPickerCell */ = {
@@ -1329,6 +1334,7 @@
 				5ADCF29C18401D1800E6C8D2 /* MSNotificationsVC.m in Sources */,
 				5A85E8EF1872CCCD00F5E8F9 /* MSLocationPickerVC.m in Sources */,
 				5ADCF2AC184025AE00E6C8D2 /* MSWelcomeVC.m in Sources */,
+				5A9C90F8187C4C1E00065DBA /* MSSport.m in Sources */,
 				5ADCF2671840051300E6C8D2 /* UIViewController+MMDrawerController.m in Sources */,
 				5A210020184E421800CDF460 /* MSStyleFactory.m in Sources */,
 				5A96744F1849D20C0079EAC1 /* MSColorFactory.m in Sources */,

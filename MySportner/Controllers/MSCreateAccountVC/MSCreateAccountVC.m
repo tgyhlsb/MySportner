@@ -124,6 +124,7 @@
     
     self.emailTextField = [[MSTextField alloc] initWithFrame:CGRectMake(PADDING, self.lastnameTextField.frame.origin.y+self.lastnameTextField.frame.size.height+PADDING, CONTROL_WIDTH_BIG, CONTROL_HEIGHT)];
     self.emailTextField.borderStyle = UITextBorderStyleRoundedRect;
+    self.emailTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.emailTextField.delegate = self;
     self.emailTextField.placeholder = PLACEHOLDER_EMAIL;
     self.emailTextField.focusBorderColor = focusBorderColor;
@@ -140,6 +141,7 @@
     self.passwordTextField = [[MSTextField alloc] initWithFrame:smallFrame];
     self.passwordTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.passwordTextField.secureTextEntry = YES;
+    self.passwordTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.passwordTextField.delegate = self;
     self.passwordTextField.placeholder = PLACEHOLDER_PASSWORD;
     self.passwordTextField.focusBorderColor = focusBorderColor;

@@ -32,6 +32,7 @@ typedef NS_ENUM(int, MSUserGender) {
 @property (strong, nonatomic) NSDate *birthday;
 @property (nonatomic) MSUserGender gender;
 @property (strong, nonatomic) NSDictionary *sportLevels;
+@property (strong, nonatomic) UIImage *image;
 
 - (NSString *)fullName;
 

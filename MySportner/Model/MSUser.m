@@ -32,6 +32,8 @@
 
 @interface MSUser()
 
+@property (strong, nonatomic) PFFile *imageFile;
+
 @end
 
 @implementation MSUser
@@ -42,6 +44,7 @@
 @dynamic birthday;
 @dynamic gender;
 @dynamic sportLevels;
+@dynamic imageFile;
 
 - (id)init
 {
@@ -101,6 +104,22 @@
     [fbDateFormatter setDateFormat:FACEBOOK_BIRTHDAY_FORMAT];
     [fbDateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     return [fbDateFormatter dateFromString:stringDate];
+}
+
+#pragma mark Image upload
+
+@synthesize image = _image;
+
+- (void)setImage:(UIImage *)image
+{
+    _image = image;
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);//UIImagePNGRepresentation(image);
+    self.imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+}
+
+- (UIImage *)image
+{
+    return _image;
 }
 
 #pragma mark Lazy instantiation

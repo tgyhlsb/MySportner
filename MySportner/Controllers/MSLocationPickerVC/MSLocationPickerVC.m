@@ -63,11 +63,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if ([self hasMultipleSections]) {
-        return 2;
-    } else {
-        return 1;
-    }
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -80,28 +76,9 @@
     NSString *identifier = [MSLocationCell reusableIdentifier];
     MSLocationCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
-    if ([self hasMultipleSections]) {
-        switch (indexPath.section) {
-            case 0:
-            {
-                cell.textLabel.text = self.searchText;
-                self.searchDisplayCell = cell;
-                return cell;
-            }
-            
-            case 1:
-            {
-                cell.textLabel.text = [self.data objectAtIndex:indexPath.row];
-                return cell;
-            }
-                
-            default:
-                return nil;
-        }
-    } else {
-        cell.textLabel.text = self.searchText;
-        return cell;
-    }
+    
+    cell.textLabel.text = [self.data objectAtIndex:indexPath.row];
+    return cell;
 }
 
 #pragma mark UITableViewDelegate
@@ -114,21 +91,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if ([self hasMultipleSections]) {
-        switch (section) {
-            case 1:
-                return @"Suggestions";
-                
-            default:
-                return nil;
-        }
-    } else {
-        return @"Suggetions";
-    }
-}
-
 #pragma mark UISearchBarDelegate
 
 - (void)setSearchText:(NSString *)searchText
@@ -139,12 +101,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-//    BOOL oldMultiplesection = [self hasMultipleSections];
     self.searchText = searchText;
-//    if (oldMultiplesection != [self hasMultipleSections]) {
-//        [self.tableView reloadData];
-//        
-//    }
     [self.autcompleteRequest requestWithString:searchText andLocation:CGPointMake(45.77904,4.91574)];
     
 }

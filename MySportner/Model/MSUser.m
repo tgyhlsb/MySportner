@@ -50,7 +50,7 @@
 {
     self = [super init];
     if (self) {
-//        self.sportLevels = [[NSDictionary alloc] init];
+        //        self.sportLevels = [[NSDictionary alloc] init];
     }
     return self;
 }
@@ -78,7 +78,7 @@
 
 - (void)setWithFacebookInfo:(id<FBGraphUser>)userInfo
 {
-//    NSLog(@"%@", userInfo);
+    //    NSLog(@"%@", userInfo);
     self.facebookID = userInfo.id;
     self.firstName = userInfo.first_name;
     self.lastName = userInfo.last_name;
@@ -119,7 +119,24 @@
 
 - (UIImage *)image
 {
+    if (!_image) {
+        [self requestImage];
+    }
     return _image;
+}
+
+- (void)requestImage
+{
+    if (self.imageFile) {
+        self.image = [[UIImage alloc] init];
+//        PFFile *file = self.imageFile;
+//        [self.imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+//            if (!error) {
+//                self.image = [UIImage imageWithData:data];
+//                // image can now be set on a UIImageView
+//            }
+//        }];
+    }
 }
 
 #pragma mark Lazy instantiation
@@ -254,17 +271,17 @@
 
 - (void)signUpToBackEnd
 {
-//    PFUser *user = [PFUser user];
-//    user.username = self.email;
-//    user.password = self.password;
-//    user.email = self.email;
-//    
-//    // other fields can be set just like with PFObject
-//    user[PARSE_KEY_FIRSTNAME] = self.firstName;
-//    user[PARSE_KEY_LASTNAME] = self.lastName;
-//    user[PARSE_KEY_FACEBOOKID] = self.facebookID;
-//    user[PARSE_KEY_BIRTHDAY] = self.birthday;
-//    user[PARSE_KEY_GENDER] = @(self.gender);
+    //    PFUser *user = [PFUser user];
+    //    user.username = self.email;
+    //    user.password = self.password;
+    //    user.email = self.email;
+    //
+    //    // other fields can be set just like with PFObject
+    //    user[PARSE_KEY_FIRSTNAME] = self.firstName;
+    //    user[PARSE_KEY_LASTNAME] = self.lastName;
+    //    user[PARSE_KEY_FACEBOOKID] = self.facebookID;
+    //    user[PARSE_KEY_BIRTHDAY] = self.birthday;
+    //    user[PARSE_KEY_GENDER] = @(self.gender);
     
     [self signUpInBackgroundWithTarget:self
                               selector:@selector(handleSignUp:error:)];
@@ -299,6 +316,7 @@
 {
     if ([self.delegate respondsToSelector:@selector(userDidLogIn)])
     {
+        [self requestImage];
         [self.delegate userDidLogIn];
     }
 }

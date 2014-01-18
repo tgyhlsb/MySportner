@@ -36,6 +36,8 @@ typedef NS_ENUM(int, MSUserGender) {
 
 - (NSString *)fullName;
 
+- (void)requestImage;
+
 + (void)tryLoginWithFacebook:(id<MSUserAuthentificationDelegate>)sender;
 
 + (MSUser *)currentUser;

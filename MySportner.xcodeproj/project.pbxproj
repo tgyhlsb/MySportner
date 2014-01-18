@@ -19,6 +19,7 @@
 		5A1B73771844AC2700555FE4 /* MSLoginFormVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1B73761844AC2700555FE4 /* MSLoginFormVC.m */; };
 		5A1B73791844AC3500555FE4 /* MSLoginFormVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A1B73781844AC3500555FE4 /* MSLoginFormVC.xib */; };
 		5A210020184E421800CDF460 /* MSStyleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A21001F184E421800CDF460 /* MSStyleFactory.m */; };
+		5A22A03C188AEB8C003F1D8B /* MSAutocompleteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A22A03B188AEB8C003F1D8B /* MSAutocompleteRequest.m */; };
 		5A23BB08186CD1BD00FFF0E0 /* MSFacebookFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A23BB07186CD1BD00FFF0E0 /* MSFacebookFriendCell.m */; };
 		5A23BB0A186CD1CF00FFF0E0 /* MSFacebookFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A23BB09186CD1CF00FFF0E0 /* MSFacebookFriendCell.xib */; };
 		5A299A83184BDF9A00005733 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5A299A82184BDF1400005733 /* ProximaNova-Bold.otf */; };
@@ -213,6 +214,8 @@
 		5A1B73781844AC3500555FE4 /* MSLoginFormVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSLoginFormVC.xib; path = Controllers/MSLoginFormVC/MSLoginFormVC.xib; sourceTree = "<group>"; };
 		5A21001E184E421800CDF460 /* MSStyleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSStyleFactory.h; sourceTree = "<group>"; };
 		5A21001F184E421800CDF460 /* MSStyleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSStyleFactory.m; sourceTree = "<group>"; };
+		5A22A03A188AEB8C003F1D8B /* MSAutocompleteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSAutocompleteRequest.h; sourceTree = "<group>"; };
+		5A22A03B188AEB8C003F1D8B /* MSAutocompleteRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSAutocompleteRequest.m; sourceTree = "<group>"; };
 		5A23BB06186CD1BD00FFF0E0 /* MSFacebookFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSFacebookFriendCell.h; path = Views/Cells/MSFacebookFriendCell/MSFacebookFriendCell.h; sourceTree = "<group>"; };
 		5A23BB07186CD1BD00FFF0E0 /* MSFacebookFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSFacebookFriendCell.m; path = Views/Cells/MSFacebookFriendCell/MSFacebookFriendCell.m; sourceTree = "<group>"; };
 		5A23BB09186CD1CF00FFF0E0 /* MSFacebookFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSFacebookFriendCell.xib; path = Views/Cells/MSFacebookFriendCell/MSFacebookFriendCell.xib; sourceTree = "<group>"; };
@@ -1033,6 +1036,8 @@
 				5ADCF3071840E80500E6C8D2 /* MSFourSquareKeyFactory.m */,
 				5ADCF30F1840F6A300E6C8D2 /* MSFourSquareParser.h */,
 				5ADCF3101840F6A300E6C8D2 /* MSFourSquareParser.m */,
+				5A22A03A188AEB8C003F1D8B /* MSAutocompleteRequest.h */,
+				5A22A03B188AEB8C003F1D8B /* MSAutocompleteRequest.m */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -1333,6 +1338,7 @@
 				5ADCF235184004D300E6C8D2 /* MSAppDelegate.m in Sources */,
 				5ADCF29C18401D1800E6C8D2 /* MSNotificationsVC.m in Sources */,
 				5A85E8EF1872CCCD00F5E8F9 /* MSLocationPickerVC.m in Sources */,
+				5A22A03C188AEB8C003F1D8B /* MSAutocompleteRequest.m in Sources */,
 				5ADCF2AC184025AE00E6C8D2 /* MSWelcomeVC.m in Sources */,
 				5A9C90F8187C4C1E00065DBA /* MSSport.m in Sources */,
 				5ADCF2671840051300E6C8D2 /* UIViewController+MMDrawerController.m in Sources */,

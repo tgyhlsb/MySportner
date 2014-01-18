@@ -8,8 +8,9 @@
 
 #import "MSLocationPickerVC.h"
 #import "MSLocationCell.h"
+#import "MSAutocompleteRequest.h"
 
-@interface MSLocationPickerVC () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@interface MSLocationPickerVC () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, MSAutocompleteRequestDelegate>
 
 @property (strong, nonatomic) NSArray *data;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -17,6 +18,8 @@
 
 @property (strong, nonatomic) NSString *searchText;
 @property (weak, nonatomic) MSLocationCell *searchDisplayCell;
+
+@property (strong, nonatomic) MSAutocompleteRequest *autcompleteRequest;
 
 @end
 
@@ -40,6 +43,17 @@
     self.searchBar.delegate = self;
 }
 
+- (MSAutocompleteRequest *)autcompleteRequest
+{
+    if (!_autcompleteRequest)
+    {
+        _autcompleteRequest = [[MSAutocompleteRequest alloc] init];
+        _autcompleteRequest.delegate = self;
+    }
+    
+    return _autcompleteRequest;
+}
+
 #pragma mark UITableViewDataSoure
 
 - (BOOL)hasMultipleSections
@@ -49,16 +63,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if ([self hasMultipleSections]) {
-        return 2;
-    } else {
-        return 1;
-    }
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [self.data count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,28 +76,9 @@
     NSString *identifier = [MSLocationCell reusableIdentifier];
     MSLocationCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
-    if ([self hasMultipleSections]) {
-        switch (indexPath.section) {
-            case 0:
-            {
-                cell.textLabel.text = self.searchText;
-                self.searchDisplayCell = cell;
-                return cell;
-            }
-            
-            case 1:
-            {
-                cell.textLabel.text = @"Lyon, France";
-                return cell;
-            }
-                
-            default:
-                return nil;
-        }
-    } else {
-        cell.textLabel.text = @"Lyon, France";
-        return cell;
-    }
+    
+    cell.textLabel.text = [self.data objectAtIndex:indexPath.row];
+    return cell;
 }
 
 #pragma mark UITableViewDelegate
@@ -100,21 +91,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if ([self hasMultipleSections]) {
-        switch (section) {
-            case 1:
-                return @"SUggestions";
-                
-            default:
-                return nil;
-        }
-    } else {
-        return @"Suggetions";
-    }
-}
-
 #pragma mark UISearchBarDelegate
 
 - (void)setSearchText:(NSString *)searchText
@@ -125,12 +101,17 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    BOOL oldMultiplesection = [self hasMultipleSections];
     self.searchText = searchText;
-    if (oldMultiplesection != [self hasMultipleSections]) {
-        [self.tableView reloadData];
-        
-    }
+    [self.autcompleteRequest requestWithString:searchText andLocation:CGPointMake(45.77904,4.91574)];
+    
+}
+
+#pragma mark MSAutocompleteRequestDelegate
+
+- (void)autocompleteRequestDidFinishWithPredictions:(NSArray *)predictions
+{
+    self.data = predictions;
+    [self.tableView reloadData];
 }
 
 @end

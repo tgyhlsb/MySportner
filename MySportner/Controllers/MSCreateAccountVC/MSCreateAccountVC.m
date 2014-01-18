@@ -40,7 +40,7 @@
 #define PLACEHOLDER_PASSWORD @"Password"
 #define PLACEHOLDER_BIRTHDAY @"Birthday"
 
-@interface MSCreateAccountVC () <UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate>
+@interface MSCreateAccountVC () <UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 

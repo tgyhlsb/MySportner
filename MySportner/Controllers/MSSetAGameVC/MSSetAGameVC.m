@@ -28,9 +28,9 @@ typedef NS_ENUM(int, MSSetAGameSection) {
 };
 
 typedef NS_ENUM(int, MSSetAGameTextFieldType) {
-    MSSetAGameTextFieldTypeRepeat,
     MSSetAGameTextFieldTypeDay,
     MSSetAGameTextFieldTypeTime,
+    MSSetAGameTextFieldTypeRepeat,
     MSSetAGameTextFieldTypeLocation,
     MSSetAGameTextFieldTypeButton
 };
@@ -88,9 +88,9 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 
 - (void)initializePickers
 {
-    self.repeatMode = 0;
-    [self dayPickerValueDidChange];
-    [self timePickerValueDidChange];
+    _repeatMode = 0;
+//    [self dayPickerValueDidChange];
+//    [self timePickerValueDidChange];
 }
 
 - (void)setRepeatMode:(NSInteger)repeatMode
@@ -118,6 +118,12 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     BOOL fieldsOK = YES;
     if (!self.sportCell.sport || ![self.sportCell.sport length]) {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Pick a sport"];
+        fieldsOK = NO;
+    } else if (![self.dayTextField.text length]) {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Pick a day"];
+        fieldsOK = NO;
+    } else if (![self.timeTextField.text length]) {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Pick a time"];
         fieldsOK = NO;
     } else if (![self.locationTextField.text length]) {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Pick a place"];
@@ -180,7 +186,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 
 - (void)dayPickerDidTap
 {
-    
+    [self dayPickerValueDidChange];
 }
 
 - (void)timePickerValueDidChange
@@ -193,7 +199,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 
 - (void)timePickerDidTap
 {
-    
+    [self timePickerValueDidChange];
 }
 
 #pragma mark ExtensiveCellDelegate
@@ -370,7 +376,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                 {
                     MSButtonCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSButtonCell reusableIdentifier] forIndexPath:indexPath];
                     [cell.button addTarget:self action:@selector(createActivity) forControlEvents:UIControlEventTouchUpInside];
-                    [cell.button setTitle:@"NEXT" forState:UIControlStateNormal];
+                    [cell.button setTitle:@"DONE" forState:UIControlStateNormal];
                     
                     return cell;
                 }

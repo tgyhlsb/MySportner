@@ -16,7 +16,7 @@
 #define LEVEL_STATUS @[@"BEGINNER", @"CASUAL", @"INTERMEDIATE", @"GOOD", @"PRO"]
 #define LEVEL_COMMENTS @[@"I have never played", @"I played few times", @"I Think I'm good enough", @"I'll handle this", @"Trust me..."]
 
-#define DEFAULT_LEVEL 2
+#define DEFAULT_LEVEL -1
 
 
 @interface MSSportLevelFormVC () <RatingViewDelegate>
@@ -87,12 +87,6 @@
     self.ratingView.value = self.level + 1;
     [self.view addSubview:self.ratingView];
     
-    double delayInSeconds = 2.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-
-    });
-    
     if (!_showUnSelectButton) {
         self.doneButton.frame = CGRectMake(0, 0, 200, 50);
         self.unSelectButton.hidden = YES;
@@ -109,8 +103,8 @@
         self.showUnSelectButton = NO;
     }
     
-    self.levelLabel.text = [LEVEL_STATUS objectAtIndex:_level];
-    self.commentLabel.text = [LEVEL_COMMENTS objectAtIndex:_level];
+    self.levelLabel.text = (_level >= 0) ? [LEVEL_STATUS objectAtIndex:_level] : @"";
+    self.commentLabel.text = (_level >= 0) ? [LEVEL_COMMENTS objectAtIndex:_level] : @"";
 }
 
 - (void)setShowUnSelectButton:(BOOL)showUnSelectButton

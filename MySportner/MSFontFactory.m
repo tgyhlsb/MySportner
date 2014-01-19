@@ -40,6 +40,11 @@
     return [UIFont fontWithName:@"ProximaNova-SemiBold" size:9.5];
 }
 
++ (UIFont *)fontForTitle
+{
+    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:12];
+}
+
 + (UIFont *)fontForCellInfo
 {
     return [UIFont fontWithName:@"ProximaNova-SemiBold" size:9.5];

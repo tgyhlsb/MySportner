@@ -12,13 +12,14 @@
 #import "MSColorFactory.h"
 #import "MSUser.h"
 
-#define IDENTIFIER @"MSPickSportCell"
+#define IDENTIFIER @"MSPickSportCell2"
 #define HEIGHT 120
 
 @interface MSPickSportCell() <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
+@property (weak, nonatomic) IBOutlet UILabel *headerLabel;
 @property (strong, nonatomic) NSArray *data;
 
 @end
@@ -43,8 +44,9 @@
     self.backgroundView.backgroundColor = [UIColor clearColor];
     self.collectionView.backgroundColor = [UIColor clearColor];
     
-//    self.titleLabel.font = [MSFontFactory fontForCellSportTitle];
-//    self.titleLabel.textColor = [MSColorFactory grayDark];
+    self.headerLabel.font = [MSFontFactory fontForTitle];
+    self.headerLabel.textColor = [MSColorFactory gray];
+    self.headerLabel.text = @"PICK A SPORT";
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

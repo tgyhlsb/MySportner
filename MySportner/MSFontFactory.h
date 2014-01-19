@@ -18,6 +18,7 @@
 + (UIFont *)fontForButton;
 + (UIFont *)fontForButtonLight;
 + (UIFont *)fontForCellSportTitle;
++ (UIFont *)fontForTitle;
 + (UIFont *)fontForCellInfo;
 + (UIFont *)fontForCellAcivityTitle;
 + (UIFont *)fontForDrawerMenu;

@@ -135,6 +135,7 @@
 		5ADCF3111840F6A300E6C8D2 /* MSFourSquareParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF3101840F6A300E6C8D2 /* MSFourSquareParser.m */; };
 		5ADCF3141840F8DA00E6C8D2 /* MSVenueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF3131840F8DA00E6C8D2 /* MSVenueCell.m */; };
 		5ADCF3161840F8E900E6C8D2 /* MSVenueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF3151840F8E900E6C8D2 /* MSVenueCell.xib */; };
+		5AF2FBFC188C946A002147FB /* MSPickSportCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF2FBFB188C946A002147FB /* MSPickSportCell2.xib */; };
 		5AFE43EE18426A8F001376C7 /* MSChooseSportsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFE43ED18426A8F001376C7 /* MSChooseSportsVC.m */; };
 		5AFE43F218426ABD001376C7 /* MSChooseSportsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AFE43F118426ABD001376C7 /* MSChooseSportsVC.xib */; };
 		5AFE43F618426CC6001376C7 /* MSBigSportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFE43F518426CC6001376C7 /* MSBigSportCell.m */; };
@@ -388,6 +389,7 @@
 		5ADCF3121840F8DA00E6C8D2 /* MSVenueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSVenueCell.h; path = Views/Cells/MSVenueCell/MSVenueCell.h; sourceTree = "<group>"; };
 		5ADCF3131840F8DA00E6C8D2 /* MSVenueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSVenueCell.m; path = Views/Cells/MSVenueCell/MSVenueCell.m; sourceTree = "<group>"; };
 		5ADCF3151840F8E900E6C8D2 /* MSVenueCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSVenueCell.xib; path = Views/Cells/MSVenueCell/MSVenueCell.xib; sourceTree = "<group>"; };
+		5AF2FBFB188C946A002147FB /* MSPickSportCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSPickSportCell2.xib; path = Views/Cells/MSPickSportCell/MSPickSportCell2.xib; sourceTree = "<group>"; };
 		5AFE43EC18426A8F001376C7 /* MSChooseSportsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSChooseSportsVC.h; path = Controllers/MSChooseSportsVC/MSChooseSportsVC.h; sourceTree = "<group>"; };
 		5AFE43ED18426A8F001376C7 /* MSChooseSportsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSChooseSportsVC.m; path = Controllers/MSChooseSportsVC/MSChooseSportsVC.m; sourceTree = "<group>"; };
 		5AFE43F118426ABD001376C7 /* MSChooseSportsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSChooseSportsVC.xib; path = Controllers/MSChooseSportsVC/MSChooseSportsVC.xib; sourceTree = "<group>"; };
@@ -990,6 +992,7 @@
 				5ADCF2D11840BA6400E6C8D2 /* MSPickSportCell.h */,
 				5ADCF2D21840BA6400E6C8D2 /* MSPickSportCell.m */,
 				5ADCF2D41840BA7600E6C8D2 /* MSPickSportCell.xib */,
+				5AF2FBFB188C946A002147FB /* MSPickSportCell2.xib */,
 			);
 			name = MSPickSportCell;
 			sourceTree = "<group>";
@@ -1264,6 +1267,7 @@
 				5AFE687E18507BE300E40541 /* gym@2x.png in Resources */,
 				5ADCF3161840F8E900E6C8D2 /* MSVenueCell.xib in Resources */,
 				5ADCF2B818402CC500E6C8D2 /* MSActivityCell.xib in Resources */,
+				5AF2FBFC188C946A002147FB /* MSPickSportCell2.xib in Resources */,
 				5AFE687B18507BE300E40541 /* gym.png in Resources */,
 				5A29CAF118491F82002A8B60 /* unSelected.png in Resources */,
 				5A85E8F21872CCE200F5E8F9 /* MSLocationPickerVC.xib in Resources */,

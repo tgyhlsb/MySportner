@@ -489,7 +489,6 @@
 {
     [self.activeTextField resignFirstResponder];
     [self.birthdayTextField setFocused:YES];
-    [self datePickerValueDidChange];
     
     [UIView animateWithDuration:0.3 animations:^{
         self.datePicker.hidden = NO;
@@ -532,6 +531,7 @@
 
 - (void)datePickerDidTap
 {
+    [self datePickerValueDidChange];
     [self closeDatePicker];
 }
 

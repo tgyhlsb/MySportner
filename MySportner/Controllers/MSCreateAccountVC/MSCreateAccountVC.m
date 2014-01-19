@@ -16,6 +16,7 @@
 #import "NKColorSwitch.h"
 #import "MBProgressHUD.h"
 #import "TKAlertCenter.h"
+#import "UIView+MSRoundedView.h"
 
 #define NIB_NAME @"MSCreateAccountVC"
 
@@ -39,7 +40,7 @@
 #define PLACEHOLDER_PASSWORD @"Password"
 #define PLACEHOLDER_BIRTHDAY @"Birthday"
 
-@interface MSCreateAccountVC () <UITextFieldDelegate, UIAlertViewDelegate>
+@interface MSCreateAccountVC () <UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -53,6 +54,8 @@
 @property (strong, nonatomic) UILabel *commentLabel;
 @property (strong, nonatomic) QBFlatButton *nextButton;
 @property (strong, nonatomic) UIDatePicker *datePicker;
+
+@property (weak, nonatomic) UIImagePickerController *imagePickerController;
 
 @property (weak, nonatomic) UITextField *activeTextField;
 
@@ -185,6 +188,8 @@
     UITapGestureRecognizer *pictureTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pictureTapHandler)];
     [self.imageView addGestureRecognizer:pictureTapGesture];
     self.imageView.userInteractionEnabled = YES;
+    [self.imageView setCornerRadius:3.0];
+    self.imageView.clipsToBounds = YES;
     [self.scrollView addSubview:self.imageView];
     
     
@@ -288,6 +293,7 @@
         self.user.gender = self.genderControl.isOn ? MSUserGenderFemale : MSUserGenderMale;
         self.user.username = self.user.email;
         self.user.facebookID = FACEBOOK_DEFAULT_ID[self.user.gender]; // default IDs to get a fb picture according to your gender
+        self.user.image = self.imageView.image;
         [self.user signUpInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
     }
 }
@@ -295,8 +301,23 @@
 
 - (void)pictureTapHandler
 {
-    [self closeAllResponders];
+    UIImagePickerController *destinationVC = [[UIImagePickerController alloc] init];
+    destinationVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    destinationVC.delegate = self;
+    [self presentViewController:destinationVC animated:YES completion:nil];
+//    [self.navigationController pushViewController:destinationVC animated:YES];
+//    [self closeAllResponders];
     //    [[[UIAlertView alloc] initWithTitle:@"Not available" message:@"This feature is coming up soon !" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+}
+
+#pragma mark UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSLog(@"%@", info);
+    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    self.imageView.image = image;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark UIAlertViewDelegate

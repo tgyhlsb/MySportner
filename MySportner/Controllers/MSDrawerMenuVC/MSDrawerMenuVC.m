@@ -131,6 +131,7 @@
 - (void)updateView
 {
     self.fbProfilePictureView.profileID = [MSUser currentUser].facebookID;
+    UIImage *img = [MSUser currentUser].image;
     self.welcomeLabel.text = @"HELLO";
     self.userNameLabel.text = [[[MSUser currentUser] fullName] uppercaseString];
 }

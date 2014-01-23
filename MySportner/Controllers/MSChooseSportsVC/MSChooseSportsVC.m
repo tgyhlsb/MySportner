@@ -16,6 +16,9 @@
 #import "MSFontFactory.h"
 #import "MSStyleFactory.h"
 #import "MSSport.h"
+#import "MBProgressHUD.h"
+#import "TKAlertCenter.h"
+#import "MSSport.h"
 
 #define DEFAULT_SPORT_LEVEL -1
 
@@ -26,7 +29,11 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet QBFlatButton *nextButton;
 
+@property (strong, nonatomic) MBProgressHUD *loadingView;
+
 @property (strong, nonatomic) NSArray *data;
+
+@property (strong, nonatomic) NSString *validateButtonTitle;
 
 @end
 
@@ -80,6 +87,8 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    [self.nextButton setTitle:self.validateButtonTitle forState:UIControlStateNormal];
 }
 
 + (MSChooseSportsVC *)newController
@@ -87,13 +96,39 @@
     return [[MSChooseSportsVC alloc] initWithNibName:NIB_NAME bundle:Nil];
 }
 
+@synthesize validateButtonTitle = _validateButtonTitle;
+
+- (void)setValidateButtonTitle:(NSString *)title
+{
+    _validateButtonTitle = title;
+    [self.nextButton setTitle:title forState:UIControlStateNormal];
+}
+
+- (NSString *)validateButtonTitle
+{
+    if (!_validateButtonTitle) _validateButtonTitle = @"NEXT";
+    return _validateButtonTitle;
+}
+
 - (IBAction)nextButtonPress:(UIButton *)sender
 {
-    MSFindFriendsVC *destinationVC = [MSFindFriendsVC newController];
-    
-    destinationVC.user = self.user;
-    
-    [self.navigationController pushViewController:destinationVC animated:YES];
+    if (self.user) {
+        [self showLoadingViewInView:self.view];
+        [self.user saveInBackgroundWithTarget:self selector:@selector(handleUserSave:error:)];
+    } else {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection lost"];
+    }
+}
+
+
+- (void)handleUserSave:(NSNumber *)result error:(NSError *)error
+{
+    [self hideLoadingView];
+    if (!error) {
+        self.validateBlock();
+    } else {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:[error.userInfo objectForKey:@"error"]];
+    }
 }
 
 #pragma mark UICollectionViewDataSource
@@ -112,11 +147,19 @@
 {
     MSBigSportCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MSBigSportCell reusableIdentifier] forIndexPath:indexPath];
     
-    cell.level = DEFAULT_SPORT_LEVEL;
     NSString *sport = [self.data objectAtIndex:indexPath.item];
     cell.titleLabel.text = [sport uppercaseString];
     cell.imageNameNormal = [sport stringByAppendingString:@".png"];
     cell.imageNameSelected = [sport stringByAppendingString:@"(select).png"];
+    
+    NSDictionary *userSports = self.user.sportLevels;
+    NSDecimalNumber *sportLevel = [userSports valueForKey:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
+    
+    if (sportLevel) {
+        cell.level = [sportLevel integerValue];
+    } else {
+        cell.level = DEFAULT_SPORT_LEVEL;
+    }
     
     cell.layer.shouldRasterize = YES;
     cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
@@ -173,6 +216,31 @@
     vc.level = weakSportCell.level;
     
     [self presentFormSheetController:formSheet animated:YES completionHandler:nil];
+}
+
+#pragma mark - MBProgressHUD
+
+- (void) showLoadingViewInView:(UIView*)v
+{
+    UIView *targetV = (v ? v : self.view);
+    
+    if (!self.loadingView) {
+        self.loadingView = [[MBProgressHUD alloc] initWithView:targetV];
+        self.loadingView.minShowTime = 1.0f;
+        self.loadingView.mode = MBProgressHUDModeIndeterminate;
+        self.loadingView.removeFromSuperViewOnHide = YES;
+        self.loadingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
+    }
+    if(!self.loadingView.superview) {
+        self.loadingView.frame = targetV.bounds;
+        [targetV addSubview:self.loadingView];
+    }
+    [self.loadingView show:YES];
+}
+- (void) hideLoadingView
+{
+    if (self.loadingView.superview)
+        [self.loadingView hide:YES];
 }
 
 

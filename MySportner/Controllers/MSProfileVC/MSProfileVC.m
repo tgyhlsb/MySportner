@@ -13,6 +13,7 @@
 #import "MSColorFactory.h"
 #import "MSActivityCell.h"
 #import "MSActivityVC.h"
+#import "MSChooseSportsVC.h"
 
 #define NIB_NAME @"MSProfileVC"
 
@@ -52,8 +53,25 @@
     self.locationLabel.textColor = [MSColorFactory whiteLight];
     
     self.userNameLabel.textColor = [MSColorFactory whiteLight];
-    
-    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showSportChooser)];
+    [self.userNameLabel addGestureRecognizer:tapGesture];
+    self.userNameLabel.userInteractionEnabled = YES;
+}
+
+- (void)showSportChooser
+{
+    if ([self.user isEqual:[MSUser currentUser]]) {
+        MSChooseSportsVC *destinationVC = [MSChooseSportsVC newController];
+        
+        destinationVC.user = self.user;
+        
+        destinationVC.validateBlock = ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        };
+        
+        [self.navigationController pushViewController:destinationVC animated:YES];
+        [destinationVC setValidateButtonTitle:@"DONE"];
+    }
 }
 
 @synthesize user = _user;

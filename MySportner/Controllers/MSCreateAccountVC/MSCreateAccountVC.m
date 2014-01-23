@@ -17,6 +17,7 @@
 #import "MBProgressHUD.h"
 #import "TKAlertCenter.h"
 #import "UIView+MSRoundedView.h"
+#import "MSFindFriendsVC.h"
 
 #define NIB_NAME @"MSCreateAccountVC"
 
@@ -374,6 +375,15 @@
     MSChooseSportsVC *destinationVC = [MSChooseSportsVC newController];
     
     destinationVC.user = self.user;
+    
+    __weak MSChooseSportsVC *weakDestination = destinationVC;
+    destinationVC.validateBlock = ^{
+        MSFindFriendsVC *destinationVC = [MSFindFriendsVC newController];
+        
+        destinationVC.user = weakDestination.user;
+        
+        [weakDestination.navigationController pushViewController:destinationVC animated:YES];
+    };
     
     [self.navigationController pushViewController:destinationVC animated:YES];
 }

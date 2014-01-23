@@ -11,8 +11,12 @@
 
 @interface MSChooseSportsVC : UIViewController
 
+
+@property (nonatomic, strong) void (^validateBlock)(void);
 @property (strong, nonatomic) MSUser *user;
 
 + (MSChooseSportsVC *)newController;
+
+- (void)setValidateButtonTitle:(NSString *)title;
 
 @end

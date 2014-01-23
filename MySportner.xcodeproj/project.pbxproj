@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A090AD91891948A0017B207 /* MSComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A090AD81891948A0017B207 /* MSComment.m */; };
 		5A0CB7EA1891714A0027EE58 /* slider-default-handle-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7CC189171490027EE58 /* slider-default-handle-highlighted.png */; };
 		5A0CB7EB1891714A0027EE58 /* slider-default-handle-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7CD189171490027EE58 /* slider-default-handle-highlighted@2x.png */; };
 		5A0CB7EC1891714A0027EE58 /* slider-default-handle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7CE189171490027EE58 /* slider-default-handle.png */; };
@@ -222,6 +223,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A090AD71891948A0017B207 /* MSComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSComment.h; path = Model/MSComment.h; sourceTree = "<group>"; };
+		5A090AD81891948A0017B207 /* MSComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSComment.m; path = Model/MSComment.m; sourceTree = "<group>"; };
 		5A0CB7CC189171490027EE58 /* slider-default-handle-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted.png"; sourceTree = "<group>"; };
 		5A0CB7CD189171490027EE58 /* slider-default-handle-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted@2x.png"; sourceTree = "<group>"; };
 		5A0CB7CE189171490027EE58 /* slider-default-handle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle.png"; sourceTree = "<group>"; };
@@ -1073,6 +1076,8 @@
 				5A3DE7C3184133E1001054EB /* MSUser.m */,
 				5A9C90F6187C4C1E00065DBA /* MSSport.h */,
 				5A9C90F7187C4C1E00065DBA /* MSSport.m */,
+				5A090AD71891948A0017B207 /* MSComment.h */,
+				5A090AD81891948A0017B207 /* MSComment.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1506,6 +1511,7 @@
 				5A9C90F8187C4C1E00065DBA /* MSSport.m in Sources */,
 				5ADCF2671840051300E6C8D2 /* UIViewController+MMDrawerController.m in Sources */,
 				5A210020184E421800CDF460 /* MSStyleFactory.m in Sources */,
+				5A090AD91891948A0017B207 /* MSComment.m in Sources */,
 				5A96744F1849D20C0079EAC1 /* MSColorFactory.m in Sources */,
 				5A9674551849D8740079EAC1 /* MSTextField.m in Sources */,
 				5ADCF3141840F8DA00E6C8D2 /* MSVenueCell.m in Sources */,

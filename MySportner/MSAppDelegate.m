@@ -21,6 +21,7 @@
 #import "MSTextField.h"
 #import "QBFlatButton.h"
 #import "MSNavigationVC.h"
+#import "MSComment.h"
 
 #define STORYBOARD_NAME @"Main"
 
@@ -36,6 +37,7 @@
     [FBLoginView class];
     [FBProfilePictureView class];
     
+    [MSComment registerSubclass];
     [MSUser registerSubclass];
     [MSActivity registerSubclass];
     [Parse setApplicationId:@"mXxe3WBY2KqxbWjjnBruVUyJGtyKjgjDpfuX6pAA"

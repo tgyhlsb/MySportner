@@ -155,6 +155,8 @@
     NSDictionary *userSports = self.user.sportLevels;
     NSDecimalNumber *sportLevel = [userSports valueForKey:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
     
+    cell.level = [self.user sportLevelForSportIndex:indexPath.row defaultValue:DEFAULT_SPORT_LEVEL];
+    
     if (sportLevel) {
         cell.level = [sportLevel integerValue];
     } else {

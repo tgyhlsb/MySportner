@@ -76,6 +76,12 @@
     return sports;
 }
 
+- (NSInteger)sportLevelForSportIndex:(NSInteger)index defaultValue:(NSInteger)defaultValue
+{
+    NSDecimalNumber *sportLevel = [self.sportLevels valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
+    return (sportLevel) ? [sportLevel integerValue] : defaultValue;
+}
+
 - (void)setWithFacebookInfo:(id<FBGraphUser>)userInfo
 {
     //    NSLog(@"%@", userInfo);

@@ -44,6 +44,7 @@ typedef NS_ENUM(int, MSUserGender) {
 
 - (void)setSport:(NSInteger)sportKey withLevel:(NSInteger)level;
 - (NSArray *)getSports;
+- (NSInteger)sportLevelForSportIndex:(NSInteger)index defaultValue:(NSInteger)defaultValue;
 
 @end
 

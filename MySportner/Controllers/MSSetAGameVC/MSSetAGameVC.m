@@ -16,6 +16,7 @@
 #import "MSButtonCell.h"
 #import "MSLocationPickerVC.h"
 #import "TKAlertCenter.h"
+#import "MSRangeCell.h"
 
 #define NIB_NAME @"MSSetAGameVC"
 
@@ -32,6 +33,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     MSSetAGameTextFieldTypeTime,
     MSSetAGameTextFieldTypeRepeat,
     MSSetAGameTextFieldTypeLocation,
+    MSSetAGameTextFieldTypeRangePlayers,
     MSSetAGameTextFieldTypeButton
 };
 
@@ -63,6 +65,19 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 
 @implementation MSSetAGameVC
 
+- (BOOL)shouldCancelTouch:(UITouch *)touch
+{
+    CGPoint tapLocation = [touch locationInView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    if ([cell isKindOfClass:[MSRangeCell class]] || [cell isKindOfClass:[MSPickSportCell class]]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -72,6 +87,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     [MSPickSportCell registerToTableView:self.tableView];
     [MSTextFieldPickerCell registerToTableView:self.tableView];
     [MSButtonCell registerToTableView:self.tableView];
+    [MSRangeCell registerToTableView:self.tableView];
     
     [self registerForKeyboardNotifications];
     
@@ -368,6 +384,19 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     [cell initializeWithViewcontroller:self];
                     cell.textField.placeholder = @"Location";
                     self.locationTextField = cell.textField;
+                    
+                    return cell;
+                }
+                
+                case MSSetAGameTextFieldTypeRangePlayers:
+                {
+                    MSRangeCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSRangeCell reusableIdentifier] forIndexPath:indexPath];
+                    
+                    cell.maximumValue = 20.0;
+                    cell.minimumValue = 1.0;
+                    cell.lowerValue = 2.0;
+                    cell.upperValue = 5.0;
+                    cell.stepValue = 1.0;
                     
                     return cell;
                 }

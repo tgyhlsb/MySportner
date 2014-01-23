@@ -12,12 +12,34 @@
 #import "MSNotificationsVC.h"
 #import "MSSetAGameVC.h"
 #import "MSFindFriendsVC.h"
+#import "MSAppDelegate.h"
 
 @interface MSDrawerController ()
 
 @end
 
 @implementation MSDrawerController
+
+- (void)setGestureRecognizerBlock
+{
+    self.openDrawerGestureModeMask = MMOpenDrawerGestureModeCustom;
+    self.closeDrawerGestureModeMask = MMCloseDrawerGestureModeAll;
+    [self setGestureShouldRecognizeTouchBlock:^BOOL(MMDrawerController *drawerController, UIGestureRecognizer *gesture, UITouch *touch) {
+        
+        if ([gesture isKindOfClass:[UIPanGestureRecognizer class]]) {
+            UIViewController *activeVC = [((UINavigationController *)drawerController.centerViewController).viewControllers lastObject];
+            
+            // find view touched if setting a game
+            if ([activeVC isKindOfClass:[MSSetAGameVC class]]) {
+                
+                return ![((MSSetAGameVC *)activeVC) shouldCancelTouch:touch];
+            }
+            
+            return YES;
+        }
+        return NO;
+    }];
+}
 
 - (void)displayCenterControlerForView:(MSCenterView)view
 {

@@ -95,12 +95,10 @@
                              initWithCenterViewController:navigationController
                              leftDrawerViewController:leftSideDrawerViewController
                              rightDrawerViewController:rightSideDrawerViewController];
-    
+    [self.drawerController setGestureRecognizerBlock];
     [self.drawerController setRestorationIdentifier:@"MSDrawer"];
     [self.drawerController setMaximumLeftDrawerWidth:260.0];
     [self.drawerController setShowsShadow:YES];
-    [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
-    [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     self.drawerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 }
 							

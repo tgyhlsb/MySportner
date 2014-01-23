@@ -7,6 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A0CB7EA1891714A0027EE58 /* slider-default-handle-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7CC189171490027EE58 /* slider-default-handle-highlighted.png */; };
+		5A0CB7EB1891714A0027EE58 /* slider-default-handle-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7CD189171490027EE58 /* slider-default-handle-highlighted@2x.png */; };
+		5A0CB7EC1891714A0027EE58 /* slider-default-handle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7CE189171490027EE58 /* slider-default-handle.png */; };
+		5A0CB7ED1891714A0027EE58 /* slider-default-handle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7CF189171490027EE58 /* slider-default-handle@2x.png */; };
+		5A0CB7EE1891714A0027EE58 /* slider-default-track.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7D0189171490027EE58 /* slider-default-track.png */; };
+		5A0CB7EF1891714A0027EE58 /* slider-default-track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7D1189171490027EE58 /* slider-default-track@2x.png */; };
+		5A0CB7F01891714A0027EE58 /* slider-default-trackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7D2189171490027EE58 /* slider-default-trackBackground.png */; };
+		5A0CB7F11891714A0027EE58 /* slider-default-trackCrossedOver.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7D3189171490027EE58 /* slider-default-trackCrossedOver.png */; };
+		5A0CB7F21891714A0027EE58 /* slider-default-trackCrossedOver@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7D4189171490027EE58 /* slider-default-trackCrossedOver@2x.png */; };
+		5A0CB7F31891714A0027EE58 /* slider-default_trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7D5189171490027EE58 /* slider-default_trackBackground@2x.png */; };
+		5A0CB7F41891714A0027EE58 /* slider-default7-handle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7D7189171490027EE58 /* slider-default7-handle.png */; };
+		5A0CB7F51891714A0027EE58 /* slider-default7-handle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7D8189171490027EE58 /* slider-default7-handle@2x.png */; };
+		5A0CB7F61891714A0027EE58 /* slider-default7-track.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7D9189171490027EE58 /* slider-default7-track.png */; };
+		5A0CB7F71891714A0027EE58 /* slider-default7-track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7DA189171490027EE58 /* slider-default7-track@2x.png */; };
+		5A0CB7F81891714A0027EE58 /* slider-default7-trackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7DB189171490027EE58 /* slider-default7-trackBackground.png */; };
+		5A0CB7F91891714A0027EE58 /* slider-default7-trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7DC189171490027EE58 /* slider-default7-trackBackground@2x.png */; };
+		5A0CB7FA1891714A0027EE58 /* slider-default7-trackCrossedOver.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7DD189171490027EE58 /* slider-default7-trackCrossedOver.png */; };
+		5A0CB7FB1891714A0027EE58 /* slider-default7-trackCrossedOver@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7DE1891714A0027EE58 /* slider-default7-trackCrossedOver@2x.png */; };
+		5A0CB7FC1891714A0027EE58 /* slider-metal-handle-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7E01891714A0027EE58 /* slider-metal-handle-highlighted.png */; };
+		5A0CB7FD1891714A0027EE58 /* slider-metal-handle-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7E11891714A0027EE58 /* slider-metal-handle-highlighted@2x.png */; };
+		5A0CB7FE1891714A0027EE58 /* slider-metal-handle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7E21891714A0027EE58 /* slider-metal-handle.png */; };
+		5A0CB7FF1891714A0027EE58 /* slider-metal-handle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7E31891714A0027EE58 /* slider-metal-handle@2x.png */; };
+		5A0CB8001891714A0027EE58 /* slider-metal-track.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7E41891714A0027EE58 /* slider-metal-track.png */; };
+		5A0CB8011891714A0027EE58 /* slider-metal-track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7E51891714A0027EE58 /* slider-metal-track@2x.png */; };
+		5A0CB8021891714A0027EE58 /* slider-metal-trackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7E61891714A0027EE58 /* slider-metal-trackBackground.png */; };
+		5A0CB8031891714A0027EE58 /* slider-metal-trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7E71891714A0027EE58 /* slider-metal-trackBackground@2x.png */; };
+		5A0CB8041891714A0027EE58 /* NMRangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0CB7E91891714A0027EE58 /* NMRangeSlider.m */; };
+		5A0CB808189171AA0027EE58 /* MSRangeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0CB807189171AA0027EE58 /* MSRangeCell.m */; };
+		5A0CB80A189171BB0027EE58 /* MSRangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB809189171BB0027EE58 /* MSRangeCell.xib */; };
 		5A0F9116184242AF0049BBD5 /* MSCreateAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0F9115184242AF0049BBD5 /* MSCreateAccountVC.m */; };
 		5A0F9118184242BD0049BBD5 /* MSCreateAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0F9117184242BD0049BBD5 /* MSCreateAccountVC.xib */; };
 		5A173FE21849C97D00144DB8 /* UIView+MSRoundedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A173FE11849C97D00144DB8 /* UIView+MSRoundedView.m */; };
@@ -193,6 +222,37 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A0CB7CC189171490027EE58 /* slider-default-handle-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted.png"; sourceTree = "<group>"; };
+		5A0CB7CD189171490027EE58 /* slider-default-handle-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted@2x.png"; sourceTree = "<group>"; };
+		5A0CB7CE189171490027EE58 /* slider-default-handle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle.png"; sourceTree = "<group>"; };
+		5A0CB7CF189171490027EE58 /* slider-default-handle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle@2x.png"; sourceTree = "<group>"; };
+		5A0CB7D0189171490027EE58 /* slider-default-track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-track.png"; sourceTree = "<group>"; };
+		5A0CB7D1189171490027EE58 /* slider-default-track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-track@2x.png"; sourceTree = "<group>"; };
+		5A0CB7D2189171490027EE58 /* slider-default-trackBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-trackBackground.png"; sourceTree = "<group>"; };
+		5A0CB7D3189171490027EE58 /* slider-default-trackCrossedOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-trackCrossedOver.png"; sourceTree = "<group>"; };
+		5A0CB7D4189171490027EE58 /* slider-default-trackCrossedOver@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-trackCrossedOver@2x.png"; sourceTree = "<group>"; };
+		5A0CB7D5189171490027EE58 /* slider-default_trackBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default_trackBackground@2x.png"; sourceTree = "<group>"; };
+		5A0CB7D7189171490027EE58 /* slider-default7-handle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-handle.png"; sourceTree = "<group>"; };
+		5A0CB7D8189171490027EE58 /* slider-default7-handle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-handle@2x.png"; sourceTree = "<group>"; };
+		5A0CB7D9189171490027EE58 /* slider-default7-track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-track.png"; sourceTree = "<group>"; };
+		5A0CB7DA189171490027EE58 /* slider-default7-track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-track@2x.png"; sourceTree = "<group>"; };
+		5A0CB7DB189171490027EE58 /* slider-default7-trackBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackBackground.png"; sourceTree = "<group>"; };
+		5A0CB7DC189171490027EE58 /* slider-default7-trackBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackBackground@2x.png"; sourceTree = "<group>"; };
+		5A0CB7DD189171490027EE58 /* slider-default7-trackCrossedOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackCrossedOver.png"; sourceTree = "<group>"; };
+		5A0CB7DE1891714A0027EE58 /* slider-default7-trackCrossedOver@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackCrossedOver@2x.png"; sourceTree = "<group>"; };
+		5A0CB7E01891714A0027EE58 /* slider-metal-handle-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-handle-highlighted.png"; sourceTree = "<group>"; };
+		5A0CB7E11891714A0027EE58 /* slider-metal-handle-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-handle-highlighted@2x.png"; sourceTree = "<group>"; };
+		5A0CB7E21891714A0027EE58 /* slider-metal-handle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-handle.png"; sourceTree = "<group>"; };
+		5A0CB7E31891714A0027EE58 /* slider-metal-handle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-handle@2x.png"; sourceTree = "<group>"; };
+		5A0CB7E41891714A0027EE58 /* slider-metal-track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-track.png"; sourceTree = "<group>"; };
+		5A0CB7E51891714A0027EE58 /* slider-metal-track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-track@2x.png"; sourceTree = "<group>"; };
+		5A0CB7E61891714A0027EE58 /* slider-metal-trackBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-trackBackground.png"; sourceTree = "<group>"; };
+		5A0CB7E71891714A0027EE58 /* slider-metal-trackBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-trackBackground@2x.png"; sourceTree = "<group>"; };
+		5A0CB7E81891714A0027EE58 /* NMRangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMRangeSlider.h; sourceTree = "<group>"; };
+		5A0CB7E91891714A0027EE58 /* NMRangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMRangeSlider.m; sourceTree = "<group>"; };
+		5A0CB806189171AA0027EE58 /* MSRangeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSRangeCell.h; path = Views/Cells/MSRangeCell/MSRangeCell.h; sourceTree = "<group>"; };
+		5A0CB807189171AA0027EE58 /* MSRangeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSRangeCell.m; path = Views/Cells/MSRangeCell/MSRangeCell.m; sourceTree = "<group>"; };
+		5A0CB809189171BB0027EE58 /* MSRangeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSRangeCell.xib; path = Views/Cells/MSRangeCell/MSRangeCell.xib; sourceTree = "<group>"; };
 		5A0F9114184242AF0049BBD5 /* MSCreateAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCreateAccountVC.h; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.h; sourceTree = "<group>"; };
 		5A0F9115184242AF0049BBD5 /* MSCreateAccountVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCreateAccountVC.m; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.m; sourceTree = "<group>"; };
 		5A0F9117184242BD0049BBD5 /* MSCreateAccountVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSCreateAccountVC.xib; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.xib; sourceTree = "<group>"; };
@@ -474,6 +534,75 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A0CB7CA189171490027EE58 /* NMRangeSlider */ = {
+			isa = PBXGroup;
+			children = (
+				5A0CB7CB189171490027EE58 /* DefaultTheme */,
+				5A0CB7D6189171490027EE58 /* DefaultTheme7 */,
+				5A0CB7DF1891714A0027EE58 /* MetalTheme */,
+				5A0CB7E81891714A0027EE58 /* NMRangeSlider.h */,
+				5A0CB7E91891714A0027EE58 /* NMRangeSlider.m */,
+			);
+			path = NMRangeSlider;
+			sourceTree = "<group>";
+		};
+		5A0CB7CB189171490027EE58 /* DefaultTheme */ = {
+			isa = PBXGroup;
+			children = (
+				5A0CB7CC189171490027EE58 /* slider-default-handle-highlighted.png */,
+				5A0CB7CD189171490027EE58 /* slider-default-handle-highlighted@2x.png */,
+				5A0CB7CE189171490027EE58 /* slider-default-handle.png */,
+				5A0CB7CF189171490027EE58 /* slider-default-handle@2x.png */,
+				5A0CB7D0189171490027EE58 /* slider-default-track.png */,
+				5A0CB7D1189171490027EE58 /* slider-default-track@2x.png */,
+				5A0CB7D2189171490027EE58 /* slider-default-trackBackground.png */,
+				5A0CB7D3189171490027EE58 /* slider-default-trackCrossedOver.png */,
+				5A0CB7D4189171490027EE58 /* slider-default-trackCrossedOver@2x.png */,
+				5A0CB7D5189171490027EE58 /* slider-default_trackBackground@2x.png */,
+			);
+			path = DefaultTheme;
+			sourceTree = "<group>";
+		};
+		5A0CB7D6189171490027EE58 /* DefaultTheme7 */ = {
+			isa = PBXGroup;
+			children = (
+				5A0CB7D7189171490027EE58 /* slider-default7-handle.png */,
+				5A0CB7D8189171490027EE58 /* slider-default7-handle@2x.png */,
+				5A0CB7D9189171490027EE58 /* slider-default7-track.png */,
+				5A0CB7DA189171490027EE58 /* slider-default7-track@2x.png */,
+				5A0CB7DB189171490027EE58 /* slider-default7-trackBackground.png */,
+				5A0CB7DC189171490027EE58 /* slider-default7-trackBackground@2x.png */,
+				5A0CB7DD189171490027EE58 /* slider-default7-trackCrossedOver.png */,
+				5A0CB7DE1891714A0027EE58 /* slider-default7-trackCrossedOver@2x.png */,
+			);
+			path = DefaultTheme7;
+			sourceTree = "<group>";
+		};
+		5A0CB7DF1891714A0027EE58 /* MetalTheme */ = {
+			isa = PBXGroup;
+			children = (
+				5A0CB7E01891714A0027EE58 /* slider-metal-handle-highlighted.png */,
+				5A0CB7E11891714A0027EE58 /* slider-metal-handle-highlighted@2x.png */,
+				5A0CB7E21891714A0027EE58 /* slider-metal-handle.png */,
+				5A0CB7E31891714A0027EE58 /* slider-metal-handle@2x.png */,
+				5A0CB7E41891714A0027EE58 /* slider-metal-track.png */,
+				5A0CB7E51891714A0027EE58 /* slider-metal-track@2x.png */,
+				5A0CB7E61891714A0027EE58 /* slider-metal-trackBackground.png */,
+				5A0CB7E71891714A0027EE58 /* slider-metal-trackBackground@2x.png */,
+			);
+			path = MetalTheme;
+			sourceTree = "<group>";
+		};
+		5A0CB8051891717D0027EE58 /* MSLocationCell */ = {
+			isa = PBXGroup;
+			children = (
+				5A85E8F31872CFFF00F5E8F9 /* MSLocationCell.h */,
+				5A85E8F41872CFFF00F5E8F9 /* MSLocationCell.m */,
+				5A85E8F61872D01300F5E8F9 /* MSLocationCell.xib */,
+			);
+			name = MSLocationCell;
+			sourceTree = "<group>";
+		};
 		5A0F9119184242C30049BBD5 /* MSCreateAccountVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -777,6 +906,7 @@
 		5ADCF2591840050600E6C8D2 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				5A0CB7CA189171490027EE58 /* NMRangeSlider */,
 				5A29E3291879ACE9008A8919 /* TKAlertCenter */,
 				5A9B2DAC1853B8A400AE45D9 /* ExtensiveCell */,
 				5AA60A0B184B67E700B09ADD /* NKColorSwitch */,
@@ -872,9 +1002,10 @@
 				5A9B2DAB18539F3100AE45D9 /* MSGameProfileCell */,
 				5A23BB0B186CD1D700FFF0E0 /* MSFacebookFriendCell */,
 				5A4CE2BC187099CE0081AA1E /* MSButtonCell */,
-				5A85E8F31872CFFF00F5E8F9 /* MSLocationCell.h */,
-				5A85E8F41872CFFF00F5E8F9 /* MSLocationCell.m */,
-				5A85E8F61872D01300F5E8F9 /* MSLocationCell.xib */,
+				5A0CB8051891717D0027EE58 /* MSLocationCell */,
+				5A0CB806189171AA0027EE58 /* MSRangeCell.h */,
+				5A0CB807189171AA0027EE58 /* MSRangeCell.m */,
+				5A0CB809189171BB0027EE58 /* MSRangeCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1203,28 +1334,42 @@
 			files = (
 				5A299A8E184BE8B100005733 /* back_button.png in Resources */,
 				5A9B2DAA18539A1A00AE45D9 /* MSGameProfileCell.xib in Resources */,
+				5A0CB7F11891714A0027EE58 /* slider-default-trackCrossedOver.png in Resources */,
 				5ADCF23D184004D300E6C8D2 /* Images.xcassets in Resources */,
+				5A0CB7EF1891714A0027EE58 /* slider-default-track@2x.png in Resources */,
+				5A0CB8001891714A0027EE58 /* slider-metal-track.png in Resources */,
 				5AFE687618507BE300E40541 /* foot@2x.png in Resources */,
 				5A299A93184BED5400005733 /* background_blur_light@2x.png in Resources */,
 				5A9B2DB41853B8A400AE45D9 /* ExtensiveCellContainer.xib in Resources */,
+				5A0CB7F41891714A0027EE58 /* slider-default7-handle.png in Resources */,
 				5AFE688518507BE300E40541 /* swimming(select)@2x.png in Resources */,
+				5A0CB8011891714A0027EE58 /* slider-metal-track@2x.png in Resources */,
 				5AA60A06184B56BD00B09ADD /* iOS_blur@2x.png in Resources */,
+				5A0CB8031891714A0027EE58 /* slider-metal-trackBackground@2x.png in Resources */,
 				5AFE687C18507BE300E40541 /* gym(select).png in Resources */,
+				5A0CB80A189171BB0027EE58 /* MSRangeCell.xib in Resources */,
+				5A0CB7F31891714A0027EE58 /* slider-default_trackBackground@2x.png in Resources */,
 				5AA60A02184B549C00B09ADD /* ProximaNova-Regular.otf in Resources */,
 				5ADCF2E71840D23A00E6C8D2 /* MSTextFieldPickerCell.xib in Resources */,
 				5AFE689518508EAC00E40541 /* plus_button_press.png in Resources */,
 				5ADCF2A518401E2800E6C8D2 /* MSSetAGameVC.xib in Resources */,
 				5A4CE2BB187099C50081AA1E /* MSButtonCell.xib in Resources */,
+				5A0CB7F01891714A0027EE58 /* slider-default-trackBackground.png in Resources */,
+				5A0CB7FF1891714A0027EE58 /* slider-metal-handle@2x.png in Resources */,
 				5AFE687D18507BE300E40541 /* gym(select)@2x.png in Resources */,
 				5AA60A05184B56BD00B09ADD /* iOS_blur.png in Resources */,
+				5A0CB7EE1891714A0027EE58 /* slider-default-track.png in Resources */,
 				5AFE687818507BE300E40541 /* football(select).png in Resources */,
+				5A0CB7ED1891714A0027EE58 /* slider-default-handle@2x.png in Resources */,
 				5AFE687018507BE300E40541 /* cycle(select).png in Resources */,
 				5A29CAF018491F82002A8B60 /* selected.png in Resources */,
 				5AFE687218507BE300E40541 /* cycle@2x.png in Resources */,
 				5AFE688218507BE300E40541 /* rugby@2x.png in Resources */,
+				5A0CB7F61891714A0027EE58 /* slider-default7-track.png in Resources */,
 				5A85E8F71872D01300F5E8F9 /* MSLocationCell.xib in Resources */,
 				5AFE43F818426CD4001376C7 /* MSBigSportCell.xib in Resources */,
 				5AFE686B18507BE300E40541 /* basketball.png in Resources */,
+				5A0CB7FC1891714A0027EE58 /* slider-metal-handle-highlighted.png in Resources */,
 				5AFE688318507BE300E40541 /* swimming.png in Resources */,
 				5AFE688018507BE300E40541 /* rugby(select).png in Resources */,
 				5AFE687518507BE300E40541 /* foot(select)@2x.png in Resources */,
@@ -1232,8 +1377,14 @@
 				5AFE687A18507BE300E40541 /* football@2x.png in Resources */,
 				5A299A8F184BE8B100005733 /* back_button@2x.png in Resources */,
 				5AFE688D1850883500E40541 /* vertical_gradient.png in Resources */,
+				5A0CB7FE1891714A0027EE58 /* slider-metal-handle.png in Resources */,
 				5ADCF22F184004D300E6C8D2 /* InfoPlist.strings in Resources */,
+				5A0CB7F81891714A0027EE58 /* slider-default7-trackBackground.png in Resources */,
+				5A0CB7FB1891714A0027EE58 /* slider-default7-trackCrossedOver@2x.png in Resources */,
 				5ADCF2851840141700E6C8D2 /* MSProfileVC.xib in Resources */,
+				5A0CB7EB1891714A0027EE58 /* slider-default-handle-highlighted@2x.png in Resources */,
+				5A0CB7FA1891714A0027EE58 /* slider-default7-trackCrossedOver.png in Resources */,
+				5A0CB7F91891714A0027EE58 /* slider-default7-trackBackground@2x.png in Resources */,
 				5ADCF2D51840BA7600E6C8D2 /* MSPickSportCell.xib in Resources */,
 				5ADCF2EC1840D39C00E6C8D2 /* MSVenuePickerVC.xib in Resources */,
 				5A29CAF618492080002A8B60 /* MSSportLevelFormVC.xib in Resources */,
@@ -1243,6 +1394,7 @@
 				5AFE688618507BE300E40541 /* swimming@2x.png in Resources */,
 				5A2B1BBF184BF90A00413B01 /* Montserrat-Regular.ttf in Resources */,
 				5A1B73791844AC3500555FE4 /* MSLoginFormVC.xib in Resources */,
+				5A0CB7F21891714A0027EE58 /* slider-default-trackCrossedOver@2x.png in Resources */,
 				5AA60A08184B5A3100B09ADD /* pick_a_pic.png in Resources */,
 				5AFE68921850897D00E40541 /* plus_button@2x.png in Resources */,
 				5AFE688918507BE300E40541 /* tennis(select)@2x.png in Resources */,
@@ -1254,13 +1406,17 @@
 				5ADCF28F1840178900E6C8D2 /* MSActivitiesVC.xib in Resources */,
 				5AFE687418507BE300E40541 /* foot(select).png in Resources */,
 				5ADCF2AE184025BB00E6C8D2 /* MSWelcomeVC.xib in Resources */,
+				5A0CB8021891714A0027EE58 /* slider-metal-trackBackground.png in Resources */,
 				5ADCF2F51840D9C200E6C8D2 /* MSVenuePickerCell.xib in Resources */,
+				5A0CB7F51891714A0027EE58 /* slider-default7-handle@2x.png in Resources */,
 				5ADCF2DA1840BDBB00E6C8D2 /* MSSmallSportCell.xib in Resources */,
 				5ADCF2C51840AE0800E6C8D2 /* MSActivityVC.xib in Resources */,
+				5A0CB7F71891714A0027EE58 /* slider-default7-track@2x.png in Resources */,
 				5AFE688118507BE300E40541 /* rugby(select)@2x.png in Resources */,
 				5AFE688718507BE300E40541 /* tennis.png in Resources */,
 				5A0F9118184242BD0049BBD5 /* MSCreateAccountVC.xib in Resources */,
 				5AFE687918507BE300E40541 /* football(select)@2x.png in Resources */,
+				5A0CB7FD1891714A0027EE58 /* slider-metal-handle-highlighted@2x.png in Resources */,
 				5AFE687118507BE300E40541 /* cycle(select)@2x.png in Resources */,
 				5A299A92184BED5400005733 /* background_blur_light.png in Resources */,
 				5AD1FC5318472ADD001D3DFE /* runner.jpg in Resources */,
@@ -1269,12 +1425,14 @@
 				5ADCF2B818402CC500E6C8D2 /* MSActivityCell.xib in Resources */,
 				5AF2FBFC188C946A002147FB /* MSPickSportCell2.xib in Resources */,
 				5AFE687B18507BE300E40541 /* gym.png in Resources */,
+				5A0CB7EC1891714A0027EE58 /* slider-default-handle.png in Resources */,
 				5A29CAF118491F82002A8B60 /* unSelected.png in Resources */,
 				5A85E8F21872CCE200F5E8F9 /* MSLocationPickerVC.xib in Resources */,
 				5AFE68911850897D00E40541 /* plus_button.png in Resources */,
 				5AFE43F218426ABD001376C7 /* MSChooseSportsVC.xib in Resources */,
 				5AFE688A18507BE300E40541 /* tennis@2x.png in Resources */,
 				5A299A83184BDF9A00005733 /* ProximaNova-Bold.otf in Resources */,
+				5A0CB7EA1891714A0027EE58 /* slider-default-handle-highlighted.png in Resources */,
 				5A2B1BBA184BF21100413B01 /* arrow.png in Resources */,
 				5AFE688418507BE300E40541 /* swimming(select).png in Resources */,
 				5AFE687718507BE300E40541 /* football.png in Resources */,
@@ -1328,6 +1486,7 @@
 				5A9B2DA818539A0700AE45D9 /* MSGameProfileCell.m in Sources */,
 				5ADCF2C31840ADF700E6C8D2 /* MSActivityVC.m in Sources */,
 				5A96745B184A0ECA0079EAC1 /* UIImage+BlurredFrame.m in Sources */,
+				5A0CB808189171AA0027EE58 /* MSRangeCell.m in Sources */,
 				5A29E32F1879ACE9008A8919 /* UIView+TKCategory.m in Sources */,
 				5ADCF2661840051300E6C8D2 /* MMDrawerVisualState.m in Sources */,
 				5A29CAF418492071002A8B60 /* MSSportLevelFormVC.m in Sources */,
@@ -1372,6 +1531,7 @@
 				5ADCF231184004D300E6C8D2 /* main.m in Sources */,
 				5A1B736F1844AB6200555FE4 /* MZAppearance.m in Sources */,
 				5ADCF30B1840EBEF00E6C8D2 /* MBProgressHUD.m in Sources */,
+				5A0CB8041891714A0027EE58 /* NMRangeSlider.m in Sources */,
 				5A96744C1849CD180079EAC1 /* QBFlatButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

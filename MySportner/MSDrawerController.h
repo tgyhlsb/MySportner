@@ -19,6 +19,8 @@ typedef NS_ENUM(int, MSCenterView) {
 
 @interface MSDrawerController : MMDrawerController
 
+
+- (void)setGestureRecognizerBlock;
 - (void)displayCenterControlerForView:(MSCenterView)view;
 
 @end

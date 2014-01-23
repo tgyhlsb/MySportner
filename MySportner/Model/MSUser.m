@@ -61,7 +61,7 @@
         self.sportLevels = [[NSDictionary alloc] init];
     }
     NSMutableDictionary *tempSportLevels = [self.sportLevels mutableCopy];
-    NSString *sportKeyString = [NSString stringWithFormat:@"%ld", sportKey];
+    NSString *sportKeyString = [NSString stringWithFormat:@"%ld", (long)sportKey];
     [tempSportLevels setObject:@(level) forKey:sportKeyString];
     self.sportLevels = tempSportLevels;
 }
@@ -71,7 +71,11 @@
     NSMutableArray *sports = [[NSMutableArray alloc] init];
     for (NSString *sportKeyString in self.sportLevels) {
         NSInteger sportKey = [sportKeyString integerValue];
-        [sports addObject:[MSSport sportNameForKey:sportKey]];
+        
+        NSInteger sportLevel = [self sportLevelForSportIndex:sportKey defaultValue:-1];
+        if (sportLevel >= 0) {
+            [sports addObject:[MSSport sportNameForKey:sportKey]];
+        }
     }
     return sports;
 }

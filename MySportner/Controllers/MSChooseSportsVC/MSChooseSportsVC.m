@@ -152,16 +152,7 @@
     cell.imageNameNormal = [sport stringByAppendingString:@".png"];
     cell.imageNameSelected = [sport stringByAppendingString:@"(select).png"];
     
-    NSDictionary *userSports = self.user.sportLevels;
-    NSDecimalNumber *sportLevel = [userSports valueForKey:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
-    
     cell.level = [self.user sportLevelForSportIndex:indexPath.row defaultValue:DEFAULT_SPORT_LEVEL];
-    
-    if (sportLevel) {
-        cell.level = [sportLevel integerValue];
-    } else {
-        cell.level = DEFAULT_SPORT_LEVEL;
-    }
     
     cell.layer.shouldRasterize = YES;
     cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
@@ -212,6 +203,8 @@
     
     vc.unSelectBlock = ^{
         weakSportCell.level = -1;
+        NSInteger sportKey = [MSSport keyForSportName:weakSportCell.titleLabel.text];
+        [self.user setSport:sportKey withLevel:weakSportCell.level];
         [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
     };
     

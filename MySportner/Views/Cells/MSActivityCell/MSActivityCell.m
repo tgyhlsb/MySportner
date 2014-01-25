@@ -11,6 +11,7 @@
 #import "QBFlatButton.h"
 #import "MSColorFactory.h"
 #import "MSFontFactory.h"
+#import "MSStyleFactory.h"
 
 
 #define IDENTIFIER @"MSActivityCell"
@@ -20,14 +21,32 @@
 
 @property (weak, nonatomic) IBOutlet UIView *roundView;
 @property (weak, nonatomic) IBOutlet QBFlatButton *actionButton;
+@property (weak, nonatomic) IBOutlet UILabel *dayLabel;
+@property (weak, nonatomic) IBOutlet UILabel *monthLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @property (nonatomic) BOOL oddIndex;
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *placeLabel;
+@property (weak, nonatomic) IBOutlet FBProfilePictureView *ownerProfilePictureView;
+@property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
 
 
 @end
 
 @implementation MSActivityCell
 
+- (void)setActivity:(MSActivity *)activity
+{
+    _activity = activity;
+    [self setViewWithDate:activity.date];
+    
+    self.titleLabel.text = activity.sport;
+    self.placeLabel.text = activity.place;
+    self.ownerNameLabel.text = [activity.owner fullName];
+    self.ownerProfilePictureView.profileID = activity.owner.facebookID;
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
@@ -75,9 +94,28 @@
     self.actionButton.depth = 0.0f;
     self.actionButton.radius = 3.0f;
     
+    [MSStyleFactory setUILabel:self.dayLabel withStyle:MSLabelStyleActivityDateSmall];
+    [MSStyleFactory setUILabel:self.monthLabel withStyle:MSLabelStyleActivityDateSmall];
+    [MSStyleFactory setUILabel:self.timeLabel withStyle:MSLabelStyleActivityDateSmall];
+    [self.timeLabel setFont:[MSFontFactory fontForActivityCellTime]];
+    
     self.oddIndex = oddIndex;
     [self setHighlighted:NO animated:NO];
 
+}
+
+- (void)setViewWithDate:(NSDate *)date
+{
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
+    self.dayLabel.text = [NSString stringWithFormat:@"%ld", (long)[components month]];
+    
+    [dateFormat setDateFormat:@"MMM."];
+    self.monthLabel.text = [dateFormat stringFromDate:date];
+    [dateFormat setDateFormat:@"hh:MM"];
+    self.timeLabel.text = [dateFormat stringFromDate:date];
 }
 
 + (void)registerToTableview:(UITableView *)tableView

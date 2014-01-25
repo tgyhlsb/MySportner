@@ -84,6 +84,7 @@
 		5A653B1018941FFA00E2B8AE /* MSCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A653B0F18941FFA00E2B8AE /* MSCommentCell.m */; };
 		5A653B121894200700E2B8AE /* MSCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A653B111894200700E2B8AE /* MSCommentCell.xib */; };
 		5A653B16189427D900E2B8AE /* MSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A653B15189427D900E2B8AE /* MSCell.m */; };
+		5A653B181894427C00E2B8AE /* ProximaNova-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5A653B171894427C00E2B8AE /* ProximaNova-Light.otf */; };
 		5A85E8EF1872CCCD00F5E8F9 /* MSLocationPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A85E8EE1872CCCD00F5E8F9 /* MSLocationPickerVC.m */; };
 		5A85E8F21872CCE200F5E8F9 /* MSLocationPickerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A85E8F11872CCE200F5E8F9 /* MSLocationPickerVC.xib */; };
 		5A85E8F51872CFFF00F5E8F9 /* MSLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A85E8F41872CFFF00F5E8F9 /* MSLocationCell.m */; };
@@ -326,6 +327,7 @@
 		5A653B111894200700E2B8AE /* MSCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSCommentCell.xib; path = Views/Cells/MSCommentCell/MSCommentCell.xib; sourceTree = "<group>"; };
 		5A653B14189427D900E2B8AE /* MSCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCell.h; path = Views/Cells/MSCell.h; sourceTree = "<group>"; };
 		5A653B15189427D900E2B8AE /* MSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCell.m; path = Views/Cells/MSCell.m; sourceTree = "<group>"; };
+		5A653B171894427C00E2B8AE /* ProximaNova-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Light.otf"; sourceTree = "<group>"; };
 		5A85E8ED1872CCCD00F5E8F9 /* MSLocationPickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSLocationPickerVC.h; path = Controllers/MSLocationPickerVC/MSLocationPickerVC.h; sourceTree = "<group>"; };
 		5A85E8EE1872CCCD00F5E8F9 /* MSLocationPickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSLocationPickerVC.m; path = Controllers/MSLocationPickerVC/MSLocationPickerVC.m; sourceTree = "<group>"; };
 		5A85E8F11872CCE200F5E8F9 /* MSLocationPickerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSLocationPickerVC.xib; path = Controllers/MSLocationPickerVC/MSLocationPickerVC.xib; sourceTree = "<group>"; };
@@ -795,6 +797,7 @@
 		5AA60A01184B548900B09ADD /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				5A653B171894427C00E2B8AE /* ProximaNova-Light.otf */,
 				5A2B1BBC184BF90A00413B01 /* Montserrat-Bold.ttf */,
 				5A2B1BBD184BF90A00413B01 /* Montserrat-Regular.ttf */,
 				5A299A82184BDF1400005733 /* ProximaNova-Bold.otf */,
@@ -1466,6 +1469,7 @@
 				5AFE68911850897D00E40541 /* plus_button.png in Resources */,
 				5AFE43F218426ABD001376C7 /* MSChooseSportsVC.xib in Resources */,
 				5AFE688A18507BE300E40541 /* tennis@2x.png in Resources */,
+				5A653B181894427C00E2B8AE /* ProximaNova-Light.otf in Resources */,
 				5A299A83184BDF9A00005733 /* ProximaNova-Bold.otf in Resources */,
 				5A0CB7EA1891714A0027EE58 /* slider-default-handle-highlighted.png in Resources */,
 				5A2B1BBA184BF21100413B01 /* arrow.png in Resources */,

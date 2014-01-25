@@ -102,6 +102,20 @@
             [label setShadowOffset:CGSizeMake(0.1, 0.9)];
             break;
         }
+        case MSLabelStyleActivityDateBig:
+        {
+            label.font = [MSFontFactory fontForGameProfileDay];
+            [label setShadowColor:[MSColorFactory grayLight]];
+            [label setShadowOffset:CGSizeMake(0.1, 0.9)];
+            break;
+        }
+        case MSLabelStyleActivityDateSmall:
+        {
+            label.font = [MSFontFactory fontForActivityCellDay];
+            [label setShadowColor:[MSColorFactory grayLight]];
+            [label setShadowOffset:CGSizeMake(0.1, 0.9)];
+            break;
+        }
             
         default:
             break;

@@ -52,6 +52,29 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZLf-TH-5q0">
                         <rect key="frame" x="20" y="15" width="70" height="70"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7x8-Tc-ovP">
+                                <rect key="frame" x="0.0" y="10" width="70" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6db-oc-xkS">
+                                <rect key="frame" x="0.0" y="22" width="70" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FC5-Zs-UTH">
+                                <rect key="frame" x="0.0" y="41" width="70" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="70" id="Bi9-ZI-JXf"/>
@@ -97,10 +120,13 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="actionButton" destination="gDv-H3-aVW" id="M1V-NY-qzz"/>
+                <outlet property="dayLabel" destination="7x8-Tc-ovP" id="MBf-WG-RWK"/>
+                <outlet property="monthLabel" destination="6db-oc-xkS" id="V1g-J2-NxT"/>
                 <outlet property="ownerNameLabel" destination="y4d-ez-VOC" id="UlD-q3-Arr"/>
                 <outlet property="ownerProfilePictureView" destination="fPI-uc-l8w" id="HtR-Go-KLS"/>
                 <outlet property="placeLabel" destination="iep-Lb-jk0" id="QbG-7R-Gna"/>
                 <outlet property="roundView" destination="ZLf-TH-5q0" id="8gI-Bq-4us"/>
+                <outlet property="timeLabel" destination="FC5-Zs-UTH" id="I4F-qR-RAw"/>
                 <outlet property="titleLabel" destination="BhG-Xk-CXe" id="KhY-RN-Rge"/>
             </connections>
         </tableViewCell>

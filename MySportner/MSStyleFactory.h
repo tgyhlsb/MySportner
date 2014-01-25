@@ -20,7 +20,9 @@ typedef NS_ENUM(int, MSFlatButtonStyle) {
     MSFlatButtonStyleDrawerMenuLight
 };
 typedef NS_ENUM(int, MSLabelStyle) {
-    MSLabelStyleUserName
+    MSLabelStyleUserName,
+    MSLabelStyleActivityDateBig,
+    MSLabelStyleActivityDateSmall
 };
 typedef NS_ENUM(int, MSTextFieldStyle) {
     MSTextFieldStyleWhiteForm

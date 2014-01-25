@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "MSActivity.h"
 
 @interface MSActivityCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *placeLabel;
-@property (weak, nonatomic) IBOutlet FBProfilePictureView *ownerProfilePictureView;
-@property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
+@property (strong, nonatomic) MSActivity *activity;
 
 - (void)setAppearanceWithOddIndex:(BOOL)oddIndex;
 

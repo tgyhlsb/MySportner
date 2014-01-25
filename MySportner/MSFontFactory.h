@@ -25,4 +25,10 @@
 + (UIFont *)fontForGameProfileSportTitle;
 + (UIFont *)fontForGameProfileSportInfo;
 
++ (UIFont *)fontForGameProfileDay;
++ (UIFont *)fontForGameProfileTime;
+
++ (UIFont *)fontForActivityCellDay;
++ (UIFont *)fontForActivityCellTime;
+
 @end

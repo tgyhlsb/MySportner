@@ -27,6 +27,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *ownerLabel;
 @property (weak, nonatomic) IBOutlet FBProfilePictureView *fbProfilePictureView;
 
+@property (weak, nonatomic) IBOutlet UILabel *dayLabel;
+@property (weak, nonatomic) IBOutlet UILabel *monthLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
+
 @end
 
 @implementation MSGameProfileCell
@@ -84,8 +89,27 @@
     [self.ownerLabel setTextColor:[MSColorFactory grayDark]];
     [self.fbProfilePictureView setBackgroundColor:[UIColor clearColor]];
     
+    [MSStyleFactory setUILabel:self.dayLabel withStyle:MSLabelStyleActivityDateBig];
+    [MSStyleFactory setUILabel:self.monthLabel withStyle:MSLabelStyleActivityDateBig];
+    [MSStyleFactory setUILabel:self.timeLabel withStyle:MSLabelStyleActivityDateBig];
+    [self.timeLabel setFont:[MSFontFactory fontForGameProfileTime]];
+    
     [self.actionButton setTitle:@"INVITE" forState:UIControlStateNormal];
     [MSStyleFactory setQBFlatButton:self.actionButton withStyle:MSFlatButtonStyleGreen];
+}
+
+- (void)setViewWithDate:(NSDate *)date
+{
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
+    self.dayLabel.text = [NSString stringWithFormat:@"%ld", (long)[components month]];
+    
+    [dateFormat setDateFormat:@"MMM."];
+    self.monthLabel.text = [dateFormat stringFromDate:date];
+    [dateFormat setDateFormat:@"hh:MM"];
+    self.timeLabel.text = [dateFormat stringFromDate:date];
 }
 
 - (void)setActivity:(MSActivity *)activity
@@ -98,6 +122,7 @@
         self.addressLabel.text = activity.place;
         self.fbProfilePictureView.profileID = activity.owner.facebookID;
         self.ownerLabel.text = [activity.owner fullName];
+        [self setViewWithDate:activity.date];
     }
 }
 

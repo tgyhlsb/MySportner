@@ -44,6 +44,7 @@
 		<string>ProximaNova-Bold.otf</string>
 		<string>Montserrat-Regular.ttf</string>
 		<string>Montserrat-Bold.ttf</string>
+		<string>ProximaNova-Light.otf</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>

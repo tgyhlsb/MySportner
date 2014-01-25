@@ -22,6 +22,29 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZN-TQ-Vdo">
                         <rect key="frame" x="25" y="20" width="100" height="100"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TG8-M5-nxq">
+                                <rect key="frame" x="0.0" y="41" width="100" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ca-tZ-xTz">
+                                <rect key="frame" x="0.0" y="66" width="100" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X07-7m-cTG">
+                                <rect key="frame" x="0.0" y="20" width="100" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="bvI-e2-wjA"/>
@@ -112,10 +135,13 @@
             <connections>
                 <outlet property="actionButton" destination="qLO-CJ-EHh" id="zY2-X0-TBN"/>
                 <outlet property="addressLabel" destination="7GG-C2-0rh" id="mtr-Qt-As1"/>
+                <outlet property="dayLabel" destination="X07-7m-cTG" id="1o6-ky-7bm"/>
                 <outlet property="fbProfilePictureView" destination="6r6-xV-Wk7" id="TD8-D2-cW5"/>
                 <outlet property="locationLabel" destination="7d6-rT-5rk" id="sCW-OF-eSS"/>
+                <outlet property="monthLabel" destination="TG8-M5-nxq" id="uJz-Uh-Nzi"/>
                 <outlet property="ownerLabel" destination="QYe-JM-hrN" id="7yk-di-1H3"/>
                 <outlet property="roundedView" destination="vZN-TQ-Vdo" id="f70-lb-mJM"/>
+                <outlet property="timeLabel" destination="8ca-tZ-xTz" id="t4o-7x-x4a"/>
                 <outlet property="titleLabel" destination="tcd-5y-H3Z" id="dcP-Me-KBK"/>
             </connections>
         </tableViewCell>

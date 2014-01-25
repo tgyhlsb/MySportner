@@ -156,12 +156,7 @@
             NSString *identifier = [MSActivityCell reusableIdentifier];
             MSActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
             
-            MSActivity *activity = [self.data objectAtIndex:indexPath.row];
-            
-            cell.titleLabel.text = activity.sport;
-            cell.placeLabel.text = activity.place;
-            cell.ownerNameLabel.text = [activity.owner fullName];
-            cell.ownerProfilePictureView.profileID = activity.owner.facebookID;
+            cell.activity = [self.data objectAtIndex:indexPath.row];
             
             [cell setAppearanceWithOddIndex:(indexPath.row % 2)];
             

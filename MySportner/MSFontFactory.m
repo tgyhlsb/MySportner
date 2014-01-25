@@ -70,4 +70,24 @@
     return [UIFont fontWithName:@"ProximaNova-SemiBold" size:12.5];
 }
 
++ (UIFont *)fontForGameProfileDay
+{
+    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:25];
+}
+
++ (UIFont *)fontForGameProfileTime
+{
+    return [UIFont fontWithName:@"ProximaNova-Light" size:19];
+}
+
++ (UIFont *)fontForActivityCellDay
+{
+    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:14.5];
+}
+
++ (UIFont *)fontForActivityCellTime
+{
+    return [UIFont fontWithName:@"ProximaNova-Light" size:11];
+}
+
 @end

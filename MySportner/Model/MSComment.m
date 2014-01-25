@@ -11,6 +11,7 @@
 
 @implementation MSComment
 
+@dynamic author;
 @dynamic content;
 
 + (NSString *)parseClassName
@@ -18,29 +19,40 @@
     return PARSE_CLASSNAME_COMMENT;
 }
 
-- (void)setAuthor:(MSUser *)author
+- (void)setAuthorForParse:(MSUser *)author
 {
-    self[@"author"] = author;
+    self.author = author;
     self.authorFacebookID = author.facebookID;
     self.authorFullName = author.fullName;
 }
 
-- (MSUser *)author
+@synthesize authorFullName = _authorFullName;
+@synthesize authorFacebookID = _authorFacebookID;
+
+- (void)setAuthorFullName:(NSString *)authorFullName
 {
-    return self[@"author"];
+    _authorFullName = authorFullName;
 }
 
-@synthesize authorFacebookID = _authorFacebookID;
-@synthesize authorFullName = _authorFullName;
+- (NSString *)authorFullName
+{
+    return _authorFullName;
+}
 
 - (void)setAuthorFacebookID:(NSString *)authorFacebookID
 {
     _authorFacebookID = authorFacebookID;
 }
 
-- (void)setAuthorFullName:(NSString *)authorFullName
+- (NSString *)authorFacebookID
 {
-    _authorFullName = authorFullName;
+    return _authorFacebookID;
 }
+
+- (NSComparisonResult)compareWithCreationDate:(MSComment *)otherComment
+{
+    return [self.createdAt compare:otherComment.createdAt];
+}
+
 
 @end

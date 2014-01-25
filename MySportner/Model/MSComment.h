@@ -23,6 +23,9 @@
 @property (strong, nonatomic) NSString *authorFullName;
 
 
+- (NSComparisonResult)compareWithCreationDate:(MSComment *)otherComment;
+- (void)setAuthorForParse:(MSUser *)author;
+
 + (NSString *)parseClassName;
 
 @end

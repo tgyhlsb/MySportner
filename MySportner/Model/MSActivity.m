@@ -21,6 +21,7 @@
 @dynamic owner;
 @dynamic guests;
 @dynamic participants;
+@dynamic comments;
 
 + (NSString *)parseClassName
 {
@@ -30,6 +31,18 @@
 - (NSComparisonResult)compareWithCreationDate:(MSActivity *)otherActivity
 {
     return [otherActivity.createdAt compare:self.createdAt];
+}
+
+- (void)addComment:(MSComment *)comment
+{
+    if (!self.comments) self.comments = [[NSArray alloc] init];
+    
+    NSMutableArray *tempComments = [self.comments mutableCopy];
+    [tempComments addObject:comment];
+    
+    self.comments = [tempComments sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
+    [comment saveInBackground];
+    [self saveInBackground];
 }
 
 @end

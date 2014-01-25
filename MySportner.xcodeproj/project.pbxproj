@@ -81,6 +81,9 @@
 		5A3DE7C4184133E1001054EB /* MSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3DE7C3184133E1001054EB /* MSUser.m */; };
 		5A4CE2B9187099AE0081AA1E /* MSButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4CE2B8187099AE0081AA1E /* MSButtonCell.m */; };
 		5A4CE2BB187099C50081AA1E /* MSButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A4CE2BA187099C50081AA1E /* MSButtonCell.xib */; };
+		5A653B1018941FFA00E2B8AE /* MSCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A653B0F18941FFA00E2B8AE /* MSCommentCell.m */; };
+		5A653B121894200700E2B8AE /* MSCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A653B111894200700E2B8AE /* MSCommentCell.xib */; };
+		5A653B16189427D900E2B8AE /* MSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A653B15189427D900E2B8AE /* MSCell.m */; };
 		5A85E8EF1872CCCD00F5E8F9 /* MSLocationPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A85E8EE1872CCCD00F5E8F9 /* MSLocationPickerVC.m */; };
 		5A85E8F21872CCE200F5E8F9 /* MSLocationPickerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A85E8F11872CCE200F5E8F9 /* MSLocationPickerVC.xib */; };
 		5A85E8F51872CFFF00F5E8F9 /* MSLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A85E8F41872CFFF00F5E8F9 /* MSLocationCell.m */; };
@@ -318,6 +321,11 @@
 		5A4CE2B7187099AE0081AA1E /* MSButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSButtonCell.h; path = Views/Cells/MSButtonCell/MSButtonCell.h; sourceTree = "<group>"; };
 		5A4CE2B8187099AE0081AA1E /* MSButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSButtonCell.m; path = Views/Cells/MSButtonCell/MSButtonCell.m; sourceTree = "<group>"; };
 		5A4CE2BA187099C50081AA1E /* MSButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSButtonCell.xib; path = Views/Cells/MSButtonCell/MSButtonCell.xib; sourceTree = "<group>"; };
+		5A653B0E18941FFA00E2B8AE /* MSCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCommentCell.h; path = Views/Cells/MSCommentCell/MSCommentCell.h; sourceTree = "<group>"; };
+		5A653B0F18941FFA00E2B8AE /* MSCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCommentCell.m; path = Views/Cells/MSCommentCell/MSCommentCell.m; sourceTree = "<group>"; };
+		5A653B111894200700E2B8AE /* MSCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSCommentCell.xib; path = Views/Cells/MSCommentCell/MSCommentCell.xib; sourceTree = "<group>"; };
+		5A653B14189427D900E2B8AE /* MSCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCell.h; path = Views/Cells/MSCell.h; sourceTree = "<group>"; };
+		5A653B15189427D900E2B8AE /* MSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCell.m; path = Views/Cells/MSCell.m; sourceTree = "<group>"; };
 		5A85E8ED1872CCCD00F5E8F9 /* MSLocationPickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSLocationPickerVC.h; path = Controllers/MSLocationPickerVC/MSLocationPickerVC.h; sourceTree = "<group>"; };
 		5A85E8EE1872CCCD00F5E8F9 /* MSLocationPickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSLocationPickerVC.m; path = Controllers/MSLocationPickerVC/MSLocationPickerVC.m; sourceTree = "<group>"; };
 		5A85E8F11872CCE200F5E8F9 /* MSLocationPickerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSLocationPickerVC.xib; path = Controllers/MSLocationPickerVC/MSLocationPickerVC.xib; sourceTree = "<group>"; };
@@ -712,6 +720,26 @@
 			name = MSButtonCell;
 			sourceTree = "<group>";
 		};
+		5A653B0D18941FCA00E2B8AE /* MSRangeCell */ = {
+			isa = PBXGroup;
+			children = (
+				5A0CB806189171AA0027EE58 /* MSRangeCell.h */,
+				5A0CB807189171AA0027EE58 /* MSRangeCell.m */,
+				5A0CB809189171BB0027EE58 /* MSRangeCell.xib */,
+			);
+			name = MSRangeCell;
+			sourceTree = "<group>";
+		};
+		5A653B131894200B00E2B8AE /* MSCommentCell */ = {
+			isa = PBXGroup;
+			children = (
+				5A653B0E18941FFA00E2B8AE /* MSCommentCell.h */,
+				5A653B0F18941FFA00E2B8AE /* MSCommentCell.m */,
+				5A653B111894200700E2B8AE /* MSCommentCell.xib */,
+			);
+			name = MSCommentCell;
+			sourceTree = "<group>";
+		};
 		5A85E8F01872CCD300F5E8F9 /* MSLocationPickerVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1006,9 +1034,10 @@
 				5A23BB0B186CD1D700FFF0E0 /* MSFacebookFriendCell */,
 				5A4CE2BC187099CE0081AA1E /* MSButtonCell */,
 				5A0CB8051891717D0027EE58 /* MSLocationCell */,
-				5A0CB806189171AA0027EE58 /* MSRangeCell.h */,
-				5A0CB807189171AA0027EE58 /* MSRangeCell.m */,
-				5A0CB809189171BB0027EE58 /* MSRangeCell.xib */,
+				5A653B0D18941FCA00E2B8AE /* MSRangeCell */,
+				5A653B131894200B00E2B8AE /* MSCommentCell */,
+				5A653B14189427D900E2B8AE /* MSCell.h */,
+				5A653B15189427D900E2B8AE /* MSCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1400,6 +1429,7 @@
 				5A2B1BBF184BF90A00413B01 /* Montserrat-Regular.ttf in Resources */,
 				5A1B73791844AC3500555FE4 /* MSLoginFormVC.xib in Resources */,
 				5A0CB7F21891714A0027EE58 /* slider-default-trackCrossedOver@2x.png in Resources */,
+				5A653B121894200700E2B8AE /* MSCommentCell.xib in Resources */,
 				5AA60A08184B5A3100B09ADD /* pick_a_pic.png in Resources */,
 				5AFE68921850897D00E40541 /* plus_button@2x.png in Resources */,
 				5AFE688918507BE300E40541 /* tennis(select)@2x.png in Resources */,
@@ -1477,6 +1507,7 @@
 				5ADCF29618401A0300E6C8D2 /* MSDrawerController.m in Sources */,
 				5A1B73711844AB6200555FE4 /* MZFormSheetBackgroundWindow.m in Sources */,
 				5ADCF3081840E80500E6C8D2 /* MSFourSquareKeyFactory.m in Sources */,
+				5A653B16189427D900E2B8AE /* MSCell.m in Sources */,
 				5A9674521849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m in Sources */,
 				5A96745C184A0ECA0079EAC1 /* UIImage+ImageEffects.m in Sources */,
 				5ADCF2D31840BA6400E6C8D2 /* MSPickSportCell.m in Sources */,
@@ -1521,6 +1552,7 @@
 				5AA609FF184B50A100B09ADD /* MSFontFactory.m in Sources */,
 				5ADCF2831840140000E6C8D2 /* MSProfileVC.m in Sources */,
 				5ADCF2651840051300E6C8D2 /* MMDrawerController.m in Sources */,
+				5A653B1018941FFA00E2B8AE /* MSCommentCell.m in Sources */,
 				5ADCF2641840051300E6C8D2 /* MMDrawerBarButtonItem.m in Sources */,
 				5A23BB08186CD1BD00FFF0E0 /* MSFacebookFriendCell.m in Sources */,
 				5A29CAED18491F4D002A8B60 /* RatingView.m in Sources */,

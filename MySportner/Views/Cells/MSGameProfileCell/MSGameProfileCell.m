@@ -42,6 +42,7 @@
     return NIB_NAME;
 }
 
+
 + (CGFloat)height
 {
     return HEIGHT;

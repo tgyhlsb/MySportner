@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "MSUser.h"
 #import "MSVenue.h"
+#import "MSComment.h"
 
 #define PARSE_CLASSNAME_ACTIVITY @"MSActivity"
 
@@ -25,9 +26,13 @@
 @property (strong, nonatomic) NSArray *guests; // of MSUser
 @property (strong, nonatomic) NSArray *participants;  // of MSUser
 
+@property (strong, nonatomic) NSArray *comments;
+
 
 + (NSString *)parseClassName;
 
 - (NSComparisonResult)compareWithCreationDate:(MSActivity *)otherActivity;
+
+- (void)addComment:(MSComment *)comment;
 
 @end

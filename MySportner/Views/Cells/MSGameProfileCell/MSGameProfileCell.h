@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MSActivity.h"
+#import "MSCell.h"
 
-@interface MSGameProfileCell : UITableViewCell
+@interface MSGameProfileCell : MSCell
 
 @property (strong, nonatomic) MSActivity *activity;
 
 + (void)registerToTableView:(UITableView *)tableView;
 + (NSString *)reusableIdentifier;
-+ (CGFloat)height;
 
 @end

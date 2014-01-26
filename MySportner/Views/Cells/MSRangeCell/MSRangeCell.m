@@ -90,7 +90,7 @@
 
 #pragma mark - Value Label update
 
-- (void) updateSliderLabels
+- (void)updateSliderLabels
 {
     // You get get the center point of the slider handles and use this to arrange other subviews
     

@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "MSAnnotation.h"
 
-@interface MSPickLocalisationVC () <CLLocationManagerDelegate, MKMapViewDelegate>
+@interface MSPickLocalisationVC () <MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIButton *locateUserButton;
@@ -18,8 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBarView;
 
 @property (strong, nonatomic) MKCircle *radiusCircle;
-
-@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @property (strong, nonatomic) MSAnnotation *activityPin;
 
@@ -64,25 +62,12 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [self.locationManager startMonitoringSignificantLocationChanges];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
-}
-
-- (CLLocationManager *)locationManager
-{
-    if (!_locationManager) {
-        _locationManager = [[CLLocationManager alloc] init];
-        _locationManager.delegate = self;
-        _locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
-        _locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-    }
-    return _locationManager;
 }
 
 - (MSAnnotation *)activityPin
@@ -128,7 +113,6 @@
     [self.mapView addOverlay:self.radiusCircle];
 }
 
-
 #pragma mark - MKMapViewDelegate
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
@@ -146,14 +130,6 @@
     circleView.fillColor = [[UIColor redColor] colorWithAlphaComponent:0.1];
     return circleView;
 }
-
-//- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
-//{
-//    MKCircleRenderer *circleView = [[MKCircleRenderer alloc] initWithOverlay:overlay];
-//    circleView.strokeColor = [UIColor redColor];
-//    circleView.fillColor = [[UIColor redColor] colorWithAlphaComponent:0.4];
-//    return circleView;
-//}
 
 - (void)didTapMapView:(UITapGestureRecognizer *)tapGesture
 {

@@ -12,6 +12,7 @@
 #import "QBFlatButton.h"
 #import "MSStyleFactory.h"
 #import "MSFontFactory.h"
+#import "MSProfilePictureView.h"
 
 #define HEIGHT 230
 
@@ -25,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet QBFlatButton *actionButton;
 @property (weak, nonatomic) IBOutlet UILabel *ownerLabel;
-@property (weak, nonatomic) IBOutlet FBProfilePictureView *fbProfilePictureView;
+@property (weak, nonatomic) IBOutlet MSProfilePictureView *fbProfilePictureView;
 
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;
@@ -120,7 +121,7 @@
         self.titleLabel.text = activity.sport;
         self.locationLabel.text = activity.place;
         self.addressLabel.text = activity.place;
-        self.fbProfilePictureView.profileID = activity.owner.facebookID;
+        self.fbProfilePictureView.user = activity.owner;
         self.ownerLabel.text = [activity.owner fullName];
         [self setViewWithDate:activity.date];
     }

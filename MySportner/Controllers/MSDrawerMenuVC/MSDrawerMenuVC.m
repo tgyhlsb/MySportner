@@ -10,18 +10,18 @@
 #import "UIViewController+MMDrawerController.h"
 #import "MSDrawerController.h"
 #import "MSProfileVC.h"
-#import <FacebookSDK/FacebookSDK.h>
 #import "MSUser.h"
 #import "UIView+MSRoundedView.h"
 #import "QBFlatButton.h"
 #import "MSColorFactory.h"
 #import "MSStyleFactory.h"
 #import "MSFontFactory.h"
+#import "MSProfilePictureView.h"
 
 #define NIB_NAME @"MSDrawerMenuVC"
 
 @interface MSDrawerMenuVC ()
-@property (weak, nonatomic) IBOutlet FBProfilePictureView *fbProfilePictureView;
+@property (weak, nonatomic) IBOutlet MSProfilePictureView *fbProfilePictureView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *welcomeLabel;
 @property (weak, nonatomic) IBOutlet QBFlatButton *activitiesButton;
@@ -130,8 +130,7 @@
 
 - (void)updateView
 {
-    self.fbProfilePictureView.profileID = [MSUser currentUser].facebookID;
-    UIImage *img = [MSUser currentUser].image;
+    self.fbProfilePictureView.user = [MSUser currentUser];
     self.welcomeLabel.text = @"HELLO";
     self.userNameLabel.text = [[[MSUser currentUser] fullName] uppercaseString];
 }

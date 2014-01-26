@@ -7,13 +7,13 @@
 //
 
 #import "MSProfileVC.h"
-#import <FacebookSDK/FacebookSDK.h>
 #import "UIView+MSRoundedView.h"
 #import "UIImage+BlurredFrame.h"
 #import "MSColorFactory.h"
 #import "MSActivityCell.h"
 #import "MSActivityVC.h"
 #import "MSChooseSportsVC.h"
+#import "MSProfilePictureView.h"
 
 #define NIB_NAME @"MSProfileVC"
 
@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UIImageView *coverPictureView;
-@property (weak, nonatomic) IBOutlet FBProfilePictureView *profilePictureView;
+@property (weak, nonatomic) IBOutlet MSProfilePictureView *profilePictureView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
@@ -93,7 +93,7 @@
 {
     if (self.user) {
         [self setCoverPictureWithImage:[UIImage imageNamed:@"runner.jpg"]];
-        self.profilePictureView.profileID = self.user.facebookID;
+        self.profilePictureView.user = self.user;
         self.userNameLabel.text = [self.user fullName];
         self.locationLabel.text = @"Lyon, France";
     }

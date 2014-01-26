@@ -104,11 +104,11 @@
     
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
-    self.dayLabel.text = [NSString stringWithFormat:@"%ld", (long)[components month]];
+    self.dayLabel.text = [NSString stringWithFormat:@"%ld", (long)[components day]];
     
-    [dateFormat setDateFormat:@"MMM."];
+    [dateFormat setDateFormat:@"MMM"];
     self.monthLabel.text = [dateFormat stringFromDate:date];
-    [dateFormat setDateFormat:@"hh:MM"];
+    [dateFormat setDateFormat:@"hh:mm"];
     self.timeLabel.text = [dateFormat stringFromDate:date];
 }
 

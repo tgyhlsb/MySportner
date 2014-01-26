@@ -47,7 +47,7 @@
 
 + (UIFont *)fontForCellInfo
 {
-    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:9.5];
+    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:11];
 }
 
 + (UIFont *)fontForCellAcivityTitle
@@ -82,12 +82,12 @@
 
 + (UIFont *)fontForActivityCellDay
 {
-    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:14.5];
+    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:16];
 }
 
 + (UIFont *)fontForActivityCellTime
 {
-    return [UIFont fontWithName:@"ProximaNova-Light" size:11];
+    return [UIFont fontWithName:@"ProximaNova-Light" size:12.5];
 }
 
 @end

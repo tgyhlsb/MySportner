@@ -41,7 +41,7 @@
 #define PLACEHOLDER_PASSWORD @"Password"
 #define PLACEHOLDER_BIRTHDAY @"Birthday"
 
-#define IMAGE_SIZE_FOR_UPLOAD 50
+#define IMAGE_SIZE_FOR_UPLOAD 200
 
 @interface MSCreateAccountVC () <UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -63,8 +63,11 @@
 @property (weak, nonatomic) UITextField *activeTextField;
 
 @property (strong,nonatomic) MSUser *user;
+@property (strong, nonatomic) UIImage *profilePicture;
 
 @property (strong, nonatomic) MBProgressHUD *loadingView;
+
+@property (nonatomic) BOOL hasAlreadySignUp;
 
 @end
 
@@ -81,6 +84,7 @@
     [self registerForKeyboardNotifications];
     
     [self setBackButton];
+    self.hasAlreadySignUp = NO;
 }
 
 - (void)setBackButton
@@ -272,22 +276,24 @@
     else if (![self.birthdayTextField.text length])
     {
         message = @"Please fill in your birthday";
+    } else if (!self.profilePicture) {
+        message = @"Please pick a picture";
     }
     
     
     if (message && title)
     {
-//        [[[UIAlertView alloc] initWithTitle:title
-//                                    message:message
-//                                   delegate:self
-//                          cancelButtonTitle:@"Cancel"
-//                          otherButtonTitles:nil] show];
         [[TKAlertCenter defaultCenter] postAlertWithMessage:message];
         [self SetFocusOnFailedField];
     } else {
         [self showLoadingViewInView:self.view];
         
-        self.user = [[MSUser alloc] init];
+        if (self.hasAlreadySignUp) {
+            self.user = [MSUser currentUser];
+        } else {
+            self.user = [[MSUser alloc] init];
+        }
+        
         self.user.firstName = self.firstnameTextField.text;
         self.user.lastName = self.lastnameTextField.text;
         self.user.email = self.emailTextField.text;
@@ -297,7 +303,11 @@
         self.user.username = self.user.email;
         self.user.facebookID = FACEBOOK_DEFAULT_ID[self.user.gender]; // default IDs to get a fb picture according to your gender
         self.user.image = self.imageView.image;
-        [self.user signUpInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
+        if (self.hasAlreadySignUp) {
+            [self.user saveInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
+        } else {
+            [self.user signUpInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
+        }
     }
 }
 
@@ -308,18 +318,21 @@
     destinationVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     destinationVC.delegate = self;
     [self presentViewController:destinationVC animated:YES completion:nil];
-//    [self.navigationController pushViewController:destinationVC animated:YES];
-//    [self closeAllResponders];
-    //    [[[UIAlertView alloc] initWithTitle:@"Not available" message:@"This feature is coming up soon !" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
 #pragma mark UIImagePickerControllerDelegate
+
+- (void)setProfilePicture:(UIImage *)profilePicture
+{
+    _profilePicture = profilePicture;
+    self.imageView.image = profilePicture;
+}
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     NSLog(@"%@", info);
     UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-    self.imageView.image = [self imageWithImage:image scaledToSize:CGSizeMake(IMAGE_SIZE_FOR_UPLOAD, IMAGE_SIZE_FOR_UPLOAD)];
+    self.profilePicture = [self imageWithImage:image scaledToSize:CGSizeMake(IMAGE_SIZE_FOR_UPLOAD, IMAGE_SIZE_FOR_UPLOAD)];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -395,20 +408,21 @@
         [weakDestination.navigationController pushViewController:destinationVC animated:YES];
     };
     
+    self.hasAlreadySignUp = YES;
     [self.navigationController pushViewController:destinationVC animated:YES];
 }
 
 
 
-- (IBAction)validateButtonPress:(UIButton *)sender
-{
-    if (self.user) {
-        [self showLoadingViewInView:self.view];
-        [self.user signUpInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
-    } else {
-        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't sign up" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
-    }
-}
+//- (IBAction)validateButtonPress:(UIButton *)sender
+//{
+//    if (self.user) {
+//        [self showLoadingViewInView:self.view];
+//        [self.user signUpInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
+//    } else {
+//        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't sign up" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
+//    }
+//}
 
 
 - (void)handleSignUp:(NSNumber *)result error:(NSError *)error
@@ -418,7 +432,6 @@
         [self performTransitionToNextScreen];
     } else {
         NSString *errorMessage = [error.userInfo objectForKey:@"error"];
-//        [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[error description] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
         [[TKAlertCenter defaultCenter] postAlertWithMessage:errorMessage];
     }
 }

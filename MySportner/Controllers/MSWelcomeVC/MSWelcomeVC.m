@@ -45,6 +45,10 @@
     
     self.view.backgroundColor = [MSColorFactory mainColor];
     
+    if ([MSUser currentUser])
+    {
+        [self performLogin];
+    }
 }
 
 - (void)setButtonsAppearance
@@ -71,10 +75,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if ([MSUser currentUser])
-    {
-        [self performLogin];
-    }
+    [super viewDidAppear:animated];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -179,8 +180,6 @@
     
     [self hideLoadingView];
     [self.navigationController pushViewController:destinationVC animated:YES];
-    
-    [destinationVC.navigationItem setHidesBackButton:YES];
 }
 
 - (void)userSignUpDidFailWithError:(NSError *)error

@@ -12,6 +12,7 @@
 #import "MSColorFactory.h"
 #import "MSFontFactory.h"
 #import "MSStyleFactory.h"
+#import "MSProfilePictureView.h"
 
 
 #define IDENTIFIER @"MSActivityCell"
@@ -29,7 +30,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *placeLabel;
-@property (weak, nonatomic) IBOutlet FBProfilePictureView *ownerProfilePictureView;
+@property (weak, nonatomic) IBOutlet MSProfilePictureView *ownerProfilePictureView;
 @property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
 
 
@@ -45,7 +46,7 @@
     self.titleLabel.text = activity.sport;
     self.placeLabel.text = activity.place;
     self.ownerNameLabel.text = [activity.owner fullName];
-    self.ownerProfilePictureView.profileID = activity.owner.facebookID;
+    self.ownerProfilePictureView.user = activity.owner;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -81,7 +82,6 @@
     [self.ownerProfilePictureView setRounded];
     
     self.roundView.backgroundColor = [MSColorFactory redLight];
-    self.ownerProfilePictureView.backgroundColor = [UIColor clearColor];
     
     self.titleLabel.textColor = [MSColorFactory redLight];
     

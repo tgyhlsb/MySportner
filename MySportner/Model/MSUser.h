@@ -33,10 +33,11 @@ typedef NS_ENUM(int, MSUserGender) {
 @property (nonatomic) MSUserGender gender;
 @property (strong, nonatomic) NSDictionary *sportLevels;
 @property (strong, nonatomic) UIImage *image;
+@property (strong, nonatomic) PFFile *imageFile;
 
 - (NSString *)fullName;
 
-- (void)requestImage;
+- (void)requestImageWithTarget:(id)target CallBack:(SEL)callback;
 
 + (void)tryLoginWithFacebook:(id<MSUserAuthentificationDelegate>)sender;
 

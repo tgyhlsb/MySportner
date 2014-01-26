@@ -32,7 +32,6 @@
 
 @interface MSUser()
 
-@property (strong, nonatomic) PFFile *imageFile;
 
 @end
 
@@ -123,29 +122,35 @@
 - (void)setImage:(UIImage *)image
 {
     _image = image;
-    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);//UIImagePNGRepresentation(image);
+    NSData *imageData = UIImagePNGRepresentation(image);
     self.imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+//    PFFile *file = self.imageFile;
+//    [self.imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        PFFile *file = self.imageFile;
+//    }];
 }
 
 - (UIImage *)image
 {
     if (!_image) {
-        [self requestImage];
+//        [self requestImageWithCallBack:nil];
     }
     return _image;
 }
 
-- (void)requestImage
+- (void)requestImageWithTarget:(id)target CallBack:(SEL)callback
 {
     if (self.imageFile) {
-        self.image = [[UIImage alloc] init];
-//        PFFile *file = self.imageFile;
-//        [self.imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-//            if (!error) {
-//                self.image = [UIImage imageWithData:data];
-//                // image can now be set on a UIImageView
-//            }
-//        }];
+        PFFile *file = self.imageFile;
+        sleep(5);
+        [self.imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                self.image = [UIImage imageWithData:data];
+                if (callback) {
+                    [target performSelector:callback];
+                }
+            }
+        }];
     }
 }
 
@@ -326,7 +331,6 @@
 {
     if ([self.delegate respondsToSelector:@selector(userDidLogIn)])
     {
-        [self requestImage];
         [self.delegate userDidLogIn];
     }
 }

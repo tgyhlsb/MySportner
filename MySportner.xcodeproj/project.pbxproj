@@ -77,7 +77,7 @@
 		5A31C2011842152600868188 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C1FF1842152600868188 /* QuartzCore.framework */; };
 		5A31C2041842153C00868188 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C2021842153C00868188 /* Security.framework */; };
 		5A31C2051842153C00868188 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C2031842153C00868188 /* SystemConfiguration.framework */; };
-		5A34C4E31895293500CE2EF2 /* MSProfilePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A34C4E21895293500CE2EF2 /* MSProfilePicture.m */; };
+		5A34C4E31895293500CE2EF2 /* MSProfilePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A34C4E21895293500CE2EF2 /* MSProfilePictureView.m */; };
 		5A3DE7C118412E82001054EB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3DE7C018412E82001054EB /* FacebookSDK.framework */; };
 		5A3DE7C4184133E1001054EB /* MSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3DE7C3184133E1001054EB /* MSUser.m */; };
 		5A4CE2B9187099AE0081AA1E /* MSButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4CE2B8187099AE0081AA1E /* MSButtonCell.m */; };
@@ -317,8 +317,8 @@
 		5A31C1FF1842152600868188 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5A31C2021842153C00868188 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5A31C2031842153C00868188 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		5A34C4E11895293500CE2EF2 /* MSProfilePicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSProfilePicture.h; path = Views/MSProfilePicture.h; sourceTree = "<group>"; };
-		5A34C4E21895293500CE2EF2 /* MSProfilePicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSProfilePicture.m; path = Views/MSProfilePicture.m; sourceTree = "<group>"; };
+		5A34C4E11895293500CE2EF2 /* MSProfilePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSProfilePictureView.h; path = Views/MSProfilePictureView.h; sourceTree = "<group>"; };
+		5A34C4E21895293500CE2EF2 /* MSProfilePictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSProfilePictureView.m; path = Views/MSProfilePictureView.m; sourceTree = "<group>"; };
 		5A3DE7C018412E82001054EB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		5A3DE7C2184133E1001054EB /* MSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSUser.h; path = Model/MSUser.h; sourceTree = "<group>"; };
 		5A3DE7C3184133E1001054EB /* MSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSUser.m; path = Model/MSUser.m; sourceTree = "<group>"; };
@@ -1022,8 +1022,8 @@
 				5AD1FC591847318B001D3DFE /* MSNavigationBar.m */,
 				5A9674531849D8740079EAC1 /* MSTextField.h */,
 				5A9674541849D8740079EAC1 /* MSTextField.m */,
-				5A34C4E11895293500CE2EF2 /* MSProfilePicture.h */,
-				5A34C4E21895293500CE2EF2 /* MSProfilePicture.m */,
+				5A34C4E11895293500CE2EF2 /* MSProfilePictureView.h */,
+				5A34C4E21895293500CE2EF2 /* MSProfilePictureView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1573,7 +1573,7 @@
 				5ADCF2E61840D23A00E6C8D2 /* MSTextFieldPickerCell.m in Sources */,
 				5A0F9116184242AF0049BBD5 /* MSCreateAccountVC.m in Sources */,
 				5ADCF3111840F6A300E6C8D2 /* MSFourSquareParser.m in Sources */,
-				5A34C4E31895293500CE2EF2 /* MSProfilePicture.m in Sources */,
+				5A34C4E31895293500CE2EF2 /* MSProfilePictureView.m in Sources */,
 				5A1B73741844AB6200555FE4 /* UIImage+Additional.m in Sources */,
 				5A29E32E1879ACE9008A8919 /* TKAlertCenter.m in Sources */,
 				5ADCF231184004D300E6C8D2 /* main.m in Sources */,

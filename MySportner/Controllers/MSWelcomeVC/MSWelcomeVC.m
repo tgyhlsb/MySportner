@@ -18,6 +18,7 @@
 #import "MSColorFactory.h"
 #import "MSFontFactory.h"
 #import "TKAlertCenter.h"
+#import "MSFindFriendsVC.h"
 
 #define NIB_NAME @"MSWelcomeVC"
 
@@ -90,11 +91,15 @@
 - (void)performLogin
 {
     [self hideLoadingView];
-    MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    
-    [appDelegate setDrawerMenu];
-    
-    [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
+    if ([MSUser currentUser].sportLevels) {
+        MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        
+        [appDelegate setDrawerMenu];
+        
+        [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
+    } else {
+        [self redirectToSportchooser];
+    }
 }
 
 - (IBAction)logInWithFacebookButtonPress:(UIButton *)sender
@@ -154,10 +159,25 @@
 
 - (void)userDidSignUp:(MSUser *)user
 {
+    [self redirectToSportchooser];
+}
+
+- (void)redirectToSportchooser
+{
     MSChooseSportsVC *destinationVC = [MSChooseSportsVC newController];
     
     destinationVC.user = [MSUser currentUser];
     
+    __weak MSChooseSportsVC *weakDestination = destinationVC;
+    destinationVC.validateBlock = ^{
+        MSFindFriendsVC *destinationVC = [MSFindFriendsVC newController];
+        
+        destinationVC.user = weakDestination.user;
+        
+        [weakDestination.navigationController pushViewController:destinationVC animated:YES];
+    };
+    
+    [self hideLoadingView];
     [self.navigationController pushViewController:destinationVC animated:YES];
     
     [destinationVC.navigationItem setHidesBackButton:YES];

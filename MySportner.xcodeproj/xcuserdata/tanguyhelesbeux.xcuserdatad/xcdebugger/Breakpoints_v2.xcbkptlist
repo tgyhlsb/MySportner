@@ -132,12 +132,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Model/MSUser.m"
-            timestampString = "412437931.180705"
+            timestampString = "412439946.057204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "-requestImageWithCallBack:"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "-requestImageWithTarget:CallBack:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -148,11 +148,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSCreateAccountVC/MSCreateAccountVC.m"
-            timestampString = "412433246.324214"
+            timestampString = "412439946.057204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
+            startingLineNumber = "405"
+            endingLineNumber = "405"
             landmarkName = "-validateButtonPress:"
             landmarkType = "5">
          </BreakpointContent>

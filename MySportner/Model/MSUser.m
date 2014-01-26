@@ -124,30 +124,25 @@
     _image = image;
     NSData *imageData = UIImagePNGRepresentation(image);
     self.imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-//    PFFile *file = self.imageFile;
-//    [self.imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        PFFile *file = self.imageFile;
-//    }];
 }
 
 - (UIImage *)image
 {
-    if (!_image) {
-//        [self requestImageWithCallBack:nil];
-    }
     return _image;
 }
 
 - (void)requestImageWithTarget:(id)target CallBack:(SEL)callback
 {
     if (self.imageFile) {
-        PFFile *file = self.imageFile;
-        sleep(5);
         [self.imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {
                 self.image = [UIImage imageWithData:data];
                 if (callback) {
-                    [target performSelector:callback];
+                    
+                    // Same as : [target performSelector:@selector(callback)]
+                    // Explanations : http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
+                    // In order not to get warning
+                    ((void (*)(id, SEL))[target methodForSelector:callback])(target, callback);
                 }
             }
         }];

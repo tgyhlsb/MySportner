@@ -41,6 +41,8 @@
 #define PLACEHOLDER_PASSWORD @"Password"
 #define PLACEHOLDER_BIRTHDAY @"Birthday"
 
+#define IMAGE_SIZE_FOR_UPLOAD 50
+
 @interface MSCreateAccountVC () <UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -317,8 +319,16 @@
 {
     NSLog(@"%@", info);
     UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-    self.imageView.image = image;
+    self.imageView.image = [self imageWithImage:image scaledToSize:CGSizeMake(IMAGE_SIZE_FOR_UPLOAD, IMAGE_SIZE_FOR_UPLOAD)];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    UIGraphicsBeginImageContextWithOptions(newSize, YES, [UIScreen mainScreen].scale);
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 #pragma mark UIAlertViewDelegate

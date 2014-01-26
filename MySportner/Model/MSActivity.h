@@ -11,6 +11,7 @@
 #import "MSUser.h"
 #import "MSVenue.h"
 #import "MSComment.h"
+#import "MSChat.h"
 
 #define PARSE_CLASSNAME_ACTIVITY @"MSActivity"
 
@@ -26,13 +27,16 @@
 @property (strong, nonatomic) NSArray *guests; // of MSUser
 @property (strong, nonatomic) NSArray *participants;  // of MSUser
 
-@property (strong, nonatomic) NSArray *comments;
+@property (strong, nonatomic) MSChat *chat;
+
 
 
 + (NSString *)parseClassName;
 
 - (NSComparisonResult)compareWithCreationDate:(MSActivity *)otherActivity;
 
+- (void)requestMessagesWithTarget:(id)target callBack:(SEL)callback;
 - (void)addComment:(MSComment *)comment;
+- (NSArray *)getComments;
 
 @end

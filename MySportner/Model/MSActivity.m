@@ -9,6 +9,13 @@
 #import "MSActivity.h"
 #import <Parse/PFObject+Subclass.h>
 
+@interface MSActivity()
+
+@property (strong, nonatomic) id tempTarget;
+@property (nonatomic) SEL tempCallBack;
+
+@end
+
 
 @implementation MSActivity
 
@@ -21,7 +28,12 @@
 @dynamic owner;
 @dynamic guests;
 @dynamic participants;
-@dynamic comments;
+@dynamic chat;
+
+
+@synthesize tempCallBack = _tempCallBack;
+@synthesize tempTarget = _tempTarget;
+
 
 + (NSString *)parseClassName
 {
@@ -33,16 +45,31 @@
     return [otherActivity.createdAt compare:self.createdAt];
 }
 
+- (void)requestMessagesWithTarget:(id)target callBack:(SEL)callback
+{
+    self.tempCallBack = callback;
+    self.tempTarget = target;
+    
+    [self.chat fetchIfNeededInBackgroundWithTarget:self selector:@selector(fetchedChat)];
+}
+
+- (void)fetchedChat
+{
+    [self.chat requestMessagesWithTarget:self.tempTarget callBack:self.tempCallBack];
+    self.tempTarget = nil;
+    self.tempCallBack = nil;
+}
+
 - (void)addComment:(MSComment *)comment
 {
-    if (!self.comments) self.comments = [[NSArray alloc] init];
-    
-    NSMutableArray *tempComments = [self.comments mutableCopy];
-    [tempComments addObject:comment];
-    
-    self.comments = [tempComments sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
-    [comment saveInBackground];
-    [self saveInBackground];
+    if (!self.chat) self.chat = [[MSChat alloc] init];
+    [self.chat addMessage:comment];
+}
+
+- (NSArray *)getComments
+{
+    if (!self.chat) self.chat = [[MSChat alloc] init];
+    return [self.chat getMessages];
 }
 
 @end

@@ -47,6 +47,7 @@
     
     if ([MSUser currentUser])
     {
+//        [MSUser currentUser] 
         [self performLogin];
     }
 }

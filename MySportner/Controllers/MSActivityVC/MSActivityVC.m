@@ -38,10 +38,6 @@ typedef NS_ENUM(int, MSActivitySection) {
     
     self.title = @"GAME PROFILE";
     
-    if (!self.activity.comments) {
-        self.activity.comments = [[NSArray alloc] init];
-    }
-    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.commentTextField.delegate = self;
@@ -104,7 +100,7 @@ typedef NS_ENUM(int, MSActivitySection) {
 
 - (void)fetchComments
 {
-    [PFObject fetchAllInBackground:self.activity.comments target:self selector:@selector(commentFetchCallBack:error:)];
+    [self.activity requestMessagesWithTarget:self callBack:@selector(commentFetchCallBack:error:)];
 }
 
 - (void)commentFetchCallBack:(NSArray *)objects error:(NSError *)error
@@ -132,7 +128,7 @@ typedef NS_ENUM(int, MSActivitySection) {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == MSActivitySectionComments) {
-        return self.shouldDisplayComments ? [self.activity.comments count] : 0;
+        return self.shouldDisplayComments ? [[self.activity getComments] count] : 0;
     } else {
         return 1;
     }
@@ -158,7 +154,7 @@ typedef NS_ENUM(int, MSActivitySection) {
             NSString *identifier = [MSCommentCell reusableIdentifier];
             MSCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
             
-            cell.comment = [self.activity.comments objectAtIndex:indexPath.row];
+            cell.comment = [[self.activity getComments] objectAtIndex:indexPath.row];
             cell.layer.shouldRasterize = YES;
             cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
             return cell;

@@ -330,7 +330,6 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSLog(@"%@", info);
     UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     self.profilePicture = [self imageWithImage:image scaledToSize:CGSizeMake(IMAGE_SIZE_FOR_UPLOAD, IMAGE_SIZE_FOR_UPLOAD)];
     [self dismissViewControllerAnimated:YES completion:nil];

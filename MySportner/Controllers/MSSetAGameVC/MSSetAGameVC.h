@@ -13,6 +13,5 @@
 
 + (MSSetAGameVC *)newController;
 
-- (BOOL)shouldCancelTouch:(UITouch *)touch;
 
 @end

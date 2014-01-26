@@ -21,6 +21,11 @@
 
 @implementation MSCenterController
 
+- (BOOL)shouldCancelTouch:(UITouch *)touch
+{
+    return NO;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

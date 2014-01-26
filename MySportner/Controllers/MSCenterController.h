@@ -17,4 +17,6 @@
 
 - (void)setNormalNavigationBar;
 
+- (BOOL)shouldCancelTouch:(UITouch *)touch;
+
 @end

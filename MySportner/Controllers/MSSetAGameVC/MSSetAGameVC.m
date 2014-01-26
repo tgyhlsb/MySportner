@@ -17,6 +17,7 @@
 #import "MSLocationPickerVC.h"
 #import "TKAlertCenter.h"
 #import "MSRangeCell.h"
+#import "MSPickLocalisationVC.h"
 
 #define NIB_NAME @"MSSetAGameVC"
 
@@ -37,7 +38,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     MSSetAGameTextFieldTypeButton
 };
 
-@interface MSSetAGameVC () <UITableViewDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, MSLocationPickerDelegate>
+@interface MSSetAGameVC () <UITableViewDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, MSPickLocalisationVCDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -203,6 +204,8 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 - (void)dayPickerDidTap
 {
     [self dayPickerValueDidChange];
+    // close it
+    [self textFieldShouldBeginEditing:self.dayTextField];
 }
 
 - (void)timePickerValueDidChange
@@ -216,6 +219,15 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 - (void)timePickerDidTap
 {
     [self timePickerValueDidChange];
+    // close it
+    [self textFieldShouldBeginEditing:self.timeTextField];
+}
+
+- (void)repeatPickerDidTap
+{
+    self.repeatMode = [self.repeatPicker selectedRowInComponent:0];
+    // close it
+    [self textFieldShouldBeginEditing:self.repeatTextField];
 }
 
 #pragma mark ExtensiveCellDelegate
@@ -272,6 +284,8 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
         _repeatPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, -30, 320, 10)];
         _repeatPicker.delegate = self;
         _repeatPicker.dataSource = self;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(repeatPickerDidTap)];
+        [_repeatPicker addGestureRecognizer:tapGesture];
     }
     return _repeatPicker;
 }
@@ -392,10 +406,10 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                 {
                     MSRangeCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSRangeCell reusableIdentifier] forIndexPath:indexPath];
                     
-                    cell.maximumValue = 20.0;
+                    cell.maximumValue = 15.0;
                     cell.minimumValue = 1.0;
-                    cell.lowerValue = 2.0;
-                    cell.upperValue = 5.0;
+                    cell.lowerValue = 1.0;
+                    cell.upperValue = 15.0;
                     cell.stepValue = 1.0;
                     
                     return cell;
@@ -466,7 +480,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     }
     else if ([textField isEqual:self.locationTextField])
     {
-        MSLocationPickerVC *destinationVC = [MSLocationPickerVC newControler];
+        MSPickLocalisationVC *destinationVC = [MSPickLocalisationVC newControler];
         destinationVC.delegate = self;
         [self.navigationController pushViewController:destinationVC animated:YES];
         self.activeTextField = nil;

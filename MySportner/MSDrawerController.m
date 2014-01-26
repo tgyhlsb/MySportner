@@ -30,9 +30,9 @@
             UIViewController *activeVC = [((UINavigationController *)drawerController.centerViewController).viewControllers lastObject];
             
             // find view touched if setting a game
-            if ([activeVC isKindOfClass:[MSSetAGameVC class]]) {
+            if ([activeVC respondsToSelector:@selector(shouldCancelTouch:)]) {
                 
-                return ![((MSSetAGameVC *)activeVC) shouldCancelTouch:touch];
+                return ![((MSCenterController *)activeVC) shouldCancelTouch:touch];
             }
             
             return YES;

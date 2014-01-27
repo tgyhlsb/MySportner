@@ -10,6 +10,8 @@
 
 @interface MSPinView : MKAnnotationView
 
+@property (nonatomic) CGFloat distance;
+
 - (void)setSize:(CGSize)size;
 
 @end

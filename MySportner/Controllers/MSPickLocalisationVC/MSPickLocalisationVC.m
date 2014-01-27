@@ -131,6 +131,7 @@
     
     CGRect circle = [self.mapView convertRegion:region toRectToView:Nil];
     [self.circleView setSize:CGSizeMake(circle.size.height, circle.size.height)];
+    [self.circleView setDistance:[self mettersForSliderValue]/2.0];
 }
 
 #pragma mark - MKMapViewDelegate

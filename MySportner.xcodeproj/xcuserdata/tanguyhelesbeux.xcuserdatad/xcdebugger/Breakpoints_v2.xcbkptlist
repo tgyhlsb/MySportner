@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSSetAGameVC/MSSetAGameVC.m"
-            timestampString = "412448604.188115"
+            timestampString = "412533906.378292"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "-timePickerValueDidChange"
             landmarkType = "5">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSSetAGameVC/MSSetAGameVC.m"
-            timestampString = "412448604.188115"
+            timestampString = "412533906.378292"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "-dayPickerValueDidChange"
             landmarkType = "5">
          </BreakpointContent>
@@ -164,27 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSPickLocalisationVC/MSPickLocalisationVC.m"
-            timestampString = "412469305.796124"
+            timestampString = "412534439.88032"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "-mapView:regionDidChangeAnimated:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MySportner/Controllers/MSPickLocalisationVC/MSPickLocalisationVC.m"
-            timestampString = "412463017.514021"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "-shouldCancelTouch:"
             landmarkType = "5">
          </BreakpointContent>

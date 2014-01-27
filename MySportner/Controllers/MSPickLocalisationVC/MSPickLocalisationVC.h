@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 #import "MSCenterController.h"
 
 @protocol MSPickLocalisationVCDelegate;
@@ -22,6 +23,6 @@
 
 @protocol MSPickLocalisationVCDelegate <NSObject>
 
-- (void)didPickLocalisation:(CGPoint)localisation withRadius:(CGFloat)radius;
+- (void)didPickLocalisation:(CLLocationCoordinate2D)localisation withRadius:(CGFloat)radius;
 
 @end

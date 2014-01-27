@@ -7,8 +7,9 @@
 //
 
 #import "MSPickLocalisationVC.h"
-#import <MapKit/MapKit.h>
 #import "MSAnnotation.h"
+#import "MSPinView.h"
+#import "TKAlertCenter.h"
 
 @interface MSPickLocalisationVC () <MKMapViewDelegate>
 
@@ -16,12 +17,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *locateUserButton;
 @property (weak, nonatomic) IBOutlet UISlider *radiusSlider;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBarView;
-
-@property (strong, nonatomic) MKCircle *radiusCircle;
+@property (strong, nonatomic) UIBarButtonItem *validateButton;
 
 @property (strong, nonatomic) MSAnnotation *activityPin;
-
-@property (strong, nonatomic) MKCircleView *circleViewBuffer;
+@property (strong, nonatomic) MSPinView *circleView;
 
 @end
 
@@ -40,11 +39,30 @@
     
     self.mapView.delegate = self;
     
-    self.radiusSlider.maximumValue = 100;
+    self.radiusSlider.maximumValue = 200;
     self.radiusSlider.minimumValue = 0;
     self.radiusSlider.value = 20;
     
     [self registerGestureRecognizers];
+    [self addValidateButton];
+}
+
+- (void)addValidateButton
+{
+    self.validateButton = [[UIBarButtonItem alloc]
+                                   initWithTitle:@"DONE"
+                                   style:UIBarButtonItemStyleBordered
+                                   target:self
+                                   action:@selector(validateButtonHandler)];
+    self.navigationItem.rightBarButtonItem = self.validateButton;
+}
+
+- (void)validateButtonHandler
+{
+    if ([self.delegate respondsToSelector:@selector(didPickLocalisation:withRadius:)]) {
+        [self.delegate didPickLocalisation:self.activityPin.coordinate withRadius:self.activityPin.radius];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)registerGestureRecognizers
@@ -76,6 +94,7 @@
         _activityPin = [[MSAnnotation alloc] init];
         _activityPin.coordinate = self.mapView.userLocation.coordinate;
         [self.mapView addAnnotation:_activityPin];
+        [self updateRadiusOverlay];
     }
     return _activityPin;
 }
@@ -108,9 +127,10 @@
 
 - (void)updateRadiusOverlay
 {
-    [self.mapView removeOverlay:self.radiusCircle];
-    self.radiusCircle = [MKCircle circleWithCenterCoordinate:self.activityPin.coordinate radius:[self mettersForSliderValue]];
-    [self.mapView addOverlay:self.radiusCircle];
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.activityPin.coordinate, [self mettersForSliderValue], 0);
+    
+    CGRect circle = [self.mapView convertRegion:region toRectToView:Nil];
+    [self.circleView setSize:CGSizeMake(circle.size.height, circle.size.height)];
 }
 
 #pragma mark - MKMapViewDelegate
@@ -118,10 +138,14 @@
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     [self.mapView setUserTrackingMode:MKUserTrackingModeNone];
+    [self updateRadiusOverlay];
+}
+
+- (void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error
+{
+    [self.mapView setUserTrackingMode:MKUserTrackingModeNone];
     
-    if (!_activityPin) {
-        [self updateRadiusOverlay];
-    }
+    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Enable to locate your position"];
 }
 
 - (MKOverlayView *)mapView:(MKMapView *)map viewForOverlay:(id <MKOverlay>)overlay
@@ -129,6 +153,18 @@
     MKCircleView *circleView = [[MKCircleView alloc] initWithOverlay:overlay];
     circleView.fillColor = [[UIColor redColor] colorWithAlphaComponent:0.1];
     return circleView;
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    if (annotation == self.mapView.userLocation) {
+        return [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"user"];
+    }
+    self.circleView = (MSPinView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"pin"];
+    if (!self.circleView) {
+        self.circleView = [[MSPinView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
+    }
+    return self.circleView;
 }
 
 - (void)didTapMapView:(UITapGestureRecognizer *)tapGesture

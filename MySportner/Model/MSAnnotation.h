@@ -12,5 +12,6 @@
 @interface MSAnnotation : NSObject <MKAnnotation>
 
 @property (nonatomic) CLLocationCoordinate2D coordinate;
+@property (nonatomic) CGFloat radius;
 
 @end

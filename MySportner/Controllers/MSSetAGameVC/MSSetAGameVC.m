@@ -178,6 +178,13 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     [self.navigationController setViewControllers:@[destinationVC] animated:YES];
 }
 
+#pragma mark - MSPickLocalisationVCDelegate
+
+- (void)didPickLocalisation:(CLLocationCoordinate2D)localisation withRadius:(CGFloat)radius
+{
+    self.locationTextField.text = @"Lyon, France";
+}
+
 #pragma mark DatePickers Handlers
 
 - (void)updateAcitivityDate

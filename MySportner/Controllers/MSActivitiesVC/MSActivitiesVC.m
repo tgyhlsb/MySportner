@@ -191,7 +191,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     MSActivityVC *destinationVC = [MSActivityVC newController];
-    destinationVC.activity = [self.data objectAtIndex:indexPath.row];
+    MSActivityCell *cell = (MSActivityCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    destinationVC.activity = cell.activity;
     
     [self.navigationController pushViewController:destinationVC animated:YES];
 }

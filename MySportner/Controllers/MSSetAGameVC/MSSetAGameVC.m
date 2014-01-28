@@ -153,6 +153,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
         self.activity.owner = [MSUser currentUser];
         self.activity.guests = [[NSArray alloc] init];
         self.activity.participants = [[NSArray alloc] init];
+        self.activity.chat = [[MSChat alloc] init];
         
         [self showLoadingViewInView:self.navigationController.view];
         [self.activity saveInBackgroundWithTarget:self selector:@selector(handleActivityCreation:error:)];

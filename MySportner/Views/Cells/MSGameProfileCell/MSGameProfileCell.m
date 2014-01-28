@@ -66,9 +66,9 @@
 
 - (void)awakeFromNib
 {
-    self.contentView.backgroundColor = [UIColor clearColor];
-    self.backgroundView.backgroundColor = [UIColor clearColor];
-    self.backgroundColor = [UIColor clearColor];
+//    self.contentView.backgroundColor = [UIColor clearColor];
+//    self.backgroundView.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [MSColorFactory backgroundColorGrayLight];
     
     self.roundedView.backgroundColor = [MSColorFactory redLight];
     [self.roundedView setRounded];

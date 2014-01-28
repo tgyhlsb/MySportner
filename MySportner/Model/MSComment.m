@@ -18,36 +18,36 @@
 {
     return PARSE_CLASSNAME_COMMENT;
 }
-
-- (void)setAuthorForParse:(MSUser *)author
-{
-    self.author = author;
-    self.authorFacebookID = author.facebookID;
-    self.authorFullName = author.fullName;
-}
-
-@synthesize authorFullName = _authorFullName;
-@synthesize authorFacebookID = _authorFacebookID;
-
-- (void)setAuthorFullName:(NSString *)authorFullName
-{
-    _authorFullName = authorFullName;
-}
-
-- (NSString *)authorFullName
-{
-    return _authorFullName;
-}
-
-- (void)setAuthorFacebookID:(NSString *)authorFacebookID
-{
-    _authorFacebookID = authorFacebookID;
-}
-
-- (NSString *)authorFacebookID
-{
-    return _authorFacebookID;
-}
+//
+//- (void)setAuthorForParse:(MSUser *)author
+//{
+//    self.author = author;
+//    self.authorFacebookID = author.facebookID;
+//    self.authorFullName = author.fullName;
+//}
+//
+//@synthesize authorFullName = _authorFullName;
+//@synthesize authorFacebookID = _authorFacebookID;
+//
+//- (void)setAuthorFullName:(NSString *)authorFullName
+//{
+//    _authorFullName = authorFullName;
+//}
+//
+//- (NSString *)authorFullName
+//{
+//    return _authorFullName;
+//}
+//
+//- (void)setAuthorFacebookID:(NSString *)authorFacebookID
+//{
+//    _authorFacebookID = authorFacebookID;
+//}
+//
+//- (NSString *)authorFacebookID
+//{
+//    return _authorFacebookID;
+//}
 
 - (NSComparisonResult)compareWithCreationDate:(MSComment *)otherComment
 {

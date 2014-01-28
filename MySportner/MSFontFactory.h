@@ -13,7 +13,7 @@
 @interface MSFontFactory : NSObject
 
 + (UIFont *)fontForFormTextField;
-+ (UIFont *)fontForCommentLabel;
++ (UIFont *)fontForInfoLabel;
 + (UIFont *)fontForNavigationTitle;
 + (UIFont *)fontForButton;
 + (UIFont *)fontForButtonLight;
@@ -30,5 +30,8 @@
 
 + (UIFont *)fontForActivityCellDay;
 + (UIFont *)fontForActivityCellTime;
+
++ (UIFont *)fontForCommentTime;
++ (UIFont *)fontForCommentText;
 
 @end

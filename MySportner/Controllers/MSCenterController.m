@@ -23,7 +23,7 @@
 
 - (BOOL)shouldCancelTouch:(UITouch *)touch
 {
-    return NO;
+    return !self.hasDirectAccessToDrawer;
 }
 
 - (void)viewDidLoad

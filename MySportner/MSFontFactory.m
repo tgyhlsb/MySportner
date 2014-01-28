@@ -15,7 +15,7 @@
     return [UIFont fontWithName:@"ProximaNova-Regular" size:13.5];
 }
 
-+ (UIFont *)fontForCommentLabel
++ (UIFont *)fontForInfoLabel
 {
     return [UIFont fontWithName:@"ProximaNova-Regular" size:11.5];
 }
@@ -88,6 +88,16 @@
 + (UIFont *)fontForActivityCellTime
 {
     return [UIFont fontWithName:@"ProximaNova-Light" size:12.5];
+}
+
++ (UIFont *)fontForCommentText
+{
+    return [UIFont fontWithName:@"ProximaNova-Regular" size:12];
+}
+
++ (UIFont *)fontForCommentTime
+{
+    return [UIFont fontWithName:@"ProximaNova-Light" size:11];
 }
 
 @end

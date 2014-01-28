@@ -50,7 +50,7 @@
     self.tempCallBack = callback;
     self.tempTarget = target;
     
-    [self.chat fetchIfNeededInBackgroundWithTarget:self selector:@selector(fetchedChat)];
+    [self.chat fetchInBackgroundWithTarget:self selector:@selector(fetchedChat)];
 }
 
 - (void)fetchedChat
@@ -62,13 +62,13 @@
 
 - (void)addComment:(MSComment *)comment
 {
-    if (!self.chat) self.chat = [[MSChat alloc] init];
+//    if (!self.chat) self.chat = [[MSChat alloc] init];
     [self.chat addMessage:comment];
 }
 
 - (NSArray *)getComments
 {
-    if (!self.chat) self.chat = [[MSChat alloc] init];
+//    if (!self.chat) self.chat = [[MSChat alloc] init];
     return [self.chat getMessages];
 }
 

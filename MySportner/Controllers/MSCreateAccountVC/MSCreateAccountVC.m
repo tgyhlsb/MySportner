@@ -216,7 +216,7 @@
     self.commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(PADDING, self.nextButton.frame.origin.y-80, 280, 80)];
     self.commentLabel.text = @"By clicking in next button, you  accept the general terms and conditions of use.";
     self.commentLabel.textAlignment = NSTextAlignmentCenter;
-    [self.commentLabel setFont:[MSFontFactory fontForCommentLabel]];
+    [self.commentLabel setFont:[MSFontFactory fontForInfoLabel]];
     self.commentLabel.textColor = [MSColorFactory gray];
     self.commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.commentLabel.numberOfLines = 0;

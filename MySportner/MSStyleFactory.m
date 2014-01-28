@@ -116,6 +116,30 @@
             [label setShadowOffset:CGSizeMake(0.1, 0.9)];
             break;
         }
+        case MSLabelStyleCommentAuthor:
+        {
+            label.font = [MSFontFactory fontForCommentText];
+//            [label setShadowColor:[MSColorFactory grayLight]];
+            [label setTextColor:[MSColorFactory redLight]];
+//            [label setShadowOffset:CGSizeMake(0.05, 0.45)];
+            break;
+        }
+        case MSLabelStyleCommentText:
+        {
+            label.font = [MSFontFactory fontForCommentText];
+//            [label setShadowColor:[MSColorFactory grayLight]];
+            [label setTextColor:[MSColorFactory gray]];
+//            [label setShadowOffset:CGSizeMake(0.5, 0.45)];
+            break;
+        }
+        case MSLabelStyleCommentTime:
+        {
+            label.font = [MSFontFactory fontForCommentTime];
+//            [label setShadowColor:[MSColorFactory grayLight]];
+            [label setTextColor:[MSColorFactory grayLight]];
+//            [label setShadowOffset:CGSizeMake(0.05, 0.45)];
+            break;
+        }
             
         default:
             break;

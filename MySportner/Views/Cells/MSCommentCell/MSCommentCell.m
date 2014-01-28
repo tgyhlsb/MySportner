@@ -7,13 +7,20 @@
 //
 
 #import "MSCommentCell.h"
+#import "MSColorFactory.h"
+#import "MSProfilePictureView.h"
+#import "UIView+MSRoundedView.h"
+#import "MSStyleFactory.h"
 
 #define NIB_NAME @"MSCommentCell"
-#define HEIGHT 44
+#define HEIGHT 80
 
 @interface MSCommentCell()
 
-@property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet MSProfilePictureView *profilePictureView;
 
 @end;
 
@@ -23,9 +30,15 @@
 {
     [super awakeFromNib];
     
-    self.contentView.backgroundColor = [UIColor clearColor];
-    self.backgroundView.backgroundColor = [UIColor clearColor];
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [MSColorFactory backgroundColorGrayLight];
+    [self.profilePictureView setRounded];
+    
+    [MSStyleFactory setUILabel:self.authorLabel withStyle:MSLabelStyleCommentAuthor];
+    [MSStyleFactory setUILabel:self.contentLabel withStyle:MSLabelStyleCommentText];
+    [MSStyleFactory setUILabel:self.timeLabel withStyle:MSLabelStyleCommentTime];
+    
+    self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.contentLabel.numberOfLines = 0;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -57,7 +70,29 @@
 - (void)setComment:(MSComment *)comment
 {
     _comment = comment;
-    self.textLabel.text = comment.content;
+    self.authorLabel.text = [comment.author fullName];
+    self.contentLabel.text = comment.content;
+    self.timeLabel.text = [self timeTextForCommentTime:comment.createdAt];
+    self.profilePictureView.user = comment.author;
+}
+
+- (NSString *)timeTextForCommentTime:(NSDate *)commentDate
+{
+    NSTimeInterval diffSecond =  - [commentDate timeIntervalSinceNow];
+    if (diffSecond < 60) {
+        return [NSString stringWithFormat:@"%ld sec ago", (long)diffSecond];
+    } else if (diffSecond < 3600) {
+        NSInteger minutes = floor(diffSecond/60);
+        return [NSString stringWithFormat:@"%ld min ago", (long)minutes];
+    } else if (diffSecond < 3600 * 24) {
+        NSInteger hours = floor(diffSecond/3600);
+        return [NSString stringWithFormat:(hours > 1) ? @"%ld hours ago" : @"%ld hour ago", (long)hours];
+    } else {
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        
+        [dateFormat setDateFormat:@"MMMM dd"];
+        return [dateFormat stringFromDate:commentDate];
+    }
 }
 
 @end

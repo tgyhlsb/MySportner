@@ -18,13 +18,13 @@
 @property (strong, nonatomic) MSUser *author;
 
 
-// Remove when not using Parse.com
-@property (strong, nonatomic) NSString *authorFacebookID;
-@property (strong, nonatomic) NSString *authorFullName;
+//// Remove when not using Parse.com
+//@property (strong, nonatomic) NSString *authorFacebookID;
+//@property (strong, nonatomic) NSString *authorFullName;
 
 
 - (NSComparisonResult)compareWithCreationDate:(MSComment *)otherComment;
-- (void)setAuthorForParse:(MSUser *)author;
+//- (void)setAuthorForParse:(MSUser *)author;
 
 + (NSString *)parseClassName;
 

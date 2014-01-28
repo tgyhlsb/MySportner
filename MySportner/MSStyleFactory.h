@@ -22,7 +22,10 @@ typedef NS_ENUM(int, MSFlatButtonStyle) {
 typedef NS_ENUM(int, MSLabelStyle) {
     MSLabelStyleUserName,
     MSLabelStyleActivityDateBig,
-    MSLabelStyleActivityDateSmall
+    MSLabelStyleActivityDateSmall,
+    MSLabelStyleCommentAuthor,
+    MSLabelStyleCommentText,
+    MSLabelStyleCommentTime
 };
 typedef NS_ENUM(int, MSTextFieldStyle) {
     MSTextFieldStyleWhiteForm

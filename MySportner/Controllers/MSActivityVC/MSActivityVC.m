@@ -11,6 +11,8 @@
 #import "MSCommentCell.h"
 #import "TKAlertCenter.h"
 #import "MSProfileVC.h"
+#import "MSColorFactory.h"
+#import "MSFontFactory.h"
 
 #define NIB_NAME @"MSActivityVC"
 
@@ -37,6 +39,8 @@ typedef NS_ENUM(int, MSActivitySection) {
 {
     [super viewDidLoad];
     
+    [self fetchComments];
+    
     self.title = @"GAME PROFILE";
     
     self.tableView.dataSource = self;
@@ -60,13 +64,20 @@ typedef NS_ENUM(int, MSActivitySection) {
     
     [self.commentButton setTitle:@"Send" forState:UIControlStateNormal];
     self.commentTextField.placeholder = @"Write your comment";
+    
+    if ([self.commentTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+        UIColor *color = [MSColorFactory grayLight];
+        self.commentTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Write your comment" attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName : [MSFontFactory fontForCellSportTitle]}];
+    } else {
+        NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
+        // TODO: Add fall-back code to set placeholder color.
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    [self fetchComments];
 }
 
 + (MSActivityVC *)newController
@@ -89,7 +100,7 @@ typedef NS_ENUM(int, MSActivitySection) {
 {
     MSComment *comment = [[MSComment alloc] init];
     comment.content = self.commentTextField.text;
-    [comment setAuthorForParse:[MSUser currentUser]];
+    comment.author = [MSUser currentUser];
     
     [self.activity addComment:comment];
     

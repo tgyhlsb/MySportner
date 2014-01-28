@@ -14,17 +14,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="229"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.59999999999999964" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OK6-gh-xvZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="229"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <items/>
-                    </toolbar>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZN-TQ-Vdo">
                         <rect key="frame" x="25" y="20" width="100" height="100"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TG8-M5-nxq">
-                                <rect key="frame" x="0.0" y="38" width="100" height="21"/>
+                                <rect key="frame" x="0.0" y="36" width="100" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -115,21 +110,17 @@
                     <constraint firstItem="vZN-TQ-Vdo" firstAttribute="top" secondItem="aEb-UV-liD" secondAttribute="top" constant="20" id="e7c-eG-O2e"/>
                     <constraint firstAttribute="trailing" secondItem="QYe-JM-hrN" secondAttribute="trailing" constant="15" id="euH-2y-RhQ"/>
                     <constraint firstItem="tcd-5y-H3Z" firstAttribute="leading" secondItem="vZN-TQ-Vdo" secondAttribute="trailing" constant="15" id="ibH-up-msc"/>
-                    <constraint firstItem="OK6-gh-xvZ" firstAttribute="top" secondItem="aEb-UV-liD" secondAttribute="top" id="l0O-aF-Yvv"/>
                     <constraint firstAttribute="centerX" secondItem="qLO-CJ-EHh" secondAttribute="centerX" id="mZD-dL-tmU"/>
                     <constraint firstItem="7d6-rT-5rk" firstAttribute="top" secondItem="aEb-UV-liD" secondAttribute="top" constant="45" id="nqu-gO-anh"/>
                     <constraint firstItem="tcd-5y-H3Z" firstAttribute="top" secondItem="aEb-UV-liD" secondAttribute="top" constant="25" id="oBc-O4-QYe"/>
                     <constraint firstAttribute="trailing" secondItem="7GG-C2-0rh" secondAttribute="trailing" constant="15" id="pwd-NO-CuA"/>
                     <constraint firstAttribute="trailing" secondItem="tcd-5y-H3Z" secondAttribute="trailing" constant="15" id="scy-rd-ae3"/>
-                    <constraint firstAttribute="trailing" secondItem="OK6-gh-xvZ" secondAttribute="trailing" id="sjL-Yz-AAh"/>
                     <constraint firstItem="7d6-rT-5rk" firstAttribute="leading" secondItem="vZN-TQ-Vdo" secondAttribute="trailing" constant="25" id="sn2-9V-JvZ"/>
                     <constraint firstItem="6r6-xV-Wk7" firstAttribute="top" secondItem="7GG-C2-0rh" secondAttribute="bottom" constant="5" id="tUb-8b-re9"/>
                     <constraint firstAttribute="bottom" secondItem="qLO-CJ-EHh" secondAttribute="bottom" constant="10" id="w2U-Mw-CJ6"/>
                     <constraint firstItem="qLO-CJ-EHh" firstAttribute="top" secondItem="6r6-xV-Wk7" secondAttribute="bottom" constant="20" id="w6B-Nq-UAU"/>
                     <constraint firstItem="6r6-xV-Wk7" firstAttribute="leading" secondItem="vZN-TQ-Vdo" secondAttribute="trailing" constant="15" id="xiI-cf-eb9"/>
                     <constraint firstAttribute="trailing" secondItem="7d6-rT-5rk" secondAttribute="trailing" constant="15" id="y86-Ex-Iih"/>
-                    <constraint firstAttribute="bottom" secondItem="OK6-gh-xvZ" secondAttribute="bottom" id="yLq-xX-Gq6"/>
-                    <constraint firstItem="OK6-gh-xvZ" firstAttribute="leading" secondItem="aEb-UV-liD" secondAttribute="leading" id="z0m-K6-Omx"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

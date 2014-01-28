@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "MSActivity.h"
 
+@protocol MSActivityCellDelegate;
+
 @interface MSActivityCell : UITableViewCell
+
+@property (strong, nonatomic) id<MSActivityCellDelegate> delegate;
 
 @property (strong, nonatomic) MSActivity *activity;
 
@@ -19,5 +23,11 @@
 + (void)registerToTableview:(UITableView *)tableView;
 + (NSString *)reusableIdentifier;
 + (CGFloat)height;
+
+@end
+
+@protocol MSActivityCellDelegate <NSObject>
+
+- (void)activityCell:(MSActivityCell *)cell didSelectUser:(MSUser *)user;
 
 @end

@@ -18,10 +18,11 @@
 #import "MSStyleFactory.h"
 #import "MSSetAGameVC.h"
 //#import <FacebookSDK/FacebookSDK.h>
+#import "MSProfileVC.h"
 
 #define NIB_NAME @"MSActivitiesVC"
 
-@interface MSActivitiesVC () <UITableViewDataSource, UITableViewDelegate>
+@interface MSActivitiesVC () <UITableViewDataSource, UITableViewDelegate, MSActivityCellDelegate>
 
 @property (strong, nonatomic) MBProgressHUD *loadingView;
 @property (weak, nonatomic) IBOutlet UIButton *plusButton;
@@ -160,6 +161,8 @@
             
             [cell setAppearanceWithOddIndex:(indexPath.row % 2)];
             
+            cell.delegate = self;
+            
             cell.layer.shouldRasterize = YES;
             cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
             
@@ -193,6 +196,18 @@
     [self.navigationController pushViewController:destinationVC animated:YES];
 }
 
+
+#pragma mark - MSActivityCellDelegate
+
+- (void)activityCell:(MSActivityCell *)cell didSelectUser:(MSUser *)user
+{
+    MSProfileVC *destination = [MSProfileVC newController];
+    
+    destination.user = user;
+    destination.hasDirectAccessToDrawer = NO;
+    
+    [self.navigationController pushViewController:destination animated:YES];
+}
 
 
 #pragma mark - MBProgressHUD

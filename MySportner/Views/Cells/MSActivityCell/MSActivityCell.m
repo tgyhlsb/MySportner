@@ -38,6 +38,32 @@
 
 @implementation MSActivityCell
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    [self registerGestureRecognizers];
+}
+
+- (void)registerGestureRecognizers
+{
+    UITapGestureRecognizer *pictureTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapHandler)];
+    UITapGestureRecognizer *nameTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapHandler)];
+    
+    self.ownerProfilePictureView.userInteractionEnabled = YES;
+    self.ownerNameLabel.userInteractionEnabled = YES;
+    
+    [self.ownerProfilePictureView addGestureRecognizer:pictureTap];
+    [self.ownerNameLabel addGestureRecognizer:nameTap];
+}
+
+- (void)userProfileTapHandler
+{
+    if ([self.delegate respondsToSelector:@selector(activityCell:didSelectUser:)]) {
+        [self.delegate activityCell:self didSelectUser:self.activity.owner];
+    }
+}
+
 - (void)setActivity:(MSActivity *)activity
 {
     _activity = activity;

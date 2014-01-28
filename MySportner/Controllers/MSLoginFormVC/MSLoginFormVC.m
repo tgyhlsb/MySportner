@@ -16,6 +16,7 @@
 #import "MSTextField.h"
 #import "MSFontFactory.h"
 #import "MSStyleFactory.h"
+#import "TKAlertCenter.h"
 
 #define NIB_NAME @"MSLoginFormVC"
 
@@ -108,7 +109,10 @@
             [welcomeVC performLogin];
         }];
     } else {
-        [[[UIAlertView alloc] initWithTitle:@"Error" message:[error description] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
+//        [[[UIAlertView alloc] initWithTitle:@"Error" message:[error description] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
+        
+        NSString *errorMessage = [error.userInfo objectForKey:@"error"];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:errorMessage];
     }
 }
 

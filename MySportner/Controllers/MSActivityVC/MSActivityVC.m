@@ -10,6 +10,7 @@
 #import "MSGameProfileCell.h"
 #import "MSCommentCell.h"
 #import "TKAlertCenter.h"
+#import "MSProfileVC.h"
 
 #define NIB_NAME @"MSActivityVC"
 
@@ -20,7 +21,7 @@ typedef NS_ENUM(int, MSActivitySection) {
     MSActivitySectionComments
 };
 
-@interface MSActivityVC () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface MSActivityVC () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, MSGameProfileCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBarView;
 @property (weak, nonatomic) IBOutlet UITextField *commentTextField;
@@ -142,6 +143,7 @@ typedef NS_ENUM(int, MSActivitySection) {
             NSString *identifier = [MSGameProfileCell reusableIdentifier];
             MSGameProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
             cell.activity = self.activity;
+            cell.delegate = self;
             
             cell.layer.shouldRasterize = YES;
             cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
@@ -180,6 +182,18 @@ typedef NS_ENUM(int, MSActivitySection) {
         default:
             return 44;
     }
+}
+
+#pragma mark MSGameProfileCellDelegate
+
+- (void)gameProfileCell:(MSGameProfileCell *)cell didSelectUser:(MSUser *)user
+{
+    MSProfileVC *destination = [MSProfileVC newController];
+    
+    destination.user = user;
+    destination.hasDirectAccessToDrawer = NO;
+    
+    [self.navigationController pushViewController:destination animated:YES];
 }
 
 #pragma mark - UITextFieldDelegate

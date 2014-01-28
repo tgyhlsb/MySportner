@@ -97,6 +97,27 @@
     
     [self.actionButton setTitle:@"INVITE" forState:UIControlStateNormal];
     [MSStyleFactory setQBFlatButton:self.actionButton withStyle:MSFlatButtonStyleGreen];
+    
+    [self registerTapGestures];
+}
+
+- (void)registerTapGestures
+{
+    UITapGestureRecognizer *pictureTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ownerProfileTapHandler)];
+    UITapGestureRecognizer *nameTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ownerProfileTapHandler)];
+    
+    self.ownerLabel.userInteractionEnabled = YES;
+    self.fbProfilePictureView.userInteractionEnabled = YES;
+    
+    [self.ownerLabel addGestureRecognizer:nameTap];
+    [self.fbProfilePictureView addGestureRecognizer:pictureTap];
+}
+
+- (void)ownerProfileTapHandler
+{
+    if ([self.delegate respondsToSelector:@selector(gameProfileCell:didSelectUser:)]) {
+        [self.delegate gameProfileCell:self didSelectUser:self.activity.owner];
+    }
 }
 
 - (void)setViewWithDate:(NSDate *)date

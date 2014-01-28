@@ -10,11 +10,21 @@
 #import "MSActivity.h"
 #import "MSCell.h"
 
+@protocol MSGameProfileCellDelegate;
+
 @interface MSGameProfileCell : MSCell
 
+@property (strong, nonatomic) id<MSGameProfileCellDelegate> delegate;
 @property (strong, nonatomic) MSActivity *activity;
 
 + (void)registerToTableView:(UITableView *)tableView;
 + (NSString *)reusableIdentifier;
+
+@end
+
+@protocol MSGameProfileCellDelegate <NSObject>
+
+- (void)gameProfileCell:(MSGameProfileCell *)cell didSelectUser:(MSUser *)user;
+
 
 @end

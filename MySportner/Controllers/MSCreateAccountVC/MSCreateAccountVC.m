@@ -39,7 +39,7 @@
 #define PLACEHOLDER_LASTNAME @"Last Name"
 #define PLACEHOLDER_EMAIL @" E-mail"
 #define PLACEHOLDER_PASSWORD @"Password"
-#define PLACEHOLDER_BIRTHDAY @"Birthday"
+#define PLACEHOLDER_BIRTHDAY @"Birthdate"
 
 #define IMAGE_SIZE_FOR_UPLOAD 200
 

@@ -39,6 +39,22 @@
     
     self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.contentLabel.numberOfLines = 0;
+    
+    [self registerTapGestures];
+}
+
+- (void)registerTapGestures
+{
+    UITapGestureRecognizer *pictureTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(authorProfileTapHandler)];
+    self.profilePictureView.userInteractionEnabled = YES;
+    [self.profilePictureView addGestureRecognizer:pictureTap];
+}
+
+- (void)authorProfileTapHandler
+{
+    if ([self.delegate respondsToSelector:@selector(commentCell:didSelectUser:)]) {
+        [self.delegate commentCell:self didSelectUser:self.comment.author];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

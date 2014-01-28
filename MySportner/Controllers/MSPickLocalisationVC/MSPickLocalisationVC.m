@@ -50,7 +50,7 @@
 - (void)addValidateButton
 {
     self.validateButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"DONE"
+                                   initWithTitle:@"Done"
                                    style:UIBarButtonItemStyleBordered
                                    target:self
                                    action:@selector(validateButtonHandler)];

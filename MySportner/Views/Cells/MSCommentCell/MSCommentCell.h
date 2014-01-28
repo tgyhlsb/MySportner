@@ -10,11 +10,21 @@
 #import "MSComment.h"
 #import "MSCell.h"
 
+@protocol MSCommentCellDelegate;
+
 @interface MSCommentCell : MSCell
+
+@property (weak, nonatomic) id<MSCommentCellDelegate> delegate;
 
 @property (strong, nonatomic) MSComment *comment;
 
 + (NSString *)reusableIdentifier;
 + (void)registerToTableView:(UITableView *)tableView;
+
+@end
+
+@protocol MSCommentCellDelegate <NSObject>
+
+- (void)commentCell:(MSCommentCell *)cell didSelectUser:(MSUser *)user;
 
 @end

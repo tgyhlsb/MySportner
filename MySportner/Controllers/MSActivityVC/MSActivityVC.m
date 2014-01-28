@@ -23,7 +23,7 @@ typedef NS_ENUM(int, MSActivitySection) {
     MSActivitySectionComments
 };
 
-@interface MSActivityVC () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, MSGameProfileCellDelegate>
+@interface MSActivityVC () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, MSGameProfileCellDelegate, MSCommentCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBarView;
 @property (weak, nonatomic) IBOutlet UITextField *commentTextField;
@@ -166,7 +166,7 @@ typedef NS_ENUM(int, MSActivitySection) {
         {
             NSString *identifier = [MSCommentCell reusableIdentifier];
             MSCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-            
+            cell.delegate = self;
             cell.comment = [[self.activity getComments] objectAtIndex:indexPath.row];
             cell.layer.shouldRasterize = YES;
             cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
@@ -199,6 +199,18 @@ typedef NS_ENUM(int, MSActivitySection) {
 
 - (void)gameProfileCell:(MSGameProfileCell *)cell didSelectUser:(MSUser *)user
 {
+    [self pushToUserProfile:user];
+}
+
+#pragma mark - MSCommentCellDelegate
+
+- (void)commentCell:(MSCommentCell *)cell didSelectUser:(MSUser *)user
+{
+    [self pushToUserProfile:user];
+}
+
+- (void)pushToUserProfile:(MSUser *)user
+{
     MSProfileVC *destination = [MSProfileVC newController];
     
     destination.user = user;
@@ -223,13 +235,16 @@ typedef NS_ENUM(int, MSActivitySection) {
 // Call this method somewhere in your view controller setup code.
 - (void)registerForKeyboardNotifications
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(keyboardWasShown:)
+//                                                 name:UIKeyboardDidShowNotification object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(keyboardWillBeHidden:)
+//                                                 name:UIKeyboardWillHideNotification object:nil];
     
 }
 
@@ -245,7 +260,7 @@ typedef NS_ENUM(int, MSActivitySection) {
     CGRect tempToolBarFrame = self.tableView.frame;
     tempToolBarFrame = CGRectMake(0, self.view.frame.size.height - kbSize.height - 44, 320, 44);
     
-    [UIView animateWithDuration:0.1 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         [self.toolBarView setFrame:tempToolBarFrame];
         [self.tableView setFrame:tempTableViewFrame];
     }];
@@ -265,7 +280,7 @@ typedef NS_ENUM(int, MSActivitySection) {
     CGRect tempToolBarFrame = self.tableView.frame;
     tempToolBarFrame = CGRectMake(0, self.view.frame.size.height - 44, 320, 44);
     
-    [UIView animateWithDuration:0.1 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         [self.toolBarView setFrame:tempToolBarFrame];
         [self.tableView setFrame:tempTableViewFrame];
     }];

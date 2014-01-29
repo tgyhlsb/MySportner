@@ -8,15 +8,18 @@
 
 #import "MSRangeCell.h"
 #import "NMRangeSlider.h"
+#import "MSStyleFactory.h"
+#import "MSColorFactory.h"
 
 #define NIB_NAME @"MSRangeCell"
-#define HEIGHT 70
+#define HEIGHT 80
 
 @interface MSRangeCell()
 
 @property (weak, nonatomic) IBOutlet NMRangeSlider *rangeSlider;
 @property (weak, nonatomic) IBOutlet UILabel *lowerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *upperLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 
 @end
@@ -36,6 +39,14 @@
     self.backgroundColor = [UIColor clearColor];
     
 //    self.rangeSlider.stepValueContinuously = YES;
+    
+    [MSStyleFactory setUILabel:self.lowerLabel withStyle:MSLabelStyleCommentText];
+    [MSStyleFactory setUILabel:self.upperLabel withStyle:MSLabelStyleCommentText];
+    
+    [self setTintColor:[MSColorFactory mainColor]];
+    
+    self.descriptionLabel.text = [@"Players number" uppercaseString];
+    [MSStyleFactory setUILabel:self.descriptionLabel withStyle:MSLabelStyleCommentText];
     
     [self updateSliderLabels];
 }
@@ -106,13 +117,13 @@
     
     CGPoint lowerCenter;
     lowerCenter.x = (self.rangeSlider.lowerCenter.x + self.rangeSlider.frame.origin.x);
-    lowerCenter.y = (self.rangeSlider.center.y - 30.0f);
+    lowerCenter.y = (self.rangeSlider.center.y - 24.0f);
     self.lowerLabel.center = lowerCenter;
     self.lowerLabel.text = [NSString stringWithFormat:@"%d", (int)self.rangeSlider.lowerValue];
     
     CGPoint upperCenter;
     upperCenter.x = (self.rangeSlider.upperCenter.x + self.rangeSlider.frame.origin.x);
-    upperCenter.y = (self.rangeSlider.center.y - 30.0f);
+    upperCenter.y = (self.rangeSlider.center.y - 24.0f);
     self.upperLabel.center = upperCenter;
     self.upperLabel.text = [NSString stringWithFormat:@"%d", (int)self.rangeSlider.upperValue];
 }

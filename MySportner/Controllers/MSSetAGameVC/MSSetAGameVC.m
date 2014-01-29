@@ -455,7 +455,11 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
             return [MSPickSportCell height];
             
         case MSSetAGameSectionTextField:
-            return [MSTextFieldPickerCell height];
+            if (indexPath.row == MSSetAGameTextFieldTypeRangePlayers) {
+                return [MSRangeCell height];
+            } else {
+                return [MSTextFieldPickerCell height];
+            }
             
         default:
             return 44;

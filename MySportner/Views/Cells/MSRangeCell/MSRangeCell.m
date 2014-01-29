@@ -62,30 +62,40 @@
 {
     self.rangeSlider.maximumValue = maximumValue;
     _maximumValue = maximumValue;
+    
+    [self updateSliderLabels];
 }
 
 - (void)setMinimumValue:(float)minimumValue
 {
     _minimumValue = minimumValue;
     self.rangeSlider.minimumValue = minimumValue;
+    
+    [self updateSliderLabels];
 }
 
 - (void)setLowerValue:(float)lowerValue
 {
     _lowerValue = lowerValue;
     self.rangeSlider.lowerValue = lowerValue;
+    
+    [self updateSliderLabels];
 }
 
 - (void)setUpperValue:(float)upperValue
 {
     _upperValue = upperValue;
     self.rangeSlider.upperValue = upperValue;
+    
+    [self updateSliderLabels];
 }
 
 - (void)setStepValue:(float)stepValue
 {
     _stepValue = stepValue;
     self.rangeSlider.stepValue = stepValue;
+    
+    [self updateSliderLabels];
 }
 
 #pragma mark - Value Label update

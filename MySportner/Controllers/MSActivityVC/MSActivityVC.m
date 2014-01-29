@@ -14,6 +14,8 @@
 #import "MSColorFactory.h"
 #import "MSFontFactory.h"
 
+#define COMMENT_TEXTFIELD_MAX_LENGTH 700
+
 #define NIB_NAME @"MSActivityVC"
 
 
@@ -164,10 +166,11 @@ typedef NS_ENUM(int, MSActivitySection) {
         
         case MSActivitySectionComments:
         {
-            NSString *identifier = [MSCommentCell reusableIdentifier];
+            MSComment *comment = [[self.activity getComments] objectAtIndex:indexPath.row];
+            NSString *identifier = [MSCommentCell reusableIdentifierForCommentText:comment.content];
             MSCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
             cell.delegate = self;
-            cell.comment = [[self.activity getComments] objectAtIndex:indexPath.row];
+            cell.comment = comment;
             cell.layer.shouldRasterize = YES;
             cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
             return cell;
@@ -188,7 +191,10 @@ typedef NS_ENUM(int, MSActivitySection) {
         case MSActivitySectionInfo:
             return [MSGameProfileCell height];
         case MSActivitySectionComments:
-            return [MSCommentCell height];
+        {
+            MSComment *comment = [[self.activity getComments] objectAtIndex:indexPath.row];
+            return [MSCommentCell heightForCommentText:comment.content];
+        }
             
         default:
             return 44;
@@ -228,6 +234,19 @@ typedef NS_ENUM(int, MSActivitySection) {
         return YES;
     }
     return NO;
+}
+
+- (BOOL)textField:(UITextField *) textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    NSUInteger oldLength = [textField.text length];
+    NSUInteger replacementLength = [string length];
+    NSUInteger rangeLength = range.length;
+    
+    NSUInteger newLength = oldLength - rangeLength + replacementLength;
+    
+    BOOL returnKey = [string rangeOfString: @"\n"].location != NSNotFound;
+    
+    return newLength <= COMMENT_TEXTFIELD_MAX_LENGTH || returnKey;
 }
 
 #pragma mark - Keyboard

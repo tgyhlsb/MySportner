@@ -11,9 +11,12 @@
 #import "MSProfilePictureView.h"
 #import "UIView+MSRoundedView.h"
 #import "MSStyleFactory.h"
+#import "MSFontFactory.h"
 
 #define NIB_NAME @"MSCommentCell"
 #define HEIGHT 80
+
+#define HEIGHT_WITH_ONE_LINE_COMMENT 50
 
 @interface MSCommentCell()
 
@@ -65,15 +68,37 @@
 }
 
 
-+ (NSString *)reusableIdentifier
++ (NSString *)reusableIdentifierForCommentText:(NSString *)commentText
 {
-    return NIB_NAME;
+    CGFloat height = [MSCommentCell heightForCommentText:commentText];
+    NSString *identifier = [NSString stringWithFormat:@"%@%.0f", NIB_NAME, height];
+    return identifier;
 }
 
 + (void)registerToTableView:(UITableView *)tableView
 {
     UINib *nib = [UINib nibWithNibName:NIB_NAME bundle:Nil];
-    [tableView registerNib:nib forCellReuseIdentifier:[MSCommentCell reusableIdentifier]];
+    [MSCommentCell registerMultiHeightNib:nib toTableView:tableView];
+}
+
++ (CGFloat)heightForCommentText:(NSString *)comment
+{
+    CGSize labelSize = CGSizeMake(223.0, 99999999); // self.contentLabel.frame.width
+    CGSize textSize = [comment sizeWithFont:[MSFontFactory fontForCommentText] constrainedToSize:labelSize lineBreakMode:NSLineBreakByWordWrapping];
+//    NSLog(@"%f - %f", textSize.width, textSize.height);
+    
+    return HEIGHT_WITH_ONE_LINE_COMMENT + textSize.height;
+}
+
++ (void)registerMultiHeightNib:(UINib *)nib toTableView:(UITableView *)tableView
+{
+    NSString *fakeComment = @"";
+    for (int i = 0; i < 20; i++) {
+        NSString *identifier = [MSCommentCell reusableIdentifierForCommentText:fakeComment];
+        NSLog(@"%@",identifier);
+        [tableView registerNib:nib forCellReuseIdentifier:identifier];
+        fakeComment = [fakeComment stringByAppendingString:@"\n"];
+    }
 }
 
 

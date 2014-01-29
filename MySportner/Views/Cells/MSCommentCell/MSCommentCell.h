@@ -18,7 +18,8 @@
 
 @property (strong, nonatomic) MSComment *comment;
 
-+ (NSString *)reusableIdentifier;
++ (NSString *)reusableIdentifierForCommentText:(NSString *)commentText;
++ (CGFloat)heightForCommentText:(NSString *)comment;
 + (void)registerToTableView:(UITableView *)tableView;
 
 @end

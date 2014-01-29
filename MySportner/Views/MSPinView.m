@@ -34,8 +34,16 @@
         [self setRangeLabelFrame];
         self.rangeLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:self.rangeLabel];
+        
+        self.rangeLabel.hidden = !self.showDistance;
     }
     return self;
+}
+
+- (void)setShowDistance:(BOOL)showDistance
+{
+    _showDistance = showDistance;
+    self.rangeLabel.hidden = !showDistance;
 }
 
 - (void)setDistance:(CGFloat)distance

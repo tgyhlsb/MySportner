@@ -95,7 +95,7 @@
     NSString *fakeComment = @"";
     for (int i = 0; i < 20; i++) {
         NSString *identifier = [MSCommentCell reusableIdentifierForCommentText:fakeComment];
-        NSLog(@"%@",identifier);
+//        NSLog(@"%@",identifier);
         [tableView registerNib:nib forCellReuseIdentifier:identifier];
         fakeComment = [fakeComment stringByAppendingString:@"\n"];
     }

@@ -10,6 +10,7 @@
 
 @interface MSPinView : MKAnnotationView
 
+@property (nonatomic) BOOL showDistance;
 @property (nonatomic) CGFloat distance;
 
 - (void)setSize:(CGSize)size;

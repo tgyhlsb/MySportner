@@ -165,6 +165,7 @@
     if (!self.circleView) {
         self.circleView = [[MSPinView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
     }
+    self.circleView.showDistance = NO;
     return self.circleView;
 }
 

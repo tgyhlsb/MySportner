@@ -60,6 +60,31 @@
     [self.tableView reloadData];
 }
 
+- (void)setData:(NSArray *)data
+{
+    _data = data;
+    [self setBackgroundWithEmptyData:(!data || ![data count])];
+}
+
+- (void)setBackgroundWithEmptyData:(BOOL)empty
+{
+    if (empty) {
+        UIImage *emptyBackground = [UIImage imageNamed:@"no_activity.png"];
+        emptyBackground = [self imageWithImage:emptyBackground scaledToSize:self.tableView.bounds.size];
+        self.tableView.backgroundColor = [UIColor colorWithPatternImage:emptyBackground];
+    } else {
+        self.tableView.backgroundColor = [UIColor clearColor];
+    }
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    UIGraphicsBeginImageContextWithOptions(newSize, YES, [UIScreen mainScreen].scale);
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 + (MSActivitiesVC *)newController
 {
     MSActivitiesVC *activitiesVC = [[MSActivitiesVC alloc] initWithNibName:NIB_NAME bundle:nil];
@@ -69,7 +94,7 @@
 
 - (void)setAppearance
 {
-    self.tableView.backgroundColor = [UIColor clearColor];
+    [self setBackgroundWithEmptyData:YES];
     
     [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button.png"] forState:UIControlStateNormal];
     [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button_press.png"] forState:UIControlStateHighlighted|UIControlStateHighlighted];
@@ -87,25 +112,10 @@
 
 - (void)activitiesCallback:(NSArray *)objects error:(NSError *)error
 {
-    if (!error) {
-        NSMutableArray *objectsToFetch = [[NSMutableArray alloc] initWithCapacity:[objects count]];
-        for (MSActivity *activity in objects)
-        {
-            [objectsToFetch addObject:activity.owner];
-        }
-        [PFObject fetchAllIfNeededInBackground:objectsToFetch target:self selector:@selector(ownerCallBack:error:)];
-        self.data = [objects sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
-    } else {
-        NSLog(@"Error: %@ %@", error, [error userInfo]);
-    }
-}
-
-- (void)ownerCallBack:(NSArray *)objects error:(NSError *)error
-{
     [self hideLoadingView];
-    
     if (!error) {
         [self reloadData];
+        self.data = [objects sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
     } else {
         NSLog(@"Error: %@ %@", error, [error userInfo]);
     }
@@ -117,6 +127,7 @@
     
     [self showLoadingViewInView:self.view];
     
+    [query includeKey:@"owner"];
     [query findObjectsInBackgroundWithTarget:self
                                     selector:@selector(activitiesCallback:error:)];
 }

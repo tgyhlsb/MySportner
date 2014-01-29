@@ -78,6 +78,7 @@
 		5A31C2041842153C00868188 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C2021842153C00868188 /* Security.framework */; };
 		5A31C2051842153C00868188 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C2031842153C00868188 /* SystemConfiguration.framework */; };
 		5A34C4E31895293500CE2EF2 /* MSProfilePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A34C4E21895293500CE2EF2 /* MSProfilePictureView.m */; };
+		5A3A70EB1899518D00799DFA /* no_activity.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A3A70EA1899518D00799DFA /* no_activity.png */; };
 		5A3DE7C118412E82001054EB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3DE7C018412E82001054EB /* FacebookSDK.framework */; };
 		5A3DE7C4184133E1001054EB /* MSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3DE7C3184133E1001054EB /* MSUser.m */; };
 		5A4CE2B9187099AE0081AA1E /* MSButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4CE2B8187099AE0081AA1E /* MSButtonCell.m */; };
@@ -326,6 +327,7 @@
 		5A31C2031842153C00868188 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5A34C4E11895293500CE2EF2 /* MSProfilePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSProfilePictureView.h; path = Views/MSProfilePictureView.h; sourceTree = "<group>"; };
 		5A34C4E21895293500CE2EF2 /* MSProfilePictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSProfilePictureView.m; path = Views/MSProfilePictureView.m; sourceTree = "<group>"; };
+		5A3A70EA1899518D00799DFA /* no_activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_activity.png; sourceTree = "<group>"; };
 		5A3DE7C018412E82001054EB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		5A3DE7C2184133E1001054EB /* MSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSUser.h; path = Model/MSUser.h; sourceTree = "<group>"; };
 		5A3DE7C3184133E1001054EB /* MSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSUser.m; path = Model/MSUser.m; sourceTree = "<group>"; };
@@ -850,6 +852,7 @@
 		5AD1FC5418472AE1001D3DFE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5A3A70EA1899518D00799DFA /* no_activity.png */,
 				5AEFA8B31896B92C004B3EF7 /* pin.png */,
 				5A78B7F6189596AC0074A5B3 /* redCircle.png */,
 				5AFE689318508EAC00E40541 /* plus_button_press.png */,
@@ -1520,6 +1523,7 @@
 				5A2B1BBA184BF21100413B01 /* arrow.png in Resources */,
 				5AFE688418507BE300E40541 /* swimming(select).png in Resources */,
 				5AFE687718507BE300E40541 /* football.png in Resources */,
+				5A3A70EB1899518D00799DFA /* no_activity.png in Resources */,
 				5AFE689618508EAC00E40541 /* plus_button_press@2x.png in Resources */,
 				5ADCF238184004D300E6C8D2 /* Main.storyboard in Resources */,
 				5AFE686C18507BE300E40541 /* basketball(select).png in Resources */,

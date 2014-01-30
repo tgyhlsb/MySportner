@@ -94,7 +94,6 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 
 - (void)sportnerCell:(MSSportnerCell *)cell didInviteSportner:(MSUser *)sportner
 {
-//    [self showLoadingViewInView:nil];
     PFRelation *relation = [self.activity guestRelation];
     [relation addObject:sportner];
     [self.activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

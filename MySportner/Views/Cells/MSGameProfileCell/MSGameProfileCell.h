@@ -10,12 +10,20 @@
 #import "MSActivity.h"
 #import "MSCell.h"
 
+typedef NS_ENUM(int, MSGameProfileMode) {
+    MSGameProfileModeOwner,
+    MSGameProfileModeParticipant,
+    MSGameProfileModeOther,
+    MSGameProfileModeLoading
+};
+
 @protocol MSGameProfileCellDelegate;
 
 @interface MSGameProfileCell : MSCell
 
 @property (strong, nonatomic) id<MSGameProfileCellDelegate> delegate;
 @property (strong, nonatomic) MSActivity *activity;
+@property (nonatomic) MSGameProfileMode userMode;
 
 + (void)registerToTableView:(UITableView *)tableView;
 + (NSString *)reusableIdentifier;
@@ -26,7 +34,7 @@
 
 - (void)gameProfileCell:(MSGameProfileCell *)cell didSelectUser:(MSUser *)user;
 
-- (void)gameProfileCellShouldInviteSportners:(MSGameProfileCell *)cell;
+- (void)gameProfileCellDidTrigerActionHandler:(MSGameProfileCell *)cell;
 
 
 @end

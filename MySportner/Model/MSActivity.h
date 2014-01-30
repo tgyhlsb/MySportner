@@ -33,6 +33,11 @@
 - (PFRelation *)guestRelation;
 - (PFRelation *)participantRelation;
 
+- (void)addGuest:(MSUser *)guest WithTarget:(id)target callBack:(SEL)callBack;
+- (void)removeGuest:(MSUser *)guest WithTarget:(id)target callBack:(SEL)callBack;
+- (void)addParticipant:(MSUser *)participant WithTarget:(id)target callBack:(SEL)callBack;
+- (void)removeParticipant:(MSUser *)participant WithTarget:(id)target callBack:(SEL)callBack;
+
 - (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack;
 - (void)queryOtherParticipantsWithTarger:(id)target callBack:(SEL)callback;
 

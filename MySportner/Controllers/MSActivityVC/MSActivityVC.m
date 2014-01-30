@@ -14,6 +14,7 @@
 #import "MSColorFactory.h"
 #import "MSFontFactory.h"
 #import "MSInviteSportnersVC.h"
+#import "MBProgressHUD.h"
 
 #define COMMENT_TEXTFIELD_MAX_LENGTH 700
 
@@ -31,6 +32,8 @@ typedef NS_ENUM(int, MSActivitySection) {
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBarView;
 @property (weak, nonatomic) IBOutlet UITextField *commentTextField;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
+@property (strong, nonatomic) MSGameProfileCell *infoCell;
+@property (strong, nonatomic) MBProgressHUD *loadingView;
 
 @property (nonatomic) BOOL shouldDisplayComments;
 
@@ -155,14 +158,14 @@ typedef NS_ENUM(int, MSActivitySection) {
         case MSActivitySectionInfo:
         {
             NSString *identifier = [MSGameProfileCell reusableIdentifier];
-            MSGameProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-            cell.activity = self.activity;
-            cell.delegate = self;
+            self.infoCell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+            self.infoCell.activity = self.activity;
+            self.infoCell.delegate = self;
             
-            cell.layer.shouldRasterize = YES;
-            cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+            self.infoCell.layer.shouldRasterize = YES;
+            self.infoCell.layer.rasterizationScale = [UIScreen mainScreen].scale;
             
-            return cell;
+            return self.infoCell;
         }
         
         case MSActivitySectionComments:
@@ -209,12 +212,57 @@ typedef NS_ENUM(int, MSActivitySection) {
     [self pushToUserProfile:user];
 }
 
-- (void)gameProfileCellShouldInviteSportners:(MSGameProfileCell *)cell
+- (void)gameProfileCellDidTrigerActionHandler:(MSGameProfileCell *)cell
 {
-    MSInviteSportnersVC *destinationVC = [MSInviteSportnersVC newControler];
-    destinationVC.activity = self.activity;
-    [self.navigationController pushViewController:destinationVC animated:YES];
+    switch (cell.userMode) {
+        case MSGameProfileModeOwner:
+        {
+            MSInviteSportnersVC *destinationVC = [MSInviteSportnersVC newControler];
+            destinationVC.activity = self.activity;
+            [self.navigationController pushViewController:destinationVC animated:YES];
+            break;
+        }
+        case MSGameProfileModeParticipant:
+        {
+            self.infoCell.userMode = MSGameProfileModeLoading;
+            [self.activity removeParticipant:[MSUser currentUser] WithTarget:self callBack:@selector(didLeaveActivityWithSuccess:andError:)];
+            break;
+        }
+        case MSGameProfileModeOther:
+        {
+            self.infoCell.userMode = MSGameProfileModeLoading;
+            [self.activity addParticipant:[MSUser currentUser] WithTarget:self callBack:@selector(didJoinActivityWithSuccess:andError:)];
+            break;
+        }
+        case MSGameProfileModeLoading:
+        {
+            [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Waiting for server response..."];
+            break;
+        }
+        
+    }
 }
+
+- (void)didJoinActivityWithSuccess:(BOOL)succeed andError:(NSError *)error
+{
+    if (!error) {
+        [self.infoCell setUserMode:MSGameProfileModeParticipant];
+    } else {
+        [self.infoCell setUserMode:MSGameProfileModeOther];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
+    }
+}
+
+- (void)didLeaveActivityWithSuccess:(BOOL)succeed andError:(NSError *)error
+{
+    if (!error) {
+        [self.infoCell setUserMode:MSGameProfileModeOther];
+    } else {
+        [self.infoCell setUserMode:MSGameProfileModeParticipant];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
+    }
+}
+
 
 #pragma mark - MSCommentCellDelegate
 
@@ -326,6 +374,31 @@ typedef NS_ENUM(int, MSActivitySection) {
 - (void)closeAllResponders
 {
     [self.commentTextField resignFirstResponder];
+}
+
+#pragma mark - MBProgressHUD
+
+- (void)showLoadingViewInView:(UIView*)v
+{
+    UIView *targetV = (v ? v : self.view);
+    
+    if (!self.loadingView) {
+        self.loadingView = [[MBProgressHUD alloc] initWithView:targetV];
+        self.loadingView.minShowTime = 1.0f;
+        self.loadingView.mode = MBProgressHUDModeIndeterminate;
+        self.loadingView.removeFromSuperViewOnHide = YES;
+        self.loadingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
+    }
+    if(!self.loadingView.superview) {
+        self.loadingView.frame = targetV.bounds;
+        [targetV addSubview:self.loadingView];
+    }
+    [self.loadingView show:YES];
+}
+- (void) hideLoadingView
+{
+    if (self.loadingView.superview)
+        [self.loadingView hide:YES];
 }
 
 @end

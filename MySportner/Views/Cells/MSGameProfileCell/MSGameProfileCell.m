@@ -13,10 +13,12 @@
 #import "MSStyleFactory.h"
 #import "MSFontFactory.h"
 #import "MSProfilePictureView.h"
+#import "TKAlertCenter.h"
 
 #define HEIGHT 230
 
 #define NIB_NAME @"MSGameProfileCell"
+
 
 @interface MSGameProfileCell()
 
@@ -31,6 +33,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
 
 @end
@@ -95,20 +99,98 @@
     
     [MSStyleFactory setQBFlatButton:self.actionButton withStyle:MSFlatButtonStyleGreen];
     
-    [self updateButtonTitle];
     [self registerTapGestures];
+}
+
+- (UIActivityIndicatorView *)activityIndicatorView
+{
+    if (!_activityIndicatorView) {
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        _activityIndicatorView.color = [UIColor whiteColor];
+        _activityIndicatorView.frame = self.actionButton.frame;
+        _activityIndicatorView.hidesWhenStopped = YES;
+        [self addSubview:_activityIndicatorView];
+    }
+    
+    return _activityIndicatorView;
+}
+
+- (void)queryInfoToSetButtonTitle
+{
+    [self.actionButton setTitle:@"" forState:UIControlStateNormal];
+    if ([self.activity.owner.username  isEqualToString:[MSUser currentUser].username]) {
+        self.userMode = MSGameProfileModeOwner;
+    } else {
+        if (self.activity.guests && self.activity.participants) {
+            [self updateButtonTitle];
+        } else {
+            [self.activityIndicatorView startAnimating];
+            [self queryParticipantsAndGuests];
+        }
+    }    
 }
 
 - (void)updateButtonTitle
 {
-    [self.actionButton setTitle:@"" forState:UIControlStateNormal];
-    if (self.activity.owner.username == [MSUser currentUser].username) {
-        [self.actionButton setTitle:@"INVITE" forState:UIControlStateNormal];
-    } else {
-        PFQuery *guestQuery = [[self.activity guestRelation] query];
+    if (self.activity.guests && self.activity.participants) {
+        [self.activityIndicatorView stopAnimating];
         
+        MSUser *currentUser = [MSUser currentUser];
+        BOOL canJoin = YES;
+        for (MSUser *user in self.activity.participants) {
+            if ([user.username isEqualToString:currentUser.username]) {
+                canJoin = NO;
+            }
+        }
+        
+        self.userMode = canJoin ? MSGameProfileModeOther : MSGameProfileModeParticipant;
     }
-    
+}
+
+- (void)setUserMode:(MSGameProfileMode)userMode
+{
+    _userMode = userMode;
+    switch (userMode) {
+        case MSGameProfileModeOwner:
+        {
+            [self.activityIndicatorView stopAnimating];
+            [self.actionButton setTitle:@"INVITE" forState:UIControlStateNormal];
+            break;
+        }
+        case MSGameProfileModeParticipant:
+        {
+            [self.activityIndicatorView stopAnimating];
+            [self.actionButton setTitle:@"LEAVE" forState:UIControlStateNormal];
+            break;
+        }
+        case MSGameProfileModeOther:
+        {
+            [self.activityIndicatorView stopAnimating];
+            [self.actionButton setTitle:@"JOIN" forState:UIControlStateNormal];
+            break;
+        }
+        case MSGameProfileModeLoading:
+        {
+            [self.activityIndicatorView startAnimating];
+            [self.actionButton setTitle:@"" forState:UIControlStateNormal];
+            break;
+        }
+    }
+}
+
+
+- (void)queryParticipantsAndGuests
+{
+    [self.activity querySportnersWithTarget:self callBack:@selector(didLoadGuestsAndParticipantsWithError:)];
+}
+
+- (void)didLoadGuestsAndParticipantsWithError:(NSError *)error
+{
+    if (!error) {
+        [self updateButtonTitle];
+    } else {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
+    }
 }
 
 - (void)registerTapGestures
@@ -131,8 +213,8 @@
 }
 - (IBAction)actionButtonHandler
 {
-    if ([self.delegate respondsToSelector:@selector(gameProfileCellShouldInviteSportners:)]) {
-        [self.delegate gameProfileCellShouldInviteSportners:self];
+    if ([self.delegate respondsToSelector:@selector(gameProfileCellDidTrigerActionHandler:)]) {
+        [self.delegate gameProfileCellDidTrigerActionHandler:self];
     }
 }
 
@@ -155,6 +237,7 @@
     _activity = activity;
     
     if (activity) {
+        [self queryInfoToSetButtonTitle];
         self.titleLabel.text = activity.sport;
         self.locationLabel.text = activity.place;
         self.addressLabel.text = activity.place;

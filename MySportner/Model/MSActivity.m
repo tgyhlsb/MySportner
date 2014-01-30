@@ -164,4 +164,34 @@
     }
 }
 
+#pragma mark - Participants & Guests
+
+- (void)addGuest:(MSUser *)guest WithTarget:(id)target callBack:(SEL)callBack
+{
+    PFRelation *relation = [self guestRelation];
+    [relation addObject:guest];
+    [self saveInBackgroundWithTarget:target selector:callBack];
+}
+
+- (void)removeGuest:(MSUser *)guest WithTarget:(id)target callBack:(SEL)callBack
+{
+    PFRelation *relation = [self guestRelation];
+    [relation removeObject:guest];
+    [self saveInBackgroundWithTarget:target selector:callBack];
+}
+
+- (void)addParticipant:(MSUser *)participant WithTarget:(id)target callBack:(SEL)callBack
+{
+    PFRelation *relation = [self participantRelation];
+    [relation addObject:participant];
+    [self saveInBackgroundWithTarget:target selector:callBack];
+}
+
+- (void)removeParticipant:(MSUser *)participant WithTarget:(id)target callBack:(SEL)callBack
+{
+    PFRelation *relation = [self participantRelation];
+    [relation removeObject:participant];
+    [self saveInBackgroundWithTarget:target selector:callBack];
+}
+
 @end

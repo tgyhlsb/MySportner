@@ -11,6 +11,8 @@
 #import "MBProgressHUD.h"
 #import "MSSportnerCell.h"
 #import "MSProfileVC.h"
+#import "MSHeaderSectionView.h"
+#import "MSColorFactory.h"
 
 typedef NS_ENUM(int, MSInviteSportnerSection) {
     MSInviteSportnerSectionParticipants,
@@ -263,6 +265,19 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 80;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    MSHeaderSectionView *commentHeaderView = [[MSHeaderSectionView alloc] init];
+    [commentHeaderView setTitle:[SECTION_TITLES objectAtIndex:section]];
+    commentHeaderView.backgroundColor = [MSColorFactory backgroundColorGrayLight];
+    return commentHeaderView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 35.0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

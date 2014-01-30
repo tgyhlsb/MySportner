@@ -100,4 +100,9 @@
     return [UIFont fontWithName:@"ProximaNova-Light" size:11];
 }
 
++ (UIFont *)fontForSectionHeader
+{
+    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:12];
+}
+
 @end

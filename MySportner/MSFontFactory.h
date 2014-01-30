@@ -34,4 +34,6 @@
 + (UIFont *)fontForCommentTime;
 + (UIFont *)fontForCommentText;
 
++ (UIFont *)fontForSectionHeader;
+
 @end

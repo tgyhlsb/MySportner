@@ -26,7 +26,8 @@ typedef NS_ENUM(int, MSLabelStyle) {
     MSLabelStyleActivityDateSmall,
     MSLabelStyleCommentAuthor,
     MSLabelStyleCommentText,
-    MSLabelStyleCommentTime
+    MSLabelStyleCommentTime,
+    MSLabelStyleSectionHeader
 };
 typedef NS_ENUM(int, MSTextFieldStyle) {
     MSTextFieldStyleWhiteForm

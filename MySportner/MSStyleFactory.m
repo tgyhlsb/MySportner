@@ -154,6 +154,14 @@
 //            [label setShadowOffset:CGSizeMake(0.05, 0.45)];
             break;
         }
+        case MSLabelStyleSectionHeader:
+        {
+            label.font = [MSFontFactory fontForSectionHeader];
+            //            [label setShadowColor:[MSColorFactory grayLight]];
+            [label setTextColor:[MSColorFactory gray]];
+            //            [label setShadowOffset:CGSizeMake(0.05, 0.45)];
+            break;
+        }
             
         default:
             break;

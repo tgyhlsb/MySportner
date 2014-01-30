@@ -15,6 +15,8 @@
 #import "MSFontFactory.h"
 #import "MSInviteSportnersVC.h"
 #import "MBProgressHUD.h"
+#import "MSAttendeesCell.h"
+#import "MSHeaderSectionView.h"
 
 #define COMMENT_TEXTFIELD_MAX_LENGTH 700
 
@@ -23,7 +25,7 @@
 
 typedef NS_ENUM(int, MSActivitySection) {
     MSActivitySectionInfo,
-//    MSActivitySectionSportners,
+    MSActivitySectionSportners,
     MSActivitySectionComments
 };
 
@@ -55,6 +57,7 @@ typedef NS_ENUM(int, MSActivitySection) {
     
     [MSGameProfileCell registerToTableView:self.tableView];
     [MSCommentCell registerToTableView:self.tableView];
+    [MSAttendeesCell registerToTableView:self.tableView];
     
     self.shouldDisplayComments = NO;
     
@@ -140,7 +143,7 @@ typedef NS_ENUM(int, MSActivitySection) {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -167,7 +170,16 @@ typedef NS_ENUM(int, MSActivitySection) {
             
             return self.infoCell;
         }
-        
+            
+        case MSActivitySectionSportners:
+        {
+            NSString *identifier = [MSAttendeesCell reusableIdentifier];
+            MSAttendeesCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+            
+            return cell;
+            
+        }
+            
         case MSActivitySectionComments:
         {
             MSComment *comment = [[self.activity getComments] objectAtIndex:indexPath.row];
@@ -199,11 +211,32 @@ typedef NS_ENUM(int, MSActivitySection) {
             MSComment *comment = [[self.activity getComments] objectAtIndex:indexPath.row];
             return [MSCommentCell heightForCommentText:comment.content];
         }
+        case MSActivitySectionSportners:
+            return [MSAttendeesCell height];
             
         default:
             return 44;
     }
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == MSActivitySectionComments) {
+        MSHeaderSectionView *commentHeaderView = [[MSHeaderSectionView alloc] init];
+        [commentHeaderView setTitle:@"COMMENTS"];
+        commentHeaderView.backgroundColor = [MSColorFactory backgroundColorGrayLight];
+        return commentHeaderView;
+    } else {
+        return nil;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return (section == MSActivitySectionComments) ? 35.0 : 0.0;
+}
+
+
 
 #pragma mark MSGameProfileCellDelegate
 

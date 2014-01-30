@@ -26,5 +26,7 @@
 
 - (void)gameProfileCell:(MSGameProfileCell *)cell didSelectUser:(MSUser *)user;
 
+- (void)gameProfileCellShouldInviteSportners:(MSGameProfileCell *)cell;
+
 
 @end

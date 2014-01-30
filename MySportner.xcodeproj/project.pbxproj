@@ -37,6 +37,7 @@
 		5A0CB8041891714A0027EE58 /* NMRangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0CB7E91891714A0027EE58 /* NMRangeSlider.m */; };
 		5A0CB808189171AA0027EE58 /* MSRangeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0CB807189171AA0027EE58 /* MSRangeCell.m */; };
 		5A0CB80A189171BB0027EE58 /* MSRangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB809189171BB0027EE58 /* MSRangeCell.xib */; };
+		5A0D6F4B189A55F300C037C8 /* MSSportnersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0D6F4A189A55F300C037C8 /* MSSportnersVC.m */; };
 		5A0F9116184242AF0049BBD5 /* MSCreateAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0F9115184242AF0049BBD5 /* MSCreateAccountVC.m */; };
 		5A0F9118184242BD0049BBD5 /* MSCreateAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0F9117184242BD0049BBD5 /* MSCreateAccountVC.xib */; };
 		5A173FE21849C97D00144DB8 /* UIView+MSRoundedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A173FE11849C97D00144DB8 /* UIView+MSRoundedView.m */; };
@@ -68,6 +69,9 @@
 		5A2B1BBB184BF21100413B01 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B1BB9184BF21100413B01 /* arrow@2x.png */; };
 		5A2B1BBE184BF90A00413B01 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B1BBC184BF90A00413B01 /* Montserrat-Bold.ttf */; };
 		5A2B1BBF184BF90A00413B01 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B1BBD184BF90A00413B01 /* Montserrat-Regular.ttf */; };
+		5A2B68F2189A56CD00D82870 /* MSSportnersVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B68F1189A56CD00D82870 /* MSSportnersVC.xib */; };
+		5A2B68F5189A597A00D82870 /* MSSportnerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B68F4189A597A00D82870 /* MSSportnerCell.m */; };
+		5A2B68F7189A598C00D82870 /* MSSportnerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B68F6189A598C00D82870 /* MSSportnerCell.xib */; };
 		5A31C1F51842147D00868188 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C1F41842147D00868188 /* Parse.framework */; };
 		5A31C1F71842149100868188 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C1F61842149100868188 /* AudioToolbox.framework */; };
 		5A31C1F91842149A00868188 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C1F81842149A00868188 /* CFNetwork.framework */; };
@@ -269,6 +273,8 @@
 		5A0CB806189171AA0027EE58 /* MSRangeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSRangeCell.h; path = Views/Cells/MSRangeCell/MSRangeCell.h; sourceTree = "<group>"; };
 		5A0CB807189171AA0027EE58 /* MSRangeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSRangeCell.m; path = Views/Cells/MSRangeCell/MSRangeCell.m; sourceTree = "<group>"; };
 		5A0CB809189171BB0027EE58 /* MSRangeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSRangeCell.xib; path = Views/Cells/MSRangeCell/MSRangeCell.xib; sourceTree = "<group>"; };
+		5A0D6F49189A55F300C037C8 /* MSSportnersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSportnersVC.h; path = Controllers/MSSportnersVC/MSSportnersVC.h; sourceTree = "<group>"; };
+		5A0D6F4A189A55F300C037C8 /* MSSportnersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSportnersVC.m; path = Controllers/MSSportnersVC/MSSportnersVC.m; sourceTree = "<group>"; };
 		5A0F9114184242AF0049BBD5 /* MSCreateAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCreateAccountVC.h; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.h; sourceTree = "<group>"; };
 		5A0F9115184242AF0049BBD5 /* MSCreateAccountVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCreateAccountVC.m; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.m; sourceTree = "<group>"; };
 		5A0F9117184242BD0049BBD5 /* MSCreateAccountVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSCreateAccountVC.xib; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.xib; sourceTree = "<group>"; };
@@ -316,6 +322,10 @@
 		5A2B1BB9184BF21100413B01 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = SOURCE_ROOT; };
 		5A2B1BBC184BF90A00413B01 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		5A2B1BBD184BF90A00413B01 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		5A2B68F1189A56CD00D82870 /* MSSportnersVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSSportnersVC.xib; path = Controllers/MSSportnersVC/MSSportnersVC.xib; sourceTree = "<group>"; };
+		5A2B68F3189A597A00D82870 /* MSSportnerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSportnerCell.h; path = Views/Cells/MSSportnerCell/MSSportnerCell.h; sourceTree = "<group>"; };
+		5A2B68F4189A597A00D82870 /* MSSportnerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSportnerCell.m; path = Views/Cells/MSSportnerCell/MSSportnerCell.m; sourceTree = "<group>"; };
+		5A2B68F6189A598C00D82870 /* MSSportnerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSSportnerCell.xib; path = Views/Cells/MSSportnerCell/MSSportnerCell.xib; sourceTree = "<group>"; };
 		5A31C1F41842147D00868188 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		5A31C1F61842149100868188 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5A31C1F81842149A00868188 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -735,6 +745,26 @@
 			path = TKAlertCenter;
 			sourceTree = "<group>";
 		};
+		5A2B68F8189A599200D82870 /* MSSportnerCell */ = {
+			isa = PBXGroup;
+			children = (
+				5A2B68F3189A597A00D82870 /* MSSportnerCell.h */,
+				5A2B68F4189A597A00D82870 /* MSSportnerCell.m */,
+				5A2B68F6189A598C00D82870 /* MSSportnerCell.xib */,
+			);
+			name = MSSportnerCell;
+			sourceTree = "<group>";
+		};
+		5A2B68F9189A59A200D82870 /* MSSportnersVC */ = {
+			isa = PBXGroup;
+			children = (
+				5A0D6F49189A55F300C037C8 /* MSSportnersVC.h */,
+				5A0D6F4A189A55F300C037C8 /* MSSportnersVC.m */,
+				5A2B68F1189A56CD00D82870 /* MSSportnersVC.xib */,
+			);
+			name = MSSportnersVC;
+			sourceTree = "<group>";
+		};
 		5A4CE2BC187099CE0081AA1E /* MSButtonCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1034,6 +1064,7 @@
 				5ADCF2861840141D00E6C8D2 /* MSProfileVC */,
 				5A85E8F01872CCD300F5E8F9 /* MSLocationPickerVC */,
 				5A78B7EF189575AE0074A5B3 /* MSPickLocalisationVC */,
+				5A2B68F9189A59A200D82870 /* MSSportnersVC */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1082,6 +1113,7 @@
 				5A653B131894200B00E2B8AE /* MSCommentCell */,
 				5A653B14189427D900E2B8AE /* MSCell.h */,
 				5A653B15189427D900E2B8AE /* MSCell.m */,
+				5A2B68F8189A599200D82870 /* MSSportnerCell */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1449,6 +1481,7 @@
 				5A29CAF018491F82002A8B60 /* selected.png in Resources */,
 				5AFE687218507BE300E40541 /* cycle@2x.png in Resources */,
 				5AFE688218507BE300E40541 /* rugby@2x.png in Resources */,
+				5A2B68F2189A56CD00D82870 /* MSSportnersVC.xib in Resources */,
 				5A0CB7F61891714A0027EE58 /* slider-default7-track.png in Resources */,
 				5A85E8F71872D01300F5E8F9 /* MSLocationCell.xib in Resources */,
 				5AFE43F818426CD4001376C7 /* MSBigSportCell.xib in Resources */,
@@ -1496,6 +1529,7 @@
 				5A0CB7F51891714A0027EE58 /* slider-default7-handle@2x.png in Resources */,
 				5ADCF2DA1840BDBB00E6C8D2 /* MSSmallSportCell.xib in Resources */,
 				5ADCF2C51840AE0800E6C8D2 /* MSActivityVC.xib in Resources */,
+				5A2B68F7189A598C00D82870 /* MSSportnerCell.xib in Resources */,
 				5A0CB7F71891714A0027EE58 /* slider-default7-track@2x.png in Resources */,
 				5AFE688118507BE300E40541 /* rugby(select)@2x.png in Resources */,
 				5AFE688718507BE300E40541 /* tennis.png in Resources */,
@@ -1613,6 +1647,7 @@
 				5A23BB08186CD1BD00FFF0E0 /* MSFacebookFriendCell.m in Sources */,
 				5AEFA8B21896B580004B3EF7 /* MSPinView.m in Sources */,
 				5A29CAED18491F4D002A8B60 /* RatingView.m in Sources */,
+				5A0D6F4B189A55F300C037C8 /* MSSportnersVC.m in Sources */,
 				5A1B73731844AB6200555FE4 /* MZFormSheetSegue.m in Sources */,
 				5A1B73771844AC2700555FE4 /* MSLoginFormVC.m in Sources */,
 				5AFE44071842714D001376C7 /* MSFindFriendsVC.m in Sources */,
@@ -1622,6 +1657,7 @@
 				5A0F9116184242AF0049BBD5 /* MSCreateAccountVC.m in Sources */,
 				5ADCF3111840F6A300E6C8D2 /* MSFourSquareParser.m in Sources */,
 				5A34C4E31895293500CE2EF2 /* MSProfilePictureView.m in Sources */,
+				5A2B68F5189A597A00D82870 /* MSSportnerCell.m in Sources */,
 				5A1B73741844AB6200555FE4 /* UIImage+Additional.m in Sources */,
 				5A29E32E1879ACE9008A8919 /* TKAlertCenter.m in Sources */,
 				5ADCF231184004D300E6C8D2 /* main.m in Sources */,

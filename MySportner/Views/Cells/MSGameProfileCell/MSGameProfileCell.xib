@@ -80,6 +80,9 @@
                         <state key="normal" title="Button">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="actionButtonHandler" destination="9S1-t5-ahW" eventType="touchUpInside" id="pLu-es-MyK"/>
+                        </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6r6-xV-Wk7" customClass="MSProfilePictureView">
                         <rect key="frame" x="140" y="132" width="22" height="22"/>

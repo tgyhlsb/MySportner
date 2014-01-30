@@ -43,6 +43,8 @@
 
 - (void)updateUI
 {
+    [self.fbView removeFromSuperview];
+    [self.imageView removeFromSuperview];
     if (!self.user.image) {
         if (self.user.imageFile) {
             [self.user requestImageWithTarget:self CallBack:@selector(imageDidLoad)];
@@ -50,13 +52,11 @@
             self.fbView = [[FBProfilePictureView alloc] initWithProfileID:self.user.facebookID pictureCropping:FBProfilePictureCroppingSquare];
             self.fbView.frame = self.bounds;
             [self addSubview:self.fbView];
-            [self.imageView removeFromSuperview];
         }
     } else {
         self.imageView = [[UIImageView alloc] initWithImage:self.user.image];
         self.imageView.frame = self.bounds;
         [self addSubview:self.imageView];
-        [self.fbView removeFromSuperview];
     }
 }
 

@@ -87,7 +87,7 @@
         self.roundView.backgroundColor = [MSColorFactory whiteLight];
         self.titleLabel.textColor = [MSColorFactory whiteLight];
         self.ownerNameLabel.textColor = [MSColorFactory whiteLight];
-        self.ownerNameLabel.textColor = [MSColorFactory whiteLight];
+        self.placeLabel.textColor = [MSColorFactory whiteLight];
     } else {
         if (self.oddIndex) {
             self.backgroundColor = [MSColorFactory backgroundColorGrayLight];

@@ -119,6 +119,12 @@
         [self.delegate gameProfileCell:self didSelectUser:self.activity.owner];
     }
 }
+- (IBAction)actionButtonHandler
+{
+    if ([self.delegate respondsToSelector:@selector(gameProfileCellShouldInviteSportners:)]) {
+        [self.delegate gameProfileCellShouldInviteSportners:self];
+    }
+}
 
 - (void)setViewWithDate:(NSDate *)date
 {

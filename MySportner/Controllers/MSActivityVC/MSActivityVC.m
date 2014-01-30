@@ -13,6 +13,7 @@
 #import "MSProfileVC.h"
 #import "MSColorFactory.h"
 #import "MSFontFactory.h"
+#import "MSSportnersVC.h"
 
 #define COMMENT_TEXTFIELD_MAX_LENGTH 700
 
@@ -206,6 +207,12 @@ typedef NS_ENUM(int, MSActivitySection) {
 - (void)gameProfileCell:(MSGameProfileCell *)cell didSelectUser:(MSUser *)user
 {
     [self pushToUserProfile:user];
+}
+
+- (void)gameProfileCellShouldInviteSportners:(MSGameProfileCell *)cell
+{
+    MSSportnersVC *destinationVC = [MSSportnersVC newControler];
+    [self.navigationController pushViewController:destinationVC animated:YES];
 }
 
 #pragma mark - MSCommentCellDelegate

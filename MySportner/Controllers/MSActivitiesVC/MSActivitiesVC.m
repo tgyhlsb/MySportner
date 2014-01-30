@@ -114,8 +114,8 @@
 {
     [self hideLoadingView];
     if (!error) {
-        [self reloadData];
         self.data = [objects sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
+        [self reloadData];
     } else {
         NSLog(@"Error: %@ %@", error, [error userInfo]);
     }

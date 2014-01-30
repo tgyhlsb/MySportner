@@ -86,6 +86,20 @@
             button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
             break;
         }
+        case MSFlatButtonStyleAndroidWhite:
+        {
+            button.faceColor = [UIColor whiteColor];
+            button.sideColor = [MSColorFactory mainColor];
+            button.titleLabel.font = [MSFontFactory fontForCellSportTitle];
+            [button setTitleShadowColor:[MSColorFactory mainColorShadow] forState:UIControlStateNormal];
+            button.titleLabel.shadowOffset = CGSizeMake(0.05, 0.45);
+            [button setTitleColor:[MSColorFactory mainColor] forState:UIControlStateNormal];
+            button.backgroundColor = [UIColor clearColor];
+            button.radius = 0;
+            button.depth = 0.0f;
+            button.margin = 2.0f;
+            break;
+        }
             
         default:
             break;

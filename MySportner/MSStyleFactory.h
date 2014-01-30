@@ -17,7 +17,8 @@ typedef NS_ENUM(int, MSFlatButtonStyle) {
     MSFlatButtonStyleRoundedGreen,
     MSFlatButtonStyleWhite,
     MSFlatButtonStyleDrawerMenu,
-    MSFlatButtonStyleDrawerMenuLight
+    MSFlatButtonStyleDrawerMenuLight,
+    MSFlatButtonStyleAndroidWhite
 };
 typedef NS_ENUM(int, MSLabelStyle) {
     MSLabelStyleUserName,

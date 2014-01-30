@@ -15,10 +15,12 @@
 #import "MSChooseSportsVC.h"
 #import "MSProfilePictureView.h"
 #import "TKAlertCenter.h"
+#import "QBFlatButton.h"
+#import "MSStyleFactory.h"
 
 #define NIB_NAME @"MSProfileVC"
 
-#define COVER_BLUR_HEIGHT 140
+#define COVER_BLUR_HEIGHT 160
 
 typedef NS_ENUM(int, MSProfileTableViewMode) {
     MSProfileTableViewModeActivities,
@@ -33,6 +35,8 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 @property (weak, nonatomic) IBOutlet MSProfilePictureView *profilePictureView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet QBFlatButton *activitiesButton;
+@property (weak, nonatomic) IBOutlet QBFlatButton *sportnersButton;
 
 @property (strong, nonatomic) NSArray *activities;
 @property (strong, nonatomic) NSArray *sportners;
@@ -47,29 +51,80 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 {
     [super viewDidLoad];
     
-    [self queryActivities];
-    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
     [MSActivityCell registerToTableview:self.tableView];
     
-    self.tableViewMode = MSProfileTableViewModeActivities;
-    
     [self setAppearance];
     [self reloadCoverPictureView];
+    
+    self.tableViewMode = MSProfileTableViewModeActivities;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self queryActivities];
+    
+    [self setNormalNavigationBar];
+    self.navigationItem.title = [[self.user fullName] uppercaseString];
+    //[self setTranslucentNavigationBar];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self setNormalNavigationBar];
+}
+
+- (void)reloadData
+{
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)queryActivities
 {
-    if (!self.user.activities) {
-        [self.user queryActivitiesWithTarget:self callBack:@selector(didFetchUserActivities:error:)];
-    }
+    [self.user queryActivitiesWithTarget:self callBack:@selector(didFetchUserActivities:error:)];
 }
 
 - (void)querySportners
 {
     
+}
+
+- (void)setTableViewMode:(MSProfileTableViewMode)tableViewMode
+{
+    switch (tableViewMode) {
+        case MSProfileTableViewModeActivities:
+        {
+            self.activitiesButton.sideColor = [MSColorFactory mainColor];
+            [self.activitiesButton setTitleColor:[MSColorFactory mainColor] forState:UIControlStateNormal];
+            self.sportnersButton.sideColor = [UIColor whiteColor];
+            [self.sportnersButton setTitleColor:[MSColorFactory grayDark] forState:UIControlStateNormal];
+            break;
+        }
+        case MSProfileTableViewModeSportners:
+        {
+            self.activitiesButton.sideColor = [UIColor whiteColor];
+            [self.activitiesButton setTitleColor:[MSColorFactory grayDark] forState:UIControlStateNormal];
+            self.sportnersButton.sideColor = [MSColorFactory mainColor];
+            [self.sportnersButton setTitleColor:[MSColorFactory mainColor] forState:UIControlStateNormal];
+            break;
+        }
+    }
+    [self.activitiesButton setNeedsDisplay];
+    [self.sportnersButton setNeedsDisplay];
+    
+    if (_tableViewMode != tableViewMode) {
+        _tableViewMode = tableViewMode;
+        [self reloadData];
+    } else {
+        _tableViewMode = tableViewMode;
+    }
 }
 
 - (void)setAppearance
@@ -79,6 +134,11 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     self.tableView.backgroundColor = [UIColor clearColor];
     
     self.locationLabel.textColor = [MSColorFactory whiteLight];
+    
+    [MSStyleFactory setQBFlatButton:self.activitiesButton withStyle:MSFlatButtonStyleAndroidWhite];
+    [self.activitiesButton setTitle:@"ACTIVITES" forState:UIControlStateNormal];
+    [MSStyleFactory setQBFlatButton:self.sportnersButton withStyle:MSFlatButtonStyleAndroidWhite];
+    [self.sportnersButton setTitle:@"SPORTNERS" forState:UIControlStateNormal];
     
     self.userNameLabel.textColor = [MSColorFactory whiteLight];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showSportChooser)];
@@ -134,27 +194,18 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     self.coverPictureView.image = [image applyLightEffectAtFrame:frame];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+#pragma mark - Handlers
+
+- (IBAction)activitiesButtonHandler:(QBFlatButton *)sender
 {
-    [super viewWillAppear:animated];
-    
-    [self setNormalNavigationBar];
-    self.navigationItem.title = [[self.user fullName] uppercaseString];
-    //[self setTranslucentNavigationBar];
+    self.tableViewMode = MSProfileTableViewModeActivities;
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (IBAction)sportnersButtonHandler:(QBFlatButton *)sender
 {
-    [super viewWillDisappear:animated];
-    
-    [self setNormalNavigationBar];
+    self.tableViewMode = MSProfileTableViewModeSportners;
 }
 
-- (void)setTableViewMode:(MSProfileTableViewMode)tableViewMode
-{
-    _tableViewMode = tableViewMode;
-    [self.tableView reloadData];
-}
 
 #pragma mark - PARSE Backend
 
@@ -162,7 +213,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 {
     if (!error) {
         self.activities = activities;
-        [self.tableView reloadData];
+        [self reloadData];
     } else {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Could not load activities"];
     }
@@ -211,7 +262,8 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
         }
         case MSProfileTableViewModeSportners:
         {
-            
+            UITableViewCell *cell = [[UITableViewCell alloc] init];
+            return cell;
         }
             
         default:

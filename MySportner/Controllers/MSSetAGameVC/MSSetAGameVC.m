@@ -151,8 +151,6 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
         self.activity.sport = self.sportCell.sport;
         self.activity.place = self.locationTextField.text;
         self.activity.owner = [MSUser currentUser];
-        self.activity.guests = [[NSArray alloc] init];
-        self.activity.participants = [[NSArray alloc] init];
         self.activity.chat = [[MSChat alloc] init];
         [[self.activity participantRelation] addObject:[MSUser currentUser]];
         

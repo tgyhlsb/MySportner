@@ -144,6 +144,7 @@
         for (MSUser *participant in self.participants) {
             [userNames addObject:participant.username];
         }
+        [userNames addObject:[MSUser currentUser].username];
         
         PFQuery *otherSportnersQuery = [MSUser query];
         [otherSportnersQuery whereKey:@"username" notContainedIn:userNames];

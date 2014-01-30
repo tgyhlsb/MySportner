@@ -94,6 +94,7 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 
 - (void)sportnerCell:(MSSportnerCell *)cell didInviteSportner:(MSUser *)sportner
 {
+    [self showLoadingViewInView:self.view];
     PFRelation *relation = [self.activity guestRelation];
     [relation addObject:sportner];
     [self.activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -114,7 +115,6 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
         self.activity.guests = tempGuests;
 
         [self moveSportnerCellToGuestSection:senderCell];
-//        [self reloadData];
     } else {
         NSString *message = [NSString stringWithFormat:@"Failed to invite %@", [senderCell.sportner fullName]];
         [[TKAlertCenter defaultCenter] postAlertWithMessage:message];
@@ -134,7 +134,7 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 
 - (void)sportnerCell:(MSSportnerCell *)cell didUninviteSportner:(MSUser *)sportner
 {
-//    [self showLoadingViewInView:nil];
+    [self showLoadingViewInView:self.view];
     PFRelation *relation = [self.activity guestRelation];
     [relation removeObject:sportner];
     [self.activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -289,7 +289,7 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
     
     if (!self.loadingView) {
         self.loadingView = [[MBProgressHUD alloc] initWithView:targetV];
-        self.loadingView.minShowTime = 1.0f;
+        self.loadingView.minShowTime = 0.0f;
         self.loadingView.mode = MBProgressHUDModeIndeterminate;
         self.loadingView.removeFromSuperViewOnHide = YES;
         self.loadingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];

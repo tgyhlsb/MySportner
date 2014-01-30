@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) FBProfilePictureView *fbView;
 @property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
@@ -26,6 +27,39 @@
         // Initialization code
     }
     return self;
+}
+
+- (UIActivityIndicatorView *)activityIndicatorView
+{
+    if (!_activityIndicatorView) {
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        _activityIndicatorView.color = [UIColor blackColor];
+        _activityIndicatorView.frame = self.bounds;
+        _activityIndicatorView.hidesWhenStopped = YES;
+        [self addSubview:_activityIndicatorView];
+    }
+
+    return _activityIndicatorView;
+}
+
+- (FBProfilePictureView *)fbView
+{
+    if (!_fbView) {
+        _fbView = [[FBProfilePictureView alloc] initWithProfileID:Nil pictureCropping:FBProfilePictureCroppingSquare];
+        _fbView.frame = self.bounds;
+        [self addSubview:_fbView];
+    }
+    return _fbView;
+}
+
+- (UIImageView *)imageView
+{
+    if (!_imageView) {
+        _imageView = [[UIImageView alloc] init];
+        _imageView.frame = self.bounds;
+        [self addSubview:_imageView];
+    }
+    return _imageView;
 }
 
 - (void)awakeFromNib
@@ -43,20 +77,21 @@
 
 - (void)updateUI
 {
-    [self.fbView removeFromSuperview];
-    [self.imageView removeFromSuperview];
+    [self.fbView setHidden:YES];
+    [self.imageView setHidden:YES];
+    [self.activityIndicatorView startAnimating];
     if (!self.user.image) {
         if (self.user.imageFile) {
             [self.user requestImageWithTarget:self CallBack:@selector(imageDidLoad)];
         } else  {
-            self.fbView = [[FBProfilePictureView alloc] initWithProfileID:self.user.facebookID pictureCropping:FBProfilePictureCroppingSquare];
-            self.fbView.frame = self.bounds;
-            [self addSubview:self.fbView];
+            self.fbView.profileID = self.user.facebookID;
+            self.fbView.hidden = NO;
+            [self.activityIndicatorView stopAnimating];
         }
     } else {
-        self.imageView = [[UIImageView alloc] initWithImage:self.user.image];
-        self.imageView.frame = self.bounds;
-        [self addSubview:self.imageView];
+        self.imageView.image = self.user.image;
+        self.imageView.hidden = NO;
+        [self.activityIndicatorView stopAnimating];
     }
 }
 

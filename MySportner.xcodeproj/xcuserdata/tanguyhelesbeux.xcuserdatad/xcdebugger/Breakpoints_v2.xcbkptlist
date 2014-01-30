@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSSetAGameVC/MSSetAGameVC.m"
-            timestampString = "412643166.690197"
+            timestampString = "412775446.896202"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "-timePickerValueDidChange"
             landmarkType = "5">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSSetAGameVC/MSSetAGameVC.m"
-            timestampString = "412643166.690197"
+            timestampString = "412775446.896202"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
             landmarkName = "-dayPickerValueDidChange"
             landmarkType = "5">
          </BreakpointContent>
@@ -195,13 +195,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MySportner/Controllers/MSSportnersVC/MSSportnersVC.m"
-            timestampString = "412771503.936316"
+            filePath = "MySportner/Controllers/MSSportnersVC/MSInviteSportnersVC.m"
+            timestampString = "412775708.708298"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "-sportnersCallback:error:"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-sportnerCell:didTrigerActionWithSportner:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

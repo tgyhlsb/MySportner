@@ -60,6 +60,16 @@
     self.placeLabel.text = @"Place, country";
 }
 
+- (void)setActionButtonHidden:(BOOL)hidden
+{
+    self.actionButton.hidden = hidden;
+}
+
+- (void)setActionButtonTitle:(NSString *)title
+{
+    [self.actionButton setTitle:title forState:UIControlStateNormal];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     // do nothing
@@ -103,8 +113,8 @@
 
 - (IBAction)actionButtonHandler
 {
-    if ([self.delegate respondsToSelector:@selector(sportnerCell:didInviteSportner:)]) {
-        [self.delegate sportnerCell:self didInviteSportner:self.sportner];
+    if ([self.delegate respondsToSelector:@selector(sportnerCell:didTrigerActionWithSportner:)]) {
+        [self.delegate sportnerCell:self didTrigerActionWithSportner:self.sportner];
     }
 }
 

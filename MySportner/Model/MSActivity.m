@@ -72,4 +72,14 @@
     return [self.chat getMessages];
 }
 
+- (PFRelation *)guestRelation
+{
+    return [self relationforKey:@"guest"];
+}
+
+- (PFRelation *)participantRelation
+{
+    return [self relationforKey:@"participant"];
+}
+
 @end

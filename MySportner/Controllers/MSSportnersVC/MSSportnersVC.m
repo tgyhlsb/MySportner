@@ -7,11 +7,10 @@
 //
 
 #import "MSSportnersVC.h"
-#import "MSSportnerCell.h"
 #import "MBProgressHUD.h"
 #import "MSProfileVC.h"
 
-@interface MSSportnersVC () <UITableViewDelegate, UITableViewDataSource, MSSportnerCellDelegate>
+@interface MSSportnersVC () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) MBProgressHUD *loadingView;
 
@@ -119,14 +118,9 @@
 
 #pragma mark - MSSportnerCellDelegate
 
-- (void)sportnerCell:(MSSportnerCell *)cell didInviteSportner:(MSUser *)sportner
+- (void)sportnerCell:(MSSportnerCell *)cell didTrigerActionWithSportner:(MSUser *)sportner
 {
-    [self showLoadingViewInView:self.tableView];
-    double delayInSeconds = 1.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self hideLoadingView];
-    });
+    
 }
 
 - (void)sportnerCell:(MSSportnerCell *)cell didUninviteSportner:(MSUser *)sportner

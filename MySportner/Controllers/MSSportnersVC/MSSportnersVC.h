@@ -7,9 +7,15 @@
 //
 
 #import "MSCenterController.h"
+#import "MSSportnerCell.h"
 
-@interface MSSportnersVC : MSCenterController
+@interface MSSportnersVC : MSCenterController <MSSportnerCellDelegate>
+
 
 + (MSSportnersVC *)newControler;
+
+
+- (void)hideLoadingView;
+- (void)showLoadingViewInView:(UIView*)v;
 
 @end

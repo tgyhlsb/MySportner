@@ -30,6 +30,8 @@
 @property (strong, nonatomic) MSChat *chat;
 
 
+- (PFRelation *)guestRelation;
+- (PFRelation *)participantRelation;
 
 + (NSString *)parseClassName;
 

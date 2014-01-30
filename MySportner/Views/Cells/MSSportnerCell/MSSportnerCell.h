@@ -25,11 +25,13 @@
 
 - (void)setAppearanceWithOddIndex:(BOOL)oddIndex;
 
+- (void)setActionButtonHidden:(BOOL)hidden;
+- (void)setActionButtonTitle:(NSString *)title;
+
 @end
 
 @protocol MSSportnerCellDelegate <NSObject>
 
-- (void)sportnerCell:(MSSportnerCell *)cell didInviteSportner:(MSUser *)sportner;
-- (void)sportnerCell:(MSSportnerCell *)cell didUninviteSportner:(MSUser *)sportner;
+- (void)sportnerCell:(MSSportnerCell *)cell didTrigerActionWithSportner:(MSUser *)sportner;
 
 @end

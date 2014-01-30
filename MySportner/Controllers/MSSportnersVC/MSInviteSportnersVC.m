@@ -25,8 +25,6 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) MBProgressHUD *loadingView;
 
-@property (strong, nonatomic) NSArray *participants;
-@property (strong, nonatomic) NSArray *guestSportners;
 @property (strong, nonatomic) NSArray *allSportners;
 
 @end
@@ -49,9 +47,23 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
     
     self.title = @"INVITE SPORTNERS";
     
-    [self querySportners];
+    if (self.activity.guests && self.activity.participants) {
+        [self queryOtherSportners];
+    } else {
+        [self queryParticipantsAndGuests];
+    }
     
     [MSSportnerCell registerToTableview:self.tableView];
+}
+
+- (void)queryParticipantsAndGuests
+{
+    [self.activity querySportnersWithTarget:self callBack:@selector(didLoadGuestsAndParticipantsWithError:)];
+}
+
+- (void)queryOtherSportners
+{
+    [self.activity queryOtherParticipantsWithTarger:self callBack:@selector(didLoadOtherSportners:withError:)];
 }
 
 - (void)reloadData
@@ -98,9 +110,9 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
         [tempAllSportners removeObject:senderCell.sportner];
         self.allSportners = tempAllSportners;
         
-        NSMutableArray *tempGuests = [self.guestSportners mutableCopy];
+        NSMutableArray *tempGuests = [self.activity.guests mutableCopy];
         [tempGuests insertObject:senderCell.sportner atIndex:0];
-        self.guestSportners = tempGuests;
+        self.activity.guests = tempGuests;
 
         [self moveSportnerCellToGuestSection:senderCell];
 //        [self reloadData];
@@ -139,9 +151,9 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
         [tempAllSportners insertObject:senderCell.sportner atIndex:0];
         self.allSportners = tempAllSportners;
         
-        NSMutableArray *tempGuests = [self.guestSportners mutableCopy];
+        NSMutableArray *tempGuests = [self.activity.guests mutableCopy];
         [tempGuests removeObject:senderCell.sportner];
-        self.guestSportners = tempGuests;
+        self.activity.guests = tempGuests;
         [self moveSportnerCellToOtherSportnersSection:senderCell];
     } else {
         NSString *message = [NSString stringWithFormat:@"Failed to cancel %@ invitation", [senderCell.sportner fullName]];
@@ -160,71 +172,27 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
     [cell setAppearanceWithOddIndex:!nextCell.oddIndex];
 }
 
-#pragma mark - PARSE Backend
+#pragma mark - MSActivity Callbacks
 
-- (void)querySportners
-{
-    [self showLoadingViewInView:self.view];
-    
-    PFQuery *participantQuery = [[self.activity participantRelation] query];
-    [participantQuery findObjectsInBackgroundWithTarget:self
-                                         selector:@selector(participantsCallback:error:)];
-}
-
-- (void)participantsCallback:(NSArray *)objects error:(NSError *)error
+- (void)didLoadGuestsAndParticipantsWithError:(NSError *)error
 {
     if (!error) {
-        self.participants = objects;
-        
-        PFQuery *guestQuery = [[self.activity guestRelation] query];
-        [guestQuery findObjectsInBackgroundWithTarget:self
-                                             selector:@selector(guestsCallback:error:)];
+        [self.activity queryOtherParticipantsWithTarger:self callBack:@selector(didLoadOtherSportners:withError:)];
     } else {
-        NSLog(@"Error: %@ %@", error, [error userInfo]);
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
     }
 }
 
-- (void)guestsCallback:(NSArray *)objects error:(NSError *)error
+- (void)didLoadOtherSportners:(NSArray *)objects withError:(NSError *)error
 {
     if (!error) {
-        self.guestSportners = objects;
-//        NSMutableArray *guestAndParticipants = [self.participants mutableCopy];
-//        [guestAndParticipants addObjectsFromArray:self.guestSportners];
-//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", guestAndParticipants];
-//        BOOL result = [predicate evaluateWithObject:[self.participants lastObject]];
-//        PFQuery *allSportnersQuery = [PFQuery queryWithClassName:@"_USER" predicate:predicate];
-        
-        
-        NSMutableArray *userNames = [[NSMutableArray alloc] initWithCapacity:([self.guestSportners count] + [self.participants count])];
-        for (MSUser *guest in self.guestSportners) {
-            [userNames addObject:guest.username];
-        }
-        for (MSUser *participant in self.participants) {
-            [userNames addObject:participant.username];
-        }
-        
-        PFQuery *otherSportnersQuery = [MSUser query];
-        [otherSportnersQuery whereKey:@"username" notContainedIn:userNames];
-        [otherSportnersQuery findObjectsInBackgroundWithTarget:self
-                                                    selector:@selector(sportnersCallback:error:)];
-    } else {
-        NSLog(@"Error: %@ %@", error, [error userInfo]);
-    }
-}
-     
-- (void)sportnersCallback:(NSArray *)objects error:(NSError *)error
-{
-    [self hideLoadingView];
-    if (!error) {
-        NSMutableArray *tempObjects = [objects mutableCopy];
-//        [tempObjects removeObjectsInArray:self.participants];
-//        [tempObjects removeObjectsInArray:self.guestSportners];
-        self.allSportners = tempObjects;
+        self.allSportners = objects;
         [self reloadData];
     } else {
-        NSLog(@"Error: %@ %@", error, [error userInfo]);
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
     }
 }
+
 
 #pragma mark - UITableviewDatasource
 
@@ -237,9 +205,9 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 {
     switch (section) {
         case MSInviteSportnerSectionParticipants:
-            return [self.participants count];
+            return [self.activity.participants count];
         case MSInviteSportnerSectionGuests:
-            return [self.guestSportners count];
+            return [self.activity.guests count];
         case MSInviteSportnerSectionAllSportners:
             return [self.allSportners count];
             
@@ -259,14 +227,14 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
     switch (indexPath.section) {
         case MSInviteSportnerSectionParticipants:
         {
-            MSUser *sportner = [self.participants objectAtIndex:indexPath.row];
+            MSUser *sportner = [self.activity.participants objectAtIndex:indexPath.row];
             cell.sportner = sportner;
             [cell setActionButtonHidden:YES];
             break;
         }
         case MSInviteSportnerSectionGuests:
         {
-            MSUser *sportner = [self.guestSportners objectAtIndex:indexPath.row];
+            MSUser *sportner = [self.activity.guests objectAtIndex:indexPath.row];
             cell.sportner = sportner;
             [cell setActionButtonHidden:NO];
             [cell setActionButtonTitle:@"CANCEL"];
@@ -305,7 +273,7 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MSUser *sportner = [self.guestSportners objectAtIndex:indexPath.row];
+    MSUser *sportner = [self.activity.guests objectAtIndex:indexPath.row];
     
     MSProfileVC *destinationVC = [MSProfileVC newController];
     destinationVC.hasDirectAccessToDrawer = NO;

@@ -33,6 +33,9 @@
 - (PFRelation *)guestRelation;
 - (PFRelation *)participantRelation;
 
+- (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack;
+- (void)queryOtherParticipantsWithTarger:(id)target callBack:(SEL)callback;
+
 + (NSString *)parseClassName;
 
 - (NSComparisonResult)compareWithCreationDate:(MSActivity *)otherActivity;

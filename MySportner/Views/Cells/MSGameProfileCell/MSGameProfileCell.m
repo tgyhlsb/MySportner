@@ -66,8 +66,6 @@
 
 - (void)awakeFromNib
 {
-//    self.contentView.backgroundColor = [UIColor clearColor];
-//    self.backgroundView.backgroundColor = [UIColor clearColor];
     self.backgroundColor = [MSColorFactory backgroundColorGrayLight];
     
     self.roundedView.backgroundColor = [MSColorFactory redLight];
@@ -95,10 +93,22 @@
     [MSStyleFactory setUILabel:self.timeLabel withStyle:MSLabelStyleActivityDateBig];
     [self.timeLabel setFont:[MSFontFactory fontForGameProfileTime]];
     
-    [self.actionButton setTitle:@"INVITE" forState:UIControlStateNormal];
     [MSStyleFactory setQBFlatButton:self.actionButton withStyle:MSFlatButtonStyleGreen];
     
+    [self updateButtonTitle];
     [self registerTapGestures];
+}
+
+- (void)updateButtonTitle
+{
+    [self.actionButton setTitle:@"" forState:UIControlStateNormal];
+    if (self.activity.owner.username == [MSUser currentUser].username) {
+        [self.actionButton setTitle:@"INVITE" forState:UIControlStateNormal];
+    } else {
+        PFQuery *guestQuery = [[self.activity guestRelation] query];
+        
+    }
+    
 }
 
 - (void)registerTapGestures

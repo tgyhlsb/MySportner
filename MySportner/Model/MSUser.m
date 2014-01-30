@@ -9,6 +9,7 @@
 #import "MSUser.h"
 #import "MSSport.h"
 #import <Parse/PFObject+Subclass.h>
+#import "MSActivity.h"
 
 #define FACEBOOK_VALUE_GENDER_MALE @"male"
 #define FACEBOOK_KEY_GENDER @"gender"
@@ -32,6 +33,8 @@
 
 @interface MSUser()
 
+@property (weak, nonatomic) id tempActivityQueryTarget;
+@property (nonatomic) SEL tempActivityQueryCallBack;
 
 @end
 
@@ -45,6 +48,11 @@
 @dynamic sportLevels;
 @dynamic imageFile;
 
+
+@synthesize tempActivityQueryTarget = _tempActivityQueryTarget;
+@synthesize tempActivityQueryCallBack = _tempActivityQueryCallBack;
+@synthesize activities = _activities;
+
 - (id)init
 {
     self = [super init];
@@ -52,6 +60,32 @@
         //        self.sportLevels = [[NSDictionary alloc] init];
     }
     return self;
+}
+
+- (PFRelation *)participantRelation
+{
+    return [self relationforKey:@"participant"];
+}
+
+- (void)queryActivitiesWithTarget:(id)target callBack:(SEL)callBack
+{
+    _tempActivityQueryTarget = target;
+    _tempActivityQueryCallBack = callBack;
+    
+    PFQuery *activitiesQuery = [MSActivity query];
+    [activitiesQuery whereKey:@"participant" equalTo:self];
+    [activitiesQuery includeKey:@"owner"];
+    [activitiesQuery findObjectsInBackgroundWithTarget:self selector:@selector(didFetchActivities:error:)];
+}
+
+- (void)didFetchActivities:(NSArray *)activities error:(NSError *)error
+{
+    if (!error) {
+        self.activities = activities;
+    } else {
+        NSLog(@"%@",error);
+    }
+    [self.tempActivityQueryTarget performSelector:self.tempActivityQueryCallBack withObject:activities withObject:error];
 }
 
 - (void)setSport:(NSInteger)sportKey withLevel:(NSInteger)level
@@ -148,77 +182,6 @@
         }];
     }
 }
-
-#pragma mark Lazy instantiation
-//
-//@synthesize firstName = _firstName;
-//
-//- (NSString *)firstName
-//{
-//    if (!_firstName) _firstName = DEFAULT_FIRSTNAME;
-//    return self[@"firstName"];
-//}
-//
-//- (void)setFirstName:(NSString *)firstName
-//{
-//    _firstName = firstName;
-//    self[@"firstName"] = firstName;
-//}
-//
-//@synthesize lastName = _lastName;
-//
-//- (NSString *)lastName
-//{
-//    if (!_lastName) self.lastName = DEFAULT_LASTNAME;
-//    return self[@"lastName"];
-//}
-//
-//- (void)setLastName:(NSString *)lastName
-//{
-//    _lastName = lastName;
-//    self[@"lastName"] = lastName;
-//}
-//
-//@synthesize facebookID = _facebookID;
-//
-//- (NSString *)facebookID
-//{
-//    if (!_facebookID) self.facebookID = DEFAULT_FACEBOOKID;
-//    return self[@"facebookID"];
-//}
-//
-//- (void)setFacebookID:(NSString *)facebookID
-//{
-//    _facebookID = facebookID;
-//    self[@"facebookID"] = facebookID;
-//}
-//
-//@synthesize birthday = _birthday;
-//
-//- (NSDate *)birthday
-//{
-//    if (!_birthday) self.birthday = DEFAULT_BIRTHDAY;
-//    return self[@"birthday"];
-//}
-//
-//- (void)setBirthday:(NSDate *)birthday
-//{
-//    _birthday = birthday;
-//    self[@"birthday"] = birthday;
-//}
-//
-//@synthesize gender = _gender;
-//
-//- (MSUserGender)gender
-//{
-//    return [self[@"gender"] intValue];
-//}
-//
-//- (void)setGender:(MSUserGender)gender
-//{
-//    _gender = gender;
-//    self[@"gender"] = @(gender);
-//}
 
 @synthesize delegate = _delegate;
 

@@ -14,10 +14,16 @@
 #import "MSActivityVC.h"
 #import "MSChooseSportsVC.h"
 #import "MSProfilePictureView.h"
+#import "TKAlertCenter.h"
 
 #define NIB_NAME @"MSProfileVC"
 
 #define COVER_BLUR_HEIGHT 140
+
+typedef NS_ENUM(int, MSProfileTableViewMode) {
+    MSProfileTableViewModeActivities,
+    MSProfileTableViewModeSportners
+};
 
 @interface MSProfileVC () <UITableViewDataSource, UITableViewDelegate>
 
@@ -28,6 +34,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
+@property (strong, nonatomic) NSArray *activities;
+@property (strong, nonatomic) NSArray *sportners;
+
+@property (nonatomic) MSProfileTableViewMode tableViewMode;
+
 @end
 
 @implementation MSProfileVC
@@ -36,19 +47,36 @@
 {
     [super viewDidLoad];
     
+    [self queryActivities];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
     [MSActivityCell registerToTableview:self.tableView];
     
+    self.tableViewMode = MSProfileTableViewModeActivities;
+    
     [self setAppearance];
-    [self reloadView];
+    [self reloadCoverPictureView];
+}
+
+- (void)queryActivities
+{
+    if (!self.user.activities) {
+        [self.user queryActivitiesWithTarget:self callBack:@selector(didFetchUserActivities:error:)];
+    }
+}
+
+- (void)querySportners
+{
+    
 }
 
 - (void)setAppearance
 {
     [self.profilePictureView setRounded];
     self.profilePictureView.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = [UIColor clearColor];
     
     self.locationLabel.textColor = [MSColorFactory whiteLight];
     
@@ -78,7 +106,7 @@
 
 - (MSUser *)user
 {
-    if (!_user) self.user = [MSUser currentUser];
+    if (!_user) _user = [MSUser currentUser];
     return _user;
 }
 
@@ -86,10 +114,10 @@
 {
     _user = user;
     
-    [self reloadView];
+    [self reloadCoverPictureView];
 }
 
-- (void)reloadView
+- (void)reloadCoverPictureView
 {
     if (self.user) {
         [self setCoverPictureWithImage:[UIImage imageNamed:@"runner.jpg"]];
@@ -122,6 +150,24 @@
     [self setNormalNavigationBar];
 }
 
+- (void)setTableViewMode:(MSProfileTableViewMode)tableViewMode
+{
+    _tableViewMode = tableViewMode;
+    [self.tableView reloadData];
+}
+
+#pragma mark - PARSE Backend
+
+- (void)didFetchUserActivities:(NSArray *)activities error:(NSError *)error
+{
+    if (!error) {
+        self.activities = activities;
+        [self.tableView reloadData];
+    } else {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Could not load activities"];
+    }
+}
+
 
 #pragma mark Class methods
 
@@ -141,19 +187,39 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    switch (self.tableViewMode) {
+        case MSProfileTableViewModeActivities:
+            return [self.activities count];
+        case MSProfileTableViewModeSportners:
+            return [self.sportners count];
+            
+        default:
+            return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = [MSActivityCell reusableIdentifier];
-    MSActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-    
-    [cell setAppearanceWithOddIndex:(indexPath.row % 2)];
-    return cell;
+    switch (self.tableViewMode) {
+        case MSProfileTableViewModeActivities:
+        {
+            NSString *identifier = [MSActivityCell reusableIdentifier];
+            MSActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+            cell.activity = [self.activities objectAtIndex:indexPath.row];
+            [cell setAppearanceWithOddIndex:(indexPath.row % 2)];
+            return cell;
+        }
+        case MSProfileTableViewModeSportners:
+        {
+            
+        }
+            
+        default:
+            return nil;
+    }
 }
 
-#pragma mark
+#pragma mark UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -162,9 +228,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MSActivityVC *destinationVC = [MSActivityVC newController];
-    
-    [self.navigationController pushViewController:destinationVC animated:YES];
+    switch (self.tableViewMode) {
+        case MSProfileTableViewModeActivities:
+        {
+            MSActivityVC *destinationVC = [MSActivityVC newController];
+            MSActivityCell *cell = (MSActivityCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            destinationVC.activity = cell.activity;
+            [self.navigationController pushViewController:destinationVC animated:YES];
+        }
+        case MSProfileTableViewModeSportners:
+        {
+            
+        }
+    }
 }
 
 @end

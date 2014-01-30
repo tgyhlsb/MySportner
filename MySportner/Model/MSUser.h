@@ -35,9 +35,14 @@ typedef NS_ENUM(int, MSUserGender) {
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) PFFile *imageFile;
 
+@property (strong, nonatomic) NSArray *activities;
+
 - (NSString *)fullName;
 
+- (void)queryActivitiesWithTarget:(id)targer callBack:(SEL)callBack;
 - (void)requestImageWithTarget:(id)target CallBack:(SEL)callback;
+//- (void)joinActivity:(MSActivity *)activity withTarget:(id)target callBack:(SEL)callBack;
+//- (void)leaveActivity:(MSActivity *)aci
 
 + (void)tryLoginWithFacebook:(id<MSUserAuthentificationDelegate>)sender;
 
@@ -46,6 +51,8 @@ typedef NS_ENUM(int, MSUserGender) {
 - (void)setSport:(NSInteger)sportKey withLevel:(NSInteger)level;
 - (NSArray *)getSports;
 - (NSInteger)sportLevelForSportIndex:(NSInteger)index defaultValue:(NSInteger)defaultValue;
+
+- (PFRelation *)participantRelation;
 
 @end
 

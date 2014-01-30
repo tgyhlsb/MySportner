@@ -24,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet QBFlatButton *actionButton;
 
 
-@property (nonatomic) BOOL oddIndex;
 @end
 
 @implementation MSSportnerCell

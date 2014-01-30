@@ -99,14 +99,26 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
         self.allSportners = tempAllSportners;
         
         NSMutableArray *tempGuests = [self.guestSportners mutableCopy];
-        [tempGuests addObject:senderCell.sportner];
+        [tempGuests insertObject:senderCell.sportner atIndex:0];
         self.guestSportners = tempGuests;
-        
-        [self reloadData];
+
+        [self moveSportnerCellToGuestSection:senderCell];
+//        [self reloadData];
     } else {
         NSString *message = [NSString stringWithFormat:@"Failed to invite %@", [senderCell.sportner fullName]];
         [[TKAlertCenter defaultCenter] postAlertWithMessage:message];
     }
+}
+
+- (void)moveSportnerCellToGuestSection:(MSSportnerCell *)cell
+{
+    NSIndexPath *originIndexPath = [self.tableView indexPathForCell:cell];
+    NSIndexPath *destinationPath = [NSIndexPath indexPathForRow:0 inSection:MSInviteSportnerSectionGuests];
+    MSSportnerCell *nextCell = (MSSportnerCell *)[self.tableView cellForRowAtIndexPath:destinationPath];
+    [self.tableView moveRowAtIndexPath:originIndexPath toIndexPath:destinationPath];
+    [cell setActionButtonTitle:@"CANCEL"];
+    
+    [cell setAppearanceWithOddIndex:!nextCell.oddIndex];
 }
 
 - (void)sportnerCell:(MSSportnerCell *)cell didUninviteSportner:(MSUser *)sportner
@@ -124,18 +136,28 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
     [self hideLoadingView];
     if (!error) {
         NSMutableArray *tempAllSportners = [self.allSportners mutableCopy];
-        [tempAllSportners addObject:senderCell.sportner];
+        [tempAllSportners insertObject:senderCell.sportner atIndex:0];
         self.allSportners = tempAllSportners;
         
         NSMutableArray *tempGuests = [self.guestSportners mutableCopy];
         [tempGuests removeObject:senderCell.sportner];
         self.guestSportners = tempGuests;
-        
-        [self reloadData];
+        [self moveSportnerCellToOtherSportnersSection:senderCell];
     } else {
         NSString *message = [NSString stringWithFormat:@"Failed to cancel %@ invitation", [senderCell.sportner fullName]];
         [[TKAlertCenter defaultCenter] postAlertWithMessage:message];
     }
+}
+
+- (void)moveSportnerCellToOtherSportnersSection:(MSSportnerCell *)cell
+{
+    NSIndexPath *originIndexPath = [self.tableView indexPathForCell:cell];
+    NSIndexPath *destinationPath = [NSIndexPath indexPathForRow:0 inSection:MSInviteSportnerSectionAllSportners];
+    MSSportnerCell *nextCell = (MSSportnerCell *)[self.tableView cellForRowAtIndexPath:destinationPath];
+    [self.tableView moveRowAtIndexPath:originIndexPath toIndexPath:destinationPath];
+    [cell setActionButtonTitle:@"INVITE"];
+    
+    [cell setAppearanceWithOddIndex:!nextCell.oddIndex];
 }
 
 #pragma mark - PARSE Backend

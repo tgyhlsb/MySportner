@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) id<MSSportnerCellDelegate> delegate;
 @property (strong, nonatomic) MSUser *sportner;
+@property (nonatomic) BOOL oddIndex;
 
 
 + (void)registerToTableview:(UITableView *)tableView;

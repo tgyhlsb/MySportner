@@ -22,7 +22,6 @@
 #import "QBFlatButton.h"
 #import "MSNavigationVC.h"
 #import "MSComment.h"
-#import "MSActivityMetaData.h"
 #import "MSSportner.h"
 
 #define STORYBOARD_NAME @"Main"

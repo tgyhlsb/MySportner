@@ -96,7 +96,6 @@
 		5A653B121894200700E2B8AE /* MSCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A653B111894200700E2B8AE /* MSCommentCell.xib */; };
 		5A653B16189427D900E2B8AE /* MSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A653B15189427D900E2B8AE /* MSCell.m */; };
 		5A653B181894427C00E2B8AE /* ProximaNova-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5A653B171894427C00E2B8AE /* ProximaNova-Light.otf */; };
-		5A78B7E9189569C10074A5B3 /* MSActivityMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78B7E8189569C00074A5B3 /* MSActivityMetaData.m */; };
 		5A78B7EC1895759D0074A5B3 /* MSPickLocalisationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78B7EB1895759D0074A5B3 /* MSPickLocalisationVC.m */; };
 		5A78B7EE189575AA0074A5B3 /* MSPickLocalisationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A78B7ED189575AA0074A5B3 /* MSPickLocalisationVC.xib */; };
 		5A78B7F218958BA70074A5B3 /* MSAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78B7F118958BA70074A5B3 /* MSAnnotation.m */; };
@@ -364,8 +363,6 @@
 		5A653B14189427D900E2B8AE /* MSCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCell.h; path = Views/Cells/MSCell.h; sourceTree = "<group>"; };
 		5A653B15189427D900E2B8AE /* MSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCell.m; path = Views/Cells/MSCell.m; sourceTree = "<group>"; };
 		5A653B171894427C00E2B8AE /* ProximaNova-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Light.otf"; sourceTree = "<group>"; };
-		5A78B7E7189569C00074A5B3 /* MSActivityMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSActivityMetaData.h; path = Views/MSActivityMetaData.h; sourceTree = "<group>"; };
-		5A78B7E8189569C00074A5B3 /* MSActivityMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSActivityMetaData.m; path = Views/MSActivityMetaData.m; sourceTree = "<group>"; };
 		5A78B7EA1895759D0074A5B3 /* MSPickLocalisationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSPickLocalisationVC.h; path = Controllers/MSPickLocalisationVC/MSPickLocalisationVC.h; sourceTree = "<group>"; };
 		5A78B7EB1895759D0074A5B3 /* MSPickLocalisationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSPickLocalisationVC.m; path = Controllers/MSPickLocalisationVC/MSPickLocalisationVC.m; sourceTree = "<group>"; };
 		5A78B7ED189575AA0074A5B3 /* MSPickLocalisationVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSPickLocalisationVC.xib; path = Controllers/MSPickLocalisationVC/MSPickLocalisationVC.xib; sourceTree = "<group>"; };
@@ -1222,8 +1219,6 @@
 				5A9C90F7187C4C1E00065DBA /* MSSport.m */,
 				5A090AD71891948A0017B207 /* MSComment.h */,
 				5A090AD81891948A0017B207 /* MSComment.m */,
-				5A78B7E7189569C00074A5B3 /* MSActivityMetaData.h */,
-				5A78B7E8189569C00074A5B3 /* MSActivityMetaData.m */,
 				5A78B7F018958BA70074A5B3 /* MSAnnotation.h */,
 				5A78B7F118958BA70074A5B3 /* MSAnnotation.m */,
 			);
@@ -1676,7 +1671,6 @@
 				5A210020184E421800CDF460 /* MSStyleFactory.m in Sources */,
 				5A090AD91891948A0017B207 /* MSComment.m in Sources */,
 				5A96744F1849D20C0079EAC1 /* MSColorFactory.m in Sources */,
-				5A78B7E9189569C10074A5B3 /* MSActivityMetaData.m in Sources */,
 				5A9674551849D8740079EAC1 /* MSTextField.m in Sources */,
 				5ADCF3141840F8DA00E6C8D2 /* MSVenueCell.m in Sources */,
 				5ADCF2A318401E1C00E6C8D2 /* MSSetAGameVC.m in Sources */,

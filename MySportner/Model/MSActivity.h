@@ -11,7 +11,6 @@
 #import "MSSportner.h"
 #import "MSVenue.h"
 #import "MSComment.h"
-#import "MSActivityMetaData.h"
 
 #define PARSE_CLASSNAME_ACTIVITY @"MSActivity"
 

@@ -92,7 +92,6 @@
 
 - (void)performLogin
 {
-    NSLog(@"TODO, find a way not to do this hsit.");
     [[MSSportner currentSportner] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         [self hideLoadingView];
         if ([MSSportner currentSportner].sportLevels) {

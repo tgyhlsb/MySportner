@@ -108,7 +108,10 @@
     [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
         if (!error) {
             [self setWithFacebookInfo:result];
-            [self saveInBackground];
+            [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                
+                [self signUpToBackEndDidSucceed];
+            }];
         }
     }];
 }
@@ -125,7 +128,6 @@
             if (user.isNew) {
                 NSLog(@"User signed up and logged in through Facebook!");
                 [user requestFacebookInformations];
-                [user signUpToBackEndDidSucceed];
             } else {
                 NSLog(@"User logged in through Facebook!");
                 [user logInDidSucceed];

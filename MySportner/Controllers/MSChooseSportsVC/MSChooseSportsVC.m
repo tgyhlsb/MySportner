@@ -42,8 +42,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"TODO");
-    [[MSSportner currentSportner] fetchIfNeeded];
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -57,6 +55,19 @@
     
     [self setAppearance];
     [self setBackButton];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    [self.nextButton setTitle:self.validateButtonTitle forState:UIControlStateNormal];
+    
+    [[MSSportner currentSportner] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        [self.collectionView reloadData];
+    }];
 }
 
 - (void)setBackButton
@@ -82,15 +93,6 @@
         _sportner = [MSSportner currentSportner];
     }
     return _sportner;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
-    [self.nextButton setTitle:self.validateButtonTitle forState:UIControlStateNormal];
 }
 
 + (MSChooseSportsVC *)newController

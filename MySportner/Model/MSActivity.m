@@ -65,23 +65,6 @@
     return [otherActivity.createdAt compare:self.createdAt];
 }
 
-//- (void)requestMessagesWithTarget:(id)target callBack:(SEL)callback
-//{
-//    [self requestMessagesWithTarget:target callBack:callback];
-//}
-
-//- (void)addComment:(MSComment *)comment
-//{
-////    if (!self.chat) self.chat = [[MSChat alloc] init];
-//    [self.metaData addMessage:comment];
-//}
-
-//- (NSArray *)getComments
-//{
-////    if (!self.chat) self.chat = [[MSChat alloc] init];
-//    return [self.metaData getMessages];
-//}
-
 - (PFRelation *)guestRelation
 {
     return [self relationforKey:@"guest"];

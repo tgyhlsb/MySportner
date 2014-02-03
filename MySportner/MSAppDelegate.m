@@ -41,7 +41,6 @@
     [MSComment registerSubclass];
     [MSUser registerSubclass];
     [MSActivity registerSubclass];
-//    [MSActivityMetaData registerSubclass];
     [MSSportner registerSubclass];
     [Parse setApplicationId:@"mXxe3WBY2KqxbWjjnBruVUyJGtyKjgjDpfuX6pAA"
                   clientKey:@"EFLTeHfWnuHxmwzKbg1xfsfYRRFSksMiWGlKYloM"];

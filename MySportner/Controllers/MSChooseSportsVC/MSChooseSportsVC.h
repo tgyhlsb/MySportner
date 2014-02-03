@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSUser.h"
+#import "MSSportner.h"
 
 @interface MSChooseSportsVC : UIViewController
 
 
 @property (nonatomic, strong) void (^validateBlock)(void);
-@property (strong, nonatomic) MSUser *user;
+@property (strong, nonatomic) MSSportner *sportner;
 
 + (MSChooseSportsVC *)newController;
 

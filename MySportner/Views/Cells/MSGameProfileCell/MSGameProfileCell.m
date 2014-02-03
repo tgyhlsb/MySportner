@@ -118,7 +118,7 @@
 - (void)queryInfoToSetButtonTitle
 {
     [self.actionButton setTitle:@"" forState:UIControlStateNormal];
-    if ([self.activity.owner.username  isEqualToString:[MSUser currentUser].username]) {
+    if ([self.activity.owner isEqualToSportner:[MSSportner currentSportner]]) {
         self.userMode = MSGameProfileModeOwner;
     } else {
         if (self.activity.guests && self.activity.participants) {
@@ -135,10 +135,10 @@
     if (self.activity.guests && self.activity.participants) {
         [self.activityIndicatorView stopAnimating];
         
-        MSUser *currentUser = [MSUser currentUser];
+        MSSportner *currentSportner = [MSSportner currentSportner];
         BOOL canJoin = YES;
-        for (MSUser *user in self.activity.participants) {
-            if ([user.username isEqualToString:currentUser.username]) {
+        for (MSSportner *sportner in self.activity.participants) {
+            if ([sportner isEqualToSportner:currentSportner]) {
                 canJoin = NO;
             }
         }
@@ -207,8 +207,8 @@
 
 - (void)ownerProfileTapHandler
 {
-    if ([self.delegate respondsToSelector:@selector(gameProfileCell:didSelectUser:)]) {
-        [self.delegate gameProfileCell:self didSelectUser:self.activity.owner];
+    if ([self.delegate respondsToSelector:@selector(gameProfileCell:didSelectSportner:)]) {
+        [self.delegate gameProfileCell:self didSelectSportner:self.activity.owner];
     }
 }
 - (IBAction)actionButtonHandler
@@ -241,7 +241,7 @@
         self.titleLabel.text = activity.sport;
         self.locationLabel.text = activity.place;
         self.addressLabel.text = activity.place;
-        self.fbProfilePictureView.user = activity.owner;
+        self.fbProfilePictureView.sportner = activity.owner;
         self.ownerLabel.text = [activity.owner fullName];
         [self setViewWithDate:activity.date];
     }

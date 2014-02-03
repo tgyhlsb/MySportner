@@ -294,15 +294,20 @@
             self.user = [[MSUser alloc] init];
         }
         
-        self.user.firstName = self.firstnameTextField.text;
-        self.user.lastName = self.lastnameTextField.text;
+        if (!self.user.sportner) {
+            self.user.sportner = [[MSSportner alloc] init];
+        }
+        
+        self.user.sportner.firstName = self.firstnameTextField.text;
+        self.user.sportner.lastName = self.lastnameTextField.text;
         self.user.email = self.emailTextField.text;
         self.user.password = self.passwordTextField.text;
-        self.user.birthday = self.datePicker.date;
-        self.user.gender = self.genderControl.isOn ? MSUserGenderFemale : MSUserGenderMale;
+        self.user.sportner.birthday = self.datePicker.date;
+        self.user.sportner.gender = self.genderControl.isOn ? MSUserGenderFemale : MSUserGenderMale;
         self.user.username = self.user.email;
-        self.user.facebookID = FACEBOOK_DEFAULT_ID[self.user.gender]; // default IDs to get a fb picture according to your gender
-        self.user.image = self.imageView.image;
+        self.user.sportner.username = self.user.email;
+        self.user.sportner.facebookID = FACEBOOK_DEFAULT_ID[self.user.sportner.gender]; // default IDs to get a fb picture according to your gender
+        self.user.sportner.image = self.imageView.image;
         if (self.hasAlreadySignUp) {
             [self.user saveInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
         } else {
@@ -396,13 +401,13 @@
 {
     MSChooseSportsVC *destinationVC = [MSChooseSportsVC newController];
     
-    destinationVC.user = self.user;
+    destinationVC.sportner = self.user.sportner;
     
     __weak MSChooseSportsVC *weakDestination = destinationVC;
     destinationVC.validateBlock = ^{
         MSFindFriendsVC *destinationVC = [MSFindFriendsVC newController];
         
-        destinationVC.user = weakDestination.user;
+        destinationVC.sportner = weakDestination.sportner;
         
         [weakDestination.navigationController pushViewController:destinationVC animated:YES];
     };

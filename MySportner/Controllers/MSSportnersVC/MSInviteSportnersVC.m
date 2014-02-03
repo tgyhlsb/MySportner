@@ -65,7 +65,7 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 
 - (void)queryOtherSportners
 {
-    [self.activity queryOtherParticipantsWithTarger:self callBack:@selector(didLoadOtherSportners:withError:)];
+    [self.activity queryOtherSportnersWithTarger:self callBack:@selector(didLoadOtherSportners:withError:)];
 }
 
 - (void)reloadData
@@ -79,7 +79,7 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 
 #pragma mark - MSSportnerCellDelegate
 
-- (void)sportnerCell:(MSSportnerCell *)cell didTrigerActionWithSportner:(MSUser *)sportner
+- (void)sportnerCell:(MSSportnerCell *)cell didTrigerActionWithSportner:(MSSportner *)sportner
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
@@ -94,7 +94,7 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 }
 
 
-- (void)sportnerCell:(MSSportnerCell *)cell didInviteSportner:(MSUser *)sportner
+- (void)sportnerCell:(MSSportnerCell *)cell didInviteSportner:(MSSportner *)sportner
 {
     [self showLoadingViewInView:self.view];
     PFRelation *relation = [self.activity guestRelation];
@@ -134,7 +134,7 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
     [cell setAppearanceWithOddIndex:!nextCell.oddIndex];
 }
 
-- (void)sportnerCell:(MSSportnerCell *)cell didUninviteSportner:(MSUser *)sportner
+- (void)sportnerCell:(MSSportnerCell *)cell didUninviteSportner:(MSSportner *)sportner
 {
     [self showLoadingViewInView:self.view];
     PFRelation *relation = [self.activity guestRelation];
@@ -178,7 +178,7 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 - (void)didLoadGuestsAndParticipantsWithError:(NSError *)error
 {
     if (!error) {
-        [self.activity queryOtherParticipantsWithTarger:self callBack:@selector(didLoadOtherSportners:withError:)];
+        [self.activity queryOtherSportnersWithTarger:self callBack:@selector(didLoadOtherSportners:withError:)];
     } else {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
     }
@@ -228,14 +228,14 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
     switch (indexPath.section) {
         case MSInviteSportnerSectionParticipants:
         {
-            MSUser *sportner = [self.activity.participants objectAtIndex:indexPath.row];
+            MSSportner *sportner = [self.activity.participants objectAtIndex:indexPath.row];
             cell.sportner = sportner;
             [cell setActionButtonHidden:YES];
             break;
         }
         case MSInviteSportnerSectionGuests:
         {
-            MSUser *sportner = [self.activity.guests objectAtIndex:indexPath.row];
+            MSSportner *sportner = [self.activity.guests objectAtIndex:indexPath.row];
             cell.sportner = sportner;
             [cell setActionButtonHidden:NO];
             [cell setActionButtonTitle:@"CANCEL"];
@@ -243,7 +243,7 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
         }
         case MSInviteSportnerSectionAllSportners:
         {
-            MSUser *sportner = [self.allSportners objectAtIndex:indexPath.row];
+            MSSportner *sportner = [self.allSportners objectAtIndex:indexPath.row];
             cell.sportner = sportner;
             [cell setActionButtonHidden:NO];
             [cell setActionButtonTitle:@"INVITE"];
@@ -287,11 +287,11 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MSUser *sportner = [self.activity.guests objectAtIndex:indexPath.row];
+    MSSportner *sportner = [self.activity.guests objectAtIndex:indexPath.row];
     
     MSProfileVC *destinationVC = [MSProfileVC newController];
     destinationVC.hasDirectAccessToDrawer = NO;
-    destinationVC.user = sportner;
+    destinationVC.sportner = sportner;
     
     [self.navigationController pushViewController:destinationVC animated:YES];
 }

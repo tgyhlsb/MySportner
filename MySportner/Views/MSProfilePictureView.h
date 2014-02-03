@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSUser.h"
+#import "MSSportner.h"
 
 @interface MSProfilePictureView : UIView
 
-@property (strong, nonatomic) MSUser *user;
+@property (strong, nonatomic) MSSportner *sportner;
 
 @end

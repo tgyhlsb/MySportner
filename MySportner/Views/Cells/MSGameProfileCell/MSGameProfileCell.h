@@ -32,7 +32,7 @@ typedef NS_ENUM(int, MSGameProfileMode) {
 
 @protocol MSGameProfileCellDelegate <NSObject>
 
-- (void)gameProfileCell:(MSGameProfileCell *)cell didSelectUser:(MSUser *)user;
+- (void)gameProfileCell:(MSGameProfileCell *)cell didSelectSportner:(MSSportner *)sportner;
 
 - (void)gameProfileCellDidTrigerActionHandler:(MSGameProfileCell *)cell;
 

@@ -50,7 +50,7 @@
 
 - (void)querySportners
 {
-    PFQuery *query = [MSUser query];
+    PFQuery *query = [MSSportner query];
     
     [self showLoadingViewInView:self.view];
     
@@ -87,7 +87,7 @@
     NSString *identifier = [MSSportnerCell reusableIdentifier];
     MSSportnerCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
-    MSUser *sportner = [self.data objectAtIndex:indexPath.row];
+    MSSportner *sportner = [self.data objectAtIndex:indexPath.row];
     cell.sportner = sportner;
     [cell setAppearanceWithOddIndex:(indexPath.row % 2)];
     cell.delegate = self;
@@ -107,23 +107,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MSUser *sportner = [self.data objectAtIndex:indexPath.row];
+    MSSportner *sportner = [self.data objectAtIndex:indexPath.row];
     
     MSProfileVC *destinationVC = [MSProfileVC newController];
     destinationVC.hasDirectAccessToDrawer = NO;
-    destinationVC.user = sportner;
+    destinationVC.sportner = sportner;
     
     [self.navigationController pushViewController:destinationVC animated:YES];
 }
 
 #pragma mark - MSSportnerCellDelegate
 
-- (void)sportnerCell:(MSSportnerCell *)cell didTrigerActionWithSportner:(MSUser *)sportner
+- (void)sportnerCell:(MSSportnerCell *)cell didTrigerActionWithSportner:(MSSportner *)sportner
 {
     
 }
 
-- (void)sportnerCell:(MSSportnerCell *)cell didUninviteSportner:(MSUser *)sportner
+- (void)sportnerCell:(MSSportnerCell *)cell didUninviteSportner:(MSSportner *)sportner
 {
     
 }

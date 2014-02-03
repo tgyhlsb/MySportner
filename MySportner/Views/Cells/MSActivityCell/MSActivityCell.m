@@ -47,8 +47,8 @@
 
 - (void)registerGestureRecognizers
 {
-    UITapGestureRecognizer *pictureTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapHandler)];
-    UITapGestureRecognizer *nameTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapHandler)];
+    UITapGestureRecognizer *pictureTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sportnerProfileTapHandler)];
+    UITapGestureRecognizer *nameTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sportnerProfileTapHandler)];
     
     self.ownerProfilePictureView.userInteractionEnabled = YES;
     self.ownerNameLabel.userInteractionEnabled = YES;
@@ -57,10 +57,10 @@
     [self.ownerNameLabel addGestureRecognizer:nameTap];
 }
 
-- (void)userProfileTapHandler
+- (void)sportnerProfileTapHandler
 {
-    if ([self.delegate respondsToSelector:@selector(activityCell:didSelectUser:)]) {
-        [self.delegate activityCell:self didSelectUser:self.activity.owner];
+    if ([self.delegate respondsToSelector:@selector(activityCell:didSelectSportner:)]) {
+        [self.delegate activityCell:self didSelectSportner:self.activity.owner];
     }
 }
 
@@ -72,7 +72,7 @@
     self.titleLabel.text = activity.sport;
     self.placeLabel.text = activity.place;
     self.ownerNameLabel.text = [activity.owner fullName];
-    self.ownerProfilePictureView.user = activity.owner;
+    self.ownerProfilePictureView.sportner = activity.owner;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

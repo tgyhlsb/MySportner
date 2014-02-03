@@ -51,10 +51,10 @@
     [self setAppearanceWithOddIndex:NO];
 }
 
-- (void)setSportner:(MSUser *)sportner
+- (void)setSportner:(MSSportner *)sportner
 {
     _sportner = sportner;
-    self.profilePictureView.user = sportner;
+    self.profilePictureView.sportner = sportner;
     self.nameLabel.text = [sportner fullName];
     self.placeLabel.text = @"Place, country";
 }

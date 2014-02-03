@@ -28,6 +28,6 @@
 
 @protocol MSActivityCellDelegate <NSObject>
 
-- (void)activityCell:(MSActivityCell *)cell didSelectUser:(MSUser *)user;
+- (void)activityCell:(MSActivityCell *)cell didSelectSportner:(MSSportner *)sportner;
 
 @end

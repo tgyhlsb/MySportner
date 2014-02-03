@@ -92,16 +92,20 @@
 
 - (void)performLogin
 {
-    [self hideLoadingView];
-    if ([MSUser currentUser].sportLevels) {
-        MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        
-        [appDelegate setDrawerMenu];
-        
-        [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
-    } else {
-        [self redirectToSportchooser];
-    }
+    NSLog(@"TODO, find a way not to do this hsit.");
+    [[MSSportner currentSportner] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        [self hideLoadingView];
+        if ([MSSportner currentSportner].sportLevels) {
+            MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            
+            [appDelegate setDrawerMenu];
+            
+            [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
+        } else {
+            [self redirectToSportchooser];
+        }
+    }];
+
 }
 
 - (IBAction)logInWithFacebookButtonPress:(UIButton *)sender
@@ -168,13 +172,13 @@
 {
     MSChooseSportsVC *destinationVC = [MSChooseSportsVC newController];
     
-    destinationVC.user = [MSUser currentUser];
+    destinationVC.sportner = [MSSportner currentSportner];
     
     __weak MSChooseSportsVC *weakDestination = destinationVC;
     destinationVC.validateBlock = ^{
         MSFindFriendsVC *destinationVC = [MSFindFriendsVC newController];
         
-        destinationVC.user = weakDestination.user;
+        destinationVC.sportner = weakDestination.sportner;
         
         [weakDestination.navigationController pushViewController:destinationVC animated:YES];
     };

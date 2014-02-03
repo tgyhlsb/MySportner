@@ -33,7 +33,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UIImageView *coverPictureView;
 @property (weak, nonatomic) IBOutlet MSProfilePictureView *profilePictureView;
-@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sportnerNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet QBFlatButton *activitiesButton;
 @property (weak, nonatomic) IBOutlet QBFlatButton *sportnersButton;
@@ -69,7 +69,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     [self queryActivities];
     
     [self setNormalNavigationBar];
-    self.navigationItem.title = [[self.user fullName] uppercaseString];
+    self.navigationItem.title = [[self.sportner fullName] uppercaseString];
     //[self setTranslucentNavigationBar];
 }
 
@@ -88,7 +88,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 
 - (void)queryActivities
 {
-    [self.user queryActivitiesWithTarget:self callBack:@selector(didFetchUserActivities:error:)];
+    [self.sportner queryActivitiesWithTarget:self callBack:@selector(didFetchUserActivities:error:)];
 }
 
 - (void)querySportners
@@ -140,18 +140,18 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     [MSStyleFactory setQBFlatButton:self.sportnersButton withStyle:MSFlatButtonStyleAndroidWhite];
     [self.sportnersButton setTitle:@"SPORTNERS" forState:UIControlStateNormal];
     
-    self.userNameLabel.textColor = [MSColorFactory whiteLight];
+    self.sportnerNameLabel.textColor = [MSColorFactory whiteLight];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showSportChooser)];
-    [self.userNameLabel addGestureRecognizer:tapGesture];
-    self.userNameLabel.userInteractionEnabled = YES;
+    [self.sportnerNameLabel addGestureRecognizer:tapGesture];
+    self.sportnerNameLabel.userInteractionEnabled = YES;
 }
 
 - (void)showSportChooser
 {
-    if ([self.user isEqual:[MSUser currentUser]]) {
+    if ([self.sportner isEqual:[MSSportner currentSportner]]) {
         MSChooseSportsVC *destinationVC = [MSChooseSportsVC newController];
         
-        destinationVC.user = self.user;
+        destinationVC.sportner = self.sportner;
         
         destinationVC.validateBlock = ^{
             [self.navigationController popViewControllerAnimated:YES];
@@ -162,27 +162,27 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     }
 }
 
-@synthesize user = _user;
+@synthesize sportner = _sportner;
 
-- (MSUser *)user
+- (MSSportner *)sportner
 {
-    if (!_user) _user = [MSUser currentUser];
-    return _user;
+    if (!_sportner) _sportner = [MSSportner currentSportner];
+    return _sportner;
 }
 
-- (void)setUser:(MSUser *)user
+- (void)setSportner:(MSSportner *)user
 {
-    _user = user;
+    _sportner = user;
     
     [self reloadCoverPictureView];
 }
 
 - (void)reloadCoverPictureView
 {
-    if (self.user) {
+    if (self.sportner) {
         [self setCoverPictureWithImage:[UIImage imageNamed:@"runner.jpg"]];
-        self.profilePictureView.user = self.user;
-        self.userNameLabel.text = [self.user fullName];
+        self.profilePictureView.sportner = self.sportner;
+        self.sportnerNameLabel.text = [self.sportner fullName];
         self.locationLabel.text = @"Lyon, France";
     }
 }

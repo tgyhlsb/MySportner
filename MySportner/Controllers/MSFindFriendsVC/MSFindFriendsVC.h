@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSUser.h"
+#import "MSSportner.h"
 #import "MSCenterController.h"
 
 @interface MSFindFriendsVC : MSCenterController
 
-@property (strong, nonatomic) MSUser *user;
+@property (strong, nonatomic) MSSportner *sportner;
 
 + (MSFindFriendsVC *)newController;
 

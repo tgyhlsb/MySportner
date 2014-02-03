@@ -150,9 +150,9 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     if (fieldsOK) {
         self.activity.sport = self.sportCell.sport;
         self.activity.place = self.locationTextField.text;
-        self.activity.owner = [MSUser currentUser];
-        self.activity.chat = [[MSChat alloc] init];
-        [[self.activity participantRelation] addObject:[MSUser currentUser]];
+        self.activity.owner = [MSSportner currentSportner];
+//        self.activity.metaData = [[MSActivityMetaData alloc] init];
+        [[self.activity participantRelation] addObject:[MSSportner currentSportner]];
         
         [self showLoadingViewInView:self.navigationController.view];
         [self.activity saveInBackgroundWithTarget:self selector:@selector(handleActivityCreation:error:)];

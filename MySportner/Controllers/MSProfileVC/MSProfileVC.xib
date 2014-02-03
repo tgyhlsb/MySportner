@@ -11,10 +11,10 @@
                 <outlet property="coverPictureView" destination="P1n-Ks-zFC" id="RrH-9h-hEx"/>
                 <outlet property="locationLabel" destination="ZRT-P6-W66" id="omB-c3-GyM"/>
                 <outlet property="profilePictureView" destination="MyY-pT-9Tl" id="kPx-cQ-bfH"/>
+                <outlet property="sportnerNameLabel" destination="YcJ-h7-Zu1" id="XWF-ah-98k"/>
                 <outlet property="sportnersButton" destination="x8a-R5-xPD" id="qcg-Dn-l1E"/>
                 <outlet property="tableView" destination="Cr4-re-ZLr" id="wWh-YM-KK1"/>
                 <outlet property="topView" destination="C7x-0G-Ob2" id="rk6-a9-Nwf"/>
-                <outlet property="userNameLabel" destination="YcJ-h7-Zu1" id="2NY-0h-Y5w"/>
                 <outlet property="view" destination="3Yz-vR-1hQ" id="OD8-qq-0M0"/>
             </connections>
         </placeholder>

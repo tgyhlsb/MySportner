@@ -100,7 +100,7 @@
 }
 
 // First set up a callback.
-- (void)handleUserLogin:(PFUser *)user error:(NSError *)error
+- (void)handleUserLogin:(MSUser *)user error:(NSError *)error
 {
     [self hideLoadingView];
     if (user) {

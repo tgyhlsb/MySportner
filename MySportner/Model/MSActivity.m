@@ -20,6 +20,9 @@
 @property (weak, nonatomic) id tempOthersQueryTarget;
 @property (nonatomic) SEL tempOthersQueryCallBack;
 
+@property (strong, nonatomic) id tempQueryMessagesTarget;
+@property (nonatomic) SEL tempQueryMessagesCallBack;
+
 @end
 
 
@@ -32,7 +35,6 @@
 @dynamic sport;
 
 @dynamic owner;
-@dynamic chat;
 
 
 @synthesize guests = _guests;
@@ -47,6 +49,11 @@
 @synthesize tempOthersQueryTarget = _tempOthersQueryTarget;
 @synthesize tempOthersQueryCallBack = _tempOthersQueryCallBack;
 
+@synthesize tempQueryMessagesCallBack = _tempQueryMessagesCallBack;
+@synthesize tempQueryMessagesTarget = _tempQueryMessagesTarget;
+
+@synthesize messages = _messages;
+
 
 + (NSString *)parseClassName
 {
@@ -58,32 +65,22 @@
     return [otherActivity.createdAt compare:self.createdAt];
 }
 
-- (void)requestMessagesWithTarget:(id)target callBack:(SEL)callback
-{
-    self.tempMessageQueryCallBack = callback;
-    self.tempMessageQueryTarget = target;
-    
-    [self.chat fetchInBackgroundWithTarget:self selector:@selector(fetchedChat)];
-}
+//- (void)requestMessagesWithTarget:(id)target callBack:(SEL)callback
+//{
+//    [self requestMessagesWithTarget:target callBack:callback];
+//}
 
-- (void)fetchedChat
-{
-    [self.chat requestMessagesWithTarget:self.tempMessageQueryTarget callBack:self.tempMessageQueryCallBack];
-    self.tempMessageQueryTarget = nil;
-    self.tempMessageQueryCallBack = nil;
-}
+//- (void)addComment:(MSComment *)comment
+//{
+////    if (!self.chat) self.chat = [[MSChat alloc] init];
+//    [self.metaData addMessage:comment];
+//}
 
-- (void)addComment:(MSComment *)comment
-{
-//    if (!self.chat) self.chat = [[MSChat alloc] init];
-    [self.chat addMessage:comment];
-}
-
-- (NSArray *)getComments
-{
-//    if (!self.chat) self.chat = [[MSChat alloc] init];
-    return [self.chat getMessages];
-}
+//- (NSArray *)getComments
+//{
+////    if (!self.chat) self.chat = [[MSChat alloc] init];
+//    return [self.metaData getMessages];
+//}
 
 - (PFRelation *)guestRelation
 {
@@ -131,22 +128,22 @@
     [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
 }
 
-- (void)queryOtherParticipantsWithTarger:(id)target callBack:(SEL)callback
+- (void)queryOtherSportnersWithTarger:(id)target callBack:(SEL)callback
 {
     if (self.guests && self.guests) {
         self.tempOthersQueryTarget = target;
         self.tempOthersQueryCallBack = callback;
         
         NSMutableArray *userNames = [[NSMutableArray alloc] initWithCapacity:([self.guests count] + [self.participants count])];
-        for (MSUser *guest in self.guests) {
+        for (MSSportner *guest in self.guests) {
             [userNames addObject:guest.username];
         }
-        for (MSUser *participant in self.participants) {
+        for (MSSportner *participant in self.participants) {
             [userNames addObject:participant.username];
         }
-        [userNames addObject:[MSUser currentUser].username];
+        [userNames addObject:[MSSportner currentSportner].username];
         
-        PFQuery *otherSportnersQuery = [MSUser query];
+        PFQuery *otherSportnersQuery = [MSSportner query];
         [otherSportnersQuery whereKey:@"username" notContainedIn:userNames];
         [otherSportnersQuery findObjectsInBackgroundWithTarget:self
                                                       selector:@selector(sportnersCallback:error:)];
@@ -167,32 +164,82 @@
 
 #pragma mark - Participants & Guests
 
-- (void)addGuest:(MSUser *)guest WithTarget:(id)target callBack:(SEL)callBack
+- (void)addGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack
 {
     PFRelation *relation = [self guestRelation];
     [relation addObject:guest];
     [self saveInBackgroundWithTarget:target selector:callBack];
 }
 
-- (void)removeGuest:(MSUser *)guest WithTarget:(id)target callBack:(SEL)callBack
+- (void)removeGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack
 {
     PFRelation *relation = [self guestRelation];
     [relation removeObject:guest];
     [self saveInBackgroundWithTarget:target selector:callBack];
 }
 
-- (void)addParticipant:(MSUser *)participant WithTarget:(id)target callBack:(SEL)callBack
+- (void)addParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack
 {
     PFRelation *relation = [self participantRelation];
     [relation addObject:participant];
     [self saveInBackgroundWithTarget:target selector:callBack];
 }
 
-- (void)removeParticipant:(MSUser *)participant WithTarget:(id)target callBack:(SEL)callBack
+- (void)removeParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack
 {
     PFRelation *relation = [self participantRelation];
     [relation removeObject:participant];
     [self saveInBackgroundWithTarget:target selector:callBack];
 }
+
+#pragma mark - Messages
+
+- (void)requestMessagesWithTarget:(id)target callBack:(SEL)callback
+{
+    self.tempQueryMessagesCallBack = callback;
+    self.tempQueryMessagesTarget = target;
+    [PFObject fetchAllInBackground:self.messages target:self selector:@selector(messagesCallBack:error:)];
+}
+
+
+- (void)messagesCallBack:(NSArray *)objects error:(NSError *)error
+{
+    if (!error) {
+        NSMutableArray *objectsToFetch = [[NSMutableArray alloc] initWithCapacity:[objects count]];
+        for (MSComment *comment in objects)
+        {
+            [objectsToFetch addObject:comment.author];
+        }
+        [PFObject fetchAllInBackground:objectsToFetch target:self selector:@selector(messagesAuthorsCallBack:error:)];
+    } else {
+        NSLog(@"Error: %@ %@", error, [error userInfo]);
+    }
+}
+
+- (void)messagesAuthorsCallBack:(NSArray *)objects error:(NSError *)error
+{
+    if (!error) {
+        // Same as : [target performSelector:@selector(callback)]
+        // Explanations : http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
+        // In order not to get warning
+        //        ((void (*)(id, SEL))[self.tempTarget methodForSelector:self.tempCallBack])(self.tempTarget, self.tempCallBack);
+        [self.tempQueryMessagesTarget performSelector:self.tempQueryMessagesCallBack withObject:Nil withObject:Nil];
+    } else {
+        NSLog(@"Error: %@ %@", error, [error userInfo]);
+    }
+}
+
+- (void)addMessage:(MSComment *)message
+{
+    if (!self.messages) self.messages = [[NSArray alloc] init];
+    
+    NSMutableArray *tempMessages = [self.messages mutableCopy];
+    [tempMessages addObject:message];
+    self.messages = [tempMessages sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+    }];
+}
+
 
 @end

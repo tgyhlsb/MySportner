@@ -10,6 +10,7 @@
 #import "MSSport.h"
 #import <Parse/PFObject+Subclass.h>
 #import "MSActivity.h"
+#import "MSSportner.h"
 
 #define FACEBOOK_VALUE_GENDER_MALE @"male"
 #define FACEBOOK_KEY_GENDER @"gender"
@@ -33,6 +34,7 @@
 
 @interface MSUser()
 
+
 @property (weak, nonatomic) id tempActivityQueryTarget;
 @property (nonatomic) SEL tempActivityQueryCallBack;
 
@@ -40,105 +42,29 @@
 
 @implementation MSUser
 
-@dynamic firstName;
-@dynamic lastName;
-@dynamic facebookID;
-@dynamic birthday;
-@dynamic gender;
-@dynamic sportLevels;
-@dynamic imageFile;
+//@synthesize firstName = _firstName;
+//@synthesize lastName = _lastName;
+//@synthesize facebookID = _facebookID;
+//@synthesize birthday = _birthday;
+//@synthesize gender = _gender;
+//@synthesize sportLevels = _sportLevels;
+//@synthesize imageFile = _imageFile;
+//
+//@synthesize activities = _activities;
+
+@dynamic sportner;
 
 
 @synthesize tempActivityQueryTarget = _tempActivityQueryTarget;
 @synthesize tempActivityQueryCallBack = _tempActivityQueryCallBack;
-@synthesize activities = _activities;
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        //        self.sportLevels = [[NSDictionary alloc] init];
-    }
-    return self;
-}
-
-- (PFRelation *)participantRelation
-{
-    return [self relationforKey:@"participant"];
-}
-
-- (void)queryActivitiesWithTarget:(id)target callBack:(SEL)callBack
-{
-    _tempActivityQueryTarget = target;
-    _tempActivityQueryCallBack = callBack;
-    
-    PFQuery *activitiesQuery = [MSActivity query];
-    [activitiesQuery whereKey:@"participant" equalTo:self];
-    [activitiesQuery includeKey:@"owner"];
-    [activitiesQuery findObjectsInBackgroundWithTarget:self selector:@selector(didFetchActivities:error:)];
-}
-
-- (void)didFetchActivities:(NSArray *)activities error:(NSError *)error
-{
-    if (!error) {
-        self.activities = activities;
-    } else {
-        NSLog(@"%@",error);
-    }
-    [self.tempActivityQueryTarget performSelector:self.tempActivityQueryCallBack withObject:activities withObject:error];
-}
-
-- (void)setSport:(NSInteger)sportKey withLevel:(NSInteger)level
-{
-    if (!self.sportLevels) {
-        self.sportLevels = [[NSDictionary alloc] init];
-    }
-    NSMutableDictionary *tempSportLevels = [self.sportLevels mutableCopy];
-    NSString *sportKeyString = [NSString stringWithFormat:@"%ld", (long)sportKey];
-    [tempSportLevels setObject:@(level) forKey:sportKeyString];
-    self.sportLevels = tempSportLevels;
-}
-
-- (NSArray *)getSports
-{
-    NSMutableArray *sports = [[NSMutableArray alloc] init];
-    for (NSString *sportKeyString in self.sportLevels) {
-        NSInteger sportKey = [sportKeyString integerValue];
-        
-        NSInteger sportLevel = [self sportLevelForSportIndex:sportKey defaultValue:-1];
-        if (sportLevel >= 0) {
-            [sports addObject:[MSSport sportNameForKey:sportKey]];
-        }
-    }
-    return sports;
-}
-
-- (NSInteger)sportLevelForSportIndex:(NSInteger)index defaultValue:(NSInteger)defaultValue
-{
-    NSDecimalNumber *sportLevel = [self.sportLevels valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
-    return (sportLevel) ? [sportLevel integerValue] : defaultValue;
-}
 
 - (void)setWithFacebookInfo:(id<FBGraphUser>)userInfo
 {
-    //    NSLog(@"%@", userInfo);
-    self.facebookID = userInfo.id;
-    self.firstName = userInfo.first_name;
-    self.lastName = userInfo.last_name;
-    if ([userInfo[FACEBOOK_KEY_GENDER] isEqualToString:FACEBOOK_VALUE_GENDER_MALE])
-    {
-        self.gender = MSUserGenderMale;
-    }
-    else{
-        self.gender = MSUserGenderFemale;
-    }
+    self.sportner = [[MSSportner alloc] init];
+    self.sportner.username = self.username;
     self.email = [userInfo objectForKey:FACEBOOK_KEY_EMAIL];
-    self.birthday = [self stringToDate:[userInfo objectForKey:FACEBOOK_KEY_BIRTHDAY]];
-}
-
-- (NSString *)fullName
-{
-    return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
+    [self.sportner setWithFacebookInfo:userInfo];
 }
 
 - (NSDate *)stringToDate:(NSString *)stringDate
@@ -147,40 +73,6 @@
     [fbDateFormatter setDateFormat:FACEBOOK_BIRTHDAY_FORMAT];
     [fbDateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     return [fbDateFormatter dateFromString:stringDate];
-}
-
-#pragma mark Image upload
-
-@synthesize image = _image;
-
-- (void)setImage:(UIImage *)image
-{
-    _image = image;
-    NSData *imageData = UIImagePNGRepresentation(image);
-    self.imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-}
-
-- (UIImage *)image
-{
-    return _image;
-}
-
-- (void)requestImageWithTarget:(id)target CallBack:(SEL)callback
-{
-    if (self.imageFile) {
-        [self.imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            if (!error) {
-                self.image = [UIImage imageWithData:data];
-                if (callback) {
-                    
-                    // Same as : [target performSelector:@selector(callback)]
-                    // Explanations : http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
-                    // In order not to get warning
-                    ((void (*)(id, SEL))[target methodForSelector:callback])(target, callback);
-                }
-            }
-        }];
-    }
 }
 
 @synthesize delegate = _delegate;
@@ -256,6 +148,7 @@
     //    user[PARSE_KEY_BIRTHDAY] = self.birthday;
     //    user[PARSE_KEY_GENDER] = @(self.gender);
     
+    self.sportner.username = self.username;
     [self signUpInBackgroundWithTarget:self
                               selector:@selector(handleSignUp:error:)];
 }

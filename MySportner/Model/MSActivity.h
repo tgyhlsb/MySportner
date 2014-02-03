@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
-#import "MSUser.h"
+#import "MSSportner.h"
 #import "MSVenue.h"
 #import "MSComment.h"
-#import "MSChat.h"
+#import "MSActivityMetaData.h"
 
 #define PARSE_CLASSNAME_ACTIVITY @"MSActivity"
 
@@ -23,30 +23,29 @@
 @property (strong, nonatomic) NSString *place;
 @property (strong, nonatomic) NSString *sport;
 
-@property (strong, nonatomic) MSUser *owner;
-@property (strong, nonatomic) NSArray *guests; // of MSUser
-@property (strong, nonatomic) NSArray *participants;  // of MSUser
+@property (strong, nonatomic) MSSportner *owner;
+@property (strong, nonatomic) NSArray *guests;
+@property (strong, nonatomic) NSArray *participants;
 
-@property (strong, nonatomic) MSChat *chat;
+@property (strong, nonatomic) NSArray *messages;
 
 
 - (PFRelation *)guestRelation;
 - (PFRelation *)participantRelation;
 
-- (void)addGuest:(MSUser *)guest WithTarget:(id)target callBack:(SEL)callBack;
-- (void)removeGuest:(MSUser *)guest WithTarget:(id)target callBack:(SEL)callBack;
-- (void)addParticipant:(MSUser *)participant WithTarget:(id)target callBack:(SEL)callBack;
-- (void)removeParticipant:(MSUser *)participant WithTarget:(id)target callBack:(SEL)callBack;
+- (void)addGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack;
+- (void)removeGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack;
+- (void)addParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack;
+- (void)removeParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack;
 
 - (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack;
-- (void)queryOtherParticipantsWithTarger:(id)target callBack:(SEL)callback;
+- (void)queryOtherSportnersWithTarger:(id)target callBack:(SEL)callback;
 
 + (NSString *)parseClassName;
 
 - (NSComparisonResult)compareWithCreationDate:(MSActivity *)otherActivity;
 
 - (void)requestMessagesWithTarget:(id)target callBack:(SEL)callback;
-- (void)addComment:(MSComment *)comment;
-- (NSArray *)getComments;
+- (void)addMessage:(MSComment *)message;
 
 @end

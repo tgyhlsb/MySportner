@@ -211,11 +211,11 @@
 
 #pragma mark - MSActivityCellDelegate
 
-- (void)activityCell:(MSActivityCell *)cell didSelectUser:(MSUser *)user
+- (void)activityCell:(MSActivityCell *)cell didSelectSportner:(MSSportner *)sportner
 {
     MSProfileVC *destination = [MSProfileVC newController];
     
-    destination.user = user;
+    destination.sportner = sportner;
     destination.hasDirectAccessToDrawer = NO;
     
     [self.navigationController pushViewController:destination animated:YES];

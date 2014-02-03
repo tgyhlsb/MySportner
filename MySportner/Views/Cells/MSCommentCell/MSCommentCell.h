@@ -26,6 +26,6 @@
 
 @protocol MSCommentCellDelegate <NSObject>
 
-- (void)commentCell:(MSCommentCell *)cell didSelectUser:(MSUser *)user;
+- (void)commentCell:(MSCommentCell *)cell didSelectSportner:(MSSportner *)sportner;
 
 @end

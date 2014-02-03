@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSUser.h"
+#import "MSSportner.h"
 
 @protocol MSSportnerCellDelegate;
 
 @interface MSSportnerCell : UITableViewCell
 
 @property (weak, nonatomic) id<MSSportnerCellDelegate> delegate;
-@property (strong, nonatomic) MSUser *sportner;
+@property (strong, nonatomic) MSSportner *sportner;
 @property (nonatomic) BOOL oddIndex;
 
 
@@ -33,6 +33,6 @@
 
 @protocol MSSportnerCellDelegate <NSObject>
 
-- (void)sportnerCell:(MSSportnerCell *)cell didTrigerActionWithSportner:(MSUser *)sportner;
+- (void)sportnerCell:(MSSportnerCell *)cell didTrigerActionWithSportner:(MSSportner *)sportner;
 
 @end

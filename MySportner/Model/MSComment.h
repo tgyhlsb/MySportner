@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
-#import "MSUser.h"
+#import "MSSportner.h"
 
 #define PARSE_CLASSNAME_COMMENT @"MSComment"
 
 @interface MSComment : PFObject <PFSubclassing>
 
 @property (strong, nonatomic) NSString *content;
-@property (strong, nonatomic) MSUser *author;
+@property (strong, nonatomic) MSSportner *author;
 
 
 //// Remove when not using Parse.com

@@ -10,7 +10,7 @@
 #import "MSSmallSportCell.h"
 #import "MSFontFactory.h"
 #import "MSColorFactory.h"
-#import "MSUser.h"
+#import "MSSportner.h"
 
 #define IDENTIFIER @"MSPickSportCell2"
 #define HEIGHT 120
@@ -37,7 +37,7 @@
     self.collectionView.allowsSelection = YES;
     self.collectionView.allowsMultipleSelection = NO;
     
-    self.data = [[MSUser currentUser] getSports];
+    self.data = [[MSSportner currentSportner] getSports];
     
     self.backgroundColor = [UIColor clearColor];
     self.contentView.backgroundColor = [UIColor clearColor];

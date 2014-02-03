@@ -42,6 +42,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"TODO");
+    [[MSSportner currentSportner] fetchIfNeeded];
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -74,12 +76,12 @@
     [MSStyleFactory setQBFlatButton:self.nextButton withStyle:MSFlatButtonStyleGreen];
 }
 
-- (MSUser *)user
+- (MSSportner *)sportner
 {
-    if (!_user) {
-        _user = [MSUser currentUser];
+    if (!_sportner) {
+        _sportner = [MSSportner currentSportner];
     }
-    return _user;
+    return _sportner;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -112,16 +114,16 @@
 
 - (IBAction)nextButtonPress:(UIButton *)sender
 {
-    if (self.user) {
+    if (self.sportner) {
         [self showLoadingViewInView:self.view];
-        [self.user saveInBackgroundWithTarget:self selector:@selector(handleUserSave:error:)];
+        [self.sportner saveInBackgroundWithTarget:self selector:@selector(handleSportnerSave:error:)];
     } else {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection lost"];
     }
 }
 
 
-- (void)handleUserSave:(NSNumber *)result error:(NSError *)error
+- (void)handleSportnerSave:(NSNumber *)result error:(NSError *)error
 {
     [self hideLoadingView];
     if (!error) {
@@ -152,7 +154,7 @@
     cell.imageNameNormal = [sport stringByAppendingString:@".png"];
     cell.imageNameSelected = [sport stringByAppendingString:@"(select).png"];
     
-    cell.level = [self.user sportLevelForSportIndex:indexPath.row defaultValue:DEFAULT_SPORT_LEVEL];
+    cell.level = [self.sportner sportLevelForSportIndex:indexPath.row defaultValue:DEFAULT_SPORT_LEVEL];
     
     cell.layer.shouldRasterize = YES;
     cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
@@ -197,14 +199,14 @@
         weakSportCell.level = weakFormSheet.level;
         
         NSInteger sportKey = [MSSport keyForSportName:weakSportCell.titleLabel.text];
-        [self.user setSport:sportKey withLevel:weakFormSheet.level];
+        [self.sportner setSport:sportKey withLevel:weakFormSheet.level];
         [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
     };
     
     vc.unSelectBlock = ^{
         weakSportCell.level = -1;
         NSInteger sportKey = [MSSport keyForSportName:weakSportCell.titleLabel.text];
-        [self.user setSport:sportKey withLevel:weakSportCell.level];
+        [self.sportner setSport:sportKey withLevel:weakSportCell.level];
         [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
     };
     

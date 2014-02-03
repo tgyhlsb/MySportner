@@ -10,7 +10,7 @@
 #import "MSAppDelegate.h"
 #import "MBProgressHUD.h"
 #import <FacebookSDK/FacebookSDK.h>
-#import "MSUser.h"
+#import "MSSportner.h"
 #import "MSFacebookFriendCell.h"
 #import "MSStyleFactory.h"
 #import "TKAlertCenter.h"
@@ -101,7 +101,7 @@
 
 - (void)getSportnersFromFacebookIDArray:(NSArray *)facebookIDs
 {
-    PFQuery *query = [MSUser query];
+    PFQuery *query = [MSSportner query];
     [query whereKey:@"facebookID" containedIn:facebookIDs];
     [query findObjectsInBackgroundWithTarget:self
                                     selector:@selector(findCallback:error:)];
@@ -109,16 +109,16 @@
 
 - (IBAction)validateButtonPress:(UIButton *)sender
 {
-    if (self.user) {
+    if (self.sportner) {
         [self showLoadingViewInView:self.view];
-        [self.user saveInBackgroundWithTarget:self selector:@selector(handleUserSave:error:)];
+        [self.sportner saveInBackgroundWithTarget:self selector:@selector(handleSportnerSave:error:)];
     } else {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection lost"];
     }
 }
          
 
-- (void)handleUserSave:(NSNumber *)result error:(NSError *)error
+- (void)handleSportnerSave:(NSNumber *)result error:(NSError *)error
 {
     [self hideLoadingView];
     if (!error) {
@@ -163,7 +163,7 @@
     switch (indexPath.section) {
         case 0:
         {
-            MSUser *sportner = [self.sportners objectAtIndex:indexPath.row];
+            MSSportner *sportner = [self.sportners objectAtIndex:indexPath.row];
             cell.titleLabel.text = [sportner fullName];
             break;
         }

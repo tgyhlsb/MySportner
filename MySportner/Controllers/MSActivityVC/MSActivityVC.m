@@ -109,9 +109,9 @@ typedef NS_ENUM(int, MSActivitySection) {
 {
     MSComment *comment = [[MSComment alloc] init];
     comment.content = self.commentTextField.text;
-    comment.author = [MSUser currentUser];
+    comment.author = [MSSportner currentSportner];
     
-    [self.activity addComment:comment];
+    [self.activity addMessage:comment];
     
     self.commentTextField.text = @"";
     [self.commentTextField resignFirstResponder];
@@ -149,7 +149,7 @@ typedef NS_ENUM(int, MSActivitySection) {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == MSActivitySectionComments) {
-        return self.shouldDisplayComments ? [[self.activity getComments] count] : 0;
+        return self.shouldDisplayComments ? [self.activity.messages count] : 0;
     } else {
         return 1;
     }
@@ -182,7 +182,7 @@ typedef NS_ENUM(int, MSActivitySection) {
             
         case MSActivitySectionComments:
         {
-            MSComment *comment = [[self.activity getComments] objectAtIndex:indexPath.row];
+            MSComment *comment = [self.activity.messages objectAtIndex:indexPath.row];
             NSString *identifier = [MSCommentCell reusableIdentifierForCommentText:comment.content];
             MSCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
             cell.delegate = self;
@@ -208,7 +208,7 @@ typedef NS_ENUM(int, MSActivitySection) {
             return [MSGameProfileCell height];
         case MSActivitySectionComments:
         {
-            MSComment *comment = [[self.activity getComments] objectAtIndex:indexPath.row];
+            MSComment *comment = [self.activity.messages objectAtIndex:indexPath.row];
             return [MSCommentCell heightForCommentText:comment.content];
         }
         case MSActivitySectionSportners:
@@ -240,9 +240,9 @@ typedef NS_ENUM(int, MSActivitySection) {
 
 #pragma mark MSGameProfileCellDelegate
 
-- (void)gameProfileCell:(MSGameProfileCell *)cell didSelectUser:(MSUser *)user
+- (void)gameProfileCell:(MSGameProfileCell *)cell didSelectSportner:(MSSportner *)sportner
 {
-    [self pushToUserProfile:user];
+    [self pushToSportnerProfile:sportner];
 }
 
 - (void)gameProfileCellDidTrigerActionHandler:(MSGameProfileCell *)cell
@@ -258,13 +258,13 @@ typedef NS_ENUM(int, MSActivitySection) {
         case MSGameProfileModeParticipant:
         {
             self.infoCell.userMode = MSGameProfileModeLoading;
-            [self.activity removeParticipant:[MSUser currentUser] WithTarget:self callBack:@selector(didLeaveActivityWithSuccess:andError:)];
+            [self.activity removeParticipant:[MSSportner currentSportner] WithTarget:self callBack:@selector(didLeaveActivityWithSuccess:andError:)];
             break;
         }
         case MSGameProfileModeOther:
         {
             self.infoCell.userMode = MSGameProfileModeLoading;
-            [self.activity addParticipant:[MSUser currentUser] WithTarget:self callBack:@selector(didJoinActivityWithSuccess:andError:)];
+            [self.activity addParticipant:[MSSportner currentSportner] WithTarget:self callBack:@selector(didJoinActivityWithSuccess:andError:)];
             break;
         }
         case MSGameProfileModeLoading:
@@ -299,16 +299,16 @@ typedef NS_ENUM(int, MSActivitySection) {
 
 #pragma mark - MSCommentCellDelegate
 
-- (void)commentCell:(MSCommentCell *)cell didSelectUser:(MSUser *)user
+- (void)commentCell:(MSCommentCell *)cell didSelectSportner:(MSSportner *)sportner
 {
-    [self pushToUserProfile:user];
+    [self pushToSportnerProfile:sportner];
 }
 
-- (void)pushToUserProfile:(MSUser *)user
+- (void)pushToSportnerProfile:(MSSportner *)sportner
 {
     MSProfileVC *destination = [MSProfileVC newController];
     
-    destination.user = user;
+    destination.sportner = sportner;
     destination.hasDirectAccessToDrawer = NO;
     
     [self.navigationController pushViewController:destination animated:YES];

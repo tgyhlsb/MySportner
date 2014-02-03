@@ -69,9 +69,9 @@
     self.backgroundColor = [UIColor clearColor];
 }
 
-- (void)setUser:(MSUser *)user
+- (void)setSportner:(MSSportner *)sportner
 {
-    _user = user;
+    _sportner = sportner;
     [self updateUI];
 }
 
@@ -80,16 +80,16 @@
     [self.fbView setHidden:YES];
     [self.imageView setHidden:YES];
     [self.activityIndicatorView startAnimating];
-    if (!self.user.image) {
-        if (self.user.imageFile) {
-            [self.user requestImageWithTarget:self CallBack:@selector(imageDidLoad)];
+    if (!self.sportner.image) {
+        if (self.sportner.imageFile) {
+            [self.sportner requestImageWithTarget:self CallBack:@selector(imageDidLoad)];
         } else  {
-            self.fbView.profileID = self.user.facebookID;
+            self.fbView.profileID = self.sportner.facebookID;
             self.fbView.hidden = NO;
             [self.activityIndicatorView stopAnimating];
         }
     } else {
-        self.imageView.image = self.user.image;
+        self.imageView.image = self.sportner.image;
         self.imageView.hidden = NO;
         [self.activityIndicatorView stopAnimating];
     }

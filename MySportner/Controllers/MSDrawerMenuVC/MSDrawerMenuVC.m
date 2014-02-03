@@ -130,9 +130,9 @@
 
 - (void)updateView
 {
-    self.fbProfilePictureView.user = [MSUser currentUser];
+    self.fbProfilePictureView.sportner = [MSSportner currentSportner];
     self.welcomeLabel.text = @"HELLO";
-    self.userNameLabel.text = [[[MSUser currentUser] fullName] uppercaseString];
+    self.userNameLabel.text = [[[MSSportner currentSportner] fullName] uppercaseString];
 }
 
 

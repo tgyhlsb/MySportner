@@ -55,8 +55,8 @@
 
 - (void)authorProfileTapHandler
 {
-    if ([self.delegate respondsToSelector:@selector(commentCell:didSelectUser:)]) {
-        [self.delegate commentCell:self didSelectUser:self.comment.author];
+    if ([self.delegate respondsToSelector:@selector(commentCell:didSelectSportner:)]) {
+        [self.delegate commentCell:self didSelectSportner:self.comment.author];
     }
 }
 
@@ -114,7 +114,7 @@
     self.authorLabel.text = [comment.author fullName];
     self.contentLabel.text = comment.content;
     self.timeLabel.text = [self timeTextForCommentTime:comment.createdAt];
-    self.profilePictureView.user = comment.author;
+    self.profilePictureView.sportner = comment.author;
 }
 
 - (NSString *)timeTextForCommentTime:(NSDate *)commentDate

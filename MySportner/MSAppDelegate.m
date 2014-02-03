@@ -22,7 +22,8 @@
 #import "QBFlatButton.h"
 #import "MSNavigationVC.h"
 #import "MSComment.h"
-#import "MSChat.h"
+#import "MSActivityMetaData.h"
+#import "MSSportner.h"
 
 #define STORYBOARD_NAME @"Main"
 
@@ -41,7 +42,8 @@
     [MSComment registerSubclass];
     [MSUser registerSubclass];
     [MSActivity registerSubclass];
-    [MSChat registerSubclass];
+//    [MSActivityMetaData registerSubclass];
+    [MSSportner registerSubclass];
     [Parse setApplicationId:@"mXxe3WBY2KqxbWjjnBruVUyJGtyKjgjDpfuX6pAA"
                   clientKey:@"EFLTeHfWnuHxmwzKbg1xfsfYRRFSksMiWGlKYloM"];
     

@@ -151,7 +151,6 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
         self.activity.sport = self.sportCell.sport;
         self.activity.place = self.locationTextField.text;
         self.activity.owner = [MSSportner currentSportner];
-//        self.activity.metaData = [[MSActivityMetaData alloc] init];
         [[self.activity participantRelation] addObject:[MSSportner currentSportner]];
         
         [self showLoadingViewInView:self.navigationController.view];

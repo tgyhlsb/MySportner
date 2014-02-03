@@ -169,7 +169,6 @@
     _tempActivityQueryTarget = target;
     _tempActivityQueryCallBack = callBack;
     
-    NSLog(@"Change ativity to metadata");
     PFQuery *activitiesQuery = [MSActivity query];
     [activitiesQuery whereKey:@"participant" equalTo:self];
     [activitiesQuery includeKey:@"owner"];

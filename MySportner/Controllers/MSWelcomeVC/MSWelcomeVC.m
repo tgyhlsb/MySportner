@@ -37,7 +37,7 @@
 {
     [super viewDidLoad];
     
-    [self.facebookLoginButton setTitle:@"CONNECT VIA FACEBOOK" forState:UIControlStateNormal];
+    [self.facebookLoginButton setTitle:@"CONNECT VIA        " forState:UIControlStateNormal];
     [self.createAccountButton setTitle:@"CREATE ACCOUNT" forState:UIControlStateNormal];
     [self.loginButton setTitle:@"LOGIN" forState:UIControlStateNormal];
     
@@ -49,6 +49,8 @@
     {
 //        [MSUser currentUser] 
         [self performLogin];
+        
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Splashscreen.png"]];
     }
 }
 

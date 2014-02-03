@@ -157,7 +157,6 @@
     cell.imageNameSelected = [sport stringByAppendingString:@"(select).png"];
     
     cell.level = [self.sportner sportLevelForSportIndex:indexPath.row defaultValue:DEFAULT_SPORT_LEVEL];
-    NSLog(@"%d", cell.level);
     
     cell.layer.shouldRasterize = YES;
     cell.layer.rasterizationScale = [UIScreen mainScreen].scale;

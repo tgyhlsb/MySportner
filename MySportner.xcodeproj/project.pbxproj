@@ -92,6 +92,10 @@
 		5A3DE7C4184133E1001054EB /* MSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3DE7C3184133E1001054EB /* MSUser.m */; };
 		5A4CE2B9187099AE0081AA1E /* MSButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4CE2B8187099AE0081AA1E /* MSButtonCell.m */; };
 		5A4CE2BB187099C50081AA1E /* MSButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A4CE2BA187099C50081AA1E /* MSButtonCell.xib */; };
+		5A63A29618A01078002DE50D /* Trophee1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A63A29518A01078002DE50D /* Trophee1.png */; };
+		5A63A29818A01082002DE50D /* Trophee2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A63A29718A01082002DE50D /* Trophee2.png */; };
+		5A63A29F18A0188F002DE50D /* Trophee3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A63A29D18A0188F002DE50D /* Trophee3.png */; };
+		5A63A2A018A0188F002DE50D /* Trophee3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A63A29E18A0188F002DE50D /* Trophee3@2x.png */; };
 		5A653B1018941FFA00E2B8AE /* MSCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A653B0F18941FFA00E2B8AE /* MSCommentCell.m */; };
 		5A653B121894200700E2B8AE /* MSCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A653B111894200700E2B8AE /* MSCommentCell.xib */; };
 		5A653B16189427D900E2B8AE /* MSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A653B15189427D900E2B8AE /* MSCell.m */; };
@@ -357,6 +361,10 @@
 		5A4CE2B7187099AE0081AA1E /* MSButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSButtonCell.h; path = Views/Cells/MSButtonCell/MSButtonCell.h; sourceTree = "<group>"; };
 		5A4CE2B8187099AE0081AA1E /* MSButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSButtonCell.m; path = Views/Cells/MSButtonCell/MSButtonCell.m; sourceTree = "<group>"; };
 		5A4CE2BA187099C50081AA1E /* MSButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSButtonCell.xib; path = Views/Cells/MSButtonCell/MSButtonCell.xib; sourceTree = "<group>"; };
+		5A63A29518A01078002DE50D /* Trophee1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Trophee1.png; sourceTree = "<group>"; };
+		5A63A29718A01082002DE50D /* Trophee2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Trophee2.png; sourceTree = "<group>"; };
+		5A63A29D18A0188F002DE50D /* Trophee3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Trophee3.png; sourceTree = "<group>"; };
+		5A63A29E18A0188F002DE50D /* Trophee3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Trophee3@2x.png"; sourceTree = "<group>"; };
 		5A653B0E18941FFA00E2B8AE /* MSCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCommentCell.h; path = Views/Cells/MSCommentCell/MSCommentCell.h; sourceTree = "<group>"; };
 		5A653B0F18941FFA00E2B8AE /* MSCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCommentCell.m; path = Views/Cells/MSCommentCell/MSCommentCell.m; sourceTree = "<group>"; };
 		5A653B111894200700E2B8AE /* MSCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSCommentCell.xib; path = Views/Cells/MSCommentCell/MSCommentCell.xib; sourceTree = "<group>"; };
@@ -914,6 +922,10 @@
 		5AD1FC5418472AE1001D3DFE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5A63A29D18A0188F002DE50D /* Trophee3.png */,
+				5A63A29E18A0188F002DE50D /* Trophee3@2x.png */,
+				5A63A29718A01082002DE50D /* Trophee2.png */,
+				5A63A29518A01078002DE50D /* Trophee1.png */,
 				5A3A70EA1899518D00799DFA /* no_activity.png */,
 				5AEFA8B31896B92C004B3EF7 /* pin.png */,
 				5A78B7F6189596AC0074A5B3 /* redCircle.png */,
@@ -1486,6 +1498,7 @@
 				5A0CB7F11891714A0027EE58 /* slider-default-trackCrossedOver.png in Resources */,
 				5AEFA8B41896B92C004B3EF7 /* pin.png in Resources */,
 				5ADCF23D184004D300E6C8D2 /* Images.xcassets in Resources */,
+				5A63A29618A01078002DE50D /* Trophee1.png in Resources */,
 				5A0CB7EF1891714A0027EE58 /* slider-default-track@2x.png in Resources */,
 				5A0CB8001891714A0027EE58 /* slider-metal-track.png in Resources */,
 				5AFE687618507BE300E40541 /* foot@2x.png in Resources */,
@@ -1497,6 +1510,7 @@
 				5A0CB8011891714A0027EE58 /* slider-metal-track@2x.png in Resources */,
 				5AA60A06184B56BD00B09ADD /* iOS_blur@2x.png in Resources */,
 				5A0CB8031891714A0027EE58 /* slider-metal-trackBackground@2x.png in Resources */,
+				5A63A29818A01082002DE50D /* Trophee2.png in Resources */,
 				5AFE687C18507BE300E40541 /* gym(select).png in Resources */,
 				5A0CB80A189171BB0027EE58 /* MSRangeCell.xib in Resources */,
 				5A0CB7F31891714A0027EE58 /* slider-default_trackBackground@2x.png in Resources */,
@@ -1570,6 +1584,8 @@
 				5AFE688718507BE300E40541 /* tennis.png in Resources */,
 				5A0F9118184242BD0049BBD5 /* MSCreateAccountVC.xib in Resources */,
 				5AFE687918507BE300E40541 /* football(select)@2x.png in Resources */,
+				5A63A2A018A0188F002DE50D /* Trophee3@2x.png in Resources */,
+				5A63A29F18A0188F002DE50D /* Trophee3.png in Resources */,
 				5A0CB7FD1891714A0027EE58 /* slider-metal-handle-highlighted@2x.png in Resources */,
 				5A78B7F7189596AC0074A5B3 /* redCircle.png in Resources */,
 				5AFE687118507BE300E40541 /* cycle(select)@2x.png in Resources */,

@@ -77,8 +77,8 @@
     [super viewDidAppear:animated];
     
     self.ratingView = [[RatingView alloc] initWithFrame:self.tempRatingView.frame
-                                      selectedImageName:@"selected.png"
-                                        unSelectedImage:@"unSelected.png"
+                                      selectedImageName:@"Trophee1.png"
+                                        unSelectedImage:@"Trophee2.png"
                                                minValue:0
                                                maxValue:5
                                           intervalValue:1.0

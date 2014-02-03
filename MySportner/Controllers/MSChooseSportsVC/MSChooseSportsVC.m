@@ -157,6 +157,7 @@
     cell.imageNameSelected = [sport stringByAppendingString:@"(select).png"];
     
     cell.level = [self.sportner sportLevelForSportIndex:indexPath.row defaultValue:DEFAULT_SPORT_LEVEL];
+    NSLog(@"%d", cell.level);
     
     cell.layer.shouldRasterize = YES;
     cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
@@ -184,11 +185,10 @@
     
     MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithSize:CGSizeMake(280, 350) viewController:vc];
     
-    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
     formSheet.shadowRadius = 2.0;
     formSheet.shadowOpacity = 0.5;
     formSheet.shouldDismissOnBackgroundViewTap = YES;
-    formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
+//    formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
     formSheet.shouldCenterVertically = YES;
     formSheet.cornerRadius = 3.0f;
     
@@ -198,17 +198,17 @@
     __weak MSSportLevelFormVC *weakFormSheet = vc;
     
     vc.doneBlock = ^{
-        weakSportCell.level = weakFormSheet.level;
         
         NSInteger sportKey = [MSSport keyForSportName:weakSportCell.titleLabel.text];
         [self.sportner setSport:sportKey withLevel:weakFormSheet.level];
+        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
         [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
     };
     
     vc.unSelectBlock = ^{
-        weakSportCell.level = -1;
         NSInteger sportKey = [MSSport keyForSportName:weakSportCell.titleLabel.text];
-        [self.sportner setSport:sportKey withLevel:weakSportCell.level];
+        [self.sportner setSport:sportKey withLevel:-1];
+        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
         [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
     };
     
@@ -219,7 +219,7 @@
 
 #pragma mark - MBProgressHUD
 
-- (void) showLoadingViewInView:(UIView*)v
+- (void)showLoadingViewInView:(UIView*)v
 {
     UIView *targetV = (v ? v : self.view);
     

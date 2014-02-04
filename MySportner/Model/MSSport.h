@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define SAMPLE_SPORTS @[@"foot", @"basketball", @"football", @"tennis", @"swimming", @"cycle", @"gym", @"rugby"]
+#define SAMPLE_SPORTS @[@"Tennis", @"Squash", @"Soccer", @"Football", @"Basketball", @"Volleyball", @"Running", @"Biking", @"Surf", @"Bodybuilding", @"Ping-Pong", @"Paddle-tennis", @"Gold", @"Ice-hockey", @"Curling", @"Trekking", @"Kite surfing", @"Wind surfing", @"Badminton", @"Swimming", @"Cross-fit", @"Judo", @"Horse-riding"]
 
 @interface MSSport : NSObject
 

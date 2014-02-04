@@ -153,8 +153,8 @@
     
     NSString *sport = [self.data objectAtIndex:indexPath.item];
     cell.titleLabel.text = [sport uppercaseString];
-    cell.imageNameNormal = [sport stringByAppendingString:@".png"];
-    cell.imageNameSelected = [sport stringByAppendingString:@"(select).png"];
+    cell.imageNameNormal = [[sport stringByAppendingString:@".png"] lowercaseString];
+    cell.imageNameSelected = [[sport stringByAppendingString:@"(select).png"] lowercaseString];
     
     cell.level = [self.sportner sportLevelForSportIndex:indexPath.row defaultValue:DEFAULT_SPORT_LEVEL];
     

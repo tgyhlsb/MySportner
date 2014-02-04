@@ -456,11 +456,11 @@ typedef NS_ENUM(int, MSActivitySection) {
 {
     // Check if the Facebook app is installed and we can present the share dialog
     FBShareDialogParams *params = [[FBShareDialogParams alloc] init];
-    params.link = [NSURL URLWithString:@"https://developers.facebook.com/docs/ios/share/"];
-    params.name = @"Sharing Tutorial";
-    params.caption = @"Build great social apps and get more installs.";
-    params.picture = [NSURL URLWithString:@"http://i.imgur.com/g3Qc1HN.png"];
-    params.description = @"Allow your users to share stories on Facebook from your app using the iOS SDK.";
+    params.link = [NSURL URLWithString:@"http://signup.mysportner.com/"];
+    params.name = self.activity.sport;
+    params.caption = @"Join me on MySportner";
+    params.picture = [NSURL URLWithString:@"https://pbs.twimg.com/profile_images/378800000551667532/b81759440b14ba757bb8b0d7ccceae34.png"];
+    params.description = [NSString stringWithFormat:@"%@ is playing %@ at %@", [MSSportner currentSportner].firstName, self.activity.sport, self.activity.place];
     
     // If the Facebook app is installed and we can present the share dialog
     if ([FBDialogs canPresentShareDialogWithParams:params]) {
@@ -496,12 +496,12 @@ typedef NS_ENUM(int, MSActivitySection) {
 - (void)presentFacebookFeedDialog
 {
     // Put together the dialog parameters
+    NSString *description = [NSString stringWithFormat:@"%@ is playing %@ at %@", [MSSportner currentSportner].firstName, self.activity.sport, self.activity.place];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   @"Sharing Tutorial", @"name",
-                                   @"Build great social apps and get more installs.", @"caption",
-                                   @"Allow your users to share stories on Facebook from your app using the iOS SDK.", @"description",
-                                   @"https://developers.facebook.com/docs/ios/share/", @"link",
-                                   @"http://i.imgur.com/g3Qc1HN.png", @"picture",
+                                   self.activity.sport, @"name",
+                                   @"Join me on MySportner", @"caption",
+                                   description, @"description",
+                                   @"https://pbs.twimg.com/profile_images/378800000551667532/b81759440b14ba757bb8b0d7ccceae34.png", @"picture", @"http://signup.mysportner.com/", @"link",
                                    nil];
     // Show the feed dialog
     [FBWebDialogs presentFeedDialogModallyWithSession:nil

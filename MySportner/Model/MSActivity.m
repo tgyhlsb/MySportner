@@ -53,7 +53,7 @@
 @synthesize tempQueryMessagesCallBack = _tempQueryMessagesCallBack;
 @synthesize tempQueryMessagesTarget = _tempQueryMessagesTarget;
 
-@synthesize messages = _messages;
+@dynamic messages;
 
 
 + (NSString *)parseClassName
@@ -218,27 +218,23 @@
     return [self relationforKey:@"message"];
 }
 
-- (void)addMessage:(MSComment *)message
+- (void)addMessage:(MSComment *)message inBackgroundWithBlock:(PFBooleanResultBlock)block
 {
-    if (!self.messages) self.messages = [[NSArray alloc] init];
-    
-    NSMutableArray *tempMessages = [self.messages mutableCopy];
-    [tempMessages addObject:message];
-    self.messages = [tempMessages sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
     
     [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
-            PFRelation *relation = [self messageRelation];
-            [relation addObject:message];
+            
+            if (!self.messages) self.messages = [[NSArray alloc] init];
+            NSMutableArray *tempMessages = [self.messages mutableCopy];
+            [tempMessages addObject:message];
+            self.messages = [tempMessages sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
+            
             [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (!error) {
-                    
-                } else {
-                    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
-                }
+                block(succeeded, error);
             }];
+            
         } else {
-            [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
+            block(succeeded, error);
         }
     }];
     

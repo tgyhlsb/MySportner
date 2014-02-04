@@ -45,6 +45,6 @@
 - (NSComparisonResult)compareWithCreationDate:(MSActivity *)otherActivity;
 
 - (void)requestMessagesWithTarget:(id)target callBack:(SEL)callback;
-- (void)addMessage:(MSComment *)message;
+- (void)addMessage:(MSComment *)message inBackgroundWithBlock:(PFBooleanResultBlock)block;
 
 @end

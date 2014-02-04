@@ -74,10 +74,12 @@ typedef NS_ENUM(int, MSActivitySection) {
     [self.commentButton setTitle:@"Send" forState:UIControlStateNormal];
     self.commentTextField.placeholder = @"Write your comment";
     
-//    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithCustomView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"share_button.png"]]];
-//    self.navigationItem.rightBarButtonItem = shareButton;
-//    shareButton.action = @selector(showActionSheet);
-//    shareButton.target = self;
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc]
+                                    initWithTitle:@"Share"
+                                    style:UIBarButtonItemStyleBordered
+                                    target:self
+                                    action:@selector(showActionSheet)];
+    self.navigationItem.rightBarButtonItem = shareButton;
     
     if ([self.commentTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [MSColorFactory grayLight];
@@ -112,16 +114,21 @@ typedef NS_ENUM(int, MSActivitySection) {
 
 - (void)postNewComment
 {
-    MSComment *comment = [[MSComment alloc] init];
-    comment.content = self.commentTextField.text;
-    comment.author = [MSSportner currentSportner];
-    
-    [self.activity addMessage:comment];
-    
-    self.commentTextField.text = @"";
-    [self.commentTextField resignFirstResponder];
-    [self reloadCommentsSection];
-    [self scrollTableViewtoLastCell];
+    if (self.commentButton.enabled) {
+        MSComment *comment = [[MSComment alloc] init];
+        comment.content = self.commentTextField.text;
+        comment.author = [MSSportner currentSportner];
+        
+        self.commentButton.enabled = NO;
+        __weak MSActivityVC *weakSelf = self;
+        [self.activity addMessage:comment inBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            weakSelf.commentTextField.text = @"";
+            [weakSelf.commentTextField resignFirstResponder];
+            weakSelf.commentButton.enabled = YES;
+            [weakSelf reloadCommentsSection];
+            [weakSelf scrollTableViewtoLastCell];
+        }];
+    }
 }
 
 - (void)fetchComments
@@ -277,7 +284,7 @@ typedef NS_ENUM(int, MSActivitySection) {
             [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Waiting for server response..."];
             break;
         }
-        
+            
     }
 }
 
@@ -351,13 +358,13 @@ typedef NS_ENUM(int, MSActivitySection) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardWasShown:)
-//                                                 name:UIKeyboardDidShowNotification object:nil];
-//    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardWillBeHidden:)
-//                                                 name:UIKeyboardWillHideNotification object:nil];
+    //    [[NSNotificationCenter defaultCenter] addObserver:self
+    //                                             selector:@selector(keyboardWasShown:)
+    //                                                 name:UIKeyboardDidShowNotification object:nil];
+    //
+    //    [[NSNotificationCenter defaultCenter] addObserver:self
+    //                                             selector:@selector(keyboardWillBeHidden:)
+    //                                                 name:UIKeyboardWillHideNotification object:nil];
     
 }
 
@@ -406,7 +413,7 @@ typedef NS_ENUM(int, MSActivitySection) {
     if (row >= 0) {
         NSIndexPath *indexPathBottom = [NSIndexPath indexPathForRow:row inSection:MSActivitySectionComments];
         [self.tableView scrollToRowAtIndexPath:indexPathBottom atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-    }    
+    }
 }
 
 - (void)closeAllResponders
@@ -418,13 +425,113 @@ typedef NS_ENUM(int, MSActivitySection) {
 
 -(IBAction)showActionSheet
 {
-	UIActionSheet *shareSheet = [[UIActionSheet alloc] initWithTitle:@"Share"
+	UIActionSheet *shareSheet = [[UIActionSheet alloc] initWithTitle:@"SHARE THIS ACTIVITY"
                                                             delegate:self
                                                    cancelButtonTitle:@"Cancel"
                                               destructiveButtonTitle:Nil
                                                    otherButtonTitles:@"Facebook", nil];
-	shareSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+	shareSheet.actionSheetStyle = UIActionSheetStyleAutomatic;
+    shareSheet.delegate = self;
 	[shareSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [self tryToShareOnFacebook];
+}
+
+- (void)tryToShareOnFacebook
+{
+    // Check if the Facebook app is installed and we can present the share dialog
+    FBShareDialogParams *params = [[FBShareDialogParams alloc] init];
+    params.link = [NSURL URLWithString:@"https://developers.facebook.com/docs/ios/share/"];
+    params.name = @"Sharing Tutorial";
+    params.caption = @"Build great social apps and get more installs.";
+    params.picture = [NSURL URLWithString:@"http://i.imgur.com/g3Qc1HN.png"];
+    params.description = @"Allow your users to share stories on Facebook from your app using the iOS SDK.";
+    
+    // If the Facebook app is installed and we can present the share dialog
+    if ([FBDialogs canPresentShareDialogWithParams:params]) {
+        // Present the share dialog
+        [self presentFacebookShareDialogWithParam:params];
+    } else {
+        // Present the feed dialog
+        [self presentFacebookFeedDialog];
+    }
+}
+- (void)presentFacebookShareDialogWithParam:(FBShareDialogParams *)params
+{
+    
+    // Present share dialog
+    [FBDialogs presentShareDialogWithLink:params.link
+                                     name:params.name
+                                  caption:params.caption
+                              description:params.description
+                                  picture:params.picture
+                              clientState:nil
+                                  handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+                                      if(error) {
+                                          // An error occurred, we need to handle the error
+                                          // See: https://developers.facebook.com/docs/ios/errors
+                                          NSLog(@"Error publishing story: %@", error.description);
+                                      } else {
+                                          // Success
+                                          NSLog(@"result %@", results);
+                                      }
+                                  }];
+}
+
+- (void)presentFacebookFeedDialog
+{
+    // Put together the dialog parameters
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"Sharing Tutorial", @"name",
+                                   @"Build great social apps and get more installs.", @"caption",
+                                   @"Allow your users to share stories on Facebook from your app using the iOS SDK.", @"description",
+                                   @"https://developers.facebook.com/docs/ios/share/", @"link",
+                                   @"http://i.imgur.com/g3Qc1HN.png", @"picture",
+                                   nil];
+    // Show the feed dialog
+    [FBWebDialogs presentFeedDialogModallyWithSession:nil
+                                           parameters:params
+                                              handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+                                                  if (error) {
+                                                      // An error occurred, we need to handle the error
+                                                      // See: https://developers.facebook.com/docs/ios/errors
+                                                      NSLog(@"Error publishing story: %@", error.description);
+                                                  } else {
+                                                      if (result == FBWebDialogResultDialogNotCompleted) {
+                                                          // User cancelled.
+                                                          NSLog(@"User cancelled.");
+                                                      } else {
+                                                          // Handle the publish feed callback
+                                                          NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
+                                                          
+                                                          if (![urlParams valueForKey:@"post_id"]) {
+                                                              // User cancelled.
+                                                              NSLog(@"User cancelled.");
+                                                              
+                                                          } else {
+                                                              // User clicked the Share button
+                                                              NSString *result = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
+                                                              NSLog(@"result %@", result);
+                                                          }
+                                                      }
+                                                  }
+                                              }];
+}
+
+// A function for parsing URL parameters returned by the Feed Dialog.
+- (NSDictionary*)parseURLParams:(NSString *)query {
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    for (NSString *pair in pairs) {
+        NSArray *kv = [pair componentsSeparatedByString:@"="];
+        NSString *val =
+        [kv[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        params[kv[0]] = val;
+    }
+    return params;
 }
 
 

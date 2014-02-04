@@ -8,6 +8,7 @@
 
 #import "MSActivity.h"
 #import <Parse/PFObject+Subclass.h>
+#import "TKAlertCenter.h"
 
 @interface MSActivity()
 
@@ -212,6 +213,11 @@
     }
 }
 
+- (PFRelation *)messageRelation
+{
+    return [self relationforKey:@"message"];
+}
+
 - (void)addMessage:(MSComment *)message
 {
     if (!self.messages) self.messages = [[NSArray alloc] init];
@@ -219,9 +225,23 @@
     NSMutableArray *tempMessages = [self.messages mutableCopy];
     [tempMessages addObject:message];
     self.messages = [tempMessages sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
-    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        
+    
+    [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            PFRelation *relation = [self messageRelation];
+            [relation addObject:message];
+            [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    
+                } else {
+                    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
+                }
+            }];
+        } else {
+            [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
+        }
     }];
+    
 }
 
 

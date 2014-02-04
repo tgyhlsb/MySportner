@@ -103,6 +103,7 @@
 		5A6DD74E18A031D900649A58 /* Splashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A6DD74C18A031D900649A58 /* Splashscreen.png */; };
 		5A6DD74F18A031D900649A58 /* Splashscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A6DD74D18A031D900649A58 /* Splashscreen@2x.png */; };
 		5A6DD75118A0346200649A58 /* fb.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A6DD75018A0346200649A58 /* fb.png */; };
+		5A6DD75318A03A2400649A58 /* share_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A6DD75218A03A2400649A58 /* share_button.png */; };
 		5A78B7EC1895759D0074A5B3 /* MSPickLocalisationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78B7EB1895759D0074A5B3 /* MSPickLocalisationVC.m */; };
 		5A78B7EE189575AA0074A5B3 /* MSPickLocalisationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A78B7ED189575AA0074A5B3 /* MSPickLocalisationVC.xib */; };
 		5A78B7F218958BA70074A5B3 /* MSAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78B7F118958BA70074A5B3 /* MSAnnotation.m */; };
@@ -133,6 +134,8 @@
 		5AA60A0E184B67E700B09ADD /* NKColorSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA60A0D184B67E700B09ADD /* NKColorSwitch.m */; };
 		5AD1FC5318472ADD001D3DFE /* runner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5AD1FC5218472ADD001D3DFE /* runner.jpg */; };
 		5AD1FC5A1847318B001D3DFE /* MSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD1FC591847318B001D3DFE /* MSNavigationBar.m */; };
+		5ADA4AD918A1125A00FFE098 /* drawer_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ADA4AD718A1125A00FFE098 /* drawer_background.png */; };
+		5ADA4ADA18A1125A00FFE098 /* drawer_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ADA4AD818A1125A00FFE098 /* drawer_background@2x.png */; };
 		5ADCF225184004D300E6C8D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF224184004D300E6C8D2 /* Foundation.framework */; };
 		5ADCF227184004D300E6C8D2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF226184004D300E6C8D2 /* CoreGraphics.framework */; };
 		5ADCF229184004D300E6C8D2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCF228184004D300E6C8D2 /* UIKit.framework */; };
@@ -377,6 +380,7 @@
 		5A6DD74C18A031D900649A58 /* Splashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splashscreen.png; sourceTree = "<group>"; };
 		5A6DD74D18A031D900649A58 /* Splashscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Splashscreen@2x.png"; sourceTree = "<group>"; };
 		5A6DD75018A0346200649A58 /* fb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fb.png; sourceTree = "<group>"; };
+		5A6DD75218A03A2400649A58 /* share_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_button.png; sourceTree = "<group>"; };
 		5A78B7EA1895759D0074A5B3 /* MSPickLocalisationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSPickLocalisationVC.h; path = Controllers/MSPickLocalisationVC/MSPickLocalisationVC.h; sourceTree = "<group>"; };
 		5A78B7EB1895759D0074A5B3 /* MSPickLocalisationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSPickLocalisationVC.m; path = Controllers/MSPickLocalisationVC/MSPickLocalisationVC.m; sourceTree = "<group>"; };
 		5A78B7ED189575AA0074A5B3 /* MSPickLocalisationVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSPickLocalisationVC.xib; path = Controllers/MSPickLocalisationVC/MSPickLocalisationVC.xib; sourceTree = "<group>"; };
@@ -425,6 +429,8 @@
 		5AD1FC5218472ADD001D3DFE /* runner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = runner.jpg; path = Images/runner.jpg; sourceTree = "<group>"; };
 		5AD1FC581847318B001D3DFE /* MSNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSNavigationBar.h; path = Views/MSNavigationBar.h; sourceTree = "<group>"; };
 		5AD1FC591847318B001D3DFE /* MSNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSNavigationBar.m; path = Views/MSNavigationBar.m; sourceTree = "<group>"; };
+		5ADA4AD718A1125A00FFE098 /* drawer_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = drawer_background.png; path = Images/drawer_background.png; sourceTree = "<group>"; };
+		5ADA4AD818A1125A00FFE098 /* drawer_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "drawer_background@2x.png"; path = "Images/drawer_background@2x.png"; sourceTree = "<group>"; };
 		5ADCF221184004D300E6C8D2 /* MySportner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySportner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ADCF224184004D300E6C8D2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5ADCF226184004D300E6C8D2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -928,6 +934,9 @@
 		5AD1FC5418472AE1001D3DFE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5ADA4AD718A1125A00FFE098 /* drawer_background.png */,
+				5ADA4AD818A1125A00FFE098 /* drawer_background@2x.png */,
+				5A6DD75218A03A2400649A58 /* share_button.png */,
 				5A6DD75018A0346200649A58 /* fb.png */,
 				5A6DD74C18A031D900649A58 /* Splashscreen.png */,
 				5A6DD74D18A031D900649A58 /* Splashscreen@2x.png */,
@@ -1520,6 +1529,7 @@
 				5AA60A06184B56BD00B09ADD /* iOS_blur@2x.png in Resources */,
 				5A0CB8031891714A0027EE58 /* slider-metal-trackBackground@2x.png in Resources */,
 				5A63A29818A01082002DE50D /* Trophee2.png in Resources */,
+				5A6DD75318A03A2400649A58 /* share_button.png in Resources */,
 				5AFE687C18507BE300E40541 /* gym(select).png in Resources */,
 				5A0CB80A189171BB0027EE58 /* MSRangeCell.xib in Resources */,
 				5A0CB7F31891714A0027EE58 /* slider-default_trackBackground@2x.png in Resources */,
@@ -1542,6 +1552,7 @@
 				5A2B68F2189A56CD00D82870 /* MSInviteSportnersVC.xib in Resources */,
 				5A0CB7F61891714A0027EE58 /* slider-default7-track.png in Resources */,
 				5A6DD74E18A031D900649A58 /* Splashscreen.png in Resources */,
+				5ADA4AD918A1125A00FFE098 /* drawer_background.png in Resources */,
 				5A85E8F71872D01300F5E8F9 /* MSLocationCell.xib in Resources */,
 				5AFE43F818426CD4001376C7 /* MSBigSportCell.xib in Resources */,
 				5AFE686B18507BE300E40541 /* basketball.png in Resources */,
@@ -1588,6 +1599,7 @@
 				5ADCF2F51840D9C200E6C8D2 /* MSVenuePickerCell.xib in Resources */,
 				5A0CB7F51891714A0027EE58 /* slider-default7-handle@2x.png in Resources */,
 				5ADCF2DA1840BDBB00E6C8D2 /* MSSmallSportCell.xib in Resources */,
+				5ADA4ADA18A1125A00FFE098 /* drawer_background@2x.png in Resources */,
 				5ADCF2C51840AE0800E6C8D2 /* MSActivityVC.xib in Resources */,
 				5A2B68F7189A598C00D82870 /* MSSportnerCell.xib in Resources */,
 				5A0CB7F71891714A0027EE58 /* slider-default7-track@2x.png in Resources */,

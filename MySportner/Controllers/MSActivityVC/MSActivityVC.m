@@ -29,7 +29,7 @@ typedef NS_ENUM(int, MSActivitySection) {
     MSActivitySectionComments
 };
 
-@interface MSActivityVC () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, MSGameProfileCellDelegate, MSCommentCellDelegate>
+@interface MSActivityVC () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, MSGameProfileCellDelegate, MSCommentCellDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBarView;
 @property (weak, nonatomic) IBOutlet UITextField *commentTextField;
@@ -73,6 +73,11 @@ typedef NS_ENUM(int, MSActivitySection) {
     
     [self.commentButton setTitle:@"Send" forState:UIControlStateNormal];
     self.commentTextField.placeholder = @"Write your comment";
+    
+//    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithCustomView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"share_button.png"]]];
+//    self.navigationItem.rightBarButtonItem = shareButton;
+//    shareButton.action = @selector(showActionSheet);
+//    shareButton.target = self;
     
     if ([self.commentTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [MSColorFactory grayLight];
@@ -408,6 +413,20 @@ typedef NS_ENUM(int, MSActivitySection) {
 {
     [self.commentTextField resignFirstResponder];
 }
+
+#pragma mark - UIActionSheetDelegate
+
+-(IBAction)showActionSheet
+{
+	UIActionSheet *shareSheet = [[UIActionSheet alloc] initWithTitle:@"Share"
+                                                            delegate:self
+                                                   cancelButtonTitle:@"Cancel"
+                                              destructiveButtonTitle:Nil
+                                                   otherButtonTitles:@"Facebook", nil];
+	shareSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+	[shareSheet showInView:self.view];
+}
+
 
 #pragma mark - MBProgressHUD
 

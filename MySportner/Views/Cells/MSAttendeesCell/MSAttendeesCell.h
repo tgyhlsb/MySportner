@@ -7,12 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSActivity.h"
+
+@protocol MSAttendeesCellDelegate;
 
 @interface MSAttendeesCell : UITableViewCell
+
+@property (weak, nonatomic) id<MSAttendeesCellDelegate> delegate;
+@property (strong, nonatomic) MSActivity *activity;
 
 
 + (NSString *)reusableIdentifier;
 + (void)registerToTableView:(UITableView *)tableView;
 + (CGFloat)height;
+
+- (void)updateUI;
+
+@end
+
+
+@protocol MSAttendeesCellDelegate <NSObject>
+
+- (void)attendeesCell:(MSAttendeesCell *)cell didSelectSportner:(MSSportner *)sportner;
 
 @end

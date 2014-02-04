@@ -29,12 +29,13 @@ typedef NS_ENUM(int, MSActivitySection) {
     MSActivitySectionComments
 };
 
-@interface MSActivityVC () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, MSGameProfileCellDelegate, MSCommentCellDelegate, UIActionSheetDelegate>
+@interface MSActivityVC () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, MSGameProfileCellDelegate, MSCommentCellDelegate, UIActionSheetDelegate, MSAttendeesCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBarView;
 @property (weak, nonatomic) IBOutlet UITextField *commentTextField;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (strong, nonatomic) MSGameProfileCell *infoCell;
+@property (strong, nonatomic) MSAttendeesCell *attendeesCell;
 @property (strong, nonatomic) MBProgressHUD *loadingView;
 
 @property (nonatomic) BOOL shouldDisplayComments;
@@ -90,10 +91,11 @@ typedef NS_ENUM(int, MSActivitySection) {
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
     
+    [self.attendeesCell updateUI];
 }
 
 + (MSActivityVC *)newController
@@ -186,9 +188,12 @@ typedef NS_ENUM(int, MSActivitySection) {
         case MSActivitySectionSportners:
         {
             NSString *identifier = [MSAttendeesCell reusableIdentifier];
-            MSAttendeesCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+            self.attendeesCell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
             
-            return cell;
+            self.attendeesCell.activity = self.activity;
+            self.attendeesCell.delegate = self;
+            
+            return self.attendeesCell;
             
         }
             
@@ -324,6 +329,13 @@ typedef NS_ENUM(int, MSActivitySection) {
     destination.hasDirectAccessToDrawer = NO;
     
     [self.navigationController pushViewController:destination animated:YES];
+}
+
+#pragma mark - MSAttendeesCellDelegate
+
+- (void)attendeesCell:(MSAttendeesCell *)cell didSelectSportner:(MSSportner *)sportner
+{
+    [self pushToSportnerProfile:sportner];
 }
 
 #pragma mark - UITextFieldDelegate

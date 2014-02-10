@@ -23,17 +23,17 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vertical_gradient.png" translatesAutoresizingMaskIntoConstraints="NO" id="kzu-5Q-tQn">
-                    <rect key="frame" x="0.0" y="368" width="320" height="200"/>
+                    <rect key="frame" x="0.0" y="448" width="320" height="120"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="200" id="GOs-dd-XZD"/>
+                        <constraint firstAttribute="height" constant="120" id="GOs-dd-XZD"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxj-DB-u2K">
-                    <rect key="frame" x="130" y="488" width="60" height="60"/>
+                    <rect key="frame" x="128" y="488" width="65" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="60" id="O7l-rs-Ygl"/>
+                        <constraint firstAttribute="width" constant="65" id="O7l-rs-Ygl"/>
                         <constraint firstAttribute="height" constant="60" id="vOM-VK-J8X"/>
                     </constraints>
                     <state key="normal" title="+">

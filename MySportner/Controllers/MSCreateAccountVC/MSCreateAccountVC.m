@@ -277,7 +277,7 @@
     {
         message = @"Please fill in your birthday";
     } else if (!self.profilePicture) {
-        message = @"Please pick a picture";
+//        message = @"Please pick a picture";
     }
     
     

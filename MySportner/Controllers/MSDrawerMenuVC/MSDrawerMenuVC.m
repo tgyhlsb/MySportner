@@ -82,7 +82,11 @@
     self.bottomContainerView.backgroundColor = [UIColor colorWithRed:0.30f green:0.30f blue:0.30f alpha:0.5f];
     self.fbProfilePictureView.backgroundColor = [UIColor clearColor];
     
+    self.fbProfilePictureView.layer.shadowColor = [[[UIColor blackColor] colorWithAlphaComponent:0.4] CGColor];
+    self.fbProfilePictureView.layer.shadowOffset = CGSizeMake(0.0, 2.0);
+    
     [MSStyleFactory setUILabel:self.userNameLabel withStyle:MSLabelStyleUserName];
+    [MSStyleFactory setUILabel:self.welcomeLabel withStyle:MSLabelStyleUserName];
     
     [self.activitiesButton setTitle:@"ACTIVITIES" forState:UIControlStateNormal];
     [MSStyleFactory setQBFlatButton:self.activitiesButton withStyle:MSFlatButtonStyleDrawerMenu];
@@ -131,8 +135,8 @@
 - (void)updateView
 {
     self.fbProfilePictureView.sportner = [MSSportner currentSportner];
-    self.welcomeLabel.text = @"HELLO";
-    self.userNameLabel.text = [[[MSSportner currentSportner] fullName] uppercaseString];
+    self.welcomeLabel.text = [[MSSportner currentSportner].firstName uppercaseString];
+    self.userNameLabel.text = [[MSSportner currentSportner].lastName uppercaseString];
 }
 
 

@@ -19,7 +19,7 @@
 + (NSString *)sportNameForKey:(NSInteger)sportKey
 {
     NSString *sportName = [SAMPLE_SPORTS objectAtIndex:sportKey];
-    return sportName.uppercaseString;
+    return sportName;
 }
 
 @end

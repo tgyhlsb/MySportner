@@ -32,11 +32,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P1n-Ks-zFC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
+                                <rect key="frame" x="0.0" y="-64" width="320" height="313"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MyY-pT-9Tl" customClass="MSProfilePictureView">
-                                <rect key="frame" x="180" y="105" width="120" height="120"/>
+                                <rect key="frame" x="180" y="110" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -54,7 +54,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRT-P6-W66">
-                                <rect key="frame" x="30" y="180" width="130" height="21"/>
+                                <rect key="frame" x="33" y="184" width="127" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="hPO-18-y8r"/>
@@ -90,20 +90,30 @@
                                     <action selector="sportnersButtonHandler:" destination="-1" eventType="touchUpInside" id="2WA-1m-nfh"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profil-localisation@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="4qa-vb-mt0">
+                                <rect key="frame" x="20" y="188" width="7" height="11"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="7" id="XRd-HG-fv0"/>
+                                    <constraint firstAttribute="height" constant="11" id="dsv-uZ-6gN"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="MyY-pT-9Tl" firstAttribute="leading" secondItem="ZRT-P6-W66" secondAttribute="trailing" constant="20" id="0Ip-yU-Ksl"/>
                             <constraint firstItem="YcJ-h7-Zu1" firstAttribute="top" secondItem="C7x-0G-Ob2" secondAttribute="top" constant="165" id="BZg-Az-Dne"/>
                             <constraint firstItem="ehc-71-xLB" firstAttribute="leading" secondItem="C7x-0G-Ob2" secondAttribute="leading" id="BjX-Jg-f2s"/>
-                            <constraint firstItem="ZRT-P6-W66" firstAttribute="leading" secondItem="C7x-0G-Ob2" secondAttribute="leading" constant="30" id="DTY-Es-EVa"/>
-                            <constraint firstItem="P1n-Ks-zFC" firstAttribute="top" secondItem="C7x-0G-Ob2" secondAttribute="top" id="IH0-CQ-Now"/>
-                            <constraint firstItem="ZRT-P6-W66" firstAttribute="top" secondItem="C7x-0G-Ob2" secondAttribute="top" constant="180" id="MKQ-6k-pFp"/>
+                            <constraint firstItem="ZRT-P6-W66" firstAttribute="leading" secondItem="C7x-0G-Ob2" secondAttribute="leading" constant="33" id="DTY-Es-EVa"/>
+                            <constraint firstItem="P1n-Ks-zFC" firstAttribute="top" secondItem="C7x-0G-Ob2" secondAttribute="top" constant="-64" id="IH0-CQ-Now"/>
+                            <constraint firstItem="ZRT-P6-W66" firstAttribute="top" secondItem="C7x-0G-Ob2" secondAttribute="top" constant="184" id="MKQ-6k-pFp"/>
+                            <constraint firstItem="4qa-vb-mt0" firstAttribute="leading" secondItem="C7x-0G-Ob2" secondAttribute="leading" constant="20" id="N2m-Dd-5Od"/>
                             <constraint firstItem="MyY-pT-9Tl" firstAttribute="leading" secondItem="YcJ-h7-Zu1" secondAttribute="trailing" constant="20" id="Omq-IM-dMj"/>
                             <constraint firstAttribute="trailing" secondItem="P1n-Ks-zFC" secondAttribute="trailing" id="Weu-7P-mI7"/>
                             <constraint firstItem="ehc-71-xLB" firstAttribute="centerY" secondItem="x8a-R5-xPD" secondAttribute="centerY" id="Xwd-dl-83L"/>
+                            <constraint firstItem="4qa-vb-mt0" firstAttribute="top" secondItem="YcJ-h7-Zu1" secondAttribute="bottom" constant="2" id="g4J-6p-LeQ"/>
                             <constraint firstItem="x8a-R5-xPD" firstAttribute="top" secondItem="P1n-Ks-zFC" secondAttribute="bottom" id="kJb-wa-E6O"/>
-                            <constraint firstItem="MyY-pT-9Tl" firstAttribute="top" secondItem="C7x-0G-Ob2" secondAttribute="top" constant="105" id="nT2-t0-xSe"/>
+                            <constraint firstItem="MyY-pT-9Tl" firstAttribute="top" secondItem="C7x-0G-Ob2" secondAttribute="top" constant="110" id="nT2-t0-xSe"/>
                             <constraint firstAttribute="bottom" secondItem="ehc-71-xLB" secondAttribute="bottom" constant="1" id="nTW-sC-AsB"/>
                             <constraint firstAttribute="trailing" secondItem="MyY-pT-9Tl" secondAttribute="trailing" constant="20" id="naO-FU-A5h"/>
                             <constraint firstItem="P1n-Ks-zFC" firstAttribute="leading" secondItem="C7x-0G-Ob2" secondAttribute="leading" id="pdw-o2-Lxo"/>
@@ -123,4 +133,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="profil-localisation@2x.png" width="16" height="16"/>
+    </resources>
 </document>

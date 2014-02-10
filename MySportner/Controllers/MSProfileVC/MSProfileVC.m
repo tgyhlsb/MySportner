@@ -16,6 +16,7 @@
 #import "MSProfilePictureView.h"
 #import "TKAlertCenter.h"
 #import "QBFlatButton.h"
+#import "MSFontFactory.h"
 #import "MSStyleFactory.h"
 
 #define NIB_NAME @"MSProfileVC"
@@ -135,11 +136,27 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     
     self.locationLabel.textColor = [MSColorFactory whiteLight];
     
+    int x = 0;
+    int y = self.topView.bounds.size.height - COVER_BLUR_HEIGHT + 14.0;
+    int height = 1;
+    int width = 320;
+    UIView *borderView = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    borderView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.60];
+    [self.topView insertSubview:borderView belowSubview:self.profilePictureView];
+    
+    self.profilePictureView.layer.shadowOffset = CGSizeMake(0.0, 20.0);
+    self.profilePictureView.layer.shadowColor = [[[UIColor blackColor] colorWithAlphaComponent:0.4] CGColor];
+    
+    
     [MSStyleFactory setQBFlatButton:self.activitiesButton withStyle:MSFlatButtonStyleAndroidWhite];
     [self.activitiesButton setTitle:@"ACTIVITES" forState:UIControlStateNormal];
     [MSStyleFactory setQBFlatButton:self.sportnersButton withStyle:MSFlatButtonStyleAndroidWhite];
     [self.sportnersButton setTitle:@"SPORTNERS" forState:UIControlStateNormal];
     
+    
+    [MSStyleFactory setUILabel:self.sportnerNameLabel withStyle:MSLabelStyleUserName];
+    self.sportnerNameLabel.font = [MSFontFactory fontForSportnerNameProfile];
+    self.locationLabel.font = [MSFontFactory fontForCellInfo];
     self.sportnerNameLabel.textColor = [MSColorFactory whiteLight];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showSportChooser)];
     [self.sportnerNameLabel addGestureRecognizer:tapGesture];
@@ -180,10 +197,10 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 - (void)reloadCoverPictureView
 {
     if (self.sportner) {
-        [self setCoverPictureWithImage:[UIImage imageNamed:@"runner.jpg"]];
+        [self setCoverPictureWithImage:[UIImage imageNamed:@"layer-12.png"]];
         self.profilePictureView.sportner = self.sportner;
         self.sportnerNameLabel.text = [self.sportner fullName];
-        self.locationLabel.text = @"Lyon, France";
+        self.locationLabel.text = [@"Lyon, France" uppercaseString];
     }
 }
 

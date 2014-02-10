@@ -14,7 +14,17 @@
 #define IDENTIFIER @"MSTextFieldPickerCell"
 #define HEIGHT 60
 
+#define ICON_WIDTH 13.5
+#define ICON_HEIGHT 13.5
+#define ICON_RIGHT_PADDING 30
+
+#define IMAGE_NAME_DATE @"Icon.png"
+#define IMAGE_NAME_REPEAT @"Icon-copie.png"
+#define IMAGE_NAME_LOCATION @"pin_gray.png"
+
 @interface MSTextFieldPickerCell()
+
+@property (strong, nonatomic) UIImageView *iconView;
 
 @end
 
@@ -27,6 +37,19 @@
     
     [MSStyleFactory setMSTextField:self.textField withStyle:MSTextFieldStyleWhiteForm];
 }
+
+- (UIImageView *)iconView
+{
+    if (!_iconView) {
+        int x = self.bounds.size.width - ICON_WIDTH - ICON_RIGHT_PADDING;
+        int y = (self.bounds.size.height - ICON_HEIGHT) / 2.0;
+        CGRect frame = CGRectMake(x, y, ICON_WIDTH, ICON_HEIGHT);
+        _iconView = [[UIImageView alloc] initWithFrame:frame];
+        [self addSubview:_iconView];
+    }
+    return _iconView;
+}
+
 
 - (void)awakeFromNib
 {
@@ -46,6 +69,32 @@
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
     // do nothing
+}
+
+- (void)setType:(MSTextFieldType)type
+{
+    _type = type;
+    
+    switch (type) {
+        case MSTextFieldTypeDate:
+        {
+            self.iconView.image = [UIImage imageNamed:IMAGE_NAME_DATE];
+            break;
+        }
+        case MSTextFieldTypeRepeat:
+        {
+            self.iconView.image = [UIImage imageNamed:IMAGE_NAME_REPEAT];
+            break;
+        }
+        case MSTextFieldTypeLocation:
+        {
+            self.iconView.image = [UIImage imageNamed:IMAGE_NAME_LOCATION];
+            break;
+        }
+            
+        default:
+            break;
+    }
 }
 
 + (void)registerToTableView:(UITableView *)tableView

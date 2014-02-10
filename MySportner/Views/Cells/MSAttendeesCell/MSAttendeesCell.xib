@@ -14,8 +14,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="yhs-cZ-f1o">
-                        <rect key="frame" x="50" y="40" width="270" height="40"/>
+                    <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="yhs-cZ-f1o">
+                        <rect key="frame" x="40" y="40" width="280" height="40"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="huk-1P-5UT"/>
@@ -43,10 +43,20 @@
                             <constraint firstAttribute="height" constant="10" id="qzQ-aV-zFr"/>
                         </constraints>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="perso@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="JTd-gG-rxt">
+                        <rect key="frame" x="20" y="52" width="21" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="21" id="DOe-Tq-PnU"/>
+                            <constraint firstAttribute="height" constant="17" id="agF-5b-MlH"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="yhs-cZ-f1o" secondAttribute="trailing" id="1UI-bV-yht"/>
+                    <constraint firstItem="JTd-gG-rxt" firstAttribute="leading" secondItem="vzP-0X-7K4" secondAttribute="leading" constant="20" id="8N7-ev-TW1"/>
                     <constraint firstItem="yhs-cZ-f1o" firstAttribute="top" secondItem="vzP-0X-7K4" secondAttribute="top" constant="40" id="Euv-3Q-DZN"/>
+                    <constraint firstItem="yhs-cZ-f1o" firstAttribute="centerY" secondItem="JTd-gG-rxt" secondAttribute="centerY" id="IgF-3z-hph"/>
                     <constraint firstItem="yhs-cZ-f1o" firstAttribute="leading" secondItem="vzP-0X-7K4" secondAttribute="leading" constant="50" id="Nz5-JJ-gfO"/>
                     <constraint firstAttribute="trailing" secondItem="qaJ-OJ-gZJ" secondAttribute="trailing" constant="28" id="nLZ-vE-Wuk"/>
                     <constraint firstItem="qaJ-OJ-gZJ" firstAttribute="top" secondItem="vzP-0X-7K4" secondAttribute="top" constant="20" id="si9-ip-0Sf"/>
@@ -60,5 +70,6 @@
     </objects>
     <resources>
         <image name="attendees_subtitle.png" width="249" height="20"/>
+        <image name="perso@2x.png" width="16" height="16"/>
     </resources>
 </document>

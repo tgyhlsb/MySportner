@@ -14,10 +14,16 @@
 #define DEFAULT_BORDER_WIDTH 1.0
 #define DEFAULT_CORNER_RADIUS 4.0
 
+@interface MSTextField()
+
+@end
+
 @implementation MSTextField
 
 @synthesize focusBorderColor = _focusBorderColor;
 @synthesize normalBorderColor = _normalBorderColor;
+
+
 
 - (UIColor *)focusBorderColor
 {

@@ -9,9 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "MSTextField.h"
 
+typedef NS_ENUM(NSUInteger, MSTextFieldType) {
+    MSTextFieldTypeDate,
+    MSTextFieldTypeRepeat,
+    MSTextFieldTypeLocation
+};
+
 @interface MSTextFieldPickerCell : UITableViewCell <UITextFieldDelegate>
 
 @property (weak, nonatomic) UIViewController *viewController;
+@property (nonatomic) MSTextFieldType type;
 
 @property (weak, nonatomic) IBOutlet MSTextField *textField;
 

@@ -57,7 +57,7 @@
 
 + (UIFont *)fontForDrawerMenu
 {
-    return [UIFont fontWithName:@"ProximaNova-Semibold" size:15];
+    return [UIFont fontWithName:@"ProximaNova-Semibold" size:14];
 }
 
 + (UIFont *)fontForGameProfileSportTitle
@@ -103,6 +103,11 @@
 + (UIFont *)fontForSectionHeader
 {
     return [UIFont fontWithName:@"ProximaNova-SemiBold" size:12];
+}
+
++ (UIFont *)fontForSportnerNameProfile
+{
+    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:16];
 }
 
 @end

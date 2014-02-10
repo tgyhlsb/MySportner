@@ -65,7 +65,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7GG-C2-0rh">
-                        <rect key="frame" x="140" y="65" width="165" height="62"/>
+                        <rect key="frame" x="140" y="65" width="165" height="57"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
@@ -85,7 +85,7 @@
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6r6-xV-Wk7" customClass="MSProfilePictureView">
-                        <rect key="frame" x="140" y="132" width="22" height="22"/>
+                        <rect key="frame" x="140" y="127" width="22" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -94,7 +94,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYe-JM-hrN">
-                        <rect key="frame" x="170" y="133" width="135" height="21"/>
+                        <rect key="frame" x="170" y="128" width="135" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="I9Y-Ur-Zq8"/>
@@ -102,13 +102,17 @@
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="localiz@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Wa-v5-lWJ">
+                        <rect key="frame" x="140" y="46" width="7" height="11"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="vZN-TQ-Vdo" firstAttribute="leading" secondItem="aEb-UV-liD" secondAttribute="leading" constant="25" id="18d-Ia-Z7b"/>
                     <constraint firstItem="QYe-JM-hrN" firstAttribute="leading" secondItem="6r6-xV-Wk7" secondAttribute="trailing" constant="8" id="DT4-WX-cwZ"/>
                     <constraint firstItem="7GG-C2-0rh" firstAttribute="top" secondItem="7d6-rT-5rk" secondAttribute="bottom" constant="5" id="KUU-TQ-ye0"/>
-                    <constraint firstItem="qLO-CJ-EHh" firstAttribute="top" secondItem="QYe-JM-hrN" secondAttribute="bottom" constant="20" id="OwN-Gc-37q"/>
+                    <constraint firstItem="qLO-CJ-EHh" firstAttribute="top" secondItem="QYe-JM-hrN" secondAttribute="bottom" constant="25" id="OwN-Gc-37q"/>
                     <constraint firstItem="7GG-C2-0rh" firstAttribute="leading" secondItem="vZN-TQ-Vdo" secondAttribute="trailing" constant="15" id="V7t-LY-t6m"/>
                     <constraint firstItem="vZN-TQ-Vdo" firstAttribute="top" secondItem="aEb-UV-liD" secondAttribute="top" constant="20" id="e7c-eG-O2e"/>
                     <constraint firstAttribute="trailing" secondItem="QYe-JM-hrN" secondAttribute="trailing" constant="15" id="euH-2y-RhQ"/>
@@ -121,7 +125,7 @@
                     <constraint firstItem="7d6-rT-5rk" firstAttribute="leading" secondItem="vZN-TQ-Vdo" secondAttribute="trailing" constant="25" id="sn2-9V-JvZ"/>
                     <constraint firstItem="6r6-xV-Wk7" firstAttribute="top" secondItem="7GG-C2-0rh" secondAttribute="bottom" constant="5" id="tUb-8b-re9"/>
                     <constraint firstAttribute="bottom" secondItem="qLO-CJ-EHh" secondAttribute="bottom" constant="10" id="w2U-Mw-CJ6"/>
-                    <constraint firstItem="qLO-CJ-EHh" firstAttribute="top" secondItem="6r6-xV-Wk7" secondAttribute="bottom" constant="20" id="w6B-Nq-UAU"/>
+                    <constraint firstItem="qLO-CJ-EHh" firstAttribute="top" secondItem="6r6-xV-Wk7" secondAttribute="bottom" constant="25" id="w6B-Nq-UAU"/>
                     <constraint firstItem="6r6-xV-Wk7" firstAttribute="leading" secondItem="vZN-TQ-Vdo" secondAttribute="trailing" constant="15" id="xiI-cf-eb9"/>
                     <constraint firstAttribute="trailing" secondItem="7d6-rT-5rk" secondAttribute="trailing" constant="15" id="y86-Ex-Iih"/>
                 </constraints>
@@ -140,4 +144,7 @@
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="localiz@2x.png" width="16" height="16"/>
+    </resources>
 </document>

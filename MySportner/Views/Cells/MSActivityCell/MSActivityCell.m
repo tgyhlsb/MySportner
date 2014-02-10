@@ -119,6 +119,7 @@
     self.actionButton.margin = 0.0f;
     self.actionButton.depth = 0.0f;
     self.actionButton.radius = 3.0f;
+    self.actionButton.titleLabel.font = [MSFontFactory fontForCellInfo];
     
     [MSStyleFactory setUILabel:self.dayLabel withStyle:MSLabelStyleActivityDateSmall];
     [MSStyleFactory setUILabel:self.monthLabel withStyle:MSLabelStyleActivityDateSmall];

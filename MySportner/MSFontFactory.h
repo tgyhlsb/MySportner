@@ -35,5 +35,6 @@
 + (UIFont *)fontForCommentText;
 
 + (UIFont *)fontForSectionHeader;
++ (UIFont *)fontForSportnerNameProfile;
 
 @end

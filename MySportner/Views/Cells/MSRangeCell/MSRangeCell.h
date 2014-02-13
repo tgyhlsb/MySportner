@@ -20,4 +20,7 @@
 + (void)registerToTableView:(UITableView *)tableView;
 + (CGFloat)height;
 
+
+- (void)updateSliderLabels;
+
 @end

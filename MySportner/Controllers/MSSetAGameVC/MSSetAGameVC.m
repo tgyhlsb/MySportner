@@ -48,6 +48,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 @property (strong, nonatomic) IBOutlet UITextField *locationTextField;
 @property (strong, nonatomic) IBOutlet MSVenuePickerCell *venueCell;
 @property (strong, nonatomic) IBOutlet MSPickSportCell *sportCell;
+@property (strong, nonatomic) MSRangeCell *rangeCell;
 
 @property (strong, nonatomic) UIDatePicker *dayPicker;
 @property (strong, nonatomic) UIDatePicker *timePicker;
@@ -97,10 +98,17 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     self.tableView.backgroundColor = [UIColor clearColor];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self initializePickers];
+    [self.rangeCell updateSliderLabels];
 }
 
 - (void)initializePickers
@@ -414,15 +422,15 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                 
                 case MSSetAGameTextFieldTypeRangePlayers:
                 {
-                    MSRangeCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSRangeCell reusableIdentifier] forIndexPath:indexPath];
+                    self.rangeCell = [self.tableView dequeueReusableCellWithIdentifier:[MSRangeCell reusableIdentifier] forIndexPath:indexPath];
                     
-                    cell.maximumValue = 15.0;
-                    cell.minimumValue = 1.0;
-                    cell.lowerValue = 1.0;
-                    cell.upperValue = 15.0;
-                    cell.stepValue = 1.0;
+                    self.rangeCell.maximumValue = 15.0;
+                    self.rangeCell.minimumValue = 1.0;
+                    self.rangeCell.lowerValue = 1.0;
+                    self.rangeCell.upperValue = 15.0;
+                    self.rangeCell.stepValue = 1.0;
                     
-                    return cell;
+                    return self.rangeCell;
                 }
                     
                 case MSSetAGameTextFieldTypeButton:

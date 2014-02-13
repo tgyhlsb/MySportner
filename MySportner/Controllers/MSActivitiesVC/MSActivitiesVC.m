@@ -99,6 +99,12 @@
     [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button.png"] forState:UIControlStateNormal];
     [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button_press.png"] forState:UIControlStateHighlighted|UIControlStateHighlighted];
     [self.plusButton setTitle:@"" forState:UIControlStateNormal];
+    
+    double delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self.tableView setContentInset:UIEdgeInsetsMake(63, 0, 80, 0)];
+    });
 }
 - (IBAction)plusButtonHandler:(id)sender
 {

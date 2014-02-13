@@ -45,7 +45,7 @@
     
     [self setTintColor:[MSColorFactory mainColor]];
     
-    self.descriptionLabel.text = [@"Players number" uppercaseString];
+    self.descriptionLabel.text = [@"Sportners" uppercaseString];
     [MSStyleFactory setUILabel:self.descriptionLabel withStyle:MSLabelStyleCommentText];
     
     [self updateSliderLabels];

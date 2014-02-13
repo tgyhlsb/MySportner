@@ -12,6 +12,7 @@
 #import "MSStyleFactory.h"
 #import "MSFontFactory.h"
 #import "MSColorFactory.h"
+#import "TKAlertCenter.h"
 
 #define LEVEL_STATUS @[@"BEGINNER", @"CASUAL", @"INTERMEDIATE", @"GOOD", @"PRO"]
 #define LEVEL_COMMENTS @[@"I have never played", @"I played few times", @"I Think I'm good enough", @"I'll handle this", @"Trust me..."]
@@ -119,8 +120,12 @@
 
 - (IBAction)validateButtonPress:(UIButton *)sender
 {
-    if (self.doneBlock) {
-        self.doneBlock();
+    if (self.level != -1) {
+        if (self.doneBlock) {
+            self.doneBlock();
+        }
+    } else {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Please set your level"];
     }
 }
 - (IBAction)unSelectButtonPress:(QBFlatButton *)sender

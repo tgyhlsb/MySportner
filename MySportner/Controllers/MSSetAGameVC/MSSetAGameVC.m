@@ -179,9 +179,9 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 
 #pragma mark - MSPickLocalisationVCDelegate
 
-- (void)didPickLocalisation:(CLLocationCoordinate2D)localisation withRadius:(CGFloat)radius
+- (void)didPickLocalisation:(CLLocationCoordinate2D)localisation withRadius:(CGFloat)radius placeInfo:(NSDictionary *)placeInfo
 {
-    self.locationTextField.text = @"Lyon, France";
+    self.locationTextField.text = [placeInfo objectForKey:@"locality"];
 }
 
 #pragma mark DatePickers Handlers
@@ -204,7 +204,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 {
     [self updateAcitivityDate];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"dd-MM-yyyy at hh:mm"];
+    [dateFormat setDateFormat:@"dd-MM-yyyy    hh:mm"];
     self.dayTextField.text = [dateFormat stringFromDate:self.activity.date];
 }
 

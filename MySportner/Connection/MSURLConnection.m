@@ -59,8 +59,7 @@
     //NSLog([NSString stringWithUTF8String:[data bytes]]);
     if ([self.connectionDelegate respondsToSelector:@selector(connection:didReceiveData:)]) {
         [self.connectionDelegate connection:self didReceiveData:self.data];
-    }
-    if ([self.connectionDelegate respondsToSelector:@selector(connection:didReceiveJson:)]) {
+    } else if ([self.connectionDelegate respondsToSelector:@selector(connection:didReceiveJson:)]) {
         
         NSError* error;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:self.data options:kNilOptions error:&error];

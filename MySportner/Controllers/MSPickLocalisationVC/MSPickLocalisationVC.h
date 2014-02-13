@@ -23,6 +23,6 @@
 
 @protocol MSPickLocalisationVCDelegate <NSObject>
 
-- (void)didPickLocalisation:(CLLocationCoordinate2D)localisation withRadius:(CGFloat)radius;
+- (void)didPickLocalisation:(CLLocationCoordinate2D)localisation withRadius:(CGFloat)radius placeInfo:(NSDictionary *)placeInfo;
 
 @end

@@ -40,6 +40,7 @@
 		5A0D6F4B189A55F300C037C8 /* MSSportnersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0D6F4A189A55F300C037C8 /* MSSportnersVC.m */; };
 		5A0F9116184242AF0049BBD5 /* MSCreateAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0F9115184242AF0049BBD5 /* MSCreateAccountVC.m */; };
 		5A0F9118184242BD0049BBD5 /* MSCreateAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0F9117184242BD0049BBD5 /* MSCreateAccountVC.xib */; };
+		5A11C8C618ACD6E100CA48A0 /* MSReverseGeocodingRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A11C8C518ACD6E100CA48A0 /* MSReverseGeocodingRequest.m */; };
 		5A173FE21849C97D00144DB8 /* UIView+MSRoundedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A173FE11849C97D00144DB8 /* UIView+MSRoundedView.m */; };
 		5A1B736F1844AB6200555FE4 /* MZAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1B73641844AB6200555FE4 /* MZAppearance.m */; };
 		5A1B73701844AB6200555FE4 /* NSInvocation+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1B73661844AB6200555FE4 /* NSInvocation+Copy.m */; };
@@ -317,6 +318,8 @@
 		5A0F9114184242AF0049BBD5 /* MSCreateAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCreateAccountVC.h; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.h; sourceTree = "<group>"; };
 		5A0F9115184242AF0049BBD5 /* MSCreateAccountVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCreateAccountVC.m; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.m; sourceTree = "<group>"; };
 		5A0F9117184242BD0049BBD5 /* MSCreateAccountVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSCreateAccountVC.xib; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.xib; sourceTree = "<group>"; };
+		5A11C8C418ACD6E100CA48A0 /* MSReverseGeocodingRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSReverseGeocodingRequest.h; sourceTree = "<group>"; };
+		5A11C8C518ACD6E100CA48A0 /* MSReverseGeocodingRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSReverseGeocodingRequest.m; sourceTree = "<group>"; };
 		5A173FE01849C97D00144DB8 /* UIView+MSRoundedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MSRoundedView.h"; sourceTree = "<group>"; };
 		5A173FE11849C97D00144DB8 /* UIView+MSRoundedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MSRoundedView.m"; sourceTree = "<group>"; };
 		5A1B73631844AB6200555FE4 /* MZAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZAppearance.h; sourceTree = "<group>"; };
@@ -1443,6 +1446,8 @@
 				5ADCF3101840F6A300E6C8D2 /* MSFourSquareParser.m */,
 				5A22A03A188AEB8C003F1D8B /* MSAutocompleteRequest.h */,
 				5A22A03B188AEB8C003F1D8B /* MSAutocompleteRequest.m */,
+				5A11C8C418ACD6E100CA48A0 /* MSReverseGeocodingRequest.h */,
+				5A11C8C518ACD6E100CA48A0 /* MSReverseGeocodingRequest.m */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -1802,6 +1807,7 @@
 				5AD1FC5A1847318B001D3DFE /* MSNavigationBar.m in Sources */,
 				5A9B2DA818539A0700AE45D9 /* MSGameProfileCell.m in Sources */,
 				5ADCF2C31840ADF700E6C8D2 /* MSActivityVC.m in Sources */,
+				5A11C8C618ACD6E100CA48A0 /* MSReverseGeocodingRequest.m in Sources */,
 				5A96745B184A0ECA0079EAC1 /* UIImage+BlurredFrame.m in Sources */,
 				5A0CB808189171AA0027EE58 /* MSRangeCell.m in Sources */,
 				5A235912189BEE0F0047C6D4 /* MSSportner.m in Sources */,

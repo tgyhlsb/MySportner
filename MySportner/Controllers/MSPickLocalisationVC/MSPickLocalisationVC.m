@@ -10,6 +10,8 @@
 #import "MSAnnotation.h"
 #import "MSPinView.h"
 #import "TKAlertCenter.h"
+#import "MSReverseGeocodingRequest.h"
+#import "MBProgressHUD.h"
 
 @interface MSPickLocalisationVC () <MKMapViewDelegate>
 
@@ -21,6 +23,8 @@
 
 @property (strong, nonatomic) MSAnnotation *activityPin;
 @property (strong, nonatomic) MSPinView *circleView;
+
+@property (strong, nonatomic) MBProgressHUD *loadingView;
 
 @end
 
@@ -59,8 +63,18 @@
 
 - (void)validateButtonHandler
 {
-    if ([self.delegate respondsToSelector:@selector(didPickLocalisation:withRadius:)]) {
-        [self.delegate didPickLocalisation:self.activityPin.coordinate withRadius:self.activityPin.radius];
+    [self showLoadingViewInView:self.view];
+    [MSReverseGeocodingRequest requestLocation:self.activityPin.coordinate completionBlock:^(NSDictionary *placeInfo, NSError *error) {
+        [self hideLoadingView];
+        [self reverseGeocodingRequestCallBackWithPlaceInfo:placeInfo error:error];
+    }];
+}
+
+- (void)reverseGeocodingRequestCallBackWithPlaceInfo:(NSDictionary *)placeInfo
+                                      error:(NSError *)error
+{
+    if ([self.delegate respondsToSelector:@selector(didPickLocalisation:withRadius:placeInfo:)]) {
+        [self.delegate didPickLocalisation:self.activityPin.coordinate withRadius:self.activityPin.radius placeInfo:placeInfo];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -176,5 +190,31 @@
     
     [self updateRadiusOverlay];
 }
+
+#pragma mark - MBProgressHUD
+
+- (void) showLoadingViewInView:(UIView*)v
+{
+    UIView *targetV = (v ? v : self.view);
+    
+    if (!self.loadingView) {
+        self.loadingView = [[MBProgressHUD alloc] initWithView:targetV];
+        self.loadingView.minShowTime = 1.0f;
+        self.loadingView.mode = MBProgressHUDModeIndeterminate;
+        self.loadingView.removeFromSuperViewOnHide = YES;
+        self.loadingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.4];
+    }
+    if(!self.loadingView.superview) {
+        self.loadingView.frame = targetV.bounds;
+        [targetV addSubview:self.loadingView];
+    }
+    [self.loadingView show:YES];
+}
+- (void) hideLoadingView
+{
+    if (self.loadingView.superview)
+        [self.loadingView hide:YES];
+}
+
 
 @end

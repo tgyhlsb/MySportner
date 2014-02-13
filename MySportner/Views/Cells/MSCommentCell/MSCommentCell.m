@@ -121,7 +121,8 @@
 {
     NSTimeInterval diffSecond =  - [commentDate timeIntervalSinceNow];
     if (diffSecond < 60) {
-        return [NSString stringWithFormat:@"%ld sec ago", (long)diffSecond];
+        return @"Now";
+//        return [NSString stringWithFormat:@"%ld sec ago", (long)diffSecond];
     } else if (diffSecond < 3600) {
         NSInteger minutes = floor(diffSecond/60);
         return [NSString stringWithFormat:@"%ld min ago", (long)minutes];

@@ -240,7 +240,11 @@ typedef NS_ENUM(int, MSActivitySection) {
 {
     if (section == MSActivitySectionComments) {
         MSHeaderSectionView *commentHeaderView = [[MSHeaderSectionView alloc] init];
-        [commentHeaderView setTitle:@"COMMENTS"];
+        if (self.activity.messages && [self.activity.messages count]) {
+            [commentHeaderView setTitle:@"COMMENTS"];
+        } else {
+            [commentHeaderView setTitle:@"NO COMMENTS YET"];
+        }
         commentHeaderView.backgroundColor = [MSColorFactory backgroundColorGrayLight];
         return commentHeaderView;
     } else {

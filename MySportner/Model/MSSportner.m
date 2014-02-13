@@ -56,6 +56,15 @@
     return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
 }
 
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[MSSportner class]]) {
+        return [self isEqualToSportner:(MSSportner *)object];
+    } else {
+        return NO;
+    }
+}
+
 - (BOOL)isEqualToSportner:(MSSportner *)otherSportner
 {
     BOOL equal = YES;

@@ -75,6 +75,9 @@ typedef NS_ENUM(int, MSActivitySection) {
     [self.commentButton setTitle:@"Send" forState:UIControlStateNormal];
     self.commentTextField.placeholder = @"Write your comment";
     
+    self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, self.toolBarView.frame.size.height, 0.0f);
+    [self setUpToolBar];
+    
     UIBarButtonItem *shareButton = [[UIBarButtonItem alloc]
                                     initWithTitle:@"Share"
                                     style:UIBarButtonItemStyleBordered
@@ -91,12 +94,43 @@ typedef NS_ENUM(int, MSActivitySection) {
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)setActivity:(MSActivity *)activity
 {
-    [super viewWillAppear:animated];
+    _activity = activity;
     
-    [self.attendeesCell updateUI];
+    if (!self.activity.guests || !self.activity.participants) {
+        [self.activity querySportnersWithTarget:self callBack:@selector(didLoadGuestsAndParticipantsWithError:)];
+    } else {
+        [self.attendeesCell updateUI];
+        [self setUpToolBar];
+    }
 }
+
+- (void)didLoadGuestsAndParticipantsWithError:(NSError *)error
+{
+    if (!error) {
+        [self.attendeesCell updateUI];
+        [self setUpToolBar];
+    }
+}
+
+- (void)setUpToolBar
+{
+    if ([self.activity.participants containsObject:[MSSportner currentSportner]]) {
+        self.toolBarView.hidden = NO;
+        [self.infoCell setUserMode:MSGameProfileModeParticipant];
+    } else {
+        self.toolBarView.hidden = YES;
+        [self.infoCell setUserMode:MSGameProfileModeOther];
+    }
+}
+
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    
+//    [self.attendeesCell updateUI];
+//}
 
 + (MSActivityVC *)newController
 {
@@ -305,6 +339,8 @@ typedef NS_ENUM(int, MSActivitySection) {
         [self.infoCell setUserMode:MSGameProfileModeOther];
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
     }
+    [self setUpToolBar];
+    [self.attendeesCell updateUI];
 }
 
 - (void)didLeaveActivityWithSuccess:(BOOL)succeed andError:(NSError *)error
@@ -315,6 +351,8 @@ typedef NS_ENUM(int, MSActivitySection) {
         [self.infoCell setUserMode:MSGameProfileModeParticipant];
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
     }
+    [self setUpToolBar];
+    [self.attendeesCell updateUI];
 }
 
 

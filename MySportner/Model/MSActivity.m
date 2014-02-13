@@ -82,6 +82,12 @@
 {
     self.tempSportnersQueryTarget = target;
     self.tempSportnersQueryCallBack = callBack;
+    if (!self.participants) {
+        self.participants = [[NSArray alloc] init];
+    }
+    if (!self.guests) {
+        self.guests = [[NSArray alloc] init];
+    }
     PFQuery *participantQuery = [[self participantRelation] query];
     [participantQuery findObjectsInBackgroundWithTarget:self
                                                selector:@selector(participantsCallback:error:)];
@@ -152,6 +158,9 @@
 {
     PFRelation *relation = [self guestRelation];
     [relation addObject:guest];
+    NSMutableArray *tempGuests = [self.guests mutableCopy];
+    [tempGuests addObject:guest];
+    self.guests = tempGuests;
     [self saveInBackgroundWithTarget:target selector:callBack];
 }
 
@@ -159,6 +168,9 @@
 {
     PFRelation *relation = [self guestRelation];
     [relation removeObject:guest];
+    NSMutableArray *tempGuests = [self.guests mutableCopy];
+    [tempGuests removeObject:guest];
+    self.guests = tempGuests;
     [self saveInBackgroundWithTarget:target selector:callBack];
 }
 
@@ -166,6 +178,9 @@
 {
     PFRelation *relation = [self participantRelation];
     [relation addObject:participant];
+    NSMutableArray *tempParticipants = [self.participants mutableCopy];
+    [tempParticipants addObject:participant];
+    self.participants = tempParticipants;
     [self saveInBackgroundWithTarget:target selector:callBack];
 }
 
@@ -173,6 +188,9 @@
 {
     PFRelation *relation = [self participantRelation];
     [relation removeObject:participant];
+    NSMutableArray *tempParticipants = [self.participants mutableCopy];
+    [tempParticipants removeObject:participant];
+    self.participants = tempParticipants;
     [self saveInBackgroundWithTarget:target selector:callBack];
 }
 

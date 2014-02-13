@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YWU-iv-O9T">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -58,11 +58,11 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="EdP-qG-gHq" secondAttribute="bottom" id="01N-NI-RZU"/>
+                <constraint firstAttribute="bottom" secondItem="YWU-iv-O9T" secondAttribute="bottom" id="5Mz-df-TC8"/>
                 <constraint firstItem="YWU-iv-O9T" firstAttribute="leading" secondItem="AFL-6C-qQo" secondAttribute="leading" id="5hS-gR-Pul"/>
                 <constraint firstAttribute="trailing" secondItem="EdP-qG-gHq" secondAttribute="trailing" id="ALw-HW-yww"/>
                 <constraint firstItem="YWU-iv-O9T" firstAttribute="top" secondItem="AFL-6C-qQo" secondAttribute="top" id="RmM-Ph-Lbi"/>
                 <constraint firstItem="EdP-qG-gHq" firstAttribute="leading" secondItem="AFL-6C-qQo" secondAttribute="leading" id="bR3-Xb-tnS"/>
-                <constraint firstItem="EdP-qG-gHq" firstAttribute="top" secondItem="YWU-iv-O9T" secondAttribute="bottom" id="waS-Eb-Skp"/>
                 <constraint firstAttribute="trailing" secondItem="YWU-iv-O9T" secondAttribute="trailing" id="zu7-5b-Jb8"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

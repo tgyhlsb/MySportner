@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *sportLevelLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UIView *tempRatingView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -70,10 +71,16 @@
     self.tempRatingView.backgroundColor = [UIColor colorWithPatternImage:tropheeIMG];
 }
 
+- (void)setSportName:(NSString *)sportName
+{
+    _sportName = sportName;
+    self.titleLabel.text = [sportName uppercaseString];
+}
+
 - (void)setTropheeFromLevel:(NSInteger)level
 {    
     level = level + 1;
-    int width = level * 10;
+    int width = level * 10.0;
     int height = 10;
     int x = 120 - width;
     int y = 5;

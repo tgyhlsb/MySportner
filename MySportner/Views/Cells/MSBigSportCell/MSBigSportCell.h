@@ -10,12 +10,12 @@
 
 @interface MSBigSportCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (nonatomic) int level;
 
 @property (strong, nonatomic) NSString *imageNameNormal;
 @property (strong, nonatomic) NSString *imageNameSelected;
+@property (strong, nonatomic) NSString *sportName;
 
 + (void)registerToCollectionView:(UICollectionView *)collectionView;
 + (NSString *)reusableIdentifier;

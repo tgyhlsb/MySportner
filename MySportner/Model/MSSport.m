@@ -12,7 +12,7 @@
 
 + (NSInteger)keyForSportName:(NSString *)sportName
 {
-    NSInteger key = [SAMPLE_SPORTS indexOfObject:sportName.lowercaseString];
+    NSInteger key = [SAMPLE_SPORTS indexOfObject:sportName];
     return key;
 }
 

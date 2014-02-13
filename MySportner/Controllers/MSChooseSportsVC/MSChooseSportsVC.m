@@ -152,7 +152,7 @@
     MSBigSportCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MSBigSportCell reusableIdentifier] forIndexPath:indexPath];
     
     NSString *sport = [self.data objectAtIndex:indexPath.item];
-    cell.titleLabel.text = [sport uppercaseString];
+    cell.sportName = sport;
     cell.imageNameNormal = [[sport stringByAppendingString:@".png"] lowercaseString];
     cell.imageNameSelected = [[sport stringByAppendingString:@"(select).png"] lowercaseString];
     
@@ -198,14 +198,14 @@
     
     vc.doneBlock = ^{
         
-        NSInteger sportKey = [MSSport keyForSportName:weakSportCell.titleLabel.text];
+        NSInteger sportKey = [MSSport keyForSportName:weakSportCell.sportName];
         [self.sportner setSport:sportKey withLevel:weakFormSheet.level];
         [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
         [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
     };
     
     vc.unSelectBlock = ^{
-        NSInteger sportKey = [MSSport keyForSportName:weakSportCell.titleLabel.text];
+        NSInteger sportKey = [MSSport keyForSportName:weakSportCell.sportName];
         [self.sportner setSport:sportKey withLevel:-1];
         [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
         [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];

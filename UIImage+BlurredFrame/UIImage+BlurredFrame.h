@@ -9,6 +9,9 @@
 
 @interface UIImage (BlurredFrame)
 
+
+- (UIImage *)imageScaledToSize:(CGSize)newSize;
+
 - (UIImage *)applyLightBluredAtFrame:(CGRect)frame __attribute__((deprecated));
 
 - (UIImage *)applyLightEffectAtFrame:(CGRect)frame;

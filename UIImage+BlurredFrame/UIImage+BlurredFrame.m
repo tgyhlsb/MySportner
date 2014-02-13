@@ -20,6 +20,15 @@
     return newImage;
 }
 
+- (UIImage *)imageScaledToSize:(CGSize)newSize
+{
+    UIGraphicsBeginImageContextWithOptions(newSize, YES, [UIScreen mainScreen].scale);
+    [self drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 #pragma mark - Marge two Images
 
 - (UIImage *) addImageToImage:(UIImage *)img atRect:(CGRect)cropRect{

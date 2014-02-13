@@ -21,7 +21,7 @@
 
 #define NIB_NAME @"MSProfileVC"
 
-#define COVER_BLUR_HEIGHT 160
+#define COVER_BLUR_HEIGHT 105
 
 typedef NS_ENUM(int, MSProfileTableViewMode) {
     MSProfileTableViewModeActivities,
@@ -137,7 +137,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     self.locationLabel.textColor = [MSColorFactory whiteLight];
     
     int x = 0;
-    int y = self.topView.bounds.size.height - COVER_BLUR_HEIGHT + 14.0;
+    int y = self.coverPictureView.frame.size.height - COVER_BLUR_HEIGHT;
     int height = 1;
     int width = 320;
     UIView *borderView = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
@@ -197,7 +197,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 - (void)reloadCoverPictureView
 {
     if (self.sportner) {
-        [self setCoverPictureWithImage:[UIImage imageNamed:@"layer-12.png"]];
+        [self setCoverPictureWithImage:[UIImage imageNamed:@"runner.jpg"]];
         self.profilePictureView.sportner = self.sportner;
         self.sportnerNameLabel.text = [self.sportner fullName];
         self.locationLabel.text = [@"Lyon, France" uppercaseString];
@@ -206,6 +206,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 
 - (void)setCoverPictureWithImage:(UIImage *)image
 {
+    image = [image imageScaledToSize:self.coverPictureView.bounds.size];
     CGRect frame = CGRectMake(0, image.size.height - COVER_BLUR_HEIGHT, image.size.width, COVER_BLUR_HEIGHT);
     
     self.coverPictureView.image = [image applyLightEffectAtFrame:frame];

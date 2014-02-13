@@ -32,7 +32,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P1n-Ks-zFC">
-                                <rect key="frame" x="0.0" y="-64" width="320" height="313"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MyY-pT-9Tl" customClass="MSProfilePictureView">
@@ -105,7 +105,7 @@
                             <constraint firstItem="YcJ-h7-Zu1" firstAttribute="top" secondItem="C7x-0G-Ob2" secondAttribute="top" constant="165" id="BZg-Az-Dne"/>
                             <constraint firstItem="ehc-71-xLB" firstAttribute="leading" secondItem="C7x-0G-Ob2" secondAttribute="leading" id="BjX-Jg-f2s"/>
                             <constraint firstItem="ZRT-P6-W66" firstAttribute="leading" secondItem="C7x-0G-Ob2" secondAttribute="leading" constant="33" id="DTY-Es-EVa"/>
-                            <constraint firstItem="P1n-Ks-zFC" firstAttribute="top" secondItem="C7x-0G-Ob2" secondAttribute="top" constant="-64" id="IH0-CQ-Now"/>
+                            <constraint firstItem="P1n-Ks-zFC" firstAttribute="top" secondItem="C7x-0G-Ob2" secondAttribute="top" id="IH0-CQ-Now"/>
                             <constraint firstItem="ZRT-P6-W66" firstAttribute="top" secondItem="C7x-0G-Ob2" secondAttribute="top" constant="184" id="MKQ-6k-pFp"/>
                             <constraint firstItem="4qa-vb-mt0" firstAttribute="leading" secondItem="C7x-0G-Ob2" secondAttribute="leading" constant="20" id="N2m-Dd-5Od"/>
                             <constraint firstItem="MyY-pT-9Tl" firstAttribute="leading" secondItem="YcJ-h7-Zu1" secondAttribute="trailing" constant="20" id="Omq-IM-dMj"/>

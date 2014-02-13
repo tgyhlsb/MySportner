@@ -49,9 +49,9 @@
     {
 //        [MSUser currentUser] 
         [self performLogin];
-        
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Splashscreen.png"]];
     }
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Splashscreen.png"]];
 }
 
 - (void)setButtonsAppearance

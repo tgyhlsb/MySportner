@@ -70,6 +70,12 @@
     }];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.collectionView reloadData];
+}
+
 - (void)setBackButton
 {
     // removes title from pushed VC

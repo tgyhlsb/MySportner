@@ -453,7 +453,9 @@ typedef NS_ENUM(int, MSActivitySection) {
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    [self tryToShareOnFacebook];
+    if (buttonIndex == 0) {
+        [self tryToShareOnFacebook];
+    }
 }
 
 - (void)tryToShareOnFacebook

@@ -269,6 +269,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
         tempFrame.origin.y = -50;
         _dayPicker.frame = tempFrame;
         _dayPicker.datePickerMode = UIDatePickerModeDateAndTime;
+        _dayPicker.minuteInterval = 15;
         _dayPicker.minimumDate = [NSDate date];
         [_dayPicker addTarget:self action:@selector(dayPickerValueDidChange) forControlEvents:UIControlEventValueChanged];
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dayPickerDidTap)];

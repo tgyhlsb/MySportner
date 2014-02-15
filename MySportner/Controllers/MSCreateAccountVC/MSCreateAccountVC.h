@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
+#define IMAGE_SIZE_FOR_UPLOAD 200
+
 @interface MSCreateAccountVC : UIViewController
 
 + (MSCreateAccountVC *)newController;

@@ -42,7 +42,6 @@
 #define PLACEHOLDER_PASSWORD @"Password"
 #define PLACEHOLDER_BIRTHDAY @"Birthdate"
 
-#define IMAGE_SIZE_FOR_UPLOAD 200
 
 @interface MSCreateAccountVC () <UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MSCropperVCDelegate>
 

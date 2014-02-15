@@ -18,6 +18,8 @@
 #import "QBFlatButton.h"
 #import "MSFontFactory.h"
 #import "MSStyleFactory.h"
+#import "MSCropperVC.h"
+#import "MSCreateAccountVC.h"
 
 #define NIB_NAME @"MSProfileVC"
 
@@ -28,7 +30,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     MSProfileTableViewModeSportners
 };
 
-@interface MSProfileVC () <UITableViewDataSource, UITableViewDelegate>
+@interface MSProfileVC () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MSCropperVCDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *topView;
@@ -158,9 +160,50 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     self.sportnerNameLabel.font = [MSFontFactory fontForSportnerNameProfile];
     self.locationLabel.font = [MSFontFactory fontForCellInfo];
     self.sportnerNameLabel.textColor = [MSColorFactory whiteLight];
+    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showSportChooser)];
     [self.sportnerNameLabel addGestureRecognizer:tapGesture];
     self.sportnerNameLabel.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *profilePictureTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pictureTapHandler)];
+    [self.profilePictureView addGestureRecognizer:profilePictureTap];
+    self.profilePictureView.userInteractionEnabled = YES;
+}
+
+- (void)pictureTapHandler
+{
+    UIImagePickerController *destinationVC = [[UIImagePickerController alloc] init];
+    destinationVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    destinationVC.delegate = self;
+    [self presentViewController:destinationVC animated:YES completion:nil];
+}
+
+#pragma mark UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    MSCropperVC *destination = [MSCropperVC newControllerWithImage:image];
+    destination.delegate = self;
+    [picker pushViewController:destination animated:YES];
+}
+
+#pragma mark - MSCropperVCDelegate
+
+- (void)cropper:(MSCropperVC *)cropper didCropImage:(UIImage *)image
+{
+    self.sportner.image = [self imageWithImage:image scaledToSize:CGSizeMake(IMAGE_SIZE_FOR_UPLOAD, IMAGE_SIZE_FOR_UPLOAD)];
+    [self.sportner saveInBackground];
+    [self reloadCoverPictureView];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    UIGraphicsBeginImageContextWithOptions(newSize, YES, [UIScreen mainScreen].scale);
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 - (void)showSportChooser

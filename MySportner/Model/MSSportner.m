@@ -139,7 +139,7 @@
 - (void)setImage:(UIImage *)image
 {
     _image = image;
-    NSData *imageData = UIImagePNGRepresentation(image);
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
     self.imageFile = [PFFile fileWithName:@"image.png" data:imageData];
 }
 

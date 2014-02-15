@@ -89,6 +89,9 @@
 		5A31C2051842153C00868188 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C2031842153C00868188 /* SystemConfiguration.framework */; };
 		5A34C4E31895293500CE2EF2 /* MSProfilePictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A34C4E21895293500CE2EF2 /* MSProfilePictureView.m */; };
 		5A3A70EB1899518D00799DFA /* no_activity.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A3A70EA1899518D00799DFA /* no_activity.png */; };
+		5A3DB6A718AF79D600EA389B /* MSCropperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3DB6A618AF79D600EA389B /* MSCropperVC.m */; };
+		5A3DB6A918AF79E900EA389B /* MSCropperVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A3DB6A818AF79E900EA389B /* MSCropperVC.xib */; };
+		5A3DB6AD18AF7A0C00EA389B /* BJImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3DB6AC18AF7A0C00EA389B /* BJImageCropper.m */; };
 		5A3DE7C118412E82001054EB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3DE7C018412E82001054EB /* FacebookSDK.framework */; };
 		5A3DE7C4184133E1001054EB /* MSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3DE7C3184133E1001054EB /* MSUser.m */; };
 		5A4CE2B9187099AE0081AA1E /* MSButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4CE2B8187099AE0081AA1E /* MSButtonCell.m */; };
@@ -389,6 +392,11 @@
 		5A34C4E11895293500CE2EF2 /* MSProfilePictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSProfilePictureView.h; path = Views/MSProfilePictureView.h; sourceTree = "<group>"; };
 		5A34C4E21895293500CE2EF2 /* MSProfilePictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSProfilePictureView.m; path = Views/MSProfilePictureView.m; sourceTree = "<group>"; };
 		5A3A70EA1899518D00799DFA /* no_activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_activity.png; sourceTree = "<group>"; };
+		5A3DB6A518AF79D600EA389B /* MSCropperVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCropperVC.h; path = Controllers/MSCropperVC/MSCropperVC.h; sourceTree = "<group>"; };
+		5A3DB6A618AF79D600EA389B /* MSCropperVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCropperVC.m; path = Controllers/MSCropperVC/MSCropperVC.m; sourceTree = "<group>"; };
+		5A3DB6A818AF79E900EA389B /* MSCropperVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSCropperVC.xib; path = Controllers/MSCropperVC/MSCropperVC.xib; sourceTree = "<group>"; };
+		5A3DB6AB18AF7A0C00EA389B /* BJImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJImageCropper.h; sourceTree = "<group>"; };
+		5A3DB6AC18AF7A0C00EA389B /* BJImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJImageCropper.m; sourceTree = "<group>"; };
 		5A3DE7C018412E82001054EB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		5A3DE7C2184133E1001054EB /* MSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSUser.h; path = Model/MSUser.h; sourceTree = "<group>"; };
 		5A3DE7C3184133E1001054EB /* MSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSUser.m; path = Model/MSUser.m; sourceTree = "<group>"; };
@@ -871,6 +879,15 @@
 			name = MSHeaderSectionView;
 			sourceTree = "<group>";
 		};
+		5A3DB6AA18AF7A0C00EA389B /* BJImageCropper */ = {
+			isa = PBXGroup;
+			children = (
+				5A3DB6AB18AF7A0C00EA389B /* BJImageCropper.h */,
+				5A3DB6AC18AF7A0C00EA389B /* BJImageCropper.m */,
+			);
+			path = BJImageCropper;
+			sourceTree = "<group>";
+		};
 		5A4CE2BC187099CE0081AA1E /* MSButtonCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1163,6 +1180,7 @@
 		5ADCF2591840050600E6C8D2 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				5A3DB6AA18AF7A0C00EA389B /* BJImageCropper */,
 				5A0CB7CA189171490027EE58 /* NMRangeSlider */,
 				5A29E3291879ACE9008A8919 /* TKAlertCenter */,
 				5A9B2DAC1853B8A400AE45D9 /* ExtensiveCell */,
@@ -1222,6 +1240,9 @@
 				5A85E8F01872CCD300F5E8F9 /* MSLocationPickerVC */,
 				5A78B7EF189575AE0074A5B3 /* MSPickLocalisationVC */,
 				5A2B68F9189A59A200D82870 /* MSSportnersVC */,
+				5A3DB6A518AF79D600EA389B /* MSCropperVC.h */,
+				5A3DB6A618AF79D600EA389B /* MSCropperVC.m */,
+				5A3DB6A818AF79E900EA389B /* MSCropperVC.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1614,6 +1635,7 @@
 				5A9B2DAA18539A1A00AE45D9 /* MSGameProfileCell.xib in Resources */,
 				5A0CB7F11891714A0027EE58 /* slider-default-trackCrossedOver.png in Resources */,
 				5AA8A75718A9775F0086D0B6 /* localiz.png in Resources */,
+				5A3DB6A918AF79E900EA389B /* MSCropperVC.xib in Resources */,
 				5AEFA8B41896B92C004B3EF7 /* pin.png in Resources */,
 				5ADCF23D184004D300E6C8D2 /* Images.xcassets in Resources */,
 				5A63A29618A01078002DE50D /* Trophee1.png in Resources */,
@@ -1797,6 +1819,7 @@
 				5ADCF2D31840BA6400E6C8D2 /* MSPickSportCell.m in Sources */,
 				5A4CE2B9187099AE0081AA1E /* MSButtonCell.m in Sources */,
 				5A2B6905189AD08100D82870 /* MSHeaderSectionView.m in Sources */,
+				5A3DB6AD18AF7A0C00EA389B /* BJImageCropper.m in Sources */,
 				5AFE43F618426CC6001376C7 /* MSBigSportCell.m in Sources */,
 				5A2B68FF189ACEA400D82870 /* MSAttendeesCell.m in Sources */,
 				5ADCF293184017A700E6C8D2 /* MSActivitiesVC.m in Sources */,
@@ -1830,6 +1853,7 @@
 				5A22A03C188AEB8C003F1D8B /* MSAutocompleteRequest.m in Sources */,
 				5ADCF2AC184025AE00E6C8D2 /* MSWelcomeVC.m in Sources */,
 				5A9C90F8187C4C1E00065DBA /* MSSport.m in Sources */,
+				5A3DB6A718AF79D600EA389B /* MSCropperVC.m in Sources */,
 				5ADCF2671840051300E6C8D2 /* UIViewController+MMDrawerController.m in Sources */,
 				5A78B7EC1895759D0074A5B3 /* MSPickLocalisationVC.m in Sources */,
 				5A210020184E421800CDF460 /* MSStyleFactory.m in Sources */,

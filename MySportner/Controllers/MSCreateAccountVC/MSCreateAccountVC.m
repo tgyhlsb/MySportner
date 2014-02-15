@@ -18,6 +18,7 @@
 #import "TKAlertCenter.h"
 #import "UIView+MSRoundedView.h"
 #import "MSFindFriendsVC.h"
+#import "MSCropperVC.h"
 
 #define NIB_NAME @"MSCreateAccountVC"
 
@@ -43,7 +44,7 @@
 
 #define IMAGE_SIZE_FOR_UPLOAD 200
 
-@interface MSCreateAccountVC () <UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface MSCreateAccountVC () <UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MSCropperVCDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -336,7 +337,17 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    MSCropperVC *destination = [MSCropperVC newControllerWithImage:image];
+    destination.delegate = self;
+    [picker pushViewController:destination animated:YES];
+}
+
+#pragma mark - MSCropperVCDelegate
+
+- (void)cropper:(MSCropperVC *)cropper didCropImage:(UIImage *)image
+{
     self.profilePicture = [self imageWithImage:image scaledToSize:CGSizeMake(IMAGE_SIZE_FOR_UPLOAD, IMAGE_SIZE_FOR_UPLOAD)];
+    [self.imageView setRounded];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

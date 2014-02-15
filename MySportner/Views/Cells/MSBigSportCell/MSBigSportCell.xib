@@ -28,11 +28,6 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oGz-6o-Pfd">
-                        <rect key="frame" x="70" y="5" width="50" height="10"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -48,7 +43,6 @@
             </constraints>
             <connections>
                 <outlet property="iconImageView" destination="l2j-az-tku" id="bLR-IO-bBz"/>
-                <outlet property="tempRatingView" destination="oGz-6o-Pfd" id="W1x-ih-2BX"/>
                 <outlet property="titleLabel" destination="6YX-D6-zAK" id="AGA-a5-f4W"/>
             </connections>
         </collectionViewCell>

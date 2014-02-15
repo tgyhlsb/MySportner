@@ -24,7 +24,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *sportLevelLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
-@property (weak, nonatomic) IBOutlet UIView *tempRatingView;
+@property (strong, nonatomic) IBOutlet UIView *tempRatingView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
@@ -49,6 +49,20 @@
     return IDENTIFIER;
 }
 
+- (UIView *)tempRatingView
+{
+    if (!_tempRatingView) {
+        _tempRatingView = [[UIView alloc] initWithFrame:CGRectMake(70, 5, 50, 10)];
+        
+        UIImage *tropheeIMG = [UIImage imageNamed:@"Trophee3.png"];
+        [_tempRatingView.layer setOpaque:NO];
+        [_tempRatingView setOpaque:NO];
+        _tempRatingView.backgroundColor = [UIColor colorWithPatternImage:tropheeIMG];
+        [self addSubview:_tempRatingView];
+    }
+    return _tempRatingView;
+}
+
 - (void)setAppearance
 {
     [self setCornerRadius:3.0];
@@ -64,11 +78,6 @@
     self.backgroundColor = BACKGROUND_COLOR_NORMAL;
     
     self.titleLabel.textColor = TEXT_COLOR_NORMAL;
-    
-    UIImage *tropheeIMG = [UIImage imageNamed:@"Trophee3.png"];
-    [self.tempRatingView.layer setOpaque:NO];
-    [self.tempRatingView setOpaque:NO];
-    self.tempRatingView.backgroundColor = [UIColor colorWithPatternImage:tropheeIMG];
 }
 
 - (void)setSportName:(NSString *)sportName

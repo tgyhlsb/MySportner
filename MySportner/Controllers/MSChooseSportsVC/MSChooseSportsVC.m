@@ -70,10 +70,16 @@
     }];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self nextButtonPress:self.nextButton];
+    
+    [super viewWillDisappear:animated];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.collectionView reloadData];
 }
 
 - (void)setBackButton

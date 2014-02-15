@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Views/Cells/MSBigSportCell/MSBigSportCell.m"
-            timestampString = "414011106.444076"
+            timestampString = "414152515.56047"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "-setTropheeFromLevel:"
             landmarkType = "5">
          </BreakpointContent>
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Views/Cells/MSBigSportCell/MSBigSportCell.m"
-            timestampString = "414011636.517832"
+            timestampString = "414152515.56047"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "-setTropheeFromLevel:"
             landmarkType = "5">
          </BreakpointContent>

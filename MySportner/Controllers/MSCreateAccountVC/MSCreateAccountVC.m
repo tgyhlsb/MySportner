@@ -58,7 +58,7 @@
 @property (strong, nonatomic) QBFlatButton *nextButton;
 @property (strong, nonatomic) UIDatePicker *datePicker;
 
-@property (weak, nonatomic) UIImagePickerController *imagePickerController;
+@property (strong, nonatomic) UIImagePickerController *imagePickerVC;
 
 @property (weak, nonatomic) UITextField *activeTextField;
 
@@ -84,7 +84,15 @@
     [self registerForKeyboardNotifications];
     
     [self setBackButton];
+    [self setUpImagePicker];
     self.hasAlreadySignUp = NO;
+}
+
+- (void)setUpImagePicker
+{
+    self.imagePickerVC = [[UIImagePickerController alloc] init];
+    self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    self.imagePickerVC.delegate = self;
 }
 
 - (void)setBackButton
@@ -319,10 +327,7 @@
 
 - (void)pictureTapHandler
 {
-    UIImagePickerController *destinationVC = [[UIImagePickerController alloc] init];
-    destinationVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    destinationVC.delegate = self;
-    [self presentViewController:destinationVC animated:YES completion:nil];
+    [self presentViewController:self.imagePickerVC animated:YES completion:nil];
 }
 
 #pragma mark UIImagePickerControllerDelegate

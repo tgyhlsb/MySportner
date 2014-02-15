@@ -41,6 +41,8 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 @property (weak, nonatomic) IBOutlet QBFlatButton *activitiesButton;
 @property (weak, nonatomic) IBOutlet QBFlatButton *sportnersButton;
 
+@property (strong, nonatomic) UIImagePickerController *imagePickerVC;
+
 @property (strong, nonatomic) NSArray *activities;
 @property (strong, nonatomic) NSArray *sportners;
 
@@ -63,6 +65,8 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     [self reloadCoverPictureView];
     
     self.tableViewMode = MSProfileTableViewModeActivities;
+    
+    [self setUpImagePicker];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -81,6 +85,13 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     [super viewWillDisappear:animated];
     
     [self setNormalNavigationBar];
+}
+
+- (void)setUpImagePicker
+{
+    self.imagePickerVC = [[UIImagePickerController alloc] init];
+    self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    self.imagePickerVC.delegate = self;
 }
 
 - (void)reloadData
@@ -172,10 +183,8 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 
 - (void)pictureTapHandler
 {
-    UIImagePickerController *destinationVC = [[UIImagePickerController alloc] init];
-    destinationVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    destinationVC.delegate = self;
-    [self presentViewController:destinationVC animated:YES completion:nil];
+
+    [self presentViewController:self.imagePickerVC animated:YES completion:nil];
 }
 
 #pragma mark UIImagePickerControllerDelegate

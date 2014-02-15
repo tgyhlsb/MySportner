@@ -17,8 +17,8 @@
 @interface MSRangeCell()
 
 @property (weak, nonatomic) IBOutlet NMRangeSlider *rangeSlider;
-@property (weak, nonatomic) IBOutlet UILabel *lowerLabel;
-@property (weak, nonatomic) IBOutlet UILabel *upperLabel;
+@property (strong, nonatomic) IBOutlet UILabel *lowerLabel;
+@property (strong, nonatomic) IBOutlet UILabel *upperLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 
@@ -107,6 +107,36 @@
     self.rangeSlider.stepValue = stepValue;
     
     [self updateSliderLabels];
+}
+
+- (UILabel *)lowerLabel
+{
+    if (!_lowerLabel)
+    {
+        CGPoint lowerCenter;
+        lowerCenter.x = (self.rangeSlider.lowerCenter.x + self.rangeSlider.frame.origin.x);
+        lowerCenter.y = (self.rangeSlider.center.y - 24.0f);
+        _lowerLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 19, 60, 60)];
+        _lowerLabel.center = lowerCenter;
+        _lowerLabel.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:_lowerLabel];
+    }
+    return _lowerLabel;
+}
+
+- (UILabel *)upperLabel
+{
+    if (!_upperLabel)
+    {
+        CGPoint upperCenter;
+        upperCenter.x = (self.rangeSlider.upperCenter.x + self.rangeSlider.frame.origin.x);
+        upperCenter.y = (self.rangeSlider.center.y - 24.0f);
+        _upperLabel = [[UILabel alloc] initWithFrame:CGRectMake(255, 19, 60, 60)];
+        _upperLabel.center = upperCenter;
+        _upperLabel.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:_upperLabel];
+    }
+    return _upperLabel;
 }
 
 #pragma mark - Value Label update

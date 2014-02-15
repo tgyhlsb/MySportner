@@ -101,7 +101,6 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated

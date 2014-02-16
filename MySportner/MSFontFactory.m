@@ -107,7 +107,22 @@
 
 + (UIFont *)fontForSportnerNameProfile
 {
-    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:16];
+    return [UIFont fontWithName:@"ProximaNova-Light" size:22];
+}
+
++ (UIFont *)fontForSportnerLocationProfile
+{
+    return [UIFont fontWithName:@"ProximaNova-Semibold" size:13];
+}
+
++ (UIFont *)fontForSportLevelSelectLevelLabel
+{
+    return [UIFont fontWithName:@"ProximaNova-Semibold" size:22];
+}
+
++ (UIFont *)fontForSportLevelSelectCommentLabel
+{
+    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:18];
 }
 
 @end

@@ -23,7 +23,7 @@
 
 #define NIB_NAME @"MSProfileVC"
 
-#define COVER_BLUR_HEIGHT 105
+#define COVER_BLUR_HEIGHT 110
 
 typedef NS_ENUM(int, MSProfileTableViewMode) {
     MSProfileTableViewModeActivities,
@@ -173,7 +173,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     
     [MSStyleFactory setUILabel:self.sportnerNameLabel withStyle:MSLabelStyleUserName];
     self.sportnerNameLabel.font = [MSFontFactory fontForSportnerNameProfile];
-    self.locationLabel.font = [MSFontFactory fontForCellInfo];
+    self.locationLabel.font = [MSFontFactory fontForSportnerLocationProfile];
     self.sportnerNameLabel.textColor = [MSColorFactory whiteLight];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showSportChooser)];

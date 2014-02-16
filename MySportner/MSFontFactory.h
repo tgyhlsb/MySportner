@@ -36,5 +36,9 @@
 
 + (UIFont *)fontForSectionHeader;
 + (UIFont *)fontForSportnerNameProfile;
++ (UIFont *)fontForSportnerLocationProfile;
+
++ (UIFont *)fontForSportLevelSelectLevelLabel;
++ (UIFont *)fontForSportLevelSelectCommentLabel;
 
 @end

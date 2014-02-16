@@ -113,11 +113,31 @@
                                 <action selector="fiendFriendsButtonPress:" destination="-1" eventType="touchUpInside" id="kVX-XR-Hve"/>
                             </connections>
                         </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friends@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="7dd-FO-RAT">
+                            <rect key="frame" x="35" y="37" width="17" height="15"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="17" id="PoF-mZ-Bz3"/>
+                                <constraint firstAttribute="height" constant="15" id="f8v-0r-T6x"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logout@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="Pdf-l0-WEg">
+                            <rect key="frame" x="35" y="81" width="16" height="15"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="15" id="OEU-p4-Lcy"/>
+                                <constraint firstAttribute="width" constant="16" id="ylB-8c-tFL"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="Pdf-l0-WEg" firstAttribute="leading" secondItem="wia-c0-z3Y" secondAttribute="leading" constant="35" id="6MB-ZX-V1l"/>
+                        <constraint firstItem="Pdf-l0-WEg" firstAttribute="centerY" secondItem="tRR-Hr-qfP" secondAttribute="centerY" constant="-2" id="71v-Dm-qQ6"/>
+                        <constraint firstItem="7dd-FO-RAT" firstAttribute="leading" secondItem="wia-c0-z3Y" secondAttribute="leading" constant="35" id="AZX-a6-Ync"/>
                         <constraint firstAttribute="height" constant="130" id="BM1-ED-0gh"/>
                         <constraint firstItem="byE-Yk-nKK" firstAttribute="top" secondItem="wia-c0-z3Y" secondAttribute="top" constant="25" id="Ldd-vf-hBV"/>
+                        <constraint firstItem="byE-Yk-nKK" firstAttribute="centerY" secondItem="7dd-FO-RAT" secondAttribute="centerY" constant="1" id="QGe-TP-QHp"/>
                         <constraint firstItem="byE-Yk-nKK" firstAttribute="leading" secondItem="wia-c0-z3Y" secondAttribute="leading" constant="15" id="UZb-4y-YuS"/>
                         <constraint firstItem="tRR-Hr-qfP" firstAttribute="leading" secondItem="wia-c0-z3Y" secondAttribute="leading" constant="15" id="gvo-rD-kmc"/>
                         <constraint firstItem="tRR-Hr-qfP" firstAttribute="top" secondItem="byE-Yk-nKK" secondAttribute="bottom" constant="5" id="mzV-QT-o2O"/>
@@ -219,6 +239,8 @@
     </objects>
     <resources>
         <image name="activities-icon@2x.png" width="16" height="16"/>
+        <image name="friends@2x.png" width="16" height="16"/>
+        <image name="logout@2x.png" width="16" height="16"/>
         <image name="notifications-icon@2x.png" width="16" height="16"/>
         <image name="setagame-icon@2x.png" width="16" height="16"/>
         <image name="settings-icon@2x.png" width="16" height="16"/>

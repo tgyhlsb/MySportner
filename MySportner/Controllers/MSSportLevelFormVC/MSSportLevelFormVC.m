@@ -55,10 +55,10 @@
     [MSStyleFactory setQBFlatButton:self.unSelectButton withStyle:MSFlatButtonStyleRed];
     [self.unSelectButton setTitle:@"UNSELECT" forState:UIControlStateNormal];
     
-    [self.levelLabel setFont:[MSFontFactory fontForGameProfileSportTitle]];
+    [self.levelLabel setFont:[MSFontFactory fontForSportLevelSelectLevelLabel]];
     [self.levelLabel setTextColor:[MSColorFactory redLight]];
     
-    [self.commentLabel setFont:[MSFontFactory fontForGameProfileSportInfo]];
+    [self.commentLabel setFont:[MSFontFactory fontForSportLevelSelectCommentLabel]];
     [self.commentLabel setTextColor:[MSColorFactory grayDark]];
     
     // Navigation bar
@@ -79,7 +79,7 @@
     
     self.ratingView = [[RatingView alloc] initWithFrame:self.tempRatingView.frame
                                       selectedImageName:@"Trophee1.png"
-                                        unSelectedImage:@"Trophee2.png"
+                                        unSelectedImage:@"Trophee.png"
                                                minValue:0
                                                maxValue:5
                                           intervalValue:1.0

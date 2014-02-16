@@ -47,6 +47,7 @@
     if (!_fbView) {
         _fbView = [[FBProfilePictureView alloc] initWithProfileID:Nil pictureCropping:FBProfilePictureCroppingSquare];
         _fbView.frame = self.bounds;
+        _fbView.clipsToBounds = YES;
         [self addSubview:_fbView];
     }
     return _fbView;
@@ -57,6 +58,7 @@
     if (!_imageView) {
         _imageView = [[UIImageView alloc] init];
         _imageView.frame = self.bounds;
+        _imageView.clipsToBounds = YES;
         [self addSubview:_imageView];
     }
     return _imageView;
@@ -65,8 +67,15 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.clipsToBounds = YES;
+//    self.clipsToBounds = YES;
     self.backgroundColor = [UIColor clearColor];
+}
+
+- (void)setRounded
+{
+    [self.fbView setRounded];
+    [self.imageView setRounded];
+    self.layer.cornerRadius = self.bounds.size.width/2.0;
 }
 
 - (void)setSportner:(MSSportner *)sportner

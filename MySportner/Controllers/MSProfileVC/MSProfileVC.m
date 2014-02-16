@@ -151,6 +151,12 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     self.profilePictureView.backgroundColor = [UIColor clearColor];
     self.tableView.backgroundColor = [UIColor clearColor];
     
+    
+    self.profilePictureView.layer.borderWidth = 2.0f;
+    self.profilePictureView.layer.borderColor = [[[UIColor whiteColor] colorWithAlphaComponent:0.8] CGColor];
+    self.profilePictureView.layer.shadowOffset = CGSizeMake(2.0, 2.0);
+    self.profilePictureView.layer.shadowColor = [[[UIColor blackColor] colorWithAlphaComponent:1.0] CGColor];
+    
     self.locationLabel.textColor = [MSColorFactory whiteLight];
     
     int x = 0;
@@ -161,8 +167,6 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     borderView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.60];
     [self.topView insertSubview:borderView belowSubview:self.profilePictureView];
     
-    self.profilePictureView.layer.shadowOffset = CGSizeMake(0.0, 20.0);
-    self.profilePictureView.layer.shadowColor = [[[UIColor blackColor] colorWithAlphaComponent:0.4] CGColor];
     
     
     [MSStyleFactory setQBFlatButton:self.activitiesButton withStyle:MSFlatButtonStyleAndroidWhite];
@@ -253,7 +257,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 - (void)reloadCoverPictureView
 {
     if (self.sportner) {
-        [self setCoverPictureWithImage:[UIImage imageNamed:@"runner.jpg"]];
+        [self setCoverPictureWithImage:[UIImage imageNamed:@"Img-Profile.png"]];
         self.profilePictureView.sportner = self.sportner;
         self.sportnerNameLabel.text = [self.sportner fullName];
         self.locationLabel.text = [@"Lyon, France" uppercaseString];

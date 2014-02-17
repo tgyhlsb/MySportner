@@ -106,7 +106,7 @@
     [self.fiendFriendsButton setTitle:@"FIND FRIENDS" forState:UIControlStateNormal];
     [MSStyleFactory setQBFlatButton:self.fiendFriendsButton withStyle:MSFlatButtonStyleDrawerMenuLight];
     
-    [self.logoutButton setTitle:@"LOG OUT" forState:UIControlStateNormal];
+    [self.logoutButton setTitle:@"LOGOUT" forState:UIControlStateNormal];
     [MSStyleFactory setQBFlatButton:self.logoutButton withStyle:MSFlatButtonStyleDrawerMenuLight];
 }
 

@@ -56,6 +56,7 @@
 @property (strong, nonatomic) NKColorSwitch *genderControl;
 @property (strong, nonatomic) UILabel *commentLabel;
 @property (strong, nonatomic) QBFlatButton *nextButton;
+@property (weak, nonatomic) IBOutlet QBFlatButton *fixedNextButton;
 @property (strong, nonatomic) UIDatePicker *datePicker;
 
 @property (strong, nonatomic) UIImagePickerController *imagePickerVC;
@@ -222,23 +223,37 @@
     [self.nextButton setTitleShadowColor:[MSColorFactory mainColorShadow] forState:UIControlStateNormal];
     self.nextButton.titleLabel.shadowOffset = CGSizeMake(0.2, 1.8);
     [self.nextButton setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
-    [self.scrollView addSubview:self.nextButton];
+//    [self.scrollView addSubview:self.nextButton];
     
     
-    self.commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(PADDING, self.nextButton.frame.origin.y-80, 280, 80)];
+    
+    [self.fixedNextButton setTitle:@"NEXT" forState:UIControlStateNormal];
+    [self.fixedNextButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [self.fixedNextButton addTarget:self action:@selector(nextButtonHandler) forControlEvents:UIControlEventTouchUpInside];
+    self.fixedNextButton.faceColor = [MSColorFactory mainColor];
+    self.fixedNextButton.sideColor = [MSColorFactory mainColorDark];
+    self.fixedNextButton.titleLabel.font = [MSFontFactory fontForButton];
+    [self.fixedNextButton setTitleShadowColor:[MSColorFactory mainColorShadow] forState:UIControlStateNormal];
+    self.fixedNextButton.titleLabel.shadowOffset = CGSizeMake(0.2, 1.8);
+    [self.fixedNextButton setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
+    
+    
+    self.commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(PADDING, self.birthdayTextField.frame.origin.y+60, 280, 80)];
     self.commentLabel.text = @"By clicking in next button, you  accept the general terms and conditions of use.";
     self.commentLabel.textAlignment = NSTextAlignmentCenter;
     [self.commentLabel setFont:[MSFontFactory fontForInfoLabel]];
     self.commentLabel.textColor = [MSColorFactory gray];
     self.commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.commentLabel.numberOfLines = 0;
-    //    [self.scrollView addSubview:self.commentLabel];
+    [self.scrollView addSubview:self.commentLabel];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(closeAllResponders)];
     
     [self.view addGestureRecognizer:tap];
+    
+    self.scrollView.contentSize = CGSizeMake(320, self.scrollView.contentSize.height + 600);
 }
 
 - (CGRect)nextButtonNormalFrame
@@ -549,7 +564,8 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.datePicker.hidden = NO;
         self.nextButton.frame = [self nextButtonDownFrame];
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.frame.size.height+DATEPICKER_HEIGHT-64);
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height+DATEPICKER_HEIGHT-64);
+        self.commentLabel.hidden = YES;
     }];
 }
 
@@ -560,7 +576,8 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.datePicker.hidden = YES;
         self.nextButton.frame = [self nextButtonNormalFrame];
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.frame.size.height-DATEPICKER_HEIGHT);
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height-DATEPICKER_HEIGHT+64);
+        self.commentLabel.hidden = NO;
     }];
 }
 

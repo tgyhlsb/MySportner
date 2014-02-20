@@ -274,10 +274,11 @@ typedef NS_ENUM(int, MSActivitySection) {
 {
     if (section == MSActivitySectionComments) {
         MSHeaderSectionView *commentHeaderView = [[MSHeaderSectionView alloc] init];
+        [commentHeaderView setTitle:@"COMMENTS"];
         if (self.activity.messages && [self.activity.messages count]) {
-            [commentHeaderView setTitle:@"COMMENTS"];
+            commentHeaderView.showNoCommentLabel = NO;
         } else {
-            [commentHeaderView setTitle:@"NO COMMENTS YET"];
+            commentHeaderView.showNoCommentLabel = YES;
         }
         commentHeaderView.backgroundColor = [MSColorFactory backgroundColorGrayLight];
         return commentHeaderView;
@@ -288,7 +289,15 @@ typedef NS_ENUM(int, MSActivitySection) {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return (section == MSActivitySectionComments) ? 35.0 : 0.0;
+    if (section == MSActivitySectionComments) {
+        if (self.activity.messages && [self.activity.messages count]) {
+            return 35.0;
+        } else {
+            return 170.0;
+        }
+    } else {
+        return 0;
+    }
 }
 
 

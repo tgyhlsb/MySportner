@@ -134,6 +134,9 @@
     if ([self isExtendedCellIndexPath:indexPath] && contentView) {
         return 2*contentView.frame.origin.y + contentView.frame.size.height;
     } else {
+        if (self.selectedRowIndexPath.row  < indexPath.row) {
+            indexPath = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
+        }
         return [self heightForExtensiveCellAtIndexPath:indexPath];
     }
 }
@@ -170,6 +173,7 @@
 
 - (CGFloat)heightForExtensiveCellAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     return MAIN_CELLS_HEIGHT;
 }
 

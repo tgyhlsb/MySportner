@@ -10,6 +10,8 @@
 
 @interface MSHeaderSectionView : UIView
 
+@property (nonatomic) BOOL showNoCommentLabel;
+
 - (void)setTitle:(NSString *)title;
 
 @end

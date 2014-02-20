@@ -14,7 +14,7 @@
 #import "QBFlatButton.h"
 
 #define NIB_NAME @"MSSportnerCell"
-#define HEIGHT 85
+#define HEIGHT 100
 
 @interface MSSportnerCell()
 
@@ -104,6 +104,7 @@
     self.actionButton.margin = 0.0f;
     self.actionButton.depth = 0.0f;
     self.actionButton.radius = 3.0f;
+    self.actionButton.titleLabel.font = [MSFontFactory fontForCellInfo];
     
     self.oddIndex = oddIndex;
     [self setHighlighted:NO animated:NO];

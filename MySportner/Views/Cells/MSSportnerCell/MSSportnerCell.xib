@@ -43,11 +43,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfP-bB-01Q" customClass="QBFlatButton">
-                        <rect key="frame" x="250" y="27" width="60" height="30"/>
+                        <rect key="frame" x="250" y="29" width="60" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="GEZ-bD-CT1"/>
-                            <constraint firstAttribute="height" constant="30" id="dTF-es-nI5"/>
+                            <constraint firstAttribute="height" constant="25" id="dTF-es-nI5"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="INVITE">
@@ -57,16 +57,20 @@
                             <action selector="actionButtonHandler" destination="ZYX-YN-wXt" eventType="touchUpInside" id="mEJ-5D-TUv"/>
                         </connections>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="localiz@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="Mb7-mg-Wud">
+                        <rect key="frame" x="105" y="32" width="6" height="8"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="4da-ry-DU6" firstAttribute="leading" secondItem="a6i-Rt-fgP" secondAttribute="trailing" constant="20" id="8Bx-JO-MXd"/>
-                    <constraint firstItem="HfP-bB-01Q" firstAttribute="top" secondItem="8oq-EX-zf5" secondAttribute="top" constant="27" id="EBB-Mj-B15"/>
                     <constraint firstItem="SK6-Wz-VGB" firstAttribute="leading" secondItem="a6i-Rt-fgP" secondAttribute="trailing" constant="30" id="Kt7-W6-HJo"/>
                     <constraint firstAttribute="centerY" secondItem="a6i-Rt-fgP" secondAttribute="centerY" id="Xh8-6D-AgD"/>
                     <constraint firstAttribute="trailing" secondItem="HfP-bB-01Q" secondAttribute="trailing" constant="10" id="dVe-Oz-DOJ"/>
                     <constraint firstAttribute="trailing" secondItem="SK6-Wz-VGB" secondAttribute="trailing" constant="80" id="eYW-vf-U5I"/>
                     <constraint firstAttribute="trailing" secondItem="4da-ry-DU6" secondAttribute="trailing" constant="20" id="h6D-W4-UwB"/>
                     <constraint firstItem="a6i-Rt-fgP" firstAttribute="leading" secondItem="8oq-EX-zf5" secondAttribute="leading" constant="25" id="hs4-7u-ifV"/>
+                    <constraint firstAttribute="centerY" secondItem="HfP-bB-01Q" secondAttribute="centerY" id="oOU-eh-zjg"/>
                     <constraint firstItem="4da-ry-DU6" firstAttribute="top" secondItem="8oq-EX-zf5" secondAttribute="top" constant="12" id="vRe-Te-iPA"/>
                     <constraint firstItem="SK6-Wz-VGB" firstAttribute="top" secondItem="8oq-EX-zf5" secondAttribute="top" constant="26" id="ynX-aL-jIY"/>
                 </constraints>
@@ -79,4 +83,7 @@
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="localiz@2x.png" width="16" height="16"/>
+    </resources>
 </document>

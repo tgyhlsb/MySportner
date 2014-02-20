@@ -24,6 +24,9 @@
 @property (weak, nonatomic) id tempActivityQueryTarget;
 @property (nonatomic) SEL tempActivityQueryCallBack;
 
+@property (weak, nonatomic) id tempSportnersQueryTarget;
+@property (nonatomic) SEL tempSportnersQueryCallBack;
+
 @end
 
 @implementation MSSportner
@@ -31,6 +34,10 @@
 @synthesize tempActivityQueryTarget = _tempActivityQueryTarget;
 @synthesize tempActivityQueryCallBack = _tempActivityQueryCallBack;
 @synthesize activities = _activities;
+
+@synthesize tempSportnersQueryTarget = _tempSportnersQueryTarget;
+@synthesize tempSportnersQueryCallBack = _tempSportnersQueryCallBack;
+@synthesize sportners = _sportners;
 
 @dynamic username;
 @dynamic firstName;
@@ -43,7 +50,11 @@
 
 + (MSSportner *)currentSportner
 {
-    return [MSUser currentUser].sportner;
+    MSSportner *sportner = [MSUser currentUser].sportner;
+    if (!sportner.sportners) {
+        [sportner querySportnersWithTarget:nil callBack:nil];
+    }
+    return sportner;
 }
 
 + (NSString *)parseClassName
@@ -192,6 +203,50 @@
         NSLog(@"%@",error);
     }
     [self.tempActivityQueryTarget performSelector:self.tempActivityQueryCallBack withObject:activities withObject:error];
+}
+
+#pragma mark - Sportners
+
+- (PFRelation *)sportnersRelation
+{
+    return [self relationforKey:@"sportner"];
+}
+
+- (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack
+{
+    _tempSportnersQueryTarget = target;
+    _tempSportnersQueryCallBack = callBack;
+    
+    PFQuery *sportnersQuery = [[self sportnersRelation] query];
+    [sportnersQuery findObjectsInBackgroundWithTarget:self selector:@selector(didFetchSportners:error:)];
+}
+
+- (void)didFetchSportners:(NSArray *)sportners error:(NSError *)error
+{
+    if (!error) {
+        self.sportners = sportners;
+    } else {
+        NSLog(@"%@",error);
+    }
+    [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:sportners withObject:error];
+}
+
+- (void)addSportner:(MSSportner *)sportner
+{
+    [[self sportnersRelation] addObject:sportner];
+    [self saveInBackground];
+    NSMutableArray *tempSportners = [self.sportners mutableCopy];
+    [tempSportners addObject:sportner];
+    self.sportners = tempSportners;
+}
+
+- (void)removeSportner:(MSSportner *)sportner
+{
+    [[self sportnersRelation] removeObject:sportner];
+    [self saveInBackground];
+    NSMutableArray *tempSportners = [self.sportners mutableCopy];
+    [tempSportners removeObject:sportner];
+    self.sportners = tempSportners;
 }
 
 @end

@@ -30,6 +30,7 @@ typedef NS_ENUM(int, MSUserGender) {
 @property (strong, nonatomic) PFFile *imageFile;
 
 @property (strong, nonatomic) NSArray *activities;
+@property (strong, nonatomic) NSArray *sportners;
 
 + (MSSportner *)currentSportner;
 
@@ -39,6 +40,12 @@ typedef NS_ENUM(int, MSUserGender) {
 - (PFRelation *)participantRelation;
 - (void)queryActivitiesWithTarget:(id)targer callBack:(SEL)callBack;
 - (void)requestImageWithTarget:(id)target CallBack:(SEL)callback;
+
+- (PFRelation *)sportnersRelation;
+- (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack;
+
+- (void)addSportner:(MSSportner *)sportner;
+- (void)removeSportner:(MSSportner *)sportner;
 
 
 - (void)setSport:(NSInteger)sportKey withLevel:(NSInteger)level;

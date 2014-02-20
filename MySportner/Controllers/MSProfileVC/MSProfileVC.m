@@ -20,6 +20,7 @@
 #import "MSStyleFactory.h"
 #import "MSCropperVC.h"
 #import "MSCreateAccountVC.h"
+#import "MSSportnerCell.h"
 
 #define NIB_NAME @"MSProfileVC"
 
@@ -30,7 +31,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     MSProfileTableViewModeSportners
 };
 
-@interface MSProfileVC () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MSCropperVCDelegate>
+@interface MSProfileVC () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MSCropperVCDelegate, MSSportnerCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *topView;
@@ -40,11 +41,9 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet QBFlatButton *activitiesButton;
 @property (weak, nonatomic) IBOutlet QBFlatButton *sportnersButton;
+@property (weak, nonatomic) IBOutlet QBFlatButton *actionbutton;
 
 @property (strong, nonatomic) UIImagePickerController *imagePickerVC;
-
-@property (strong, nonatomic) NSArray *activities;
-@property (strong, nonatomic) NSArray *sportners;
 
 @property (nonatomic) MSProfileTableViewMode tableViewMode;
 
@@ -60,6 +59,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     self.tableView.dataSource = self;
     
     [MSActivityCell registerToTableview:self.tableView];
+    [MSSportnerCell registerToTableview:self.tableView];
     
     [self setAppearance];
     [self reloadCoverPictureView];
@@ -74,6 +74,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     [super viewWillAppear:animated];
     
     [self queryActivities];
+    [self querySportners];
     
     [self setNormalNavigationBar];
     self.navigationItem.title = [[self.sportner fullName] uppercaseString];
@@ -111,7 +112,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 
 - (void)querySportners
 {
-    
+    [self.sportner querySportnersWithTarget:self callBack:@selector(didFetchUserSportners:error:)];
 }
 
 - (void)setTableViewMode:(MSProfileTableViewMode)tableViewMode
@@ -151,6 +152,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     self.profilePictureView.backgroundColor = [UIColor clearColor];
     self.tableView.backgroundColor = [UIColor clearColor];
     
+    [self setUpActionButton];
     
     self.profilePictureView.layer.borderWidth = 2.0f;
     self.profilePictureView.layer.borderColor = [[[UIColor whiteColor] colorWithAlphaComponent:0.8] CGColor];
@@ -166,7 +168,6 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     UIView *borderView = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     borderView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.60];
     [self.topView insertSubview:borderView belowSubview:self.profilePictureView];
-    
     
     
     [MSStyleFactory setQBFlatButton:self.activitiesButton withStyle:MSFlatButtonStyleAndroidWhite];
@@ -187,6 +188,21 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     UITapGestureRecognizer *profilePictureTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pictureTapHandler)];
     [self.profilePictureView addGestureRecognizer:profilePictureTap];
     self.profilePictureView.userInteractionEnabled = YES;
+}
+
+- (void)setUpActionButton
+{
+    self.actionbutton.titleLabel.font = [MSFontFactory fontForCellInfo];
+    
+    if ([[MSSportner currentSportner] isEqualToSportner:self.sportner]) {
+        self.actionbutton.hidden = YES;
+    } else if ([[MSSportner currentSportner].sportners containsObject:self.sportner]) {
+        [self.actionbutton setTitle:@"REMOVE" forState:UIControlStateNormal];
+        self.actionbutton.hidden = NO;
+    } else {
+        [self.actionbutton setTitle:@"ADD" forState:UIControlStateNormal];
+        self.actionbutton.hidden = NO;
+    }
 }
 
 - (void)pictureTapHandler
@@ -284,16 +300,29 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     self.tableViewMode = MSProfileTableViewModeSportners;
 }
 
+- (IBAction)actionButtonHandler:(id)sender
+{
+    [[MSSportner currentSportner] addSportner:self.sportner];
+    [self setUpActionButton];
+}
 
 #pragma mark - PARSE Backend
 
 - (void)didFetchUserActivities:(NSArray *)activities error:(NSError *)error
 {
     if (!error) {
-        self.activities = activities;
         [self reloadData];
     } else {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Could not load activities"];
+    }
+}
+
+- (void)didFetchUserSportners:(NSArray *)sportners error:(NSError *)error
+{
+    if (!error) {
+        [self reloadData];
+    } else {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Could not load sportners"];
     }
 }
 
@@ -318,9 +347,9 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 {
     switch (self.tableViewMode) {
         case MSProfileTableViewModeActivities:
-            return [self.activities count];
+            return [self.sportner.activities count];
         case MSProfileTableViewModeSportners:
-            return [self.sportners count];
+            return [self.sportner.sportners count];
             
         default:
             return 0;
@@ -334,13 +363,22 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
         {
             NSString *identifier = [MSActivityCell reusableIdentifier];
             MSActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-            cell.activity = [self.activities objectAtIndex:indexPath.row];
+            cell.activity = [self.sportner.activities objectAtIndex:indexPath.row];
             [cell setAppearanceWithOddIndex:(indexPath.row % 2)];
             return cell;
         }
         case MSProfileTableViewModeSportners:
         {
-            UITableViewCell *cell = [[UITableViewCell alloc] init];
+            NSString *identifier = [MSSportnerCell reusableIdentifier];
+            MSSportnerCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+            
+            cell.sportner = [self.sportner.sportners objectAtIndex:indexPath.row];
+            [cell setAppearanceWithOddIndex:(indexPath.row % 2)];
+            
+            cell.delegate = self;
+            
+            [cell setActionButtonTitle:@"REMOVE"];
+            
             return cell;
         }
             
@@ -371,6 +409,14 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
             
         }
     }
+}
+
+#pragma mark - MSSportnerCellDelegate
+
+- (void)sportnerCell:(MSSportnerCell *)cell didTrigerActionWithSportner:(MSSportner *)sportner
+{
+    [self.sportner removeSportner:cell.sportner];
+    [self reloadData];
 }
 
 @end

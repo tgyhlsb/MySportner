@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSActivityVC">
+            <connections>
+                <outlet property="commentButton" destination="qMg-op-B3F" id="Iz4-te-dU0"/>
+                <outlet property="commentTextField" destination="G56-RE-o0V" id="PBL-6g-bwg"/>
+                <outlet property="tableView" destination="YWU-iv-O9T" id="7MO-k9-Viy"/>
+                <outlet property="toolBarView" destination="EdP-qG-gHq" id="79W-N3-Odr"/>
+                <outlet property="view" destination="AFL-6C-qQo" id="zFT-Hm-DHw"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="AFL-6C-qQo">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YWU-iv-O9T">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                </tableView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdP-qG-gHq">
+                    <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="vEI-nr-yrY"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem style="plain" id="2Yh-nf-s26">
+                            <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="G56-RE-o0V">
+                                <rect key="frame" x="16" y="7" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" returnKeyType="send"/>
+                            </textField>
+                        </barButtonItem>
+                        <barButtonItem style="plain" id="V6v-aP-YiS">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qMg-op-B3F">
+                                <rect key="frame" x="260" y="6" width="52" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="commentButtonHandler:" destination="-1" eventType="touchUpInside" id="xqC-Le-7V7"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="EdP-qG-gHq" secondAttribute="bottom" id="01N-NI-RZU"/>
+                <constraint firstAttribute="bottom" secondItem="YWU-iv-O9T" secondAttribute="bottom" id="5Mz-df-TC8"/>
+                <constraint firstItem="YWU-iv-O9T" firstAttribute="leading" secondItem="AFL-6C-qQo" secondAttribute="leading" id="5hS-gR-Pul"/>
+                <constraint firstAttribute="trailing" secondItem="EdP-qG-gHq" secondAttribute="trailing" id="ALw-HW-yww"/>
+                <constraint firstItem="YWU-iv-O9T" firstAttribute="top" secondItem="AFL-6C-qQo" secondAttribute="top" id="RmM-Ph-Lbi"/>
+                <constraint firstItem="EdP-qG-gHq" firstAttribute="leading" secondItem="AFL-6C-qQo" secondAttribute="leading" id="bR3-Xb-tnS"/>
+                <constraint firstAttribute="trailing" secondItem="YWU-iv-O9T" secondAttribute="trailing" id="zu7-5b-Jb8"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

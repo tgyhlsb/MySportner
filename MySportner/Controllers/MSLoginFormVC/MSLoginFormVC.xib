@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSLoginFormVC">
+            <connections>
+                <outlet property="connectButton" destination="WcA-Ts-uYG" id="QGR-N5-xlU"/>
+                <outlet property="emailTextField" destination="1vj-6k-23C" id="hpp-cF-Hmr"/>
+                <outlet property="forgotPasswordLabel" destination="O7g-wu-zPB" id="K82-Lu-uaN"/>
+                <outlet property="navigationBar" destination="r7Q-fG-0YR" id="UkY-8x-iUc"/>
+                <outlet property="passwordTextField" destination="YxP-xT-J6D" id="dbH-ez-xbq"/>
+                <outlet property="view" destination="wBO-WP-DdA" id="DnU-vM-xkM"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="wBO-WP-DdA">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r7Q-fG-0YR">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="USl-11-gBh"/>
+                    </constraints>
+                    <items>
+                        <navigationItem title="Login" id="azY-mS-S2e"/>
+                    </items>
+                </navigationBar>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1vj-6k-23C" customClass="MSTextField">
+                    <rect key="frame" x="20" y="64" width="280" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="9nt-lg-gil"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YxP-xT-J6D" customClass="MSTextField">
+                    <rect key="frame" x="20" y="124" width="280" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="rgb-i9-hgB"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                </textField>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FORGOT YOUR PASSWORD ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7g-wu-zPB">
+                    <rect key="frame" x="20" y="457" width="280" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="gar-g2-GZw"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcA-Ts-uYG" customClass="QBFlatButton">
+                    <rect key="frame" x="20" y="498" width="280" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="LYM-mY-yUC"/>
+                    </constraints>
+                    <state key="normal" title="CONNECT">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="connectButtonPress:" destination="-1" eventType="touchUpInside" id="WD3-ch-x85"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="YxP-xT-J6D" firstAttribute="top" secondItem="1vj-6k-23C" secondAttribute="bottom" constant="20" id="0Eb-af-mdK"/>
+                <constraint firstItem="O7g-wu-zPB" firstAttribute="leading" secondItem="wBO-WP-DdA" secondAttribute="leading" constant="20" id="5I0-Xg-0iO"/>
+                <constraint firstItem="r7Q-fG-0YR" firstAttribute="leading" secondItem="wBO-WP-DdA" secondAttribute="leading" id="9PW-54-0qb"/>
+                <constraint firstAttribute="bottom" secondItem="WcA-Ts-uYG" secondAttribute="bottom" constant="20" id="B4p-2E-oI7"/>
+                <constraint firstItem="WcA-Ts-uYG" firstAttribute="leading" secondItem="wBO-WP-DdA" secondAttribute="leading" constant="20" id="LQ6-sk-2gX"/>
+                <constraint firstItem="1vj-6k-23C" firstAttribute="top" secondItem="r7Q-fG-0YR" secondAttribute="bottom" constant="20" id="LZe-XP-B5n"/>
+                <constraint firstAttribute="trailing" secondItem="YxP-xT-J6D" secondAttribute="trailing" constant="20" id="MmS-EY-UxS"/>
+                <constraint firstItem="WcA-Ts-uYG" firstAttribute="top" secondItem="O7g-wu-zPB" secondAttribute="bottom" constant="20" id="PXP-Cb-rp8"/>
+                <constraint firstAttribute="trailing" secondItem="r7Q-fG-0YR" secondAttribute="trailing" id="R0O-KQ-7H7"/>
+                <constraint firstItem="r7Q-fG-0YR" firstAttribute="top" secondItem="wBO-WP-DdA" secondAttribute="top" id="XlM-qv-coL"/>
+                <constraint firstAttribute="trailing" secondItem="1vj-6k-23C" secondAttribute="trailing" constant="20" id="fHv-Pl-Uis"/>
+                <constraint firstAttribute="trailing" secondItem="WcA-Ts-uYG" secondAttribute="trailing" constant="20" id="hcj-an-1Kw"/>
+                <constraint firstAttribute="trailing" secondItem="O7g-wu-zPB" secondAttribute="trailing" constant="20" id="hs0-zA-kaH"/>
+                <constraint firstItem="1vj-6k-23C" firstAttribute="leading" secondItem="wBO-WP-DdA" secondAttribute="leading" constant="20" id="lUX-cl-n5d"/>
+                <constraint firstItem="YxP-xT-J6D" firstAttribute="leading" secondItem="wBO-WP-DdA" secondAttribute="leading" constant="20" id="vL9-Yp-SRe"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

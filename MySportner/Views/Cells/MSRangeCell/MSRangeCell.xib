@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="90" id="shA-i9-DkQ" customClass="MSRangeCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="shA-i9-DkQ" id="Lo8-bM-g12">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xWs-g3-kdc" customClass="NMRangeSlider">
+                        <rect key="frame" x="20" y="45" width="280" height="29"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <action selector="labelSliderChanged:" destination="shA-i9-DkQ" eventType="valueChanged" id="lnb-Z3-DJT"/>
+                        </connections>
+                    </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEc-Mq-gxA">
+                        <rect key="frame" x="20" y="0.0" width="235" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="2gp-Yf-ThK"/>
+                            <constraint firstAttribute="width" constant="235" id="Sab-7H-bd1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="VEc-Mq-gxA" firstAttribute="leading" secondItem="Lo8-bM-g12" secondAttribute="leading" constant="20" id="0br-iP-Z3S"/>
+                    <constraint firstItem="xWs-g3-kdc" firstAttribute="leading" secondItem="Lo8-bM-g12" secondAttribute="leading" constant="20" id="Ddn-cd-xyR"/>
+                    <constraint firstAttribute="trailing" secondItem="xWs-g3-kdc" secondAttribute="trailing" constant="20" id="Jdo-cS-N3D"/>
+                    <constraint firstAttribute="bottom" secondItem="xWs-g3-kdc" secondAttribute="bottom" constant="15" id="N8s-hB-5Vu"/>
+                    <constraint firstItem="VEc-Mq-gxA" firstAttribute="top" secondItem="Lo8-bM-g12" secondAttribute="top" id="h7a-qM-sme"/>
+                    <constraint firstItem="xWs-g3-kdc" firstAttribute="top" secondItem="Lo8-bM-g12" secondAttribute="top" constant="45" id="kA9-Ly-vVe"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="descriptionLabel" destination="VEc-Mq-gxA" id="4bi-io-hyZ"/>
+                <outlet property="rangeSlider" destination="xWs-g3-kdc" id="aVm-lJ-Jew"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSDrawerController.h"
 
 @interface MSAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic,strong) MSDrawerController * drawerController;
+
+- (void)setDrawerMenu;
 
 @end

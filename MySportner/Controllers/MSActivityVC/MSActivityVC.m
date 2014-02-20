@@ -79,10 +79,10 @@ typedef NS_ENUM(int, MSActivitySection) {
     [self setUpToolBar];
     
     UIBarButtonItem *shareButton = [[UIBarButtonItem alloc]
-                                    initWithTitle:@"Share"
-                                    style:UIBarButtonItemStyleBordered
+                                    initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                     target:self
                                     action:@selector(showActionSheet)];
+
     self.navigationItem.rightBarButtonItem = shareButton;
     
     if ([self.commentTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {

@@ -111,6 +111,7 @@ typedef NS_ENUM(int, MSActivitySection) {
     if (!error) {
         [self.attendeesCell updateUI];
         [self setUpToolBar];
+        [self.infoCell updateButtonTitle];
     }
 }
 
@@ -118,10 +119,8 @@ typedef NS_ENUM(int, MSActivitySection) {
 {
     if ([self.activity.participants containsObject:[MSSportner currentSportner]]) {
         self.toolBarView.hidden = NO;
-        [self.infoCell setUserMode:MSGameProfileModeParticipant];
     } else {
         self.toolBarView.hidden = YES;
-        [self.infoCell setUserMode:MSGameProfileModeOther];
     }
 }
 
@@ -325,10 +324,18 @@ typedef NS_ENUM(int, MSActivitySection) {
             [self.activity removeParticipant:[MSSportner currentSportner] WithTarget:self callBack:@selector(didLeaveActivityWithSuccess:andError:)];
             break;
         }
+        case MSGameProfileModeAwaiting:
+        {
+            self.infoCell.userMode = MSGameProfileModeLoading;
+            [self.activity removeAwaiting:[MSSportner currentSportner] WithTarget:self callBack:@selector(didCancelJoinActivityWithSuccess:andError:)];
+            [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Your request has been canceled"];
+            break;
+        }
         case MSGameProfileModeOther:
         {
             self.infoCell.userMode = MSGameProfileModeLoading;
-            [self.activity addParticipant:[MSSportner currentSportner] WithTarget:self callBack:@selector(didJoinActivityWithSuccess:andError:)];
+            [self.activity addAwaiting:[MSSportner currentSportner] WithTarget:self callBack:@selector(didAskJoinActivityWithSuccess:andError:)];
+            [[TKAlertCenter defaultCenter] postAlertWithMessage:@"A request has been sent to the owner"];
             break;
         }
         case MSGameProfileModeLoading:
@@ -340,12 +347,24 @@ typedef NS_ENUM(int, MSActivitySection) {
     }
 }
 
-- (void)didJoinActivityWithSuccess:(BOOL)succeed andError:(NSError *)error
+- (void)didAskJoinActivityWithSuccess:(BOOL)succeed andError:(NSError *)error
 {
     if (!error) {
-        [self.infoCell setUserMode:MSGameProfileModeParticipant];
+        [self.infoCell setUserMode:MSGameProfileModeAwaiting];
     } else {
         [self.infoCell setUserMode:MSGameProfileModeOther];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
+    }
+    [self setUpToolBar];
+    [self.attendeesCell updateUI];
+}
+
+- (void)didCancelJoinActivityWithSuccess:(BOOL)succeed andError:(NSError *)error
+{
+    if (!error) {
+        [self.infoCell setUserMode:MSGameProfileModeOther];
+    } else {
+        [self.infoCell setUserMode:MSGameProfileModeAwaiting];
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
     }
     [self setUpToolBar];

@@ -49,8 +49,8 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
     
     self.title = @"INVITE SPORTNERS";
     
-    if (self.activity.guests && self.activity.participants) {
-        [self queryOtherSportners];
+    if (self.activity.guests && self.activity.participants && self.activity.awaitings) {
+        
     } else {
         [self queryParticipantsAndGuests];
     }
@@ -63,10 +63,10 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
     [self.activity querySportnersWithTarget:self callBack:@selector(didLoadGuestsAndParticipantsWithError:)];
 }
 
-- (void)queryOtherSportners
-{
-    [self.activity queryOtherSportnersWithTarger:self callBack:@selector(didLoadOtherSportners:withError:)];
-}
+//- (void)queryOtherSportners
+//{
+//    [self.activity queryOtherSportnersWithTarger:self callBack:@selector(didLoadOtherSportners:withError:)];
+//}
 
 - (void)reloadData
 {
@@ -178,7 +178,8 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 - (void)didLoadGuestsAndParticipantsWithError:(NSError *)error
 {
     if (!error) {
-        [self.activity queryOtherSportnersWithTarger:self callBack:@selector(didLoadOtherSportners:withError:)];
+//        [self.activity queryOtherSportnersWithTarger:self callBack:@selector(didLoadOtherSportners:withError:)];
+        [self reloadData];
     } else {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
     }

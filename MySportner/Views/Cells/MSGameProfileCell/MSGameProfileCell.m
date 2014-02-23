@@ -72,6 +72,8 @@
 {
     self.backgroundColor = [MSColorFactory backgroundColorGrayLight];
     
+    self.userMode = MSGameProfileModeLoading;
+    
     self.roundedView.backgroundColor = [MSColorFactory redLight];
     [self.roundedView setRounded];
     
@@ -121,29 +123,34 @@
     if ([self.activity.owner isEqualToSportner:[MSSportner currentSportner]]) {
         self.userMode = MSGameProfileModeOwner;
     } else {
-        if (self.activity.guests && self.activity.participants) {
+        if (self.activity.guests && self.activity.participants && self.activity.awaitings) {
             [self updateButtonTitle];
         } else {
-            [self.activityIndicatorView startAnimating];
-            [self queryParticipantsAndGuests];
+            NSLog(@"Can't display participants / guests / awaitings");
         }
     }    
 }
 
 - (void)updateButtonTitle
 {
-    if (self.activity.guests && self.activity.participants) {
+    if (self.activity.guests && self.activity.participants && self.activity.awaitings) {
         [self.activityIndicatorView stopAnimating];
         
         MSSportner *currentSportner = [MSSportner currentSportner];
-        BOOL canJoin = YES;
+        BOOL isParticipant = NO;
         for (MSSportner *sportner in self.activity.participants) {
             if ([sportner isEqualToSportner:currentSportner]) {
-                canJoin = NO;
+                isParticipant = YES;
+            }
+        }
+        BOOL isAwaiting = NO;
+        for (MSSportner *sportner in self.activity.awaitings) {
+            if ([sportner isEqualToSportner:currentSportner]) {
+                isAwaiting = YES;
             }
         }
         
-        self.userMode = canJoin ? MSGameProfileModeOther : MSGameProfileModeParticipant;
+        self.userMode = (isParticipant ? MSGameProfileModeParticipant : (isAwaiting ? MSGameProfileModeAwaiting : MSGameProfileModeOther));
     }
 }
 
@@ -163,6 +170,12 @@
             [self.actionButton setTitle:@"LEAVE" forState:UIControlStateNormal];
             break;
         }
+        case MSGameProfileModeAwaiting:
+        {
+            [self.activityIndicatorView stopAnimating];
+            [self.actionButton setTitle:@"WAITING" forState:UIControlStateNormal];
+            break;
+        }
         case MSGameProfileModeOther:
         {
             [self.activityIndicatorView stopAnimating];
@@ -175,21 +188,6 @@
             [self.actionButton setTitle:@"" forState:UIControlStateNormal];
             break;
         }
-    }
-}
-
-
-- (void)queryParticipantsAndGuests
-{
-    [self.activity querySportnersWithTarget:self callBack:@selector(didLoadGuestsAndParticipantsWithError:)];
-}
-
-- (void)didLoadGuestsAndParticipantsWithError:(NSError *)error
-{
-    if (!error) {
-        [self updateButtonTitle];
-    } else {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
     }
 }
 
@@ -237,7 +235,7 @@
     _activity = activity;
     
     if (activity) {
-        [self queryInfoToSetButtonTitle];
+//        [self queryInfoToSetButtonTitle];
         self.titleLabel.text = activity.sport;
         self.locationLabel.text = activity.place;
         self.addressLabel.text = activity.place;

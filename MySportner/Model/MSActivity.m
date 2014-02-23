@@ -40,6 +40,7 @@
 
 @synthesize guests = _guests;
 @synthesize participants = _participants;
+@synthesize awaitings = _awaitings;
 
 @synthesize tempMessageQueryCallBack = _tempMessageQueryCallBack;
 @synthesize tempMessageQueryTarget = _tempMessageQueryTarget;
@@ -76,6 +77,11 @@
     return [self relationforKey:@"participant"];
 }
 
+- (PFRelation *)awaitingRelation
+{
+    return [self relationforKey:@"awaiting"];
+}
+
 #pragma mark - PARSE Backend
 
 - (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack
@@ -87,6 +93,9 @@
     }
     if (!self.guests) {
         self.guests = [[NSArray alloc] init];
+    }
+    if (!self.awaitings) {
+        self.awaitings = [[NSArray alloc] init];
     }
     PFQuery *participantQuery = [[self participantRelation] query];
     [participantQuery findObjectsInBackgroundWithTarget:self
@@ -111,6 +120,20 @@
 {
     if (!error) {
         self.guests = objects;
+        
+        PFQuery *awaitingQuery = [[self awaitingRelation] query];
+        [awaitingQuery findObjectsInBackgroundWithTarget:self
+                                             selector:@selector(awaitingCallback:error:)];
+    } else {
+        NSLog(@"Error: %@ %@", error, [error userInfo]);
+        [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
+    }
+}
+
+- (void)awaitingCallback:(NSArray *)objects error:(NSError *)error
+{
+    if (!error) {
+        self.awaitings = objects;
     } else {
         NSLog(@"Error: %@ %@", error, [error userInfo]);
     }
@@ -118,30 +141,30 @@
     [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
 }
 
-- (void)queryOtherSportnersWithTarger:(id)target callBack:(SEL)callback
-{
-    if (self.guests && self.guests) {
-        self.tempOthersQueryTarget = target;
-        self.tempOthersQueryCallBack = callback;
-        
-        NSMutableArray *userNames = [[NSMutableArray alloc] initWithCapacity:([self.guests count] + [self.participants count])];
-        for (MSSportner *guest in self.guests) {
-            [userNames addObject:guest.username];
-        }
-        for (MSSportner *participant in self.participants) {
-            [userNames addObject:participant.username];
-        }
-        [userNames addObject:[MSSportner currentSportner].username];
-        
-        PFQuery *otherSportnersQuery = [MSSportner query];
-        [otherSportnersQuery whereKey:@"username" notContainedIn:userNames];
-        [otherSportnersQuery findObjectsInBackgroundWithTarget:self
-                                                      selector:@selector(sportnersCallback:error:)];
-    } else {
-//        [self querySportners];
-        NSLog(@"Query sportners before");
-    }
-}
+//- (void)queryOtherSportnersWithTarger:(id)target callBack:(SEL)callback
+//{
+//    if (self.guests && self.guests) {
+//        self.tempOthersQueryTarget = target;
+//        self.tempOthersQueryCallBack = callback;
+//        
+//        NSMutableArray *userNames = [[NSMutableArray alloc] initWithCapacity:([self.guests count] + [self.participants count])];
+//        for (MSSportner *guest in self.guests) {
+//            [userNames addObject:guest.username];
+//        }
+//        for (MSSportner *participant in self.participants) {
+//            [userNames addObject:participant.username];
+//        }
+//        [userNames addObject:[MSSportner currentSportner].username];
+//        
+//        PFQuery *otherSportnersQuery = [MSSportner query];
+//        [otherSportnersQuery whereKey:@"username" notContainedIn:userNames];
+//        [otherSportnersQuery findObjectsInBackgroundWithTarget:self
+//                                                      selector:@selector(sportnersCallback:error:)];
+//    } else {
+////        [self querySportners];
+//        NSLog(@"Query sportners before");
+//    }
+//}
 
 - (void)sportnersCallback:(NSArray *)objects error:(NSError *)error
 {
@@ -191,6 +214,26 @@
     NSMutableArray *tempParticipants = [self.participants mutableCopy];
     [tempParticipants removeObject:participant];
     self.participants = tempParticipants;
+    [self saveInBackgroundWithTarget:target selector:callBack];
+}
+
+- (void)addAwaiting:(MSSportner *)awaiting WithTarget:(id)target callBack:(SEL)callBack
+{
+    PFRelation *relation = [self awaitingRelation];
+    [relation addObject:awaiting];
+    NSMutableArray *tempAwaitings = [self.awaitings mutableCopy];
+    [tempAwaitings addObject:awaiting];
+    self.awaitings = tempAwaitings;
+    [self saveInBackgroundWithTarget:target selector:callBack];
+}
+
+- (void)removeAwaiting:(MSSportner *)awaiting WithTarget:(id)target callBack:(SEL)callBack
+{
+    PFRelation *relation = [self awaitingRelation];
+    [relation removeObject:awaiting];
+    NSMutableArray *tempAwaitings = [self.awaitings mutableCopy];
+    [tempAwaitings removeObject:awaiting];
+    self.awaitings = tempAwaitings;
     [self saveInBackgroundWithTarget:target selector:callBack];
 }
 

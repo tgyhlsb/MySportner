@@ -12,6 +12,9 @@
                 <outlet property="coverPictureView" destination="P1n-Ks-zFC" id="RrH-9h-hEx"/>
                 <outlet property="locationLabel" destination="ZRT-P6-W66" id="omB-c3-GyM"/>
                 <outlet property="profilePictureView" destination="MyY-pT-9Tl" id="kPx-cQ-bfH"/>
+                <outlet property="sportImageView1" destination="RLn-tc-ing" id="9Oz-Z6-DOb"/>
+                <outlet property="sportImageView2" destination="MuF-eg-6jP" id="6Z7-ll-3Ez"/>
+                <outlet property="sportImageView3" destination="btr-an-nW4" id="WL0-NA-VK5"/>
                 <outlet property="sportnerNameLabel" destination="YcJ-h7-Zu1" id="XWF-ah-98k"/>
                 <outlet property="sportnersButton" destination="x8a-R5-xPD" id="qcg-Dn-l1E"/>
                 <outlet property="tableView" destination="Cr4-re-ZLr" id="wWh-YM-KK1"/>
@@ -112,11 +115,39 @@
                                     <action selector="actionButtonHandler:" destination="-1" eventType="touchUpInside" id="5aH-Ru-HOU"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RLn-tc-ing">
+                                <rect key="frame" x="110" y="214" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="asN-mv-CaX"/>
+                                    <constraint firstAttribute="height" constant="20" id="pO2-Me-szT"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MuF-eg-6jP">
+                                <rect key="frame" x="138" y="214" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="Fok-q7-DtF"/>
+                                    <constraint firstAttribute="height" constant="20" id="dPj-aZ-eVx"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="btr-an-nW4">
+                                <rect key="frame" x="166" y="214" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="XMt-f6-Ukt"/>
+                                    <constraint firstAttribute="width" constant="20" id="eOR-ng-0l8"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="RLn-tc-ing" firstAttribute="leading" secondItem="MyY-pT-9Tl" secondAttribute="trailing" constant="15" id="2AK-79-a9E"/>
                             <constraint firstItem="YcJ-h7-Zu1" firstAttribute="top" secondItem="C7x-0G-Ob2" secondAttribute="top" constant="160" id="2gv-Ce-ISw"/>
+                            <constraint firstItem="btr-an-nW4" firstAttribute="bottom" secondItem="MuF-eg-6jP" secondAttribute="bottom" id="6jv-zE-XwQ"/>
                             <constraint firstItem="ehc-71-xLB" firstAttribute="leading" secondItem="C7x-0G-Ob2" secondAttribute="leading" id="BjX-Jg-f2s"/>
+                            <constraint firstItem="btr-an-nW4" firstAttribute="bottom" secondItem="RLn-tc-ing" secondAttribute="bottom" id="GTx-kx-CLR"/>
+                            <constraint firstItem="btr-an-nW4" firstAttribute="leading" secondItem="MuF-eg-6jP" secondAttribute="trailing" constant="8" id="GbB-be-uIN"/>
                             <constraint firstItem="P1n-Ks-zFC" firstAttribute="top" secondItem="C7x-0G-Ob2" secondAttribute="top" id="IH0-CQ-Now"/>
                             <constraint firstItem="4qa-vb-mt0" firstAttribute="centerY" secondItem="ZRT-P6-W66" secondAttribute="centerY" id="KyV-Cd-wS2"/>
                             <constraint firstItem="YcJ-h7-Zu1" firstAttribute="leading" secondItem="MyY-pT-9Tl" secondAttribute="trailing" constant="15" id="L5n-t9-vzZ"/>
@@ -126,6 +157,7 @@
                             <constraint firstAttribute="trailing" secondItem="P1n-Ks-zFC" secondAttribute="trailing" id="Weu-7P-mI7"/>
                             <constraint firstItem="ehc-71-xLB" firstAttribute="centerY" secondItem="x8a-R5-xPD" secondAttribute="centerY" id="Xwd-dl-83L"/>
                             <constraint firstItem="MyY-pT-9Tl" firstAttribute="leading" secondItem="C7x-0G-Ob2" secondAttribute="leading" constant="15" id="cA6-SK-a09"/>
+                            <constraint firstItem="MuF-eg-6jP" firstAttribute="leading" secondItem="RLn-tc-ing" secondAttribute="trailing" constant="8" id="fah-sf-GRr"/>
                             <constraint firstAttribute="trailing" secondItem="WFT-st-mG2" secondAttribute="trailing" constant="15" id="fp7-HY-HhM"/>
                             <constraint firstAttribute="trailing" secondItem="YcJ-h7-Zu1" secondAttribute="trailing" constant="20" id="g25-Ak-leQ"/>
                             <constraint firstItem="ehc-71-xLB" firstAttribute="top" secondItem="MyY-pT-9Tl" secondAttribute="bottom" constant="15" id="gmb-MJ-hem"/>
@@ -135,6 +167,7 @@
                             <constraint firstItem="P1n-Ks-zFC" firstAttribute="leading" secondItem="C7x-0G-Ob2" secondAttribute="leading" id="pdw-o2-Lxo"/>
                             <constraint firstItem="ZRT-P6-W66" firstAttribute="top" secondItem="YcJ-h7-Zu1" secondAttribute="top" constant="23" id="t2u-MR-V7M"/>
                             <constraint firstAttribute="trailing" secondItem="x8a-R5-xPD" secondAttribute="trailing" id="tO7-YT-BnQ"/>
+                            <constraint firstItem="btr-an-nW4" firstAttribute="bottom" secondItem="MyY-pT-9Tl" secondAttribute="bottom" id="zjB-Ge-XVc"/>
                         </constraints>
                     </view>
                 </tableView>

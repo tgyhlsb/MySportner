@@ -22,6 +22,7 @@
 #import "MSCreateAccountVC.h"
 #import "MSSportnerCell.h"
 
+
 #define NIB_NAME @"MSProfileVC"
 
 #define COVER_BLUR_HEIGHT 110
@@ -31,7 +32,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     MSProfileTableViewModeSportners
 };
 
-@interface MSProfileVC () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MSCropperVCDelegate, MSSportnerCellDelegate>
+@interface MSProfileVC () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MSCropperVCDelegate, MSSportnerCellDelegate, UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *topView;
@@ -42,8 +43,12 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 @property (weak, nonatomic) IBOutlet QBFlatButton *activitiesButton;
 @property (weak, nonatomic) IBOutlet QBFlatButton *sportnersButton;
 @property (weak, nonatomic) IBOutlet QBFlatButton *actionbutton;
+@property (weak, nonatomic) IBOutlet UIImageView *sportImageView1;
+@property (weak, nonatomic) IBOutlet UIImageView *sportImageView2;
+@property (weak, nonatomic) IBOutlet UIImageView *sportImageView3;
 
 @property (strong, nonatomic) UIImagePickerController *imagePickerVC;
+@property (strong, nonatomic) UIImagePickerController *imageTakerVC;
 
 @property (nonatomic) MSProfileTableViewMode tableViewMode;
 
@@ -96,6 +101,12 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
         self.imagePickerVC = [[UIImagePickerController alloc] init];
         self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         self.imagePickerVC.delegate = self;
+        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+            // Has camera
+            self.imageTakerVC = [[UIImagePickerController alloc] init];
+            self.imageTakerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+            self.imageTakerVC.delegate = self;
+        }
     });
 }
 
@@ -207,11 +218,54 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 
 - (void)pictureTapHandler
 {
+	UIActionSheet *pictureSheet = [[UIActionSheet alloc] initWithTitle:@"Profile picture"
+                                                              delegate:self
+                                                     cancelButtonTitle:@"Cancel"
+                                                destructiveButtonTitle:Nil
+                                                     otherButtonTitles:@"Take a picture", @"Use an existing picture", @"Resize picture", nil];
+	pictureSheet.actionSheetStyle = UIActionSheetStyleAutomatic;
+    pictureSheet.delegate = self;
+	[pictureSheet showInView:self.view];
+}
 
-    [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+#pragma mark - UIActionsheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0: // Camera
+        {
+            if (self.imageTakerVC) {
+                [self presentViewController:self.imageTakerVC animated:YES completion:nil];
+            } else {
+                [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Your camera is not available"];
+            }
+            break;
+        }
+            
+        case 1: // Library
+        {
+            [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+            break;
+        }
+            
+        case 2: // Resize
+        {
+            [self openImageCropperWithSportnerImage];
+            break;
+        }
+    }
 }
 
 #pragma mark UIImagePickerControllerDelegate
+
+- (void)openImageCropperWithSportnerImage
+{
+    MSCropperVC *cropperVC = [MSCropperVC newControllerWithImage:self.sportner.image];
+    cropperVC.delegate = self;
+    UINavigationController *destination = [[UINavigationController alloc] initWithRootViewController:cropperVC];
+    [self presentViewController:destination animated:YES completion:nil];
+}
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {

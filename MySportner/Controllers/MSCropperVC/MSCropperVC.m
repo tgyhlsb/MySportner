@@ -30,14 +30,9 @@
 
 #pragma mark - View lifecycle
 
-- (void)updateDisplay {
-//    self.boundsText.text = [NSString stringWithFormat:@"(%f, %f) (%f, %f)", CGOriginX(self.imageCropper.crop), CGOriginY(self.imageCropper.crop), CGWidth(self.imageCropper.crop), CGHeight(self.imageCropper.crop)];
-
-}
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([object isEqual:self.imageCropper] && [keyPath isEqualToString:@"crop"]) {
-        [self updateDisplay];
     }
 }
 

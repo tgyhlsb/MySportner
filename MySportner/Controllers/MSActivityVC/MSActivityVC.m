@@ -505,6 +505,8 @@ typedef NS_ENUM(int, MSActivitySection) {
     }
 }
 
+#pragma mark - Facebook Share
+
 - (void)tryToShareOnFacebook
 {
     // Check if the Facebook app is installed and we can present the share dialog

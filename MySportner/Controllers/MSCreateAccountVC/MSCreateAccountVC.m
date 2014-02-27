@@ -241,7 +241,7 @@
     self.commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(PADDING, self.birthdayTextField.frame.origin.y+60, 280, 80)];
     self.commentLabel.text = @"By clicking in next button, you  accept the general terms and conditions of use.";
     self.commentLabel.textAlignment = NSTextAlignmentCenter;
-    [self.commentLabel setFont:[MSFontFactory fontForInfoLabel]];
+    [self.commentLabel setFont:[MSFontFactory fontForCellAcivityTitle]];
     self.commentLabel.textColor = [MSColorFactory gray];
     self.commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.commentLabel.numberOfLines = 0;

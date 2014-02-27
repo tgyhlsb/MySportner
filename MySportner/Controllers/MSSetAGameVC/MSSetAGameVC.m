@@ -213,6 +213,11 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"dd-MM-yyyy    hh:mm"];
     self.dayTextField.text = [dateFormat stringFromDate:self.activity.date];
+    
+    if ([self.dayPicker.date timeIntervalSinceDate:self.timePicker.date] > 0 || ![self.timeTextField.text length]) {
+        self.timePicker.date = self.activity.date;
+        [self timePickerValueDidChange];
+    }
 }
 
 - (void)dayPickerDidTap

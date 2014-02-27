@@ -235,7 +235,7 @@
     _activity = activity;
     
     if (activity) {
-//        [self queryInfoToSetButtonTitle];
+        [self updateButtonTitle];
         self.titleLabel.text = activity.sport;
         self.locationLabel.text = activity.place;
         self.addressLabel.text = activity.place;

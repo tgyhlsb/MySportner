@@ -460,7 +460,11 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
         }
         case MSProfileTableViewModeSportners:
         {
-            
+            MSProfileVC *destinationVC = [MSProfileVC newController];
+            destinationVC.hasDirectAccessToDrawer = NO;
+            MSSportnerCell *cell = (MSSportnerCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            destinationVC.sportner = cell.sportner;
+            [self.navigationController pushViewController:destinationVC animated:YES];
         }
     }
 }

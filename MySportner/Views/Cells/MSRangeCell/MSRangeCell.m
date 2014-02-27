@@ -10,6 +10,7 @@
 #import "NMRangeSlider.h"
 #import "MSStyleFactory.h"
 #import "MSColorFactory.h"
+#import "MSFontFactory.h"
 
 #define NIB_NAME @"MSRangeCell"
 #define HEIGHT 80
@@ -46,7 +47,8 @@
     [self setTintColor:[MSColorFactory mainColor]];
     
     self.descriptionLabel.text = [@"Sportners" uppercaseString];
-    [MSStyleFactory setUILabel:self.descriptionLabel withStyle:MSLabelStyleCommentText];
+    self.descriptionLabel.font = [MSFontFactory fontForTitle];
+    self.descriptionLabel.textColor = [MSColorFactory gray];
     
     [self updateSliderLabels];
 }
@@ -147,13 +149,13 @@
     
     CGPoint lowerCenter;
     lowerCenter.x = (self.rangeSlider.lowerCenter.x + self.rangeSlider.frame.origin.x);
-    lowerCenter.y = (self.rangeSlider.center.y - 24.0f);
+    lowerCenter.y = (self.rangeSlider.center.y - 21.0f);
     self.lowerLabel.center = lowerCenter;
     self.lowerLabel.text = [NSString stringWithFormat:@"%d", (int)self.rangeSlider.lowerValue];
     
     CGPoint upperCenter;
     upperCenter.x = (self.rangeSlider.upperCenter.x + self.rangeSlider.frame.origin.x);
-    upperCenter.y = (self.rangeSlider.center.y - 24.0f);
+    upperCenter.y = (self.rangeSlider.center.y - 21.0f);
     self.upperLabel.center = upperCenter;
     self.upperLabel.text = [NSString stringWithFormat:@"%d", (int)self.rangeSlider.upperValue];
 }

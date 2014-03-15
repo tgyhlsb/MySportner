@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "MZFormSheetController.h"
+#import "MSSportLevel.h"
 
 @interface MSSportLevelFormVC : MZFormSheetController
 
-@property (nonatomic) int level;
+@property (nonatomic, strong) MSSportLevel *sportLevel;
 
 @property (nonatomic) BOOL showUnSelectButton;
 

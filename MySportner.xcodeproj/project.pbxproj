@@ -135,6 +135,7 @@
 		5A9B2DB31853B8A400AE45D9 /* ExtensiveCellContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9B2DB01853B8A400AE45D9 /* ExtensiveCellContainer.m */; };
 		5A9B2DB41853B8A400AE45D9 /* ExtensiveCellContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A9B2DB11853B8A400AE45D9 /* ExtensiveCellContainer.xib */; };
 		5A9C90F8187C4C1E00065DBA /* MSSport.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9C90F7187C4C1E00065DBA /* MSSport.m */; };
+		5AA1299518D4D2A6000169B3 /* MSSportLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA1299418D4D2A6000169B3 /* MSSportLevel.m */; };
 		5AA609FF184B50A100B09ADD /* MSFontFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA609FE184B50A100B09ADD /* MSFontFactory.m */; };
 		5AA60A02184B549C00B09ADD /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5AA60A00184B548600B09ADD /* ProximaNova-Regular.otf */; };
 		5AA60A05184B56BD00B09ADD /* iOS_blur.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AA60A03184B56BD00B09ADD /* iOS_blur.png */; };
@@ -466,6 +467,8 @@
 		5A9B2DB11853B8A400AE45D9 /* ExtensiveCellContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtensiveCellContainer.xib; sourceTree = "<group>"; };
 		5A9C90F6187C4C1E00065DBA /* MSSport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSport.h; path = Model/MSSport.h; sourceTree = "<group>"; };
 		5A9C90F7187C4C1E00065DBA /* MSSport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSport.m; path = Model/MSSport.m; sourceTree = "<group>"; };
+		5AA1299318D4D2A6000169B3 /* MSSportLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSportLevel.h; path = Model/MSSportLevel.h; sourceTree = "<group>"; };
+		5AA1299418D4D2A6000169B3 /* MSSportLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSportLevel.m; path = Model/MSSportLevel.m; sourceTree = "<group>"; };
 		5AA609FD184B50A100B09ADD /* MSFontFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFontFactory.h; sourceTree = "<group>"; };
 		5AA609FE184B50A100B09ADD /* MSFontFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFontFactory.m; sourceTree = "<group>"; };
 		5AA60A00184B548600B09ADD /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
@@ -1382,6 +1385,8 @@
 				5A235911189BEE0F0047C6D4 /* MSSportner.m */,
 				5A9C90F6187C4C1E00065DBA /* MSSport.h */,
 				5A9C90F7187C4C1E00065DBA /* MSSport.m */,
+				5AA1299318D4D2A6000169B3 /* MSSportLevel.h */,
+				5AA1299418D4D2A6000169B3 /* MSSportLevel.m */,
 				5A090AD71891948A0017B207 /* MSComment.h */,
 				5A090AD81891948A0017B207 /* MSComment.m */,
 				5A78B7F018958BA70074A5B3 /* MSAnnotation.h */,
@@ -1615,7 +1620,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MS;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = MySportner;
 				TargetAttributes = {
 					5ADCF241184004D300E6C8D2 = {
@@ -1909,6 +1914,7 @@
 				5A34C4E31895293500CE2EF2 /* MSProfilePictureView.m in Sources */,
 				5A2B68F5189A597A00D82870 /* MSSportnerCell.m in Sources */,
 				5A1B73741844AB6200555FE4 /* UIImage+Additional.m in Sources */,
+				5AA1299518D4D2A6000169B3 /* MSSportLevel.m in Sources */,
 				5A29E32E1879ACE9008A8919 /* TKAlertCenter.m in Sources */,
 				5ADCF231184004D300E6C8D2 /* main.m in Sources */,
 				5A1B736F1844AB6200555FE4 /* MZAppearance.m in Sources */,
@@ -1968,7 +1974,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2007,7 +2012,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2075,7 +2079,6 @@
 		5ADCF257184004D300E6C8D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MySportner.app/MySportner";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -2098,7 +2101,6 @@
 		5ADCF258184004D300E6C8D2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MySportner.app/MySportner";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

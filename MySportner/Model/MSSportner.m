@@ -11,6 +11,8 @@
 #import "MSUser.h"
 #import <Parse/PFObject+Subclass.h>
 #import "MSSport.h"
+#import "MSSportLevel.h"
+#import "TKAlertCenter.h"
 
 
 #define FACEBOOK_VALUE_GENDER_MALE @"male"
@@ -45,7 +47,7 @@
 @dynamic facebookID;
 @dynamic birthday;
 @dynamic gender;
-@dynamic sportLevels;
+@dynamic sports;
 @dynamic imageFile;
 
 + (MSSportner *)currentSportner
@@ -113,35 +115,69 @@
 }
 
 #pragma mark - Sports
-- (void)setSport:(NSInteger)sportKey withLevel:(NSInteger)level
+
+- (void)initializeSports
 {
-    if (!self.sportLevels) {
-        self.sportLevels = [[NSDictionary alloc] init];
+    NSMutableArray *tempSports = [[NSMutableArray alloc] init];
+    for (MSSport *sport in [MSSport allSports]) {
+        MSSportLevel *sportLevel = [[MSSportLevel alloc] initWithSport:sport sportner:self];
+        [tempSports addObject:sportLevel];
     }
-    NSMutableDictionary *tempSportLevels = [self.sportLevels mutableCopy];
-    NSString *sportKeyString = [NSString stringWithFormat:@"%ld", (long)sportKey];
-    [tempSportLevels setObject:@(level) forKey:sportKeyString];
-    self.sportLevels = tempSportLevels;
+    self.sports = tempSports;
 }
 
-- (NSArray *)getSports
+- (void)setSport:(MSSport *)sport withLevel:(NSNumber *)level
 {
-    NSMutableArray *sports = [[NSMutableArray alloc] init];
-    for (NSString *sportKeyString in self.sportLevels) {
-        NSInteger sportKey = [sportKeyString integerValue];
+    if (!self.sports) {
+        [self initializeSports];
+    }
+    
+    MSSportLevel *sportLevel = [self sportLevelForSport:sport];
+    
+    if (!sportLevel) {
+        sportLevel = [[MSSportLevel alloc] initWithSport:sport sportner:self];
+    }
+    
+    sportLevel.sport = sport;
+    sportLevel.level = level;
+    
+    [self addSport:sport];
+    
+    [sportLevel saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            
+        } else {
+            [[TKAlertCenter defaultCenter] postAlertWithMessage:[error localizedDescription]];
+            [self removeSport:sport];
+        }
+    }];
+}
 
-        NSInteger sportLevel = [self sportLevelForSportIndex:sportKey defaultValue:-1];
-        if (sportLevel >= 0) {
-            [sports addObject:[MSSport sportNameForKey:sportKey]];
+- (MSSportLevel *)sportLevelForSport:(MSSport *)sport
+{
+    if (!self.sports) {
+        [self initializeSports];
+    }
+    for (MSSportLevel *sportLevel in self.sports) {
+        if ([sportLevel.sport isEqualToSport:sport]) {
+            return sportLevel;
         }
     }
-    return sports;
+    return nil;
 }
 
-- (NSInteger)sportLevelForSportIndex:(NSInteger)index defaultValue:(NSInteger)defaultValue
+- (void)removeSport:(MSSport *)sport
 {
-    NSDecimalNumber *sportLevel = [self.sportLevels valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
-    return (sportLevel) ? [sportLevel integerValue] : defaultValue;
+    NSMutableArray *tempSports = [self.sports mutableCopy];
+    [tempSports removeObject:sport];
+    self.sports = tempSports;
+}
+
+- (void)addSport:(MSSport *)sport
+{
+    NSMutableArray *tempSports = [self.sports mutableCopy];
+    [tempSports addObject:sport];
+    self.sports = tempSports;
 }
 
 #pragma mark - ProfilePciture

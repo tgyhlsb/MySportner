@@ -134,6 +134,7 @@
     [self showLoadingViewInView:self.view];
     
     [query includeKey:@"owner"];
+    [query includeKey:@"sport"];
     [query findObjectsInBackgroundWithTarget:self
                                     selector:@selector(activitiesCallback:error:)];
 }

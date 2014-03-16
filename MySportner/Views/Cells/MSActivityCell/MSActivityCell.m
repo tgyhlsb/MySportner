@@ -69,7 +69,7 @@
     _activity = activity;
     [self setViewWithDate:activity.date];
     
-    self.titleLabel.text = activity.sport;
+    self.titleLabel.text = activity.sport.name;
     self.placeLabel.text = activity.place;
     self.ownerNameLabel.text = [activity.owner fullName];
     self.ownerProfilePictureView.sportner = activity.owner;

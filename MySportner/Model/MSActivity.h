@@ -11,6 +11,7 @@
 #import "MSSportner.h"
 #import "MSVenue.h"
 #import "MSComment.h"
+#import "MSSport.h"
 
 #define PARSE_CLASSNAME_ACTIVITY @"MSActivity"
 
@@ -20,7 +21,7 @@
 @property (strong, nonatomic) NSString *day;
 @property (strong, nonatomic) NSString *time;
 @property (strong, nonatomic) NSString *place;
-@property (strong, nonatomic) NSString *sport;
+@property (strong, nonatomic) MSSport *sport;
 
 @property (strong, nonatomic) MSSportner *owner;
 @property (strong, nonatomic) NSArray *guests;

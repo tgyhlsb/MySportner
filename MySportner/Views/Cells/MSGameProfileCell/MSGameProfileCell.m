@@ -236,7 +236,7 @@
     
     if (activity) {
         [self updateButtonTitle];
-        self.titleLabel.text = activity.sport;
+        self.titleLabel.text = activity.sport.name;
         self.locationLabel.text = activity.place;
         self.addressLabel.text = activity.place;
         self.fbProfilePictureView.sportner = activity.owner;

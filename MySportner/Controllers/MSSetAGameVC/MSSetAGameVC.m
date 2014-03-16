@@ -140,7 +140,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 - (void)createActivity
 {
     BOOL fieldsOK = YES;
-    if (!self.sportCell.sport || ![self.sportCell.sport length]) {
+    if (!self.sportCell.sport) {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Pick a sport"];
         fieldsOK = NO;
     } else if (![self.dayTextField.text length]) {

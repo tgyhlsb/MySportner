@@ -37,7 +37,7 @@
     self.collectionView.allowsSelection = YES;
     self.collectionView.allowsMultipleSelection = NO;
     
-    self.data = [MSSportner currentSportner].sports;
+    self.data = [[MSSportner currentSportner] getSports];
     
     self.backgroundColor = [UIColor clearColor];
     self.contentView.backgroundColor = [UIColor clearColor];

@@ -23,8 +23,6 @@
 #import "MSNavigationVC.h"
 #import "MSComment.h"
 #import "MSSportner.h"
-#import "MSSport.h"
-#import "MSSportLevel.h"
 
 #define STORYBOARD_NAME @"Main"
 
@@ -44,8 +42,6 @@
     [MSUser registerSubclass];
     [MSActivity registerSubclass];
     [MSSportner registerSubclass];
-    [MSSport registerSubclass];
-    [MSSportLevel registerSubclass];
     [Parse setApplicationId:@"mXxe3WBY2KqxbWjjnBruVUyJGtyKjgjDpfuX6pAA"
                   clientKey:@"EFLTeHfWnuHxmwzKbg1xfsfYRRFSksMiWGlKYloM"];
     
@@ -62,8 +58,6 @@
     [self.window setRootViewController:mainVC];
     
 //    [self checkFontsName];
-    
-    [MSSport fetchAllSports];
     
     return YES;
 }

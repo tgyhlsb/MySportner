@@ -47,7 +47,7 @@
     
     if ([MSUser currentUser])
     {
-        //        [MSUser currentUser]
+//        [MSUser currentUser] 
         [self performLogin];
     }
     
@@ -95,28 +95,18 @@
 - (void)performLogin
 {
     [[MSSportner currentSportner] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (!error) {
+        [self hideLoadingView];
+        if ([MSSportner currentSportner].sportLevels) {
+            MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
             
-            PFQuery *sportLevelsQuery = [MSSportLevel query];
-            [sportLevelsQuery includeKey:@"sport"];
-            [sportLevelsQuery includeKey:@"sportner"];
-            [sportLevelsQuery whereKey:@"sportner" equalTo:[MSSportner currentSportner]];
-            [sportLevelsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                
-                [self hideLoadingView];
-                if ([MSSportner currentSportner].sports) {
-                    MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-                    
-                    [appDelegate setDrawerMenu];
-                    
-                    [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
-                } else {
-                    [self redirectToSportchooser];
-                }
-            }];
+            [appDelegate setDrawerMenu];
+            
+            [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
+        } else {
+            [self redirectToSportchooser];
         }
     }];
-    
+
 }
 
 - (IBAction)logInWithFacebookButtonPress:(UIButton *)sender
@@ -146,7 +136,7 @@
     CGSize formSheetSize = CGSizeMake(280, 300);
     
     MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithSize:formSheetSize viewController:vc];
-    //    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+//    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
     
     formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
     formSheet.shadowRadius = 1.0;
@@ -200,7 +190,7 @@
 
 - (void)userSignUpDidFailWithError:(NSError *)error
 {
-    //    [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[error description] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
+//    [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[error description] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
     [[TKAlertCenter defaultCenter] postAlertWithMessage:[error.userInfo objectForKey:@"error"]];
     
 }

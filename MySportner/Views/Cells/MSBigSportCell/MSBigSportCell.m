@@ -27,9 +27,6 @@
 @property (strong, nonatomic) IBOutlet UIView *tempRatingView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
-@property (strong, nonatomic) NSString *imageNameNormal;
-@property (strong, nonatomic) NSString *imageNameSelected;
-
 @end
 
 @implementation MSBigSportCell
@@ -83,31 +80,10 @@
     self.titleLabel.textColor = TEXT_COLOR_NORMAL;
 }
 
-- (void)setSportLevel:(MSSportLevel *)sportLevel
+- (void)setSportName:(NSString *)sportName
 {
-    _sportLevel = sportLevel;
-    
-    self.titleLabel.text = sportLevel.sport.name.uppercaseString;
-    
-    self.sportLevelLabel.text = [NSString stringWithFormat:@"%d", [sportLevel.level intValue]];
-    [self setTropheeFromLevel:[sportLevel.level intValue]];
-    
-    if ([sportLevel.level intValue] >= 0)
-    {
-        self.backgroundColor = BACKGROUND_COLOR_SELECTED;
-        self.titleLabel.textColor = TEXT_COLOR_SELECTED;
-        self.iconImageView.image = [UIImage imageNamed:self.imageNameSelected];
-    }
-    else
-    {
-        self.backgroundColor = BACKGROUND_COLOR_NORMAL;
-        self.titleLabel.textColor = TEXT_COLOR_NORMAL;
-        self.iconImageView.image = [UIImage imageNamed:self.imageNameNormal];
-    }
-    
-    
-    self.imageNameNormal = [sportLevel.sport.slug stringByAppendingString:@".png"];
-    self.imageNameSelected = [sportLevel.sport.slug stringByAppendingString:@"(select).png"];
+    _sportName = sportName;
+    self.titleLabel.text = [sportName uppercaseString];
 }
 
 - (void)setTropheeFromLevel:(NSInteger)level
@@ -151,6 +127,27 @@
 + (CGSize)size
 {
     return CGSizeMake(WIDTH, HEIGHT);
+}
+
+- (void)setLevel:(int)level
+{
+    _level = level;
+    
+    self.sportLevelLabel.text = [NSString stringWithFormat:@"%d", level];
+    [self setTropheeFromLevel:level];
+    
+    if (level >= 0)
+    {
+        self.backgroundColor = BACKGROUND_COLOR_SELECTED;
+        self.titleLabel.textColor = TEXT_COLOR_SELECTED;
+        self.iconImageView.image = [UIImage imageNamed:self.imageNameSelected];
+    }
+    else
+    {
+        self.backgroundColor = BACKGROUND_COLOR_NORMAL;
+        self.titleLabel.textColor = TEXT_COLOR_NORMAL;
+        self.iconImageView.image = [UIImage imageNamed:self.imageNameNormal];
+    }
 }
 
 - (void)setSelected:(BOOL)selected

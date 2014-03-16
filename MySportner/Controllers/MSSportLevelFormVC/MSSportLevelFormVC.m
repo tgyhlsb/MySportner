@@ -85,7 +85,7 @@
                                           intervalValue:1.0
                                              stepByStep:NO];
     self.ratingView.delegate = self;
-    self.ratingView.value = [self.sportLevel.level intValue] + 1;
+    self.ratingView.value = self.level + 1;
     [self.view addSubview:self.ratingView];
     
     if (!_showUnSelectButton) {
@@ -94,23 +94,18 @@
     }
 }
 
-- (void)setSportLevel:(MSSportLevel *)sportLevel
+- (void)setLevel:(int)level
 {
-    _sportLevel = sportLevel;
-
-    [self updateUI];
-}
-
-- (void)updateUI
-{
-    if (self.sportLevel.level) {
+    if (level >= 0) {
+        _level = level;
         self.showUnSelectButton = YES;
     } else {
+        _level = DEFAULT_LEVEL;
         self.showUnSelectButton = NO;
     }
     
-    self.levelLabel.text = (self.sportLevel.level) ? [LEVEL_STATUS objectAtIndex:[self.sportLevel.level intValue]] : @"";
-    self.commentLabel.text = (self.sportLevel.level) ? [LEVEL_COMMENTS objectAtIndex:[self.sportLevel.level intValue]] : @"";
+    self.levelLabel.text = (_level >= 0) ? [LEVEL_STATUS objectAtIndex:_level] : @"";
+    self.commentLabel.text = (_level >= 0) ? [LEVEL_COMMENTS objectAtIndex:_level] : @"";
 }
 
 - (void)setShowUnSelectButton:(BOOL)showUnSelectButton
@@ -125,7 +120,7 @@
 
 - (IBAction)validateButtonPress:(UIButton *)sender
 {
-    if (self.sportLevel.level) {
+    if (self.level != -1) {
         if (self.doneBlock) {
             self.doneBlock();
         }
@@ -147,9 +142,8 @@
     if (sender.value < 1) {
         sender.value = 1;
     }
-    self.sportLevel.level = [NSNumber numberWithFloat:(sender.value - 1)];
     
-    [self updateUI];
+    self.level = sender.value - 1;
 }
 
 @end

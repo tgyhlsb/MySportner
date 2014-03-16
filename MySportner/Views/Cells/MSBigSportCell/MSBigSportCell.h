@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSSportLevel.h"
 
 @interface MSBigSportCell : UICollectionViewCell
 
-@property (strong, nonatomic) MSSportLevel *sportLevel;
+
+@property (nonatomic) int level;
+
+@property (strong, nonatomic) NSString *imageNameNormal;
+@property (strong, nonatomic) NSString *imageNameSelected;
+@property (strong, nonatomic) NSString *sportName;
 
 + (void)registerToCollectionView:(UICollectionView *)collectionView;
 + (NSString *)reusableIdentifier;

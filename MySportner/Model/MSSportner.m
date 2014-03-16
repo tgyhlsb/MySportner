@@ -11,8 +11,6 @@
 #import "MSUser.h"
 #import <Parse/PFObject+Subclass.h>
 #import "MSSport.h"
-#import "MSSportLevel.h"
-#import "TKAlertCenter.h"
 
 
 #define FACEBOOK_VALUE_GENDER_MALE @"male"
@@ -47,7 +45,7 @@
 @dynamic facebookID;
 @dynamic birthday;
 @dynamic gender;
-@dynamic sports;
+@dynamic sportLevels;
 @dynamic imageFile;
 
 + (MSSportner *)currentSportner
@@ -115,69 +113,35 @@
 }
 
 #pragma mark - Sports
-
-- (void)initializeSports
+- (void)setSport:(NSInteger)sportKey withLevel:(NSInteger)level
 {
-    NSMutableArray *tempSports = [[NSMutableArray alloc] init];
-    for (MSSport *sport in [MSSport allSports]) {
-        MSSportLevel *sportLevel = [[MSSportLevel alloc] initWithSport:sport sportner:self];
-        [tempSports addObject:sportLevel];
+    if (!self.sportLevels) {
+        self.sportLevels = [[NSDictionary alloc] init];
     }
-    self.sports = tempSports;
+    NSMutableDictionary *tempSportLevels = [self.sportLevels mutableCopy];
+    NSString *sportKeyString = [NSString stringWithFormat:@"%ld", (long)sportKey];
+    [tempSportLevels setObject:@(level) forKey:sportKeyString];
+    self.sportLevels = tempSportLevels;
 }
 
-- (void)setSport:(MSSport *)sport withLevel:(NSNumber *)level
+- (NSArray *)getSports
 {
-    if (!self.sports) {
-        [self initializeSports];
-    }
-    
-    MSSportLevel *sportLevel = [self sportLevelForSport:sport];
-    
-    if (!sportLevel) {
-        sportLevel = [[MSSportLevel alloc] initWithSport:sport sportner:self];
-    }
-    
-    sportLevel.sport = sport;
-    sportLevel.level = level;
-    
-    [self addSport:sport];
-    
-    [sportLevel saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            
-        } else {
-            [[TKAlertCenter defaultCenter] postAlertWithMessage:[error localizedDescription]];
-            [self removeSport:sport];
-        }
-    }];
-}
+    NSMutableArray *sports = [[NSMutableArray alloc] init];
+    for (NSString *sportKeyString in self.sportLevels) {
+        NSInteger sportKey = [sportKeyString integerValue];
 
-- (MSSportLevel *)sportLevelForSport:(MSSport *)sport
-{
-    if (!self.sports) {
-        [self initializeSports];
-    }
-    for (MSSportLevel *sportLevel in self.sports) {
-        if ([sportLevel.sport isEqualToSport:sport]) {
-            return sportLevel;
+        NSInteger sportLevel = [self sportLevelForSportIndex:sportKey defaultValue:-1];
+        if (sportLevel >= 0) {
+            [sports addObject:[MSSport sportNameForKey:sportKey]];
         }
     }
-    return nil;
+    return sports;
 }
 
-- (void)removeSport:(MSSport *)sport
+- (NSInteger)sportLevelForSportIndex:(NSInteger)index defaultValue:(NSInteger)defaultValue
 {
-    NSMutableArray *tempSports = [self.sports mutableCopy];
-    [tempSports removeObject:sport];
-    self.sports = tempSports;
-}
-
-- (void)addSport:(MSSport *)sport
-{
-    NSMutableArray *tempSports = [self.sports mutableCopy];
-    [tempSports addObject:sport];
-    self.sports = tempSports;
+    NSDecimalNumber *sportLevel = [self.sportLevels valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
+    return (sportLevel) ? [sportLevel integerValue] : defaultValue;
 }
 
 #pragma mark - ProfilePciture

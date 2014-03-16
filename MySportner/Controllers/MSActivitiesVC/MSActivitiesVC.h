@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MSCenterController.h"
+#import "MSActivity.h"
 
 @interface MSActivitiesVC : MSCenterController
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (strong, nonatomic) MSActivity *referenceActivity;
 
 + (MSActivitiesVC *)newController;
 

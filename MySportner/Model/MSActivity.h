@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSString *time;
 @property (strong, nonatomic) NSString *place;
 @property (strong, nonatomic) MSSport *sport;
+@property (strong, nonatomic) NSNumber *level;
 
 @property (strong, nonatomic) MSSportner *owner;
 @property (strong, nonatomic) NSArray *guests;

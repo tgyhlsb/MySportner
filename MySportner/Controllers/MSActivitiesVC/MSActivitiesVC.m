@@ -135,6 +135,12 @@
     
     [query includeKey:@"owner"];
     [query includeKey:@"sport"];
+    
+    if (self.referenceActivity) {
+        [query whereKey:@"sport" equalTo:self.referenceActivity.sport];
+        [query whereKey:@"level" lessThanOrEqualTo:self.referenceActivity.level];
+    }
+    
     [query findObjectsInBackgroundWithTarget:self
                                     selector:@selector(activitiesCallback:error:)];
 }

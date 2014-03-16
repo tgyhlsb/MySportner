@@ -18,6 +18,7 @@
 #import "TKAlertCenter.h"
 #import "MSRangeCell.h"
 #import "MSPickLocalisationVC.h"
+#import "MSActivitiesVC.h"
 
 #define NIB_NAME @"MSSetAGameVC"
 
@@ -155,7 +156,9 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     }
     
     if (fieldsOK) {
-        self.activity.sport = self.sportCell.sport;
+        MSSport *sport = self.sportCell.sport;
+        self.activity.sport = sport;
+        self.activity.level = [[MSSportner currentSportner] levelForSport:sport];
         self.activity.place = self.locationTextField.text;
         self.activity.owner = [MSSportner currentSportner];
         [[self.activity participantRelation] addObject:[MSSportner currentSportner]];
@@ -169,10 +172,19 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 {
     [self hideLoadingView];
     if (!error) {
-        [self activityCreationDidSucceed];
+        [self presentSimilarAcitivties];
     } else {
         NSLog(@"%@", error);
     }
+}
+
+- (void)presentSimilarAcitivties
+{
+    MSActivitiesVC *destination = [MSActivitiesVC newController];
+    destination.referenceActivity = self.activity;
+    destination.hasDirectAccessToDrawer = NO;
+    
+    [self.navigationController pushViewController:destination animated:YES];
 }
 
 - (void)activityCreationDidSucceed

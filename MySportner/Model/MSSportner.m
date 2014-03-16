@@ -217,6 +217,7 @@
     PFQuery *activitiesQuery = [MSActivity query];
     [activitiesQuery whereKey:@"participant" equalTo:self];
     [activitiesQuery includeKey:@"owner"];
+    [activitiesQuery includeKey:@"sport"];
     [activitiesQuery findObjectsInBackgroundWithTarget:self selector:@selector(didFetchActivities:error:)];
 }
 

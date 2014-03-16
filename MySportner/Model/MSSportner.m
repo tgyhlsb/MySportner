@@ -44,6 +44,7 @@
 @dynamic facebookID;
 @dynamic birthday;
 @dynamic gender;
+@dynamic sports;
 @dynamic sportLevels;
 @dynamic imageFile;
 
@@ -135,6 +136,7 @@
         }
         [tempSportLevels setObject:level forKey:sport.slug];
         self.sportLevels = tempSportLevels;
+        [self addSport:sport];
     } else {
         // look for actual level
         NSNumber *oldLevel = [self levelForSport:sport];
@@ -146,6 +148,7 @@
             }
             [tempSportLevels removeObjectForKey:sport.slug];
             self.sportLevels = tempSportLevels;
+            [self removeSport:sport];
         }
     }
 }
@@ -155,19 +158,25 @@
     return [self.sportLevels objectForKey:sport.slug];
 }
 
-//- (void)removeSport:(MSSport *)sport
-//{
-//    NSMutableArray *tempSports = [self.sports mutableCopy];
-//    [tempSports removeObject:sport];
-//    self.sports = tempSports;
-//}
-//
-//- (void)addSport:(MSSport *)sport
-//{
-//    NSMutableArray *tempSports = [self.sports mutableCopy];
-//    [tempSports addObject:sport];
-//    self.sports = tempSports;
-//}
+- (void)removeSport:(MSSport *)sport
+{
+    NSMutableArray *tempSports = [self.sports mutableCopy];
+    if (!tempSports) {
+        tempSports = [[NSMutableArray alloc] init];
+    }
+    [tempSports removeObject:sport.slug];
+    self.sports = tempSports;
+}
+
+- (void)addSport:(MSSport *)sport
+{
+    NSMutableArray *tempSports = [self.sports mutableCopy];
+    if (!tempSports) {
+        tempSports = [[NSMutableArray alloc] init];
+    }
+    [tempSports addObject:sport.slug];
+    self.sports = tempSports;
+}
 
 #pragma mark - ProfilePciture
 @synthesize image = _image;
@@ -218,6 +227,7 @@
     [activitiesQuery whereKey:@"participant" equalTo:self];
     [activitiesQuery includeKey:@"owner"];
     [activitiesQuery includeKey:@"sport"];
+    [activitiesQuery includeKey:@"comment"];
     [activitiesQuery findObjectsInBackgroundWithTarget:self selector:@selector(didFetchActivities:error:)];
 }
 

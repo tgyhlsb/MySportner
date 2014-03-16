@@ -162,9 +162,14 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
         self.activity.place = self.locationTextField.text;
         self.activity.owner = [MSSportner currentSportner];
         [[self.activity participantRelation] addObject:[MSSportner currentSportner]];
+        self.activity.guests = [[NSArray alloc] init];
+        self.activity.participants = [[NSArray alloc] initWithObjects:[MSSportner currentSportner], nil];
+        self.activity.awaitings = [[NSArray alloc] init];
         
-        [self showLoadingViewInView:self.navigationController.view];
-        [self.activity saveInBackgroundWithTarget:self selector:@selector(handleActivityCreation:error:)];
+        [self presentSimilarAcitivties];
+        
+//        [self showLoadingViewInView:self.navigationController.view];
+//        [self.activity saveInBackgroundWithTarget:self selector:@selector(handleActivityCreation:error:)];
     }
 }
 
@@ -178,15 +183,6 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     }
 }
 
-- (void)presentSimilarAcitivties
-{
-    MSActivitiesVC *destination = [MSActivitiesVC newController];
-    destination.referenceActivity = self.activity;
-    destination.hasDirectAccessToDrawer = NO;
-    
-    [self.navigationController pushViewController:destination animated:YES];
-}
-
 - (void)activityCreationDidSucceed
 {
     MSActivityVC *destinationVC = [MSActivityVC newController];
@@ -194,6 +190,15 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     destinationVC.activity = self.activity;
     
     [self.navigationController setViewControllers:@[destinationVC] animated:YES];
+}
+
+- (void)presentSimilarAcitivties
+{
+    MSActivitiesVC *destination = [MSActivitiesVC newController];
+    destination.referenceActivity = self.activity;
+    destination.hasDirectAccessToDrawer = NO;
+    
+    [self.navigationController pushViewController:destination animated:YES];
 }
 
 #pragma mark - MSPickLocalisationVCDelegate

@@ -165,6 +165,7 @@
 		5AC7DABA18A98F05002063C7 /* Icon-copie@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AC7DAB618A98F05002063C7 /* Icon-copie@2x.png */; };
 		5AC7DABB18A98F05002063C7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AC7DAB718A98F05002063C7 /* Icon.png */; };
 		5AC7DABC18A98F05002063C7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AC7DAB818A98F05002063C7 /* Icon@2x.png */; };
+		5ACB1B2018D666F8009D568C /* MSSportnersVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ACB1B1F18D666F8009D568C /* MSSportnersVC.xib */; };
 		5AD1FC5318472ADD001D3DFE /* runner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5AD1FC5218472ADD001D3DFE /* runner.jpg */; };
 		5AD1FC5A1847318B001D3DFE /* MSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD1FC591847318B001D3DFE /* MSNavigationBar.m */; };
 		5AD8035D18A990B90024DF74 /* pin_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AD8035B18A990B90024DF74 /* pin_gray.png */; };
@@ -498,6 +499,7 @@
 		5AC7DAB618A98F05002063C7 /* Icon-copie@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-copie@2x.png"; sourceTree = "<group>"; };
 		5AC7DAB718A98F05002063C7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		5AC7DAB818A98F05002063C7 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		5ACB1B1F18D666F8009D568C /* MSSportnersVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSSportnersVC.xib; path = Controllers/MSSportnersVC/MSSportnersVC.xib; sourceTree = "<group>"; };
 		5AD1FC5218472ADD001D3DFE /* runner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = runner.jpg; path = Images/runner.jpg; sourceTree = "<group>"; };
 		5AD1FC581847318B001D3DFE /* MSNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSNavigationBar.h; path = Views/MSNavigationBar.h; sourceTree = "<group>"; };
 		5AD1FC591847318B001D3DFE /* MSNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSNavigationBar.m; path = Views/MSNavigationBar.m; sourceTree = "<group>"; };
@@ -865,6 +867,7 @@
 			children = (
 				5A0D6F49189A55F300C037C8 /* MSSportnersVC.h */,
 				5A0D6F4A189A55F300C037C8 /* MSSportnersVC.m */,
+				5ACB1B1F18D666F8009D568C /* MSSportnersVC.xib */,
 				5A2B68F1189A56CD00D82870 /* MSInviteSportnersVC.xib */,
 				5A2B68FA189A669D00D82870 /* MSInviteSportnersVC.h */,
 				5A2B68FB189A669D00D82870 /* MSInviteSportnersVC.m */,
@@ -1683,6 +1686,7 @@
 				5ADCF2A518401E2800E6C8D2 /* MSSetAGameVC.xib in Resources */,
 				5A4CE2BB187099C50081AA1E /* MSButtonCell.xib in Resources */,
 				5A0CB7F01891714A0027EE58 /* slider-default-trackBackground.png in Resources */,
+				5ACB1B2018D666F8009D568C /* MSSportnersVC.xib in Resources */,
 				5AA8A75218A9775F0086D0B6 /* notifications-icon@2x.png in Resources */,
 				5A0CB7FF1891714A0027EE58 /* slider-metal-handle@2x.png in Resources */,
 				5AFE687D18507BE300E40541 /* gym(select)@2x.png in Resources */,

@@ -133,10 +133,12 @@
 
 - (void)updateButtonTitle
 {
-    if (self.activity.guests && self.activity.participants && self.activity.awaitings) {
+    MSSportner *currentSportner = [MSSportner currentSportner];
+    if ([self.activity.owner isEqualToSportner:currentSportner]) {
+        self.userMode = MSGameProfileModeOwner;
+    } else if (self.activity.guests && self.activity.participants && self.activity.awaitings) {
         [self.activityIndicatorView stopAnimating];
         
-        MSSportner *currentSportner = [MSSportner currentSportner];
         BOOL isParticipant = NO;
         for (MSSportner *sportner in self.activity.participants) {
             if ([sportner isEqualToSportner:currentSportner]) {

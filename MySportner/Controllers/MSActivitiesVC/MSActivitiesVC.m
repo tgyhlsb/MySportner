@@ -19,6 +19,7 @@
 #import "MSSetAGameVC.h"
 //#import <FacebookSDK/FacebookSDK.h>
 #import "MSProfileVC.h"
+#import "MSSportnersVC.h"
 
 #define NIB_NAME @"MSActivitiesVC"
 
@@ -26,6 +27,7 @@
 
 @property (strong, nonatomic) MBProgressHUD *loadingView;
 @property (weak, nonatomic) IBOutlet UIButton *plusButton;
+@property (weak, nonatomic) IBOutlet QBFlatButton *createActivityButton;
 
 @property (strong, nonatomic) NSArray *data;
 
@@ -42,8 +44,6 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    self.title = @"ACTIVITIES";
-    
     [MSActivityCell registerToTableview:self.tableView];
     [MSActivitiesFilterCell registerToTableView:self.tableView];
     
@@ -58,6 +58,31 @@
 - (void)reloadData
 {
     [self.tableView reloadData];
+}
+
+- (void)setReferenceActivity:(MSActivity *)referenceActivity
+{
+    _referenceActivity = referenceActivity;
+    
+    if (referenceActivity) {
+        [self setUpLeftButton];
+        
+        self.plusButton.hidden = YES;
+    }
+}
+
+- (void)setUpLeftButton
+{
+    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(leftButtonHandler)];
+    self.navigationItem.rightBarButtonItem = nextButton;
+}
+
+- (void)leftButtonHandler
+{
+    MSSportnersVC *destination = [MSSportnersVC newControler];
+    destination.hasDirectAccessToDrawer = NO;
+    destination.referenceActivity = self.referenceActivity;
+    [self.navigationController pushViewController:destination animated:YES];
 }
 
 - (void)setData:(NSArray *)data
@@ -105,6 +130,19 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self.tableView setContentInset:UIEdgeInsetsMake(63, 0, 80, 0)];
     });
+    
+    [self.createActivityButton setTitle:@"CREATE ACTIVITY" forState:UIControlStateNormal];
+    [MSStyleFactory setQBFlatButton:self.createActivityButton withStyle:MSFlatButtonStyleGreen];
+    
+    if (self.referenceActivity) {
+        self.plusButton.hidden = YES;
+        self.title = @"SUGGESTED ACTIVITIES";
+        self.createActivityButton.hidden = NO;
+    } else {
+        self.title = @"ACTIVITES";
+        self.plusButton.hidden = NO;
+        self.createActivityButton.hidden = YES;
+    }
 }
 - (IBAction)plusButtonHandler:(id)sender
 {
@@ -113,6 +151,30 @@
     [self.navigationController pushViewController:destinationVC animated:YES];
 }
 
+- (IBAction)createActivityButtonHandler:(id)sender
+{
+        [self showLoadingViewInView:self.navigationController.view];
+        [self.referenceActivity saveInBackgroundWithTarget:self selector:@selector(handleActivityCreation:error:)];
+}
+
+- (void)handleActivityCreation:(BOOL)succeed error:(NSError *)error
+{
+    [self hideLoadingView];
+    if (!error) {
+        [self activityCreationDidSucceed];
+    } else {
+        NSLog(@"%@", error);
+    }
+}
+
+- (void)activityCreationDidSucceed
+{
+    MSActivityVC *destinationVC = [MSActivityVC newController];
+    destinationVC.hasDirectAccessToDrawer = YES;
+    destinationVC.activity = self.referenceActivity;
+    
+    [self.navigationController setViewControllers:@[destinationVC] animated:YES];
+}
 
 #pragma mark BackEnd process
 

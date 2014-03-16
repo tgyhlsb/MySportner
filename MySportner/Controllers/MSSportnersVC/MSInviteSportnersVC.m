@@ -288,7 +288,26 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MSSportner *sportner = [self.activity.guests objectAtIndex:indexPath.row];
+    MSSportner *sportner = nil;
+    switch (indexPath.section) {
+        case MSInviteSportnerSectionParticipants:
+        {
+            sportner = [self.activity.participants objectAtIndex:indexPath.row];
+            break;
+        }
+            
+        case MSInviteSportnerSectionGuests:
+        {
+            sportner = [self.activity.guests objectAtIndex:indexPath.row];
+            break;
+        }
+            
+        case MSInviteSportnerSectionAllSportners:
+        {
+            sportner = [self.allSportners objectAtIndex:indexPath.row];
+            break;
+        }
+    }
     
     MSProfileVC *destinationVC = [MSProfileVC newController];
     destinationVC.hasDirectAccessToDrawer = NO;

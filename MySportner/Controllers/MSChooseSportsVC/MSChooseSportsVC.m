@@ -51,10 +51,27 @@
     self.collectionView.allowsSelection = YES;
     self.collectionView.allowsMultipleSelection = YES;
     
-    self.data = SAMPLE_SPORTS;
+    self.data = [MSSport allSports];
     
     [self setAppearance];
     [self setBackButton];
+}
+
+- (void)registerSportNotification
+{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(sportsWereFetch)
+                                                 name:MSSportWereFetch
+                                               object:nil];
+    
+    
+}
+
+- (void)sportsWereFetch
+{
+    self.data = [MSSport allSports];
+    [self.collectionView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -163,10 +180,8 @@
 {
     MSBigSportCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MSBigSportCell reusableIdentifier] forIndexPath:indexPath];
     
-    NSString *sport = [self.data objectAtIndex:indexPath.item];
-    cell.sportName = sport;
-    cell.imageNameNormal = [[sport stringByAppendingString:@".png"] lowercaseString];
-    cell.imageNameSelected = [[sport stringByAppendingString:@"(select).png"] lowercaseString];
+    MSSport *sport = [self.data objectAtIndex:indexPath.item];
+    cell.sport = sport;
     
     cell.level = [self.sportner sportLevelForSportIndex:indexPath.row defaultValue:DEFAULT_SPORT_LEVEL];
     
@@ -210,17 +225,18 @@
     
     vc.doneBlock = ^{
         
-        NSInteger sportKey = [MSSport keyForSportName:weakSportCell.sportName];
-        [self.sportner setSport:sportKey withLevel:weakFormSheet.level];
-        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
-        [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
+//        NSInteger sportKey = [MSSport keyForSportName:weakSportCell.sportName];
+//        
+//        [self.sportner setSport:sportKey withLevel:weakFormSheet.level];
+//        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+//        [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
     };
     
     vc.unSelectBlock = ^{
-        NSInteger sportKey = [MSSport keyForSportName:weakSportCell.sportName];
-        [self.sportner setSport:sportKey withLevel:-1];
-        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
-        [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
+//        NSInteger sportKey = [MSSport keyForSportName:weakSportCell.sportName];
+//        [self.sportner setSport:sportKey withLevel:-1];
+//        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+//        [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
     };
     
     vc.level = weakSportCell.level;

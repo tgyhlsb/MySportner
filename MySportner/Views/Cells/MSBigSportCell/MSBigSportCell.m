@@ -27,6 +27,10 @@
 @property (strong, nonatomic) IBOutlet UIView *tempRatingView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
+
+@property (strong, nonatomic) NSString *imageNameNormal;
+@property (strong, nonatomic) NSString *imageNameSelected;
+
 @end
 
 @implementation MSBigSportCell
@@ -80,10 +84,19 @@
     self.titleLabel.textColor = TEXT_COLOR_NORMAL;
 }
 
-- (void)setSportName:(NSString *)sportName
+- (void)setSport:(MSSport *)sport
 {
-    _sportName = sportName;
-    self.titleLabel.text = [sportName uppercaseString];
+    _sport = sport;
+    
+    [self updateUI];
+}
+
+- (void)updateUI
+{
+    self.imageNameNormal = [[self.sport.slug stringByAppendingString:@".png"] lowercaseString];
+    self.imageNameSelected = [[self.sport.slug stringByAppendingString:@"(select).png"] lowercaseString];
+    
+    self.titleLabel.text = self.sport.name;
 }
 
 - (void)setTropheeFromLevel:(NSInteger)level

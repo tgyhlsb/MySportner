@@ -23,6 +23,7 @@
 #import "MSNavigationVC.h"
 #import "MSComment.h"
 #import "MSSportner.h"
+#import "MSSport.h"
 
 #define STORYBOARD_NAME @"Main"
 
@@ -42,6 +43,7 @@
     [MSUser registerSubclass];
     [MSActivity registerSubclass];
     [MSSportner registerSubclass];
+    [MSSport registerSubclass];
     [Parse setApplicationId:@"mXxe3WBY2KqxbWjjnBruVUyJGtyKjgjDpfuX6pAA"
                   clientKey:@"EFLTeHfWnuHxmwzKbg1xfsfYRRFSksMiWGlKYloM"];
     
@@ -49,6 +51,8 @@
     
     [self setDrawerMenu];
     [self setAppearance];
+    
+    [MSSport fetchAllSports];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

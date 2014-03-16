@@ -16,6 +16,12 @@
 #define WIDTH 80
 
 
+@interface MSSmallSportCell()
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@end
+
 @implementation MSSmallSportCell
 
 + (void)registerToCollectionView:(UICollectionView *)collectionView
@@ -32,6 +38,13 @@
 + (CGSize)size
 {
     return CGSizeMake(WIDTH, HEIGHT);
+}
+
+- (void)setSport:(MSSport *)sport
+{
+    _sport = sport;
+    
+    self.titleLabel.text = sport.name;
 }
 
 - (void)setSelected:(BOOL)selected

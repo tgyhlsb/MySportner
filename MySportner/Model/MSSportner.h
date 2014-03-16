@@ -8,6 +8,7 @@
 
 #import <Parse/Parse.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "MSSport.h"
 
 #define PARSE_CLASSNAME_SPORTNER @"MSSportner"
 
@@ -47,10 +48,9 @@ typedef NS_ENUM(int, MSUserGender) {
 - (void)addSportner:(MSSportner *)sportner;
 - (void)removeSportner:(MSSportner *)sportner;
 
-
-- (void)setSport:(NSInteger)sportKey withLevel:(NSInteger)level;
 - (NSArray *)getSports;
-- (NSInteger)sportLevelForSportIndex:(NSInteger)index defaultValue:(NSInteger)defaultValue;
+- (void)setLevel:(NSNumber *)level forSport:(MSSport *)sport;
+- (NSNumber *)levelForSport:(MSSport *)sport;
 
 
 - (void)setWithFacebookInfo:(id<FBGraphUser>)userInfo;

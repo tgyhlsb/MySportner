@@ -26,6 +26,7 @@ static NSString *MSSportWereFetch = @"MSSportWereFetch";
 + (NSArray *)allSports;
 
 
++ (MSSport *)sportWithSlug:(NSString *)slug;
 + (void)fetchAllSportsIfNeeded;
 + (void)fetchAllSports;
 

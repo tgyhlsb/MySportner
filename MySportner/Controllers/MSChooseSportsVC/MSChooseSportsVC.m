@@ -43,6 +43,8 @@
 {
     [super viewDidLoad];
     
+    [self registerSportNotification];
+    
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
@@ -183,7 +185,12 @@
     MSSport *sport = [self.data objectAtIndex:indexPath.item];
     cell.sport = sport;
     
-    cell.level = [self.sportner sportLevelForSportIndex:indexPath.row defaultValue:DEFAULT_SPORT_LEVEL];
+    NSNumber *sportLevel = [self.sportner levelForSport:sport];
+    if (sportLevel) {
+        cell.level = [sportLevel intValue];
+    } else {
+        cell.level = DEFAULT_SPORT_LEVEL;
+    }
     
     cell.layer.shouldRasterize = YES;
     cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
@@ -224,19 +231,17 @@
     __weak MSSportLevelFormVC *weakFormSheet = vc;
     
     vc.doneBlock = ^{
-        
-//        NSInteger sportKey = [MSSport keyForSportName:weakSportCell.sportName];
-//        
-//        [self.sportner setSport:sportKey withLevel:weakFormSheet.level];
-//        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
-//        [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
+        MSSport *sport = weakSportCell.sport;
+        [self.sportner setLevel:@(weakFormSheet.level) forSport:sport];
+        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+        [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
     };
     
     vc.unSelectBlock = ^{
-//        NSInteger sportKey = [MSSport keyForSportName:weakSportCell.sportName];
-//        [self.sportner setSport:sportKey withLevel:-1];
-//        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
-//        [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
+        MSSport *sport = weakSportCell.sport;
+        [self.sportner setLevel:nil forSport:sport];
+        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+        [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
     };
     
     vc.level = weakSportCell.level;

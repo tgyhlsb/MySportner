@@ -29,6 +29,16 @@ static NSArray *allSports;
     return sportName;
 }
 
++ (MSSport *)sportWithSlug:(NSString *)slug
+{
+    for (MSSport *sport in allSports) {
+        if ([sport.slug isEqualToString:slug]) {
+            return sport;
+        }
+    }
+    return nil;
+}
+
 + (NSArray *)allSports
 {
     return allSports;

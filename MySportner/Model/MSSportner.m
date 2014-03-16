@@ -10,7 +10,6 @@
 #import "MSActivity.h"
 #import "MSUser.h"
 #import <Parse/PFObject+Subclass.h>
-#import "MSSport.h"
 
 
 #define FACEBOOK_VALUE_GENDER_MALE @"male"
@@ -113,36 +112,62 @@
 }
 
 #pragma mark - Sports
-- (void)setSport:(NSInteger)sportKey withLevel:(NSInteger)level
-{
-    if (!self.sportLevels) {
-        self.sportLevels = [[NSDictionary alloc] init];
-    }
-    NSMutableDictionary *tempSportLevels = [self.sportLevels mutableCopy];
-    NSString *sportKeyString = [NSString stringWithFormat:@"%ld", (long)sportKey];
-    [tempSportLevels setObject:@(level) forKey:sportKeyString];
-    self.sportLevels = tempSportLevels;
-}
 
 - (NSArray *)getSports
 {
-    NSMutableArray *sports = [[NSMutableArray alloc] init];
-    for (NSString *sportKeyString in self.sportLevels) {
-        NSInteger sportKey = [sportKeyString integerValue];
+    NSMutableArray *tempSports = [[NSMutableArray alloc] init];
+    
+    for (NSString *sportSlug in [self.sportLevels allKeys]) {
+        MSSport *sport = [MSSport sportWithSlug:sportSlug];
+        [tempSports addObject:sport];
+    }
+    
+    return tempSports;
+}
 
-        NSInteger sportLevel = [self sportLevelForSportIndex:sportKey defaultValue:-1];
-        if (sportLevel >= 0) {
-            [sports addObject:[MSSport sportNameForKey:sportKey]];
+- (void)setLevel:(NSNumber *)level forSport:(MSSport *)sport
+{
+    if (level) {
+        // set level
+        NSMutableDictionary *tempSportLevels = [self.sportLevels mutableCopy];
+        if (!tempSportLevels) {
+            tempSportLevels = [[NSMutableDictionary alloc] init];
+        }
+        [tempSportLevels setObject:level forKey:sport.slug];
+        self.sportLevels = tempSportLevels;
+    } else {
+        // look for actual level
+        NSNumber *oldLevel = [self levelForSport:sport];
+        if (oldLevel) {
+            // remove it
+            NSMutableDictionary *tempSportLevels = [self.sportLevels mutableCopy];
+            if (!tempSportLevels) {
+                tempSportLevels = [[NSMutableDictionary alloc] init];
+            }
+            [tempSportLevels removeObjectForKey:sport.slug];
+            self.sportLevels = tempSportLevels;
         }
     }
-    return sports;
 }
 
-- (NSInteger)sportLevelForSportIndex:(NSInteger)index defaultValue:(NSInteger)defaultValue
+- (NSNumber *)levelForSport:(MSSport *)sport
 {
-    NSDecimalNumber *sportLevel = [self.sportLevels valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
-    return (sportLevel) ? [sportLevel integerValue] : defaultValue;
+    return [self.sportLevels objectForKey:sport.slug];
 }
+
+//- (void)removeSport:(MSSport *)sport
+//{
+//    NSMutableArray *tempSports = [self.sports mutableCopy];
+//    [tempSports removeObject:sport];
+//    self.sports = tempSports;
+//}
+//
+//- (void)addSport:(MSSport *)sport
+//{
+//    NSMutableArray *tempSports = [self.sports mutableCopy];
+//    [tempSports addObject:sport];
+//    self.sports = tempSports;
+//}
 
 #pragma mark - ProfilePciture
 @synthesize image = _image;

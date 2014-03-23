@@ -374,6 +374,11 @@ typedef NS_ENUM(int, MSActivitySection) {
 - (void)didLeaveActivityWithSuccess:(BOOL)succeed andError:(NSError *)error
 {
     if (!error) {
+        
+        //change sportner place
+        [MSSportner currentSportner].lastPlace = self.activity.place;
+        [[MSSportner currentSportner] saveEventually];
+        
         [self.infoCell setUserMode:MSGameProfileModeOther];
     } else {
         [self.infoCell setUserMode:MSGameProfileModeParticipant];

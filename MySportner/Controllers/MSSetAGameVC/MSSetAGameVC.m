@@ -166,6 +166,11 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
         self.activity.participants = [[NSArray alloc] initWithObjects:[MSSportner currentSportner], nil];
         self.activity.awaitings = [[NSArray alloc] init];
         
+        
+        //change sportner place
+        [MSSportner currentSportner].lastPlace = self.activity.place;
+        [[MSSportner currentSportner] saveEventually];
+        
         [self presentSimilarAcitivties];
         
 //        [self showLoadingViewInView:self.navigationController.view];

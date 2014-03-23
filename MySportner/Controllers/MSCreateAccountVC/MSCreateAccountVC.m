@@ -337,6 +337,7 @@
         self.user.email = self.emailTextField.text;
         self.user.password = self.passwordTextField.text;
         self.user.sportner.birthday = self.datePicker.date;
+        self.user.sportner.lastPlace = @"Unknown";
         self.user.sportner.gender = self.genderControl.isOn ? MSUserGenderFemale : MSUserGenderMale;
         self.user.username = self.user.email;
         self.user.sportner.username = self.user.email;

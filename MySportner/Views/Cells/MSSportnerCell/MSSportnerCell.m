@@ -56,7 +56,7 @@
     _sportner = sportner;
     self.profilePictureView.sportner = sportner;
     self.nameLabel.text = [sportner fullName];
-    self.placeLabel.text = @"Place, country";
+    self.placeLabel.text = self.sportner.lastPlace;
 }
 
 - (void)setActionButtonHidden:(BOOL)hidden

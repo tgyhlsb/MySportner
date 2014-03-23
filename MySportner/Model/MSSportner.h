@@ -30,6 +30,7 @@ typedef NS_ENUM(int, MSUserGender) {
 @property (strong, nonatomic) NSDictionary *sportLevels;
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) PFFile *imageFile;
+@property (strong, nonatomic) NSString *lastPlace;
 
 @property (strong, nonatomic) NSArray *activities;
 @property (strong, nonatomic) NSArray *sportners;

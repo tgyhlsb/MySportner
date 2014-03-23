@@ -38,6 +38,7 @@
 @synthesize tempSportnersQueryCallBack = _tempSportnersQueryCallBack;
 @synthesize sportners = _sportners;
 
+@dynamic lastPlace;
 @dynamic username;
 @dynamic firstName;
 @dynamic lastName;

@@ -330,7 +330,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
         [self setCoverPictureWithImage:[UIImage imageNamed:@"Img-Profile.png"]];
         self.profilePictureView.sportner = self.sportner;
         self.sportnerNameLabel.text = [self.sportner fullName];
-        self.locationLabel.text = [@"Lyon, France" uppercaseString];
+        self.locationLabel.text = self.sportner.lastPlace.uppercaseString;
     }
 }
 

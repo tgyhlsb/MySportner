@@ -356,7 +356,11 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 
 - (IBAction)actionButtonHandler:(id)sender
 {
-    [[MSSportner currentSportner] addSportner:self.sportner];
+    if ([[MSSportner currentSportner].sportners containsObject:self.sportner]) {
+        [[MSSportner currentSportner] removeSportner:self.sportner];
+    } else {
+        [[MSSportner currentSportner] addSportner:self.sportner];
+    }
     [self setUpActionButton];
 }
 
@@ -457,6 +461,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
             MSActivityCell *cell = (MSActivityCell *)[self.tableView cellForRowAtIndexPath:indexPath];
             destinationVC.activity = cell.activity;
             [self.navigationController pushViewController:destinationVC animated:YES];
+            break;
         }
         case MSProfileTableViewModeSportners:
         {
@@ -465,6 +470,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
             MSSportnerCell *cell = (MSSportnerCell *)[self.tableView cellForRowAtIndexPath:indexPath];
             destinationVC.sportner = cell.sportner;
             [self.navigationController pushViewController:destinationVC animated:YES];
+            break;
         }
     }
 }

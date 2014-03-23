@@ -66,6 +66,7 @@
 
 - (void)setActionButtonTitle:(NSString *)title
 {
+    self.actionButton.hidden = (title == nil);
     [self.actionButton setTitle:title forState:UIControlStateNormal];
 }
 

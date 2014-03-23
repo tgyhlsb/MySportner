@@ -66,7 +66,7 @@
         }
         case MSProfilePictureCellGuest:
         {
-            self.layer.borderColor = [MSColorFactory redSoft].CGColor;
+            self.layer.borderColor = [UIColor colorWithRed:0.95f green:0.73f blue:0.53f alpha:1.00f].CGColor;
             break;
         }
     }

@@ -27,8 +27,6 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) MBProgressHUD *loadingView;
 
-@property (strong, nonatomic) NSArray *allSportners;
-
 @end
 
 @implementation MSInviteSportnersVC
@@ -85,7 +83,7 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
     
     switch (indexPath.section) {
         case MSInviteSportnerSectionAllSportners:
-            [self sportnerCell:cell didInviteSportner:sportner];
+            [self sportnerCell:cell didAcceptSportner:sportner];
             break;
         case MSInviteSportnerSectionGuests:
             [self sportnerCell:cell didUninviteSportner:sportner];
@@ -94,29 +92,31 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 }
 
 
-- (void)sportnerCell:(MSSportnerCell *)cell didInviteSportner:(MSSportner *)sportner
+- (void)sportnerCell:(MSSportnerCell *)cell didAcceptSportner:(MSSportner *)sportner
 {
     [self showLoadingViewInView:self.view];
-    PFRelation *relation = [self.activity guestRelation];
-    [relation addObject:sportner];
+    PFRelation *particiapentRelation = [self.activity participantRelation];
+    [particiapentRelation addObject:sportner];
+    PFRelation *awaitingRelation = [self.activity awaitingRelation];
+    [awaitingRelation removeObject:sportner];
     [self.activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [self addGuestCallback:cell error:error];
+        [self addParticipantCallback:cell error:error];
     }];
 }
 
-- (void)addGuestCallback:(MSSportnerCell *)senderCell error:(NSError *)error
+- (void)addParticipantCallback:(MSSportnerCell *)senderCell error:(NSError *)error
 {
     [self hideLoadingView];
     if (!error) {
-        NSMutableArray *tempAllSportners = [self.allSportners mutableCopy];
-        [tempAllSportners removeObject:senderCell.sportner];
-        self.allSportners = tempAllSportners;
+        NSMutableArray *tempAwaitings = [self.activity.awaitings mutableCopy];
+        [tempAwaitings removeObject:senderCell.sportner];
+        self.activity.awaitings = tempAwaitings;
         
-        NSMutableArray *tempGuests = [self.activity.guests mutableCopy];
+        NSMutableArray *tempGuests = [self.activity.participants mutableCopy];
         [tempGuests insertObject:senderCell.sportner atIndex:0];
         self.activity.guests = tempGuests;
 
-        [self moveSportnerCellToGuestSection:senderCell];
+        [self moveSportnerCellToParticipantSection:senderCell];
     } else {
         NSString *message = [NSString stringWithFormat:@"Failed to invite %@", [senderCell.sportner fullName]];
         [[TKAlertCenter defaultCenter] postAlertWithMessage:message];
@@ -130,6 +130,17 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
     MSSportnerCell *nextCell = (MSSportnerCell *)[self.tableView cellForRowAtIndexPath:destinationPath];
     [self.tableView moveRowAtIndexPath:originIndexPath toIndexPath:destinationPath];
     [cell setActionButtonTitle:@"CANCEL"];
+    
+    [cell setAppearanceWithOddIndex:!nextCell.oddIndex];
+}
+
+- (void)moveSportnerCellToParticipantSection:(MSSportnerCell *)cell
+{
+    NSIndexPath *originIndexPath = [self.tableView indexPathForCell:cell];
+    NSIndexPath *destinationPath = [NSIndexPath indexPathForRow:0 inSection:MSInviteSportnerSectionParticipants];
+    MSSportnerCell *nextCell = (MSSportnerCell *)[self.tableView cellForRowAtIndexPath:destinationPath];
+    [self.tableView moveRowAtIndexPath:originIndexPath toIndexPath:destinationPath];
+    [cell setActionButtonTitle:nil];
     
     [cell setAppearanceWithOddIndex:!nextCell.oddIndex];
 }
@@ -148,30 +159,31 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 {
     [self hideLoadingView];
     if (!error) {
-        NSMutableArray *tempAllSportners = [self.allSportners mutableCopy];
-        [tempAllSportners insertObject:senderCell.sportner atIndex:0];
-        self.allSportners = tempAllSportners;
+//        NSMutableArray *tempAllSportners = [self.allSportners mutableCopy];
+//        [tempAllSportners insertObject:senderCell.sportner atIndex:0];
+//        self.allSportners = tempAllSportners;
         
         NSMutableArray *tempGuests = [self.activity.guests mutableCopy];
         [tempGuests removeObject:senderCell.sportner];
         self.activity.guests = tempGuests;
-        [self moveSportnerCellToOtherSportnersSection:senderCell];
+        
+        [self reloadData];
     } else {
         NSString *message = [NSString stringWithFormat:@"Failed to cancel %@ invitation", [senderCell.sportner fullName]];
         [[TKAlertCenter defaultCenter] postAlertWithMessage:message];
     }
 }
 
-- (void)moveSportnerCellToOtherSportnersSection:(MSSportnerCell *)cell
-{
-    NSIndexPath *originIndexPath = [self.tableView indexPathForCell:cell];
-    NSIndexPath *destinationPath = [NSIndexPath indexPathForRow:0 inSection:MSInviteSportnerSectionAllSportners];
-    MSSportnerCell *nextCell = (MSSportnerCell *)[self.tableView cellForRowAtIndexPath:destinationPath];
-    [self.tableView moveRowAtIndexPath:originIndexPath toIndexPath:destinationPath];
-    [cell setActionButtonTitle:@"INVITE"];
-    
-    [cell setAppearanceWithOddIndex:!nextCell.oddIndex];
-}
+//- (void)moveSportnerCellToOtherSportnersSection:(MSSportnerCell *)cell
+//{
+//    NSIndexPath *originIndexPath = [self.tableView indexPathForCell:cell];
+//    NSIndexPath *destinationPath = [NSIndexPath indexPathForRow:0 inSection:MSInviteSportnerSectionAllSportners];
+//    MSSportnerCell *nextCell = (MSSportnerCell *)[self.tableView cellForRowAtIndexPath:destinationPath];
+//    [self.tableView moveRowAtIndexPath:originIndexPath toIndexPath:destinationPath];
+//    [cell setActionButtonTitle:nil];
+//    
+//    [cell setAppearanceWithOddIndex:!nextCell.oddIndex];
+//}
 
 #pragma mark - MSActivity Callbacks
 
@@ -188,7 +200,7 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 - (void)didLoadOtherSportners:(NSArray *)objects withError:(NSError *)error
 {
     if (!error) {
-        self.allSportners = objects;
+//        self.allSportners = objects;
         [self reloadData];
     } else {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
@@ -211,7 +223,7 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
         case MSInviteSportnerSectionGuests:
             return [self.activity.guests count];
         case MSInviteSportnerSectionAllSportners:
-            return [self.allSportners count];
+            return [self.activity.awaitings count];
             
         default:
             return 0;
@@ -244,10 +256,10 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
         }
         case MSInviteSportnerSectionAllSportners:
         {
-            MSSportner *sportner = [self.allSportners objectAtIndex:indexPath.row];
+            MSSportner *sportner = [self.activity.awaitings objectAtIndex:indexPath.row];
             cell.sportner = sportner;
             [cell setActionButtonHidden:NO];
-            [cell setActionButtonTitle:@"INVITE"];
+            [cell setActionButtonTitle:@"ACCEPT"];
             break;
         }
             
@@ -304,7 +316,7 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
             
         case MSInviteSportnerSectionAllSportners:
         {
-            sportner = [self.allSportners objectAtIndex:indexPath.row];
+            sportner = [self.activity.awaitings objectAtIndex:indexPath.row];
             break;
         }
     }

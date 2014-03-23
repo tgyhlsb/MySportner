@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSSportnersVC/MSInviteSportnersVC.m"
-            timestampString = "414875923.570443"
+            timestampString = "417276964.862474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "-didLoadGuestsAndParticipantsWithError:"
             landmarkType = "5">
          </BreakpointContent>
@@ -152,6 +152,22 @@
             startingLineNumber = "177"
             endingLineNumber = "177"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MySportner/Controllers/MSSportnersVC/MSInviteSportnersVC.m"
+            timestampString = "417276964.862474"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "-didLoadGuestsAndParticipantsWithError:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -165,7 +165,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     
     [self setUpActionButton];
     
-    self.profilePictureView.layer.borderWidth = 2.0f;
+    self.profilePictureView.layer.borderWidth = 1.0f;
     self.profilePictureView.layer.borderColor = [[[UIColor whiteColor] colorWithAlphaComponent:0.8] CGColor];
     self.profilePictureView.layer.shadowOffset = CGSizeMake(2.0, 2.0);
     self.profilePictureView.layer.shadowColor = [[[UIColor blackColor] colorWithAlphaComponent:1.0] CGColor];
@@ -435,7 +435,11 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
             
             cell.delegate = self;
             
-            [cell setActionButtonTitle:@"REMOVE"];
+            if ([self.sportner isEqual:[MSSportner currentSportner]]) {
+                [cell setActionButtonTitle:@"REMOVE"];
+            } else {
+                [cell setActionButtonTitle:nil];
+            }
             
             return cell;
         }

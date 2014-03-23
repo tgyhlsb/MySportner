@@ -178,6 +178,17 @@
 
 #pragma mark BackEnd process
 
+- (void)registerSportNotification
+{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(requestActivitiesFromBackEnd)
+                                                 name:MSSportWereFetch
+                                               object:nil];
+    
+    
+}
+
 - (void)activitiesCallback:(NSArray *)objects error:(NSError *)error
 {
     [self hideLoadingView];
@@ -191,17 +202,31 @@
 
 - (void)requestActivitiesFromBackEnd
 {
-    PFQuery *query = [PFQuery queryWithClassName:PARSE_CLASSNAME_ACTIVITY];
     
     [self showLoadingViewInView:self.view];
-    
-    [query includeKey:@"owner"];
-    [query includeKey:@"sport"];
+    PFQuery *query = [PFQuery queryWithClassName:PARSE_CLASSNAME_ACTIVITY];
     
     if (self.referenceActivity) {
         [query whereKey:@"sport" equalTo:self.referenceActivity.sport];
         [query whereKey:@"level" lessThanOrEqualTo:self.referenceActivity.level];
+    } else {
+        NSMutableArray *subQueries = [[NSMutableArray alloc] init];
+        for (NSString *sportSlug in [[MSSportner currentSportner] sports]) {
+            MSSport *sport = [MSSport sportWithSlug:sportSlug];
+            if (sport) {
+                NSInteger level = [[[MSSportner currentSportner] levelForSport:sport] integerValue];
+                PFQuery *subQuery = [PFQuery queryWithClassName:PARSE_CLASSNAME_ACTIVITY];
+                [subQuery whereKey:@"sport" equalTo:sport];
+                [subQuery whereKey:@"level" containedIn:@[@(level-1), @(level), @(level+1)]];
+                [subQueries addObject:subQuery];
+            }
+        }
+        
+        query = [PFQuery orQueryWithSubqueries:subQueries];
+        
     }
+    [query includeKey:@"owner"];
+    [query includeKey:@"sport"];
     
     [query findObjectsInBackgroundWithTarget:self
                                     selector:@selector(activitiesCallback:error:)];

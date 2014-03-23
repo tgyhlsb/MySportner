@@ -78,6 +78,7 @@
 		5A2B68FF189ACEA400D82870 /* MSAttendeesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B68FE189ACEA400D82870 /* MSAttendeesCell.m */; };
 		5A2B6901189ACEB400D82870 /* MSAttendeesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B6900189ACEB400D82870 /* MSAttendeesCell.xib */; };
 		5A2B6905189AD08100D82870 /* MSHeaderSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B6904189AD08100D82870 /* MSHeaderSectionView.m */; };
+		5A2D0A2918DF1E5900060F3F /* MSFlatButtonWhite.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D0A2818DF1E5900060F3F /* MSFlatButtonWhite.m */; };
 		5A31C1F51842147D00868188 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C1F41842147D00868188 /* Parse.framework */; };
 		5A31C1F71842149100868188 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C1F61842149100868188 /* AudioToolbox.framework */; };
 		5A31C1F91842149A00868188 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C1F81842149A00868188 /* CFNetwork.framework */; };
@@ -387,6 +388,8 @@
 		5A2B6900189ACEB400D82870 /* MSAttendeesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSAttendeesCell.xib; path = Views/Cells/MSAttendeesCell/MSAttendeesCell.xib; sourceTree = "<group>"; };
 		5A2B6903189AD08100D82870 /* MSHeaderSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSHeaderSectionView.h; path = Views/MSHeaderSectionView.h; sourceTree = "<group>"; };
 		5A2B6904189AD08100D82870 /* MSHeaderSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSHeaderSectionView.m; path = Views/MSHeaderSectionView.m; sourceTree = "<group>"; };
+		5A2D0A2718DF1E5900060F3F /* MSFlatButtonWhite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFlatButtonWhite.h; sourceTree = "<group>"; };
+		5A2D0A2818DF1E5900060F3F /* MSFlatButtonWhite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFlatButtonWhite.m; sourceTree = "<group>"; };
 		5A31C1F41842147D00868188 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		5A31C1F61842149100868188 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5A31C1F81842149A00868188 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -968,6 +971,8 @@
 			children = (
 				5A96744A1849CD180079EAC1 /* QBFlatButton.h */,
 				5A96744B1849CD180079EAC1 /* QBFlatButton.m */,
+				5A2D0A2718DF1E5900060F3F /* MSFlatButtonWhite.h */,
+				5A2D0A2818DF1E5900060F3F /* MSFlatButtonWhite.m */,
 			);
 			path = QBFlatButton;
 			sourceTree = "<group>";
@@ -1842,6 +1847,7 @@
 				5A1B73711844AB6200555FE4 /* MZFormSheetBackgroundWindow.m in Sources */,
 				5ADCF3081840E80500E6C8D2 /* MSFourSquareKeyFactory.m in Sources */,
 				5A653B16189427D900E2B8AE /* MSCell.m in Sources */,
+				5A2D0A2918DF1E5900060F3F /* MSFlatButtonWhite.m in Sources */,
 				5A9674521849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m in Sources */,
 				5A96745C184A0ECA0079EAC1 /* UIImage+ImageEffects.m in Sources */,
 				5ADCF2D31840BA6400E6C8D2 /* MSPickSportCell.m in Sources */,

@@ -34,6 +34,7 @@
 @dynamic time;
 @dynamic place;
 @dynamic sport;
+@dynamic level;
 
 @dynamic owner;
 

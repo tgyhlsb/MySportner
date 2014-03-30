@@ -536,7 +536,7 @@ typedef NS_ENUM(int, MSActivitySection) {
     // Check if the Facebook app is installed and we can present the share dialog
     FBShareDialogParams *params = [[FBShareDialogParams alloc] init];
     params.link = [NSURL URLWithString:@"http://signup.mysportner.com/"];
-    params.name = self.activity.sport;
+    params.name = self.activity.sport.name;
     params.caption = @"Join me on MySportner";
     params.picture = [NSURL URLWithString:@"https://pbs.twimg.com/profile_images/378800000551667532/b81759440b14ba757bb8b0d7ccceae34.png"];
     params.description = [NSString stringWithFormat:@"%@ is playing %@ at %@", [MSSportner currentSportner].firstName, self.activity.sport, self.activity.place];

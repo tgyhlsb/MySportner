@@ -167,9 +167,15 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
         self.activity.awaitings = [[NSArray alloc] init];
         
         
-        //change sportner place
-        [MSSportner currentSportner].lastPlace = self.activity.place;
-        [[MSSportner currentSportner] saveEventually];
+        @try {
+            //change sportner place
+            [MSSportner currentSportner].lastPlace = self.activity.place;
+            [[MSSportner currentSportner] saveEventually];
+            
+        }
+        @catch (NSException * e) {
+            NSLog(@"Exception: %@", e);
+        }
         
         [self presentSimilarAcitivties];
         

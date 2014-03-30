@@ -73,7 +73,7 @@
 
 - (void)setUpLeftButton
 {
-    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(leftButtonHandler)];
+    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"skip.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(leftButtonHandler)];
     self.navigationItem.rightBarButtonItem = nextButton;
 }
 

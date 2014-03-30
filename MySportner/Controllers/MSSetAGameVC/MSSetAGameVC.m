@@ -526,24 +526,27 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     if ([textField isEqual:self.dayTextField])
     {
         [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:MSSetAGameTextFieldTypeDay inSection:MSSetAGameSectionTextField]];
+        self.activeTextField = (MSTextField *)textField;
     }
     else if ([textField isEqual:self.timeTextField])
     {
         [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:MSSetAGameTextFieldTypeTime inSection:MSSetAGameSectionTextField]];
+        self.activeTextField = (MSTextField *)textField;
     }
     else if ([textField isEqual:self.repeatTextField])
     {
         [self extendCellAtIndexPath:[NSIndexPath indexPathForRow:MSSetAGameTextFieldTypeRepeat inSection:MSSetAGameSectionTextField]];
+        self.activeTextField = (MSTextField *)textField;
     }
     else if ([textField isEqual:self.locationTextField])
     {
+        [self closeExtendedCell];
         MSPickLocalisationVC *destinationVC = [MSPickLocalisationVC newControler];
         destinationVC.delegate = self;
         [self.navigationController pushViewController:destinationVC animated:YES];
         self.activeTextField = nil;
     }
     
-    self.activeTextField = (MSTextField *)textField;
     return NO;
 }
 

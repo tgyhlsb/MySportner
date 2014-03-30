@@ -90,10 +90,23 @@
         
         [self.tableView endUpdates];
     }
-//    [self.cellContainer hideView:NO];
-//    [self.cellContainer setHidden:NO];
     
     
+}
+
+- (void)closeExtendedCell
+{
+    [self.tableView beginUpdates];
+    
+    if (self.selectedRowIndexPath)
+    {
+            NSIndexPath *tempIndexPath = self.selectedRowIndexPath;
+            self.selectedRowIndexPath = nil;
+            [self removeCellBelowIndexPath:tempIndexPath];
+        
+    }
+    
+    [self.tableView endUpdates];
 }
 
 - (void)insertCellBelowIndexPath:(NSIndexPath *)indexPath

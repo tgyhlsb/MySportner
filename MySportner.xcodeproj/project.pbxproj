@@ -1051,6 +1051,16 @@
 			path = "Icons Drophover";
 			sourceTree = "<group>";
 		};
+		5AAF982718E8551B00B252FA /* MSCropperVC */ = {
+			isa = PBXGroup;
+			children = (
+				5A3DB6A518AF79D600EA389B /* MSCropperVC.h */,
+				5A3DB6A618AF79D600EA389B /* MSCropperVC.m */,
+				5A3DB6A818AF79E900EA389B /* MSCropperVC.xib */,
+			);
+			name = MSCropperVC;
+			sourceTree = "<group>";
+		};
 		5AD1FC5418472AE1001D3DFE /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -1272,9 +1282,7 @@
 				5A85E8F01872CCD300F5E8F9 /* MSLocationPickerVC */,
 				5A78B7EF189575AE0074A5B3 /* MSPickLocalisationVC */,
 				5A2B68F9189A59A200D82870 /* MSSportnersVC */,
-				5A3DB6A518AF79D600EA389B /* MSCropperVC.h */,
-				5A3DB6A618AF79D600EA389B /* MSCropperVC.m */,
-				5A3DB6A818AF79E900EA389B /* MSCropperVC.xib */,
+				5AAF982718E8551B00B252FA /* MSCropperVC */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

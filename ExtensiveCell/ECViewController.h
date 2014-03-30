@@ -13,6 +13,9 @@
 
 @protocol ECTableViewDataSource <NSObject>
 
+
+- (void)closeExtendedCell;
+
 /*****
  
  Similar to tableView:cellForRowAtIndexPath: from UITableViewDataSource.

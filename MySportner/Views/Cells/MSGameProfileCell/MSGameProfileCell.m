@@ -17,7 +17,7 @@
 
 #define HEIGHT 230
 
-#define NIB_NAME @"MSGameProfileCell"
+#define NIB_NAME @"MSGameProfileCell2"
 
 
 @interface MSGameProfileCell()
@@ -33,9 +33,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dayAndMonthLabel;
+
+@property (strong, nonatomic) UIView *separatorView;
 
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
+@property (weak, nonatomic) IBOutlet QBFlatButton *backgroundButton;
 
 @end
 
@@ -68,6 +72,17 @@
     // do nothing
 }
 
+- (UIView *)separatorView
+{
+    if (_separatorView) {
+        CGRect frame = CGRectMake(14, 10, 10, 140);
+        _separatorView = [[UIView alloc] initWithFrame:frame];
+        _separatorView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:_separatorView];
+    }
+    return _separatorView;
+}
+
 - (void)awakeFromNib
 {
     self.backgroundColor = [MSColorFactory backgroundColorGrayLight];
@@ -81,23 +96,28 @@
     [self.addressLabel setLineBreakMode:NSLineBreakByWordWrapping];
     
     [self.titleLabel setFont:[MSFontFactory fontForGameProfileSportTitle]];
-    [self.titleLabel setTextColor:[MSColorFactory redLight]];
+    [self.titleLabel setTextColor:[UIColor whiteColor]];
     
     [self.locationLabel setFont:[MSFontFactory fontForGameProfileSportInfo]];
-    [self.locationLabel setTextColor:[MSColorFactory grayDark]];
+    [self.locationLabel setTextColor:[UIColor whiteColor]];
     
     [self.addressLabel setFont:[MSFontFactory fontForGameProfileSportInfo]];
-    [self.addressLabel setTextColor:[MSColorFactory grayDark]];
+    [self.addressLabel setTextColor:[UIColor whiteColor]];
     
     [self.fbProfilePictureView setRounded];
     [self.ownerLabel setFont:[MSFontFactory fontForGameProfileSportInfo]];
-    [self.ownerLabel setTextColor:[MSColorFactory grayDark]];
+    [self.ownerLabel setTextColor:[UIColor whiteColor]];
     [self.fbProfilePictureView setBackgroundColor:[UIColor clearColor]];
     
     [MSStyleFactory setUILabel:self.dayLabel withStyle:MSLabelStyleActivityDateBig];
     [MSStyleFactory setUILabel:self.monthLabel withStyle:MSLabelStyleActivityDateBig];
+    [MSStyleFactory setUILabel:self.dayAndMonthLabel withStyle:MSLabelStyleActivityDateBig];
     [MSStyleFactory setUILabel:self.timeLabel withStyle:MSLabelStyleActivityDateBig];
     [self.timeLabel setFont:[MSFontFactory fontForGameProfileTime]];
+    
+    self.backgroundButton.faceColor = [MSColorFactory redLight];
+    self.backgroundButton.sideColor = [MSColorFactory redDark];
+    self.backgroundButton.backgroundColor = [UIColor clearColor];
     
     [MSStyleFactory setQBFlatButton:self.actionButton withStyle:MSFlatButtonStyleGreen];
     
@@ -224,12 +244,21 @@
     
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
-    self.dayLabel.text = [NSString stringWithFormat:@"%ld", (long)[components day]];
+    NSString *day = [NSString stringWithFormat:@"%ld", (long)[components day]];
+    self.dayLabel.text = day;
     
     [dateFormat setDateFormat:@"MMM"];
-    self.monthLabel.text = [dateFormat stringFromDate:date];
-    [dateFormat setDateFormat:@"hh:mm"];
-    self.timeLabel.text = [dateFormat stringFromDate:date];
+    NSString *month = [dateFormat stringFromDate:date];
+    self.monthLabel.text = month;
+    
+    self.dayAndMonthLabel.text = [day stringByAppendingFormat:@" %@", month];
+    
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale: [NSLocale currentLocale]];
+    [dateFormatter setDateStyle:NSDateFormatterNoStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    self.timeLabel.text = [dateFormatter stringFromDate:date];
 }
 
 - (void)setActivity:(MSActivity *)activity

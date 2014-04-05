@@ -119,6 +119,7 @@
 		5A7C7BD818A9813100887926 /* profil-localisation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A7C7BD618A9813100887926 /* profil-localisation@2x.png */; };
 		5A7C7BDB18A9825E00887926 /* Layer-12.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A7C7BD918A9825E00887926 /* Layer-12.png */; };
 		5A7C7BDC18A9825E00887926 /* Layer-12@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A7C7BDA18A9825E00887926 /* Layer-12@2x.png */; };
+		5A85344518F0396E007210E5 /* MSGameProfileCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A85344418F0396E007210E5 /* MSGameProfileCell2.xib */; };
 		5A85E8EF1872CCCD00F5E8F9 /* MSLocationPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A85E8EE1872CCCD00F5E8F9 /* MSLocationPickerVC.m */; };
 		5A85E8F21872CCE200F5E8F9 /* MSLocationPickerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A85E8F11872CCE200F5E8F9 /* MSLocationPickerVC.xib */; };
 		5A85E8F51872CFFF00F5E8F9 /* MSLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A85E8F41872CFFF00F5E8F9 /* MSLocationCell.m */; };
@@ -442,6 +443,7 @@
 		5A7C7BD618A9813100887926 /* profil-localisation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profil-localisation@2x.png"; sourceTree = "<group>"; };
 		5A7C7BD918A9825E00887926 /* Layer-12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Layer-12.png"; sourceTree = "<group>"; };
 		5A7C7BDA18A9825E00887926 /* Layer-12@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Layer-12@2x.png"; sourceTree = "<group>"; };
+		5A85344418F0396E007210E5 /* MSGameProfileCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSGameProfileCell2.xib; path = Views/Cells/MSGameProfileCell/MSGameProfileCell2.xib; sourceTree = "<group>"; };
 		5A85E8ED1872CCCD00F5E8F9 /* MSLocationPickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSLocationPickerVC.h; path = Controllers/MSLocationPickerVC/MSLocationPickerVC.h; sourceTree = "<group>"; };
 		5A85E8EE1872CCCD00F5E8F9 /* MSLocationPickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSLocationPickerVC.m; path = Controllers/MSLocationPickerVC/MSLocationPickerVC.m; sourceTree = "<group>"; };
 		5A85E8F11872CCE200F5E8F9 /* MSLocationPickerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSLocationPickerVC.xib; path = Controllers/MSLocationPickerVC/MSLocationPickerVC.xib; sourceTree = "<group>"; };
@@ -998,6 +1000,7 @@
 				5A9B2DA618539A0700AE45D9 /* MSGameProfileCell.h */,
 				5A9B2DA718539A0700AE45D9 /* MSGameProfileCell.m */,
 				5A9B2DA918539A1A00AE45D9 /* MSGameProfileCell.xib */,
+				5A85344418F0396E007210E5 /* MSGameProfileCell2.xib */,
 			);
 			name = MSGameProfileCell;
 			sourceTree = "<group>";
@@ -1747,6 +1750,7 @@
 				5A0CB7FB1891714A0027EE58 /* slider-default7-trackCrossedOver@2x.png in Resources */,
 				5ADCF2851840141700E6C8D2 /* MSProfileVC.xib in Resources */,
 				5A0CB7EB1891714A0027EE58 /* slider-default-handle-highlighted@2x.png in Resources */,
+				5A85344518F0396E007210E5 /* MSGameProfileCell2.xib in Resources */,
 				5A0CB7FA1891714A0027EE58 /* slider-default7-trackCrossedOver.png in Resources */,
 				5A0CB7F91891714A0027EE58 /* slider-default7-trackBackground@2x.png in Resources */,
 				5AD8035E18A990B90024DF74 /* pin_gray@2x.png in Resources */,

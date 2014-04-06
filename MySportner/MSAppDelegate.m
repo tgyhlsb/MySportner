@@ -151,13 +151,14 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
-    BOOL urlWasHandled = [FBAppCall handleOpenURL:url
-                                sourceApplication:sourceApplication
-                                  fallbackHandler:^(FBAppCall *call) {
-                                      NSLog(@"Unhandled deep link: %@", url);
-                                      // Here goes the code to handle the links
-                                      // Use the links to show a relevant view of your app to the user
-                                  }];
+     BOOL urlWasHandled = [PFFacebookUtils handleOpenURL:url];
+    if (urlWasHandled) {
+        UIViewController *activeVC = ((UINavigationController *)self.window.rootViewController).topViewController;
+        if ([activeVC isKindOfClass:[MSWelcomeVC class]]) {
+            ((MSWelcomeVC *)activeVC).shouldHideLoadingWhenAppOpens = NO;
+            [((MSWelcomeVC *)activeVC) applicationIsBackFromBackground];
+        }
+    }
     
     return urlWasHandled;
 }

@@ -10,6 +10,8 @@
 
 @interface MSWelcomeVC : UIViewController
 
+@property (nonatomic) BOOL shouldHideLoadingWhenAppOpens;
+
 + (MSWelcomeVC *)newController;
 
 - (void)performLogin;

@@ -35,6 +35,8 @@
 
 - (void)viewDidLoad
 {
+    
+    self.shouldHideLoadingWhenAppOpens = YES;
     [super viewDidLoad];
     
     [self.facebookLoginButton setTitle:@"CONNECT VIA        " forState:UIControlStateNormal];
@@ -127,7 +129,11 @@
 
 - (void)applicationIsBackFromBackground
 {
-    [self hideLoadingView];
+    if (self.shouldHideLoadingWhenAppOpens) {
+        [self hideLoadingView];
+    } else {
+        [self showLoadingViewInView:self.view];
+    }
 }
 
 - (IBAction)showLoginFormSheet:(UIButton *)sender

@@ -243,7 +243,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     self.dayTextField.text = [dateFormat stringFromDate:self.activity.date];
     
     if ([self.dayPicker.date timeIntervalSinceDate:self.timePicker.date] > 0 || ![self.timeTextField.text length]) {
-        self.timePicker.date = self.activity.date;
+        self.timePicker.date = [NSDate dateWithTimeInterval:3600 sinceDate:self.dayPicker.date];
         [self timePickerValueDidChange];
     }
 }
@@ -258,8 +258,17 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 - (void)timePickerValueDidChange
 {
     [self updateAcitivityDate];
+    
+    NSDateComponents *startComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.dayPicker.date];
+    NSDateComponents *endComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.timePicker.date];
+    
+    NSString *endFormat = @"dd-MM-yyyy    hh:mm";
+    if ([startComponents day] == [endComponents day]) {
+        endFormat = @"hh:mm";
+    }
+    
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"dd-MM-yyyy    hh:mm"];
+    [dateFormat setDateFormat:endFormat];
     self.timeTextField.text = [dateFormat stringFromDate:self.timePicker.date];
 }
 
@@ -407,7 +416,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     [cell initializeWithViewcontroller:self];
                     cell.textField.placeholder = @"Start date";
                     self.dayTextField = cell.textField;
-                    cell.type = MSTextFieldTypeDate;
+                    cell.type = MSTextFieldTypeCustom;
                     
                     return cell;
                 }
@@ -419,6 +428,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     [cell initializeWithViewcontroller:self];
                     cell.textField.placeholder = @"End date";
                     self.timeTextField = cell.textField;
+                    cell.type = MSTextFieldTypeCustom;
                     
                     return cell;
                 }

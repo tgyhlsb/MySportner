@@ -12,7 +12,8 @@
 typedef NS_ENUM(NSUInteger, MSTextFieldType) {
     MSTextFieldTypeDate,
     MSTextFieldTypeRepeat,
-    MSTextFieldTypeLocation
+    MSTextFieldTypeLocation,
+    MSTextFieldTypeCustom
 };
 
 @interface MSTextFieldPickerCell : UITableViewCell <UITextFieldDelegate>

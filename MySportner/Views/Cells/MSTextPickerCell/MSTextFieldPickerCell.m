@@ -25,6 +25,7 @@
 @interface MSTextFieldPickerCell()
 
 @property (strong, nonatomic) UIImageView *iconView;
+@property (weak, nonatomic) IBOutlet UILabel *placeHolderLabel;
 
 @end
 
@@ -78,17 +79,35 @@
     switch (type) {
         case MSTextFieldTypeDate:
         {
+            self.iconView.hidden = NO;
+            self.textField.textAlignment = NSTextAlignmentLeft;
+            self.placeHolderLabel.hidden = YES;
             self.iconView.image = [UIImage imageNamed:IMAGE_NAME_DATE];
             break;
         }
         case MSTextFieldTypeRepeat:
         {
+            self.iconView.hidden = NO;
+            self.textField.textAlignment = NSTextAlignmentLeft;
+            self.placeHolderLabel.hidden = YES;
             self.iconView.image = [UIImage imageNamed:IMAGE_NAME_REPEAT];
             break;
         }
         case MSTextFieldTypeLocation:
         {
+            self.iconView.hidden = NO;
+            self.textField.textAlignment = NSTextAlignmentLeft;
+            self.placeHolderLabel.hidden = YES;
             self.iconView.image = [UIImage imageNamed:IMAGE_NAME_LOCATION];
+            break;
+        }
+        case MSTextFieldTypeCustom:
+        {
+            self.iconView.hidden = YES;
+            self.textField.textAlignment = NSTextAlignmentRight;
+            self.placeHolderLabel.hidden = NO;
+            self.placeHolderLabel.text = self.textField.placeholder;
+            
             break;
         }
             

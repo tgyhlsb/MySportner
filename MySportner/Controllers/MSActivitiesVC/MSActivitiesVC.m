@@ -139,7 +139,7 @@
         self.title = @"SUGGESTED ACTIVITIES";
         self.createActivityButton.hidden = NO;
     } else {
-        self.title = @"ACTIVITES";
+        self.title = @"ACTIVITIES";
         self.plusButton.hidden = NO;
         self.createActivityButton.hidden = YES;
     }

@@ -25,6 +25,8 @@
 #import "MSSportner.h"
 #import "MSSport.h"
 
+#import "MSWindow.h"
+
 #define STORYBOARD_NAME @"Main"
 
 @interface MSAppDelegate()
@@ -54,7 +56,7 @@
     
     [MSSport fetchAllSports];
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[MSWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     
     MSNavigationVC *mainVC = [[MSNavigationVC alloc] initWithRootViewController:[MSWelcomeVC newController]];

@@ -55,6 +55,7 @@
 		5A235912189BEE0F0047C6D4 /* MSSportner.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A235911189BEE0F0047C6D4 /* MSSportner.m */; };
 		5A23BB08186CD1BD00FFF0E0 /* MSFacebookFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A23BB07186CD1BD00FFF0E0 /* MSFacebookFriendCell.m */; };
 		5A23BB0A186CD1CF00FFF0E0 /* MSFacebookFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A23BB09186CD1CF00FFF0E0 /* MSFacebookFriendCell.xib */; };
+		5A2646DB19EA93C900DF3D4C /* MSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2646DA19EA93C900DF3D4C /* MSWindow.m */; };
 		5A299A83184BDF9A00005733 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5A299A82184BDF1400005733 /* ProximaNova-Bold.otf */; };
 		5A299A8E184BE8B100005733 /* back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A299A8C184BE8B100005733 /* back_button.png */; };
 		5A299A8F184BE8B100005733 /* back_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A299A8D184BE8B100005733 /* back_button@2x.png */; };
@@ -360,6 +361,8 @@
 		5A23BB06186CD1BD00FFF0E0 /* MSFacebookFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSFacebookFriendCell.h; path = Views/Cells/MSFacebookFriendCell/MSFacebookFriendCell.h; sourceTree = "<group>"; };
 		5A23BB07186CD1BD00FFF0E0 /* MSFacebookFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSFacebookFriendCell.m; path = Views/Cells/MSFacebookFriendCell/MSFacebookFriendCell.m; sourceTree = "<group>"; };
 		5A23BB09186CD1CF00FFF0E0 /* MSFacebookFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSFacebookFriendCell.xib; path = Views/Cells/MSFacebookFriendCell/MSFacebookFriendCell.xib; sourceTree = "<group>"; };
+		5A2646D919EA93C900DF3D4C /* MSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSWindow.h; sourceTree = "<group>"; };
+		5A2646DA19EA93C900DF3D4C /* MSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSWindow.m; sourceTree = "<group>"; };
 		5A299A82184BDF1400005733 /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Bold.otf"; sourceTree = "<group>"; };
 		5A299A8C184BE8B100005733 /* back_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_button.png; sourceTree = SOURCE_ROOT; };
 		5A299A8D184BE8B100005733 /* back_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_button@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -1174,6 +1177,8 @@
 			children = (
 				5ADCF233184004D300E6C8D2 /* MSAppDelegate.h */,
 				5ADCF234184004D300E6C8D2 /* MSAppDelegate.m */,
+				5A2646D919EA93C900DF3D4C /* MSWindow.h */,
+				5A2646DA19EA93C900DF3D4C /* MSWindow.m */,
 				5ADCF236184004D300E6C8D2 /* Main.storyboard */,
 				5A96744D1849D20C0079EAC1 /* MSColorFactory.h */,
 				5A96744E1849D20C0079EAC1 /* MSColorFactory.m */,
@@ -1871,6 +1876,7 @@
 				5A9674521849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m in Sources */,
 				5A96745C184A0ECA0079EAC1 /* UIImage+ImageEffects.m in Sources */,
 				5ADCF2D31840BA6400E6C8D2 /* MSPickSportCell.m in Sources */,
+				5A2646DB19EA93C900DF3D4C /* MSWindow.m in Sources */,
 				5A4CE2B9187099AE0081AA1E /* MSButtonCell.m in Sources */,
 				5A2B6905189AD08100D82870 /* MSHeaderSectionView.m in Sources */,
 				5A3DB6AD18AF7A0C00EA389B /* BJImageCropper.m in Sources */,

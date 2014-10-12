@@ -12,8 +12,7 @@
 typedef NS_ENUM(NSUInteger, MSTextFieldType) {
     MSTextFieldTypeDate,
     MSTextFieldTypeRepeat,
-    MSTextFieldTypeLocation,
-    MSTextFieldTypeCustom
+    MSTextFieldTypeLocation
 };
 
 @interface MSTextFieldPickerCell : UITableViewCell <UITextFieldDelegate>
@@ -22,6 +21,8 @@ typedef NS_ENUM(NSUInteger, MSTextFieldType) {
 @property (nonatomic) MSTextFieldType type;
 
 @property (weak, nonatomic) IBOutlet MSTextField *textField;
+@property (strong, nonatomic) NSString *title;
+@property (nonatomic) BOOL showIcon;
 
 - (void)initializeWithViewcontroller:(UIViewController<UITextFieldDelegate> *)viewController;
 

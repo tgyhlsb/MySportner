@@ -22,7 +22,7 @@
 
 #define NIB_NAME @"MSSetAGameVC"
 
-#define REPEAT_VALUES @[@"Never", @"Weekly", @"Monthly"]
+#define REPEAT_VALUES @[@"Never", @"Every day", @"Every week", @"Every month"]
 
 typedef NS_ENUM(int, MSSetAGameSection) {
     MSSetAGameSectionPickSport,
@@ -44,7 +44,9 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) IBOutlet UITextField *dayTextField;
+@property (strong, nonatomic) MSTextFieldPickerCell *startDateCell;
 @property (strong, nonatomic) IBOutlet UITextField *timeTextField;
+@property (strong, nonatomic) MSTextFieldPickerCell *endDatecell;
 @property (strong, nonatomic) IBOutlet UITextField *repeatTextField;
 @property (strong, nonatomic) IBOutlet UITextField *locationTextField;
 @property (strong, nonatomic) IBOutlet MSVenuePickerCell *venueCell;
@@ -242,7 +244,9 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     [dateFormat setDateFormat:@"dd-MM-yyyy    hh:mm"];
     self.dayTextField.text = [dateFormat stringFromDate:self.activity.date];
     
-    if ([self.dayPicker.date timeIntervalSinceDate:self.timePicker.date] > 0 || ![self.timeTextField.text length]) {
+    self.startDateCell.showIcon = NO;
+    
+    if ([self.dayPicker.date timeIntervalSinceDate:self.timePicker.date] > -3600 || ![self.timeTextField.text length]) {
         self.timePicker.date = [NSDate dateWithTimeInterval:3600 sinceDate:self.dayPicker.date];
         [self timePickerValueDidChange];
     }
@@ -270,6 +274,9 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:endFormat];
     self.timeTextField.text = [dateFormat stringFromDate:self.timePicker.date];
+    
+
+    self.endDatecell.showIcon = NO;
 }
 
 - (void)timePickerDidTap
@@ -411,26 +418,26 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
             switch (indexPath.row) {
                 case MSSetAGameTextFieldTypeDay:
                 {
-                    MSTextFieldPickerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
+                    self.startDateCell = [self.tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
                     
-                    [cell initializeWithViewcontroller:self];
-                    cell.textField.placeholder = @"Start date";
-                    self.dayTextField = cell.textField;
-                    cell.type = MSTextFieldTypeCustom;
+                    [self.startDateCell initializeWithViewcontroller:self];
+                    self.startDateCell.title = @"Start date";
+                    self.dayTextField = self.startDateCell.textField;
+                    self.startDateCell.type = MSTextFieldTypeDate;
                     
-                    return cell;
+                    return self.startDateCell;
                 }
                     
                 case MSSetAGameTextFieldTypeTime:
                 {
-                    MSTextFieldPickerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
+                    self.endDatecell = [self.tableView dequeueReusableCellWithIdentifier:[MSTextFieldPickerCell reusableIdentifier] forIndexPath:indexPath];
                     
-                    [cell initializeWithViewcontroller:self];
-                    cell.textField.placeholder = @"End date";
-                    self.timeTextField = cell.textField;
-                    cell.type = MSTextFieldTypeCustom;
+                    [self.endDatecell initializeWithViewcontroller:self];
+                    self.endDatecell.title = @"End date";
+                    self.timeTextField = self.endDatecell.textField;
+                    self.endDatecell.type = MSTextFieldTypeDate;
                     
-                    return cell;
+                    return self.endDatecell;
                 }
                     
                 case MSSetAGameTextFieldTypeRepeat:
@@ -441,6 +448,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     cell.textField.placeholder = @"Repeat";
                     self.repeatTextField = cell.textField;
                     cell.type = MSTextFieldTypeRepeat;
+                    cell.title = nil;
                     
                     return cell;
                 }
@@ -461,6 +469,7 @@ typedef NS_ENUM(int, MSSetAGameTextFieldType) {
                     cell.textField.placeholder = @"Location";
                     self.locationTextField = cell.textField;
                     cell.type = MSTextFieldTypeLocation;
+                    cell.title = nil;
                     
                     return cell;
                 }

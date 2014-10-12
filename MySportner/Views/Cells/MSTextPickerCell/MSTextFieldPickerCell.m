@@ -79,41 +79,45 @@
     switch (type) {
         case MSTextFieldTypeDate:
         {
-            self.iconView.hidden = NO;
-            self.textField.textAlignment = NSTextAlignmentLeft;
-            self.placeHolderLabel.hidden = YES;
             self.iconView.image = [UIImage imageNamed:IMAGE_NAME_DATE];
             break;
         }
         case MSTextFieldTypeRepeat:
         {
-            self.iconView.hidden = NO;
-            self.textField.textAlignment = NSTextAlignmentLeft;
-            self.placeHolderLabel.hidden = YES;
             self.iconView.image = [UIImage imageNamed:IMAGE_NAME_REPEAT];
             break;
         }
         case MSTextFieldTypeLocation:
         {
-            self.iconView.hidden = NO;
-            self.textField.textAlignment = NSTextAlignmentLeft;
-            self.placeHolderLabel.hidden = YES;
             self.iconView.image = [UIImage imageNamed:IMAGE_NAME_LOCATION];
-            break;
-        }
-        case MSTextFieldTypeCustom:
-        {
-            self.iconView.hidden = YES;
-            self.textField.textAlignment = NSTextAlignmentRight;
-            self.placeHolderLabel.hidden = NO;
-            self.placeHolderLabel.text = self.textField.placeholder;
-            
             break;
         }
             
         default:
             break;
     }
+}
+
+- (void)setTitle:(NSString *)title
+{
+    _title = title;
+    
+    if (title) {
+        self.textField.textAlignment = NSTextAlignmentRight;
+        self.placeHolderLabel.hidden = NO;
+        self.placeHolderLabel.text = title;
+        self.textField.placeholder = @"";
+    } else {
+        self.textField.textAlignment = NSTextAlignmentLeft;
+        self.placeHolderLabel.hidden = YES;
+    }
+}
+
+- (void)setShowIcon:(BOOL)showIcon
+{
+    _showIcon = showIcon;
+    
+    self.iconView.hidden = !showIcon;
 }
 
 + (void)registerToTableView:(UITableView *)tableView

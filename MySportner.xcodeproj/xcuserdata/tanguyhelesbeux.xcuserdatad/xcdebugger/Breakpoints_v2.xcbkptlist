@@ -147,12 +147,12 @@
                   symbolName = "__31+[MSUser tryLoginWithFacebook:]_block_invoke"
                   moduleName = "MySportner"
                   urlString = "file:///Users/tanguyhelesbeux/Documents/Source%20tree/MySportner/App/MySportner/MySportner/Model/MSUser.m"
-                  timestampString = "418519960.482566"
+                  timestampString = "434801783.829552"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "122"
                   endingLineNumber = "122"
-                  offsetFromSymbolStart = "65">
+                  offsetFromSymbolStart = "69">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -161,12 +161,12 @@
                   symbolName = "__31+[MSUser tryLoginWithFacebook:]_block_invoke_2"
                   moduleName = "MySportner"
                   urlString = "file:///Users/tanguyhelesbeux/Documents/Source%20tree/MySportner/App/MySportner/MySportner/Model/MSUser.m"
-                  timestampString = "418519960.482904"
+                  timestampString = "434801783.829692"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "122"
                   endingLineNumber = "122"
-                  offsetFromSymbolStart = "67">
+                  offsetFromSymbolStart = "82">
                </Location>
             </Locations>
          </BreakpointContent>

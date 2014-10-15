@@ -80,7 +80,6 @@
 		5A2B6901189ACEB400D82870 /* MSAttendeesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B6900189ACEB400D82870 /* MSAttendeesCell.xib */; };
 		5A2B6905189AD08100D82870 /* MSHeaderSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B6904189AD08100D82870 /* MSHeaderSectionView.m */; };
 		5A2D0A2918DF1E5900060F3F /* MSFlatButtonWhite.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D0A2818DF1E5900060F3F /* MSFlatButtonWhite.m */; };
-		5A31C1F51842147D00868188 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C1F41842147D00868188 /* Parse.framework */; };
 		5A31C1F71842149100868188 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C1F61842149100868188 /* AudioToolbox.framework */; };
 		5A31C1F91842149A00868188 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C1F81842149A00868188 /* CFNetwork.framework */; };
 		5A31C1FB1842150100868188 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C1FA1842150000868188 /* CoreLocation.framework */; };
@@ -116,6 +115,9 @@
 		5A78B7EE189575AA0074A5B3 /* MSPickLocalisationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A78B7ED189575AA0074A5B3 /* MSPickLocalisationVC.xib */; };
 		5A78B7F218958BA70074A5B3 /* MSAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78B7F118958BA70074A5B3 /* MSAnnotation.m */; };
 		5A78B7F7189596AC0074A5B3 /* redCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A78B7F6189596AC0074A5B3 /* redCircle.png */; };
+		5A7B109919EED4E90058BDDD /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A7B109619EED4E90058BDDD /* Bolts.framework */; };
+		5A7B109A19EED4E90058BDDD /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A7B109719EED4E90058BDDD /* Parse.framework */; };
+		5A7B109B19EED4E90058BDDD /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A7B109819EED4E90058BDDD /* ParseFacebookUtils.framework */; };
 		5A7C7BD718A9813100887926 /* profil-localisation.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A7C7BD518A9813100887926 /* profil-localisation.png */; };
 		5A7C7BD818A9813100887926 /* profil-localisation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A7C7BD618A9813100887926 /* profil-localisation@2x.png */; };
 		5A7C7BDB18A9825E00887926 /* Layer-12.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A7C7BD918A9825E00887926 /* Layer-12.png */; };
@@ -442,6 +444,9 @@
 		5A78B7F018958BA70074A5B3 /* MSAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSAnnotation.h; path = Model/MSAnnotation.h; sourceTree = "<group>"; };
 		5A78B7F118958BA70074A5B3 /* MSAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSAnnotation.m; path = Model/MSAnnotation.m; sourceTree = "<group>"; };
 		5A78B7F6189596AC0074A5B3 /* redCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redCircle.png; sourceTree = "<group>"; };
+		5A7B109619EED4E90058BDDD /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../../Downloads/parse-library-1.4.1/Bolts.framework"; sourceTree = "<group>"; };
+		5A7B109719EED4E90058BDDD /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../../../Downloads/parse-library-1.4.1/Parse.framework"; sourceTree = "<group>"; };
+		5A7B109819EED4E90058BDDD /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../../../../Downloads/parse-library-1.4.1/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
 		5A7C7BD518A9813100887926 /* profil-localisation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profil-localisation.png"; sourceTree = "<group>"; };
 		5A7C7BD618A9813100887926 /* profil-localisation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profil-localisation@2x.png"; sourceTree = "<group>"; };
 		5A7C7BD918A9825E00887926 /* Layer-12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Layer-12.png"; sourceTree = "<group>"; };
@@ -669,6 +674,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A7B109919EED4E90058BDDD /* Bolts.framework in Frameworks */,
+				5A7B109A19EED4E90058BDDD /* Parse.framework in Frameworks */,
+				5A7B109B19EED4E90058BDDD /* ParseFacebookUtils.framework in Frameworks */,
 				5A31C2011842152600868188 /* QuartzCore.framework in Frameworks */,
 				5A31C2051842153C00868188 /* SystemConfiguration.framework in Frameworks */,
 				5A31C2041842153C00868188 /* Security.framework in Frameworks */,
@@ -681,7 +689,6 @@
 				5A3DE7C118412E82001054EB /* FacebookSDK.framework in Frameworks */,
 				5ADCF227184004D300E6C8D2 /* CoreGraphics.framework in Frameworks */,
 				5ADCF229184004D300E6C8D2 /* UIKit.framework in Frameworks */,
-				5A31C1F51842147D00868188 /* Parse.framework in Frameworks */,
 				5ADCF225184004D300E6C8D2 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1153,6 +1160,9 @@
 		5ADCF223184004D300E6C8D2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5A7B109619EED4E90058BDDD /* Bolts.framework */,
+				5A7B109719EED4E90058BDDD /* Parse.framework */,
+				5A7B109819EED4E90058BDDD /* ParseFacebookUtils.framework */,
 				5A31C2021842153C00868188 /* Security.framework */,
 				5A31C2031842153C00868188 /* SystemConfiguration.framework */,
 				5A31C1FE1842152600868188 /* MobileCoreServices.framework */,
@@ -2077,7 +2087,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/tanguyhelesbeux/Documents/Source\\ tree/MySportner/App/MySportner",
+					/Users/tanguyhelesbeux/Documents/Source,
+					tree/MySportner/App/MySportner,
+					"/Users/tanguyhelesbeux/Downloads/parse-library-1.4.1",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MySportner/MySportner-Prefix.pch";
@@ -2095,7 +2107,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/tanguyhelesbeux/Documents/Source\\ tree/MySportner/App/MySportner",
+					/Users/tanguyhelesbeux/Documents/Source,
+					tree/MySportner/App/MySportner,
+					"/Users/tanguyhelesbeux/Downloads/parse-library-1.4.1",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MySportner/MySportner-Prefix.pch";

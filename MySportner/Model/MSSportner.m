@@ -239,7 +239,10 @@
     } else {
         NSLog(@"%@",error);
     }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [self.tempActivityQueryTarget performSelector:self.tempActivityQueryCallBack withObject:activities withObject:error];
+#pragma clang diagnostic pop
 }
 
 #pragma mark - Sportners
@@ -265,7 +268,11 @@
     } else {
         NSLog(@"%@",error);
     }
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:sportners withObject:error];
+#pragma clang diagnostic pop
 }
 
 - (void)addSportner:(MSSportner *)sportner

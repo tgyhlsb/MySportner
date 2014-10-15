@@ -17,7 +17,7 @@
 @implementation MSNavigationBar
 
 static CGFloat const kDefaultColorLayerOpacity = 0.5f;
-static CGFloat const kSpaceToCoverStatusBars = 20.0f;
+//static CGFloat const kSpaceToCoverStatusBars = 20.0f;
 
 - (id)initWithFrame:(CGRect)frame
 {

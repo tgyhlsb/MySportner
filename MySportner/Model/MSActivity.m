@@ -113,7 +113,10 @@
                                              selector:@selector(guestsCallback:error:)];
     } else {
         NSLog(@"Error: %@ %@", error, [error userInfo]);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
+#pragma clang diagnostic pop
     }
 }
 
@@ -127,7 +130,11 @@
                                              selector:@selector(awaitingCallback:error:)];
     } else {
         NSLog(@"Error: %@ %@", error, [error userInfo]);
+        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
+#pragma clang diagnostic pop
     }
 }
 
@@ -139,7 +146,10 @@
         NSLog(@"Error: %@ %@", error, [error userInfo]);
     }
     
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
+#pragma clang diagnostic pop
 }
 
 //- (void)queryOtherSportnersWithTarger:(id)target callBack:(SEL)callback
@@ -170,7 +180,10 @@
 - (void)sportnersCallback:(NSArray *)objects error:(NSError *)error
 {
     if (!error) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [self.tempOthersQueryTarget performSelector:self.tempOthersQueryCallBack withObject:objects withObject:error];
+#pragma clang diagnostic pop
     } else {
         NSLog(@"Error: %@ %@", error, [error userInfo]);
     }
@@ -269,7 +282,10 @@
         // Explanations : http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
         // In order not to get warning
         //        ((void (*)(id, SEL))[self.tempTarget methodForSelector:self.tempCallBack])(self.tempTarget, self.tempCallBack);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [self.tempQueryMessagesTarget performSelector:self.tempQueryMessagesCallBack withObject:Nil withObject:Nil];
+#pragma clang diagnostic pop
     } else {
         NSLog(@"Error: %@ %@", error, [error userInfo]);
     }

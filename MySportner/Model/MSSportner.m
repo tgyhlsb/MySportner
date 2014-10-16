@@ -92,7 +92,7 @@
 
 - (void)setWithFacebookInfo:(id<FBGraphUser>)userInfo
 {
-    self.facebookID = userInfo.id;
+    self.facebookID = userInfo.objectID;
     self.firstName = userInfo.first_name;
     self.lastName = userInfo.last_name;
     if ([userInfo[FACEBOOK_KEY_GENDER] isEqualToString:FACEBOOK_VALUE_GENDER_MALE])

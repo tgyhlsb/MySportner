@@ -97,10 +97,10 @@
 		5A4CE2B9187099AE0081AA1E /* MSButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4CE2B8187099AE0081AA1E /* MSButtonCell.m */; };
 		5A4CE2BB187099C50081AA1E /* MSButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A4CE2BA187099C50081AA1E /* MSButtonCell.xib */; };
 		5A580DA119F010F900CA3846 /* Basketball@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580DA019F010F900CA3846 /* Basketball@2x.png */; };
-		5A580DA919F0122A00CA3846 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A580DA819F0122A00CA3846 /* FacebookSDK.framework */; };
-		5A580DAD19F012D400CA3846 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A580DAA19F012D400CA3846 /* Bolts.framework */; };
-		5A580DAE19F012D400CA3846 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A580DAB19F012D400CA3846 /* Parse.framework */; };
-		5A580DAF19F012D400CA3846 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A580DAC19F012D400CA3846 /* ParseFacebookUtils.framework */; };
+		5A580DB019F015D300CA3846 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A31C1F41842147D00868188 /* Parse.framework */; };
+		5A580DB419F015D400CA3846 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A580DB119F015D400CA3846 /* Bolts.framework */; };
+		5A580DB519F015D400CA3846 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A580DB219F015D400CA3846 /* FacebookSDK.framework */; };
+		5A580DB619F015D400CA3846 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A580DB319F015D400CA3846 /* ParseFacebookUtils.framework */; };
 		5A622FA318A12F9C00D33349 /* MSProfilePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */; };
 		5A622FA518A12FC000D33349 /* MSProfilePictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */; };
 		5A622FA818A13A4400D33349 /* attendees_subtitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA718A13A4400D33349 /* attendees_subtitle.png */; };
@@ -393,6 +393,9 @@
 		5A580DAA19F012D400CA3846 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../parse-library-1.4.1/Bolts.framework"; sourceTree = "<group>"; };
 		5A580DAB19F012D400CA3846 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../../parse-library-1.4.1/Parse.framework"; sourceTree = "<group>"; };
 		5A580DAC19F012D400CA3846 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../../../parse-library-1.4.1/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
+		5A580DB119F015D400CA3846 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		5A580DB219F015D400CA3846 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		5A580DB319F015D400CA3846 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		5A622FA118A12F9C00D33349 /* MSProfilePictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSProfilePictureCell.h; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.h; sourceTree = "<group>"; };
 		5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSProfilePictureCell.m; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.m; sourceTree = "<group>"; };
 		5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSProfilePictureCell.xib; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.xib; sourceTree = "<group>"; };
@@ -611,10 +614,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A580DAD19F012D400CA3846 /* Bolts.framework in Frameworks */,
-				5A580DAE19F012D400CA3846 /* Parse.framework in Frameworks */,
-				5A580DAF19F012D400CA3846 /* ParseFacebookUtils.framework in Frameworks */,
-				5A580DA919F0122A00CA3846 /* FacebookSDK.framework in Frameworks */,
+				5A580DB419F015D400CA3846 /* Bolts.framework in Frameworks */,
+				5A580DB519F015D400CA3846 /* FacebookSDK.framework in Frameworks */,
+				5A580DB619F015D400CA3846 /* ParseFacebookUtils.framework in Frameworks */,
+				5A580DB019F015D300CA3846 /* Parse.framework in Frameworks */,
 				5A31C2011842152600868188 /* QuartzCore.framework in Frameworks */,
 				5A31C2051842153C00868188 /* SystemConfiguration.framework in Frameworks */,
 				5A31C2041842153C00868188 /* Security.framework in Frameworks */,
@@ -1097,6 +1100,9 @@
 		5ADCF223184004D300E6C8D2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5A580DB119F015D400CA3846 /* Bolts.framework */,
+				5A580DB219F015D400CA3846 /* FacebookSDK.framework */,
+				5A580DB319F015D400CA3846 /* ParseFacebookUtils.framework */,
 				5A580DAA19F012D400CA3846 /* Bolts.framework */,
 				5A580DAB19F012D400CA3846 /* Parse.framework */,
 				5A580DAC19F012D400CA3846 /* ParseFacebookUtils.framework */,

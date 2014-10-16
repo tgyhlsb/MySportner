@@ -70,17 +70,17 @@
 
 - (PFRelation *)guestRelation
 {
-    return [self relationforKey:@"guest"];
+    return [self relationForKey:@"guest"];
 }
 
 - (PFRelation *)participantRelation
 {
-    return [self relationforKey:@"participant"];
+    return [self relationForKey:@"participant"];
 }
 
 - (PFRelation *)awaitingRelation
 {
-    return [self relationforKey:@"awaiting"];
+    return [self relationForKey:@"awaiting"];
 }
 
 #pragma mark - PARSE Backend
@@ -293,7 +293,7 @@
 
 - (PFRelation *)messageRelation
 {
-    return [self relationforKey:@"message"];
+    return [self relationForKey:@"message"];
 }
 
 - (void)addMessage:(MSComment *)message inBackgroundWithBlock:(PFBooleanResultBlock)block

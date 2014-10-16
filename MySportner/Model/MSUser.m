@@ -9,6 +9,7 @@
 #import "MSUser.h"
 #import "MSSport.h"
 #import <Parse/PFObject+Subclass.h>
+#import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "MSActivity.h"
 #import "MSSportner.h"
 

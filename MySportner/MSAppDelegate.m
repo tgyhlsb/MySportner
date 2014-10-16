@@ -14,6 +14,7 @@
 #import "MSWelcomeVC.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <Parse/Parse.h>
+#import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "MSUser.h"
 #import "MSActivity.h"
 #import "MSColorFactory.h"
@@ -153,7 +154,7 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
-     BOOL urlWasHandled = [PFFacebookUtils handleOpenURL:url];
+    BOOL urlWasHandled = [PFFacebookUtils handleOpenURL:url];
     if (urlWasHandled) {
         UIViewController *activeVC = ((UINavigationController *)self.window.rootViewController).topViewController;
         if ([activeVC isKindOfClass:[MSWelcomeVC class]]) {

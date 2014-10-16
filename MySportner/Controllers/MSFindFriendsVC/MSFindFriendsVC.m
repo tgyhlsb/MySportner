@@ -80,7 +80,7 @@
         NSMutableArray *facebookIDs = [[NSMutableArray alloc] init];
         
         for (NSDictionary<FBGraphUser>* friend in self.facebookFriends) {
-            [facebookIDs addObject:friend.id];
+            [facebookIDs addObject:friend.objectID];
         }
         
         [self getSportnersFromFacebookIDArray:facebookIDs];

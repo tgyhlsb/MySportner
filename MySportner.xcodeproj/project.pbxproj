@@ -1967,12 +1967,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/tanguyhelesbeux/Documents/Source,
-					tree/MySportner/App/MySportner,
-					"/Users/tanguyhelesbeux/Downloads/parse-library-1.4.1",
 					"$(PROJECT_DIR)",
-					/Users/tanguyhelesbeux/Documents/FacebookSDK,
-					"/Users/tanguyhelesbeux/Documents/parse-library-1.4.1",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MySportner/MySportner-Prefix.pch";
@@ -1990,12 +1985,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/tanguyhelesbeux/Documents/Source,
-					tree/MySportner/App/MySportner,
-					"/Users/tanguyhelesbeux/Downloads/parse-library-1.4.1",
 					"$(PROJECT_DIR)",
-					/Users/tanguyhelesbeux/Documents/FacebookSDK,
-					"/Users/tanguyhelesbeux/Documents/parse-library-1.4.1",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MySportner/MySportner-Prefix.pch";

@@ -150,6 +150,8 @@
 		5A580E1919F0171F00CA3846 /* Weight_Lifting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580DE719F0171F00CA3846 /* Weight_Lifting@2x.png */; };
 		5A580E1A19F0171F00CA3846 /* Winners_Podium@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580DE819F0171F00CA3846 /* Winners_Podium@2x.png */; };
 		5A580E1B19F0171F00CA3846 /* Yoga@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580DE919F0171F00CA3846 /* Yoga@2x.png */; };
+		5A580E2919F129F900CA3846 /* MSSetAGameVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A580E2719F129F900CA3846 /* MSSetAGameVC2.m */; };
+		5A580E2A19F129F900CA3846 /* MSSetAGameVC2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E2819F129F900CA3846 /* MSSetAGameVC2.xib */; };
 		5A622FA318A12F9C00D33349 /* MSProfilePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */; };
 		5A622FA518A12FC000D33349 /* MSProfilePictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */; };
 		5A622FA818A13A4400D33349 /* attendees_subtitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA718A13A4400D33349 /* attendees_subtitle.png */; };
@@ -494,6 +496,9 @@
 		5A580DE719F0171F00CA3846 /* Weight_Lifting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weight_Lifting@2x.png"; sourceTree = "<group>"; };
 		5A580DE819F0171F00CA3846 /* Winners_Podium@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Winners_Podium@2x.png"; sourceTree = "<group>"; };
 		5A580DE919F0171F00CA3846 /* Yoga@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Yoga@2x.png"; sourceTree = "<group>"; };
+		5A580E2619F129F900CA3846 /* MSSetAGameVC2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSetAGameVC2.h; path = Controllers/MSSetAGameVC/MSSetAGameVC2.h; sourceTree = "<group>"; };
+		5A580E2719F129F900CA3846 /* MSSetAGameVC2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSetAGameVC2.m; path = Controllers/MSSetAGameVC/MSSetAGameVC2.m; sourceTree = "<group>"; };
+		5A580E2819F129F900CA3846 /* MSSetAGameVC2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSSetAGameVC2.xib; path = Controllers/MSSetAGameVC/MSSetAGameVC2.xib; sourceTree = "<group>"; };
 		5A622FA118A12F9C00D33349 /* MSProfilePictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSProfilePictureCell.h; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.h; sourceTree = "<group>"; };
 		5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSProfilePictureCell.m; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.m; sourceTree = "<group>"; };
 		5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSProfilePictureCell.xib; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.xib; sourceTree = "<group>"; };
@@ -1492,6 +1497,9 @@
 				5ADCF2A118401E1C00E6C8D2 /* MSSetAGameVC.h */,
 				5ADCF2A218401E1C00E6C8D2 /* MSSetAGameVC.m */,
 				5ADCF2A418401E2800E6C8D2 /* MSSetAGameVC.xib */,
+				5A580E2619F129F900CA3846 /* MSSetAGameVC2.h */,
+				5A580E2719F129F900CA3846 /* MSSetAGameVC2.m */,
+				5A580E2819F129F900CA3846 /* MSSetAGameVC2.xib */,
 			);
 			name = MSSetAGameVC;
 			sourceTree = "<group>";
@@ -1825,6 +1833,7 @@
 				5A6DD75118A0346200649A58 /* fb.png in Resources */,
 				5A580DED19F0171F00CA3846 /* Archery_Target@2x.png in Resources */,
 				5ADCF2CF1840B50D00E6C8D2 /* MSActivitiesFilterCell.xib in Resources */,
+				5A580E2A19F129F900CA3846 /* MSSetAGameVC2.xib in Resources */,
 				5A7C7BDC18A9825E00887926 /* Layer-12@2x.png in Resources */,
 				5A580E0C19F0171F00CA3846 /* Soccer_Player@2x.png in Resources */,
 				5A299A8F184BE8B100005733 /* back_button@2x.png in Resources */,
@@ -1992,6 +2001,7 @@
 				5ADCF2F31840D52C00E6C8D2 /* MSVenuePickerCell.m in Sources */,
 				5ADCF2CA1840AF5300E6C8D2 /* MSActivityCell.m in Sources */,
 				5ADCF2A918401FF800E6C8D2 /* MSCenterController.m in Sources */,
+				5A580E2919F129F900CA3846 /* MSSetAGameVC2.m in Sources */,
 				5ADCF2D81840BDAD00E6C8D2 /* MSSmallSportCell.m in Sources */,
 				5ADCF3051840E60300E6C8D2 /* MSFourSquareRequestFactory.m in Sources */,
 				5A622FA318A12F9C00D33349 /* MSProfilePictureCell.m in Sources */,

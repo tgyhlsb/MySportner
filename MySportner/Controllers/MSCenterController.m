@@ -21,6 +21,11 @@
 
 @implementation MSCenterController
 
++ (instancetype)newController
+{
+    return nil;
+}
+
 - (BOOL)shouldCancelTouch:(UITouch *)touch
 {
     return !self.hasDirectAccessToDrawer;

@@ -16,7 +16,7 @@
 #import "MBProgressHUD.h"
 #import "QBFlatButton.h"
 #import "MSStyleFactory.h"
-#import "MSSetAGameVC.h"
+#import "MSSetAGameVC2.h"
 //#import <FacebookSDK/FacebookSDK.h>
 #import "MSProfileVC.h"
 #import "MSSportnersVC.h"
@@ -146,7 +146,7 @@
 }
 - (IBAction)plusButtonHandler:(id)sender
 {
-    MSSetAGameVC *destinationVC = [MSSetAGameVC newController];
+    MSSetAGameVC2 *destinationVC = [MSSetAGameVC2 newController];
     destinationVC.hasDirectAccessToDrawer = NO;
     [self.navigationController pushViewController:destinationVC animated:YES];
 }

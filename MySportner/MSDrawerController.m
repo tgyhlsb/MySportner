@@ -10,7 +10,7 @@
 #import "MSProfileVC.h"
 #import "MSActivitiesVC.h"
 #import "MSNotificationsVC.h"
-#import "MSSetAGameVC.h"
+#import "MSSetAGameVC2.h"
 #import "MSFindFriendsVC.h"
 #import "MSAppDelegate.h"
 
@@ -62,7 +62,7 @@
         }
         case MSCenterViewSetAGame:
         {
-            newCenterVC = [MSSetAGameVC newController];
+            newCenterVC = [MSSetAGameVC2 newController];
             break;
         }
         case MSCenterViewSettings:

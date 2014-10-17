@@ -80,7 +80,8 @@
 
 - (void)setUpAppearance
 {
-//    ((UIScrollView *)self.view).contentSize = self.view.frame.size;
+    self.title = [@"Set a game" uppercaseString];
+    
     self.collectionViewTitleLabel.text = [@"Pick a sport" uppercaseString];
     
     self.startDatePicker.alpha = 0;

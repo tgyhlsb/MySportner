@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -348,7 +347,56 @@
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgq-Yr-9Gj">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vq-i5-9BV" customClass="QBFlatButton">
+                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="6zp-Pu-5Di"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="6zp-Pu-5Di"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="6zp-Pu-5Di"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <connections>
+                                                        <action selector="doneButtonHandler" destination="-1" eventType="touchUpInside" id="fne-Vv-xsI"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
                                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="3vq-i5-9BV" secondAttribute="trailing" constant="20" id="38h-i6-yoZ"/>
+                                                <constraint firstAttribute="centerY" secondItem="3vq-i5-9BV" secondAttribute="centerY" id="mKr-9V-R89"/>
+                                                <constraint firstItem="3vq-i5-9BV" firstAttribute="leading" secondItem="dgq-Yr-9Gj" secondAttribute="leading" constant="20" id="wpS-mR-tiQ"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="3vq-i5-9BV"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="38h-i6-yoZ"/>
+                                                    <exclude reference="mKr-9V-R89"/>
+                                                    <exclude reference="wpS-mR-tiQ"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="3vq-i5-9BV"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="38h-i6-yoZ"/>
+                                                    <include reference="mKr-9V-R89"/>
+                                                    <include reference="wpS-mR-tiQ"/>
+                                                </mask>
+                                            </variation>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" red="0.47843137250000001" green="0.75686274509999996" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>

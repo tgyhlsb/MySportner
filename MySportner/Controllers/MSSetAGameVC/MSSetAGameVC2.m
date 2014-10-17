@@ -10,6 +10,11 @@
 #import "MSLocationPickerVC.h"
 #import "MSSmallSportCell.h"
 #import "MSSport.h"
+#import "MSActivity.h"
+#import "MSSportner.h"
+#import "TKAlertCenter.h"
+#import "MSActivityVC.h"
+#import "MBProgressHUD.h"
 
 #define NIB_NAME @"MSSetAGameVC2"
 
@@ -41,6 +46,10 @@
 
 @property (strong, nonatomic) MSSport *selectedSport;
 @property (strong, nonatomic) NSArray *sports;
+
+@property (strong, nonatomic) MSActivity *savingActivity;
+
+@property (strong, nonatomic) MBProgressHUD *loadingView;
 
 @property (nonatomic) BOOL hiddenStartDatePicker;
 @property (nonatomic) BOOL hiddenEndDatePicker;
@@ -221,6 +230,11 @@
     [self updatePlayersTitle];
 }
 
+- (IBAction)doneButtonHandler
+{
+    [self createActivity];
+}
+
 #pragma mark - View animation
 
 - (void)openStartDatePicker
@@ -337,6 +351,56 @@
     self.endDateValueLabel.text = [dateFormat stringFromDate:self.endDatePicker.date];
 }
 
+#pragma mark - Model interactions
+
+-(void)createActivity
+{
+    NSString *errorMessage = nil;
+    if (!self.selectedSport) {
+        errorMessage = @"Select a sport";
+    } else if ([self.cityValueLabel.text isEqualToString:@"Chose"]) {
+        errorMessage = @"Select a city";
+    }
+    
+    if (!errorMessage) {
+        MSActivity *activity = [[MSActivity alloc] init];
+        activity.sport = self.selectedSport;
+        activity.level = [[MSSportner currentSportner] levelForSport:activity.sport];
+        activity.place = self.cityValueLabel.text;
+        activity.owner = [MSSportner currentSportner];
+        activity.date = self.startDatePicker.date;
+        [[activity participantRelation] addObject:[MSSportner currentSportner]];
+        activity.guests = [[NSArray alloc] init];
+        activity.participants = [[NSArray alloc] initWithObjects:[MSSportner currentSportner], nil];
+        activity.awaitings = [[NSArray alloc] init];
+        
+        self.savingActivity = activity;
+        [self showLoadingViewInView:self.view];
+        [activity saveInBackgroundWithTarget:self selector:@selector(handleActivityCreation:error:)];
+    } else {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:errorMessage];
+    }
+}
+
+- (void)handleActivityCreation:(BOOL)succeed error:(NSError *)error
+{
+    [self hideLoadingView];
+    if (!error) {
+        [self activityCreationDidSucceed];
+    } else {
+        NSLog(@"%@", error);
+    }
+}
+
+- (void)activityCreationDidSucceed
+{
+    MSActivityVC *destinationVC = [MSActivityVC newController];
+    destinationVC.hasDirectAccessToDrawer = YES;
+    destinationVC.activity = self.savingActivity;
+    
+    [self.navigationController setViewControllers:@[destinationVC] animated:YES];
+}
+
 #pragma mark - MSLocationPickerDelegate
 
 - (void)didSelectLocation:(NSString *)location
@@ -444,6 +508,32 @@
     UIScrollView *scrollView = ((UIScrollView *)self.view);
     scrollView.contentInset = contentInsets;
     scrollView.scrollIndicatorInsets = contentInsets;
+}
+
+
+#pragma mark - MBProgressHUD
+
+- (void) showLoadingViewInView:(UIView*)v
+{
+    UIView *targetV = (v ? v : self.view);
+    
+    if (!self.loadingView) {
+        self.loadingView = [[MBProgressHUD alloc] initWithView:targetV];
+        self.loadingView.minShowTime = 1.0f;
+        self.loadingView.mode = MBProgressHUDModeIndeterminate;
+        self.loadingView.removeFromSuperViewOnHide = YES;
+        self.loadingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
+    }
+    if(!self.loadingView.superview) {
+        self.loadingView.frame = targetV.bounds;
+        [targetV addSubview:self.loadingView];
+    }
+    [self.loadingView show:YES];
+}
+- (void) hideLoadingView
+{
+    if (self.loadingView.superview)
+        [self.loadingView hide:YES];
 }
 
 

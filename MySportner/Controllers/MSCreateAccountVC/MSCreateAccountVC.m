@@ -63,6 +63,8 @@
 
 @property (weak, nonatomic) UITextField *activeTextField;
 
+@property (strong, nonatomic) UIToolbar *toolbar;
+
 @property (strong,nonatomic) MSUser *user;
 @property (strong, nonatomic) UIImage *profilePicture;
 
@@ -87,6 +89,10 @@
     [self setBackButton];
     [self setUpImagePicker];
     self.hasAlreadySignUp = NO;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self showToolbar];
+    });
 }
 
 - (void)setUpImagePicker
@@ -355,6 +361,24 @@
 - (void)pictureTapHandler
 {
     [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+}
+
+#define TOOLBAR_HEIGHT 162+44
+
+- (UIToolbar *)toolbar
+{
+    if (!_toolbar) {
+        CGRect toolbarFrame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, TOOLBAR_HEIGHT);
+        _toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];
+        [self.scrollView addSubview:_toolbar];
+    }
+    return _toolbar;
+}
+
+- (void)showToolbar
+{
+    CGRect toolbarFrame = CGRectMake(0, self.view.frame.size.height-TOOLBAR_HEIGHT, self.view.frame.size.width, TOOLBAR_HEIGHT);
+    self.toolbar.frame = toolbarFrame;
 }
 
 #pragma mark UIImagePickerControllerDelegate

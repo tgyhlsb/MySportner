@@ -7,12 +7,17 @@
 //
 
 #import "MSSetAGameVC2.h"
+#import "MSLocationPickerVC.h"
+#import "MSSmallSportCell.h"
+#import "MSSport.h"
 
 #define NIB_NAME @"MSSetAGameVC2"
 
 #define DATEPICKERS_HEIGHT 200
 
-@interface MSSetAGameVC2 ()
+@interface MSSetAGameVC2 () <UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIView *cityView;
 @property (weak, nonatomic) IBOutlet UIView *whereView;
 @property (weak, nonatomic) IBOutlet UIView *startView;
@@ -21,6 +26,9 @@
 @property (weak, nonatomic) IBOutlet UIView *buttonView;
 @property (weak, nonatomic) IBOutlet UIView *startSubviewContainer;
 @property (weak, nonatomic) IBOutlet UIView *endSubviewContainer;
+
+@property (strong, nonatomic) MSSport *selectedSport;
+@property (strong, nonatomic) NSArray *sports;
 
 @property (nonatomic) BOOL hiddenStartDatePicker;
 @property (nonatomic) BOOL hiddenEndDatePicker;
@@ -34,6 +42,7 @@
 {
     MSSetAGameVC2 *setAGameVC = [[MSSetAGameVC2 alloc] initWithNibName:NIB_NAME bundle:nil];
     setAGameVC.hasDirectAccessToDrawer = YES;
+    [MSSport fetchAllSports];
     return setAGameVC;
 }
 
@@ -46,6 +55,7 @@
     self.navigationController.navigationBar.translucent = NO;
     
     [self setUpGestureRecognizers];
+    [self setUpCollectionView];
     
     self.hiddenEndDatePicker = YES;
     self.hiddenStartDatePicker = YES;
@@ -69,7 +79,8 @@
 
 - (void)cityTapHandler
 {
-    
+    MSLocationPickerVC *destination = [MSLocationPickerVC newControler];
+    [self.navigationController pushViewController:destination animated:YES];
 }
 
 - (void)startTapHandler
@@ -144,6 +155,61 @@
         
         self.hiddenEndDatePicker = YES;
     }
+}
+
+#pragma mark - Sport picker -
+
+- (void)setUpCollectionView
+{
+    [MSSmallSportCell registerToCollectionView:self.collectionView];
+    
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    
+    self.collectionView.allowsSelection = YES;
+    self.collectionView.allowsMultipleSelection = NO;
+    
+    self.collectionView.backgroundColor = [UIColor clearColor];
+}
+
+- (NSArray *)sports
+{
+    if (!_sports) {
+        _sports = [MSSport allSports];
+    }
+    return _sports;
+}
+
+#pragma mark UICollectionViewDataSource
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [self.sports count];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *identifier = [MSSmallSportCell reusableIdentifier];
+    MSSmallSportCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    
+    cell.sport = [self.sports objectAtIndex:indexPath.row];
+    
+    cell.layer.shouldRasterize = YES;
+    cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    
+    return cell;
+}
+
+#pragma mark UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.selectedSport = [self.sports objectAtIndex:indexPath.item];
 }
 
 

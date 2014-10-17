@@ -13,7 +13,7 @@
 - (void)sendEvent:(UIEvent *)event
 {
     UITouch *touch = [[event.allTouches allObjects] firstObject];
-    NSLog(@"%@", [touch.view class]);
+    NSLog(@"%@ - %@", [touch.view.superview class], touch.view);
     [super sendEvent:event];
 }
 

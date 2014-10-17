@@ -16,6 +16,7 @@
                 <outlet property="endSubviewContainer" destination="PLp-Vv-nJO" id="KPH-sc-uIa"/>
                 <outlet property="endView" destination="ojU-4j-CTz" id="Vni-84-5kZ"/>
                 <outlet property="playersView" destination="8MN-hl-xa9" id="WyA-gL-AmT"/>
+                <outlet property="startDatePicker" destination="BNA-l3-z62" id="N6y-kp-boJ"/>
                 <outlet property="startSubviewContainer" destination="6Rz-TJ-pyK" id="GIF-uM-btH"/>
                 <outlet property="startView" destination="A09-s9-e9d" id="G4Q-O9-Ild"/>
                 <outlet property="view" destination="tPf-m4-REP" id="FqF-BF-HF4"/>
@@ -30,6 +31,25 @@
                 <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i5M-Pr-FkT">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
+                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="BNA-l3-z62">
+                            <rect key="frame" x="-160" y="-81" width="320" height="162"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="162" id="4o7-s9-4pe"/>
+                            </constraints>
+                            <date key="date" timeIntervalSinceReferenceDate="435245880.46215498">
+                                <!--2014-10-17 13:38:00 +0000-->
+                            </date>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="4o7-s9-4pe"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=regular-widthClass=compact">
+                                <mask key="constraints">
+                                    <include reference="4o7-s9-4pe"/>
+                                </mask>
+                            </variation>
+                        </datePicker>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Ipi-XP-ycr">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <constraints>
@@ -296,9 +316,11 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="A09-s9-e9d" firstAttribute="top" secondItem="K4P-l2-qHF" secondAttribute="bottom" constant="8" id="2GU-jo-Mre"/>
+                        <constraint firstItem="BNA-l3-z62" firstAttribute="top" secondItem="A09-s9-e9d" secondAttribute="bottom" constant="8" id="54O-2M-NX1"/>
                         <constraint firstAttribute="trailing" secondItem="Ipi-XP-ycr" secondAttribute="trailing" id="8EJ-4I-unr"/>
                         <constraint firstItem="K4P-l2-qHF" firstAttribute="top" secondItem="QXD-E0-TuR" secondAttribute="bottom" constant="8" id="9JF-Bj-RLa"/>
                         <constraint firstAttribute="trailing" secondItem="QXD-E0-TuR" secondAttribute="trailing" id="A6x-zx-xTH"/>
+                        <constraint firstAttribute="trailing" secondItem="BNA-l3-z62" secondAttribute="trailing" id="BIQ-wE-6fw"/>
                         <constraint firstItem="Jms-CA-IL5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="CtU-jd-IuC"/>
                         <constraint firstAttribute="trailing" secondItem="K4P-l2-qHF" secondAttribute="trailing" id="D0z-8c-Sml"/>
                         <constraint firstItem="QXD-E0-TuR" firstAttribute="top" secondItem="Ipi-XP-ycr" secondAttribute="bottom" constant="8" id="Ge5-kI-SpE"/>
@@ -310,6 +332,7 @@
                         <constraint firstItem="A09-s9-e9d" firstAttribute="height" secondItem="K4P-l2-qHF" secondAttribute="height" id="Uwh-QQ-Cbr"/>
                         <constraint firstItem="Ipi-XP-ycr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XtJ-gQ-IJa"/>
                         <constraint firstAttribute="height" constant="1000" id="Zkj-8z-a4C"/>
+                        <constraint firstItem="BNA-l3-z62" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bsZ-8m-BLT"/>
                         <constraint firstAttribute="width" constant="400" id="cUS-te-kSO"/>
                         <constraint firstItem="6Rz-TJ-pyK" firstAttribute="top" secondItem="A09-s9-e9d" secondAttribute="bottom" constant="8" id="dgy-YD-YL9"/>
                         <constraint firstItem="A09-s9-e9d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nhs-jh-UNu"/>
@@ -319,6 +342,7 @@
                     </constraints>
                     <variation key="default">
                         <mask key="subviews">
+                            <exclude reference="BNA-l3-z62"/>
                             <exclude reference="Ipi-XP-ycr"/>
                             <exclude reference="QXD-E0-TuR"/>
                             <exclude reference="K4P-l2-qHF"/>
@@ -348,10 +372,14 @@
                             <exclude reference="PRX-BX-hk6"/>
                             <exclude reference="dgy-YD-YL9"/>
                             <exclude reference="o71-yK-3ZX"/>
+                            <exclude reference="54O-2M-NX1"/>
+                            <exclude reference="BIQ-wE-6fw"/>
+                            <exclude reference="bsZ-8m-BLT"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=regular-widthClass=compact">
                         <mask key="subviews">
+                            <include reference="BNA-l3-z62"/>
                             <include reference="Ipi-XP-ycr"/>
                             <include reference="QXD-E0-TuR"/>
                             <include reference="K4P-l2-qHF"/>
@@ -381,6 +409,9 @@
                             <include reference="PRX-BX-hk6"/>
                             <include reference="dgy-YD-YL9"/>
                             <include reference="o71-yK-3ZX"/>
+                            <include reference="54O-2M-NX1"/>
+                            <include reference="BIQ-wE-6fw"/>
+                            <include reference="bsZ-8m-BLT"/>
                         </mask>
                     </variation>
                 </view>

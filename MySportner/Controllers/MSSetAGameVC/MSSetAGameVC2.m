@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIView *endSubviewContainer;
 @property (weak, nonatomic) IBOutlet UILabel *cityTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cityValueLabel;
+@property (weak, nonatomic) IBOutlet UIDatePicker *startDatePicker;
 
 @property (strong, nonatomic) MSSport *selectedSport;
 @property (strong, nonatomic) NSArray *sports;
@@ -73,6 +74,8 @@
 - (void)setUpAppearance
 {
     self.collectionViewTitleLabel.text = [@"Pick a sport" uppercaseString];
+    
+    self.startDatePicker.alpha = 0;
 }
 
 #pragma mark - Set up
@@ -130,6 +133,8 @@
             if (self.hiddenEndDatePicker) {
                 [self setScrollViewContentSizeForPickerOpen:YES];
             }
+            
+            self.startDatePicker.alpha = 1.0;
         }];
         
         self.hiddenStartDatePicker = NO;
@@ -147,6 +152,8 @@
             if (self.hiddenEndDatePicker) {
                 [self setScrollViewContentSizeForPickerOpen:NO];
             }
+            
+            self.startDatePicker.alpha = 0.0;
         }];
         
         self.hiddenStartDatePicker = YES;

@@ -78,6 +78,8 @@
     
     self.startDatePicker.alpha = 0;
     self.endDatePicker.alpha = 0;
+    
+    ((UIScrollView *)self.view).contentSize = self.view.frame.size;
 }
 
 #pragma mark - Set up

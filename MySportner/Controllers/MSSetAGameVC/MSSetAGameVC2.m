@@ -46,6 +46,7 @@
 @property (weak, nonatomic) IBOutlet UIStepper *playersStepper;
 @property (weak, nonatomic) IBOutlet UILabel *playersTitleLabel;
 @property (weak, nonatomic) IBOutlet QBFlatButton *doneButton;
+@property (weak, nonatomic) IBOutlet UILabel *whereTitleLabel;
 
 @property (strong, nonatomic) MSSport *selectedSport;
 @property (strong, nonatomic) NSArray *sports;
@@ -122,6 +123,9 @@
     self.startDateTitleLabel.text = @"Starts";
     self.endDateTitleLabel.text = @"Ends";
     
+    self.whereTitleLabel.text = @"Where exactly ?";
+    self.whereTextField.placeholder = @"Optional";
+    
     self.cityTitleLabel.text = @"City";
     self.cityValueLabel.text = @"Chose";
     
@@ -172,12 +176,15 @@
     
     [MSStyleFactory setUILabel:self.cityTitleLabel withStyle:MSLabelStyleFormTitle];
     [MSStyleFactory setUILabel:self.cityValueLabel withStyle:MSLabelStyleFormValue];
+    [MSStyleFactory setUILabel:self.whereTitleLabel withStyle:MSLabelStyleFormTitle];
+    [MSStyleFactory setUILabel:((UILabel *)self.whereTextField) withStyle:MSLabelStyleFormValue];
     [MSStyleFactory setUILabel:self.startDateTitleLabel withStyle:MSLabelStyleFormTitle];
     [MSStyleFactory setUILabel:self.startDateValueLabel withStyle:MSLabelStyleFormValue];
     [MSStyleFactory setUILabel:self.endDateTitleLabel withStyle:MSLabelStyleFormTitle];
     [MSStyleFactory setUILabel:self.endDateValueLabel withStyle:MSLabelStyleFormValue];
     [MSStyleFactory setUILabel:self.playersTitleLabel withStyle:MSLabelStyleFormTitle];
     [MSStyleFactory setUILabel:self.collectionViewTitleLabel withStyle:MSLabelStyleFormTitle];
+    
     
     [MSStyleFactory setQBFlatButton:self.doneButton withStyle:MSFlatButtonStyleGreen];
     [self.doneButton setTitle:@"DONE" forState:UIControlStateNormal];

@@ -175,7 +175,7 @@
         case MSLabelStyleFormValue:
         {
             UIColor *focusBorderColor = [MSColorFactory redLight];
-            UIColor *textFieldTextColorNormal = [MSColorFactory redDark];
+            UIColor *textFieldTextColorNormal = [MSColorFactory redLight];
             
             label.layer.borderColor = [focusBorderColor CGColor];
             label.font = [UIFont fontWithName:@"Helvetica-Light" size:14.0];

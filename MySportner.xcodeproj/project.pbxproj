@@ -38,8 +38,8 @@
 		5A0CB808189171AA0027EE58 /* MSRangeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0CB807189171AA0027EE58 /* MSRangeCell.m */; };
 		5A0CB80A189171BB0027EE58 /* MSRangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB809189171BB0027EE58 /* MSRangeCell.xib */; };
 		5A0D6F4B189A55F300C037C8 /* MSSportnersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0D6F4A189A55F300C037C8 /* MSSportnersVC.m */; };
-		5A0F9116184242AF0049BBD5 /* MSCreateAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0F9115184242AF0049BBD5 /* MSCreateAccountVC.m */; };
-		5A0F9118184242BD0049BBD5 /* MSCreateAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0F9117184242BD0049BBD5 /* MSCreateAccountVC.xib */; };
+		5A0F9116184242AF0049BBD5 /* MSVerifyAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0F9115184242AF0049BBD5 /* MSVerifyAccountVC.m */; };
+		5A0F9118184242BD0049BBD5 /* MSVerifyAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0F9117184242BD0049BBD5 /* MSVerifyAccountVC.xib */; };
 		5A11C8C618ACD6E100CA48A0 /* MSReverseGeocodingRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A11C8C518ACD6E100CA48A0 /* MSReverseGeocodingRequest.m */; };
 		5A173FE21849C97D00144DB8 /* UIView+MSRoundedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A173FE11849C97D00144DB8 /* UIView+MSRoundedView.m */; };
 		5A1B736F1844AB6200555FE4 /* MZAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1B73641844AB6200555FE4 /* MZAppearance.m */; };
@@ -152,6 +152,8 @@
 		5A580E1B19F0171F00CA3846 /* Yoga@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580DE919F0171F00CA3846 /* Yoga@2x.png */; };
 		5A580E2919F129F900CA3846 /* MSSetAGameVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A580E2719F129F900CA3846 /* MSSetAGameVC2.m */; };
 		5A580E2A19F129F900CA3846 /* MSSetAGameVC2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E2819F129F900CA3846 /* MSSetAGameVC2.xib */; };
+		5A580E3319F1A02000CA3846 /* MSCreateAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A580E3119F1A02000CA3846 /* MSCreateAccountVC.m */; };
+		5A580E3419F1A02000CA3846 /* MSCreateAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E3219F1A02000CA3846 /* MSCreateAccountVC.xib */; };
 		5A622FA318A12F9C00D33349 /* MSProfilePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */; };
 		5A622FA518A12FC000D33349 /* MSProfilePictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */; };
 		5A622FA818A13A4400D33349 /* attendees_subtitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA718A13A4400D33349 /* attendees_subtitle.png */; };
@@ -351,9 +353,9 @@
 		5A0CB809189171BB0027EE58 /* MSRangeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSRangeCell.xib; path = Views/Cells/MSRangeCell/MSRangeCell.xib; sourceTree = "<group>"; };
 		5A0D6F49189A55F300C037C8 /* MSSportnersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSportnersVC.h; path = Controllers/MSSportnersVC/MSSportnersVC.h; sourceTree = "<group>"; };
 		5A0D6F4A189A55F300C037C8 /* MSSportnersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSportnersVC.m; path = Controllers/MSSportnersVC/MSSportnersVC.m; sourceTree = "<group>"; };
-		5A0F9114184242AF0049BBD5 /* MSCreateAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCreateAccountVC.h; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.h; sourceTree = "<group>"; };
-		5A0F9115184242AF0049BBD5 /* MSCreateAccountVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCreateAccountVC.m; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.m; sourceTree = "<group>"; };
-		5A0F9117184242BD0049BBD5 /* MSCreateAccountVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSCreateAccountVC.xib; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.xib; sourceTree = "<group>"; };
+		5A0F9114184242AF0049BBD5 /* MSVerifyAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSVerifyAccountVC.h; path = Controllers/MSCreateAccountVC/MSVerifyAccountVC.h; sourceTree = "<group>"; };
+		5A0F9115184242AF0049BBD5 /* MSVerifyAccountVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSVerifyAccountVC.m; path = Controllers/MSCreateAccountVC/MSVerifyAccountVC.m; sourceTree = "<group>"; };
+		5A0F9117184242BD0049BBD5 /* MSVerifyAccountVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSVerifyAccountVC.xib; path = Controllers/MSCreateAccountVC/MSVerifyAccountVC.xib; sourceTree = "<group>"; };
 		5A11C8C418ACD6E100CA48A0 /* MSReverseGeocodingRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSReverseGeocodingRequest.h; sourceTree = "<group>"; };
 		5A11C8C518ACD6E100CA48A0 /* MSReverseGeocodingRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSReverseGeocodingRequest.m; sourceTree = "<group>"; };
 		5A173FE01849C97D00144DB8 /* UIView+MSRoundedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MSRoundedView.h"; sourceTree = "<group>"; };
@@ -499,6 +501,9 @@
 		5A580E2619F129F900CA3846 /* MSSetAGameVC2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSetAGameVC2.h; path = Controllers/MSSetAGameVC/MSSetAGameVC2.h; sourceTree = "<group>"; };
 		5A580E2719F129F900CA3846 /* MSSetAGameVC2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSetAGameVC2.m; path = Controllers/MSSetAGameVC/MSSetAGameVC2.m; sourceTree = "<group>"; };
 		5A580E2819F129F900CA3846 /* MSSetAGameVC2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSSetAGameVC2.xib; path = Controllers/MSSetAGameVC/MSSetAGameVC2.xib; sourceTree = "<group>"; };
+		5A580E3019F1A02000CA3846 /* MSCreateAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCreateAccountVC.h; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.h; sourceTree = "<group>"; };
+		5A580E3119F1A02000CA3846 /* MSCreateAccountVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCreateAccountVC.m; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.m; sourceTree = "<group>"; };
+		5A580E3219F1A02000CA3846 /* MSCreateAccountVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSCreateAccountVC.xib; path = Controllers/MSCreateAccountVC/MSCreateAccountVC.xib; sourceTree = "<group>"; };
 		5A622FA118A12F9C00D33349 /* MSProfilePictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSProfilePictureCell.h; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.h; sourceTree = "<group>"; };
 		5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSProfilePictureCell.m; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.m; sourceTree = "<group>"; };
 		5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSProfilePictureCell.xib; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.xib; sourceTree = "<group>"; };
@@ -821,9 +826,12 @@
 		5A0F9119184242C30049BBD5 /* MSCreateAccountVC */ = {
 			isa = PBXGroup;
 			children = (
-				5A0F9114184242AF0049BBD5 /* MSCreateAccountVC.h */,
-				5A0F9115184242AF0049BBD5 /* MSCreateAccountVC.m */,
-				5A0F9117184242BD0049BBD5 /* MSCreateAccountVC.xib */,
+				5A580E3019F1A02000CA3846 /* MSCreateAccountVC.h */,
+				5A580E3119F1A02000CA3846 /* MSCreateAccountVC.m */,
+				5A580E3219F1A02000CA3846 /* MSCreateAccountVC.xib */,
+				5A0F9114184242AF0049BBD5 /* MSVerifyAccountVC.h */,
+				5A0F9115184242AF0049BBD5 /* MSVerifyAccountVC.m */,
+				5A0F9117184242BD0049BBD5 /* MSVerifyAccountVC.xib */,
 			);
 			name = MSCreateAccountVC;
 			sourceTree = "<group>";
@@ -1899,7 +1907,7 @@
 				5ABF1E5E18B16FEC008071F9 /* logout.png in Resources */,
 				5A580E1119F0171F00CA3846 /* Swimming@2x.png in Resources */,
 				5A6DD74F18A031D900649A58 /* Splashscreen@2x.png in Resources */,
-				5A0F9118184242BD0049BBD5 /* MSCreateAccountVC.xib in Resources */,
+				5A0F9118184242BD0049BBD5 /* MSVerifyAccountVC.xib in Resources */,
 				5ABF1E5718B16F59008071F9 /* Trophee@2x.png in Resources */,
 				5A63A2A018A0188F002DE50D /* Trophee3@2x.png in Resources */,
 				5A63A29F18A0188F002DE50D /* Trophee3.png in Resources */,
@@ -1908,6 +1916,7 @@
 				5A0CB7FD1891714A0027EE58 /* slider-metal-handle-highlighted@2x.png in Resources */,
 				5A78B7F7189596AC0074A5B3 /* redCircle.png in Resources */,
 				5A299A92184BED5400005733 /* background_blur_light.png in Resources */,
+				5A580E3419F1A02000CA3846 /* MSCreateAccountVC.xib in Resources */,
 				5AD1FC5318472ADD001D3DFE /* runner.jpg in Resources */,
 				5A580E0419F0171F00CA3846 /* Pool_8_Ball@2x.png in Resources */,
 				5ADCF3161840F8E900E6C8D2 /* MSVenueCell.xib in Resources */,
@@ -2010,6 +2019,7 @@
 				5ADCF29C18401D1800E6C8D2 /* MSNotificationsVC.m in Sources */,
 				5A85E8EF1872CCCD00F5E8F9 /* MSLocationPickerVC.m in Sources */,
 				5A78B7F218958BA70074A5B3 /* MSAnnotation.m in Sources */,
+				5A580E3319F1A02000CA3846 /* MSCreateAccountVC.m in Sources */,
 				5A22A03C188AEB8C003F1D8B /* MSAutocompleteRequest.m in Sources */,
 				5ADCF2AC184025AE00E6C8D2 /* MSWelcomeVC.m in Sources */,
 				5A9C90F8187C4C1E00065DBA /* MSSport.m in Sources */,
@@ -2040,7 +2050,7 @@
 				5A173FE21849C97D00144DB8 /* UIView+MSRoundedView.m in Sources */,
 				5ADCF2EA1840D38B00E6C8D2 /* MSVenuePickerVC.m in Sources */,
 				5ADCF2E61840D23A00E6C8D2 /* MSTextFieldPickerCell.m in Sources */,
-				5A0F9116184242AF0049BBD5 /* MSCreateAccountVC.m in Sources */,
+				5A0F9116184242AF0049BBD5 /* MSVerifyAccountVC.m in Sources */,
 				5ADCF3111840F6A300E6C8D2 /* MSFourSquareParser.m in Sources */,
 				5A34C4E31895293500CE2EF2 /* MSProfilePictureView.m in Sources */,
 				5A2B68F5189A597A00D82870 /* MSSportnerCell.m in Sources */,

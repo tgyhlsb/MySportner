@@ -9,7 +9,7 @@
 #import "MSWelcomeVC.h"
 #import "MSAppDelegate.h"
 #import "MSUser.h"
-#import "MSCreateAccountVC.h"
+#import "MSVerifyAccountVC.h"
 #import "MBProgressHUD.h"
 #import "MZFormSheetController.h"
 #import "MSLoginFormVC.h"
@@ -119,7 +119,7 @@
 
 - (IBAction)signUpButtonPress:(UIButton *)sender
 {
-    [self.navigationController pushViewController:[MSCreateAccountVC newController] animated:YES];
+    [self.navigationController pushViewController:[MSVerifyAccountVC newController] animated:YES];
 }
 
 - (IBAction)signInButtonPress:(UIButton *)sender

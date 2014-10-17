@@ -19,7 +19,7 @@
 #import "MSFontFactory.h"
 #import "MSStyleFactory.h"
 #import "MSCropperVC.h"
-#import "MSCreateAccountVC.h"
+#import "MSVerifyAccountVC.h"
 #import "MSSportnerCell.h"
 
 

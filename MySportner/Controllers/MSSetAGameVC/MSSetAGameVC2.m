@@ -27,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UIView *buttonView;
 @property (weak, nonatomic) IBOutlet UIView *startSubviewContainer;
 @property (weak, nonatomic) IBOutlet UIView *endSubviewContainer;
+@property (weak, nonatomic) IBOutlet UILabel *cityTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cityValueLabel;
 
 @property (strong, nonatomic) MSSport *selectedSport;
 @property (strong, nonatomic) NSArray *sports;
@@ -49,9 +51,8 @@
 
 - (BOOL)shouldCancelTouch:(UITouch *)touch
 {
-    return [touch.view isEqual:self.collectionView];
+    return YES;
 }
-
 
 #pragma mark - View lifecycle
 
@@ -125,6 +126,10 @@
             CGRect subviewsFrame = self.startSubviewContainer.frame;
             subviewsFrame.origin.y += DATEPICKERS_HEIGHT;
             self.startSubviewContainer.frame = subviewsFrame;
+            
+            if (self.hiddenEndDatePicker) {
+                [self setScrollViewContentSizeForPickerOpen:YES];
+            }
         }];
         
         self.hiddenStartDatePicker = NO;
@@ -138,6 +143,10 @@
             CGRect subviewsFrame = self.startSubviewContainer.frame;
             subviewsFrame.origin.y -= DATEPICKERS_HEIGHT;
             self.startSubviewContainer.frame = subviewsFrame;
+            
+            if (self.hiddenEndDatePicker) {
+                [self setScrollViewContentSizeForPickerOpen:NO];
+            }
         }];
         
         self.hiddenStartDatePicker = YES;
@@ -151,6 +160,10 @@
             CGRect subviewsFrame = self.endSubviewContainer.frame;
             subviewsFrame.origin.y += DATEPICKERS_HEIGHT;
             self.endSubviewContainer.frame = subviewsFrame;
+            
+            if (self.hiddenStartDatePicker) {
+                [self setScrollViewContentSizeForPickerOpen:YES];
+            }
         }];
         
         self.hiddenEndDatePicker = NO;
@@ -164,10 +177,20 @@
             CGRect subviewsFrame = self.endSubviewContainer.frame;
             subviewsFrame.origin.y -= DATEPICKERS_HEIGHT;
             self.endSubviewContainer.frame = subviewsFrame;
+            
+            if (self.hiddenStartDatePicker) {
+                [self setScrollViewContentSizeForPickerOpen:NO];
+            }
         }];
         
         self.hiddenEndDatePicker = YES;
     }
+}
+
+- (void)setScrollViewContentSizeForPickerOpen:(BOOL)open
+{
+    CGFloat diff = open ? 200 : -200;
+    [((UIScrollView *)self.view) setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+diff)];
 }
 
 #pragma mark - Sport picker -

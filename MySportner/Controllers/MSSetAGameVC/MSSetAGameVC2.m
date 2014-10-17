@@ -31,6 +31,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *cityValueLabel;
 @property (weak, nonatomic) IBOutlet UIDatePicker *startDatePicker;
 @property (weak, nonatomic) IBOutlet UIDatePicker *endDatePicker;
+@property (weak, nonatomic) IBOutlet UILabel *startDateTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *startDateValueLabel;
+@property (weak, nonatomic) IBOutlet UILabel *endDateTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *endDateValueLabel;
+@property (weak, nonatomic) IBOutlet UIStepper *playersStepper;
+@property (weak, nonatomic) IBOutlet UILabel *playersTitleLabel;
 
 @property (strong, nonatomic) MSSport *selectedSport;
 @property (strong, nonatomic) NSArray *sports;
@@ -74,12 +80,34 @@
 
 - (void)setUpAppearance
 {
+    ((UIScrollView *)self.view).contentSize = self.view.frame.size;
     self.collectionViewTitleLabel.text = [@"Pick a sport" uppercaseString];
     
     self.startDatePicker.alpha = 0;
-    self.endDatePicker.alpha = 0;
+    [self.startDatePicker addTarget:self action:@selector(startDatePickerValueDidChange) forControlEvents:UIControlEventValueChanged];
+    self.startDatePicker.datePickerMode = UIDatePickerModeDateAndTime;
+    self.startDatePicker.minuteInterval = 15;
+    self.startDatePicker.minimumDate = [NSDate date];
     
-    ((UIScrollView *)self.view).contentSize = self.view.frame.size;
+    self.endDatePicker.alpha = 0;
+    [self.endDatePicker addTarget:self action:@selector(endDatePickerValueDidChange) forControlEvents:UIControlEventValueChanged];
+    self.endDatePicker.datePickerMode = UIDatePickerModeDateAndTime;
+    self.endDatePicker.minuteInterval = 15;
+    self.endDatePicker.minimumDate = [NSDate date];
+    
+    [self setUpInitialStarDate];
+    
+    self.startDateTitleLabel.text = @"Starts";
+    self.endDateTitleLabel.text = @"Ends";
+    
+    self.playersStepper.maximumValue = 20.0;
+    self.playersStepper.minimumValue = 2.0;
+    self.playersStepper.stepValue = 1.0;
+    self.playersStepper.value = self.playersStepper.minimumValue;
+    
+    [self.playersStepper addTarget:self action:@selector(playersStepperValueDidChange) forControlEvents:UIControlEventValueChanged];
+    
+    [self updatePlayersTitle];
 }
 
 #pragma mark - Set up
@@ -94,6 +122,18 @@
     
     UITapGestureRecognizer *endTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endTapHandler)];
     [self.endView addGestureRecognizer:endTapRecognizer];
+}
+
+- (void)setUpInitialStarDate
+{
+    NSDateComponents *startComponents = [[NSCalendar currentCalendar] components:NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit
+                                                                        fromDate:[NSDate date]];
+    [startComponents setMinute:0];
+    [startComponents setHour:[startComponents hour]+1];
+    NSDate *roundedDate = [[NSCalendar currentCalendar] dateFromComponents:startComponents];
+    NSLog(@"%@", roundedDate);
+    self.startDatePicker.date = roundedDate;
+    [self updateStartDateView];
 }
 
 #pragma mark - Handlers
@@ -122,6 +162,21 @@
     } else {
         [self closeEndDatePicker];
     }
+}
+
+- (void)startDatePickerValueDidChange
+{
+    [self updateStartDateView];
+}
+
+- (void)endDatePickerValueDidChange
+{
+    [self updateEndDateView];
+}
+
+- (void)playersStepperValueDidChange
+{
+    [self updatePlayersTitle];
 }
 
 #pragma mark - View animation
@@ -208,6 +263,37 @@
     [((UIScrollView *)self.view) setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+diff)];
 }
 
+- (void)updatePlayersTitle
+{
+    self.playersTitleLabel.text = [NSString stringWithFormat:@"%.0f players", self.playersStepper.value];
+}
+
+- (void)updateStartDateView
+{
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    dateFormat.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"ddMMyyyyhhmm" options:0 locale:[NSLocale currentLocale]];
+    self.startDateValueLabel.text = [dateFormat stringFromDate:self.startDatePicker.date];
+    
+    self.endDatePicker.date = [NSDate dateWithTimeInterval:3600 sinceDate:self.startDatePicker.date];
+    [self updateEndDateView];
+}
+
+- (void)updateEndDateView
+{
+    NSDateComponents *startComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.startDatePicker.date];
+    NSDateComponents *endComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.endDatePicker.date];
+    
+    NSString *endFormat = @"ddMMyyyyhhmm";
+    if ([startComponents day] == [endComponents day]) {
+        endFormat = @"hhmm";
+    }
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    dateFormat.dateFormat = [NSDateFormatter dateFormatFromTemplate:endFormat options:0 locale:[NSLocale currentLocale]];
+    dateFormat.locale = [NSLocale currentLocale];
+    self.endDateValueLabel.text = [dateFormat stringFromDate:self.endDatePicker.date];
+}
+
 #pragma mark - Sport picker -
 
 - (void)setUpCollectionView
@@ -242,7 +328,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-//    return [self.sports count];
+    //    return [self.sports count];
     return 3;
 }
 

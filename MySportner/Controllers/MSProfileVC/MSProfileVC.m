@@ -218,14 +218,16 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 
 - (void)pictureTapHandler
 {
-	UIActionSheet *pictureSheet = [[UIActionSheet alloc] initWithTitle:@"Profile picture"
-                                                              delegate:self
-                                                     cancelButtonTitle:@"Cancel"
-                                                destructiveButtonTitle:Nil
-                                                     otherButtonTitles:@"Take a picture", @"Use an existing picture", @"Resize picture", nil];
-	pictureSheet.actionSheetStyle = UIActionSheetStyleAutomatic;
-    pictureSheet.delegate = self;
-	[pictureSheet showInView:self.view];
+    if ([self.sportner isEqualToSportner:[MSSportner currentSportner]]) {
+        UIActionSheet *pictureSheet = [[UIActionSheet alloc] initWithTitle:@"Profile picture"
+                                                                  delegate:self
+                                                         cancelButtonTitle:@"Cancel"
+                                                    destructiveButtonTitle:Nil
+                                                         otherButtonTitles:@"Take a picture", @"Use an existing picture", @"Resize picture", nil];
+        pictureSheet.actionSheetStyle = UIActionSheetStyleAutomatic;
+        pictureSheet.delegate = self;
+        [pictureSheet showInView:self.view];
+    }
 }
 
 #pragma mark - UIActionsheetDelegate

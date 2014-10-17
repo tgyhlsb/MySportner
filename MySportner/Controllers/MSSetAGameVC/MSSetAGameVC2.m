@@ -13,7 +13,7 @@
 
 #define NIB_NAME @"MSSetAGameVC2"
 
-#define DATEPICKERS_HEIGHT 200
+#define DATEPICKERS_HEIGHT 170
 
 @interface MSSetAGameVC2 () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *cityTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cityValueLabel;
 @property (weak, nonatomic) IBOutlet UIDatePicker *startDatePicker;
+@property (weak, nonatomic) IBOutlet UIDatePicker *endDatePicker;
 
 @property (strong, nonatomic) MSSport *selectedSport;
 @property (strong, nonatomic) NSArray *sports;
@@ -76,6 +77,7 @@
     self.collectionViewTitleLabel.text = [@"Pick a sport" uppercaseString];
     
     self.startDatePicker.alpha = 0;
+    self.endDatePicker.alpha = 0;
 }
 
 #pragma mark - Set up
@@ -171,6 +173,8 @@
             if (self.hiddenStartDatePicker) {
                 [self setScrollViewContentSizeForPickerOpen:YES];
             }
+            
+            self.endDatePicker.alpha = 1.0;
         }];
         
         self.hiddenEndDatePicker = NO;
@@ -188,6 +192,8 @@
             if (self.hiddenStartDatePicker) {
                 [self setScrollViewContentSizeForPickerOpen:NO];
             }
+            
+            self.endDatePicker.alpha = 0.0;
         }];
         
         self.hiddenEndDatePicker = YES;
@@ -196,7 +202,7 @@
 
 - (void)setScrollViewContentSizeForPickerOpen:(BOOL)open
 {
-    CGFloat diff = open ? 200 : -200;
+    CGFloat diff = open ? DATEPICKERS_HEIGHT : -DATEPICKERS_HEIGHT;
     [((UIScrollView *)self.view) setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+diff)];
 }
 

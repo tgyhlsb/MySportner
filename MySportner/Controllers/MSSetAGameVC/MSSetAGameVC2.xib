@@ -13,6 +13,7 @@
                 <outlet property="cityView" destination="QXD-E0-TuR" id="thE-xa-I6x"/>
                 <outlet property="collectionView" destination="Ipi-XP-ycr" id="cYZ-gY-Q4i"/>
                 <outlet property="collectionViewTitleLabel" destination="Jms-CA-IL5" id="lw6-21-bZs"/>
+                <outlet property="endDatePicker" destination="pU1-Wj-AkJ" id="h9w-BX-SOO"/>
                 <outlet property="endSubviewContainer" destination="PLp-Vv-nJO" id="KPH-sc-uIa"/>
                 <outlet property="endView" destination="ojU-4j-CTz" id="Vni-84-5kZ"/>
                 <outlet property="playersView" destination="8MN-hl-xa9" id="WyA-gL-AmT"/>
@@ -184,6 +185,25 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Rz-TJ-pyK">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <subviews>
+                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="pU1-Wj-AkJ">
+                                    <rect key="frame" x="-160" y="-81" width="320" height="162"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="162" id="eZS-xS-rko"/>
+                                    </constraints>
+                                    <date key="date" timeIntervalSinceReferenceDate="435246093.83624703">
+                                        <!--2014-10-17 13:41:33 +0000-->
+                                    </date>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="eZS-xS-rko"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="constraints">
+                                            <include reference="eZS-xS-rko"/>
+                                        </mask>
+                                    </variation>
+                                </datePicker>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ojU-4j-CTz">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -274,15 +294,19 @@
                             <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="PLp-Vv-nJO" firstAttribute="leading" secondItem="6Rz-TJ-pyK" secondAttribute="leading" id="5pu-Bo-bxB"/>
+                                <constraint firstAttribute="trailing" secondItem="pU1-Wj-AkJ" secondAttribute="trailing" id="61B-tf-khf"/>
                                 <constraint firstAttribute="trailing" secondItem="ojU-4j-CTz" secondAttribute="trailing" id="634-n9-OHA"/>
                                 <constraint firstAttribute="height" constant="178" id="GOj-QP-m8H"/>
+                                <constraint firstItem="pU1-Wj-AkJ" firstAttribute="leading" secondItem="6Rz-TJ-pyK" secondAttribute="leading" id="JSr-Ce-KlT"/>
                                 <constraint firstItem="ojU-4j-CTz" firstAttribute="top" secondItem="6Rz-TJ-pyK" secondAttribute="top" id="RWV-WA-JNQ"/>
                                 <constraint firstItem="PLp-Vv-nJO" firstAttribute="top" secondItem="ojU-4j-CTz" secondAttribute="bottom" constant="8" id="So1-om-4jU"/>
+                                <constraint firstItem="pU1-Wj-AkJ" firstAttribute="top" secondItem="ojU-4j-CTz" secondAttribute="bottom" constant="8" id="ofz-Wg-7J2"/>
                                 <constraint firstItem="ojU-4j-CTz" firstAttribute="leading" secondItem="6Rz-TJ-pyK" secondAttribute="leading" id="xTJ-5W-si4"/>
                                 <constraint firstAttribute="trailing" secondItem="PLp-Vv-nJO" secondAttribute="trailing" id="yji-4Y-gAq"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="subviews">
+                                    <exclude reference="pU1-Wj-AkJ"/>
                                     <exclude reference="ojU-4j-CTz"/>
                                     <exclude reference="PLp-Vv-nJO"/>
                                 </mask>
@@ -294,10 +318,14 @@
                                     <exclude reference="5pu-Bo-bxB"/>
                                     <exclude reference="So1-om-4jU"/>
                                     <exclude reference="yji-4Y-gAq"/>
+                                    <exclude reference="61B-tf-khf"/>
+                                    <exclude reference="JSr-Ce-KlT"/>
+                                    <exclude reference="ofz-Wg-7J2"/>
                                 </mask>
                             </variation>
                             <variation key="heightClass=regular-widthClass=compact">
                                 <mask key="subviews">
+                                    <include reference="pU1-Wj-AkJ"/>
                                     <include reference="ojU-4j-CTz"/>
                                     <include reference="PLp-Vv-nJO"/>
                                 </mask>
@@ -309,6 +337,9 @@
                                     <include reference="5pu-Bo-bxB"/>
                                     <include reference="So1-om-4jU"/>
                                     <include reference="yji-4Y-gAq"/>
+                                    <include reference="61B-tf-khf"/>
+                                    <include reference="JSr-Ce-KlT"/>
+                                    <include reference="ofz-Wg-7J2"/>
                                 </mask>
                             </variation>
                         </view>

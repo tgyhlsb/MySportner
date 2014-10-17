@@ -217,6 +217,7 @@
 
 - (void)playersStepperValueDidChange
 {
+    [self.whereTextField resignFirstResponder];
     [self updatePlayersTitle];
 }
 

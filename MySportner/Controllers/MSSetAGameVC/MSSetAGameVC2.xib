@@ -27,6 +27,7 @@
                 <outlet property="startSubviewContainer" destination="6Rz-TJ-pyK" id="GIF-uM-btH"/>
                 <outlet property="startView" destination="A09-s9-e9d" id="G4Q-O9-Ild"/>
                 <outlet property="view" destination="tPf-m4-REP" id="FqF-BF-HF4"/>
+                <outlet property="whereTextField" destination="b4j-Ih-HVf" id="lc0-le-2aT"/>
                 <outlet property="whereView" destination="K4P-l2-qHF" id="sg2-Nh-BD8"/>
             </connections>
         </placeholder>
@@ -132,7 +133,39 @@
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K4P-l2-qHF">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b4j-Ih-HVf">
+                                    <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </subviews>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="b4j-Ih-HVf" firstAttribute="leading" secondItem="K4P-l2-qHF" secondAttribute="leading" constant="8" id="PYT-Xn-3r7"/>
+                                <constraint firstAttribute="trailing" secondItem="b4j-Ih-HVf" secondAttribute="trailing" constant="8" id="QkR-Ce-HO6"/>
+                                <constraint firstAttribute="centerY" secondItem="b4j-Ih-HVf" secondAttribute="centerY" id="efc-Ik-8IW"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="subviews">
+                                    <exclude reference="b4j-Ih-HVf"/>
+                                </mask>
+                                <mask key="constraints">
+                                    <exclude reference="PYT-Xn-3r7"/>
+                                    <exclude reference="QkR-Ce-HO6"/>
+                                    <exclude reference="efc-Ik-8IW"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=regular-widthClass=compact">
+                                <mask key="subviews">
+                                    <include reference="b4j-Ih-HVf"/>
+                                </mask>
+                                <mask key="constraints">
+                                    <include reference="PYT-Xn-3r7"/>
+                                    <include reference="QkR-Ce-HO6"/>
+                                    <include reference="efc-Ik-8IW"/>
+                                </mask>
+                            </variation>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A09-s9-e9d">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>

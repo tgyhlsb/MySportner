@@ -17,6 +17,7 @@
 
 @interface MSSetAGameVC2 () <UICollectionViewDataSource, UICollectionViewDelegate, MSLocationPickerDelegate>
 
+@property (weak, nonatomic) IBOutlet UITextField *whereTextField;
 @property (weak, nonatomic) IBOutlet UILabel *collectionViewTitleLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIView *cityView;
@@ -73,9 +74,17 @@
     [self setUpGestureRecognizers];
     [self setUpCollectionView];
     [self setUpAppearance];
+    [self registerForKeyboardNotifications];
     
     self.hiddenEndDatePicker = YES;
     self.hiddenStartDatePicker = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.whereTextField resignFirstResponder];
 }
 
 - (void)setUpAppearance
@@ -131,19 +140,33 @@
     [self.endView addGestureRecognizer:endTapRecognizer];
 }
 
-- (void)setUpInitialStarDate
+- (NSDate *)minimalStartDate
 {
-    NSDateComponents *startComponents = [[NSCalendar currentCalendar] components:NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit
+    NSDateComponents *startComponents = [[NSCalendar currentCalendar] components:NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit
                                                                         fromDate:[NSDate date]];
     [startComponents setMinute:0];
     [startComponents setHour:[startComponents hour]+1];
-    NSDate *roundedDate = [[NSCalendar currentCalendar] dateFromComponents:startComponents];
-    NSLog(@"%@", roundedDate);
-    self.startDatePicker.date = roundedDate;
+    return [[NSCalendar currentCalendar] dateFromComponents:startComponents];
+    
+}
+
+- (NSDate *)minimalEndDate
+{
+    return [self.startDatePicker.date dateByAddingTimeInterval:1800];
+}
+
+- (void)setUpInitialStarDate
+{
+    self.startDatePicker.date = [self minimalStartDate];
     [self updateStartDateView];
 }
 
 #pragma mark - Handlers
+
+- (void)backgroundTapHandler
+{
+    [self.whereTextField resignFirstResponder];
+}
 
 - (void)cityTapHandler
 {
@@ -154,6 +177,7 @@
 
 - (void)startTapHandler
 {
+    [self.whereTextField resignFirstResponder];
     if (self.hiddenStartDatePicker) {
         [self openStartDatePicker];
         [self closeEndDatePicker];
@@ -164,6 +188,7 @@
 
 - (void)endTapHandler
 {
+    [self.whereTextField resignFirstResponder];
     if (self.hiddenEndDatePicker) {
         [self openEndDatePicker];
         [self closeStartDatePicker];
@@ -174,11 +199,19 @@
 
 - (void)startDatePickerValueDidChange
 {
+    if ([[self minimalStartDate] timeIntervalSinceDate:self.startDatePicker.date] > 0) {
+        self.startDatePicker.date = [self minimalStartDate];
+    }
+    
     [self updateStartDateView];
 }
 
 - (void)endDatePickerValueDidChange
 {
+    if ([[self minimalEndDate] timeIntervalSinceDate:self.endDatePicker.date] > 0) {
+        self.endDatePicker.date = [self minimalEndDate];
+    }
+    
     [self updateEndDateView];
 }
 
@@ -283,6 +316,7 @@
     self.startDateValueLabel.text = [dateFormat stringFromDate:self.startDatePicker.date];
     
     self.endDatePicker.date = [NSDate dateWithTimeInterval:3600 sinceDate:self.startDatePicker.date];
+    self.endDatePicker.minimumDate = [self minimalEndDate];
     [self updateEndDateView];
 }
 
@@ -364,6 +398,51 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     self.selectedSport = [self.sports objectAtIndex:indexPath.item];
+}
+
+
+#pragma mark - Keyboard -
+
+// Call this method somewhere in your view controller setup code.
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    
+    UIScrollView *scrollView = ((UIScrollView *)self.view);
+    
+    [scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+kbSize.height)];
+    scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your application might not need or want this behavior.
+//    CGRect aRect = self.view.frame;
+//    aRect.size.height -= kbSize.height;
+//    if (!CGRectContainsPoint(aRect, self.whereTextField.frame.origin) ) {
+//        CGPoint scrollPoint = CGPointMake(0.0, self.whereTextField.frame.origin.y-kbSize.height);
+//        [scrollView setContentOffset:scrollPoint animated:YES];
+//    }
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    UIScrollView *scrollView = ((UIScrollView *)self.view);
+    scrollView.contentInset = contentInsets;
+    scrollView.scrollIndicatorInsets = contentInsets;
 }
 
 

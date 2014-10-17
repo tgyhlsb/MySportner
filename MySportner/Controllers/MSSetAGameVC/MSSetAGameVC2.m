@@ -69,7 +69,7 @@
 
 - (BOOL)shouldCancelTouch:(UITouch *)touch
 {
-    return YES;
+    return [touch.view isEqual:self.collectionView];
 }
 
 #pragma mark - View lifecycle
@@ -428,7 +428,11 @@
 - (NSArray *)sports
 {
     if (!_sports) {
-        _sports = [MSSport allSports];
+        NSMutableArray *allSports = [[MSSport allSports] mutableCopy];
+        NSArray *userSports = [[MSSportner currentSportner] getSports];
+        [allSports removeObjectsInArray:userSports];
+        
+        _sports = [userSports arrayByAddingObjectsFromArray:allSports];
     }
     return _sports;
 }

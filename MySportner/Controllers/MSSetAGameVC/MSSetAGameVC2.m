@@ -80,7 +80,7 @@
 
 - (void)setUpAppearance
 {
-    ((UIScrollView *)self.view).contentSize = self.view.frame.size;
+//    ((UIScrollView *)self.view).contentSize = self.view.frame.size;
     self.collectionViewTitleLabel.text = [@"Pick a sport" uppercaseString];
     
     self.startDatePicker.alpha = 0;
@@ -111,6 +111,9 @@
     [self.playersStepper addTarget:self action:@selector(playersStepperValueDidChange) forControlEvents:UIControlEventValueChanged];
     
     [self updatePlayersTitle];
+    
+    self.startSubviewContainer.backgroundColor = [UIColor clearColor];
+    self.endSubviewContainer.backgroundColor = [UIColor clearColor];
 }
 
 #pragma mark - Set up
@@ -339,8 +342,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    //    return [self.sports count];
-    return 3;
+    return [self.sports count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

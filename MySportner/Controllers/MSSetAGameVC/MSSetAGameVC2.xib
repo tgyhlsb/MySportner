@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSSetAGameVC2">
             <connections>
+                <outlet property="buttonView" destination="dgq-Yr-9Gj" id="kD3-mX-Jgq"/>
+                <outlet property="cityView" destination="QXD-E0-TuR" id="thE-xa-I6x"/>
+                <outlet property="endSubviewContainer" destination="PLp-Vv-nJO" id="KPH-sc-uIa"/>
+                <outlet property="endView" destination="ojU-4j-CTz" id="Vni-84-5kZ"/>
+                <outlet property="playersView" destination="8MN-hl-xa9" id="WyA-gL-AmT"/>
+                <outlet property="startSubviewContainer" destination="6Rz-TJ-pyK" id="GIF-uM-btH"/>
+                <outlet property="startView" destination="A09-s9-e9d" id="G4Q-O9-Ild"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="whereView" destination="K4P-l2-qHF" id="sg2-Nh-BD8"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -19,29 +28,122 @@
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="8" y="8" width="42" height="20.5"/>
+                    </variation>
                 </label>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Ipi-XP-ycr">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wCR-n8-3ix">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="0.0" y="36" width="400" height="104"/>
+                    </variation>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QXD-E0-TuR">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="0.0" y="162" width="400" height="54"/>
+                    </variation>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K4P-l2-qHF">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="0.0" y="239" width="400" height="54"/>
+                    </variation>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Rz-TJ-pyK">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PLp-Vv-nJO">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8MN-hl-xa9">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="54"/>
+                                    </variation>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgq-Yr-9Gj">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                        <rect key="frame" x="0.0" y="81" width="400" height="54"/>
+                                    </variation>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" red="0.47843137250000001" green="0.75686274509999996" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <variation key="default">
+                                <mask key="subviews">
+                                    <exclude reference="8MN-hl-xa9"/>
+                                    <exclude reference="dgq-Yr-9Gj"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                <rect key="frame" x="0.0" y="82" width="400" height="238"/>
+                                <mask key="subviews">
+                                    <include reference="8MN-hl-xa9"/>
+                                    <include reference="dgq-Yr-9Gj"/>
+                                </mask>
+                            </variation>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ojU-4j-CTz">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="54"/>
+                            </variation>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="PLp-Vv-nJO"/>
+                            <exclude reference="ojU-4j-CTz"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="0.0" y="383" width="400" height="320"/>
+                        <mask key="subviews">
+                            <include reference="PLp-Vv-nJO"/>
+                            <include reference="ojU-4j-CTz"/>
+                        </mask>
+                    </variation>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A09-s9-e9d">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="0.0" y="309" width="400" height="54"/>
+                    </variation>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="nsg-y0-bpu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="168" id="kTp-vX-E2V"/>
-                <constraint firstItem="nsg-y0-bpu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="179" id="wOv-Cl-GIg"/>
-            </constraints>
             <variation key="default">
                 <mask key="subviews">
                     <exclude reference="nsg-y0-bpu"/>
-                </mask>
-                <mask key="constraints">
-                    <exclude reference="kTp-vX-E2V"/>
-                    <exclude reference="wOv-Cl-GIg"/>
+                    <exclude reference="Ipi-XP-ycr"/>
+                    <exclude reference="QXD-E0-TuR"/>
+                    <exclude reference="K4P-l2-qHF"/>
+                    <exclude reference="6Rz-TJ-pyK"/>
+                    <exclude reference="A09-s9-e9d"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
                     <include reference="nsg-y0-bpu"/>
-                </mask>
-                <mask key="constraints">
-                    <include reference="kTp-vX-E2V"/>
-                    <include reference="wOv-Cl-GIg"/>
+                    <include reference="Ipi-XP-ycr"/>
+                    <include reference="QXD-E0-TuR"/>
+                    <include reference="K4P-l2-qHF"/>
+                    <include reference="6Rz-TJ-pyK"/>
+                    <include reference="A09-s9-e9d"/>
                 </mask>
             </variation>
         </view>

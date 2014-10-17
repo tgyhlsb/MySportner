@@ -10,6 +10,7 @@
                 <outlet property="buttonView" destination="dgq-Yr-9Gj" id="kD3-mX-Jgq"/>
                 <outlet property="cityView" destination="QXD-E0-TuR" id="thE-xa-I6x"/>
                 <outlet property="collectionView" destination="Ipi-XP-ycr" id="cYZ-gY-Q4i"/>
+                <outlet property="collectionViewTitleLabel" destination="Jms-CA-IL5" id="lw6-21-bZs"/>
                 <outlet property="endSubviewContainer" destination="PLp-Vv-nJO" id="KPH-sc-uIa"/>
                 <outlet property="endView" destination="ojU-4j-CTz" id="Vni-84-5kZ"/>
                 <outlet property="playersView" destination="8MN-hl-xa9" id="WyA-gL-AmT"/>
@@ -71,6 +72,12 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jms-CA-IL5">
+                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Rz-TJ-pyK">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
@@ -209,6 +216,7 @@
                 <constraint firstAttribute="trailing" secondItem="Ipi-XP-ycr" secondAttribute="trailing" id="8EJ-4I-unr"/>
                 <constraint firstItem="K4P-l2-qHF" firstAttribute="top" secondItem="QXD-E0-TuR" secondAttribute="bottom" constant="8" id="9JF-Bj-RLa"/>
                 <constraint firstAttribute="trailing" secondItem="QXD-E0-TuR" secondAttribute="trailing" id="A6x-zx-xTH"/>
+                <constraint firstItem="Jms-CA-IL5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="CtU-jd-IuC"/>
                 <constraint firstAttribute="trailing" secondItem="K4P-l2-qHF" secondAttribute="trailing" id="D0z-8c-Sml"/>
                 <constraint firstItem="QXD-E0-TuR" firstAttribute="top" secondItem="Ipi-XP-ycr" secondAttribute="bottom" constant="8" id="Ge5-kI-SpE"/>
                 <constraint firstItem="Ipi-XP-ycr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="45" id="ID6-gA-6df"/>
@@ -221,6 +229,7 @@
                 <constraint firstItem="6Rz-TJ-pyK" firstAttribute="top" secondItem="A09-s9-e9d" secondAttribute="bottom" constant="8" id="dgy-YD-YL9"/>
                 <constraint firstItem="A09-s9-e9d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nhs-jh-UNu"/>
                 <constraint firstItem="6Rz-TJ-pyK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="o71-yK-3ZX"/>
+                <constraint firstItem="Ipi-XP-ycr" firstAttribute="top" secondItem="Jms-CA-IL5" secondAttribute="bottom" constant="8" id="u3W-Cn-wC9"/>
                 <constraint firstAttribute="trailing" secondItem="A09-s9-e9d" secondAttribute="trailing" id="vOc-4B-vo0"/>
             </constraints>
             <variation key="default">
@@ -229,12 +238,15 @@
                     <exclude reference="QXD-E0-TuR"/>
                     <exclude reference="K4P-l2-qHF"/>
                     <exclude reference="A09-s9-e9d"/>
+                    <exclude reference="Jms-CA-IL5"/>
                     <exclude reference="6Rz-TJ-pyK"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="CtU-jd-IuC"/>
                     <exclude reference="8EJ-4I-unr"/>
                     <exclude reference="ID6-gA-6df"/>
                     <exclude reference="XtJ-gQ-IJa"/>
+                    <exclude reference="u3W-Cn-wC9"/>
                     <exclude reference="A6x-zx-xTH"/>
                     <exclude reference="Ge5-kI-SpE"/>
                     <exclude reference="S5S-YT-G2h"/>
@@ -257,12 +269,15 @@
                     <include reference="QXD-E0-TuR"/>
                     <include reference="K4P-l2-qHF"/>
                     <include reference="A09-s9-e9d"/>
+                    <include reference="Jms-CA-IL5"/>
                     <include reference="6Rz-TJ-pyK"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="CtU-jd-IuC"/>
                     <include reference="8EJ-4I-unr"/>
                     <include reference="ID6-gA-6df"/>
                     <include reference="XtJ-gQ-IJa"/>
+                    <include reference="u3W-Cn-wC9"/>
                     <include reference="A6x-zx-xTH"/>
                     <include reference="Ge5-kI-SpE"/>
                     <include reference="S5S-YT-G2h"/>

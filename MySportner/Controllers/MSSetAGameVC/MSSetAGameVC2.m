@@ -17,6 +17,7 @@
 
 @interface MSSetAGameVC2 () <UICollectionViewDataSource, UICollectionViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *collectionViewTitleLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIView *cityView;
 @property (weak, nonatomic) IBOutlet UIView *whereView;
@@ -46,6 +47,12 @@
     return setAGameVC;
 }
 
+- (BOOL)shouldCancelTouch:(UITouch *)touch
+{
+    return [touch.view isEqual:self.collectionView];
+}
+
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -56,9 +63,15 @@
     
     [self setUpGestureRecognizers];
     [self setUpCollectionView];
+    [self setUpAppearance];
     
     self.hiddenEndDatePicker = YES;
     self.hiddenStartDatePicker = YES;
+}
+
+- (void)setUpAppearance
+{
+    self.collectionViewTitleLabel.text = [@"Pick a sport" uppercaseString];
 }
 
 #pragma mark - Set up
@@ -169,6 +182,8 @@
     self.collectionView.allowsSelection = YES;
     self.collectionView.allowsMultipleSelection = NO;
     
+    self.collectionView.alwaysBounceHorizontal = YES;
+    
     self.collectionView.backgroundColor = [UIColor clearColor];
 }
 
@@ -189,7 +204,8 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.sports count];
+//    return [self.sports count];
+    return 3;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

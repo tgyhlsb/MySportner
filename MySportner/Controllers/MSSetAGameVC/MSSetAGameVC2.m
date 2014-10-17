@@ -15,7 +15,7 @@
 
 #define DATEPICKERS_HEIGHT 170
 
-@interface MSSetAGameVC2 () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface MSSetAGameVC2 () <UICollectionViewDataSource, UICollectionViewDelegate, MSLocationPickerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *collectionViewTitleLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -100,6 +100,9 @@
     self.startDateTitleLabel.text = @"Starts";
     self.endDateTitleLabel.text = @"Ends";
     
+    self.cityTitleLabel.text = @"City";
+    self.cityValueLabel.text = @"Chose";
+    
     self.playersStepper.maximumValue = 20.0;
     self.playersStepper.minimumValue = 2.0;
     self.playersStepper.stepValue = 1.0;
@@ -141,6 +144,7 @@
 - (void)cityTapHandler
 {
     MSLocationPickerVC *destination = [MSLocationPickerVC newControler];
+    destination.delegate = self;
     [self.navigationController pushViewController:destination animated:YES];
 }
 
@@ -265,7 +269,7 @@
 
 - (void)updatePlayersTitle
 {
-    self.playersTitleLabel.text = [NSString stringWithFormat:@"%.0f players", self.playersStepper.value];
+    self.playersTitleLabel.text = [NSString stringWithFormat:@"%.0f players needed", self.playersStepper.value];
 }
 
 - (void)updateStartDateView
@@ -292,6 +296,13 @@
     dateFormat.dateFormat = [NSDateFormatter dateFormatFromTemplate:endFormat options:0 locale:[NSLocale currentLocale]];
     dateFormat.locale = [NSLocale currentLocale];
     self.endDateValueLabel.text = [dateFormat stringFromDate:self.endDatePicker.date];
+}
+
+#pragma mark - MSLocationPickerDelegate
+
+- (void)didSelectLocation:(NSString *)location
+{
+    self.cityValueLabel.text = location;
 }
 
 #pragma mark - Sport picker -

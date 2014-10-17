@@ -15,6 +15,8 @@
 #import "TKAlertCenter.h"
 #import "MSActivityVC.h"
 #import "MBProgressHUD.h"
+#import "MSStyleFactory.h"
+#import "MSColorFactory.h"
 
 #define NIB_NAME @"MSSetAGameVC2"
 
@@ -43,6 +45,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *endDateValueLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *playersStepper;
 @property (weak, nonatomic) IBOutlet UILabel *playersTitleLabel;
+@property (weak, nonatomic) IBOutlet QBFlatButton *doneButton;
 
 @property (strong, nonatomic) MSSport *selectedSport;
 @property (strong, nonatomic) NSArray *sports;
@@ -121,6 +124,63 @@
     
     self.cityTitleLabel.text = @"City";
     self.cityValueLabel.text = @"Chose";
+    
+#define BACKGROUND_COLOR [UIColor whiteColor]
+#define CORNER_RADIUS 3.0
+#define SHADOW_OFFSET CGSizeMake(0.3, 0.7)
+#define SHADOW_RADIUS 3.0
+#define SHADOW_OPACITY 0.1
+#define SHADOW_COLOR [[UIColor blackColor] CGColor]
+    
+    self.cityView.backgroundColor = BACKGROUND_COLOR;
+    self.cityView.layer.cornerRadius = CORNER_RADIUS;
+    self.cityView.layer.shadowOffset = SHADOW_OFFSET;
+    self.cityView.layer.shadowRadius = SHADOW_RADIUS;
+    self.cityView.layer.shadowOpacity = SHADOW_OPACITY;
+    self.cityView.layer.shadowColor = SHADOW_COLOR;
+    
+    self.whereView.backgroundColor = BACKGROUND_COLOR;
+    self.whereView.layer.cornerRadius = CORNER_RADIUS;
+    self.whereView.layer.shadowOffset = SHADOW_OFFSET;
+    self.whereView.layer.shadowRadius = SHADOW_RADIUS;
+    self.whereView.layer.shadowOpacity = SHADOW_OPACITY;
+    self.whereView.layer.shadowColor = SHADOW_COLOR;
+    
+    self.startView.backgroundColor = BACKGROUND_COLOR;
+    self.startView.layer.cornerRadius = CORNER_RADIUS;
+    self.startView.layer.shadowOffset = SHADOW_OFFSET;
+    self.startView.layer.shadowRadius = SHADOW_RADIUS;
+    self.startView.layer.shadowOpacity = SHADOW_OPACITY;
+    self.startView.layer.shadowColor = SHADOW_COLOR;
+    
+    self.endView.backgroundColor = BACKGROUND_COLOR;
+    self.endView.layer.cornerRadius = CORNER_RADIUS;
+    self.endView.layer.shadowOffset = SHADOW_OFFSET;
+    self.endView.layer.shadowRadius = SHADOW_RADIUS;
+    self.endView.layer.shadowOpacity = SHADOW_OPACITY;
+    self.endView.layer.shadowColor = SHADOW_COLOR;
+    
+    self.playersView.backgroundColor = BACKGROUND_COLOR;
+    self.playersView.layer.cornerRadius = CORNER_RADIUS;
+    self.playersView.layer.shadowOffset = SHADOW_OFFSET;
+    self.playersView.layer.shadowRadius = SHADOW_RADIUS;
+    self.playersView.layer.shadowOpacity = SHADOW_OPACITY;
+    self.playersView.layer.shadowColor = SHADOW_COLOR;
+    self.playersStepper.tintColor = [MSColorFactory redLight];
+    
+    self.buttonView.backgroundColor = [UIColor clearColor];
+    
+    [MSStyleFactory setUILabel:self.cityTitleLabel withStyle:MSLabelStyleFormTitle];
+    [MSStyleFactory setUILabel:self.cityValueLabel withStyle:MSLabelStyleFormValue];
+    [MSStyleFactory setUILabel:self.startDateTitleLabel withStyle:MSLabelStyleFormTitle];
+    [MSStyleFactory setUILabel:self.startDateValueLabel withStyle:MSLabelStyleFormValue];
+    [MSStyleFactory setUILabel:self.endDateTitleLabel withStyle:MSLabelStyleFormTitle];
+    [MSStyleFactory setUILabel:self.endDateValueLabel withStyle:MSLabelStyleFormValue];
+    [MSStyleFactory setUILabel:self.playersTitleLabel withStyle:MSLabelStyleFormTitle];
+    [MSStyleFactory setUILabel:self.collectionViewTitleLabel withStyle:MSLabelStyleFormTitle];
+    
+    [MSStyleFactory setQBFlatButton:self.doneButton withStyle:MSFlatButtonStyleGreen];
+    [self.doneButton setTitle:@"DONE" forState:UIControlStateNormal];
     
     self.playersStepper.maximumValue = 20.0;
     self.playersStepper.minimumValue = 2.0;

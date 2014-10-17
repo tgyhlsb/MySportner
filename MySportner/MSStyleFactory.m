@@ -162,6 +162,26 @@
             //            [label setShadowOffset:CGSizeMake(0.05, 0.45)];
             break;
         }
+        case MSLabelStyleFormTitle:
+        {
+            UIColor *focusBorderColor = [MSColorFactory redLight];
+            UIColor *textFieldTextColorNormal = [MSColorFactory gray];
+            
+            label.layer.borderColor = [focusBorderColor CGColor];
+            label.font = [UIFont fontWithName:@"Helvetica-Light" size:14.0];
+            label.textColor = textFieldTextColorNormal;
+            break;
+        }
+        case MSLabelStyleFormValue:
+        {
+            UIColor *focusBorderColor = [MSColorFactory redLight];
+            UIColor *textFieldTextColorNormal = [MSColorFactory redDark];
+            
+            label.layer.borderColor = [focusBorderColor CGColor];
+            label.font = [UIFont fontWithName:@"Helvetica-Light" size:14.0];
+            label.textColor = textFieldTextColorNormal;
+            break;
+        }
             
         default:
             break;

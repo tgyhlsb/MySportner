@@ -130,6 +130,8 @@
 		5A580E8319F279EF00CA3846 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E8219F279EF00CA3846 /* logo.png */; };
 		5A580E8719F27B9300CA3846 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E8519F27B9300CA3846 /* check.png */; };
 		5A580E8819F27B9300CA3846 /* m.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E8619F27B9300CA3846 /* m.png */; };
+		5A580E9119F297B900CA3846 /* MSPlayerSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A580E9019F297B900CA3846 /* MSPlayerSizeView.m */; };
+		5A580E9319F297C900CA3846 /* MSPlayerSizeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E9219F297C900CA3846 /* MSPlayerSizeView.xib */; };
 		5A622FA318A12F9C00D33349 /* MSProfilePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */; };
 		5A622FA518A12FC000D33349 /* MSProfilePictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */; };
 		5A622FA818A13A4400D33349 /* attendees_subtitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA718A13A4400D33349 /* attendees_subtitle.png */; };
@@ -452,6 +454,9 @@
 		5A580E8219F279EF00CA3846 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		5A580E8519F27B9300CA3846 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		5A580E8619F27B9300CA3846 /* m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = m.png; sourceTree = "<group>"; };
+		5A580E8F19F297B900CA3846 /* MSPlayerSizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSPlayerSizeView.h; path = Views/MSPlayersizeView/MSPlayerSizeView.h; sourceTree = "<group>"; };
+		5A580E9019F297B900CA3846 /* MSPlayerSizeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSPlayerSizeView.m; path = Views/MSPlayersizeView/MSPlayerSizeView.m; sourceTree = "<group>"; };
+		5A580E9219F297C900CA3846 /* MSPlayerSizeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSPlayerSizeView.xib; sourceTree = "<group>"; };
 		5A622FA118A12F9C00D33349 /* MSProfilePictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSProfilePictureCell.h; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.h; sourceTree = "<group>"; };
 		5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSProfilePictureCell.m; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.m; sourceTree = "<group>"; };
 		5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSProfilePictureCell.xib; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.xib; sourceTree = "<group>"; };
@@ -973,6 +978,16 @@
 			path = "Images/Popup icons";
 			sourceTree = "<group>";
 		};
+		5A580E8E19F296AD00CA3846 /* MSPlayerSizeView */ = {
+			isa = PBXGroup;
+			children = (
+				5A580E8F19F297B900CA3846 /* MSPlayerSizeView.h */,
+				5A580E9019F297B900CA3846 /* MSPlayerSizeView.m */,
+				5A580E9219F297C900CA3846 /* MSPlayerSizeView.xib */,
+			);
+			name = MSPlayerSizeView;
+			sourceTree = "<group>";
+		};
 		5A622FA618A12FC500D33349 /* MSProfilePictureCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1369,6 +1384,7 @@
 				5A34C4E21895293500CE2EF2 /* MSProfilePictureView.m */,
 				5AEFA8B01896B580004B3EF7 /* MSPinView.h */,
 				5AEFA8B11896B580004B3EF7 /* MSPinView.m */,
+				5A580E8E19F296AD00CA3846 /* MSPlayerSizeView */,
 				5A2B6908189AD09600D82870 /* MSHeaderSectionView */,
 			);
 			name = Views;
@@ -1796,6 +1812,7 @@
 				5ADCF29E18401D2300E6C8D2 /* MSNotificationsVC.xib in Resources */,
 				5ADCF28B1840144D00E6C8D2 /* MSDrawerMenuVC.xib in Resources */,
 				5ADCF28F1840178900E6C8D2 /* MSActivitiesVC.xib in Resources */,
+				5A580E9319F297C900CA3846 /* MSPlayerSizeView.xib in Resources */,
 				5ABF1E5F18B16FEC008071F9 /* logout@2x.png in Resources */,
 				5AAF981D18E8530900B252FA /* skip@2x.png in Resources */,
 				5ADCF2AE184025BB00E6C8D2 /* MSWelcomeVC.xib in Resources */,
@@ -1872,6 +1889,7 @@
 			files = (
 				5ADCF29918401CD000E6C8D2 /* MSNavigationVC.m in Sources */,
 				5ADCF30E1840F17600E6C8D2 /* MSVenue.m in Sources */,
+				5A580E9119F297B900CA3846 /* MSPlayerSizeView.m in Sources */,
 				5A967462184A34160079EAC1 /* MSVenue+MapKit.m in Sources */,
 				5A3DE7C4184133E1001054EB /* MSUser.m in Sources */,
 				5A85E8F51872CFFF00F5E8F9 /* MSLocationCell.m in Sources */,

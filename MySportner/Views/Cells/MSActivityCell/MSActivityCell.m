@@ -13,6 +13,7 @@
 #import "MSFontFactory.h"
 #import "MSStyleFactory.h"
 #import "MSProfilePictureView.h"
+#import "MSPlayerSizeView.h"
 
 
 #define IDENTIFIER @"MSActivityCell"
@@ -25,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
+@property (strong, nonatomic) MSPlayerSizeView *playerSizeView;
 
 @property (nonatomic) BOOL oddIndex;
 
@@ -43,6 +46,17 @@
     [super awakeFromNib];
     
     [self registerGestureRecognizers];
+    
+    self.playerSizeView = [MSPlayerSizeView viewWithFrame:self.actionButton.frame];
+    self.playerSizeView.numberOfPlayer = 10;
+    [self addSubview:self.playerSizeView];
+    self.actionButton.hidden = YES;
+//    self.playerSizeView.backgroundColor = [UIColor redColor];
+    
+//    UIButton *fullButton = [[UIButton alloc] initWithFrame:self.actionButton.frame];
+//    [self.contentView addSubview:fullButton];
+//    [fullButton setTitle:@"button" forState:UIControlStateNormal];
+//    fullButton.backgroundColor = [UIColor redColor];
 }
 
 - (void)registerGestureRecognizers
@@ -71,7 +85,7 @@
     
     self.titleLabel.text = activity.sport.name;
     self.placeLabel.text = activity.place;
-    self.ownerNameLabel.text = [activity.owner fullName];
+    self.ownerNameLabel.text = activity.owner.firstName;
     self.ownerProfilePictureView.sportner = activity.owner;
 }
 

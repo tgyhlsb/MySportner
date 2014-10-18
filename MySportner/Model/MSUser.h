@@ -30,6 +30,7 @@
 + (void)tryLoginWithFacebook:(id<MSUserAuthentificationDelegate>)sender;
 
 + (MSUser *)currentUser;
++ (void)setCurrentUser:(MSUser *)currentUser;
 
 
 - (void)setWithFacebookInfo:(id<FBGraphUser>)userInfo;

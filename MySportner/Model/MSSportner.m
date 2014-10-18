@@ -103,6 +103,7 @@
         self.gender = MSUserGenderFemale;
     }
     self.birthday = [self stringToDate:[userInfo objectForKey:FACEBOOK_KEY_BIRTHDAY]];
+    self.lastPlace = [[userInfo objectForKey:@"location"] objectForKey:@"name"];
 }
 
 - (NSDate *)stringToDate:(NSString *)stringDate

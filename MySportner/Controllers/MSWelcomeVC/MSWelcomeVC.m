@@ -107,7 +107,7 @@
 - (void)tryAutoLoginWithFacebook
 {
     if ([MSFacebookManager isSessionAvailable]) {
-        [self performLogin];
+        [self login];
     } else {
         [self setButtonsVisible:YES];
     }
@@ -141,9 +141,26 @@
         [self hideLoadingView];
         if (!error) {
             [user setWithFacebookInfo:result];
+            [user saveInBackground];
             [self pushToVerifyProfileWithUser:user];
         } else {
             [self cancelFacebookLogin];
+        }
+    }];
+}
+
+- (void)requestSportnerForUser:(MSUser *)user
+{
+    [user.sportner fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        //        [self hideLoadingView];
+        if ([MSSportner currentSportner].sportLevels) {
+            MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            
+            [appDelegate setDrawerMenu];
+            
+            [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
+        } else {
+            [self pushToVerifyProfileWithUser:(MSUser *)object];
         }
     }];
 }
@@ -164,26 +181,29 @@
     }];
 }
 
-- (void)pushToVerifyProfileWithUser:(PFUser *)user
+- (void)pushToVerifyProfileWithUser:(MSUser *)user
 {
     MSVerifyAccountVC *destination = [MSVerifyAccountVC newController];
+    destination.user = user;
     [self.navigationController pushViewController:destination animated:YES];
+}
+
+- (void)login
+{
+    if ([MSSportner currentSportner]) {
+        [self performLogin];
+    } else {
+        [self loginWithFacebook];
+    }
 }
 
 - (void)performLogin
 {
-    [[MSSportner currentSportner] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-//        [self hideLoadingView];
-        if ([MSSportner currentSportner].sportLevels) {
-            MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-            
-            [appDelegate setDrawerMenu];
-            
-            [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
-        } else {
-            [self pushToVerifyProfileWithUser:(PFUser *)object];
-        }
-    }];
+    if ([MSSportner currentSportner]) {
+        [self requestSportnerForUser:[MSUser currentUser]];
+    } else {
+        [self requestFacebookInformationsForUser:[MSUser currentUser]];
+    }
 
 }
 

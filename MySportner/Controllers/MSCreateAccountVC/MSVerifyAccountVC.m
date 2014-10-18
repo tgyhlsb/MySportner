@@ -99,6 +99,15 @@
     
     self.hiddenBirthdatePicker = YES;
     self.hiddenGenderPicker = YES;
+    
+    [self fillFieldsFromUser];
+}
+
+- (void)setUser:(MSUser *)user
+{
+    _user = user;
+    
+    [self fillFieldsFromUser];
 }
 
 - (void)setUpImagePicker
@@ -545,6 +554,18 @@
     }
 }
 
+- (void)fillFieldsFromUser
+{
+    self.firstNameTextField.text = self.user.sportner.firstName;
+    self.lastNameTextField.text = self.user.sportner.lastName;
+    [self.genderPicker selectRow:self.user.sportner.gender inComponent:0 animated:NO];
+    [self genderPickerValueDidChange];
+    self.birthdatePicker.date = self.user.sportner.birthday;
+    [self birthdatePickerValueDidChange];
+    self.emailTextField.text = self.user.email;
+    self.cityValueLabel.text = self.user.sportner.lastPlace;
+}
+
 #pragma mark - MSLocationPickerDelegate
 
 - (void)didSelectLocation:(NSString *)location
@@ -605,6 +626,18 @@
     } else {
         [self saveUser];
     }
+}
+
+- (void)fullScreenPopUpDidTapOtherButton
+{
+    [self dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        
+    }];
+}
+
+- (void)fullScreenPopUpDidTapText
+{
+    
 }
 
 #pragma mark - MSCropperVCDelegate

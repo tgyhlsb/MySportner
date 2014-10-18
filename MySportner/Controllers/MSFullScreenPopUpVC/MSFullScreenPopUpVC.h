@@ -15,10 +15,12 @@
 @property (weak, nonatomic) id<MSFullScreenPopUpDelegate> delegate;
 
 @property (strong, nonatomic) NSString *imageName;
-@property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *textTitle;
 @property (strong, nonatomic) NSString *text;
 @property (strong, nonatomic) NSString *mainButtonTitle;
 @property (strong, nonatomic) NSString *otherButonTitle;
+
++ (MSFullScreenPopUpVC *)newController;
 
 @end
 

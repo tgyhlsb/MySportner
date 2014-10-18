@@ -43,8 +43,8 @@
     [self.createAccountButton setTitle:@"CREATE ACCOUNT" forState:UIControlStateNormal];
     [self.loginButton setTitle:@"LOGIN" forState:UIControlStateNormal];
     
-    self.createAccountButton.hidden = YES;
-    self.loginButton.hidden = YES;
+//    self.createAccountButton.hidden = YES;
+//    self.loginButton.hidden = YES;
     
     [self setButtonsAppearance];
     

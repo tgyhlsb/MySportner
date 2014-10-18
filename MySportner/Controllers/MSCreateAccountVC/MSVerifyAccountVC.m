@@ -21,6 +21,7 @@
 #import "MSCropperVC.h"
 #import "MSStyleFactory.h"
 #import "MSLocationPickerVC.h"
+#import "MSFullScreenPopUpVC.h"
 
 #define NIB_NAME @"MSVerifyAccountVC"
 
@@ -78,7 +79,7 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"BASIC INFORMATIONS";
+    self.navigationItem.title = [@"Verify your profile" uppercaseString];
     
     [self setUpGestureRecognizers];
     [self registerForKeyboardNotifications];
@@ -121,11 +122,11 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
-- (void)nextButtonHandler
+- (IBAction)nextButtonHandler
 {
-    NSString *message = nil;
-    NSString *title = @"Profile incomplete";
-//    
+//    NSString *message = nil;
+//    NSString *title = @"Profile incomplete";
+//
 //    if (![self.firstnameTextField.text length])
 //    {
 //        message = @"Please fill in your first name";
@@ -153,25 +154,25 @@
 //    } else if (!self.profilePicture) {
 ////        message = @"Please pick a picture";
 //    }
-    
-    
-    if (message && title)
-    {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:message];
+//    
+//    
+//    if (message && title)
+//    {
+//        [[TKAlertCenter defaultCenter] postAlertWithMessage:message];
 //        [self SetFocusOnFailedField];
-    } else {
-        [self showLoadingViewInView:self.view];
-        
-        if (self.hasAlreadySignUp) {
-            self.user = [MSUser currentUser];
-        } else {
-            self.user = [[MSUser alloc] init];
-        }
-        
-        if (!self.user.sportner) {
-            self.user.sportner = [[MSSportner alloc] init];
-        }
-        
+//    } else {
+//        [self showLoadingViewInView:self.view];
+//        
+//        if (self.hasAlreadySignUp) {
+//            self.user = [MSUser currentUser];
+//        } else {
+//            self.user = [[MSUser alloc] init];
+//        }
+//        
+//        if (!self.user.sportner) {
+//            self.user.sportner = [[MSSportner alloc] init];
+//        }
+//        
 //        self.user.sportner.firstName = self.firstnameTextField.text;
 //        self.user.sportner.lastName = self.lastnameTextField.text;
 //        self.user.email = self.emailTextField.text;
@@ -183,12 +184,47 @@
 //        self.user.sportner.username = self.user.email;
 //        self.user.sportner.facebookID = FACEBOOK_DEFAULT_ID[self.user.sportner.gender]; // default IDs to get a fb picture according to your gender
 //        self.user.sportner.image = self.imageView.image;
-        if (self.hasAlreadySignUp) {
-            [self.user saveInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
-        } else {
-            [self.user signUpInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
-        }
-    }
+//        if (self.hasAlreadySignUp) {
+//            [self.user saveInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
+//        } else {
+//            [self.user signUpInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
+//        }
+//    }
+    
+    [self showDonePopUp];
+}
+
+- (void)showDonePopUp
+{
+    MSFullScreenPopUpVC *vc = [MSFullScreenPopUpVC newController];
+    CGSize formSheetSize = self.navigationController.view.frame.size;
+    
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithSize:formSheetSize viewController:vc];
+    //    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+    
+    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
+    formSheet.shadowRadius = 0.0;
+    formSheet.shadowOpacity = 0.94;
+    formSheet.cornerRadius = 3.0;
+    formSheet.shouldDismissOnBackgroundViewTap = YES;
+    formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
+    formSheet.shouldCenterVertically = YES;
+    
+    vc.textTitle = @"Congratulations";
+    vc.text = @"You can now train like an Athlete, Win like a Champion and Sleep like a Baby !";
+    vc.otherButonTitle = @"or skip this step";
+    vc.mainButtonTitle = @"SHARE";
+    vc.imageName = @"m.png";
+    
+    formSheet.willPresentCompletionHandler = ^(UIViewController *presentedFSViewController) {
+        
+    };
+    
+//    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
+    
+    [self presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        
+    }];
 }
 
 #pragma mark - Set Up

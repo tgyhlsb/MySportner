@@ -30,7 +30,7 @@
 #define DATEPICKER_HEIGHT 162
 
 
-@interface MSVerifyAccountVC () <UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MSCropperVCDelegate, MSLocationPickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface MSVerifyAccountVC () <UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MSCropperVCDelegate, MSLocationPickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, MSFullScreenPopUpDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -63,6 +63,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *birthdateConstraint;
 
 @property (nonatomic) BOOL keyboardIsShown;
+
+@property (nonatomic) BOOL hasAcceptedTerms;
 
 @property (nonatomic) BOOL hiddenGenderPicker;
 @property (nonatomic) BOOL hiddenBirthdatePicker;
@@ -125,76 +127,83 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
+- (NSString *)errorForFields
+{
+    NSString *message = nil;
+    NSString *title = @"Profile incomplete";
+    
+    if (![self.firstNameTextField.text length])
+    {
+        message = @"Please fill in your first name";
+    }
+    else if (![self.lastNameTextField.text length])
+    {
+        message = @"Please fill in your last name";
+    }
+    else if (![self.emailTextField.text length])
+    {
+        message = @"Please fill in your email";
+    }
+    else if (![self NSStringIsValidEmail:self.emailTextField.text])
+    {
+        title = @"Error";
+        message = @"Your email address is invalid";
+    }
+    else if (![self.genderValueLabel.text length])
+    {
+        message = @"Please set your gender";
+    }
+    else if (![self.birthdateValueLabel.text length])
+    {
+        message = @"Please set your birthdate";
+    }
+    else if (![self.cityValueLabel.text length])
+    {
+        message = @"Please set your courrent city";
+    } else if (!self.profilePicture) {
+        //        message = @"Please pick a picture";
+    }
+    return message;
+}
+
 - (IBAction)nextButtonHandler
 {
-//    NSString *message = nil;
-//    NSString *title = @"Profile incomplete";
-//
-//    if (![self.firstnameTextField.text length])
-//    {
-//        message = @"Please fill in your first name";
-//    }
-//    else if (![self.lastnameTextField.text length])
-//    {
-//        message = @"Please fill in your last name";
-//    }
-//    else if (![self.emailTextField.text length])
-//    {
-//        message = @"Please fill in your email";
-//    }
-//    else if (![self NSStringIsValidEmail:self.emailTextField.text])
-//    {
-//        title = @"Error";
-//        message = @"Your email address is invalid";
-//    }
-//    else if (![self.passwordTextField.text length])
-//    {
-//        message = @"Please fill in your password";
-//    }
-//    else if (![self.birthdayTextField.text length])
-//    {
-//        message = @"Please fill in your birthday";
-//    } else if (!self.profilePicture) {
-////        message = @"Please pick a picture";
-//    }
-//    
-//    
-//    if (message && title)
-//    {
-//        [[TKAlertCenter defaultCenter] postAlertWithMessage:message];
-//        [self SetFocusOnFailedField];
-//    } else {
-//        [self showLoadingViewInView:self.view];
-//        
-//        if (self.hasAlreadySignUp) {
-//            self.user = [MSUser currentUser];
-//        } else {
-//            self.user = [[MSUser alloc] init];
-//        }
-//        
-//        if (!self.user.sportner) {
-//            self.user.sportner = [[MSSportner alloc] init];
-//        }
-//        
-//        self.user.sportner.firstName = self.firstnameTextField.text;
-//        self.user.sportner.lastName = self.lastnameTextField.text;
-//        self.user.email = self.emailTextField.text;
-//        self.user.password = self.passwordTextField.text;
-//        self.user.sportner.birthday = self.datePicker.date;
-//        self.user.sportner.lastPlace = @"Unknown";
-//        self.user.sportner.gender = self.genderControl.isOn ? MSUserGenderFemale : MSUserGenderMale;
-//        self.user.username = self.user.email;
-//        self.user.sportner.username = self.user.email;
-//        self.user.sportner.facebookID = FACEBOOK_DEFAULT_ID[self.user.sportner.gender]; // default IDs to get a fb picture according to your gender
-//        self.user.sportner.image = self.imageView.image;
-//        if (self.hasAlreadySignUp) {
-//            [self.user saveInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
-//        } else {
-//            [self.user signUpInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
-//        }
-//    }
+    NSString *message = [self errorForFields];
+    if (message)
+    {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:message];
+    } else {
+        [self saveUser];
+    }
+}
+
+- (void)saveUser
+{
+    [self showLoadingViewInView:self.view];
     
-    [self showTermPopUp];
+    if (!self.user) {
+        self.user = [MSUser currentUser];
+    }
+    
+    if (!self.user.sportner) {
+        self.user.sportner = [[MSSportner alloc] init];
+    }
+    
+    self.user.sportner.firstName = self.firstNameTextField.text;
+    self.user.sportner.lastName = self.lastNameTextField.text;
+    self.user.email = self.emailTextField.text;
+    self.user.sportner.birthday = self.birthdatePicker.date;
+    self.user.sportner.lastPlace = self.cityValueLabel.text;
+    self.user.sportner.gender = (MSUserGender)[self.genderPicker selectedRowInComponent:0];
+    self.user.username = self.user.email;
+    self.user.sportner.username = self.user.email;
+    self.user.sportner.facebookID = FACEBOOK_DEFAULT_ID[self.user.sportner.gender]; // default IDs to get a fb picture according to your gender
+//    self.user.sportner.image = self.imageView.image;
+//    if (self.hasAlreadySignUp) {
+        [self.user saveInBackgroundWithTarget:self selector:@selector(handlSignUp:error:)];
+//    } else {
+//        [self.user signUpInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
+//    }
 }
 
 - (void)showDonePopUp
@@ -223,6 +232,7 @@
         
     };
     
+    vc.delegate = self;
     //    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
     
     [self presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
@@ -256,6 +266,7 @@
         
     };
     
+    vc.delegate = self;
     //    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
     
     [self presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
@@ -310,9 +321,9 @@
     self.emailTitleLabel.text = @"Email";
     self.cityTitleLabel.text = @"Current city";
     
-    self.genderValueLabel.text = @"Tap to choose";
-    self.birthdateValueLabel.text = @"Tap to choose";
-    self.cityValueLabel.text = @"Tap to choose";
+    self.genderValueLabel.text = @"";
+    self.birthdateValueLabel.text = @"";
+    self.cityValueLabel.text = @"";
     
 #define BACKGROUND_COLOR [UIColor whiteColor]
 #define CORNER_RADIUS 3.0
@@ -449,6 +460,7 @@
 
 - (void)cityTapHandler
 {
+    [self.activeTextField resignFirstResponder];
     MSLocationPickerVC *destination = [MSLocationPickerVC newControler];
     destination.delegate = self;
     [self.navigationController pushViewController:destination animated:YES];
@@ -582,6 +594,21 @@
     [picker pushViewController:destination animated:YES];
 }
 
+#pragma mark - MSFullScreenPopUpDelegate
+
+- (void)fullScreenPopUpDidTapMainButton
+{
+    [self dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        
+    }];
+    
+    if (self.hasAcceptedTerms) {
+        [self performTransitionToNextScreen];
+    } else {
+        [self saveUser];
+    }
+}
+
 #pragma mark - MSCropperVCDelegate
 
 - (void)cropper:(MSCropperVC *)cropper didCropImage:(UIImage *)image
@@ -630,24 +657,11 @@
     [self.navigationController pushViewController:destinationVC animated:YES];
 }
 
-
-
-//- (IBAction)validateButtonPress:(UIButton *)sender
-//{
-//    if (self.user) {
-//        [self showLoadingViewInView:self.view];
-//        [self.user signUpInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
-//    } else {
-//        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't sign up" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil] show];
-//    }
-//}
-
-
-- (void)handleSignUp:(NSNumber *)result error:(NSError *)error
+- (void)handlSignUp:(NSNumber *)result error:(NSError *)error
 {
     [self hideLoadingView];
     if (!error) {
-        [self performTransitionToNextScreen];
+        [self showDonePopUp];
     } else {
         NSString *errorMessage = [error.userInfo objectForKey:@"error"];
         [[TKAlertCenter defaultCenter] postAlertWithMessage:errorMessage];
@@ -658,27 +672,6 @@
 {
     return [[MSVerifyAccountVC alloc] initWithNibName:NIB_NAME bundle:nil];
 }
-
-//- (UIDatePicker *)datePicker
-//{
-//    if (!_datePicker) {
-//        CGRect frame = CGRectMake(0, self.birthdayTextField.frame.origin.y, self.scrollView.frame.size.width, DATEPICKER_HEIGHT);
-//        self.datePicker = [[UIDatePicker alloc] initWithFrame:frame];
-//        
-//        self.datePicker.datePickerMode = UIDatePickerModeDate;
-//        self.datePicker.hidden = YES;
-//        self.datePicker.maximumDate = [NSDate date];
-//        [self.scrollView insertSubview:self.datePicker belowSubview:self.birthdayTextField];
-//        [self.datePicker addTarget:self action:@selector(datePickerValueDidChange) forControlEvents:UIControlEventValueChanged];
-//        self.datePicker.date = [NSDate dateWithTimeIntervalSince1970:0];
-//        
-//        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(datePickerDidTap)];
-//        
-//        [self.datePicker addGestureRecognizer:tapGesture];
-//    }
-//    return _datePicker;
-//    return nil;
-//}
 
 #pragma mark UITextFieldDelegate
 

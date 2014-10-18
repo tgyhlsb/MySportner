@@ -191,7 +191,7 @@
 //        }
 //    }
     
-    [self showDonePopUp];
+    [self showTermPopUp];
 }
 
 - (void)showDonePopUp
@@ -220,7 +220,40 @@
         
     };
     
-//    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
+    //    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
+    
+    [self presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        
+    }];
+}
+
+- (void)showTermPopUp
+{
+    MSFullScreenPopUpVC *vc = [MSFullScreenPopUpVC newController];
+    CGSize formSheetSize = self.navigationController.view.frame.size;
+    
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithSize:formSheetSize viewController:vc];
+    //    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+    
+    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
+    formSheet.shadowRadius = 0.0;
+    formSheet.shadowOpacity = 0.94;
+    formSheet.cornerRadius = 3.0;
+    formSheet.shouldDismissOnBackgroundViewTap = YES;
+    formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
+    formSheet.shouldCenterVertically = YES;
+    
+    vc.textTitle = nil;
+    vc.text = @"By clicking next, you hereby agree to the terms and confitions of use.";
+    vc.otherButonTitle = nil;
+    vc.mainButtonTitle = @"NEXT";
+    vc.imageName = @"check.png";
+    
+    formSheet.willPresentCompletionHandler = ^(UIViewController *presentedFSViewController) {
+        
+    };
+    
+    //    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
     
     [self presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
         

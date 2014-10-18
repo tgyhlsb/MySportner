@@ -125,6 +125,8 @@
 		5A580E7719F25F2C00CA3846 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E7519F25F2C00CA3846 /* Main.storyboard */; };
 		5A580E7A19F25FC200CA3846 /* volleyball.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E7819F25FC200CA3846 /* volleyball.png */; };
 		5A580E7B19F25FC200CA3846 /* volleyball2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E7919F25FC200CA3846 /* volleyball2.png */; };
+		5A580E7F19F26D6A00CA3846 /* MSFullScreenPopUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A580E7D19F26D6A00CA3846 /* MSFullScreenPopUpVC.m */; };
+		5A580E8019F26D6A00CA3846 /* MSFullScreenPopUpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E7E19F26D6A00CA3846 /* MSFullScreenPopUpVC.xib */; };
 		5A622FA318A12F9C00D33349 /* MSProfilePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */; };
 		5A622FA518A12FC000D33349 /* MSProfilePictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */; };
 		5A622FA818A13A4400D33349 /* attendees_subtitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA718A13A4400D33349 /* attendees_subtitle.png */; };
@@ -441,6 +443,9 @@
 		5A580E7619F25F2C00CA3846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5A580E7819F25FC200CA3846 /* volleyball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volleyball.png; sourceTree = "<group>"; };
 		5A580E7919F25FC200CA3846 /* volleyball2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volleyball2.png; sourceTree = "<group>"; };
+		5A580E7C19F26D6A00CA3846 /* MSFullScreenPopUpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSFullScreenPopUpVC.h; path = Controllers/MSFullScreenPopUpVC/MSFullScreenPopUpVC.h; sourceTree = "<group>"; };
+		5A580E7D19F26D6A00CA3846 /* MSFullScreenPopUpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSFullScreenPopUpVC.m; path = Controllers/MSFullScreenPopUpVC/MSFullScreenPopUpVC.m; sourceTree = "<group>"; };
+		5A580E7E19F26D6A00CA3846 /* MSFullScreenPopUpVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSFullScreenPopUpVC.xib; path = Controllers/MSFullScreenPopUpVC/MSFullScreenPopUpVC.xib; sourceTree = "<group>"; };
 		5A622FA118A12F9C00D33349 /* MSProfilePictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSProfilePictureCell.h; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.h; sourceTree = "<group>"; };
 		5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSProfilePictureCell.m; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.m; sourceTree = "<group>"; };
 		5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSProfilePictureCell.xib; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.xib; sourceTree = "<group>"; };
@@ -942,6 +947,16 @@
 			path = "Images/Sports icons";
 			sourceTree = "<group>";
 		};
+		5A580E8119F26E6C00CA3846 /* MSFullScreenPopUpVC */ = {
+			isa = PBXGroup;
+			children = (
+				5A580E7C19F26D6A00CA3846 /* MSFullScreenPopUpVC.h */,
+				5A580E7D19F26D6A00CA3846 /* MSFullScreenPopUpVC.m */,
+				5A580E7E19F26D6A00CA3846 /* MSFullScreenPopUpVC.xib */,
+			);
+			name = MSFullScreenPopUpVC;
+			sourceTree = "<group>";
+		};
 		5A622FA618A12FC500D33349 /* MSProfilePictureCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1292,6 +1307,7 @@
 				5ADCF29818401CD000E6C8D2 /* MSNavigationVC.m */,
 				5ADCF2A718401FF800E6C8D2 /* MSCenterController.h */,
 				5ADCF2A818401FF800E6C8D2 /* MSCenterController.m */,
+				5A580E8119F26E6C00CA3846 /* MSFullScreenPopUpVC */,
 				5A29CAF7184920CD002A8B60 /* MSSportLevelFormVC */,
 				5A1B737A1844AC3B00555FE4 /* MSLoginFormVC */,
 				5AFE43FF18427055001376C7 /* MSFindFriendsVC */,
@@ -1692,6 +1708,7 @@
 				5A0CB7F31891714A0027EE58 /* slider-default_trackBackground@2x.png in Resources */,
 				5AA60A02184B549C00B09ADD /* ProximaNova-Regular.otf in Resources */,
 				5ADCF2E71840D23A00E6C8D2 /* MSTextFieldPickerCell.xib in Resources */,
+				5A580E8019F26D6A00CA3846 /* MSFullScreenPopUpVC.xib in Resources */,
 				5AFE689518508EAC00E40541 /* plus_button_press.png in Resources */,
 				5ADCF2A518401E2800E6C8D2 /* MSSetAGameVC.xib in Resources */,
 				5A4CE2BB187099C50081AA1E /* MSButtonCell.xib in Resources */,
@@ -1876,6 +1893,7 @@
 				5ADCF2D81840BDAD00E6C8D2 /* MSSmallSportCell.m in Sources */,
 				5ADCF3051840E60300E6C8D2 /* MSFourSquareRequestFactory.m in Sources */,
 				5A622FA318A12F9C00D33349 /* MSProfilePictureCell.m in Sources */,
+				5A580E7F19F26D6A00CA3846 /* MSFullScreenPopUpVC.m in Sources */,
 				5AA60A0E184B67E700B09ADD /* NKColorSwitch.m in Sources */,
 				5ADCF235184004D300E6C8D2 /* MSAppDelegate.m in Sources */,
 				5ADCF29C18401D1800E6C8D2 /* MSNotificationsVC.m in Sources */,

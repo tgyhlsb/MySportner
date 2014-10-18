@@ -47,7 +47,7 @@
 
 + (UIFont *)fontForCellInfo
 {
-    return [UIFont fontWithName:@"ProximaNova-SemiBold" size:11];
+    return [UIFont fontWithName:@"ProximaNova-Light" size:11];
 }
 
 + (UIFont *)fontForCellAcivityTitle

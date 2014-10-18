@@ -131,9 +131,9 @@
     
 #define BACKGROUND_COLOR [UIColor whiteColor]
 #define CORNER_RADIUS 3.0
-#define SHADOW_OFFSET CGSizeMake(0.3, 0.7)
-#define SHADOW_RADIUS 3.0
-#define SHADOW_OPACITY 0.1
+#define SHADOW_OFFSET CGSizeMake(0, 1)
+#define SHADOW_RADIUS 0.64
+#define SHADOW_OPACITY 0.08
 #define SHADOW_COLOR [[UIColor blackColor] CGColor]
     
     self.cityView.backgroundColor = BACKGROUND_COLOR;
@@ -183,8 +183,9 @@
     [MSStyleFactory setUILabel:self.endDateTitleLabel withStyle:MSLabelStyleFormTitle];
     [MSStyleFactory setUILabel:self.endDateValueLabel withStyle:MSLabelStyleFormValue];
     [MSStyleFactory setUILabel:self.playersTitleLabel withStyle:MSLabelStyleFormTitle];
-    [MSStyleFactory setUILabel:self.collectionViewTitleLabel withStyle:MSLabelStyleFormTitle];
     
+    self.collectionViewTitleLabel.font = [UIFont fontWithName:@"ProximaNova-SemiBold" size:12.0];
+    self.collectionViewTitleLabel.textColor = [UIColor colorWithRed:80.0/255.0 green:93.0/255.0 blue:101.0/255.0 alpha:0.8];
     
     [MSStyleFactory setQBFlatButton:self.doneButton withStyle:MSFlatButtonStyleGreen];
     [self.doneButton setTitle:@"DONE" forState:UIControlStateNormal];

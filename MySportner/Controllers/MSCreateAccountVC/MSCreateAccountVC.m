@@ -122,7 +122,6 @@
 //
 //- (void)setFormViews
 //{
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_blur_light.png"]];
 //    self.scrollView.backgroundColor = [UIColor clearColor];
 //    
 //    UIColor *focusBorderColor = [MSColorFactory redLight];

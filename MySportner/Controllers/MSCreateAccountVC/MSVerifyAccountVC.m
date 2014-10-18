@@ -20,13 +20,14 @@
 #import "MSFindFriendsVC.h"
 #import "MSCropperVC.h"
 #import "MSStyleFactory.h"
+#import "MSLocationPickerVC.h"
 
 #define NIB_NAME @"MSVerifyAccountVC"
 
 #define DATEPICKER_HEIGHT 162
 
 
-@interface MSVerifyAccountVC () <UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MSCropperVCDelegate>
+@interface MSVerifyAccountVC () <UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MSCropperVCDelegate, MSLocationPickerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -44,6 +45,16 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *birthdatePicker;
 @property (weak, nonatomic) IBOutlet UILabel *firstNameTitleLabel;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
+@property (weak, nonatomic) IBOutlet UILabel *lastNameTitleLabel;
+@property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
+@property (weak, nonatomic) IBOutlet UILabel *genderTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *genderValueLabel;
+@property (weak, nonatomic) IBOutlet UILabel *birthdateTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *birthdateValueLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emailTitleLabel;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UILabel *cityTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cityValueLabel;
 
 @property (nonatomic) BOOL hiddenGenderPicker;
 @property (nonatomic) BOOL hiddenBirthdatePicker;
@@ -372,6 +383,22 @@
     self.genderSubviewContainer.backgroundColor = [UIColor clearColor];
     self.birthdateSubviewContainer.backgroundColor = [UIColor clearColor];
     
+    [self.birthdatePicker addTarget:self action:@selector(birthdatePickerValueDidChange) forControlEvents:UIControlEventValueChanged];
+    self.birthdatePicker.date = [NSDate dateWithTimeIntervalSince1970:0];
+    self.birthdatePicker.maximumDate = [NSDate date];
+    self.birthdatePicker.datePickerMode = UIDatePickerModeDate;
+    
+    self.firstNameTextField.delegate = self;
+    self.lastNameTextField.delegate = self;
+    self.emailTextField.delegate = self;
+    
+    self.firstNameTitleLabel.text = @"First name";
+    self.lastNameTitleLabel.text = @"Last name";
+    self.genderTitleLabel.text = @"Gender";
+    self.birthdateTitleLabel.text = @"Birthdate";
+    self.emailTitleLabel.text = @"Mail";
+    self.cityTitleLabel.text = @"Current city";
+    
 #define BACKGROUND_COLOR [UIColor whiteColor]
 #define CORNER_RADIUS 3.0
 #define SHADOW_OFFSET CGSizeMake(0.3, 0.7)
@@ -421,8 +448,57 @@
     self.cityView.layer.shadowOpacity = SHADOW_OPACITY;
     self.cityView.layer.shadowColor = SHADOW_COLOR;
     
+#define BORDER_STYLE UITextBorderStyleNone
+#define VALUE_TEXTCOLOR [MSColorFactory redLight]
+#define VALUE_FONT [UIFont fontWithName:@"Helvetica-Light" size:13.0]
+    
+    self.firstNameTextField.borderStyle = BORDER_STYLE;
+    self.firstNameTextField.textColor = VALUE_TEXTCOLOR;
+    self.firstNameTextField.font = VALUE_FONT;
+    
+    self.lastNameTextField.borderStyle = BORDER_STYLE;
+    self.lastNameTextField.textColor = VALUE_TEXTCOLOR;
+    self.lastNameTextField.font = VALUE_FONT;
+    
+    self.genderValueLabel.textColor = VALUE_TEXTCOLOR;
+    self.genderValueLabel.font = VALUE_FONT;
+    
+    self.birthdateValueLabel.textColor = VALUE_TEXTCOLOR;
+    self.birthdateValueLabel.font = VALUE_FONT;
+    
+    self.emailTextField.borderStyle = BORDER_STYLE;
+    self.emailTextField.textColor = VALUE_TEXTCOLOR;
+    self.emailTextField.font = VALUE_FONT;
+    
+    self.cityValueLabel.textColor = VALUE_TEXTCOLOR;
+    self.cityValueLabel.font = VALUE_FONT;
+    
+#define TITLE_TEXTCOLOR [MSColorFactory gray]
+#define TITLE_FONT [UIFont fontWithName:@"Helvetica-Light" size:9.0]
+    
+    self.firstNameTitleLabel.textColor = TITLE_TEXTCOLOR;
+    self.firstNameTitleLabel.font = TITLE_FONT;
+    
+    self.lastNameTitleLabel.textColor = TITLE_TEXTCOLOR;
+    self.lastNameTitleLabel.font = TITLE_FONT;
+    
+    self.genderTitleLabel.textColor = TITLE_TEXTCOLOR;
+    self.genderTitleLabel.font = TITLE_FONT;
+    
+    self.birthdateTitleLabel.textColor = TITLE_TEXTCOLOR;
+    self.birthdateTitleLabel.font = TITLE_FONT;
+    
+    self.emailTitleLabel.textColor = TITLE_TEXTCOLOR;
+    self.emailTitleLabel.font = TITLE_FONT;
+    
+    self.cityTitleLabel.textColor = TITLE_TEXTCOLOR;
+    self.cityTitleLabel.font = TITLE_FONT;
+    
+    
     [MSStyleFactory setQBFlatButton:self.nextButton withStyle:MSFlatButtonStyleGreen];
     [self.nextButton setTitle:@"NEXT" forState:UIControlStateNormal];
+    
+    self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2.0;
 }
 
 #pragma mark - Handlers
@@ -450,6 +526,18 @@
 }
 
 - (void)cityTapHandler
+{
+    MSLocationPickerVC *destination = [MSLocationPickerVC newControler];
+    destination.delegate = self;
+    [self.navigationController pushViewController:destination animated:YES];
+}
+
+- (void)genderPickerValueDidChange
+{
+    
+}
+
+- (void)birthdatePickerValueDidChange
 {
     
 }
@@ -533,6 +621,13 @@
         
         self.hiddenBirthdatePicker = YES;
     }
+}
+
+#pragma mark - MSLocationPickerDelegate
+
+- (void)didSelectLocation:(NSString *)location
+{
+    self.cityValueLabel.text = location;
 }
 
 #pragma mark UIImagePickerControllerDelegate
@@ -665,8 +760,8 @@
     return [[MSVerifyAccountVC alloc] initWithNibName:NIB_NAME bundle:nil];
 }
 
-- (UIDatePicker *)datePicker
-{
+//- (UIDatePicker *)datePicker
+//{
 //    if (!_datePicker) {
 //        CGRect frame = CGRectMake(0, self.birthdayTextField.frame.origin.y, self.scrollView.frame.size.width, DATEPICKER_HEIGHT);
 //        self.datePicker = [[UIDatePicker alloc] initWithFrame:frame];
@@ -683,90 +778,28 @@
 //        [self.datePicker addGestureRecognizer:tapGesture];
 //    }
 //    return _datePicker;
-    return nil;
-}
+//    return nil;
+//}
 
 #pragma mark UITextFieldDelegate
 
-
-- (void)closeAllResponders
-{
-    [self.activeTextField resignFirstResponder];
-    if (!self.datePicker.hidden)
-    {
-        [self closeDatePicker];
-    }
-}
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-//    if ([textField isEqual:self.birthdayTextField])
-//    {
-//        [self toogleDatePicker];
-//        
-//        return NO;
-//    }
-//    else
-//    {
-//        if (!self.datePicker.hidden) {
-//            [self closeDatePicker];
-//        }
-//        return YES;
-//    }
-    return YES;
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-//    if ([textField isEqual:self.firstnameTextField])
-//    {
-//        [self.lastnameTextField becomeFirstResponder];
-//    }
-//    else if ([textField isEqual:self.lastnameTextField])
-//    {
-//        [self.emailTextField becomeFirstResponder];
-//    }
-//    else if ([textField isEqual:self.emailTextField])
-//    {
-//        [self.passwordTextField becomeFirstResponder];
-//    }
-//    else if ([textField isEqual:self.passwordTextField])
-//    {
-//        [textField resignFirstResponder];
-//        [self openDatePicker];
-//    }
+    if ([textField isEqual:self.firstNameTextField])
+    {
+        [self.lastNameTextField becomeFirstResponder];
+    }
+    else if ([textField isEqual:self.lastNameTextField])
+    {
+        [self.lastNameTextField resignFirstResponder];
+        [self openGenderPicker];
+    }
+    else if ([textField isEqual:self.emailTextField])
+    {
+        [self.emailTextField resignFirstResponder];
+    }
     
     return YES;
-}
-
-- (void)toogleDatePicker
-{
-    self.datePicker.hidden ? [self openDatePicker] : [self closeDatePicker];
-}
-
-- (void)openDatePicker
-{
-//    [self.activeTextField resignFirstResponder];
-//    [self.birthdayTextField setFocused:YES];
-//    
-//    [UIView animateWithDuration:0.3 animations:^{
-//        self.datePicker.hidden = NO;
-//        self.nextButton.frame = [self nextButtonDownFrame];
-//        self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height+DATEPICKER_HEIGHT-64);
-//        self.commentLabel.hidden = YES;
-//    }];
-}
-
-- (void)closeDatePicker
-{
-//    [self.birthdayTextField setFocused:NO];
-//    
-//    [UIView animateWithDuration:0.3 animations:^{
-//        self.datePicker.hidden = YES;
-//        self.nextButton.frame = [self nextButtonNormalFrame];
-//        self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height-DATEPICKER_HEIGHT+64);
-//        self.commentLabel.hidden = NO;
-//    }];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -778,22 +811,6 @@
 {
     self.activeTextField = nil;
     textField.textColor = [MSColorFactory gray];
-}
-
-#pragma mark DatePicker Handler
-
-
-- (void)datePickerValueDidChange
-{
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"dd - MM - yyyy"];
-//    self.birthdayTextField.text = [dateFormat stringFromDate:self.datePicker.date];
-}
-
-- (void)datePickerDidTap
-{
-    [self datePickerValueDidChange];
-    [self closeDatePicker];
 }
 
 #pragma mark Keyboard
@@ -818,7 +835,7 @@
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
     // -64 is for nav bar
-    self.scrollView.contentSize = CGSizeMake(320, self.scrollView.frame.size.height + kbSize.height - 64);
+    self.scrollView.contentSize = CGSizeMake(320, self.scrollView.frame.size.height + kbSize.height - 20);
     CGRect destinationFrame = CGRectMake(0, self.activeTextField.frame.origin.y, 320, self.activeTextField.frame.size.height+kbSize.height+25);
     [self.scrollView scrollRectToVisible:destinationFrame animated:YES];
 }
@@ -827,7 +844,7 @@
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
     [UIView animateWithDuration:0.2 animations:^{
-        self.scrollView.contentSize = CGSizeMake(320, self.scrollView.frame.size.height - 64);
+        self.scrollView.contentSize = CGSizeMake(320, self.scrollView.frame.size.height - 20);
     }];
 }
 

@@ -39,9 +39,12 @@
     self.shouldHideLoadingWhenAppOpens = YES;
     [super viewDidLoad];
     
-    [self.facebookLoginButton setTitle:@"CONNECT VIA        " forState:UIControlStateNormal];
+    [self.facebookLoginButton setTitle:@"Login via facebook" forState:UIControlStateNormal];
     [self.createAccountButton setTitle:@"CREATE ACCOUNT" forState:UIControlStateNormal];
     [self.loginButton setTitle:@"LOGIN" forState:UIControlStateNormal];
+    
+    self.createAccountButton.hidden = YES;
+    self.loginButton.hidden = YES;
     
     [self setButtonsAppearance];
     
@@ -53,7 +56,7 @@
         [self performLogin];
     }
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Splashscreen.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Splashscreen-boxe.png"]];
 }
 
 - (void)setButtonsAppearance

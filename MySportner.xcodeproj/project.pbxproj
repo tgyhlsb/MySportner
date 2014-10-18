@@ -120,6 +120,11 @@
 		5A580E6A19F2570400CA3846 /* volley2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E5819F2570400CA3846 /* volley2.png */; };
 		5A580E6B19F2570400CA3846 /* yoga.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E5919F2570400CA3846 /* yoga.png */; };
 		5A580E6C19F2570400CA3846 /* yoga2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E5A19F2570400CA3846 /* yoga2.png */; };
+		5A580E6E19F25AD000CA3846 /* icon-fb.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E6D19F25AD000CA3846 /* icon-fb.png */; };
+		5A580E7019F25E6A00CA3846 /* Splashscreen-boxe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E6F19F25E6A00CA3846 /* Splashscreen-boxe@2x.png */; };
+		5A580E7319F25ECD00CA3846 /* rugby.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E7119F25ECD00CA3846 /* rugby.png */; };
+		5A580E7419F25ECD00CA3846 /* rugby2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E7219F25ECD00CA3846 /* rugby2.png */; };
+		5A580E7719F25F2C00CA3846 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E7519F25F2C00CA3846 /* Main.storyboard */; };
 		5A622FA318A12F9C00D33349 /* MSProfilePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */; };
 		5A622FA518A12FC000D33349 /* MSProfilePictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */; };
 		5A622FA818A13A4400D33349 /* attendees_subtitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA718A13A4400D33349 /* attendees_subtitle.png */; };
@@ -132,7 +137,6 @@
 		5A653B181894427C00E2B8AE /* ProximaNova-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5A653B171894427C00E2B8AE /* ProximaNova-Light.otf */; };
 		5A6DD74E18A031D900649A58 /* Splashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A6DD74C18A031D900649A58 /* Splashscreen.png */; };
 		5A6DD74F18A031D900649A58 /* Splashscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A6DD74D18A031D900649A58 /* Splashscreen@2x.png */; };
-		5A6DD75118A0346200649A58 /* fb.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A6DD75018A0346200649A58 /* fb.png */; };
 		5A6DD75318A03A2400649A58 /* share_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A6DD75218A03A2400649A58 /* share_button.png */; };
 		5A78B7EC1895759D0074A5B3 /* MSPickLocalisationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78B7EB1895759D0074A5B3 /* MSPickLocalisationVC.m */; };
 		5A78B7EE189575AA0074A5B3 /* MSPickLocalisationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A78B7ED189575AA0074A5B3 /* MSPickLocalisationVC.xib */; };
@@ -432,6 +436,11 @@
 		5A580E5819F2570400CA3846 /* volley2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volley2.png; sourceTree = "<group>"; };
 		5A580E5919F2570400CA3846 /* yoga.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yoga.png; sourceTree = "<group>"; };
 		5A580E5A19F2570400CA3846 /* yoga2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yoga2.png; sourceTree = "<group>"; };
+		5A580E6D19F25AD000CA3846 /* icon-fb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-fb.png"; sourceTree = "<group>"; };
+		5A580E6F19F25E6A00CA3846 /* Splashscreen-boxe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Splashscreen-boxe@2x.png"; sourceTree = "<group>"; };
+		5A580E7119F25ECD00CA3846 /* rugby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rugby.png; sourceTree = "<group>"; };
+		5A580E7219F25ECD00CA3846 /* rugby2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rugby2.png; sourceTree = "<group>"; };
+		5A580E7619F25F2C00CA3846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5A622FA118A12F9C00D33349 /* MSProfilePictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSProfilePictureCell.h; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.h; sourceTree = "<group>"; };
 		5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSProfilePictureCell.m; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.m; sourceTree = "<group>"; };
 		5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSProfilePictureCell.xib; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.xib; sourceTree = "<group>"; };
@@ -447,7 +456,6 @@
 		5A653B171894427C00E2B8AE /* ProximaNova-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Light.otf"; sourceTree = "<group>"; };
 		5A6DD74C18A031D900649A58 /* Splashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splashscreen.png; sourceTree = "<group>"; };
 		5A6DD74D18A031D900649A58 /* Splashscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Splashscreen@2x.png"; sourceTree = "<group>"; };
-		5A6DD75018A0346200649A58 /* fb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fb.png; sourceTree = "<group>"; };
 		5A6DD75218A03A2400649A58 /* share_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_button.png; sourceTree = "<group>"; };
 		5A78B7EA1895759D0074A5B3 /* MSPickLocalisationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSPickLocalisationVC.h; path = Controllers/MSPickLocalisationVC/MSPickLocalisationVC.h; sourceTree = "<group>"; };
 		5A78B7EB1895759D0074A5B3 /* MSPickLocalisationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSPickLocalisationVC.m; path = Controllers/MSPickLocalisationVC/MSPickLocalisationVC.m; sourceTree = "<group>"; };
@@ -538,7 +546,6 @@
 		5ADCF232184004D300E6C8D2 /* MySportner-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MySportner-Prefix.pch"; sourceTree = "<group>"; };
 		5ADCF233184004D300E6C8D2 /* MSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSAppDelegate.h; sourceTree = "<group>"; };
 		5ADCF234184004D300E6C8D2 /* MSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSAppDelegate.m; sourceTree = "<group>"; };
-		5ADCF237184004D300E6C8D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5ADCF23C184004D300E6C8D2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5ADCF242184004D300E6C8D2 /* MySportnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MySportnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ADCF243184004D300E6C8D2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -910,6 +917,8 @@
 		5A580E4819F2570400CA3846 /* Sports icons */ = {
 			isa = PBXGroup;
 			children = (
+				5A580E7119F25ECD00CA3846 /* rugby.png */,
+				5A580E7219F25ECD00CA3846 /* rugby2.png */,
 				5A580E4919F2570400CA3846 /* basketball.png */,
 				5A580E4A19F2570400CA3846 /* basketball2.png */,
 				5A580E4B19F2570400CA3846 /* biking.png */,
@@ -1078,6 +1087,7 @@
 		5AD1FC5418472AE1001D3DFE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5A580E6D19F25AD000CA3846 /* icon-fb.png */,
 				5AAF981A18E8530900B252FA /* skip.png */,
 				5AAF981B18E8530900B252FA /* skip@2x.png */,
 				5ABF1E6018B17881008071F9 /* Img-Profile.png */,
@@ -1105,9 +1115,9 @@
 				5A622FA718A13A4400D33349 /* attendees_subtitle.png */,
 				5A580E4819F2570400CA3846 /* Sports icons */,
 				5A6DD75218A03A2400649A58 /* share_button.png */,
-				5A6DD75018A0346200649A58 /* fb.png */,
 				5A6DD74C18A031D900649A58 /* Splashscreen.png */,
 				5A6DD74D18A031D900649A58 /* Splashscreen@2x.png */,
+				5A580E6F19F25E6A00CA3846 /* Splashscreen-boxe@2x.png */,
 				5A63A29D18A0188F002DE50D /* Trophee3.png */,
 				5A63A29E18A0188F002DE50D /* Trophee3@2x.png */,
 				5A63A29518A01078002DE50D /* Trophee1.png */,
@@ -1185,9 +1195,9 @@
 			children = (
 				5ADCF233184004D300E6C8D2 /* MSAppDelegate.h */,
 				5ADCF234184004D300E6C8D2 /* MSAppDelegate.m */,
+				5A580E7519F25F2C00CA3846 /* Main.storyboard */,
 				5A2646D919EA93C900DF3D4C /* MSWindow.h */,
 				5A2646DA19EA93C900DF3D4C /* MSWindow.m */,
-				5ADCF236184004D300E6C8D2 /* Main.storyboard */,
 				5A96744D1849D20C0079EAC1 /* MSColorFactory.h */,
 				5A96744E1849D20C0079EAC1 /* MSColorFactory.m */,
 				5AA609FD184B50A100B09ADD /* MSFontFactory.h */,
@@ -1697,6 +1707,7 @@
 				5ABF1E6118B17881008071F9 /* Img-Profile.png in Resources */,
 				5A580E6519F2570400CA3846 /* squash.png in Resources */,
 				5A0CB7F61891714A0027EE58 /* slider-default7-track.png in Resources */,
+				5A580E7319F25ECD00CA3846 /* rugby.png in Resources */,
 				5AD8035D18A990B90024DF74 /* pin_gray.png in Resources */,
 				5A6DD74E18A031D900649A58 /* Splashscreen.png in Resources */,
 				5A7C7BD818A9813100887926 /* profil-localisation@2x.png in Resources */,
@@ -1707,7 +1718,6 @@
 				5AA8A75618A9775F0086D0B6 /* settings-icon@2x.png in Resources */,
 				5AA8A75518A9775F0086D0B6 /* settings-icon.png in Resources */,
 				5A622FA818A13A4400D33349 /* attendees_subtitle.png in Resources */,
-				5A6DD75118A0346200649A58 /* fb.png in Resources */,
 				5ADCF2CF1840B50D00E6C8D2 /* MSActivitiesFilterCell.xib in Resources */,
 				5A580E2A19F129F900CA3846 /* MSSetAGameVC2.xib in Resources */,
 				5A7C7BDC18A9825E00887926 /* Layer-12@2x.png in Resources */,
@@ -1717,6 +1727,7 @@
 				5A0CB7FE1891714A0027EE58 /* slider-metal-handle.png in Resources */,
 				5ADCF22F184004D300E6C8D2 /* InfoPlist.strings in Resources */,
 				5A0CB7F81891714A0027EE58 /* slider-default7-trackBackground.png in Resources */,
+				5A580E6E19F25AD000CA3846 /* icon-fb.png in Resources */,
 				5A0CB7FB1891714A0027EE58 /* slider-default7-trackCrossedOver@2x.png in Resources */,
 				5ADCF2851840141700E6C8D2 /* MSProfileVC.xib in Resources */,
 				5A0CB7EB1891714A0027EE58 /* slider-default-handle-highlighted@2x.png in Resources */,
@@ -1738,6 +1749,7 @@
 				5A580E5C19F2570400CA3846 /* basketball2.png in Resources */,
 				5AA8A75118A9775F0086D0B6 /* notifications-icon.png in Resources */,
 				5A653B121894200700E2B8AE /* MSCommentCell.xib in Resources */,
+				5A580E7419F25ECD00CA3846 /* rugby2.png in Resources */,
 				5AA60A08184B5A3100B09ADD /* pick_a_pic.png in Resources */,
 				5AFE68921850897D00E40541 /* plus_button@2x.png in Resources */,
 				5A2B1BBE184BF90A00413B01 /* Montserrat-Bold.ttf in Resources */,
@@ -1778,8 +1790,10 @@
 				5A7C7BDB18A9825E00887926 /* Layer-12.png in Resources */,
 				5ADCF2B818402CC500E6C8D2 /* MSActivityCell.xib in Resources */,
 				5A580E6619F2570400CA3846 /* squash2.png in Resources */,
+				5A580E7019F25E6A00CA3846 /* Splashscreen-boxe@2x.png in Resources */,
 				5AF2FBFC188C946A002147FB /* MSPickSportCell2.xib in Resources */,
 				5A0CB7EC1891714A0027EE58 /* slider-default-handle.png in Resources */,
+				5A580E7719F25F2C00CA3846 /* Main.storyboard in Resources */,
 				5A29CAF118491F82002A8B60 /* unSelected.png in Resources */,
 				5A85E8F21872CCE200F5E8F9 /* MSLocationPickerVC.xib in Resources */,
 				5AFE68911850897D00E40541 /* plus_button.png in Resources */,
@@ -1931,20 +1945,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		5A580E7519F25F2C00CA3846 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5A580E7619F25F2C00CA3846 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		5ADCF22D184004D300E6C8D2 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				5ADCF22E184004D300E6C8D2 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		5ADCF236184004D300E6C8D2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5ADCF237184004D300E6C8D2 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		5ADCF24C184004D300E6C8D2 /* InfoPlist.strings */ = {

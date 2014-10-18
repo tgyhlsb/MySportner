@@ -57,6 +57,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *cityTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cityValueLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *genderConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *birthdateConstraint;
+
+
 @property (nonatomic) BOOL hiddenGenderPicker;
 @property (nonatomic) BOOL hiddenBirthdatePicker;
 
@@ -90,9 +94,6 @@
     self.hasAlreadySignUp = NO;
     self.navigationController.navigationBar.translucent = NO;
     
-    self.genderPicker.delegate = self;
-    self.genderPicker.dataSource = self;
-    
     self.hiddenBirthdatePicker = YES;
     self.hiddenGenderPicker = YES;
 }
@@ -110,7 +111,6 @@
 
 - (void)setBackButton
 {
-    
     // removes title from pushed VC
     UIBarButtonItem *emptyBackButton = [[UIBarButtonItem alloc] initWithTitle: @"" style: UIBarButtonItemStyleBordered target: nil action: nil];
     [[self navigationItem] setBackBarButtonItem: emptyBackButton];
@@ -297,6 +297,9 @@
     self.lastNameTextField.delegate = self;
     self.emailTextField.delegate = self;
     
+    self.genderPicker.delegate = self;
+    self.genderPicker.dataSource = self;
+    
     self.firstNameTitleLabel.text = @"First name";
     self.lastNameTitleLabel.text = @"Last name";
     self.genderTitleLabel.text = @"Gender";
@@ -449,87 +452,74 @@
 
 - (void)birthdatePickerValueDidChange
 {
-    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    dateFormat.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"ddMMyyyy" options:0 locale:[NSLocale currentLocale]];
+    self.birthdateValueLabel.text = [dateFormat stringFromDate:self.birthdatePicker.date];
 }
 
 #pragma mark - Layout
 
 #define PICKERS_HEIGHT 152
+#define PADDING 25
+
+- (void)setScrollViewContentSizeForPickers
+{
+    CGRect contentRect = CGRectZero;
+    for (UIView *view in self.scrollView.subviews) {
+        contentRect = CGRectUnion(contentRect, view.frame);
+    }
+    self.scrollView.contentSize = CGSizeMake(contentRect.size.width, contentRect.size.height + PADDING);
+}
 
 - (void)openGenderPicker
 {
     if (self.hiddenGenderPicker) {
+        self.genderConstraint.constant = PADDING+PICKERS_HEIGHT;
         [UIView animateWithDuration:0.5 animations:^{
-            CGRect subviewsFrame = self.genderSubviewContainer.frame;
-            subviewsFrame.origin.y += PICKERS_HEIGHT;
-            self.genderSubviewContainer.frame = subviewsFrame;
-            
-//            if (self.hiddenEndDatePicker) {
-//                [self setScrollViewContentSizeForPickerOpen:YES];
-//            }
-            
             self.genderPicker.alpha = 1.0;
+            self.hiddenGenderPicker = NO;
+            [self.view layoutIfNeeded];
+            [self setScrollViewContentSizeForPickers];
         }];
-        
-        self.hiddenGenderPicker = NO;
     }
 }
 
 - (void)closeGenderPicker
 {
     if (!self.hiddenGenderPicker) {
+        self.genderConstraint.constant = PADDING;
         [UIView animateWithDuration:0.5 animations:^{
-            CGRect subviewsFrame = self.genderSubviewContainer.frame;
-            subviewsFrame.origin.y -= PICKERS_HEIGHT;
-            self.genderSubviewContainer.frame = subviewsFrame;
-            
-//            if (self.hiddenEndDatePicker) {
-//                [self setScrollViewContentSizeForPickerOpen:NO];
-//            }
-            
             self.genderPicker.alpha = 0.0;
+            self.hiddenGenderPicker = YES;
+            [self.view layoutIfNeeded];
+            [self setScrollViewContentSizeForPickers];
         }];
-        
-        self.hiddenGenderPicker = YES;
     }
 }
 
 - (void)openBirthdatePicker
 {
     if (self.hiddenBirthdatePicker) {
+        self.birthdateConstraint.constant = PADDING+PICKERS_HEIGHT;
         [UIView animateWithDuration:0.5 animations:^{
-            CGRect subviewsFrame = self.birthdateSubviewContainer.frame;
-            subviewsFrame.origin.y += PICKERS_HEIGHT;
-            self.birthdateSubviewContainer.frame = subviewsFrame;
-            
-            //            if (self.hiddenEndDatePicker) {
-            //                [self setScrollViewContentSizeForPickerOpen:YES];
-            //            }
-            
             self.birthdatePicker.alpha = 1.0;
+            self.hiddenBirthdatePicker = NO;
+            [self.view layoutIfNeeded];
+            [self setScrollViewContentSizeForPickers];
         }];
-        
-        self.hiddenBirthdatePicker = NO;
     }
 }
 
 - (void)closeBirthdatePicker
 {
-    
     if (!self.hiddenBirthdatePicker) {
+        self.birthdateConstraint.constant = PADDING;
         [UIView animateWithDuration:0.5 animations:^{
-            CGRect subviewsFrame = self.birthdateSubviewContainer.frame;
-            subviewsFrame.origin.y -= PICKERS_HEIGHT;
-            self.birthdateSubviewContainer.frame = subviewsFrame;
-            
-            //            if (self.hiddenEndDatePicker) {
-            //                [self setScrollViewContentSizeForPickerOpen:NO];
-            //            }
-            
             self.birthdatePicker.alpha = 0.0;
+            self.hiddenBirthdatePicker = YES;
+            [self.view layoutIfNeeded];
+            [self setScrollViewContentSizeForPickers];
         }];
-        
-        self.hiddenBirthdatePicker = YES;
     }
 }
 
@@ -563,7 +553,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.genderValueLabel.text = [GENDERS objectAtIndex:row];
+//    self.genderValueLabel.text = [GENDERS objectAtIndex:row];
 }
 
 #pragma mark UIImagePickerControllerDelegate
@@ -704,12 +694,6 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.activeTextField = textField;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    self.activeTextField = nil;
-    textField.textColor = [MSColorFactory gray];
 }
 
 #pragma mark Keyboard

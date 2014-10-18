@@ -27,7 +27,7 @@
 #define DATEPICKER_HEIGHT 162
 
 
-@interface MSVerifyAccountVC () <UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MSCropperVCDelegate, MSLocationPickerDelegate>
+@interface MSVerifyAccountVC () <UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MSCropperVCDelegate, MSLocationPickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -89,6 +89,9 @@
     self.hasAlreadySignUp = NO;
     self.navigationController.navigationBar.translucent = NO;
     
+    self.genderPicker.delegate = self;
+    self.genderPicker.dataSource = self;
+    
     self.hiddenBirthdatePicker = YES;
     self.hiddenGenderPicker = YES;
 }
@@ -116,173 +119,6 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
-
-//- (void)setFormViews
-//{
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_blur_light.png"]];
-//    self.scrollView.backgroundColor = [UIColor clearColor];
-//    
-//    UIColor *focusBorderColor = [MSColorFactory redLight];
-//    UIColor *textFieldTextColorFocused = [MSColorFactory redLight];
-//    UIColor *textFieldTextColorNormal = [MSColorFactory gray];
-//    
-//    self.firstnameTextField = [[MSTextField alloc] initWithFrame:CGRectMake(PADDING, PADDING, CONTROL_WIDTH_SMALL, CONTROL_HEIGHT)];
-//    self.firstnameTextField.borderStyle = UITextBorderStyleRoundedRect;
-//    self.firstnameTextField.delegate = self;
-//    self.firstnameTextField.placeholder = PLACEHOLDER_FIRSTNAME;
-//    self.firstnameTextField.focusBorderColor = focusBorderColor;
-//    self.firstnameTextField.textFocusedColor = textFieldTextColorFocused;
-//    self.firstnameTextField.textNormalColor = textFieldTextColorNormal;
-//    [self.firstnameTextField initializeAppearanceWithShadow:YES];
-//    self.firstnameTextField.returnKeyType = UIReturnKeyNext;
-//    [self.scrollView addSubview:self.firstnameTextField];
-//    
-//    self.lastnameTextField = [[MSTextField alloc] initWithFrame:CGRectMake(PADDING, self.firstnameTextField.frame.origin.y+self.firstnameTextField.frame.size.height+PADDING, CONTROL_WIDTH_SMALL, CONTROL_HEIGHT)];
-//    self.lastnameTextField.borderStyle = UITextBorderStyleRoundedRect;
-//    self.lastnameTextField.delegate = self;
-//    self.lastnameTextField.placeholder = PLACEHOLDER_LASTNAME;
-//    self.lastnameTextField.focusBorderColor = focusBorderColor;
-//    self.lastnameTextField.textFocusedColor = textFieldTextColorFocused;
-//    self.lastnameTextField.textNormalColor = textFieldTextColorNormal;
-//    [self.lastnameTextField initializeAppearanceWithShadow:YES];
-//    self.lastnameTextField.returnKeyType = UIReturnKeyNext;
-//    [self.scrollView addSubview:self.lastnameTextField];
-//    
-//    self.emailTextField = [[MSTextField alloc] initWithFrame:CGRectMake(PADDING, self.lastnameTextField.frame.origin.y+self.lastnameTextField.frame.size.height+PADDING, CONTROL_WIDTH_BIG, CONTROL_HEIGHT)];
-//    self.emailTextField.borderStyle = UITextBorderStyleRoundedRect;
-//    self.emailTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-//    self.emailTextField.delegate = self;
-//    self.emailTextField.placeholder = PLACEHOLDER_EMAIL;
-//    self.emailTextField.focusBorderColor = focusBorderColor;
-//    self.emailTextField.textFocusedColor = textFieldTextColorFocused;
-//    self.emailTextField.textNormalColor = textFieldTextColorNormal;
-//    [self.emailTextField initializeAppearanceWithShadow:YES];
-//    //    self.emailTextField.font = [UIFont preferredFontForTextStyle:FONT_IDENTIFIER_TEXTFIELD];
-//    [self.emailTextField setKeyboardType:UIKeyboardTypeEmailAddress];
-//    self.emailTextField.returnKeyType = UIReturnKeyNext;
-//    [self.scrollView addSubview:self.emailTextField];
-//    
-//    
-//    CGRect smallFrame = CGRectMake(PADDING, self.emailTextField.frame.origin.y+self.emailTextField.frame.size.height+PADDING, CONTROL_WITH_PASSWORD, CONTROL_HEIGHT);
-//    self.passwordTextField = [[MSTextField alloc] initWithFrame:smallFrame];
-//    self.passwordTextField.borderStyle = UITextBorderStyleRoundedRect;
-//    self.passwordTextField.secureTextEntry = YES;
-//    self.passwordTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-//    self.passwordTextField.delegate = self;
-//    self.passwordTextField.placeholder = PLACEHOLDER_PASSWORD;
-//    self.passwordTextField.focusBorderColor = focusBorderColor;
-//    self.passwordTextField.textFocusedColor = textFieldTextColorFocused;
-//    self.passwordTextField.textNormalColor = textFieldTextColorNormal;
-//    [self.passwordTextField initializeAppearanceWithShadow:YES];
-//    self.passwordTextField.returnKeyType = UIReturnKeyNext;
-//    //    self.passwordTextField.font = [UIFont preferredFontForTextStyle:FONT_IDENTIFIER_TEXTFIELD];
-//    [self.scrollView addSubview:self.passwordTextField];
-//    
-//    self.genderControl = [[NKColorSwitch alloc] initWithFrame:CGRectMake(self.passwordTextField.frame.origin.x+self.passwordTextField.frame.size.width+IMAGE_MARGIN_LEFT, self.passwordTextField.frame.origin.y, CONTROL_WIDTH_GENDER, CONTROL_HEIGHT)];
-//    [self.genderControl setTintColor:[MSColorFactory mainColor]];
-//    [self.genderControl setOnTintColor:[MSColorFactory redLight]];
-//    [self.genderControl setThumbTintColor:[MSColorFactory whiteLight]];
-//    self.genderControl.leftLabel.text = @"F";
-//    self.genderControl.rightLabel.text = @"M";
-//    self.genderControl.leftLabel.shadowOffset = CGSizeMake(0.2, 1.8);
-//    self.genderControl.rightLabel.shadowOffset = CGSizeMake(0.2, 1.8);
-//    self.genderControl.leftLabel.shadowColor = [MSColorFactory mainColorShadow];
-//    self.genderControl.rightLabel.shadowColor = [MSColorFactory redShadow];
-//    self.genderControl.textColor = [MSColorFactory whiteLight];
-//    self.genderControl.textFont = [MSFontFactory fontForButton];
-//    [self.scrollView addSubview:self.genderControl];
-//    
-//    
-//    self.birthdayTextField = [[MSTextField alloc] initWithFrame:CGRectMake(PADDING, self.passwordTextField.frame.origin.y+self.passwordTextField.frame.size.height+PADDING, CONTROL_WIDTH_BIG, CONTROL_HEIGHT)];
-//    self.birthdayTextField.borderStyle = UITextBorderStyleRoundedRect;
-//    self.birthdayTextField.delegate = self;
-//    self.birthdayTextField.placeholder = PLACEHOLDER_BIRTHDAY;
-//    self.birthdayTextField.focusBorderColor = focusBorderColor;
-//    self.birthdayTextField.textFocusedColor = textFieldTextColorFocused;
-//    self.birthdayTextField.textNormalColor = textFieldTextColorNormal;
-//    [self.birthdayTextField initializeAppearanceWithShadow:YES];
-//    //    self.birthdayTextField.font = [UIFont preferredFontForTextStyle:FONT_IDENTIFIER_TEXTFIELD];
-//    [self.scrollView addSubview:self.birthdayTextField];
-//    
-//    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.firstnameTextField.frame.origin.x+self.firstnameTextField.frame.size.width+IMAGE_MARGIN_LEFT, PADDING, IMAGE_SIZE, IMAGE_SIZE)];
-//    self.imageView.backgroundColor = [UIColor grayColor];
-//    self.imageView.image = [UIImage imageNamed:@"pick_a_pic.png"];
-//    self.imageView.backgroundColor = [UIColor clearColor];
-//    UITapGestureRecognizer *pictureTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pictureTapHandler)];
-//    [self.imageView addGestureRecognizer:pictureTapGesture];
-//    self.imageView.userInteractionEnabled = YES;
-//    [self.imageView setCornerRadius:3.0];
-//    self.imageView.clipsToBounds = YES;
-//    [self.scrollView addSubview:self.imageView];
-//    
-//    
-//    self.nextButton = [[QBFlatButton alloc] initWithFrame:[self nextButtonNormalFrame]];
-//    [self.nextButton setTitle:@"NEXT" forState:UIControlStateNormal];
-//    [self.nextButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-//    [self.nextButton addTarget:self action:@selector(nextButtonHandler) forControlEvents:UIControlEventTouchUpInside];
-//    self.nextButton.faceColor = [MSColorFactory mainColor];
-//    self.nextButton.sideColor = [MSColorFactory mainColorDark];
-//    self.nextButton.titleLabel.font = [MSFontFactory fontForButton];
-//    [self.nextButton setTitleShadowColor:[MSColorFactory mainColorShadow] forState:UIControlStateNormal];
-//    self.nextButton.titleLabel.shadowOffset = CGSizeMake(0.2, 1.8);
-//    [self.nextButton setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
-////    [self.scrollView addSubview:self.nextButton];
-//    
-//    
-//    
-//    [self.fixedNextButton setTitle:@"NEXT" forState:UIControlStateNormal];
-//    [self.fixedNextButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-//    [self.fixedNextButton addTarget:self action:@selector(nextButtonHandler) forControlEvents:UIControlEventTouchUpInside];
-//    self.fixedNextButton.faceColor = [MSColorFactory mainColor];
-//    self.fixedNextButton.sideColor = [MSColorFactory mainColorDark];
-//    self.fixedNextButton.titleLabel.font = [MSFontFactory fontForButton];
-//    [self.fixedNextButton setTitleShadowColor:[MSColorFactory mainColorShadow] forState:UIControlStateNormal];
-//    self.fixedNextButton.titleLabel.shadowOffset = CGSizeMake(0.2, 1.8);
-//    [self.fixedNextButton setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
-//    
-//    
-//    self.commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(PADDING, self.birthdayTextField.frame.origin.y+60, 280, 80)];
-//    
-//    
-//    [self.commentLabel setFont:[MSFontFactory fontForCommentText]];
-//    NSString *yourString = @"By clicking in next button, you  accept the general terms and conditions of use.";
-//    NSMutableAttributedString * attrString = [[NSMutableAttributedString alloc] initWithString:yourString];
-//    NSRange boldedRange = NSMakeRange(52, 20);
-//    [attrString addAttribute: NSFontAttributeName value:[MSFontFactory fontForCellAcivityTitle] range:boldedRange];
-//    self.commentLabel.attributedText = attrString;
-//    
-//    self.commentLabel.textAlignment = NSTextAlignmentCenter;
-//    self.commentLabel.textColor = [MSColorFactory gray];
-//    self.commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//    self.commentLabel.numberOfLines = 0;
-//    [self.scrollView addSubview:self.commentLabel];
-//    
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-//                                   initWithTarget:self
-//                                   action:@selector(closeAllResponders)];
-//    
-//    [self.view addGestureRecognizer:tap];
-//    
-//    self.scrollView.contentSize = CGSizeMake(320, self.scrollView.contentSize.height + 600);
-//}
-
-//- (CGRect)nextButtonNormalFrame
-//{
-//    CGRect screenBound = [[UIScreen mainScreen] bounds];
-//    return CGRectMake(PADDING, screenBound.size.height-PADDING-CONTROL_HEIGHT-64, screenBound.size.width-PADDING*2, CONTROL_HEIGHT+10);
-//}
-//
-//- (CGRect)nextButtonDownFrame
-//{
-//    CGRect tempFrame = [self nextButtonNormalFrame];
-//    return CGRectMake(tempFrame.origin.x, tempFrame.origin.y+DATEPICKER_HEIGHT, tempFrame.size.width, tempFrame.size.height);
-//}
-
-- (MSUser *)user
-{
-    if (!_user) _user = [[MSUser alloc] init];
-    return _user;
 }
 
 - (void)nextButtonHandler
@@ -322,7 +158,7 @@
     if (message && title)
     {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:message];
-        [self SetFocusOnFailedField];
+//        [self SetFocusOnFailedField];
     } else {
         [self showLoadingViewInView:self.view];
         
@@ -355,16 +191,14 @@
     }
 }
 
-
-- (void)pictureTapHandler
-{
-    [self presentViewController:self.imagePickerVC animated:YES completion:nil];
-}
-
 #pragma mark - Set Up
 
 - (void)setUpGestureRecognizers
 {
+    UITapGestureRecognizer *pictureTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pictureTapHandler)];
+    [self.imageView addGestureRecognizer:pictureTapRecognizer];
+    self.imageView.userInteractionEnabled = YES;
+    
     UITapGestureRecognizer *genderTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(genderTapHandler)];
     [self.genderView addGestureRecognizer:genderTapRecognizer];
     
@@ -379,6 +213,8 @@
 {
     self.genderPicker.alpha = 0.0;
     self.birthdatePicker.alpha = 0.0;
+    
+    self.view.backgroundColor = [UIColor colorWithRed:238.0/255.0 green:241.0/255.0 blue:243.0/255.0 alpha:1.0];
     
     self.genderSubviewContainer.backgroundColor = [UIColor clearColor];
     self.birthdateSubviewContainer.backgroundColor = [UIColor clearColor];
@@ -401,9 +237,9 @@
     
 #define BACKGROUND_COLOR [UIColor whiteColor]
 #define CORNER_RADIUS 3.0
-#define SHADOW_OFFSET CGSizeMake(0.3, 0.7)
-#define SHADOW_RADIUS 3.0
-#define SHADOW_OPACITY 0.1
+#define SHADOW_OFFSET CGSizeMake(0, 1)
+#define SHADOW_RADIUS 0.64
+#define SHADOW_OPACITY 0.08
 #define SHADOW_COLOR [[UIColor blackColor] CGColor]
     
     self.firstNameView.backgroundColor = BACKGROUND_COLOR;
@@ -502,6 +338,11 @@
 }
 
 #pragma mark - Handlers
+
+- (void)pictureTapHandler
+{
+    [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+}
 
 - (void)genderTapHandler
 {
@@ -630,6 +471,32 @@
     self.cityValueLabel.text = location;
 }
 
+#pragma mark - UIPickerViewDatasource
+
+#define GENDERS @[@"Male", @"Female"]
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [GENDERS count];
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [GENDERS objectAtIndex:row];
+}
+
+#pragma mark - UIPickerViewDelegate
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    self.genderValueLabel.text = [GENDERS objectAtIndex:row];
+}
+
 #pragma mark UIImagePickerControllerDelegate
 
 - (void)setProfilePicture:(UIImage *)profilePicture
@@ -661,43 +528,6 @@
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
-}
-
-#pragma mark UIAlertViewDelegate
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    [self SetFocusOnFailedField];
-}
-
-- (void)SetFocusOnFailedField
-{
-//    if (![self.firstnameTextField.text length])
-//    {
-//        [self.firstnameTextField becomeFirstResponder];
-//    }
-//    else if (![self.lastnameTextField.text length])
-//    {
-//        [self.lastnameTextField becomeFirstResponder];
-//    }
-//    else if (![self.emailTextField.text length])
-//    {
-//        [self.emailTextField becomeFirstResponder];
-//    }
-//    else if (![self NSStringIsValidEmail:self.emailTextField.text])
-//    {
-//        [self.emailTextField becomeFirstResponder];
-//    }
-//    else if (![self.passwordTextField.text length])
-//    {
-//        [self.passwordTextField becomeFirstResponder];
-//    }
-//    else if (![self.birthdayTextField.text length])
-//    {
-//        if (self.datePicker.hidden) {
-//            [self openDatePicker];
-//        }
-//    }
 }
 
 

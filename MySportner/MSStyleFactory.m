@@ -69,7 +69,7 @@
             button.titleLabel.shadowOffset = CGSizeMake(0.2, 1.8);
             [button setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
             button.backgroundColor = [UIColor clearColor];
-            button.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+            button.contentEdgeInsets = UIEdgeInsetsMake(0, 55, 0, 0);
             button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
             break;
         }

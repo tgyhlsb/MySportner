@@ -121,6 +121,8 @@
 {
     [self setBackgroundWithEmptyData:YES];
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button.png"] forState:UIControlStateNormal];
     [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button_press.png"] forState:UIControlStateHighlighted|UIControlStateHighlighted];
     [self.plusButton setTitle:@"" forState:UIControlStateNormal];

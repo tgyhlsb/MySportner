@@ -112,7 +112,7 @@
 {
     self.title = @"CHOOSE YOUR SPORTS";
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_blur_light.png"]];
+    self.view.backgroundColor = [UIColor colorWithRed:238.0/255.0 green:241.0/255.0 blue:243.0/255.0 alpha:1.0];
     self.collectionView.backgroundColor = [UIColor clearColor];
     
     [MSStyleFactory setQBFlatButton:self.nextButton withStyle:MSFlatButtonStyleGreen];

@@ -94,9 +94,9 @@
 - (void)updateUI
 {
     self.imageNameNormal = [[self.sport.slug stringByAppendingString:@".png"] lowercaseString];
-    self.imageNameSelected = [[self.sport.slug stringByAppendingString:@"(select).png"] lowercaseString];
+    self.imageNameSelected = [[self.sport.slug stringByAppendingString:@"2.png"] lowercaseString];
     
-    self.titleLabel.text = self.sport.name;
+    self.titleLabel.text = [self.sport.name uppercaseString];
 }
 
 - (void)setTropheeFromLevel:(NSInteger)level

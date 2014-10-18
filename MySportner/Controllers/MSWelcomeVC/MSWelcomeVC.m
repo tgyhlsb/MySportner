@@ -9,7 +9,7 @@
 #import "MSWelcomeVC.h"
 #import "MSAppDelegate.h"
 #import "MSUser.h"
-#import "MSCreateAccountVC.h"
+#import "MSVerifyAccountVC.h"
 #import "MBProgressHUD.h"
 #import "MZFormSheetController.h"
 #import "MSLoginFormVC.h"
@@ -39,9 +39,12 @@
     self.shouldHideLoadingWhenAppOpens = YES;
     [super viewDidLoad];
     
-    [self.facebookLoginButton setTitle:@"CONNECT VIA        " forState:UIControlStateNormal];
+    [self.facebookLoginButton setTitle:@"Login via facebook" forState:UIControlStateNormal];
     [self.createAccountButton setTitle:@"CREATE ACCOUNT" forState:UIControlStateNormal];
     [self.loginButton setTitle:@"LOGIN" forState:UIControlStateNormal];
+    
+//    self.createAccountButton.hidden = YES;
+//    self.loginButton.hidden = YES;
     
     [self setButtonsAppearance];
     
@@ -53,7 +56,7 @@
         [self performLogin];
     }
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Splashscreen.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Splashscreen-boxe.png"]];
 }
 
 - (void)setButtonsAppearance
@@ -119,7 +122,7 @@
 
 - (IBAction)signUpButtonPress:(UIButton *)sender
 {
-    [self.navigationController pushViewController:[MSCreateAccountVC newController] animated:YES];
+    [self.navigationController pushViewController:[MSVerifyAccountVC newController] animated:YES];
 }
 
 - (IBAction)signInButtonPress:(UIButton *)sender

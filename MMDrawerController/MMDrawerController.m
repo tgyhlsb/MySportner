@@ -179,7 +179,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
     return [self initWithCenterViewController:centerViewController leftDrawerViewController:nil rightDrawerViewController:rightDrawerViewController];
 }
 
--(void)commonSetup{
+-(void)commonSetup{    
     [self setMaximumLeftDrawerWidth:MMDrawerDefaultWidth];
     [self setMaximumRightDrawerWidth:MMDrawerDefaultWidth];
     

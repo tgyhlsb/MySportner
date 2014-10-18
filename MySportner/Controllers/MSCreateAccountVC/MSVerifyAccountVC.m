@@ -25,6 +25,8 @@
 
 #define NIB_NAME @"MSVerifyAccountVC"
 
+#define GENDERS @[@"Male", @"Female"]
+
 #define DATEPICKER_HEIGHT 162
 
 
@@ -60,6 +62,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *genderConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *birthdateConstraint;
 
+@property (nonatomic) BOOL keyboardIsShown;
 
 @property (nonatomic) BOOL hiddenGenderPicker;
 @property (nonatomic) BOOL hiddenBirthdatePicker;
@@ -304,8 +307,12 @@
     self.lastNameTitleLabel.text = @"Last name";
     self.genderTitleLabel.text = @"Gender";
     self.birthdateTitleLabel.text = @"Birthdate";
-    self.emailTitleLabel.text = @"Mail";
+    self.emailTitleLabel.text = @"Email";
     self.cityTitleLabel.text = @"Current city";
+    
+    self.genderValueLabel.text = @"Tap to choose";
+    self.birthdateValueLabel.text = @"Tap to choose";
+    self.cityValueLabel.text = @"Tap to choose";
     
 #define BACKGROUND_COLOR [UIColor whiteColor]
 #define CORNER_RADIUS 3.0
@@ -419,6 +426,7 @@
 - (void)genderTapHandler
 {
     [self.activeTextField resignFirstResponder];
+    [self genderPickerValueDidChange];
     if (self.hiddenGenderPicker) {
         [self openGenderPicker];
         [self closeBirthdatePicker];
@@ -430,6 +438,7 @@
 - (void)birthdateTapHandler
 {
     [self.activeTextField resignFirstResponder];
+    [self birthdatePickerValueDidChange];
     if (self.hiddenBirthdatePicker) {
         [self openBirthdatePicker];
         [self closeGenderPicker];
@@ -447,7 +456,8 @@
 
 - (void)genderPickerValueDidChange
 {
-    
+    NSInteger index = [self.genderPicker selectedRowInComponent:0];
+    self.genderValueLabel.text = [GENDERS objectAtIndex:index];
 }
 
 - (void)birthdatePickerValueDidChange
@@ -462,13 +472,15 @@
 #define PICKERS_HEIGHT 152
 #define PADDING 25
 
-- (void)setScrollViewContentSizeForPickers
+- (void)setScrollViewContentSizeForPickersAndKeyboards
 {
     CGRect contentRect = CGRectZero;
     for (UIView *view in self.scrollView.subviews) {
         contentRect = CGRectUnion(contentRect, view.frame);
     }
-    self.scrollView.contentSize = CGSizeMake(contentRect.size.width, contentRect.size.height + PADDING);
+    
+    CGFloat kbSize = self.keyboardIsShown ? 200 : 0;
+    self.scrollView.contentSize = CGSizeMake(contentRect.size.width, contentRect.size.height + PADDING + kbSize);
 }
 
 - (void)openGenderPicker
@@ -479,7 +491,7 @@
             self.genderPicker.alpha = 1.0;
             self.hiddenGenderPicker = NO;
             [self.view layoutIfNeeded];
-            [self setScrollViewContentSizeForPickers];
+            [self setScrollViewContentSizeForPickersAndKeyboards];
         }];
     }
 }
@@ -492,7 +504,7 @@
             self.genderPicker.alpha = 0.0;
             self.hiddenGenderPicker = YES;
             [self.view layoutIfNeeded];
-            [self setScrollViewContentSizeForPickers];
+            [self setScrollViewContentSizeForPickersAndKeyboards];
         }];
     }
 }
@@ -505,7 +517,7 @@
             self.birthdatePicker.alpha = 1.0;
             self.hiddenBirthdatePicker = NO;
             [self.view layoutIfNeeded];
-            [self setScrollViewContentSizeForPickers];
+            [self setScrollViewContentSizeForPickersAndKeyboards];
         }];
     }
 }
@@ -518,7 +530,7 @@
             self.birthdatePicker.alpha = 0.0;
             self.hiddenBirthdatePicker = YES;
             [self.view layoutIfNeeded];
-            [self setScrollViewContentSizeForPickers];
+            [self setScrollViewContentSizeForPickersAndKeyboards];
         }];
     }
 }
@@ -531,8 +543,6 @@
 }
 
 #pragma mark - UIPickerViewDatasource
-
-#define GENDERS @[@"Male", @"Female"]
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -553,7 +563,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-//    self.genderValueLabel.text = [GENDERS objectAtIndex:row];
+    [self genderPickerValueDidChange];
 }
 
 #pragma mark UIImagePickerControllerDelegate
@@ -694,6 +704,8 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.activeTextField = textField;
+    [self closeBirthdatePicker];
+    [self closeGenderPicker];
 }
 
 #pragma mark Keyboard
@@ -714,21 +726,19 @@
 // Called when the UIKeyboardDidShowNotification is sent.
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    self.keyboardIsShown = YES;
+    [self setScrollViewContentSizeForPickersAndKeyboards];
     
-    // -64 is for nav bar
-    self.scrollView.contentSize = CGSizeMake(320, self.scrollView.frame.size.height + kbSize.height - 20);
-    CGRect destinationFrame = CGRectMake(0, self.activeTextField.frame.origin.y, 320, self.activeTextField.frame.size.height+kbSize.height+25);
-    [self.scrollView scrollRectToVisible:destinationFrame animated:YES];
+    if ([self.activeTextField isEqual:self.emailTextField]) {
+        [self.scrollView scrollRectToVisible:CGRectMake(0, 550, 320, 100) animated:YES];
+    }
 }
 
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
-    [UIView animateWithDuration:0.2 animations:^{
-        self.scrollView.contentSize = CGSizeMake(320, self.scrollView.frame.size.height - 20);
-    }];
+    self.keyboardIsShown = NO;
+    [self setScrollViewContentSizeForPickersAndKeyboards];
 }
 
 #pragma mark - MBProgressHUD

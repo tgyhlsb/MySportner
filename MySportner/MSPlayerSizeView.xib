@@ -69,12 +69,12 @@
                     <exclude reference="NdP-YF-RTF"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="1ll-FD-myw"/>
+                    <exclude reference="wGY-4U-wRM"/>
                     <exclude reference="2F8-5H-kAI"/>
                     <exclude reference="JdE-xg-ylz"/>
                     <exclude reference="dUn-oJ-tDv"/>
                     <exclude reference="yJA-uc-pt8"/>
-                    <exclude reference="1ll-FD-myw"/>
-                    <exclude reference="wGY-4U-wRM"/>
                 </mask>
             </variation>
             <variation key="heightClass=compact-widthClass=compact">
@@ -84,12 +84,12 @@
                     <include reference="NdP-YF-RTF"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="1ll-FD-myw"/>
+                    <include reference="wGY-4U-wRM"/>
                     <include reference="2F8-5H-kAI"/>
                     <include reference="JdE-xg-ylz"/>
                     <include reference="dUn-oJ-tDv"/>
                     <include reference="yJA-uc-pt8"/>
-                    <include reference="1ll-FD-myw"/>
-                    <include reference="wGY-4U-wRM"/>
                 </mask>
             </variation>
             <connections>

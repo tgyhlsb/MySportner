@@ -31,6 +31,9 @@
 
 + (MSUser *)currentUser;
 
+
+- (void)setWithFacebookInfo:(id<FBGraphUser>)userInfo;
+
 @end
 
 @protocol MSUserAuthentificationDelegate <NSObject>

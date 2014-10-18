@@ -19,6 +19,8 @@
 #import "MSFontFactory.h"
 #import "TKAlertCenter.h"
 #import "MSFindFriendsVC.h"
+#import "MSFacebookManager.h"
+#import <ParseFacebookUtils/PFFacebookUtils.h>
 
 #define NIB_NAME @"MSWelcomeVC"
 
@@ -28,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet QBFlatButton *facebookLoginButton;
 @property (weak, nonatomic) IBOutlet QBFlatButton *createAccountButton;
 @property (weak, nonatomic) IBOutlet QBFlatButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIImageView *facebookIconView;
 
 @end
 
@@ -35,7 +38,6 @@
 
 - (void)viewDidLoad
 {
-    
     self.shouldHideLoadingWhenAppOpens = YES;
     [super viewDidLoad];
     
@@ -43,18 +45,14 @@
     [self.createAccountButton setTitle:@"CREATE ACCOUNT" forState:UIControlStateNormal];
     [self.loginButton setTitle:@"LOGIN" forState:UIControlStateNormal];
     
-//    self.createAccountButton.hidden = YES;
-//    self.loginButton.hidden = YES;
+    self.createAccountButton.hidden = YES;
+    self.loginButton.hidden = YES;
+    self.facebookLoginButton.alpha = 0.0;
+    self.facebookIconView.alpha = 0.0;
     
     [self setButtonsAppearance];
     
     self.view.backgroundColor = [MSColorFactory mainColor];
-    
-    if ([MSUser currentUser])
-    {
-//        [MSUser currentUser] 
-        [self performLogin];
-    }
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Splashscreen-boxe.png"]];
 }
@@ -84,6 +82,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    if (self.shouldAutoLoginWithFacebook) {
+        [self tryAutoLoginWithFacebook];
+        self.shouldAutoLoginWithFacebook = NO;
+    } else {
+        [self setButtonsVisible:YES];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -97,10 +102,78 @@
     return [[MSWelcomeVC alloc] initWithNibName:NIB_NAME bundle:nil];
 }
 
+#pragma mark - Facebook
+
+- (void)tryAutoLoginWithFacebook
+{
+    if ([MSFacebookManager isSessionAvailable]) {
+        [self performLogin];
+    } else {
+        [self setButtonsVisible:YES];
+    }
+}
+
+- (void)loginWithFacebook
+{
+    [PFFacebookUtils logInWithPermissions:FACEBOOK_READ_PERMISIONS block:^(PFUser *user, NSError *error) {
+        if (!error) {
+            if (!user) {
+                NSLog(@"Uh oh. The user cancelled the Facebook login.");
+                [self cancelFacebookLogin];
+            } else if (user.isNew) {
+                NSLog(@"User signed up and logged in through Facebook!");
+                [self requestFacebookInformationsForUser:(MSUser *)user];
+            } else {
+                NSLog(@"User logged in through Facebook!");
+                [self setButtonsVisible:NO];
+                [self performLogin];
+            }
+        } else {
+            [self cancelFacebookLogin];
+        }
+    }];
+}
+
+- (void)requestFacebookInformationsForUser:(MSUser *)user
+{
+    [self showLoadingViewInView:self.view];
+    [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        [self hideLoadingView];
+        if (!error) {
+            [user setWithFacebookInfo:result];
+            [self pushToVerifyProfileWithUser:user];
+        } else {
+            [self cancelFacebookLogin];
+        }
+    }];
+}
+
+- (void)cancelFacebookLogin
+{
+    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Login with Facebook failed"];
+    [self setButtonsVisible:YES];
+}
+
+- (void)setButtonsVisible:(BOOL)visible
+{
+    
+    CGFloat alpha = visible ? 1.0 : 0.0;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.facebookLoginButton.alpha = alpha;
+        self.facebookIconView.alpha = alpha;
+    }];
+}
+
+- (void)pushToVerifyProfileWithUser:(PFUser *)user
+{
+    MSVerifyAccountVC *destination = [MSVerifyAccountVC newController];
+    [self.navigationController pushViewController:destination animated:YES];
+}
+
 - (void)performLogin
 {
     [[MSSportner currentSportner] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        [self hideLoadingView];
+//        [self hideLoadingView];
         if ([MSSportner currentSportner].sportLevels) {
             MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
             
@@ -108,7 +181,7 @@
             
             [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
         } else {
-            [self redirectToSportchooser];
+            [self pushToVerifyProfileWithUser:(PFUser *)object];
         }
     }];
 
@@ -116,8 +189,7 @@
 
 - (IBAction)logInWithFacebookButtonPress:(UIButton *)sender
 {
-    [self showLoadingViewInView:self.view];
-    [MSUser tryLoginWithFacebook:self];
+    [self loginWithFacebook];
 }
 
 - (IBAction)signUpButtonPress:(UIButton *)sender
@@ -141,29 +213,29 @@
 
 - (IBAction)showLoginFormSheet:(UIButton *)sender
 {
-    UIViewController *vc = [MSLoginFormVC newController];
-    CGSize formSheetSize = CGSizeMake(280, 300);
-    
-    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithSize:formSheetSize viewController:vc];
-//    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
-    
-    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
-    formSheet.shadowRadius = 1.0;
-    formSheet.shadowOpacity = 0.2;
-    formSheet.cornerRadius = 3.0;
-    formSheet.shouldDismissOnBackgroundViewTap = YES;
-    formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
-    formSheet.shouldCenterVertically = YES;
-    
-    formSheet.willPresentCompletionHandler = ^(UIViewController *presentedFSViewController) {
-        
-    };
-    
-    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
-    
-    [self presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
-        
-    }];
+//    UIViewController *vc = [MSLoginFormVC newController];
+//    CGSize formSheetSize = CGSizeMake(280, 300);
+//    
+//    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithSize:formSheetSize viewController:vc];
+////    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+//    
+//    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
+//    formSheet.shadowRadius = 1.0;
+//    formSheet.shadowOpacity = 0.2;
+//    formSheet.cornerRadius = 3.0;
+//    formSheet.shouldDismissOnBackgroundViewTap = YES;
+//    formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
+//    formSheet.shouldCenterVertically = YES;
+//    
+//    formSheet.willPresentCompletionHandler = ^(UIViewController *presentedFSViewController) {
+//        
+//    };
+//    
+//    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
+//    
+//    [self presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+//        
+//    }];
 }
 
 #pragma mark MSUserAuthentificationDelegate

@@ -8,7 +8,6 @@
 
 #import "MSVerifyAccountVC.h"
 #import "MSChooseSportsVC.h"
-#import "MSUser.h"
 #import "MSTextField.h"
 #import "MSColorFactory.h"
 #import "MSFontFactory.h"
@@ -73,7 +72,6 @@
 
 @property (weak, nonatomic) UITextField *activeTextField;
 
-@property (strong,nonatomic) MSUser *user;
 @property (strong, nonatomic) UIImage *profilePicture;
 
 @property (strong, nonatomic) MBProgressHUD *loadingView;

@@ -132,6 +132,7 @@
 		5A580E8819F27B9300CA3846 /* m.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E8619F27B9300CA3846 /* m.png */; };
 		5A580E9119F297B900CA3846 /* MSPlayerSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A580E9019F297B900CA3846 /* MSPlayerSizeView.m */; };
 		5A580E9319F297C900CA3846 /* MSPlayerSizeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E9219F297C900CA3846 /* MSPlayerSizeView.xib */; };
+		5A580E9919F3233400CA3846 /* MSFacebookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A580E9819F3233400CA3846 /* MSFacebookManager.m */; };
 		5A622FA318A12F9C00D33349 /* MSProfilePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */; };
 		5A622FA518A12FC000D33349 /* MSProfilePictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */; };
 		5A622FA818A13A4400D33349 /* attendees_subtitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA718A13A4400D33349 /* attendees_subtitle.png */; };
@@ -457,6 +458,8 @@
 		5A580E8F19F297B900CA3846 /* MSPlayerSizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSPlayerSizeView.h; path = Views/MSPlayersizeView/MSPlayerSizeView.h; sourceTree = "<group>"; };
 		5A580E9019F297B900CA3846 /* MSPlayerSizeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSPlayerSizeView.m; path = Views/MSPlayersizeView/MSPlayerSizeView.m; sourceTree = "<group>"; };
 		5A580E9219F297C900CA3846 /* MSPlayerSizeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSPlayerSizeView.xib; sourceTree = "<group>"; };
+		5A580E9719F3233400CA3846 /* MSFacebookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFacebookManager.h; sourceTree = "<group>"; };
+		5A580E9819F3233400CA3846 /* MSFacebookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFacebookManager.m; sourceTree = "<group>"; };
 		5A622FA118A12F9C00D33349 /* MSProfilePictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSProfilePictureCell.h; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.h; sourceTree = "<group>"; };
 		5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSProfilePictureCell.m; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.m; sourceTree = "<group>"; };
 		5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSProfilePictureCell.xib; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.xib; sourceTree = "<group>"; };
@@ -1252,6 +1255,8 @@
 				5AA609FE184B50A100B09ADD /* MSFontFactory.m */,
 				5A21001E184E421800CDF460 /* MSStyleFactory.h */,
 				5A21001F184E421800CDF460 /* MSStyleFactory.m */,
+				5A580E9719F3233400CA3846 /* MSFacebookManager.h */,
+				5A580E9819F3233400CA3846 /* MSFacebookManager.m */,
 				5ADCF2F91840E38D00E6C8D2 /* Connection */,
 				5ADCF2B318402B4B00E6C8D2 /* Model */,
 				5ADCF277184011A500E6C8D2 /* Views */,
@@ -1962,6 +1967,7 @@
 				5A23BB08186CD1BD00FFF0E0 /* MSFacebookFriendCell.m in Sources */,
 				5AEFA8B21896B580004B3EF7 /* MSPinView.m in Sources */,
 				5A29CAED18491F4D002A8B60 /* RatingView.m in Sources */,
+				5A580E9919F3233400CA3846 /* MSFacebookManager.m in Sources */,
 				5A0D6F4B189A55F300C037C8 /* MSSportnersVC.m in Sources */,
 				5A1B73731844AB6200555FE4 /* MZFormSheetSegue.m in Sources */,
 				5A1B73771844AC2700555FE4 /* MSLoginFormVC.m in Sources */,

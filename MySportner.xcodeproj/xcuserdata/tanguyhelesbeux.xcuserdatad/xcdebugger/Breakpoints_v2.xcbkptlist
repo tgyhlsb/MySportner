@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSWelcomeVC/MSWelcomeVC.h"
-            timestampString = "435313517.402147"
+            timestampString = "435365498.61205"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "@interface MSWelcomeVC"
             landmarkType = "2">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSCreateAccountVC/MSVerifyAccountVC.m"
-            timestampString = "435344294.453846"
+            timestampString = "435367423.904821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "662"
-            endingLineNumber = "662"
+            startingLineNumber = "660"
+            endingLineNumber = "660"
             landmarkName = "-handlSignUp:error:"
             landmarkType = "5">
          </BreakpointContent>

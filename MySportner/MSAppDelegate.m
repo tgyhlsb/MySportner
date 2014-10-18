@@ -49,10 +49,10 @@
     [MSSport registerSubclass];
     [Parse setApplicationId:@"mXxe3WBY2KqxbWjjnBruVUyJGtyKjgjDpfuX6pAA"
                   clientKey:@"EFLTeHfWnuHxmwzKbg1xfsfYRRFSksMiWGlKYloM"];
+    [PFFacebookUtils initializeFacebook];
     
     [self registerForPushNotification:application];
     
-    [PFFacebookUtils initializeFacebook];
     
     [self setDrawerMenu];
     [self setAppearance];
@@ -61,8 +61,9 @@
     
     self.window = [[MSWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    
-    MSNavigationVC *mainVC = [[MSNavigationVC alloc] initWithRootViewController:[MSWelcomeVC newController]];
+    MSWelcomeVC *rootVC = [MSWelcomeVC newController];
+    rootVC.shouldAutoLoginWithFacebook = YES;
+    MSNavigationVC *mainVC = [[MSNavigationVC alloc] initWithRootViewController:rootVC];
     
     [self.window setRootViewController:mainVC];
     
@@ -166,40 +167,22 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    UIViewController *activeVC = ((UINavigationController *)self.window.rootViewController).topViewController;
-    if ([activeVC isKindOfClass:[MSWelcomeVC class]]) {
-        [((MSWelcomeVC *)activeVC) applicationIsBackFromBackground];
-    }
-    
-}
-
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return [PFFacebookUtils handleOpenURL:url];
 }
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-    
-    BOOL urlWasHandled = [PFFacebookUtils handleOpenURL:url];
-    if (urlWasHandled) {
-        UIViewController *activeVC = ((UINavigationController *)self.window.rootViewController).topViewController;
-        if ([activeVC isKindOfClass:[MSWelcomeVC class]]) {
-            ((MSWelcomeVC *)activeVC).shouldHideLoadingWhenAppOpens = NO;
-            [((MSWelcomeVC *)activeVC) applicationIsBackFromBackground];
-        }
-    }
-    
-    return urlWasHandled;
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication
+                        withSession:[PFFacebookUtils session]];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
 }
 
 @end

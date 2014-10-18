@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSUser.h"
 
 
 #define IMAGE_SIZE_FOR_UPLOAD 200
 
 @interface MSVerifyAccountVC : UIViewController
+
+@property (strong,nonatomic) MSUser *user;
 
 + (MSVerifyAccountVC *)newController;
 

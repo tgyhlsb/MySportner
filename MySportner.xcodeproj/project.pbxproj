@@ -116,8 +116,6 @@
 		5A580E6619F2570400CA3846 /* squash2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E5419F2570400CA3846 /* squash2.png */; };
 		5A580E6719F2570400CA3846 /* tennis.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E5519F2570400CA3846 /* tennis.png */; };
 		5A580E6819F2570400CA3846 /* tennis2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E5619F2570400CA3846 /* tennis2.png */; };
-		5A580E6919F2570400CA3846 /* volley.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E5719F2570400CA3846 /* volley.png */; };
-		5A580E6A19F2570400CA3846 /* volley2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E5819F2570400CA3846 /* volley2.png */; };
 		5A580E6B19F2570400CA3846 /* yoga.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E5919F2570400CA3846 /* yoga.png */; };
 		5A580E6C19F2570400CA3846 /* yoga2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E5A19F2570400CA3846 /* yoga2.png */; };
 		5A580E6E19F25AD000CA3846 /* icon-fb.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E6D19F25AD000CA3846 /* icon-fb.png */; };
@@ -125,6 +123,8 @@
 		5A580E7319F25ECD00CA3846 /* rugby.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E7119F25ECD00CA3846 /* rugby.png */; };
 		5A580E7419F25ECD00CA3846 /* rugby2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E7219F25ECD00CA3846 /* rugby2.png */; };
 		5A580E7719F25F2C00CA3846 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E7519F25F2C00CA3846 /* Main.storyboard */; };
+		5A580E7A19F25FC200CA3846 /* volleyball.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E7819F25FC200CA3846 /* volleyball.png */; };
+		5A580E7B19F25FC200CA3846 /* volleyball2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580E7919F25FC200CA3846 /* volleyball2.png */; };
 		5A622FA318A12F9C00D33349 /* MSProfilePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */; };
 		5A622FA518A12FC000D33349 /* MSProfilePictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */; };
 		5A622FA818A13A4400D33349 /* attendees_subtitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA718A13A4400D33349 /* attendees_subtitle.png */; };
@@ -432,8 +432,6 @@
 		5A580E5419F2570400CA3846 /* squash2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = squash2.png; sourceTree = "<group>"; };
 		5A580E5519F2570400CA3846 /* tennis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tennis.png; sourceTree = "<group>"; };
 		5A580E5619F2570400CA3846 /* tennis2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tennis2.png; sourceTree = "<group>"; };
-		5A580E5719F2570400CA3846 /* volley.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volley.png; sourceTree = "<group>"; };
-		5A580E5819F2570400CA3846 /* volley2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volley2.png; sourceTree = "<group>"; };
 		5A580E5919F2570400CA3846 /* yoga.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yoga.png; sourceTree = "<group>"; };
 		5A580E5A19F2570400CA3846 /* yoga2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yoga2.png; sourceTree = "<group>"; };
 		5A580E6D19F25AD000CA3846 /* icon-fb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-fb.png"; sourceTree = "<group>"; };
@@ -441,6 +439,8 @@
 		5A580E7119F25ECD00CA3846 /* rugby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rugby.png; sourceTree = "<group>"; };
 		5A580E7219F25ECD00CA3846 /* rugby2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rugby2.png; sourceTree = "<group>"; };
 		5A580E7619F25F2C00CA3846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5A580E7819F25FC200CA3846 /* volleyball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volleyball.png; sourceTree = "<group>"; };
+		5A580E7919F25FC200CA3846 /* volleyball2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volleyball2.png; sourceTree = "<group>"; };
 		5A622FA118A12F9C00D33349 /* MSProfilePictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSProfilePictureCell.h; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.h; sourceTree = "<group>"; };
 		5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSProfilePictureCell.m; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.m; sourceTree = "<group>"; };
 		5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSProfilePictureCell.xib; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.xib; sourceTree = "<group>"; };
@@ -931,10 +931,10 @@
 				5A580E5219F2570400CA3846 /* running2.png */,
 				5A580E5319F2570400CA3846 /* squash.png */,
 				5A580E5419F2570400CA3846 /* squash2.png */,
+				5A580E7819F25FC200CA3846 /* volleyball.png */,
+				5A580E7919F25FC200CA3846 /* volleyball2.png */,
 				5A580E5519F2570400CA3846 /* tennis.png */,
 				5A580E5619F2570400CA3846 /* tennis2.png */,
-				5A580E5719F2570400CA3846 /* volley.png */,
-				5A580E5819F2570400CA3846 /* volley2.png */,
 				5A580E5919F2570400CA3846 /* yoga.png */,
 				5A580E5A19F2570400CA3846 /* yoga2.png */,
 			);
@@ -1776,16 +1776,15 @@
 				5A580E6C19F2570400CA3846 /* yoga2.png in Resources */,
 				5A6DD74F18A031D900649A58 /* Splashscreen@2x.png in Resources */,
 				5A0F9118184242BD0049BBD5 /* MSVerifyAccountVC.xib in Resources */,
-				5A580E6A19F2570400CA3846 /* volley2.png in Resources */,
 				5ABF1E5718B16F59008071F9 /* Trophee@2x.png in Resources */,
 				5A63A2A018A0188F002DE50D /* Trophee3@2x.png in Resources */,
 				5A63A29F18A0188F002DE50D /* Trophee3.png in Resources */,
 				5ABF1E5618B16F59008071F9 /* Trophee.png in Resources */,
 				5A0CB7FD1891714A0027EE58 /* slider-metal-handle-highlighted@2x.png in Resources */,
 				5A78B7F7189596AC0074A5B3 /* redCircle.png in Resources */,
-				5A580E6919F2570400CA3846 /* volley.png in Resources */,
 				5A580E3419F1A02000CA3846 /* MSCreateAccountVC.xib in Resources */,
 				5AD1FC5318472ADD001D3DFE /* runner.jpg in Resources */,
+				5A580E7A19F25FC200CA3846 /* volleyball.png in Resources */,
 				5ADCF3161840F8E900E6C8D2 /* MSVenueCell.xib in Resources */,
 				5A7C7BDB18A9825E00887926 /* Layer-12.png in Resources */,
 				5ADCF2B818402CC500E6C8D2 /* MSActivityCell.xib in Resources */,
@@ -1809,6 +1808,7 @@
 				5A3A70EB1899518D00799DFA /* no_activity.png in Resources */,
 				5AFE689618508EAC00E40541 /* plus_button_press@2x.png in Resources */,
 				5AA8A75818A9775F0086D0B6 /* localiz@2x.png in Resources */,
+				5A580E7B19F25FC200CA3846 /* volleyball2.png in Resources */,
 				5A580E5D19F2570400CA3846 /* biking.png in Resources */,
 				5AA60A0A184B623B00B09ADD /* ProximaNova-Semibold.otf in Resources */,
 				5A2B1BBB184BF21100413B01 /* arrow@2x.png in Resources */,

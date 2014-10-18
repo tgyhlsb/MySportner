@@ -26,6 +26,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P6M-f0-VZj">
+                    <rect key="frame" x="0.0" y="193" width="320" height="162"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="162" id="Kdj-Mq-vOe"/>
+                    </constraints>
+                </pickerView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="476-U1-PDf">
                     <rect key="frame" x="20" y="23" width="150" height="40"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -134,7 +140,10 @@
                 </view>
             </subviews>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="P6M-f0-VZj" secondAttribute="trailing" id="1Lq-Dj-7wa"/>
                 <constraint firstItem="476-U1-PDf" firstAttribute="top" secondItem="FLr-uy-HWv" secondAttribute="top" id="8M5-7H-Nyv"/>
+                <constraint firstItem="P6M-f0-VZj" firstAttribute="leading" secondItem="9ga-vV-SXs" secondAttribute="leading" id="9mQ-ES-uio"/>
+                <constraint firstItem="P6M-f0-VZj" firstAttribute="top" secondItem="njH-js-rYp" secondAttribute="bottom" id="HsE-Bw-GjK"/>
                 <constraint firstItem="kdL-pC-geR" firstAttribute="leading" secondItem="9ga-vV-SXs" secondAttribute="leading" constant="20" id="XFb-Wf-9oa"/>
                 <constraint firstItem="476-U1-PDf" firstAttribute="leading" secondItem="9ga-vV-SXs" secondAttribute="leading" constant="20" id="XON-lf-Qxh"/>
                 <constraint firstItem="476-U1-PDf" firstAttribute="top" secondItem="9ga-vV-SXs" secondAttribute="top" constant="23" id="clU-ct-Xy6"/>

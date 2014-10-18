@@ -173,7 +173,7 @@
     {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:message];
     } else {
-        [self saveUser];
+        [self showTermPopUp];
     }
 }
 

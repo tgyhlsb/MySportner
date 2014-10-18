@@ -111,12 +111,14 @@
     self.startDatePicker.datePickerMode = UIDatePickerModeDateAndTime;
     self.startDatePicker.minuteInterval = 15;
     self.startDatePicker.minimumDate = [NSDate date];
+    self.startDatePicker.locale = [NSLocale currentLocale];
     
     self.endDatePicker.alpha = 0;
     [self.endDatePicker addTarget:self action:@selector(endDatePickerValueDidChange) forControlEvents:UIControlEventValueChanged];
     self.endDatePicker.datePickerMode = UIDatePickerModeDateAndTime;
     self.endDatePicker.minuteInterval = 15;
     self.endDatePicker.minimumDate = [NSDate date];
+    self.endDatePicker.locale = [NSLocale currentLocale];
     
     [self setUpInitialStarDate];
     
@@ -127,7 +129,7 @@
     self.whereTextField.placeholder = @"Optional";
     
     self.cityTitleLabel.text = @"City";
-    self.cityValueLabel.text = @"Chose";
+    self.cityValueLabel.text = @"Select";
     
 #define BACKGROUND_COLOR [UIColor whiteColor]
 #define CORNER_RADIUS 3.0
@@ -239,6 +241,13 @@
 }
 
 #pragma mark - Handlers
+
+- (void)playersTapHandler
+{
+    [self.whereTextField resignFirstResponder];
+    [self closeEndDatePicker];
+    [self closeStartDatePicker];
+}
 
 - (void)backgroundTapHandler
 {

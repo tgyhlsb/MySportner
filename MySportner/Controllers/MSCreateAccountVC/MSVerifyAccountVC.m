@@ -19,6 +19,7 @@
 #import "UIView+MSRoundedView.h"
 #import "MSFindFriendsVC.h"
 #import "MSCropperVC.h"
+#import "MSStyleFactory.h"
 
 #define NIB_NAME @"MSVerifyAccountVC"
 
@@ -39,6 +40,13 @@
 @property (weak, nonatomic) IBOutlet UIView *birthdateSubviewContainer;
 @property (weak, nonatomic) IBOutlet UIView *emailView;
 @property (weak, nonatomic) IBOutlet UIView *cityView;
+@property (weak, nonatomic) IBOutlet UIPickerView *genderPicker;
+@property (weak, nonatomic) IBOutlet UIDatePicker *birthdatePicker;
+@property (weak, nonatomic) IBOutlet UILabel *firstNameTitleLabel;
+@property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
+
+@property (nonatomic) BOOL hiddenGenderPicker;
+@property (nonatomic) BOOL hiddenBirthdatePicker;
 
 @property (strong, nonatomic) UIImagePickerController *imagePickerVC;
 
@@ -63,15 +71,15 @@
     
     [self setUpGestureRecognizers];
     [self registerForKeyboardNotifications];
+    [self setUpAppearance];
     
     [self setBackButton];
     [self setUpImagePicker];
     self.hasAlreadySignUp = NO;
     self.navigationController.navigationBar.translucent = NO;
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self showToolbar];
-    });
+    self.hiddenBirthdatePicker = YES;
+    self.hiddenGenderPicker = YES;
 }
 
 - (void)setUpImagePicker
@@ -354,19 +362,91 @@
     
     UITapGestureRecognizer *cityTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cityTapHandler)];
     [self.cityView addGestureRecognizer:cityTapRecognizer];
+}
+
+- (void)setUpAppearance
+{
+    self.genderPicker.alpha = 0.0;
+    self.birthdatePicker.alpha = 0.0;
     
+    self.genderSubviewContainer.backgroundColor = [UIColor clearColor];
+    self.birthdateSubviewContainer.backgroundColor = [UIColor clearColor];
+    
+#define BACKGROUND_COLOR [UIColor whiteColor]
+#define CORNER_RADIUS 3.0
+#define SHADOW_OFFSET CGSizeMake(0.3, 0.7)
+#define SHADOW_RADIUS 3.0
+#define SHADOW_OPACITY 0.1
+#define SHADOW_COLOR [[UIColor blackColor] CGColor]
+    
+    self.firstNameView.backgroundColor = BACKGROUND_COLOR;
+    self.firstNameView.layer.cornerRadius = CORNER_RADIUS;
+    self.firstNameView.layer.shadowOffset = SHADOW_OFFSET;
+    self.firstNameView.layer.shadowRadius = SHADOW_RADIUS;
+    self.firstNameView.layer.shadowOpacity = SHADOW_OPACITY;
+    self.firstNameView.layer.shadowColor = SHADOW_COLOR;
+    
+    self.lastNameView.backgroundColor = BACKGROUND_COLOR;
+    self.lastNameView.layer.cornerRadius = CORNER_RADIUS;
+    self.lastNameView.layer.shadowOffset = SHADOW_OFFSET;
+    self.lastNameView.layer.shadowRadius = SHADOW_RADIUS;
+    self.lastNameView.layer.shadowOpacity = SHADOW_OPACITY;
+    self.lastNameView.layer.shadowColor = SHADOW_COLOR;
+    
+    self.genderView.backgroundColor = BACKGROUND_COLOR;
+    self.genderView.layer.cornerRadius = CORNER_RADIUS;
+    self.genderView.layer.shadowOffset = SHADOW_OFFSET;
+    self.genderView.layer.shadowRadius = SHADOW_RADIUS;
+    self.genderView.layer.shadowOpacity = SHADOW_OPACITY;
+    self.genderView.layer.shadowColor = SHADOW_COLOR;
+    
+    self.birthdateView.backgroundColor = BACKGROUND_COLOR;
+    self.birthdateView.layer.cornerRadius = CORNER_RADIUS;
+    self.birthdateView.layer.shadowOffset = SHADOW_OFFSET;
+    self.birthdateView.layer.shadowRadius = SHADOW_RADIUS;
+    self.birthdateView.layer.shadowOpacity = SHADOW_OPACITY;
+    self.birthdateView.layer.shadowColor = SHADOW_COLOR;
+    
+    self.emailView.backgroundColor = BACKGROUND_COLOR;
+    self.emailView.layer.cornerRadius = CORNER_RADIUS;
+    self.emailView.layer.shadowOffset = SHADOW_OFFSET;
+    self.emailView.layer.shadowRadius = SHADOW_RADIUS;
+    self.emailView.layer.shadowOpacity = SHADOW_OPACITY;
+    self.emailView.layer.shadowColor = SHADOW_COLOR;
+    
+    self.cityView.backgroundColor = BACKGROUND_COLOR;
+    self.cityView.layer.cornerRadius = CORNER_RADIUS;
+    self.cityView.layer.shadowOffset = SHADOW_OFFSET;
+    self.cityView.layer.shadowRadius = SHADOW_RADIUS;
+    self.cityView.layer.shadowOpacity = SHADOW_OPACITY;
+    self.cityView.layer.shadowColor = SHADOW_COLOR;
+    
+    [MSStyleFactory setQBFlatButton:self.nextButton withStyle:MSFlatButtonStyleGreen];
+    [self.nextButton setTitle:@"NEXT" forState:UIControlStateNormal];
 }
 
 #pragma mark - Handlers
 
 - (void)genderTapHandler
 {
-    
+    [self.activeTextField resignFirstResponder];
+    if (self.hiddenGenderPicker) {
+        [self openGenderPicker];
+        [self closeBirthdatePicker];
+    } else {
+        [self closeGenderPicker];
+    }
 }
 
 - (void)birthdateTapHandler
 {
-    
+    [self.activeTextField resignFirstResponder];
+    if (self.hiddenBirthdatePicker) {
+        [self openBirthdatePicker];
+        [self closeGenderPicker];
+    } else {
+        [self closeBirthdatePicker];
+    }
 }
 
 - (void)cityTapHandler
@@ -376,28 +456,83 @@
 
 #pragma mark - Layout
 
+#define PICKERS_HEIGHT 152
+
 - (void)openGenderPicker
 {
-//    if (self.hiddenStartDatePicker) {
-//        [UIView animateWithDuration:0.5 animations:^{
-//            CGRect subviewsFrame = self.startSubviewContainer.frame;
-//            subviewsFrame.origin.y += DATEPICKERS_HEIGHT;
-//            self.startSubviewContainer.frame = subviewsFrame;
-//            
+    if (self.hiddenGenderPicker) {
+        [UIView animateWithDuration:0.5 animations:^{
+            CGRect subviewsFrame = self.genderSubviewContainer.frame;
+            subviewsFrame.origin.y += PICKERS_HEIGHT;
+            self.genderSubviewContainer.frame = subviewsFrame;
+            
 //            if (self.hiddenEndDatePicker) {
 //                [self setScrollViewContentSizeForPickerOpen:YES];
 //            }
-//            
-//            self.startDatePicker.alpha = 1.0;
-//        }];
-//        
-//        self.hiddenStartDatePicker = NO;
-//    }
+            
+            self.genderPicker.alpha = 1.0;
+        }];
+        
+        self.hiddenGenderPicker = NO;
+    }
 }
 
 - (void)closeGenderPicker
 {
+    if (!self.hiddenGenderPicker) {
+        [UIView animateWithDuration:0.5 animations:^{
+            CGRect subviewsFrame = self.genderSubviewContainer.frame;
+            subviewsFrame.origin.y -= PICKERS_HEIGHT;
+            self.genderSubviewContainer.frame = subviewsFrame;
+            
+//            if (self.hiddenEndDatePicker) {
+//                [self setScrollViewContentSizeForPickerOpen:NO];
+//            }
+            
+            self.genderPicker.alpha = 0.0;
+        }];
+        
+        self.hiddenGenderPicker = YES;
+    }
+}
+
+- (void)openBirthdatePicker
+{
+    if (self.hiddenBirthdatePicker) {
+        [UIView animateWithDuration:0.5 animations:^{
+            CGRect subviewsFrame = self.birthdateSubviewContainer.frame;
+            subviewsFrame.origin.y += PICKERS_HEIGHT;
+            self.birthdateSubviewContainer.frame = subviewsFrame;
+            
+            //            if (self.hiddenEndDatePicker) {
+            //                [self setScrollViewContentSizeForPickerOpen:YES];
+            //            }
+            
+            self.birthdatePicker.alpha = 1.0;
+        }];
+        
+        self.hiddenBirthdatePicker = NO;
+    }
+}
+
+- (void)closeBirthdatePicker
+{
     
+    if (!self.hiddenBirthdatePicker) {
+        [UIView animateWithDuration:0.5 animations:^{
+            CGRect subviewsFrame = self.birthdateSubviewContainer.frame;
+            subviewsFrame.origin.y -= PICKERS_HEIGHT;
+            self.birthdateSubviewContainer.frame = subviewsFrame;
+            
+            //            if (self.hiddenEndDatePicker) {
+            //                [self setScrollViewContentSizeForPickerOpen:NO];
+            //            }
+            
+            self.birthdatePicker.alpha = 0.0;
+        }];
+        
+        self.hiddenBirthdatePicker = YES;
+    }
 }
 
 #pragma mark UIImagePickerControllerDelegate

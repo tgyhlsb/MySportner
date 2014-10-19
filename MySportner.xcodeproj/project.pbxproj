@@ -143,8 +143,6 @@
 		5A653B121894200700E2B8AE /* MSCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A653B111894200700E2B8AE /* MSCommentCell.xib */; };
 		5A653B16189427D900E2B8AE /* MSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A653B15189427D900E2B8AE /* MSCell.m */; };
 		5A653B181894427C00E2B8AE /* ProximaNova-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5A653B171894427C00E2B8AE /* ProximaNova-Light.otf */; };
-		5A6DD74E18A031D900649A58 /* Splashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A6DD74C18A031D900649A58 /* Splashscreen.png */; };
-		5A6DD74F18A031D900649A58 /* Splashscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A6DD74D18A031D900649A58 /* Splashscreen@2x.png */; };
 		5A6DD75318A03A2400649A58 /* share_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A6DD75218A03A2400649A58 /* share_button.png */; };
 		5A78B7EC1895759D0074A5B3 /* MSPickLocalisationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78B7EB1895759D0074A5B3 /* MSPickLocalisationVC.m */; };
 		5A78B7EE189575AA0074A5B3 /* MSPickLocalisationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A78B7ED189575AA0074A5B3 /* MSPickLocalisationVC.xib */; };
@@ -1767,7 +1765,6 @@
 				5A580E8319F279EF00CA3846 /* logo.png in Resources */,
 				5A580E7319F25ECD00CA3846 /* rugby.png in Resources */,
 				5AD8035D18A990B90024DF74 /* pin_gray.png in Resources */,
-				5A6DD74E18A031D900649A58 /* Splashscreen.png in Resources */,
 				5A7C7BD818A9813100887926 /* profil-localisation@2x.png in Resources */,
 				5A85E8F71872D01300F5E8F9 /* MSLocationCell.xib in Resources */,
 				5AC7DAB418A98DA7002063C7 /* perso@2x.png in Resources */,
@@ -1834,7 +1831,6 @@
 				5A0CB7F71891714A0027EE58 /* slider-default7-track@2x.png in Resources */,
 				5ABF1E5E18B16FEC008071F9 /* logout.png in Resources */,
 				5A580E6C19F2570400CA3846 /* yoga2.png in Resources */,
-				5A6DD74F18A031D900649A58 /* Splashscreen@2x.png in Resources */,
 				5A0F9118184242BD0049BBD5 /* MSVerifyAccountVC.xib in Resources */,
 				5ABF1E5718B16F59008071F9 /* Trophee@2x.png in Resources */,
 				5A63A2A018A0188F002DE50D /* Trophee3@2x.png in Resources */,

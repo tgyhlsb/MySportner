@@ -82,7 +82,7 @@
                             ];
     [self.confirmedButton setTitle:@"CONFIRMED" forState:UIControlStateNormal];
     [self.awaitingButton setTitle:@"AWAITING" forState:UIControlStateNormal];
-    [self.invitedButton setTitle:@"REJECTED" forState:UIControlStateNormal];
+    [self.invitedButton setTitle:@"INVITED" forState:UIControlStateNormal];
 
 }
 

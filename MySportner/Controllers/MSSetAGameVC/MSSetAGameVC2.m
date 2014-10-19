@@ -190,7 +190,7 @@
     self.collectionViewTitleLabel.textColor = [UIColor colorWithRed:80.0/255.0 green:93.0/255.0 blue:101.0/255.0 alpha:0.8];
     
     [MSStyleFactory setQBFlatButton:self.doneButton withStyle:MSFlatButtonStyleGreen];
-    [self.doneButton setTitle:@"DONE" forState:UIControlStateNormal];
+    [self.doneButton setTitle:@"PUBLISH" forState:UIControlStateNormal];
     
     self.playersStepper.maximumValue = 20.0;
     self.playersStepper.minimumValue = 2.0;

@@ -29,21 +29,34 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.fullButton = [[UIButton alloc] initWithFrame:self.bounds];
-        [self addSubview:self.fullButton];
-        self.playerButton = [[UIButton alloc] initWithFrame:self.bounds];
-        [self addSubview:self.playerButton];
-        
-        CGRect labelFrame = CGRectMake(self.bounds.size.width*0.1, 0, 20, self.bounds.size.height);
-        self.sizeLabel = [[UILabel alloc] initWithFrame:labelFrame];
-        [self addSubview:self.sizeLabel];
-        
-        self.userInteractionEnabled = NO;
-        
-        [self setUpAppearance];
+        [self initialize];
     }
     
     return self;
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    [self initialize];
+}
+
+- (void)initialize
+{
+    self.fullButton = [[UIButton alloc] initWithFrame:self.bounds];
+    [self addSubview:self.fullButton];
+    self.playerButton = [[UIButton alloc] initWithFrame:self.bounds];
+    [self addSubview:self.playerButton];
+    
+    CGRect labelFrame = CGRectMake(self.bounds.size.width*0.1, 0, 20, self.bounds.size.height);
+    self.sizeLabel = [[UILabel alloc] initWithFrame:labelFrame];
+    [self addSubview:self.sizeLabel];
+    
+    self.userInteractionEnabled = NO;
+    self.clipsToBounds = YES;
+    
+    [self setUpAppearance];
 }
 
 

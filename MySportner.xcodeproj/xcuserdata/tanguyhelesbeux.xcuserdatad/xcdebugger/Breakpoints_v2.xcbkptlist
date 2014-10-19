@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSActivitiesVC/MSActivitiesVC.m"
-            timestampString = "435398810.071699"
+            timestampString = "435402867.483478"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "-requestActivitiesFromBackEnd"
             landmarkType = "5">
          </BreakpointContent>

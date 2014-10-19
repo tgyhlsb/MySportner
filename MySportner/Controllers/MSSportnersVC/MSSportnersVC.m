@@ -9,7 +9,7 @@
 #import "MSSportnersVC.h"
 #import "MBProgressHUD.h"
 #import "MSProfileVC.h"
-#import "MSActivityVC.h"
+#import "MSGameProfileVC.h"
 #import "QBFlatButton.h"
 #import "MSStyleFactory.h"
 
@@ -78,7 +78,7 @@
 
 - (void)activityCreationDidSucceed
 {
-    MSActivityVC *destinationVC = [MSActivityVC newController];
+    MSGameProfileVC *destinationVC = [MSGameProfileVC newController];
     destinationVC.hasDirectAccessToDrawer = YES;
     destinationVC.activity = self.referenceActivity;
     

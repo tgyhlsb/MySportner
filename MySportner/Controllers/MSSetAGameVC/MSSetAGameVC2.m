@@ -13,7 +13,7 @@
 #import "MSActivity.h"
 #import "MSSportner.h"
 #import "TKAlertCenter.h"
-#import "MSActivityVC.h"
+#import "MSGameProfileVC.h"
 #import "MBProgressHUD.h"
 #import "MSStyleFactory.h"
 #import "MSColorFactory.h"
@@ -471,7 +471,7 @@
 
 - (void)activityCreationDidSucceed
 {
-    MSActivityVC *destinationVC = [MSActivityVC newController];
+    MSGameProfileVC *destinationVC = [MSGameProfileVC newController];
     destinationVC.hasDirectAccessToDrawer = YES;
     destinationVC.activity = self.savingActivity;
     

@@ -11,7 +11,7 @@
 #import "UIImage+BlurredFrame.h"
 #import "MSColorFactory.h"
 #import "MSActivityCell.h"
-#import "MSActivityVC.h"
+#import "MSGameProfileVC.h"
 #import "MSChooseSportsVC.h"
 #import "MSProfilePictureView.h"
 #import "TKAlertCenter.h"
@@ -463,7 +463,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     switch (self.tableViewMode) {
         case MSProfileTableViewModeActivities:
         {
-            MSActivityVC *destinationVC = [MSActivityVC newController];
+            MSGameProfileVC *destinationVC = [MSGameProfileVC newController];
             MSActivityCell *cell = (MSActivityCell *)[self.tableView cellForRowAtIndexPath:indexPath];
             destinationVC.activity = cell.activity;
             [self.navigationController pushViewController:destinationVC animated:YES];

@@ -12,12 +12,11 @@
 #import "MSActivity.h"
 #import "MSActivityCell.h"
 #import "MSActivitiesFilterCell.h"
-#import "MSActivityVC.h"
+#import "MSGameProfileVC.h"
 #import "MBProgressHUD.h"
 #import "QBFlatButton.h"
 #import "MSStyleFactory.h"
 #import "MSSetAGameVC2.h"
-//#import <FacebookSDK/FacebookSDK.h>
 #import "MSProfileVC.h"
 #import "MSSportnersVC.h"
 
@@ -171,7 +170,7 @@
 
 - (void)activityCreationDidSucceed
 {
-    MSActivityVC *destinationVC = [MSActivityVC newController];
+    MSGameProfileVC *destinationVC = [MSGameProfileVC newController];
     destinationVC.hasDirectAccessToDrawer = YES;
     destinationVC.activity = self.referenceActivity;
     
@@ -305,7 +304,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    MSActivityVC *destinationVC = [MSActivityVC newController];
+    MSGameProfileVC *destinationVC = [MSGameProfileVC newController];
     MSActivityCell *cell = (MSActivityCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     destinationVC.activity = cell.activity;
     

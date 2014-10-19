@@ -1,20 +1,20 @@
+////
+////  MSActivityVC.h
+////  MySportner
+////
+////  Created by Tanguy Hélesbeux on 23/11/2013.
+////  Copyright (c) 2013 MySportner. All rights reserved.
+////
 //
-//  MSActivityVC.h
-//  MySportner
+//#import <UIKit/UIKit.h>
+//#import "MSCenterController.h"
+//#import "MSActivity.h"
 //
-//  Created by Tanguy Hélesbeux on 23/11/2013.
-//  Copyright (c) 2013 MySportner. All rights reserved.
+//@interface MSActivityVC : MSCenterController
 //
-
-#import <UIKit/UIKit.h>
-#import "MSCenterController.h"
-#import "MSActivity.h"
-
-@interface MSActivityVC : MSCenterController
-
-@property (strong, nonatomic) MSActivity *activity;
-
-
-+ (MSActivityVC *)newController;
-
-@end
+//@property (strong, nonatomic) MSActivity *activity;
+//
+//
+//+ (MSActivityVC *)newController;
+//
+//@end

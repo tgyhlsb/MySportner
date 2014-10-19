@@ -230,9 +230,9 @@
     formSheet.shouldCenterVertically = YES;
     
     vc.textTitle = nil;
-    vc.text = @"By clicking next, you hereby agree to the terms and confitions of use.";
-    vc.otherButonTitle = @"Cancel";
-    vc.mainButtonTitle = @"NEXT";
+    vc.text = @"By clicking accept, you hereby agree to the terms and conditions of use.";
+    vc.otherButonTitle = @"Decline";
+    vc.mainButtonTitle = @"ACCEPT";
     vc.imageName = @"check.png";
     
     formSheet.willPresentCompletionHandler = ^(UIViewController *presentedFSViewController) {

@@ -24,6 +24,7 @@
 {
     MSAttendeesVC *controller = [[MSAttendeesVC alloc] initWithNibName:NIB_NAME bundle:nil];
     controller.hasDirectAccessToDrawer = NO;
+    [controller registerToActivityNotifications];
     return controller;
 }
 
@@ -50,9 +51,51 @@
 {
     _activity = activity;
     
+    [activity fetchAwaitings];
+    [activity fetchGuests];
+    [activity fetchParticipants];
+    
+    [self.confirmedAttendeesVC startLoading];
+    [self.invitedAttendeesVC startLoading];
+    [self.awaitingAttendeesVC startLoading];
+}
+
+#pragma mark - Activity notification
+
+- (void)registerToActivityNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(activityConfirmedSportnerNotificationReceived)
+                                                 name:MSNotificationActivityConfirmedChanged
+                                               object:self.activity];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(activityInvitedSportnerNotificationReceived)
+                                                 name:MSNotificationActivityInvitedChanged
+                                               object:self.activity];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(activityAwaitingSportnerNotificationReceived)
+                                                 name:MSNotificationActivityAwaitingChanged
+                                               object:self.activity];
+}
+
+- (void)activityConfirmedSportnerNotificationReceived
+{
     self.confirmedAttendeesVC.sportnerList = self.activity.participants;
-    self.awaitingAttendeesVC.sportnerList = self.activity.awaitings;
+    [self.confirmedAttendeesVC stopLoading];
+}
+
+- (void)activityInvitedSportnerNotificationReceived
+{
     self.invitedAttendeesVC.sportnerList = self.activity.guests;
+    [self.invitedAttendeesVC stopLoading];
+}
+
+- (void)activityAwaitingSportnerNotificationReceived
+{
+    self.invitedAttendeesVC.sportnerList = self.activity.guests;
+    [self.awaitingAttendeesVC stopLoading];
 }
 
 #pragma mark - AttendeesListControllers

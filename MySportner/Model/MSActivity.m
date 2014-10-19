@@ -206,6 +206,7 @@
         if (!error) {
             self.guests = objects;
             [self notifyActivityStateChanged];
+            [self notifyActivityInvitedChanged];
         } else {
             NSLog(@"%@", error);
         }
@@ -242,6 +243,7 @@
         if (!error) {
             self.participants = objects;
             [self notifyActivityStateChanged];
+            [self notifyActivityConfirmedChanged];
         } else {
             NSLog(@"%@", error);
         }
@@ -281,6 +283,7 @@
         if (!error) {
             self.awaitings = objects;
             [self notifyActivityStateChanged];
+            [self notifyActivityAwaitingChanged];
         } else {
             NSLog(@"%@", error);
         }
@@ -308,12 +311,6 @@
 }
 
 #pragma mark - Messages
-
-- (void)notifyActivityStateChanged
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationActivityStateChanged
-                                                        object:self];
-}
 
 //- (void)requestMessagesWithTarget:(id)target callBack:(SEL)callback
 //{
@@ -408,6 +405,33 @@
         }
         
     }];
+}
+
+#pragma mark - Notifications
+
+
+- (void)notifyActivityStateChanged
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationActivityStateChanged
+                                                        object:self];
+}
+
+- (void)notifyActivityConfirmedChanged
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationActivityConfirmedChanged
+                                                        object:self];
+}
+
+- (void)notifyActivityInvitedChanged
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationActivityInvitedChanged
+                                                        object:self];
+}
+
+- (void)notifyActivityAwaitingChanged
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationActivityAwaitingChanged
+                                                        object:self];
 }
 
 

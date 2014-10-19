@@ -16,6 +16,9 @@
 #define PARSE_CLASSNAME_ACTIVITY @"MSActivity"
 
 static NSString *MSNotificationActivityStateChanged = @"MSNotificationActivityStateChanged";
+static NSString *MSNotificationActivityConfirmedChanged = @"MSNotificationActivityConfirmedChanged";
+static NSString *MSNotificationActivityInvitedChanged = @"MSNotificationActivityInvitedChanged";
+static NSString *MSNotificationActivityAwaitingChanged = @"MSNotificationActivityAwaitingChanged";
 
 @interface MSActivity : PFObject <PFSubclassing>
 

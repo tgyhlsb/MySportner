@@ -42,7 +42,7 @@
     
     self.navigationController.navigationBar.translucent = NO;
     
-    self.title = @"Attendees";
+    self.title = [@"Attendees" uppercaseString];
     
     
     self.pageViewController.dataSource = self;

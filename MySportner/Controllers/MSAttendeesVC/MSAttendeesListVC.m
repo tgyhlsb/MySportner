@@ -7,10 +7,13 @@
 //
 
 #import "MSAttendeesListVC.h"
+#import "MSSportnerCell.h"
 
 #define NIB_NAME @"MSAttendeesListVC"
 
-@interface MSAttendeesListVC ()
+@interface MSAttendeesListVC () <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -25,6 +28,46 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [MSSportnerCell registerToTableview:self.tableView];
 }
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *identifer = [MSSportnerCell reusableIdentifier];
+    MSSportnerCell *cell = [tableView dequeueReusableCellWithIdentifier:identifer forIndexPath:indexPath];
+    
+    cell.sportner = [MSSportner currentSportner];
+    
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [MSSportnerCell height];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [MSSportnerCell height];
+}
+
 
 @end

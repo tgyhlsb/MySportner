@@ -98,8 +98,8 @@
     
     self.nameLabel.textColor = [MSColorFactory redLight];
     
-    self.placeLabel.font = [MSFontFactory fontForCellInfo];
-    self.nameLabel.font = [MSFontFactory fontForCellAcivityTitle];
+    self.placeLabel.font = [UIFont fontWithName:@"ProximaNova-Regular" size:13.0];
+    self.nameLabel.font = [UIFont fontWithName:@"ProximaNova-SemiBold" size:16.0];
     
     self.actionButton.faceColor = [MSColorFactory redLight];
     self.actionButton.margin = 0.0f;

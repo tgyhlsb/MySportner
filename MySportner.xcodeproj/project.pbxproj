@@ -141,6 +141,7 @@
 		5A580EB419F3F1C900CA3846 /* MSAttendeesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A580EB219F3F1C900CA3846 /* MSAttendeesVC.xib */; };
 		5A580EB919F3F4F200CA3846 /* MSAttendeesListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A580EB719F3F4F200CA3846 /* MSAttendeesListVC.m */; };
 		5A580EBA19F3F4F200CA3846 /* MSAttendeesListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A580EB819F3F4F200CA3846 /* MSAttendeesListVC.xib */; };
+		5A580EBD19F3FCD200CA3846 /* MSAndroidButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A580EBC19F3FCD200CA3846 /* MSAndroidButton.m */; };
 		5A622FA318A12F9C00D33349 /* MSProfilePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */; };
 		5A622FA518A12FC000D33349 /* MSProfilePictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */; };
 		5A622FA818A13A4400D33349 /* attendees_subtitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA718A13A4400D33349 /* attendees_subtitle.png */; };
@@ -467,6 +468,8 @@
 		5A580EB619F3F4F200CA3846 /* MSAttendeesListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSAttendeesListVC.h; path = Controllers/MSAttendeesVC/MSAttendeesListVC.h; sourceTree = "<group>"; };
 		5A580EB719F3F4F200CA3846 /* MSAttendeesListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSAttendeesListVC.m; path = Controllers/MSAttendeesVC/MSAttendeesListVC.m; sourceTree = "<group>"; };
 		5A580EB819F3F4F200CA3846 /* MSAttendeesListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSAttendeesListVC.xib; path = Controllers/MSAttendeesVC/MSAttendeesListVC.xib; sourceTree = "<group>"; };
+		5A580EBB19F3FCD200CA3846 /* MSAndroidButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSAndroidButton.h; path = Views/MSAndroidButton.h; sourceTree = "<group>"; };
+		5A580EBC19F3FCD200CA3846 /* MSAndroidButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSAndroidButton.m; path = Views/MSAndroidButton.m; sourceTree = "<group>"; };
 		5A622FA118A12F9C00D33349 /* MSProfilePictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSProfilePictureCell.h; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.h; sourceTree = "<group>"; };
 		5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSProfilePictureCell.m; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.m; sourceTree = "<group>"; };
 		5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSProfilePictureCell.xib; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.xib; sourceTree = "<group>"; };
@@ -1397,6 +1400,8 @@
 				5A34C4E21895293500CE2EF2 /* MSProfilePictureView.m */,
 				5AEFA8B01896B580004B3EF7 /* MSPinView.h */,
 				5AEFA8B11896B580004B3EF7 /* MSPinView.m */,
+				5A580EBB19F3FCD200CA3846 /* MSAndroidButton.h */,
+				5A580EBC19F3FCD200CA3846 /* MSAndroidButton.m */,
 				5A580E8E19F296AD00CA3846 /* MSPlayerSizeView */,
 				5A2B6908189AD09600D82870 /* MSHeaderSectionView */,
 			);
@@ -1943,6 +1948,7 @@
 				5ADCF2D81840BDAD00E6C8D2 /* MSSmallSportCell.m in Sources */,
 				5ADCF3051840E60300E6C8D2 /* MSFourSquareRequestFactory.m in Sources */,
 				5A622FA318A12F9C00D33349 /* MSProfilePictureCell.m in Sources */,
+				5A580EBD19F3FCD200CA3846 /* MSAndroidButton.m in Sources */,
 				5A580E7F19F26D6A00CA3846 /* MSFullScreenPopUpVC.m in Sources */,
 				5AA60A0E184B67E700B09ADD /* NKColorSwitch.m in Sources */,
 				5ADCF235184004D300E6C8D2 /* MSAppDelegate.m in Sources */,

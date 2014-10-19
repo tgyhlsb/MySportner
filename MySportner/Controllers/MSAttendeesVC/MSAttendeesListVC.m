@@ -54,6 +54,8 @@
     
     cell.sportner = [MSSportner currentSportner];
     
+    [cell setAppearanceWithOddIndex:((indexPath.row + 1) % 2)];
+    
     return cell;
 }
 

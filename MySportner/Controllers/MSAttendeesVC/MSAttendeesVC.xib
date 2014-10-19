@@ -2,11 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6245"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSAttendeesVC">
             <connections>
+                <outlet property="awaitingButton" destination="F2q-nn-zby" id="qTa-Mx-OeJ"/>
+                <outlet property="confirmedButton" destination="nnB-67-tHo" id="MAR-Lt-82L"/>
+                <outlet property="invitedButton" destination="UAJ-UH-56l" id="GpV-du-oXG"/>
                 <outlet property="pageViewControllerContainer" destination="qXI-IX-fRa" id="8Cg-tU-ltc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,34 +23,119 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnB-67-tHo" customClass="MSAndroidButton">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="lVz-1d-ASQ"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="lVz-1d-ASQ"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="lVz-1d-ASQ"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="confirmedButtonHandler:" destination="-1" eventType="touchUpInside" id="mJ3-bW-TYx"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2q-nn-zby" customClass="MSAndroidButton">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="awaitingButtonHandler:" destination="-1" eventType="touchUpInside" id="JYO-L9-SGX"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAJ-UH-56l" customClass="MSAndroidButton">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="invitedButtonHandler:" destination="-1" eventType="touchUpInside" id="qTt-W7-02y"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="qXI-IX-fRa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="4M4-DI-7jk"/>
+                <constraint firstItem="nnB-67-tHo" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6Yt-eR-VhP"/>
+                <constraint firstItem="F2q-nn-zby" firstAttribute="top" secondItem="nnB-67-tHo" secondAttribute="top" id="6hd-af-T6Q"/>
+                <constraint firstItem="F2q-nn-zby" firstAttribute="width" secondItem="nnB-67-tHo" secondAttribute="width" id="Etf-mz-dHq"/>
+                <constraint firstAttribute="trailing" secondItem="UAJ-UH-56l" secondAttribute="trailing" id="FWB-EX-kDB"/>
+                <constraint firstItem="F2q-nn-zby" firstAttribute="height" secondItem="nnB-67-tHo" secondAttribute="height" id="IrW-wt-By0"/>
+                <constraint firstItem="qXI-IX-fRa" firstAttribute="top" secondItem="nnB-67-tHo" secondAttribute="bottom" id="L8e-D6-zEB"/>
+                <constraint firstItem="F2q-nn-zby" firstAttribute="bottom" secondItem="nnB-67-tHo" secondAttribute="bottom" id="NpP-UK-ICO"/>
+                <constraint firstItem="UAJ-UH-56l" firstAttribute="leading" secondItem="F2q-nn-zby" secondAttribute="trailing" id="Qj4-wh-wr9"/>
+                <constraint firstItem="nnB-67-tHo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TAB-CK-ciu"/>
                 <constraint firstAttribute="bottom" secondItem="qXI-IX-fRa" secondAttribute="bottom" id="WId-gu-4ih"/>
                 <constraint firstItem="qXI-IX-fRa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dTS-tw-DkM"/>
+                <constraint firstItem="F2q-nn-zby" firstAttribute="bottom" secondItem="UAJ-UH-56l" secondAttribute="bottom" id="fTf-a1-8ob"/>
+                <constraint firstItem="F2q-nn-zby" firstAttribute="leading" secondItem="nnB-67-tHo" secondAttribute="trailing" id="iLi-S1-0Nk"/>
                 <constraint firstAttribute="trailing" secondItem="qXI-IX-fRa" secondAttribute="trailing" id="m3W-It-oVf"/>
+                <constraint firstItem="F2q-nn-zby" firstAttribute="height" secondItem="UAJ-UH-56l" secondAttribute="height" id="xgj-9k-nb5"/>
+                <constraint firstItem="F2q-nn-zby" firstAttribute="width" secondItem="UAJ-UH-56l" secondAttribute="width" id="ydH-X9-ovn"/>
+                <constraint firstItem="F2q-nn-zby" firstAttribute="top" secondItem="UAJ-UH-56l" secondAttribute="top" id="znG-wx-1D0"/>
             </constraints>
             <variation key="default">
                 <mask key="subviews">
                     <exclude reference="qXI-IX-fRa"/>
+                    <exclude reference="nnB-67-tHo"/>
+                    <exclude reference="F2q-nn-zby"/>
+                    <exclude reference="UAJ-UH-56l"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="4M4-DI-7jk"/>
+                    <exclude reference="6Yt-eR-VhP"/>
+                    <exclude reference="TAB-CK-ciu"/>
+                    <exclude reference="L8e-D6-zEB"/>
                     <exclude reference="WId-gu-4ih"/>
                     <exclude reference="dTS-tw-DkM"/>
                     <exclude reference="m3W-It-oVf"/>
+                    <exclude reference="6hd-af-T6Q"/>
+                    <exclude reference="Etf-mz-dHq"/>
+                    <exclude reference="IrW-wt-By0"/>
+                    <exclude reference="NpP-UK-ICO"/>
+                    <exclude reference="fTf-a1-8ob"/>
+                    <exclude reference="iLi-S1-0Nk"/>
+                    <exclude reference="xgj-9k-nb5"/>
+                    <exclude reference="ydH-X9-ovn"/>
+                    <exclude reference="znG-wx-1D0"/>
+                    <exclude reference="FWB-EX-kDB"/>
+                    <exclude reference="Qj4-wh-wr9"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
                     <include reference="qXI-IX-fRa"/>
+                    <include reference="nnB-67-tHo"/>
+                    <include reference="F2q-nn-zby"/>
+                    <include reference="UAJ-UH-56l"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="4M4-DI-7jk"/>
+                    <include reference="6Yt-eR-VhP"/>
+                    <include reference="TAB-CK-ciu"/>
+                    <include reference="L8e-D6-zEB"/>
                     <include reference="WId-gu-4ih"/>
                     <include reference="dTS-tw-DkM"/>
                     <include reference="m3W-It-oVf"/>
+                    <include reference="6hd-af-T6Q"/>
+                    <include reference="Etf-mz-dHq"/>
+                    <include reference="IrW-wt-By0"/>
+                    <include reference="NpP-UK-ICO"/>
+                    <include reference="fTf-a1-8ob"/>
+                    <include reference="iLi-S1-0Nk"/>
+                    <include reference="xgj-9k-nb5"/>
+                    <include reference="ydH-X9-ovn"/>
+                    <include reference="znG-wx-1D0"/>
+                    <include reference="FWB-EX-kDB"/>
+                    <include reference="Qj4-wh-wr9"/>
                 </mask>
             </variation>
         </view>

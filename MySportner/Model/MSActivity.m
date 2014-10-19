@@ -42,6 +42,7 @@
 @synthesize guests = _guests;
 @synthesize participants = _participants;
 @synthesize awaitings = _awaitings;
+@synthesize comments = _comments;
 
 @synthesize tempMessageQueryCallBack = _tempMessageQueryCallBack;
 @synthesize tempMessageQueryTarget = _tempMessageQueryTarget;
@@ -54,8 +55,6 @@
 
 @synthesize tempQueryMessagesCallBack = _tempQueryMessagesCallBack;
 @synthesize tempQueryMessagesTarget = _tempQueryMessagesTarget;
-
-@dynamic messages;
 
 
 + (NSString *)parseClassName
@@ -81,6 +80,11 @@
 - (PFRelation *)awaitingRelation
 {
     return [self relationForKey:@"awaiting"];
+}
+
+- (PFRelation *)commentRelation
+{
+    return [self relationForKey:@"comment"];
 }
 
 #pragma mark - PARSE Backend
@@ -189,7 +193,21 @@
     }
 }
 
-#pragma mark - Participants & Guests
+#pragma mark - Guests
+
+- (void)fetchGuests
+{
+    PFQuery *query = [[self guestRelation] query];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            self.guests = objects;
+            [self notifyActivityStateChanged];
+        } else {
+            NSLog(@"%@", error);
+        }
+    }];
+}
 
 - (void)addGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack
 {
@@ -211,6 +229,22 @@
     [self saveInBackgroundWithTarget:target selector:callBack];
 }
 
+#pragma mark - Participants
+
+- (void)fetchParticipants
+{
+    PFQuery *query = [[self participantRelation] query];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            self.participants = objects;
+            [self notifyActivityStateChanged];
+        } else {
+            NSLog(@"%@", error);
+        }
+    }];
+}
+
 - (void)addParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack
 {
     PFRelation *relation = [self participantRelation];
@@ -229,6 +263,22 @@
     [tempParticipants removeObject:participant];
     self.participants = tempParticipants;
     [self saveInBackgroundWithTarget:target selector:callBack];
+}
+
+#pragma mark - Awaitings
+
+- (void)fetchAwaitings
+{
+    PFQuery *query = [[self awaitingRelation] query];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            self.awaitings = objects;
+            [self notifyActivityStateChanged];
+        } else {
+            NSLog(@"%@", error);
+        }
+    }];
 }
 
 - (void)addAwaiting:(MSSportner *)awaiting WithTarget:(id)target callBack:(SEL)callBack
@@ -253,69 +303,95 @@
 
 #pragma mark - Messages
 
-- (void)requestMessagesWithTarget:(id)target callBack:(SEL)callback
+- (void)notifyActivityStateChanged
 {
-    self.tempQueryMessagesCallBack = callback;
-    self.tempQueryMessagesTarget = target;
-    [PFObject fetchAllInBackground:self.messages target:self selector:@selector(messagesCallBack:error:)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationActivityStateChanged
+                                                        object:self];
 }
 
+//- (void)requestMessagesWithTarget:(id)target callBack:(SEL)callback
+//{
+//    self.tempQueryMessagesCallBack = callback;
+//    self.tempQueryMessagesTarget = target;
+//    
+//    [PFObject fetchAllInBackground:self.messages target:self selector:@selector(messagesCallBack:error:)];
+//}
 
-- (void)messagesCallBack:(NSArray *)objects error:(NSError *)error
+- (void)fetchComments
 {
-    if (!error) {
-        NSMutableArray *objectsToFetch = [[NSMutableArray alloc] initWithCapacity:[objects count]];
-        for (MSComment *comment in objects)
-        {
-            [objectsToFetch addObject:comment.author];
-        }
-        [PFObject fetchAllInBackground:objectsToFetch target:self selector:@selector(messagesAuthorsCallBack:error:)];
-    } else {
-        NSLog(@"Error: %@ %@", error, [error userInfo]);
-    }
-}
-
-- (void)messagesAuthorsCallBack:(NSArray *)objects error:(NSError *)error
-{
-    if (!error) {
-        // Same as : [target performSelector:@selector(callback)]
-        // Explanations : http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
-        // In order not to get warning
-        //        ((void (*)(id, SEL))[self.tempTarget methodForSelector:self.tempCallBack])(self.tempTarget, self.tempCallBack);
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [self.tempQueryMessagesTarget performSelector:self.tempQueryMessagesCallBack withObject:Nil withObject:Nil];
-#pragma clang diagnostic pop
-    } else {
-        NSLog(@"Error: %@ %@", error, [error userInfo]);
-    }
-}
-
-- (PFRelation *)messageRelation
-{
-    return [self relationForKey:@"message"];
-}
-
-- (void)addMessage:(MSComment *)message inBackgroundWithBlock:(PFBooleanResultBlock)block
-{
+    PFQuery *query = [[self commentRelation] query];
+    [query includeKey:@"author"];
     
-    [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            
-            if (!self.messages) self.messages = [[NSArray alloc] init];
-            NSMutableArray *tempMessages = [self.messages mutableCopy];
-            [tempMessages addObject:message];
-            self.messages = [tempMessages sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
-            
-            [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                block(succeeded, error);
-            }];
-            
+            self.comments = objects;
+            [self notifyActivityStateChanged];
         } else {
-            block(succeeded, error);
+            NSLog(@"%@", error);
         }
     }];
-    
+}
+
+//- (void)messagesCallBack:(NSArray *)objects error:(NSError *)error
+//{
+//    if (!error) {
+//        NSMutableArray *objectsToFetch = [[NSMutableArray alloc] initWithCapacity:[objects count]];
+//        for (MSComment *comment in objects)
+//        {
+//            [objectsToFetch addObject:comment.author];
+//        }
+//        [PFObject fetchAllInBackground:objectsToFetch target:self selector:@selector(messagesAuthorsCallBack:error:)];
+//    } else {
+//        NSLog(@"Error: %@ %@", error, [error userInfo]);
+//    }
+//}
+//
+//- (void)messagesAuthorsCallBack:(NSArray *)objects error:(NSError *)error
+//{
+//    if (!error) {
+//        // Same as : [target performSelector:@selector(callback)]
+//        // Explanations : http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
+//        // In order not to get warning
+//        //        ((void (*)(id, SEL))[self.tempTarget methodForSelector:self.tempCallBack])(self.tempTarget, self.tempCallBack);
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+//        [self.tempQueryMessagesTarget performSelector:self.tempQueryMessagesCallBack withObject:Nil withObject:Nil];
+//#pragma clang diagnostic pop
+//    } else {
+//        NSLog(@"Error: %@ %@", error, [error userInfo]);
+//    }
+//}
+
+//- (void)addMessage:(MSComment *)message inBackgroundWithBlock:(PFBooleanResultBlock)block
+//{
+//    
+//    [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if (!error) {
+//            
+//            if (!self.messages) self.messages = [[NSArray alloc] init];
+//            NSMutableArray *tempMessages = [self.messages mutableCopy];
+//            [tempMessages addObject:message];
+//            self.messages = [tempMessages sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
+//            
+//            [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                block(succeeded, error);
+//            }];
+//            
+//        } else {
+//            block(succeeded, error);
+//        }
+//    }];
+//    
+//}
+
+- (void)addComment:(MSComment *)comment withTarget:(id)target callBack:(SEL)callBack
+{
+    PFRelation *relation = [self commentRelation];
+    [relation addObject:comment];
+    NSMutableArray *tempComments = [self.comments mutableCopy];
+    [tempComments addObject:comment];
+    self.comments = tempComments;
+    [self saveInBackgroundWithTarget:target selector:callBack];
 }
 
 

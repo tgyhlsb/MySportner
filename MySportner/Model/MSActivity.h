@@ -15,6 +15,8 @@
 
 #define PARSE_CLASSNAME_ACTIVITY @"MSActivity"
 
+static NSString *MSNotificationActivityStateChanged = @"MSNotificationActivityStateChanged";
+
 @interface MSActivity : PFObject <PFSubclassing>
 
 @property (strong, nonatomic) NSDate *date;
@@ -29,17 +31,23 @@
 @property (strong, nonatomic) NSArray *participants;
 @property (strong, nonatomic) NSArray *awaitings;
 
-@property (strong, nonatomic) NSArray *messages;
+@property (strong, nonatomic) NSArray *comments;
 
 
 - (PFRelation *)guestRelation;
 - (PFRelation *)participantRelation;
 - (PFRelation *)awaitingRelation;
+- (PFRelation *)commentRelation;
 
+- (void)fetchGuests;
 - (void)addGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack;
 - (void)removeGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack;
+
+- (void)fetchParticipants;
 - (void)addParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack;
 - (void)removeParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack;
+
+- (void)fetchAwaitings;
 - (void)addAwaiting:(MSSportner *)awaiting WithTarget:(id)target callBack:(SEL)callBack;
 - (void)removeAwaiting:(MSSportner *)awaiting WithTarget:(id)target callBack:(SEL)callBack;
 
@@ -50,7 +58,7 @@
 
 - (NSComparisonResult)compareWithCreationDate:(MSActivity *)otherActivity;
 
-- (void)requestMessagesWithTarget:(id)target callBack:(SEL)callback;
-- (void)addMessage:(MSComment *)message inBackgroundWithBlock:(PFBooleanResultBlock)block;
+- (void)fetchComments;
+- (void)addComment:(MSComment *)comment withTarget:(id)target callBack:(SEL)callBack;
 
 @end

@@ -21,6 +21,9 @@
 #define NIB_NAME @"MSGameProfileVC"
 
 @interface MSGameProfileVC ()
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
+
 @property (weak, nonatomic) IBOutlet UIView *roundedView;
 @property (weak, nonatomic) IBOutlet UILabel *sportLabel;
 @property (weak, nonatomic) IBOutlet UILabel *placeLabel;
@@ -64,6 +67,9 @@
     
     [self setUpAppearance];
     
+    [self registerToActivityNotifications];
+    [self tryToUpdateInformationView];
+    
     self.navigationController.navigationBar.translucent = NO;
 }
 
@@ -71,8 +77,12 @@
 {
     [super viewDidAppear:animated];
     
-    [self updateInformationView];
     [self layoutBasedOnFrames];
+}
+
+- (BOOL)allInformationsAreFetched
+{
+    return self.activity.comments && self.activity.participants && self.activity.guests && self.activity.awaitings;
 }
 
 #pragma mark - Appearance
@@ -80,6 +90,8 @@
 - (void)setUpAppearance
 {
     self.title = @"GAME PROFILE";
+    
+    self.loadingIndicator.color = [MSColorFactory mainColor];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -138,27 +150,46 @@
     [self.ownerPictureView setRounded];
 }
 
+- (void)tryToUpdateInformationView
+{
+    [self startLoading];
+    if ([self allInformationsAreFetched]) {
+        [self updateInformationView];
+        [self stopLoading];
+    } else {
+        [self.activity fetchComments];
+        [self.activity fetchGuests];
+        [self.activity fetchParticipants];
+        [self.activity fetchAwaitings];
+    }
+}
+
 - (void)updateInformationView
 {
-    self.sportLabel.text = @"Basket";
-    self.placeLabel.text = @"ToulouseToulouse, FranceFranceFrance";
-    self.descriptionLabel.text = @"Gymnase sud Gymnase sud Gymnase sud Gymnase sud Gymnase sud";
-    self.ownerLabel.text = [@"Paul" uppercaseString];
-    self.ownerPictureView.sportner = [MSSportner currentSportner];
-    self.levelLabel.attributedText = [self attributedStringForLevel:0];
+    self.sportLabel.text = self.activity.sport.name;
+    self.placeLabel.text = self.activity.place;
+    self.descriptionLabel.text = @"Soon";
+    self.ownerLabel.text = self.activity.owner.firstName;
+    self.ownerPictureView.sportner = self.activity.owner;
+    self.levelLabel.attributedText = [self attributedStringForLevel:[self.activity.level integerValue]];
     self.playerSizeView.numberOfPlayer = 3;
     
     self.dateLabel1.text = @"Mon.";
     self.dateLabel2.text = @"25 Aug.";
     self.dateLabel3.text = @"11:00 am";
     
-    self.attendeesValueLabel.text = @"3";
-    self.commentsValueLabel.text = @"3";
+    NSInteger nbPlayers = [self.activity.participants count];
+    NSInteger nbComments = [self.activity.comments count];
+    
+    self.attendeesValueLabel.text = [NSString stringWithFormat:@"%ld", (long)nbPlayers];
+    self.commentsValueLabel.text = [NSString stringWithFormat:@"%ld", (long)nbComments];
 }
+
+#define LEVEL_NAMES @[@"Novice", @"Rookie", @"Intermediate", @"Expert", @"Legend"]
 
 - (NSAttributedString *)attributedStringForLevel:(NSInteger)level
 {
-    NSString *levelName = @"Intermediate";
+    NSString *levelName = [[LEVEL_NAMES objectAtIndex:level] uppercaseString];
     
     NSDictionary *grayParams = @{
                                  NSFontAttributeName: [UIFont fontWithName:@"ProximaNova-Regular" size:16.0],
@@ -175,6 +206,34 @@
     
     [fixedString appendAttributedString:levelString];
     return fixedString;
+}
+
+- (void)startLoading
+{
+    self.containerView.hidden = YES;
+}
+
+- (void)stopLoading
+{
+    self.containerView.hidden = NO;
+}
+
+#pragma mark - Activity notification
+
+- (void)registerToActivityNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(activityNotificationReceived)
+                                                 name:MSNotificationActivityStateChanged
+                                               object:self.activity];
+}
+
+- (void)activityNotificationReceived
+{
+    if ([self allInformationsAreFetched]) {
+        [self updateInformationView];
+        [self stopLoading];
+    }
 }
 
 #pragma mark - Handlers

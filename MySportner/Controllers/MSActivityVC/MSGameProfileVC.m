@@ -21,6 +21,17 @@
 
 #define NIB_NAME @"MSGameProfileVC"
 
+typedef NS_ENUM(int, MSUserStatusForActivity) {
+    MSUserStatusForActivityOwner,
+    MSUserStatusForActivityOwnerFull,
+    MSUserStatusForActivityConfirmed,
+    MSUserStatusForActivityInvited,
+    MSUserStatusForActivityInvitedFull,
+    MSUserStatusForActivityAwaiting,
+    MSUserStatusForActivityOther,
+    MSUserStatusForActivityOtherFull
+};
+
 @interface MSGameProfileVC ()
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
@@ -48,6 +59,9 @@
 @property (weak, nonatomic) IBOutlet UIView *attendeesView;
 @property (weak, nonatomic) IBOutlet UILabel *attendeesTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *attendeesValueLabel;
+
+@property (nonatomic) MSUserStatusForActivity sportnerStatus;
+
 @end
 
 @implementation MSGameProfileVC
@@ -84,7 +98,6 @@
 
 - (BOOL)allInformationsAreFetched
 {
-    return YES;
     return self.activity.comments && self.activity.participants && self.activity.guests && self.activity.awaitings;
 }
 
@@ -99,8 +112,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.roundedView.backgroundColor = [MSColorFactory redLight];
-    
-    [MSStyleFactory setQBFlatButton:self.mainButton withStyle:MSFlatButtonStyleGreen];
     
     self.sportLabel.textColor = [MSColorFactory redLight];
     self.sportLabel.font = [UIFont fontWithName:@"ProximaNova-SemiBold" size:23.0];
@@ -184,6 +195,122 @@
     
     self.attendeesValueLabel.text = [NSString stringWithFormat:@"%ld", (long)nbPlayers];
     self.commentsValueLabel.text = [NSString stringWithFormat:@"%ld", (long)nbComments];
+    
+    self.sportnerStatus = [self statusForSportner:[MSSportner currentSportner]];
+}
+
+- (MSUserStatusForActivity)statusForSportner:(MSSportner *)sportner
+{
+    MSUserStatusForActivity status = 0;
+    
+    if ([self.activity.owner isEqualToSportner:sportner]) {
+        
+        if ([self.activity.playerNeeded integerValue]) {
+            status = MSUserStatusForActivityOwner;
+        } else {
+            status = MSUserStatusForActivityOwnerFull;
+        }
+        
+    } else if ([self.activity.awaitings containsObject:sportner]) {
+        
+        status = MSUserStatusForActivityAwaiting;
+        
+    } else if ([self.activity.participants containsObject:sportner]) {
+        
+        status = MSUserStatusForActivityConfirmed;
+        
+    } else if ([self.activity.guests containsObject:sportner]) {
+        
+        if ([self.activity.playerNeeded integerValue]) {
+            status = MSUserStatusForActivityInvited;
+        } else {
+            status = MSUserStatusForActivityInvitedFull;
+        }
+    } else {
+        
+        if ([self.activity.playerNeeded integerValue]) {
+            status = MSUserStatusForActivityOther;
+        } else {
+            status = MSUserStatusForActivityOtherFull;
+        }
+    }
+    
+    return status;
+}
+
+- (void)setButtonForStatus:(MSUserStatusForActivity)status
+{
+    if ([self.activity.playerNeeded integerValue]) {
+        [self.mainButton setTitle:@"INVITE SPORTNERS" forState:UIControlStateNormal];
+        [MSStyleFactory setQBFlatButton:self.mainButton withStyle:MSFlatButtonStyleGreen];
+        self.mainButton.userInteractionEnabled = YES;
+    } else {
+        [self.mainButton setTitle:@"FULL" forState:UIControlStateNormal];
+        [MSStyleFactory setQBFlatButton:self.mainButton withStyle:MSFlatButtonStyleGray];
+        self.mainButton.userInteractionEnabled = NO;
+    }
+    
+    switch (status) {
+        case MSUserStatusForActivityOwner:
+        {
+            [self setButtonEnabled:YES withTitle:@"INVITE SPORTNER"];
+            break;
+        }
+        case MSUserStatusForActivityOwnerFull:
+        {
+            [self setButtonEnabled:NO withTitle:@"FULL"];
+            break;
+        }
+        case MSUserStatusForActivityInvited:
+        {
+            [self setButtonEnabled:YES withTitle:@"JOIN THE GAME"];
+            break;
+        }
+        case MSUserStatusForActivityInvitedFull:
+        {
+            [self setButtonEnabled:NO withTitle:@"FULL"];
+            break;
+        }
+        case MSUserStatusForActivityOther:
+        {
+            [self setButtonEnabled:YES withTitle:@"JOIN THE GAME"];
+            break;
+        }
+        case MSUserStatusForActivityOtherFull:
+        {
+            [self setButtonEnabled:NO withTitle:@"FULL"];
+            break;
+        }
+        case MSUserStatusForActivityAwaiting:
+        {
+            [self setButtonEnabled:NO withTitle:@"AWAITING REPLY"];
+            break;
+        }
+        case MSUserStatusForActivityConfirmed:
+        {
+            [self setButtonEnabled:YES withTitle:@"LEAVE THE GAME"];
+            break;
+        }
+    }
+}
+
+- (void)setSportnerStatus:(MSUserStatusForActivity)sportnerStatus
+{
+    _sportnerStatus = sportnerStatus;
+    
+    [self setButtonForStatus:sportnerStatus];
+}
+
+- (void)setButtonEnabled:(BOOL)enabled withTitle:(NSString *)title
+{
+    [self.mainButton setTitle:title forState:UIControlStateNormal];
+    
+    if (enabled) {
+        [MSStyleFactory setQBFlatButton:self.mainButton withStyle:MSFlatButtonStyleGreen];
+    } else {
+        [MSStyleFactory setQBFlatButton:self.mainButton withStyle:MSFlatButtonStyleGray];
+    }
+    self.mainButton.enabled = enabled;
 }
 
 - (void)setViewWithDate:(NSDate *)date
@@ -289,6 +416,53 @@
         self.attendeesValueLabel.textColor = highlighted ? [UIColor whiteColor] : [MSColorFactory redLight];
     }
 }
+
+- (IBAction)mainButtonHandler
+{
+    switch (self.sportnerStatus) {
+        case MSUserStatusForActivityOwner:
+        {
+            [self inviteSportners];
+            break;
+        }
+        case MSUserStatusForActivityInvited:
+        {
+            [self joinTheGame];
+            break;
+        }
+        case MSUserStatusForActivityOther:
+        {
+            [self joinTheGame];
+            break;
+        }
+        case MSUserStatusForActivityConfirmed:
+        {
+            [self leaveTheGame];
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark - Game Actions
+
+- (void)inviteSportners
+{
+    
+}
+
+- (void)joinTheGame
+{
+    
+}
+
+- (void)leaveTheGame
+{
+    
+}
+
 
 #pragma mark - Navigation
 

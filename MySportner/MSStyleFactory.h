@@ -14,6 +14,7 @@
 typedef NS_ENUM(int, MSFlatButtonStyle) {
     MSFlatButtonStyleRed,
     MSFlatButtonStyleGreen,
+    MSFlatButtonStyleGray,
     MSFlatButtonStyleRoundedGreen,
     MSFlatButtonStyleWhite,
     MSFlatButtonStyleDrawerMenu,

@@ -192,10 +192,10 @@
     [MSStyleFactory setQBFlatButton:self.doneButton withStyle:MSFlatButtonStyleGreen];
     [self.doneButton setTitle:@"PUBLISH" forState:UIControlStateNormal];
     
-    self.playersStepper.maximumValue = 20.0;
-    self.playersStepper.minimumValue = 2.0;
+    self.playersStepper.maximumValue = 19.0;
+    self.playersStepper.minimumValue = 1.0;
     self.playersStepper.stepValue = 1.0;
-    self.playersStepper.value = self.playersStepper.minimumValue;
+    self.playersStepper.value = 4;
     
     [self.playersStepper addTarget:self action:@selector(playersStepperValueDidChange) forControlEvents:UIControlEventValueChanged];
     

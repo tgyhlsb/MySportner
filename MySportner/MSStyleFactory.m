@@ -26,6 +26,17 @@
             button.backgroundColor = [UIColor clearColor];
             break;
         }
+        case MSFlatButtonStyleGray:
+        {
+            button.faceColor = [MSColorFactory gray];
+            button.sideColor = [MSColorFactory grayDark];
+            button.titleLabel.font = [MSFontFactory fontForButton];
+            [button setTitleShadowColor:[MSColorFactory mainColorShadow] forState:UIControlStateNormal];
+            button.titleLabel.shadowOffset = CGSizeMake(0.2, 1.8);
+            [button setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
+            button.backgroundColor = [UIColor clearColor];
+            break;
+        }
         case MSFlatButtonStyleRed:
         {
             button.faceColor = [MSColorFactory redLight];

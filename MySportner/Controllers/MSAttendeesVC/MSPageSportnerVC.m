@@ -40,10 +40,11 @@
 {
     [super viewDidLoad];
     
-    [self setUpAppearance];
-    
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
+    
+    [self setUpAppearance];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -157,8 +158,7 @@
 {
     _viewControllers = viewControllers;
     
-    
-    [_pageViewController setViewControllers:@[[self.viewControllers objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:^(BOOL finished) {
+    [_pageViewController setViewControllers:@[[viewControllers objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:^(BOOL finished) {
         
     }];
 }

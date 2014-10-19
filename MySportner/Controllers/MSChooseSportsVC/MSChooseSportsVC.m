@@ -19,6 +19,7 @@
 #import "MBProgressHUD.h"
 #import "TKAlertCenter.h"
 #import "MSSport.h"
+#import "MSFullScreenPopUpVC.h"
 
 #define DEFAULT_SPORT_LEVEL -1
 
@@ -164,6 +165,40 @@
     } else {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:[error.userInfo objectForKey:@"error"]];
     }
+}
+
+- (void)showDonePopUp
+{
+    MSFullScreenPopUpVC *vc = [MSFullScreenPopUpVC newController];
+    CGSize formSheetSize = self.navigationController.view.frame.size;
+    
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithSize:formSheetSize viewController:vc];
+    //    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+    
+    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
+    formSheet.shadowRadius = 0.0;
+    formSheet.shadowOpacity = 0.94;
+    formSheet.cornerRadius = 3.0;
+    formSheet.shouldDismissOnBackgroundViewTap = YES;
+    formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
+    formSheet.shouldCenterVertically = YES;
+    
+    vc.textTitle = @"Congratulations";
+    vc.text = @"You can now train like an Athlete, Win like a Champion and Sleep like a Baby !";
+    vc.otherButonTitle = @"or skip this step";
+    vc.mainButtonTitle = @"SHARE";
+    vc.imageName = @"m.png";
+    
+    formSheet.willPresentCompletionHandler = ^(UIViewController *presentedFSViewController) {
+        
+    };
+    
+    vc.delegate = self;
+    //    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
+    
+    [self presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        
+    }];
 }
 
 #pragma mark UICollectionViewDataSource

@@ -33,7 +33,8 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet FBProfilePictureView *facebookPictureView;
 @property (weak, nonatomic) IBOutlet QBFlatButton *nextButton;
 @property (weak, nonatomic) IBOutlet UIView *firstNameView;
 @property (weak, nonatomic) IBOutlet UIView *lastNameView;
@@ -204,47 +205,12 @@
     self.user.sportner.gender = (MSUserGender)[self.genderPicker selectedRowInComponent:0];
     self.user.username = self.user.email;
     self.user.sportner.username = self.user.email;
-    self.user.sportner.facebookID = FACEBOOK_DEFAULT_ID[self.user.sportner.gender]; // default IDs to get a fb picture according to your gender
-//    self.user.sportner.image = self.imageView.image;
-//    if (self.hasAlreadySignUp) {
-        [self.user saveInBackgroundWithTarget:self selector:@selector(handlSignUp:error:)];
-//    } else {
-//        [self.user signUpInBackgroundWithTarget:self selector:@selector(handleSignUp:error:)];
-//    }
-}
-
-- (void)showDonePopUp
-{
-    MSFullScreenPopUpVC *vc = [MSFullScreenPopUpVC newController];
-    CGSize formSheetSize = self.navigationController.view.frame.size;
     
-    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithSize:formSheetSize viewController:vc];
-    //    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+    if (self.imageView.image) {
+        self.user.sportner.image = self.imageView.image;
+    }
     
-    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
-    formSheet.shadowRadius = 0.0;
-    formSheet.shadowOpacity = 0.94;
-    formSheet.cornerRadius = 3.0;
-    formSheet.shouldDismissOnBackgroundViewTap = YES;
-    formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
-    formSheet.shouldCenterVertically = YES;
-    
-    vc.textTitle = @"Congratulations";
-    vc.text = @"You can now train like an Athlete, Win like a Champion and Sleep like a Baby !";
-    vc.otherButonTitle = @"or skip this step";
-    vc.mainButtonTitle = @"SHARE";
-    vc.imageName = @"m.png";
-    
-    formSheet.willPresentCompletionHandler = ^(UIViewController *presentedFSViewController) {
-        
-    };
-    
-    vc.delegate = self;
-    //    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
-    
-    [self presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
-        
-    }];
+    [self.user saveInBackgroundWithTarget:self selector:@selector(handlSignUp:error:)];
 }
 
 - (void)showTermPopUp
@@ -432,6 +398,7 @@
     [self.nextButton setTitle:@"NEXT" forState:UIControlStateNormal];
     
     self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2.0;
+    self.facebookPictureView.layer.cornerRadius = self.facebookPictureView.frame.size.width/2.0;
 }
 
 #pragma mark - Handlers
@@ -564,6 +531,7 @@
     [self birthdatePickerValueDidChange];
     self.emailTextField.text = self.user.email;
     self.cityValueLabel.text = self.user.sportner.lastPlace;
+    self.facebookPictureView.profileID = self.user.sportner.facebookID;
 }
 
 #pragma mark - MSLocationPickerDelegate
@@ -692,7 +660,7 @@
 {
     [self hideLoadingView];
     if (!error) {
-        [self showDonePopUp];
+        [self performTransitionToNextScreen];
     } else {
         NSString *errorMessage = [error.userInfo objectForKey:@"error"];
         [[TKAlertCenter defaultCenter] postAlertWithMessage:errorMessage];

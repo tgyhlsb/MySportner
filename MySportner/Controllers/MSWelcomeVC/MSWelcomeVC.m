@@ -160,7 +160,7 @@
             
             [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
         } else {
-            [self pushToVerifyProfileWithUser:(MSUser *)object];
+            [self pushToVerifyProfileWithUser:[MSUser currentUser]];
         }
     }];
 }

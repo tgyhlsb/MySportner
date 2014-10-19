@@ -154,15 +154,37 @@
     [user.sportner fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         //        [self hideLoadingView];
         if ([MSSportner currentSportner].sportLevels) {
-            MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-            
-            [appDelegate setDrawerMenu];
-            
-            [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
+            [self userIsLoggedIn];
         } else {
             [self pushToVerifyProfileWithUser:[MSUser currentUser]];
         }
     }];
+}
+
+- (void)userIsLoggedIn
+{
+    if ([MSSport allSportsAreLoaded]) {
+        [self openApp];
+    } else {
+        [self registerToSportsLoadingNotification];
+    }
+}
+
+- (void)registerToSportsLoadingNotification
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(openApp)
+                                                 name:MSNotificationSportsLoaded
+                                               object:nil];
+}
+
+- (void)openApp
+{
+    MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    [appDelegate setDrawerMenu];
+    
+    [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
 }
 
 - (void)cancelFacebookLogin

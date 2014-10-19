@@ -47,8 +47,10 @@
     [MSActivity registerSubclass];
     [MSSportner registerSubclass];
     [MSSport registerSubclass];
+    
     [Parse setApplicationId:@"mXxe3WBY2KqxbWjjnBruVUyJGtyKjgjDpfuX6pAA"
                   clientKey:@"EFLTeHfWnuHxmwzKbg1xfsfYRRFSksMiWGlKYloM"];
+    [MSSport fetchAllSports];
     [PFFacebookUtils initializeFacebook];
     
     [self registerForPushNotification:application];

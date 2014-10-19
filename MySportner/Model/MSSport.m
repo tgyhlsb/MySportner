@@ -17,17 +17,17 @@ static NSArray *allSports;
 @dynamic name;
 @dynamic slug;
 
-+ (NSInteger)keyForSportName:(NSString *)sportName
-{
-    NSInteger key = [SAMPLE_SPORTS indexOfObject:sportName];
-    return key;
-}
-
-+ (NSString *)sportNameForKey:(NSInteger)sportKey
-{
-    NSString *sportName = [SAMPLE_SPORTS objectAtIndex:sportKey];
-    return sportName;
-}
+//+ (NSInteger)keyForSportName:(NSString *)sportName
+//{
+//    NSInteger key = [SAMPLE_SPORTS indexOfObject:sportName];
+//    return key;
+//}
+//
+//+ (NSString *)sportNameForKey:(NSInteger)sportKey
+//{
+//    NSString *sportName = [SAMPLE_SPORTS objectAtIndex:sportKey];
+//    return sportName;
+//}
 
 + (MSSport *)sportWithSlug:(NSString *)slug
 {
@@ -56,7 +56,7 @@ static NSArray *allSports;
 
 + (void)fetchAllSportsIfNeeded
 {
-    if (!allSports) {
+    if (![MSSport allSportsAreLoaded]) {
         [MSSport fetchAllSports];
     }
 }
@@ -72,6 +72,18 @@ static NSArray *allSports;
             [[TKAlertCenter defaultCenter] postAlertWithMessage:[error localizedDescription]];
         }
     }];
+}
+
++ (BOOL)allSportsAreLoaded
+{
+    return (allSports && [allSports count]);
+}
+
+- (void)notifySportsLoaded
+{
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:MSNotificationSportsLoaded
+     object:self];
 }
 
 @end

@@ -38,6 +38,7 @@
 @dynamic maxPlayer;
 @dynamic playerNeeded;
 @dynamic whereExactly;
+@dynamic nbComment;
 @dynamic owner;
 
 
@@ -254,7 +255,7 @@
     NSMutableArray *tempParticipants = [self.participants mutableCopy];
     [tempParticipants addObject:participant];
     self.participants = tempParticipants;
-    self.playerNeeded = [NSNumber numberWithInt:([self.playerNeeded intValue] - 1)];
+    [self incrementKey:@"playerNeeded" byAmount:@(-1)];
     [self saveInBackgroundWithTarget:target selector:callBack];
 }
 
@@ -265,6 +266,7 @@
     NSMutableArray *tempParticipants = [self.participants mutableCopy];
     [tempParticipants removeObject:participant];
     self.participants = tempParticipants;
+    [self incrementKey:@"playerNeeded"];
     self.playerNeeded = [NSNumber numberWithInt:([self.playerNeeded intValue] + 1)];
     [self saveInBackgroundWithTarget:target selector:callBack];
 }
@@ -390,12 +392,22 @@
 
 - (void)addComment:(MSComment *)comment withTarget:(id)target callBack:(SEL)callBack
 {
-    PFRelation *relation = [self commentRelation];
-    [relation addObject:comment];
-    NSMutableArray *tempComments = [self.comments mutableCopy];
-    [tempComments addObject:comment];
-    self.comments = tempComments;
-    [self saveInBackgroundWithTarget:target selector:callBack];
+    [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        if (succeeded && !error) {
+            PFRelation *relation = [self commentRelation];
+            [relation addObject:comment];
+            NSMutableArray *tempComments = [self.comments mutableCopy];
+            [tempComments addObject:comment];
+            self.comments = tempComments;
+            [self incrementKey:@"nbComment"];
+            [self saveInBackgroundWithTarget:target selector:callBack];
+        } else {
+            NSLog(@"Succeeded: %d", succeeded);
+            NSLog(@"Error:\n%@", error);
+        }
+        
+    }];
 }
 
 

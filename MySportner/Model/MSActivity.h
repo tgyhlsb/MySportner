@@ -28,6 +28,7 @@ static NSString *MSNotificationActivityStateChanged = @"MSNotificationActivitySt
 @property (strong, nonatomic) NSNumber *maxPlayer;
 @property (strong, nonatomic) NSString *whereExactly;
 @property (strong, nonatomic) NSNumber *playerNeeded;
+@property (strong, nonatomic) NSNumber *nbComment;
 
 @property (strong, nonatomic) MSSportner *owner;
 @property (strong, nonatomic) NSArray *guests;

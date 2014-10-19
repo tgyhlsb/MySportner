@@ -449,6 +449,7 @@
         activity.maxPlayer = @(self.playersStepper.value+1);
         activity.playerNeeded = @(self.playersStepper.value);
         activity.whereExactly = self.whereTextField.text;
+        activity.nbComment = @0;
         
         [[activity participantRelation] addObject:[MSSportner currentSportner]];
         activity.guests = [[NSArray alloc] init];

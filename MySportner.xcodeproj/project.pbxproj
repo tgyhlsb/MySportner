@@ -262,6 +262,8 @@
 		5ADCF3141840F8DA00E6C8D2 /* MSVenueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCF3131840F8DA00E6C8D2 /* MSVenueCell.m */; };
 		5ADCF3161840F8E900E6C8D2 /* MSVenueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADCF3151840F8E900E6C8D2 /* MSVenueCell.xib */; };
 		5AE7E3C919F41E7800C5A1C4 /* MSAttendeesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7E3C819F41E7800C5A1C4 /* MSAttendeesVC.m */; };
+		5AE7E3CD19F444E200C5A1C4 /* MSCommentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7E3CB19F444E200C5A1C4 /* MSCommentsVC.m */; };
+		5AE7E3CE19F444E200C5A1C4 /* MSCommentsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AE7E3CC19F444E200C5A1C4 /* MSCommentsVC.xib */; };
 		5AEFA8B21896B580004B3EF7 /* MSPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFA8B11896B580004B3EF7 /* MSPinView.m */; };
 		5AEFA8B41896B92C004B3EF7 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AEFA8B31896B92C004B3EF7 /* pin.png */; };
 		5AF2FBFC188C946A002147FB /* MSPickSportCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF2FBFB188C946A002147FB /* MSPickSportCell2.xib */; };
@@ -647,6 +649,9 @@
 		5ADCF3151840F8E900E6C8D2 /* MSVenueCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSVenueCell.xib; path = Views/Cells/MSVenueCell/MSVenueCell.xib; sourceTree = "<group>"; };
 		5AE7E3C719F41E7800C5A1C4 /* MSAttendeesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSAttendeesVC.h; path = Controllers/MSAttendeesVC/MSAttendeesVC.h; sourceTree = "<group>"; };
 		5AE7E3C819F41E7800C5A1C4 /* MSAttendeesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSAttendeesVC.m; path = Controllers/MSAttendeesVC/MSAttendeesVC.m; sourceTree = "<group>"; };
+		5AE7E3CA19F444E200C5A1C4 /* MSCommentsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCommentsVC.h; path = Controllers/MSCommentsVC/MSCommentsVC.h; sourceTree = "<group>"; };
+		5AE7E3CB19F444E200C5A1C4 /* MSCommentsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCommentsVC.m; path = Controllers/MSCommentsVC/MSCommentsVC.m; sourceTree = "<group>"; };
+		5AE7E3CC19F444E200C5A1C4 /* MSCommentsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSCommentsVC.xib; path = Controllers/MSCommentsVC/MSCommentsVC.xib; sourceTree = "<group>"; };
 		5AEFA8B01896B580004B3EF7 /* MSPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSPinView.h; path = Views/MSPinView.h; sourceTree = "<group>"; };
 		5AEFA8B11896B580004B3EF7 /* MSPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSPinView.m; path = Views/MSPinView.m; sourceTree = "<group>"; };
 		5AEFA8B31896B92C004B3EF7 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
@@ -1360,6 +1365,7 @@
 				5ADCF29818401CD000E6C8D2 /* MSNavigationVC.m */,
 				5ADCF2A718401FF800E6C8D2 /* MSCenterController.h */,
 				5ADCF2A818401FF800E6C8D2 /* MSCenterController.m */,
+				5AE7E3CF19F444E700C5A1C4 /* MSCommentsVC */,
 				5A580EB519F3F1CE00CA3846 /* MSAttendeesVC */,
 				5A580E8119F26E6C00CA3846 /* MSFullScreenPopUpVC */,
 				5A29CAF7184920CD002A8B60 /* MSSportLevelFormVC */,
@@ -1628,6 +1634,16 @@
 			name = MSVenueCell;
 			sourceTree = "<group>";
 		};
+		5AE7E3CF19F444E700C5A1C4 /* MSCommentsVC */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7E3CA19F444E200C5A1C4 /* MSCommentsVC.h */,
+				5AE7E3CB19F444E200C5A1C4 /* MSCommentsVC.m */,
+				5AE7E3CC19F444E200C5A1C4 /* MSCommentsVC.xib */,
+			);
+			name = MSCommentsVC;
+			sourceTree = "<group>";
+		};
 		5AFE43F318426AC4001376C7 /* MSChooseSportsVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1799,6 +1815,7 @@
 				5A580E2A19F129F900CA3846 /* MSSetAGameVC2.xib in Resources */,
 				5A7C7BDC18A9825E00887926 /* Layer-12@2x.png in Resources */,
 				5A299A8F184BE8B100005733 /* back_button@2x.png in Resources */,
+				5AE7E3CE19F444E200C5A1C4 /* MSCommentsVC.xib in Resources */,
 				5A580E6119F2570400CA3846 /* golf.png in Resources */,
 				5AFE688D1850883500E40541 /* vertical_gradient.png in Resources */,
 				5A0CB7FE1891714A0027EE58 /* slider-metal-handle.png in Resources */,
@@ -1906,6 +1923,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AE7E3CD19F444E200C5A1C4 /* MSCommentsVC.m in Sources */,
 				5ADCF29918401CD000E6C8D2 /* MSNavigationVC.m in Sources */,
 				5ADCF30E1840F17600E6C8D2 /* MSVenue.m in Sources */,
 				5A580E9119F297B900CA3846 /* MSPlayerSizeView.m in Sources */,

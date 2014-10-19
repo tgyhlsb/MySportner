@@ -17,6 +17,7 @@
 #import "MSStyleFactory.h"
 
 #import "MSAttendeesVC.h"
+#import "MSCommentsVC.h"
 
 #define NIB_NAME @"MSGameProfileVC"
 
@@ -83,6 +84,7 @@
 
 - (BOOL)allInformationsAreFetched
 {
+    return YES;
     return self.activity.comments && self.activity.participants && self.activity.guests && self.activity.awaitings;
 }
 
@@ -177,8 +179,8 @@
     
     [self setViewWithDate:self.activity.date];
     
-    NSInteger nbPlayers = [self.activity.participants count];
-    NSInteger nbComments = [self.activity.comments count];
+    NSInteger nbPlayers = [self.activity.maxPlayer integerValue] - [self.activity.playerNeeded integerValue];
+    NSInteger nbComments = [self.activity.nbComment integerValue];
     
     self.attendeesValueLabel.text = [NSString stringWithFormat:@"%ld", (long)nbPlayers];
     self.commentsValueLabel.text = [NSString stringWithFormat:@"%ld", (long)nbComments];
@@ -299,7 +301,9 @@
 
 - (void)pushToComments
 {
-    
+    MSCommentsVC *destination = [MSCommentsVC newController];
+    destination.activity = self.activity;
+    [self.navigationController pushViewController:destination animated:YES];
 }
 
 @end

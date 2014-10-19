@@ -24,7 +24,7 @@
 
 #define NIB_NAME @"MSVerifyAccountVC"
 
-#define GENDERS @[@"Male", @"Female"]
+#define GENDERS @[@"Female", @"Male"]
 
 #define DATEPICKER_HEIGHT 162
 

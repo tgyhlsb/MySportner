@@ -38,6 +38,8 @@
         self.sizeLabel = [[UILabel alloc] initWithFrame:labelFrame];
         [self addSubview:self.sizeLabel];
         
+        self.userInteractionEnabled = NO;
+        
         [self setUpAppearance];
     }
     

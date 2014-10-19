@@ -7,6 +7,7 @@
 //
 
 #import "MSVInviteSportnersVC.h"
+#import "TKAlertCenter.h"
 
 #define NIB_NAME @"MSPageSportnerVC"
 
@@ -24,7 +25,20 @@
 {
     MSVInviteSportnersVC *controller = [[MSVInviteSportnersVC alloc] initWithNibName:NIB_NAME bundle:nil];
     controller.hasDirectAccessToDrawer = NO;
+    [controller registerToSportnerNotifications];
+    [controller setUpInviteButton];
     return controller;
+}
+
+#pragma mark - Appearance
+
+- (void)setUpInviteButton
+{
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Invite"
+                                                                    style:UIBarButtonItemStylePlain
+                                                                   target:self
+                                                                   action:@selector(inviteButtonHandler)];
+    self.navigationItem.rightBarButtonItem = rightButton;
 }
 
 - (void)setUpAppearance
@@ -57,6 +71,24 @@
     [self fetchOthersSportners];
 }
 
+#pragma mark - Handlers
+
+- (void)inviteButtonHandler
+{
+    [self showLoadingViewInView:self.navigationController.view];
+    
+    NSMutableArray *selectedSportners = [self.sportnersVC.selectedSportners mutableCopy];
+    [selectedSportners addObjectsFromArray:self.facebookVC.selectedSportners];
+    [selectedSportners addObjectsFromArray:self.othersVC.selectedSportners];
+    
+    __weak MSVInviteSportnersVC *weakSelf = self;
+    [self.activity addGuests:selectedSportners withBlock:^(BOOL succeeded, NSError *error) {
+        [weakSelf hideLoadingView];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Invitations sent"];
+    }];
+}
+
 #pragma mark - Fetch & network
 
 - (void)fetchOthersSportners
@@ -66,11 +98,8 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
         if (!error) {
-            
-            NSMutableArray *sportners = [objects mutableCopy];
-            [sportners removeObject:[MSSportner currentSportner]];
-            
-            self.othersVC.sportnerList = sportners;
+            self.othersVC.sportnerList = objects;
+            [self filterOthersSportners];
         } else {
             NSLog(@"%@", error);
         }
@@ -78,12 +107,45 @@
     }];
 }
 
+- (void)filterOthersSportners
+{
+    NSMutableArray *sportners = [self.facebookVC.sportnerList mutableCopy];
+    [sportners removeObject:[MSSportner currentSportner]];
+    [sportners removeObjectsInArray:self.sportnersVC.sportnerList];
+    self.facebookVC.sportnerList = sportners;
+    
+    sportners = [self.othersVC.sportnerList mutableCopy];
+    [sportners removeObject:[MSSportner currentSportner]];
+    [sportners removeObjectsInArray:self.sportnersVC.sportnerList];
+    [sportners removeObjectsInArray:self.facebookVC.sportnerList];
+    self.othersVC.sportnerList = sportners;
+}
+
+#pragma mark - Sportner notification
+
+- (void)registerToSportnerNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(sportnerNotificationReceived)
+                                                 name:MSNotificationSportnerStateChanged
+                                               object:[MSSportner currentSportner]];
+}
+
+- (void)sportnerNotificationReceived
+{
+    self.sportnersVC.sportnerList = [MSSportner currentSportner].sportners;
+    [self filterOthersSportners];
+    [self.sportnersVC stopLoading];
+}
+
+
 #pragma mark - AttendeesListControllers
 
 - (MSAttendeesListVC *)sportnersVC
 {
     if (!_sportnersVC) {
         _sportnersVC = [MSAttendeesListVC newController];
+        _sportnersVC.allowsMultipleSelection = YES;
     }
     return _sportnersVC;
 }
@@ -92,6 +154,7 @@
 {
     if (!_facebookVC) {
         _facebookVC = [MSAttendeesListVC newController];
+        _facebookVC.allowsMultipleSelection = YES;
     }
     return _facebookVC;
 }
@@ -100,8 +163,10 @@
 {
     if (!_othersVC) {
         _othersVC = [MSAttendeesListVC newController];
+        _othersVC.allowsMultipleSelection = YES;
     }
     return _othersVC;
 }
+
 
 @end

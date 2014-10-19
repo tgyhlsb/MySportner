@@ -68,15 +68,6 @@
     return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
 }
 
-- (BOOL)isEqual:(id)object
-{
-    if ([object isKindOfClass:[MSSportner class]]) {
-        return [self isEqualToSportner:(MSSportner *)object];
-    } else {
-        return NO;
-    }
-}
-
 - (BOOL)isEqualToSportner:(MSSportner *)otherSportner
 {
     BOOL equal = YES;
@@ -222,7 +213,7 @@
 
 - (PFRelation *)participantRelation
 {
-    return [self relationforKey:@"participant"];
+    return [self relationForKey:@"participant"];
 }
 
 - (void)queryActivitiesWithTarget:(id)target callBack:(SEL)callBack
@@ -255,7 +246,7 @@
 
 - (PFRelation *)sportnersRelation
 {
-    return [self relationforKey:@"sportner"];
+    return [self relationForKey:@"sportner"];
 }
 
 - (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack
@@ -281,6 +272,21 @@
 #pragma clang diagnostic pop
 }
 
+
+- (void)fetchSportners
+{
+    PFQuery *query = [[self sportnersRelation] query];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            self.sportners = objects;
+            [self notifySportnerStateChanged];
+        } else {
+            NSLog(@"%@", error);
+        }
+    }];
+}
+
 - (void)addSportner:(MSSportner *)sportner
 {
     [[self sportnersRelation] addObject:sportner];
@@ -297,6 +303,26 @@
     NSMutableArray *tempSportners = [self.sportners mutableCopy];
     [tempSportners removeObject:sportner];
     self.sportners = tempSportners;
+}
+
+
+#pragma mark - Notifications
+
+
+- (void)notifySportnerStateChanged
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationSportnerStateChanged
+                                                        object:self];
+}
+
+#pragma mark - Overrides
+
+- (BOOL)isEqual:(id)object
+{
+    if ([object isMemberOfClass:[MSSportner class]]) {
+        return [self.objectId isEqualToString:((MSSportner *)object).objectId];
+    }
+    return NO;
 }
 
 @end

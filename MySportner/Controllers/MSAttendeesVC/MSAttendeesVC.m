@@ -51,6 +51,11 @@
 {
     _activity = activity;
     
+    
+    self.confirmedAttendeesVC.sportnerList = self.activity.participants;
+    self.invitedAttendeesVC.sportnerList = self.activity.guests;
+    self.awaitingAttendeesVC.sportnerList = self.activity.awaitings;
+    
     [activity fetchAwaitings];
     [activity fetchGuests];
     [activity fetchParticipants];

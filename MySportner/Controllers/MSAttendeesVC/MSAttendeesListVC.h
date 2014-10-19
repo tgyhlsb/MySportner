@@ -11,6 +11,8 @@
 @interface MSAttendeesListVC : UIViewController
 
 @property (strong, nonatomic) NSArray *sportnerList;
+@property (nonatomic) BOOL allowsMultipleSelection;
+@property (strong, nonatomic) NSMutableArray *selectedSportners;
 
 + (instancetype)newController;
 

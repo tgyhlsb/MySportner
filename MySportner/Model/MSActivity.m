@@ -213,14 +213,43 @@
     }];
 }
 
-- (void)addGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack
+- (void)addGuest:(MSSportner *)sportner
 {
     PFRelation *relation = [self guestRelation];
-    [relation addObject:guest];
+    [relation addObject:sportner];
     NSMutableArray *tempGuests = [self.guests mutableCopy];
-    [tempGuests addObject:guest];
-    self.guests = tempGuests;
+    [tempGuests addObject:sportner];
+    self.participants = tempGuests;
+}
+
+- (void)addGuests:(NSArray *)sportners
+{
+    PFRelation *relation = [self guestRelation];
+    NSMutableArray *tempGuests = [self.guests mutableCopy];
+    
+    for (MSSportner *sportner in sportners) {
+        [relation addObject:sportner];
+        [tempGuests addObject:sportner];
+    }
+    
+    self.participants = tempGuests;
+}
+
+- (void)addGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack
+{
+    [self addGuest:guest];
     [self saveInBackgroundWithTarget:target selector:callBack];
+}
+
+- (void)addGuests:(NSArray *)guests withBlock:(PFBooleanResultBlock)block
+{
+    [self addGuests:guests];
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        if (block) {
+            block(succeeded, error);
+        }
+    }];
 }
 
 - (void)removeGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack
@@ -250,15 +279,45 @@
     }];
 }
 
-- (void)addParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack
+- (void)addParticipant:(MSSportner *)sportner
 {
     PFRelation *relation = [self participantRelation];
-    [relation addObject:participant];
+    [relation addObject:sportner];
     NSMutableArray *tempParticipants = [self.participants mutableCopy];
-    [tempParticipants addObject:participant];
+    [tempParticipants addObject:sportner];
     self.participants = tempParticipants;
     [self incrementKey:@"playerNeeded" byAmount:@(-1)];
+}
+
+- (void)addParticipants:(NSArray *)sportners
+{
+    PFRelation *relation = [self participantRelation];
+    NSMutableArray *tempParticipants = [self.participants mutableCopy];
+    
+    for (MSSportner *sportner in sportners) {
+        [relation addObject:sportner];
+        [tempParticipants addObject:sportner];
+    }
+    
+    self.participants = tempParticipants;
+    [self incrementKey:@"playerNeeded" byAmount:@(-1*[sportners count])];
+}
+
+- (void)addParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack
+{
+    [self addParticipant:participant];
     [self saveInBackgroundWithTarget:target selector:callBack];
+}
+
+- (void)addParticipants:(NSArray *)participants withBlock:(PFBooleanResultBlock)block
+{
+    [self addParticipants:participants];
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        if (block) {
+            block(succeeded, error);
+        }
+    }];
 }
 
 - (void)removeParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack

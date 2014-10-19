@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *placeLabel;
 @property (weak, nonatomic) IBOutlet MSProfilePictureView *profilePictureView;
 @property (weak, nonatomic) IBOutlet QBFlatButton *actionButton;
+@property (weak, nonatomic) IBOutlet UIView *selectedView;
 
 
 @end
@@ -72,7 +73,14 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    // do nothing
+//    [super setSelected:selected animated:animated];
+}
+
+- (void)setIsSelected:(BOOL)isSelected
+{
+    _isSelected = isSelected;
+    
+    self.selectedView.hidden = !isSelected;
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated

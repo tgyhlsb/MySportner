@@ -57,6 +57,14 @@
     self.tableView.hidden = NO;
 }
 
+- (NSMutableArray *)selectedSportners
+{
+    if (!_selectedSportners) {
+        _selectedSportners = [[NSMutableArray alloc] init];
+    }
+    return _selectedSportners;
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -75,8 +83,10 @@
     MSSportnerCell *cell = [tableView dequeueReusableCellWithIdentifier:identifer forIndexPath:indexPath];
     
     cell.sportner = [self.sportnerList objectAtIndex:indexPath.row];
-    
+    [cell setActionButtonHidden:YES];
     [cell setAppearanceWithOddIndex:((indexPath.row + 1) % 2)];
+    
+    cell.isSelected = [self.selectedSportners containsObject:cell.sportner];
     
     return cell;
 }
@@ -91,6 +101,21 @@
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [MSSportnerCell height];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.allowsMultipleSelection) {
+        MSSportner *sportner = [self.sportnerList objectAtIndex:indexPath.row];
+        
+        if ([self.selectedSportners containsObject:sportner]) {
+            [self.selectedSportners removeObject:sportner];
+        } else {
+            [self.selectedSportners addObject:sportner];
+        }
+        
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
 
 

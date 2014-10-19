@@ -242,11 +242,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSAttendeesVC/MSPageSportnerVC.m"
-            timestampString = "435432028.289767"
+            timestampString = "435455396.065992"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "-setViewControllers:"
             landmarkType = "5">
          </BreakpointContent>

@@ -17,6 +17,8 @@ typedef NS_ENUM(int, MSUserGender) {
     MSUserGenderMale,
 };
 
+static NSString *MSNotificationSportnerStateChanged = @"MSNotificationSportnerStateChanged";
+
 @interface MSSportner : PFObject <PFSubclassing>
 
 
@@ -47,6 +49,7 @@ typedef NS_ENUM(int, MSUserGender) {
 - (PFRelation *)sportnersRelation;
 - (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack;
 
+- (void)fetchSportners;
 - (void)addSportner:(MSSportner *)sportner;
 - (void)removeSportner:(MSSportner *)sportner;
 

@@ -48,10 +48,12 @@ static NSString *MSNotificationActivityAwaitingChanged = @"MSNotificationActivit
 
 - (void)fetchGuests;
 - (void)addGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack;
+- (void)addGuests:(NSArray *)guests withBlock:(PFBooleanResultBlock)block;
 - (void)removeGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack;
 
 - (void)fetchParticipants;
 - (void)addParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack;
+- (void)addParticipants:(NSArray *)participants withBlock:(PFBooleanResultBlock)block;
 - (void)removeParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack;
 
 - (void)fetchAwaitings;

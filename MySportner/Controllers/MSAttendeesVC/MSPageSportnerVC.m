@@ -9,6 +9,7 @@
 #import "MSPageSportnerVC.h"
 
 #import "MSColorFactory.h"
+#import "MBProgressHUD.h"
 
 
 #define NIB_NAME @"MSPageSportnerVC"
@@ -17,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *pageViewControllerContainer;
 
+@property (strong, nonatomic) MBProgressHUD *loadingView;
 
 @property (weak, nonatomic) MSAndroidButton *selectedButton;
 @property (strong, nonatomic) NSArray *androidButtons;
@@ -196,5 +198,31 @@
     NSInteger index = [self indexForSelectedViewController];
     self.selectedButton = [self.androidButtons objectAtIndex:index];
 }
+#pragma mark - MBProgressHUD
+
+- (void)showLoadingViewInView:(UIView*)v
+{
+    UIView *targetV = (v ? v : self.view);
+    
+    if (!self.loadingView) {
+        self.loadingView = [[MBProgressHUD alloc] initWithView:targetV];
+        self.loadingView.minShowTime = 1.0f;
+        self.loadingView.mode = MBProgressHUDModeIndeterminate;
+        self.loadingView.removeFromSuperViewOnHide = YES;
+        self.loadingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
+    }
+    if(!self.loadingView.superview) {
+        self.loadingView.frame = targetV.bounds;
+        [targetV addSubview:self.loadingView];
+    }
+    [self.loadingView show:YES];
+}
+
+- (void) hideLoadingView
+{
+    if (self.loadingView.superview)
+        [self.loadingView hide:YES];
+}
+
 
 @end

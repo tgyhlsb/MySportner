@@ -19,4 +19,8 @@
 
 - (void)setUpAppearance;
 
+
+- (void)showLoadingViewInView:(UIView*)view;
+- (void)hideLoadingView;
+
 @end

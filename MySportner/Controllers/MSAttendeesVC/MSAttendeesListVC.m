@@ -14,6 +14,7 @@
 @interface MSAttendeesListVC () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 @end
 
@@ -42,6 +43,18 @@
     _sportnerList = sportnerList;
     
     [self.tableView reloadData];
+}
+
+- (void)startLoading
+{
+    [self.loadingIndicator startAnimating];
+    self.tableView.hidden = YES;
+}
+
+- (void)stopLoading
+{
+    [self.loadingIndicator stopAnimating];
+    self.tableView.hidden = NO;
 }
 
 #pragma mark - UITableViewDataSource

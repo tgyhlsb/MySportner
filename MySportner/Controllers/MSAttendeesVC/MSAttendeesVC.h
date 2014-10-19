@@ -13,6 +13,4 @@
 
 @property (strong, nonatomic) MSActivity *activity;
 
-+ (instancetype)newController;
-
 @end

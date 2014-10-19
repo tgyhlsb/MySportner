@@ -18,6 +18,7 @@
 
 #import "MSAttendeesVC.h"
 #import "MSCommentsVC.h"
+#import "MSVInviteSportnersVC.h"
 
 #define NIB_NAME @"MSGameProfileVC"
 
@@ -450,7 +451,9 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 
 - (void)inviteSportners
 {
-    
+    MSVInviteSportnersVC *destination = [MSVInviteSportnersVC newController];
+    destination.activity = self.activity;
+    [self.navigationController pushViewController:destination animated:YES];
 }
 
 - (void)joinTheGame

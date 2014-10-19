@@ -14,4 +14,7 @@
 
 + (instancetype)newController;
 
+- (void)startLoading;
+- (void)stopLoading;
+
 @end

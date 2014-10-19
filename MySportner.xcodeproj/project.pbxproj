@@ -264,6 +264,7 @@
 		5AE7E3C919F41E7800C5A1C4 /* MSAttendeesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7E3C819F41E7800C5A1C4 /* MSAttendeesVC.m */; };
 		5AE7E3CD19F444E200C5A1C4 /* MSCommentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7E3CB19F444E200C5A1C4 /* MSCommentsVC.m */; };
 		5AE7E3CE19F444E200C5A1C4 /* MSCommentsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AE7E3CC19F444E200C5A1C4 /* MSCommentsVC.xib */; };
+		5AE7E3D219F46AAA00C5A1C4 /* MSVInviteSportnersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7E3D119F46AAA00C5A1C4 /* MSVInviteSportnersVC.m */; };
 		5AEFA8B21896B580004B3EF7 /* MSPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFA8B11896B580004B3EF7 /* MSPinView.m */; };
 		5AEFA8B41896B92C004B3EF7 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AEFA8B31896B92C004B3EF7 /* pin.png */; };
 		5AF2FBFC188C946A002147FB /* MSPickSportCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF2FBFB188C946A002147FB /* MSPickSportCell2.xib */; };
@@ -652,6 +653,8 @@
 		5AE7E3CA19F444E200C5A1C4 /* MSCommentsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCommentsVC.h; path = Controllers/MSCommentsVC/MSCommentsVC.h; sourceTree = "<group>"; };
 		5AE7E3CB19F444E200C5A1C4 /* MSCommentsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCommentsVC.m; path = Controllers/MSCommentsVC/MSCommentsVC.m; sourceTree = "<group>"; };
 		5AE7E3CC19F444E200C5A1C4 /* MSCommentsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSCommentsVC.xib; path = Controllers/MSCommentsVC/MSCommentsVC.xib; sourceTree = "<group>"; };
+		5AE7E3D019F46AAA00C5A1C4 /* MSVInviteSportnersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSVInviteSportnersVC.h; path = Controllers/MSAttendeesVC/MSVInviteSportnersVC.h; sourceTree = "<group>"; };
+		5AE7E3D119F46AAA00C5A1C4 /* MSVInviteSportnersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSVInviteSportnersVC.m; path = Controllers/MSAttendeesVC/MSVInviteSportnersVC.m; sourceTree = "<group>"; };
 		5AEFA8B01896B580004B3EF7 /* MSPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSPinView.h; path = Views/MSPinView.h; sourceTree = "<group>"; };
 		5AEFA8B11896B580004B3EF7 /* MSPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSPinView.m; path = Views/MSPinView.m; sourceTree = "<group>"; };
 		5AEFA8B31896B92C004B3EF7 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
@@ -1016,6 +1019,8 @@
 				5A580EB219F3F1C900CA3846 /* MSPageSportnerVC.xib */,
 				5AE7E3C719F41E7800C5A1C4 /* MSAttendeesVC.h */,
 				5AE7E3C819F41E7800C5A1C4 /* MSAttendeesVC.m */,
+				5AE7E3D019F46AAA00C5A1C4 /* MSVInviteSportnersVC.h */,
+				5AE7E3D119F46AAA00C5A1C4 /* MSVInviteSportnersVC.m */,
 				5A580EB619F3F4F200CA3846 /* MSAttendeesListVC.h */,
 				5A580EB719F3F4F200CA3846 /* MSAttendeesListVC.m */,
 				5A580EB819F3F4F200CA3846 /* MSAttendeesListVC.xib */,
@@ -1995,6 +2000,7 @@
 				5ADCF2A318401E1C00E6C8D2 /* MSSetAGameVC.m in Sources */,
 				5ADCF28A1840144D00E6C8D2 /* MSDrawerMenuVC.m in Sources */,
 				5A2B68FC189A669D00D82870 /* MSInviteSportnersVC.m in Sources */,
+				5AE7E3D219F46AAA00C5A1C4 /* MSVInviteSportnersVC.m in Sources */,
 				5A9B2DB31853B8A400AE45D9 /* ExtensiveCellContainer.m in Sources */,
 				5AA609FF184B50A100B09ADD /* MSFontFactory.m in Sources */,
 				5ADCF2831840140000E6C8D2 /* MSProfileVC.m in Sources */,

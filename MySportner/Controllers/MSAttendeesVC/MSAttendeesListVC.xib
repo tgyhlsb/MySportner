@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSAttendeesListVC">
             <connections>
+                <outlet property="loadingIndicator" destination="1WJ-s6-fU8" id="MT6-Nc-MWH"/>
                 <outlet property="tableView" destination="amC-17-bSs" id="Ufh-Si-WHa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,6 +21,9 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="1WJ-s6-fU8">
+                    <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -26,27 +31,35 @@
                 <constraint firstItem="amC-17-bSs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MjJ-Uw-LAm"/>
                 <constraint firstAttribute="bottom" secondItem="amC-17-bSs" secondAttribute="bottom" id="RPe-K2-Ul1"/>
                 <constraint firstAttribute="trailing" secondItem="amC-17-bSs" secondAttribute="trailing" id="Xdo-Tm-7eu"/>
+                <constraint firstAttribute="centerX" secondItem="1WJ-s6-fU8" secondAttribute="centerX" id="Zdr-BF-NdS"/>
+                <constraint firstAttribute="centerY" secondItem="1WJ-s6-fU8" secondAttribute="centerY" id="bf7-GO-xrh"/>
             </constraints>
             <variation key="default">
                 <mask key="subviews">
                     <exclude reference="amC-17-bSs"/>
+                    <exclude reference="1WJ-s6-fU8"/>
                 </mask>
                 <mask key="constraints">
                     <exclude reference="0cQ-XQ-xLv"/>
                     <exclude reference="MjJ-Uw-LAm"/>
                     <exclude reference="RPe-K2-Ul1"/>
                     <exclude reference="Xdo-Tm-7eu"/>
+                    <exclude reference="Zdr-BF-NdS"/>
+                    <exclude reference="bf7-GO-xrh"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
                     <include reference="amC-17-bSs"/>
+                    <include reference="1WJ-s6-fU8"/>
                 </mask>
                 <mask key="constraints">
                     <include reference="0cQ-XQ-xLv"/>
                     <include reference="MjJ-Uw-LAm"/>
                     <include reference="RPe-K2-Ul1"/>
                     <include reference="Xdo-Tm-7eu"/>
+                    <include reference="Zdr-BF-NdS"/>
+                    <include reference="bf7-GO-xrh"/>
                 </mask>
             </variation>
         </view>

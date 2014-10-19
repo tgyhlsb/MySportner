@@ -373,11 +373,11 @@
                                 </mask>
                             </variation>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="localiz@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rs0-RY-y9N">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rs0-RY-y9N">
                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="25" id="45d-R6-cy3"/>
-                                <constraint firstAttribute="width" constant="15" id="6zg-qo-yww"/>
+                                <constraint firstAttribute="height" constant="20" id="45d-R6-cy3"/>
+                                <constraint firstAttribute="width" constant="20" id="6zg-qo-yww"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
@@ -402,7 +402,7 @@
                         <constraint firstItem="niZ-pW-a4p" firstAttribute="leading" secondItem="26Y-Ad-P2j" secondAttribute="leading" constant="25" id="BZG-pQ-aZU"/>
                         <constraint firstItem="0he-h2-Kac" firstAttribute="top" secondItem="Qoh-Vi-4iv" secondAttribute="bottom" constant="8.5" id="CTv-MA-aoo"/>
                         <constraint firstItem="16v-aR-6WD" firstAttribute="leading" secondItem="Rs0-RY-y9N" secondAttribute="trailing" constant="2" id="Fxl-eC-zSv">
-                            <variation key="heightClass=regular-widthClass=compact" constant="5"/>
+                            <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                         </constraint>
                         <constraint firstItem="dqG-SN-nQQ" firstAttribute="leading" secondItem="26Y-Ad-P2j" secondAttribute="leading" constant="25" id="MR8-Uy-leW"/>
                         <constraint firstAttribute="height" constant="320" id="Nh5-0k-en9"/>
@@ -565,6 +565,6 @@
     </objects>
     <resources>
         <image name="fleche.png" width="30" height="30"/>
-        <image name="localiz@2x.png" width="16" height="16"/>
+        <image name="pin.png" width="40" height="40"/>
     </resources>
 </document>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -90,8 +91,8 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="localiz@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="1St-cL-s4U">
-                        <rect key="frame" x="106" y="37" width="6" height="8"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pin.png" translatesAutoresizingMaskIntoConstraints="NO" id="1St-cL-s4U">
+                        <rect key="frame" x="105" y="37" width="8" height="8"/>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -125,7 +126,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="localiz@2x.png" width="16" height="16"/>
+        <image name="pin.png" width="40" height="40"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

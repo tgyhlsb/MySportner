@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6245"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSAttendeesVC">
+            <connections>
+                <outlet property="pageViewControllerContainer" destination="qXI-IX-fRa" id="8Cg-tU-ltc"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qXI-IX-fRa">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="qXI-IX-fRa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="4M4-DI-7jk"/>
+                <constraint firstAttribute="bottom" secondItem="qXI-IX-fRa" secondAttribute="bottom" id="WId-gu-4ih"/>
+                <constraint firstItem="qXI-IX-fRa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dTS-tw-DkM"/>
+                <constraint firstAttribute="trailing" secondItem="qXI-IX-fRa" secondAttribute="trailing" id="m3W-It-oVf"/>
+            </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="qXI-IX-fRa"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="4M4-DI-7jk"/>
+                    <exclude reference="WId-gu-4ih"/>
+                    <exclude reference="dTS-tw-DkM"/>
+                    <exclude reference="m3W-It-oVf"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="subviews">
+                    <include reference="qXI-IX-fRa"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="4M4-DI-7jk"/>
+                    <include reference="WId-gu-4ih"/>
+                    <include reference="dTS-tw-DkM"/>
+                    <include reference="m3W-It-oVf"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>

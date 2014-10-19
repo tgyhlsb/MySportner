@@ -16,6 +16,8 @@
 #import "MSColorFactory.h"
 #import "MSStyleFactory.h"
 
+#import "MSAttendeesVC.h"
+
 #define NIB_NAME @"MSGameProfileVC"
 
 @interface MSGameProfileVC ()
@@ -175,6 +177,8 @@
     return fixedString;
 }
 
+#pragma mark - Handlers
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [[touches allObjects] firstObject];
@@ -185,6 +189,12 @@
 {
     UITouch *touch = [[touches allObjects] firstObject];
     [self setView:touch.view highLighted:NO];
+    
+    if ([touch.view isEqual:self.attendeesView]) {
+        [self pushToAttendees];
+    } else if ([touch.view isEqual:self.commentsView]) {
+        [self pushToComments];
+    }
 }
 
 - (void)setView:(UIView *)view highLighted:(BOOL)highlighted
@@ -198,6 +208,19 @@
         self.attendeesTitleLabel.textColor = highlighted ? [UIColor whiteColor] : [MSColorFactory redLight];
         self.attendeesValueLabel.textColor = highlighted ? [UIColor whiteColor] : [MSColorFactory redLight];
     }
+}
+
+#pragma mark - Navigation
+
+- (void)pushToAttendees
+{
+    MSAttendeesVC *destination = [MSAttendeesVC newController];
+    [self.navigationController pushViewController:destination animated:YES];
+}
+
+- (void)pushToComments
+{
+    
 }
 
 @end

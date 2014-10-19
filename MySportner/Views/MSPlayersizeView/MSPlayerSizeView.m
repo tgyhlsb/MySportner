@@ -9,6 +9,8 @@
 #import "MSPlayerSizeView.h"
 #import "MSColorFactory.h"
 
+#define CORNER_RADIUS 3
+
 @interface MSPlayerSizeView()
 
 @property (strong, nonatomic) IBOutlet UIButton *fullButton;
@@ -44,48 +46,60 @@
 
 - (void)initialize
 {
-    self.fullButton = [[UIButton alloc] initWithFrame:self.bounds];
-    [self addSubview:self.fullButton];
-    self.playerButton = [[UIButton alloc] initWithFrame:self.bounds];
-    [self addSubview:self.playerButton];
-    
-    CGRect labelFrame = CGRectMake(self.bounds.size.width*0.1, 0, 20, self.bounds.size.height);
-    self.sizeLabel = [[UILabel alloc] initWithFrame:labelFrame];
-    [self addSubview:self.sizeLabel];
+    self.backgroundColor = [UIColor clearColor];
     
     self.userInteractionEnabled = NO;
     self.clipsToBounds = YES;
-    
-    [self setUpAppearance];
 }
 
-
-- (void)setUpAppearance
+- (UIButton *)fullButton
 {
-    self.backgroundColor = [UIColor clearColor];
-    
-#define CORNER_RADIUS 3
-    
-    self.fullButton.backgroundColor = [MSColorFactory redLight];
-    [self.fullButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.fullButton setTitle:@"FULL" forState:UIControlStateNormal];
-    self.fullButton.layer.cornerRadius = CORNER_RADIUS;
-    
-    self.playerButton.layer.borderColor = [[MSColorFactory redLight] CGColor];
-    self.playerButton.layer.borderWidth = 1;
-    self.playerButton.backgroundColor = [UIColor clearColor];
-    [self.playerButton setTitleColor:[MSColorFactory redLight] forState:UIControlStateNormal];
-    self.playerButton.layer.cornerRadius = CORNER_RADIUS;
-    [self.playerButton setTitle:@"Players needed" forState:UIControlStateNormal];
-    self.playerButton.titleLabel.numberOfLines = 2;
-    
-    self.playerButton.titleLabel.font = [UIFont fontWithName:@"ProximaNova-SemiBold" size:10.0];
-    self.playerButton.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
-    self.playerButton.backgroundColor = [UIColor clearColor];
-    
-    self.sizeLabel.textColor = [MSColorFactory redLight];
-    self.sizeLabel.textAlignment = NSTextAlignmentRight;
-    
+    if (!_fullButton) {
+        _fullButton = [[UIButton alloc] initWithFrame:self.bounds];
+        [self addSubview:_fullButton];
+        
+        
+        _fullButton.backgroundColor = [MSColorFactory redLight];
+        [_fullButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_fullButton setTitle:@"FULL" forState:UIControlStateNormal];
+        _fullButton.layer.cornerRadius = CORNER_RADIUS;
+    }
+    return _fullButton;
+}
+
+- (UIButton *)playerButton
+{
+    if (!_playerButton) {
+        
+        _playerButton = [[UIButton alloc] initWithFrame:self.bounds];
+        [self addSubview:_playerButton];
+        
+        _playerButton.layer.borderColor = [[MSColorFactory redLight] CGColor];
+        _playerButton.layer.borderWidth = 1;
+        _playerButton.backgroundColor = [UIColor clearColor];
+        [_playerButton setTitleColor:[MSColorFactory redLight] forState:UIControlStateNormal];
+        _playerButton.layer.cornerRadius = CORNER_RADIUS;
+        [_playerButton setTitle:@"Players needed" forState:UIControlStateNormal];
+        _playerButton.titleLabel.numberOfLines = 2;
+        
+        _playerButton.titleLabel.font = [UIFont fontWithName:@"ProximaNova-SemiBold" size:10.0];
+        _playerButton.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    }
+    return _playerButton;
+}
+
+- (UILabel *)sizeLabel
+{
+    if (!_sizeLabel) {
+        
+        CGRect labelFrame = CGRectMake(self.bounds.size.width*0.1, 0, 20, self.bounds.size.height);
+        _sizeLabel = [[UILabel alloc] initWithFrame:labelFrame];
+        [self addSubview:_sizeLabel];
+        
+        _sizeLabel.textColor = [MSColorFactory redLight];
+        _sizeLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _sizeLabel;
 }
 
 

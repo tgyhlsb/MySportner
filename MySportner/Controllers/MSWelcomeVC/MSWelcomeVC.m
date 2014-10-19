@@ -54,7 +54,7 @@
     
     self.view.backgroundColor = [MSColorFactory mainColor];
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Splashscreen-boxe.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Splashscreen0.png"]];
 }
 
 - (void)setButtonsAppearance

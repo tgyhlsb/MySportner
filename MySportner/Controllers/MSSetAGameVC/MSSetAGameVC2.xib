@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -309,11 +310,11 @@
                                         </mask>
                                         <mask key="constraints">
                                             <exclude reference="UHD-qG-zgV"/>
-                                            <exclude reference="7q0-5Q-lAn"/>
-                                            <exclude reference="NfT-7L-ZLq"/>
                                             <exclude reference="4f7-Px-BE8"/>
                                             <exclude reference="cpE-4h-mJf"/>
                                             <exclude reference="tWW-zj-CF4"/>
+                                            <exclude reference="7q0-5Q-lAn"/>
+                                            <exclude reference="NfT-7L-ZLq"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
@@ -323,11 +324,11 @@
                                         </mask>
                                         <mask key="constraints">
                                             <include reference="UHD-qG-zgV"/>
-                                            <include reference="7q0-5Q-lAn"/>
-                                            <include reference="NfT-7L-ZLq"/>
                                             <include reference="4f7-Px-BE8"/>
                                             <include reference="cpE-4h-mJf"/>
                                             <include reference="tWW-zj-CF4"/>
+                                            <include reference="7q0-5Q-lAn"/>
+                                            <include reference="NfT-7L-ZLq"/>
                                         </mask>
                                     </variation>
                                 </view>

@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 MySportner. All rights reserved.
 //
 
-#import "MSCenterController.h"
+#import "MSPageSportnerVC.h"
 
-@interface MSAttendeesVC : MSCenterController
+@interface MSAttendeesVC : MSPageSportnerVC
+
++ (instancetype)newController;
 
 @end

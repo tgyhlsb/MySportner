@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSAttendeesVC">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSPageSportnerVC">
             <connections>
-                <outlet property="awaitingButton" destination="F2q-nn-zby" id="qTa-Mx-OeJ"/>
-                <outlet property="confirmedButton" destination="nnB-67-tHo" id="MAR-Lt-82L"/>
-                <outlet property="invitedButton" destination="UAJ-UH-56l" id="GpV-du-oXG"/>
+                <outlet property="firstListButton" destination="nnB-67-tHo" id="4Ri-mD-WZo"/>
                 <outlet property="pageViewControllerContainer" destination="qXI-IX-fRa" id="8Cg-tU-ltc"/>
+                <outlet property="secondListButton" destination="F2q-nn-zby" id="hua-nq-zb1"/>
+                <outlet property="thirdListButton" destination="UAJ-UH-56l" id="D7C-8r-hE3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -92,12 +91,6 @@
                     <exclude reference="UAJ-UH-56l"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="6Yt-eR-VhP"/>
-                    <exclude reference="TAB-CK-ciu"/>
-                    <exclude reference="L8e-D6-zEB"/>
-                    <exclude reference="WId-gu-4ih"/>
-                    <exclude reference="dTS-tw-DkM"/>
-                    <exclude reference="m3W-It-oVf"/>
                     <exclude reference="6hd-af-T6Q"/>
                     <exclude reference="Etf-mz-dHq"/>
                     <exclude reference="IrW-wt-By0"/>
@@ -109,6 +102,12 @@
                     <exclude reference="znG-wx-1D0"/>
                     <exclude reference="FWB-EX-kDB"/>
                     <exclude reference="Qj4-wh-wr9"/>
+                    <exclude reference="6Yt-eR-VhP"/>
+                    <exclude reference="TAB-CK-ciu"/>
+                    <exclude reference="L8e-D6-zEB"/>
+                    <exclude reference="WId-gu-4ih"/>
+                    <exclude reference="dTS-tw-DkM"/>
+                    <exclude reference="m3W-It-oVf"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -119,12 +118,6 @@
                     <include reference="UAJ-UH-56l"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="6Yt-eR-VhP"/>
-                    <include reference="TAB-CK-ciu"/>
-                    <include reference="L8e-D6-zEB"/>
-                    <include reference="WId-gu-4ih"/>
-                    <include reference="dTS-tw-DkM"/>
-                    <include reference="m3W-It-oVf"/>
                     <include reference="6hd-af-T6Q"/>
                     <include reference="Etf-mz-dHq"/>
                     <include reference="IrW-wt-By0"/>
@@ -136,6 +129,12 @@
                     <include reference="znG-wx-1D0"/>
                     <include reference="FWB-EX-kDB"/>
                     <include reference="Qj4-wh-wr9"/>
+                    <include reference="6Yt-eR-VhP"/>
+                    <include reference="TAB-CK-ciu"/>
+                    <include reference="L8e-D6-zEB"/>
+                    <include reference="WId-gu-4ih"/>
+                    <include reference="dTS-tw-DkM"/>
+                    <include reference="m3W-It-oVf"/>
                 </mask>
             </variation>
         </view>

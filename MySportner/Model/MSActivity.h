@@ -25,6 +25,9 @@ static NSString *MSNotificationActivityStateChanged = @"MSNotificationActivitySt
 @property (strong, nonatomic) NSString *place;
 @property (strong, nonatomic) MSSport *sport;
 @property (strong, nonatomic) NSNumber *level;
+@property (strong, nonatomic) NSNumber *maxPlayer;
+@property (strong, nonatomic) NSString *whereExactly;
+@property (strong, nonatomic) NSNumber *playerNeeded;
 
 @property (strong, nonatomic) MSSportner *owner;
 @property (strong, nonatomic) NSArray *guests;
@@ -51,7 +54,7 @@ static NSString *MSNotificationActivityStateChanged = @"MSNotificationActivitySt
 - (void)addAwaiting:(MSSportner *)awaiting WithTarget:(id)target callBack:(SEL)callBack;
 - (void)removeAwaiting:(MSSportner *)awaiting WithTarget:(id)target callBack:(SEL)callBack;
 
-- (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack;
+//- (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack;
 //- (void)queryOtherSportnersWithTarger:(id)target callBack:(SEL)callback;
 
 + (NSString *)parseClassName;

@@ -58,7 +58,7 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 
 - (void)queryParticipantsAndGuests
 {
-    [self.activity querySportnersWithTarget:self callBack:@selector(didLoadGuestsAndParticipantsWithError:)];
+//    [self.activity querySportnersWithTarget:self callBack:@selector(didLoadGuestsAndParticipantsWithError:)];
 }
 
 //- (void)queryOtherSportners

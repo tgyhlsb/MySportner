@@ -35,6 +35,15 @@
     [MSSportnerCell registerToTableview:self.tableView];
 }
 
+#pragma mark - Getters & Setters
+
+- (void)setSportnerList:(NSArray *)sportnerList
+{
+    _sportnerList = sportnerList;
+    
+    [self.tableView reloadData];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -44,7 +53,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [self.sportnerList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -52,7 +61,7 @@
     NSString *identifer = [MSSportnerCell reusableIdentifier];
     MSSportnerCell *cell = [tableView dequeueReusableCellWithIdentifier:identifer forIndexPath:indexPath];
     
-    cell.sportner = [MSSportner currentSportner];
+    cell.sportner = [self.sportnerList objectAtIndex:indexPath.row];
     
     [cell setAppearanceWithOddIndex:((indexPath.row + 1) % 2)];
     

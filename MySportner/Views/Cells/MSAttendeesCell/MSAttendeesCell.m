@@ -74,7 +74,7 @@ typedef NS_ENUM(NSUInteger, MSAttendeesCellSection) {
     _activity = activity;
     
     if (!self.activity.guests || !self.activity.participants) {
-        [self.activity querySportnersWithTarget:self callBack:@selector(didLoadGuestsAndParticipantsWithError:)];
+//        [self.activity querySportnersWithTarget:self callBack:@selector(didLoadGuestsAndParticipantsWithError:)];
     } else {
         [self updateUI];
     }

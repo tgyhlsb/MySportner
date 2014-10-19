@@ -67,8 +67,8 @@
     
     [self setUpAppearance];
     
+    [self startLoading];
     [self registerToActivityNotifications];
-    [self tryToUpdateInformationView];
     
     self.navigationController.navigationBar.translucent = NO;
 }
@@ -78,6 +78,7 @@
     [super viewDidAppear:animated];
     
     [self layoutBasedOnFrames];
+    [self tryToUpdateInformationView];
 }
 
 - (BOOL)allInformationsAreFetched
@@ -168,21 +169,39 @@
 {
     self.sportLabel.text = self.activity.sport.name;
     self.placeLabel.text = self.activity.place;
-    self.descriptionLabel.text = @"Soon";
+    self.descriptionLabel.text = self.activity.whereExactly;
     self.ownerLabel.text = self.activity.owner.firstName;
     self.ownerPictureView.sportner = self.activity.owner;
     self.levelLabel.attributedText = [self attributedStringForLevel:[self.activity.level integerValue]];
-    self.playerSizeView.numberOfPlayer = 3;
+    self.playerSizeView.numberOfPlayer = [self.activity.playerNeeded integerValue];
     
-    self.dateLabel1.text = @"Mon.";
-    self.dateLabel2.text = @"25 Aug.";
-    self.dateLabel3.text = @"11:00 am";
+    [self setViewWithDate:self.activity.date];
     
     NSInteger nbPlayers = [self.activity.participants count];
     NSInteger nbComments = [self.activity.comments count];
     
     self.attendeesValueLabel.text = [NSString stringWithFormat:@"%ld", (long)nbPlayers];
     self.commentsValueLabel.text = [NSString stringWithFormat:@"%ld", (long)nbComments];
+}
+
+- (void)setViewWithDate:(NSDate *)date
+{
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    
+    [dateFormat setDateFormat:@"EEE"];
+    self.dateLabel1.text = [dateFormat stringFromDate:date];
+    
+    
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
+    [dateFormat setDateFormat:@"MMM"];
+    NSString *shortMonth = [dateFormat stringFromDate:date];
+    self.dateLabel2.text = [NSString stringWithFormat:@"%@ %ld", shortMonth, (long)[components day]];
+    
+    
+    NSDateFormatter* timeFormat = [[NSDateFormatter alloc] init];
+    [timeFormat setTimeStyle:NSDateFormatterShortStyle];
+    self.dateLabel3.text = [timeFormat stringFromDate:date];
 }
 
 #define LEVEL_NAMES @[@"Novice", @"Rookie", @"Intermediate", @"Expert", @"Legend"]
@@ -274,6 +293,7 @@
 - (void)pushToAttendees
 {
     MSAttendeesVC *destination = [MSAttendeesVC newController];
+    destination.activity = self.activity;
     [self.navigationController pushViewController:destination animated:YES];
 }
 

@@ -35,7 +35,9 @@
 @dynamic place;
 @dynamic sport;
 @dynamic level;
-
+@dynamic maxPlayer;
+@dynamic playerNeeded;
+@dynamic whereExactly;
 @dynamic owner;
 
 
@@ -87,111 +89,111 @@
     return [self relationForKey:@"comment"];
 }
 
-#pragma mark - PARSE Backend
-
-- (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack
-{
-    self.tempSportnersQueryTarget = target;
-    self.tempSportnersQueryCallBack = callBack;
-    if (!self.participants) {
-        self.participants = [[NSArray alloc] init];
-    }
-    if (!self.guests) {
-        self.guests = [[NSArray alloc] init];
-    }
-    if (!self.awaitings) {
-        self.awaitings = [[NSArray alloc] init];
-    }
-    PFQuery *participantQuery = [[self participantRelation] query];
-    [participantQuery findObjectsInBackgroundWithTarget:self
-                                               selector:@selector(participantsCallback:error:)];
-}
-
-- (void)participantsCallback:(NSArray *)objects error:(NSError *)error
-{
-    if (!error) {
-        self.participants = objects;
-        
-        PFQuery *guestQuery = [[self guestRelation] query];
-        [guestQuery findObjectsInBackgroundWithTarget:self
-                                             selector:@selector(guestsCallback:error:)];
-    } else {
-        NSLog(@"Error: %@ %@", error, [error userInfo]);
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
-#pragma clang diagnostic pop
-    }
-}
-
-- (void)guestsCallback:(NSArray *)objects error:(NSError *)error
-{
-    if (!error) {
-        self.guests = objects;
-        
-        PFQuery *awaitingQuery = [[self awaitingRelation] query];
-        [awaitingQuery findObjectsInBackgroundWithTarget:self
-                                             selector:@selector(awaitingCallback:error:)];
-    } else {
-        NSLog(@"Error: %@ %@", error, [error userInfo]);
-        
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
-#pragma clang diagnostic pop
-    }
-}
-
-- (void)awaitingCallback:(NSArray *)objects error:(NSError *)error
-{
-    if (!error) {
-        self.awaitings = objects;
-    } else {
-        NSLog(@"Error: %@ %@", error, [error userInfo]);
-    }
-    
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
-#pragma clang diagnostic pop
-}
-
-//- (void)queryOtherSportnersWithTarger:(id)target callBack:(SEL)callback
+//#pragma mark - PARSE Backend
+//
+//- (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack
 //{
-//    if (self.guests && self.guests) {
-//        self.tempOthersQueryTarget = target;
-//        self.tempOthersQueryCallBack = callback;
+//    self.tempSportnersQueryTarget = target;
+//    self.tempSportnersQueryCallBack = callBack;
+//    if (!self.participants) {
+//        self.participants = [[NSArray alloc] init];
+//    }
+//    if (!self.guests) {
+//        self.guests = [[NSArray alloc] init];
+//    }
+//    if (!self.awaitings) {
+//        self.awaitings = [[NSArray alloc] init];
+//    }
+//    PFQuery *participantQuery = [[self participantRelation] query];
+//    [participantQuery findObjectsInBackgroundWithTarget:self
+//                                               selector:@selector(participantsCallback:error:)];
+//}
+//
+//- (void)participantsCallback:(NSArray *)objects error:(NSError *)error
+//{
+//    if (!error) {
+//        self.participants = objects;
 //        
-//        NSMutableArray *userNames = [[NSMutableArray alloc] initWithCapacity:([self.guests count] + [self.participants count])];
-//        for (MSSportner *guest in self.guests) {
-//            [userNames addObject:guest.username];
-//        }
-//        for (MSSportner *participant in self.participants) {
-//            [userNames addObject:participant.username];
-//        }
-//        [userNames addObject:[MSSportner currentSportner].username];
-//        
-//        PFQuery *otherSportnersQuery = [MSSportner query];
-//        [otherSportnersQuery whereKey:@"username" notContainedIn:userNames];
-//        [otherSportnersQuery findObjectsInBackgroundWithTarget:self
-//                                                      selector:@selector(sportnersCallback:error:)];
+//        PFQuery *guestQuery = [[self guestRelation] query];
+//        [guestQuery findObjectsInBackgroundWithTarget:self
+//                                             selector:@selector(guestsCallback:error:)];
 //    } else {
-////        [self querySportners];
-//        NSLog(@"Query sportners before");
+//        NSLog(@"Error: %@ %@", error, [error userInfo]);
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+//        [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
+//#pragma clang diagnostic pop
 //    }
 //}
-
-- (void)sportnersCallback:(NSArray *)objects error:(NSError *)error
-{
-    if (!error) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [self.tempOthersQueryTarget performSelector:self.tempOthersQueryCallBack withObject:objects withObject:error];
-#pragma clang diagnostic pop
-    } else {
-        NSLog(@"Error: %@ %@", error, [error userInfo]);
-    }
-}
+//
+//- (void)guestsCallback:(NSArray *)objects error:(NSError *)error
+//{
+//    if (!error) {
+//        self.guests = objects;
+//        
+//        PFQuery *awaitingQuery = [[self awaitingRelation] query];
+//        [awaitingQuery findObjectsInBackgroundWithTarget:self
+//                                             selector:@selector(awaitingCallback:error:)];
+//    } else {
+//        NSLog(@"Error: %@ %@", error, [error userInfo]);
+//        
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+//        [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
+//#pragma clang diagnostic pop
+//    }
+//}
+//
+//- (void)awaitingCallback:(NSArray *)objects error:(NSError *)error
+//{
+//    if (!error) {
+//        self.awaitings = objects;
+//    } else {
+//        NSLog(@"Error: %@ %@", error, [error userInfo]);
+//    }
+//    
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+//    [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
+//#pragma clang diagnostic pop
+//}
+//
+////- (void)queryOtherSportnersWithTarger:(id)target callBack:(SEL)callback
+////{
+////    if (self.guests && self.guests) {
+////        self.tempOthersQueryTarget = target;
+////        self.tempOthersQueryCallBack = callback;
+////        
+////        NSMutableArray *userNames = [[NSMutableArray alloc] initWithCapacity:([self.guests count] + [self.participants count])];
+////        for (MSSportner *guest in self.guests) {
+////            [userNames addObject:guest.username];
+////        }
+////        for (MSSportner *participant in self.participants) {
+////            [userNames addObject:participant.username];
+////        }
+////        [userNames addObject:[MSSportner currentSportner].username];
+////        
+////        PFQuery *otherSportnersQuery = [MSSportner query];
+////        [otherSportnersQuery whereKey:@"username" notContainedIn:userNames];
+////        [otherSportnersQuery findObjectsInBackgroundWithTarget:self
+////                                                      selector:@selector(sportnersCallback:error:)];
+////    } else {
+//////        [self querySportners];
+////        NSLog(@"Query sportners before");
+////    }
+////}
+//
+//- (void)sportnersCallback:(NSArray *)objects error:(NSError *)error
+//{
+//    if (!error) {
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+//        [self.tempOthersQueryTarget performSelector:self.tempOthersQueryCallBack withObject:objects withObject:error];
+//#pragma clang diagnostic pop
+//    } else {
+//        NSLog(@"Error: %@ %@", error, [error userInfo]);
+//    }
+//}
 
 #pragma mark - Guests
 
@@ -252,6 +254,7 @@
     NSMutableArray *tempParticipants = [self.participants mutableCopy];
     [tempParticipants addObject:participant];
     self.participants = tempParticipants;
+    self.playerNeeded = [NSNumber numberWithInt:([self.playerNeeded intValue] - 1)];
     [self saveInBackgroundWithTarget:target selector:callBack];
 }
 
@@ -262,6 +265,7 @@
     NSMutableArray *tempParticipants = [self.participants mutableCopy];
     [tempParticipants removeObject:participant];
     self.participants = tempParticipants;
+    self.playerNeeded = [NSNumber numberWithInt:([self.playerNeeded intValue] + 1)];
     [self saveInBackgroundWithTarget:target selector:callBack];
 }
 

@@ -7,8 +7,11 @@
 //
 
 #import "MSPageSportnerVC.h"
+#import "MSActivity.h"
 
 @interface MSAttendeesVC : MSPageSportnerVC
+
+@property (strong, nonatomic) MSActivity *activity;
 
 + (instancetype)newController;
 

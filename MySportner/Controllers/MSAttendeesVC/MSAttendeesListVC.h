@@ -10,6 +10,8 @@
 
 @interface MSAttendeesListVC : UIViewController
 
+@property (strong, nonatomic) NSArray *sportnerList;
+
 + (instancetype)newController;
 
 @end

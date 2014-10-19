@@ -48,7 +48,6 @@
     [self registerGestureRecognizers];
     
     self.playerSizeView = [MSPlayerSizeView viewWithFrame:self.actionButton.frame];
-    self.playerSizeView.numberOfPlayer = 10;
     [self addSubview:self.playerSizeView];
     self.actionButton.hidden = YES;
 //    self.playerSizeView.backgroundColor = [UIColor redColor];
@@ -87,6 +86,7 @@
     self.placeLabel.text = activity.place;
     self.ownerNameLabel.text = activity.owner.firstName;
     self.ownerProfilePictureView.sportner = activity.owner;
+    self.playerSizeView.numberOfPlayer = [activity.playerNeeded intValue];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -149,14 +149,20 @@
 {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     
+    [dateFormat setDateFormat:@"EEE"];
+    self.dayLabel.text = [dateFormat stringFromDate:date];
+    
+    
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
-    self.dayLabel.text = [NSString stringWithFormat:@"%ld", (long)[components day]];
-    
     [dateFormat setDateFormat:@"MMM"];
-    self.monthLabel.text = [dateFormat stringFromDate:date];
-    [dateFormat setDateFormat:@"hh:mm"];
-    self.timeLabel.text = [dateFormat stringFromDate:date];
+    NSString *shortMonth = [dateFormat stringFromDate:date];
+    self.monthLabel.text = [NSString stringWithFormat:@"%@ %ld", shortMonth, (long)[components day]];
+
+    
+    NSDateFormatter* timeFormat = [[NSDateFormatter alloc] init];
+    [timeFormat setTimeStyle:NSDateFormatterShortStyle];
+    self.timeLabel.text = [timeFormat stringFromDate:date];
 }
 
 + (void)registerToTableview:(UITableView *)tableView

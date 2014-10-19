@@ -44,6 +44,17 @@
     [self.thirdListButton setTitle:@"INVITED" forState:UIControlStateNormal];
 }
 
+#pragma mark - Getters & Setters
+
+- (void)setActivity:(MSActivity *)activity
+{
+    _activity = activity;
+    
+    self.confirmedAttendeesVC.sportnerList = self.activity.participants;
+    self.awaitingAttendeesVC.sportnerList = self.activity.awaitings;
+    self.invitedAttendeesVC.sportnerList = self.activity.guests;
+}
+
 #pragma mark - AttendeesListControllers
 
 - (MSAttendeesListVC *)confirmedAttendeesVC

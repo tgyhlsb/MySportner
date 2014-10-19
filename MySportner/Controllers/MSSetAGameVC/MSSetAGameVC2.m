@@ -446,10 +446,15 @@
         activity.place = self.cityValueLabel.text;
         activity.owner = [MSSportner currentSportner];
         activity.date = self.startDatePicker.date;
+        activity.maxPlayer = @(self.playersStepper.value+1);
+        activity.playerNeeded = @(self.playersStepper.value);
+        activity.whereExactly = self.whereTextField.text;
+        
         [[activity participantRelation] addObject:[MSSportner currentSportner]];
         activity.guests = [[NSArray alloc] init];
         activity.participants = [[NSArray alloc] initWithObjects:[MSSportner currentSportner], nil];
         activity.awaitings = [[NSArray alloc] init];
+        activity.comments = [[NSArray alloc] init];
         
         self.savingActivity = activity;
         [self showLoadingViewInView:self.view];

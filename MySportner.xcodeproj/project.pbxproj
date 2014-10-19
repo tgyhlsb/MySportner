@@ -137,6 +137,7 @@
 		5A580EA619F3B28A00CA3846 /* Splashscreen0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580EA519F3B28A00CA3846 /* Splashscreen0@2x.png */; };
 		5A580EAA19F3B56800CA3846 /* MSGameProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A580EA819F3B56800CA3846 /* MSGameProfileVC.m */; };
 		5A580EAB19F3B56800CA3846 /* MSGameProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A580EA919F3B56800CA3846 /* MSGameProfileVC.xib */; };
+		5A580EAD19F3CF8F00CA3846 /* fleche.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580EAC19F3CF8F00CA3846 /* fleche.png */; };
 		5A622FA318A12F9C00D33349 /* MSProfilePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */; };
 		5A622FA518A12FC000D33349 /* MSProfilePictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */; };
 		5A622FA818A13A4400D33349 /* attendees_subtitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA718A13A4400D33349 /* attendees_subtitle.png */; };
@@ -467,6 +468,7 @@
 		5A580EA719F3B56800CA3846 /* MSGameProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSGameProfileVC.h; path = Controllers/MSActivityVC/MSGameProfileVC.h; sourceTree = "<group>"; };
 		5A580EA819F3B56800CA3846 /* MSGameProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSGameProfileVC.m; path = Controllers/MSActivityVC/MSGameProfileVC.m; sourceTree = "<group>"; };
 		5A580EA919F3B56800CA3846 /* MSGameProfileVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSGameProfileVC.xib; path = Controllers/MSActivityVC/MSGameProfileVC.xib; sourceTree = "<group>"; };
+		5A580EAC19F3CF8F00CA3846 /* fleche.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fleche.png; sourceTree = "<group>"; };
 		5A622FA118A12F9C00D33349 /* MSProfilePictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSProfilePictureCell.h; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.h; sourceTree = "<group>"; };
 		5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSProfilePictureCell.m; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.m; sourceTree = "<group>"; };
 		5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSProfilePictureCell.xib; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.xib; sourceTree = "<group>"; };
@@ -1192,6 +1194,7 @@
 				5AFE689318508EAC00E40541 /* plus_button_press.png */,
 				5AFE689418508EAC00E40541 /* plus_button_press@2x.png */,
 				5AFE688F1850897D00E40541 /* plus_button.png */,
+				5A580EAC19F3CF8F00CA3846 /* fleche.png */,
 				5AFE68901850897D00E40541 /* plus_button@2x.png */,
 				5AFE688B1850883500E40541 /* vertical_gradient.png */,
 				5AFE688C1850883500E40541 /* vertical_gradient@2x.png */,
@@ -1840,6 +1843,7 @@
 				5AAF981D18E8530900B252FA /* skip@2x.png in Resources */,
 				5ADCF2AE184025BB00E6C8D2 /* MSWelcomeVC.xib in Resources */,
 				5A0CB8021891714A0027EE58 /* slider-metal-trackBackground.png in Resources */,
+				5A580EAD19F3CF8F00CA3846 /* fleche.png in Resources */,
 				5A580E6419F2570400CA3846 /* running2.png in Resources */,
 				5ADCF2F51840D9C200E6C8D2 /* MSVenuePickerCell.xib in Resources */,
 				5A0CB7F51891714A0027EE58 /* slider-default7-handle@2x.png in Resources */,

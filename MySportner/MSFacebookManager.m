@@ -7,6 +7,9 @@
 //
 
 #import "MSFacebookManager.h"
+#import <ParseFacebookUtils/PFFacebookUtils.h>
+
+#define CAPTION @"MySportner"
 
 @implementation MSFacebookManager
 
@@ -181,6 +184,107 @@
 + (void)userLoggedOut
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:DTNotificationFacebookUserLoggedOut object:nil];
+}
+
+#pragma mark - Share
+
++ (void)shareSignUp
+{
+    NSString *shareTitlePattern = NSLocalizedString(@"I just signed up on MySportner, join me !", @"Facebook share pattern");
+    
+    // Check if the Facebook app is installed and we can present the share dialog
+    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
+    params.link = [NSURL URLWithString:@"http://www.mysportner.com"];
+    params.name = shareTitlePattern;
+    params.caption = CAPTION;
+    params.picture = [NSURL URLWithString:@"https://pbs.twimg.com/profile_images/378800000551667532/b81759440b14ba757bb8b0d7ccceae34.png"];
+    params.linkDescription = @"blabla";
+    
+    // If the Facebook app is installed and we can present the share dialog
+    if ([FBDialogs canPresentShareDialogWithParams:params]) {
+        // Present the share dialog
+        [MSFacebookManager presentShareDialogWithParameters:params];
+    } else {
+        // Present the feed dialog
+        [MSFacebookManager presentFeedDialogWithParameters:params];
+    }
+}
+
++ (void)presentShareDialogWithParameters:(FBLinkShareParams *)params
+{
+    
+    // Present share dialog
+    [FBDialogs presentShareDialogWithLink:params.link
+                                     name:params.name
+                                  caption:params.caption
+                              description:params.linkDescription
+                                  picture:params.picture
+                              clientState:nil
+                                  handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+                                      if(error) {
+                                          // An error occurred, we need to handle the error
+                                          // See: https://developers.facebook.com/docs/ios/errors
+                                          NSLog(@"%@", error);
+                                      } else {
+                                          // Success
+                                          NSLog(@"result %@", results);
+                                      }
+                                  }];
+}
+
++ (void)presentFeedDialogWithParameters:(FBLinkShareParams *)parameters
+{
+    // Put together the dialog parameters
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   parameters.name, @"name",
+                                   parameters.caption, @"caption",
+                                   parameters.linkDescription, @"description",
+                                   parameters.link.description, @"link",
+                                   parameters.picture.description, @"picture",
+                                   nil];
+    
+    // Show the feed dialog
+    [FBWebDialogs presentFeedDialogModallyWithSession:nil
+                                           parameters:params
+                                              handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+                                                  if (error) {
+                                                      // An error occurred, we need to handle the error
+                                                      // See: https://developers.facebook.com/docs/ios/errors
+                                                      NSLog(@"%@", error);
+                                                  } else {
+                                                      if (result == FBWebDialogResultDialogNotCompleted) {
+                                                          // User cancelled.
+                                                          NSLog(@"User cancelled.");
+                                                      } else {
+                                                          // Handle the publish feed callback
+                                                          NSDictionary *urlParams = [MSFacebookManager parseURLParams:[resultURL query]];
+                                                          
+                                                          if (![urlParams valueForKey:@"post_id"]) {
+                                                              // User cancelled.
+                                                              NSLog(@"User cancelled.");
+                                                              
+                                                          } else {
+                                                              // User clicked the Share button
+                                                              NSString *result = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
+                                                              NSLog(@"result %@", result);
+                                                          }
+                                                      }
+                                                  }
+                                              }];
+}
+
+
+// A function for parsing URL parameters returned by the Feed Dialog.
++ (NSDictionary*)parseURLParams:(NSString *)query {
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    for (NSString *pair in pairs) {
+        NSArray *kv = [pair componentsSeparatedByString:@"="];
+        NSString *val =
+        [kv[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        params[kv[0]] = val;
+    }
+    return params;
 }
 
 @end

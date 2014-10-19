@@ -534,7 +534,7 @@ typedef NS_ENUM(int, MSActivitySection) {
 - (void)tryToShareOnFacebook
 {
     // Check if the Facebook app is installed and we can present the share dialog
-    FBShareDialogParams *params = [[FBShareDialogParams alloc] init];
+    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
     params.link = [NSURL URLWithString:@"http://signup.mysportner.com/"];
     params.name = self.activity.sport.name;
     params.caption = @"Join me on MySportner";
@@ -550,14 +550,14 @@ typedef NS_ENUM(int, MSActivitySection) {
         [self presentFacebookFeedDialog];
     }
 }
-- (void)presentFacebookShareDialogWithParam:(FBShareDialogParams *)params
+- (void)presentFacebookShareDialogWithParam:(FBLinkShareParams *)params
 {
     
     // Present share dialog
     [FBDialogs presentShareDialogWithLink:params.link
                                      name:params.name
                                   caption:params.caption
-                              description:params.description
+                              description:params.linkDescription
                                   picture:params.picture
                               clientState:nil
                                   handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {

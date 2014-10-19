@@ -231,7 +231,7 @@
     
     vc.textTitle = nil;
     vc.text = @"By clicking next, you hereby agree to the terms and confitions of use.";
-    vc.otherButonTitle = nil;
+    vc.otherButonTitle = @"Cancel";
     vc.mainButtonTitle = @"NEXT";
     vc.imageName = @"check.png";
     
@@ -586,14 +586,8 @@
 - (void)fullScreenPopUpDidTapMainButton
 {
     [self dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController *formSheetController) {
-        
-    }];
-    
-    if (self.hasAcceptedTerms) {
         [self performTransitionToNextScreen];
-    } else {
-        [self saveUser];
-    }
+    }];
 }
 
 - (void)fullScreenPopUpDidTapOtherButton
@@ -645,11 +639,13 @@
     
     __weak MSChooseSportsVC *weakDestination = destinationVC;
     destinationVC.validateBlock = ^{
-        MSFindFriendsVC *destinationVC = [MSFindFriendsVC newController];
+//        MSFindFriendsVC *destinationVC = [MSFindFriendsVC newController];
+//        
+//        destinationVC.sportner = weakDestination.sportner;
+//        
+//        [weakDestination.navigationController pushViewController:destinationVC animated:YES];
         
-        destinationVC.sportner = weakDestination.sportner;
-        
-        [weakDestination.navigationController pushViewController:destinationVC animated:YES];
+        [weakDestination displayCongratulationPopUp];
     };
     
     self.hasAlreadySignUp = YES;

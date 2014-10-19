@@ -224,7 +224,9 @@
             }
         }
         
-        query = [PFQuery orQueryWithSubqueries:subQueries];
+        if ([subQueries count]) {
+            query = [PFQuery orQueryWithSubqueries:subQueries];
+        }
         
     }
     [query includeKey:@"owner"];

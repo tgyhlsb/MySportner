@@ -20,12 +20,14 @@
 #import "TKAlertCenter.h"
 #import "MSSport.h"
 #import "MSFullScreenPopUpVC.h"
+#import "MSAppDelegate.h"
+#import "MSFacebookManager.h"
 
 #define DEFAULT_SPORT_LEVEL -1
 
 #define NIB_NAME @"MSChooseSportsVC"
 
-@interface MSChooseSportsVC () <UICollectionViewDataSource, UICollectionViewDelegate, MZFormSheetBackgroundWindowDelegate>
+@interface MSChooseSportsVC () <UICollectionViewDataSource, UICollectionViewDelegate, MZFormSheetBackgroundWindowDelegate, MSFullScreenPopUpDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet QBFlatButton *nextButton;
@@ -161,13 +163,16 @@
 {
     [self hideLoadingView];
     if (!error) {
-        self.validateBlock();
+        if (self.validateBlock) {
+            self.validateBlock();
+            self.validateBlock = nil;
+        }
     } else {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:[error.userInfo objectForKey:@"error"]];
     }
 }
 
-- (void)showDonePopUp
+- (void)displayCongratulationPopUp
 {
     MSFullScreenPopUpVC *vc = [MSFullScreenPopUpVC newController];
     CGSize formSheetSize = self.navigationController.view.frame.size;
@@ -199,6 +204,44 @@
     [self presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
         
     }];
+}
+
+
+
+#pragma mark - MSFullScreenPopUpDelegate
+
+- (void)fullScreenPopUpDidTapMainButton
+{
+    [self dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        [self shareSignUpOnFacebook];
+        [self openApp];
+    }];
+}
+
+- (void)fullScreenPopUpDidTapOtherButton
+{
+    [self dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        [self openApp];
+    }];
+}
+
+- (void)fullScreenPopUpDidTapText
+{
+    
+}
+
+- (void)shareSignUpOnFacebook
+{
+    [MSFacebookManager shareSignUp];
+}
+
+- (void)openApp
+{
+    MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    [appDelegate setDrawerMenu];
+    
+    [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
 }
 
 #pragma mark UICollectionViewDataSource

@@ -30,4 +30,7 @@ static NSString *DTNotificationFacebookUserLoggedOut = @"DTFacebookUserLoggetOut
 
 + (void)handleAppColdStart;
 
+
++ (void)shareSignUp;
+
 @end

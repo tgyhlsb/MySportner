@@ -36,13 +36,19 @@
     [MSSportnerCell registerToTableview:self.tableView];
 }
 
+- (void)reloadData
+{
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 #pragma mark - Getters & Setters
 
 - (void)setSportnerList:(NSArray *)sportnerList
 {
     _sportnerList = sportnerList;
     
-    [self.tableView reloadData];
+    [self reloadData];
 }
 
 - (void)startLoading
@@ -86,7 +92,13 @@
     [cell setActionButtonHidden:YES];
     [cell setAppearanceWithOddIndex:((indexPath.row + 1) % 2)];
     
-    cell.isSelected = [self.selectedSportners containsObject:cell.sportner];
+    if (self.allowsMultipleSelection) {
+        cell.isSelected = [self.selectedSportners containsObject:cell.sportner];
+    }
+    
+    if ([self.datasource respondsToSelector:@selector(sportnerList:shouldDisableCellForSportner:)]) {
+        cell.isDisabled = [self.datasource sportnerList:self shouldDisableCellForSportner:cell.sportner];
+    }
     
     return cell;
 }
@@ -105,7 +117,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.allowsMultipleSelection) {
+    MSSportnerCell *cell = (MSSportnerCell *)[tableView cellForRowAtIndexPath:indexPath];
+    if (self.allowsMultipleSelection && !cell.isDisabled) {
         MSSportner *sportner = [self.sportnerList objectAtIndex:indexPath.row];
         
         if ([self.selectedSportners containsObject:sportner]) {

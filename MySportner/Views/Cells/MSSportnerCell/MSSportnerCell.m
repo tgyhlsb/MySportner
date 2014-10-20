@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet MSProfilePictureView *profilePictureView;
 @property (weak, nonatomic) IBOutlet QBFlatButton *actionButton;
 @property (weak, nonatomic) IBOutlet UIView *selectedView;
+@property (weak, nonatomic) IBOutlet UIView *disabledView;
 
 
 @end
@@ -81,6 +82,17 @@
     _isSelected = isSelected;
     
     self.selectedView.hidden = !isSelected;
+}
+
+- (void)setIsDisabled:(BOOL)isDisabled
+{
+    _isDisabled = isDisabled;
+    
+    if (isDisabled) {
+        self.isSelected = NO;
+    }
+    
+    self.disabledView.hidden = !isDisabled;
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated

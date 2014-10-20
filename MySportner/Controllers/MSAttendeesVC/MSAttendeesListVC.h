@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSSportner.h"
+
+@protocol MSAttendeesListDatasource;
 
 @interface MSAttendeesListVC : UIViewController
+
+@property (weak, nonatomic) id<MSAttendeesListDatasource> datasource;
 
 @property (strong, nonatomic) NSArray *sportnerList;
 @property (nonatomic) BOOL allowsMultipleSelection;
@@ -18,5 +23,12 @@
 
 - (void)startLoading;
 - (void)stopLoading;
+- (void)reloadData;
+
+@end
+
+@protocol MSAttendeesListDatasource <NSObject>
+
+- (BOOL)sportnerList:(MSAttendeesListVC *)sportListVC shouldDisableCellForSportner:(MSSportner *)sportner;
 
 @end

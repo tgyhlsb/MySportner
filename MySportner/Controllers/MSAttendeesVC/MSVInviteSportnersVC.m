@@ -11,7 +11,7 @@
 
 #define NIB_NAME @"MSPageSportnerVC"
 
-@interface MSVInviteSportnersVC ()
+@interface MSVInviteSportnersVC () <MSAttendeesListDatasource>
 
 @property (strong, nonatomic) MSAttendeesListVC *sportnersVC;
 @property (strong, nonatomic) MSAttendeesListVC *facebookVC;
@@ -69,24 +69,32 @@
     self.othersVC.sportnerList = nil;
     
     [self fetchOthersSportners];
+    [self.activity fetchGuests];
+    [self.activity fetchParticipants];
 }
 
 #pragma mark - Handlers
 
 - (void)inviteButtonHandler
 {
-    [self showLoadingViewInView:self.navigationController.view];
     
     NSMutableArray *selectedSportners = [self.sportnersVC.selectedSportners mutableCopy];
     [selectedSportners addObjectsFromArray:self.facebookVC.selectedSportners];
     [selectedSportners addObjectsFromArray:self.othersVC.selectedSportners];
     
-    __weak MSVInviteSportnersVC *weakSelf = self;
-    [self.activity addGuests:selectedSportners withBlock:^(BOOL succeeded, NSError *error) {
-        [weakSelf hideLoadingView];
-        [weakSelf.navigationController popViewControllerAnimated:YES];
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Invitations sent"];
-    }];
+    
+    if ([selectedSportners count]) {
+        [self showLoadingViewInView:self.navigationController.view];
+        __weak MSVInviteSportnersVC *weakSelf = self;
+        [self.activity addGuests:selectedSportners withBlock:^(BOOL succeeded, NSError *error) {
+            [weakSelf hideLoadingView];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+            [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Invitations sent"];
+        }];
+    } else {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Select sportners to invite"];
+    }
+    
 }
 
 #pragma mark - Fetch & network
@@ -129,6 +137,16 @@
                                              selector:@selector(sportnerNotificationReceived)
                                                  name:MSNotificationSportnerStateChanged
                                                object:[MSSportner currentSportner]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(activityNotificationReceived)
+                                                 name:MSNotificationActivityConfirmedChanged
+                                               object:self.activity];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(activityNotificationReceived)
+                                                 name:MSNotificationActivityInvitedChanged
+                                               object:self.activity];
 }
 
 - (void)sportnerNotificationReceived
@@ -138,6 +156,10 @@
     [self.sportnersVC stopLoading];
 }
 
+- (void)activityNotificationReceived
+{
+    [self.sportnersVC reloadData];
+}
 
 #pragma mark - AttendeesListControllers
 
@@ -146,6 +168,7 @@
     if (!_sportnersVC) {
         _sportnersVC = [MSAttendeesListVC newController];
         _sportnersVC.allowsMultipleSelection = YES;
+        _sportnersVC.datasource = self;
     }
     return _sportnersVC;
 }
@@ -155,6 +178,7 @@
     if (!_facebookVC) {
         _facebookVC = [MSAttendeesListVC newController];
         _facebookVC.allowsMultipleSelection = YES;
+        _facebookVC.datasource = self;
     }
     return _facebookVC;
 }
@@ -164,8 +188,16 @@
     if (!_othersVC) {
         _othersVC = [MSAttendeesListVC newController];
         _othersVC.allowsMultipleSelection = YES;
+        _othersVC.datasource = self;
     }
     return _othersVC;
+}
+
+#pragma mark - MSAttendeesListDatasource
+
+- (BOOL)sportnerList:(MSAttendeesListVC *)sportListVC shouldDisableCellForSportner:(MSSportner *)sportner
+{
+    return [self.activity.guests containsObject:sportner];
 }
 
 

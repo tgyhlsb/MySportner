@@ -20,6 +20,7 @@
 #import "MSAttendeesVC.h"
 #import "MSCommentsVC.h"
 #import "MSVInviteSportnersVC.h"
+#import "MSProfileVC.h"
 
 #define NIB_NAME @"MSGameProfileVC"
 
@@ -86,6 +87,7 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
     
     [self startLoading];
     [self registerToActivityNotifications];
+    [self registerGestureRecognizers];
     
     self.navigationController.navigationBar.translucent = NO;
 }
@@ -389,6 +391,17 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 
 #pragma mark - Handlers
 
+- (void)registerGestureRecognizers
+{
+    UITapGestureRecognizer *ownerPictureTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ownerTapHandler)];
+    [self.ownerPictureView addGestureRecognizer:ownerPictureTapRecognizer];
+    self.ownerPictureView.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *ownerLabelTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ownerTapHandler)];
+    [self.ownerLabel addGestureRecognizer:ownerLabelTapRecognizer];
+    self.ownerLabel.userInteractionEnabled = YES;
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [[touches allObjects] firstObject];
@@ -447,6 +460,14 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
         default:
             break;
     }
+}
+
+- (void)ownerTapHandler
+{
+    MSProfileVC *destination = [MSProfileVC newController];
+    destination.sportner = self.activity.owner;
+    destination.hasDirectAccessToDrawer = NO;
+    [self.navigationController pushViewController:destination animated:YES];
 }
 
 #pragma mark - Game Actions

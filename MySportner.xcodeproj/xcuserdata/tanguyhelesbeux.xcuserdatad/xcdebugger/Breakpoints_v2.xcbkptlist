@@ -210,27 +210,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSActivityVC/MSGameProfileVC.m"
-            timestampString = "435458097.782914"
+            timestampString = "435459636.570563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "400"
-            endingLineNumber = "400"
-            landmarkName = "-touchesEnded:withEvent:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MySportner/Controllers/MSActivityVC/MSGameProfileVC.m"
-            timestampString = "435458097.782914"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "394"
-            endingLineNumber = "394"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
             landmarkName = "-touchesBegan:withEvent:"
             landmarkType = "5">
          </BreakpointContent>
@@ -306,11 +290,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSActivityVC/MSGameProfileVC.m"
-            timestampString = "435458097.782914"
+            timestampString = "435459636.570563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "426"
-            endingLineNumber = "426"
+            startingLineNumber = "439"
+            endingLineNumber = "439"
             landmarkName = "-mainButtonHandler"
             landmarkType = "5">
          </BreakpointContent>
@@ -322,11 +306,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSActivityVC/MSGameProfileVC.m"
-            timestampString = "435458097.782914"
+            timestampString = "435459636.570563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "425"
-            endingLineNumber = "425"
+            startingLineNumber = "438"
+            endingLineNumber = "438"
             landmarkName = "-mainButtonHandler"
             landmarkType = "5">
          </BreakpointContent>

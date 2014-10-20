@@ -45,7 +45,7 @@
 {
     [super awakeFromNib];
     
-    [self registerGestureRecognizers];
+//    [self registerGestureRecognizers];
     
     self.playerSizeView = [MSPlayerSizeView viewWithFrame:self.actionButton.frame];
     [self addSubview:self.playerSizeView];

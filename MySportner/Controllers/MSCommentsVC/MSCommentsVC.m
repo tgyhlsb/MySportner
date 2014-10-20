@@ -41,12 +41,11 @@
     comment.content = @"Ceci est un commentaire";
     comment.author = [MSSportner currentSportner];
     
-    [self.activity addComment:comment withTarget:self callBack:@selector(commentSent)];
-}
-
-- (void)commentSent
-{
-    NSLog(@"Commentaire envoyé");
+    [self.activity addComment:comment withBlock:^(BOOL succeeded, NSError *error) {
+        
+        NSLog(@"Commentaire envoyé");
+        
+    }];
 }
 
 

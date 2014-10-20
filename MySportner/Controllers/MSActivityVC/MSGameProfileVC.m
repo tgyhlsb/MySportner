@@ -15,6 +15,7 @@
 
 #import "MSColorFactory.h"
 #import "MSStyleFactory.h"
+#import "TKAlertCenter.h"
 
 #import "MSAttendeesVC.h"
 #import "MSCommentsVC.h"
@@ -459,7 +460,39 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 
 - (void)joinTheGame
 {
-    
+    switch (self.sportnerStatus) {
+        case MSUserStatusForActivityOther:
+        {
+            [self.activity addAwaiting:[MSSportner currentSportner] withBlock:^(BOOL succeeded, NSError *error) {
+                
+                if (succeeded && !error) {
+                    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"A request has been sent to the owner"];
+                }
+                if (error) {
+                    NSLog(@"%@", error);
+                }
+            }];
+            break;
+        }
+        case MSUserStatusForActivityInvited:
+        {
+            [self.activity addParticipant:[MSSportner currentSportner] withBlock:^(BOOL succeeded, NSError *error) {
+                
+                if (succeeded && !error) {
+                    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"You joined the game !"];
+                }
+                
+                if (error) {
+                    NSLog(@"%@", error);
+                }
+                
+            }];
+            break;
+        }
+            
+        default:
+            break;
+    }
 }
 
 - (void)leaveTheGame

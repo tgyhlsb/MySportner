@@ -47,18 +47,18 @@ static NSString *MSNotificationActivityAwaitingChanged = @"MSNotificationActivit
 - (PFRelation *)commentRelation;
 
 - (void)fetchGuests;
-- (void)addGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack;
+- (void)addGuest:(MSSportner *)guest withBlock:(PFBooleanResultBlock)block;
 - (void)addGuests:(NSArray *)guests withBlock:(PFBooleanResultBlock)block;
-- (void)removeGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack;
+- (void)removeGuest:(MSSportner *)guest withBlock:(PFBooleanResultBlock)block;
 
 - (void)fetchParticipants;
-- (void)addParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack;
+- (void)addParticipant:(MSSportner *)participant withBlock:(PFBooleanResultBlock)block;
 - (void)addParticipants:(NSArray *)participants withBlock:(PFBooleanResultBlock)block;
-- (void)removeParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack;
+- (void)removeParticipant:(MSSportner *)participant withBlock:(PFBooleanResultBlock)block;
 
 - (void)fetchAwaitings;
-- (void)addAwaiting:(MSSportner *)awaiting WithTarget:(id)target callBack:(SEL)callBack;
-- (void)removeAwaiting:(MSSportner *)awaiting WithTarget:(id)target callBack:(SEL)callBack;
+- (void)addAwaiting:(MSSportner *)awaiting withBlock:(PFBooleanResultBlock)block;
+- (void)removeAwaiting:(MSSportner *)awaiting withBlock:(PFBooleanResultBlock)block;
 
 //- (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack;
 //- (void)queryOtherSportnersWithTarger:(id)target callBack:(SEL)callback;
@@ -68,6 +68,6 @@ static NSString *MSNotificationActivityAwaitingChanged = @"MSNotificationActivit
 - (NSComparisonResult)compareWithCreationDate:(MSActivity *)otherActivity;
 
 - (void)fetchComments;
-- (void)addComment:(MSComment *)comment withTarget:(id)target callBack:(SEL)callBack;
+- (void)addComment:(MSComment *)comment withBlock:(PFBooleanResultBlock)block;
 
 @end

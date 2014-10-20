@@ -12,18 +12,6 @@
 
 @interface MSActivity()
 
-@property (weak, nonatomic) id tempMessageQueryTarget;
-@property (nonatomic) SEL tempMessageQueryCallBack;
-
-@property (weak, nonatomic) id tempSportnersQueryTarget;
-@property (nonatomic) SEL tempSportnersQueryCallBack;
-
-@property (weak, nonatomic) id tempOthersQueryTarget;
-@property (nonatomic) SEL tempOthersQueryCallBack;
-
-@property (strong, nonatomic) id tempQueryMessagesTarget;
-@property (nonatomic) SEL tempQueryMessagesCallBack;
-
 @end
 
 
@@ -46,18 +34,6 @@
 @synthesize participants = _participants;
 @synthesize awaitings = _awaitings;
 @synthesize comments = _comments;
-
-@synthesize tempMessageQueryCallBack = _tempMessageQueryCallBack;
-@synthesize tempMessageQueryTarget = _tempMessageQueryTarget;
-
-@synthesize tempSportnersQueryTarget = _tempSportnersQueryTarget;
-@synthesize tempSportnersQueryCallBack = _tempSportnersQueryCallBack;
-
-@synthesize tempOthersQueryTarget = _tempOthersQueryTarget;
-@synthesize tempOthersQueryCallBack = _tempOthersQueryCallBack;
-
-@synthesize tempQueryMessagesCallBack = _tempQueryMessagesCallBack;
-@synthesize tempQueryMessagesTarget = _tempQueryMessagesTarget;
 
 
 + (NSString *)parseClassName
@@ -89,112 +65,6 @@
 {
     return [self relationForKey:@"comment"];
 }
-
-//#pragma mark - PARSE Backend
-//
-//- (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack
-//{
-//    self.tempSportnersQueryTarget = target;
-//    self.tempSportnersQueryCallBack = callBack;
-//    if (!self.participants) {
-//        self.participants = [[NSArray alloc] init];
-//    }
-//    if (!self.guests) {
-//        self.guests = [[NSArray alloc] init];
-//    }
-//    if (!self.awaitings) {
-//        self.awaitings = [[NSArray alloc] init];
-//    }
-//    PFQuery *participantQuery = [[self participantRelation] query];
-//    [participantQuery findObjectsInBackgroundWithTarget:self
-//                                               selector:@selector(participantsCallback:error:)];
-//}
-//
-//- (void)participantsCallback:(NSArray *)objects error:(NSError *)error
-//{
-//    if (!error) {
-//        self.participants = objects;
-//        
-//        PFQuery *guestQuery = [[self guestRelation] query];
-//        [guestQuery findObjectsInBackgroundWithTarget:self
-//                                             selector:@selector(guestsCallback:error:)];
-//    } else {
-//        NSLog(@"Error: %@ %@", error, [error userInfo]);
-//#pragma clang diagnostic push
-//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-//        [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
-//#pragma clang diagnostic pop
-//    }
-//}
-//
-//- (void)guestsCallback:(NSArray *)objects error:(NSError *)error
-//{
-//    if (!error) {
-//        self.guests = objects;
-//        
-//        PFQuery *awaitingQuery = [[self awaitingRelation] query];
-//        [awaitingQuery findObjectsInBackgroundWithTarget:self
-//                                             selector:@selector(awaitingCallback:error:)];
-//    } else {
-//        NSLog(@"Error: %@ %@", error, [error userInfo]);
-//        
-//#pragma clang diagnostic push
-//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-//        [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
-//#pragma clang diagnostic pop
-//    }
-//}
-//
-//- (void)awaitingCallback:(NSArray *)objects error:(NSError *)error
-//{
-//    if (!error) {
-//        self.awaitings = objects;
-//    } else {
-//        NSLog(@"Error: %@ %@", error, [error userInfo]);
-//    }
-//    
-//#pragma clang diagnostic push
-//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-//    [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
-//#pragma clang diagnostic pop
-//}
-//
-////- (void)queryOtherSportnersWithTarger:(id)target callBack:(SEL)callback
-////{
-////    if (self.guests && self.guests) {
-////        self.tempOthersQueryTarget = target;
-////        self.tempOthersQueryCallBack = callback;
-////        
-////        NSMutableArray *userNames = [[NSMutableArray alloc] initWithCapacity:([self.guests count] + [self.participants count])];
-////        for (MSSportner *guest in self.guests) {
-////            [userNames addObject:guest.username];
-////        }
-////        for (MSSportner *participant in self.participants) {
-////            [userNames addObject:participant.username];
-////        }
-////        [userNames addObject:[MSSportner currentSportner].username];
-////        
-////        PFQuery *otherSportnersQuery = [MSSportner query];
-////        [otherSportnersQuery whereKey:@"username" notContainedIn:userNames];
-////        [otherSportnersQuery findObjectsInBackgroundWithTarget:self
-////                                                      selector:@selector(sportnersCallback:error:)];
-////    } else {
-//////        [self querySportners];
-////        NSLog(@"Query sportners before");
-////    }
-////}
-//
-//- (void)sportnersCallback:(NSArray *)objects error:(NSError *)error
-//{
-//    if (!error) {
-//#pragma clang diagnostic push
-//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-//        [self.tempOthersQueryTarget performSelector:self.tempOthersQueryCallBack withObject:objects withObject:error];
-//#pragma clang diagnostic pop
-//    } else {
-//        NSLog(@"Error: %@ %@", error, [error userInfo]);
-//    }
-//}
 
 #pragma mark - Guests
 
@@ -235,31 +105,52 @@
     self.participants = tempGuests;
 }
 
-- (void)addGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack
+- (void)addGuest:(MSSportner *)guest withBlock:(PFBooleanResultBlock)block
 {
     [self addGuest:guest];
-    [self saveInBackgroundWithTarget:target selector:callBack];
-}
-
-- (void)addGuests:(NSArray *)guests withBlock:(PFBooleanResultBlock)block
-{
-    [self addGuests:guests];
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        
+        if (succeeded && !error) {
+            [self notifyActivityStateChanged];
+        }
         if (block) {
             block(succeeded, error);
         }
     }];
 }
 
-- (void)removeGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack
+- (void)addGuests:(NSArray *)guests withBlock:(PFBooleanResultBlock)block
+{
+    [self addGuests:guests];
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded && !error) {
+            [self notifyActivityStateChanged];
+        }
+        if (block) {
+            block(succeeded, error);
+        }
+    }];
+}
+
+- (void)removeGuest:(MSSportner *)guest
 {
     PFRelation *relation = [self guestRelation];
     [relation removeObject:guest];
     NSMutableArray *tempGuests = [self.guests mutableCopy];
     [tempGuests removeObject:guest];
     self.guests = tempGuests;
-    [self saveInBackgroundWithTarget:target selector:callBack];
+}
+
+- (void)removeGuest:(MSSportner *)guest withBlock:(PFBooleanResultBlock)block
+{
+    [self removeGuest:guest];
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded && !error) {
+            [self notifyActivityStateChanged];
+        }
+        if (block) {
+            block(succeeded, error);
+        }
+    }];
 }
 
 #pragma mark - Participants
@@ -303,24 +194,39 @@
     [self incrementKey:@"playerNeeded" byAmount:@(-1*[sportners count])];
 }
 
-- (void)addParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack
+- (void)addParticipant:(MSSportner *)participant withBlock:(PFBooleanResultBlock)block
 {
     [self addParticipant:participant];
-    [self saveInBackgroundWithTarget:target selector:callBack];
-}
-
-- (void)addParticipants:(NSArray *)participants withBlock:(PFBooleanResultBlock)block
-{
-    [self addParticipants:participants];
+    if ([self.guests containsObject:participant]) {
+        [self removeGuest:participant];
+    }
+    if ([self.awaitings containsObject:participant]) {
+        [self removeAwaiting:participant];
+    }
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        
+        if (succeeded && !error) {
+            [self notifyActivityStateChanged];
+        }
         if (block) {
             block(succeeded, error);
         }
     }];
 }
 
-- (void)removeParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack
+- (void)addParticipants:(NSArray *)participants withBlock:(PFBooleanResultBlock)block
+{
+    [self addParticipants:participants];
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded && !error) {
+            [self notifyActivityStateChanged];
+        }
+        if (block) {
+            block(succeeded, error);
+        }
+    }];
+}
+
+- (void)removeParticipant:(MSSportner *)participant
 {
     PFRelation *relation = [self participantRelation];
     [relation removeObject:participant];
@@ -329,7 +235,19 @@
     self.participants = tempParticipants;
     [self incrementKey:@"playerNeeded"];
     self.playerNeeded = [NSNumber numberWithInt:([self.playerNeeded intValue] + 1)];
-    [self saveInBackgroundWithTarget:target selector:callBack];
+}
+
+- (void)removeParticipant:(MSSportner *)participant withBlock:(PFBooleanResultBlock)block
+{
+    [self removeParticipant:participant];
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded && !error) {
+            [self notifyActivityStateChanged];
+        }
+        if (block) {
+            block(succeeded, error);
+        }
+    }];
 }
 
 #pragma mark - Awaitings
@@ -349,35 +267,51 @@
     }];
 }
 
-- (void)addAwaiting:(MSSportner *)awaiting WithTarget:(id)target callBack:(SEL)callBack
+- (void)addAwaiting:(MSSportner *)awaiting
 {
     PFRelation *relation = [self awaitingRelation];
     [relation addObject:awaiting];
     NSMutableArray *tempAwaitings = [self.awaitings mutableCopy];
     [tempAwaitings addObject:awaiting];
     self.awaitings = tempAwaitings;
-    [self saveInBackgroundWithTarget:target selector:callBack];
 }
 
-- (void)removeAwaiting:(MSSportner *)awaiting WithTarget:(id)target callBack:(SEL)callBack
+- (void)addAwaiting:(MSSportner *)awaiting withBlock:(PFBooleanResultBlock)block
+{
+    [self addAwaiting:awaiting];
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded && !error) {
+            [self notifyActivityStateChanged];
+        }
+        if (block) {
+            block(succeeded, error);
+        }
+    }];
+}
+
+- (void)removeAwaiting:(MSSportner *)awaiting
 {
     PFRelation *relation = [self awaitingRelation];
     [relation removeObject:awaiting];
     NSMutableArray *tempAwaitings = [self.awaitings mutableCopy];
     [tempAwaitings removeObject:awaiting];
     self.awaitings = tempAwaitings;
-    [self saveInBackgroundWithTarget:target selector:callBack];
+}
+
+- (void)removeAwaiting:(MSSportner *)awaiting withBlock:(PFBooleanResultBlock)block
+{
+    [self removeAwaiting:awaiting];
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded && !error) {
+            [self notifyActivityStateChanged];
+        }
+        if (block) {
+            block(succeeded, error);
+        }
+    }];
 }
 
 #pragma mark - Messages
-
-//- (void)requestMessagesWithTarget:(id)target callBack:(SEL)callback
-//{
-//    self.tempQueryMessagesCallBack = callback;
-//    self.tempQueryMessagesTarget = target;
-//    
-//    [PFObject fetchAllInBackground:self.messages target:self selector:@selector(messagesCallBack:error:)];
-//}
 
 - (void)fetchComments
 {
@@ -394,59 +328,7 @@
     }];
 }
 
-//- (void)messagesCallBack:(NSArray *)objects error:(NSError *)error
-//{
-//    if (!error) {
-//        NSMutableArray *objectsToFetch = [[NSMutableArray alloc] initWithCapacity:[objects count]];
-//        for (MSComment *comment in objects)
-//        {
-//            [objectsToFetch addObject:comment.author];
-//        }
-//        [PFObject fetchAllInBackground:objectsToFetch target:self selector:@selector(messagesAuthorsCallBack:error:)];
-//    } else {
-//        NSLog(@"Error: %@ %@", error, [error userInfo]);
-//    }
-//}
-//
-//- (void)messagesAuthorsCallBack:(NSArray *)objects error:(NSError *)error
-//{
-//    if (!error) {
-//        // Same as : [target performSelector:@selector(callback)]
-//        // Explanations : http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
-//        // In order not to get warning
-//        //        ((void (*)(id, SEL))[self.tempTarget methodForSelector:self.tempCallBack])(self.tempTarget, self.tempCallBack);
-//#pragma clang diagnostic push
-//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-//        [self.tempQueryMessagesTarget performSelector:self.tempQueryMessagesCallBack withObject:Nil withObject:Nil];
-//#pragma clang diagnostic pop
-//    } else {
-//        NSLog(@"Error: %@ %@", error, [error userInfo]);
-//    }
-//}
-
-//- (void)addMessage:(MSComment *)message inBackgroundWithBlock:(PFBooleanResultBlock)block
-//{
-//    
-//    [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (!error) {
-//            
-//            if (!self.messages) self.messages = [[NSArray alloc] init];
-//            NSMutableArray *tempMessages = [self.messages mutableCopy];
-//            [tempMessages addObject:message];
-//            self.messages = [tempMessages sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
-//            
-//            [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//                block(succeeded, error);
-//            }];
-//            
-//        } else {
-//            block(succeeded, error);
-//        }
-//    }];
-//    
-//}
-
-- (void)addComment:(MSComment *)comment withTarget:(id)target callBack:(SEL)callBack
+- (void)addComment:(MSComment *)comment withBlock:(PFBooleanResultBlock)block
 {
     [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
@@ -457,7 +339,11 @@
             [tempComments addObject:comment];
             self.comments = tempComments;
             [self incrementKey:@"nbComment"];
-            [self saveInBackgroundWithTarget:target selector:callBack];
+            [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (block) {
+                    block(succeeded, error);
+                }
+            }];
         } else {
             NSLog(@"Succeeded: %d", succeeded);
             NSLog(@"Error:\n%@", error);

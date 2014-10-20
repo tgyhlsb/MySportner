@@ -151,7 +151,7 @@
 
 - (void)requestSportnerForUser:(MSUser *)user
 {
-    [user.sportner fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    [user.sportner fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         //        [self hideLoadingView];
         if ([MSSportner currentSportner].sportLevels) {
             [self userIsLoggedIn];

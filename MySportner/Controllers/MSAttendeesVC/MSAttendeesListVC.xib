@@ -23,6 +23,7 @@
                 </tableView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="1WJ-s6-fU8">
                     <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                    <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

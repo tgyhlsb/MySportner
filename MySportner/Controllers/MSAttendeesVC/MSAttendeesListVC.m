@@ -7,7 +7,10 @@
 //
 
 #import "MSAttendeesListVC.h"
+
 #import "MSSportnerCell.h"
+
+#import "MSColorFactory.h"
 
 #define NIB_NAME @"MSAttendeesListVC"
 
@@ -15,6 +18,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
+
+@property (nonatomic) BOOL isLoading;
 
 @end
 
@@ -34,6 +39,14 @@
     self.tableView.dataSource = self;
     
     [MSSportnerCell registerToTableview:self.tableView];
+    
+    self.loadingIndicator.color = [MSColorFactory mainColor];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateLoadingView];
 }
 
 - (void)reloadData
@@ -53,14 +66,29 @@
 
 - (void)startLoading
 {
-    [self.loadingIndicator startAnimating];
-    self.tableView.hidden = YES;
+    self.isLoading = YES;
 }
 
 - (void)stopLoading
 {
-    [self.loadingIndicator stopAnimating];
-    self.tableView.hidden = NO;
+    self.isLoading = NO;
+}
+
+- (void)setIsLoading:(BOOL)isLoading
+{
+    _isLoading = isLoading;
+    
+    [self updateLoadingView];
+}
+
+- (void)updateLoadingView
+{
+    if (self.isLoading) {
+        [self.loadingIndicator startAnimating];
+    } else {
+        [self.loadingIndicator stopAnimating];
+    }
+    self.tableView.hidden = self.isLoading;
 }
 
 - (NSMutableArray *)selectedSportners

@@ -9,6 +9,7 @@
 #import "MSActivity.h"
 #import <Parse/PFObject+Subclass.h>
 #import "TKAlertCenter.h"
+#import "MSComment.h"
 
 @interface MSActivity()
 
@@ -330,6 +331,7 @@
 
 - (void)addComment:(MSComment *)comment withBlock:(PFBooleanResultBlock)block
 {
+    comment.activity = self;
     [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
         if (succeeded && !error) {
@@ -378,6 +380,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationActivityAwaitingChanged
                                                         object:self];
 }
+
+#pragma mark - Push notifications
 
 
 @end

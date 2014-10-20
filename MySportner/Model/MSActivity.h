@@ -10,8 +10,9 @@
 #import <Parse/Parse.h>
 #import "MSSportner.h"
 #import "MSVenue.h"
-#import "MSComment.h"
 #import "MSSport.h"
+
+@class MSComment;
 
 #define PARSE_CLASSNAME_ACTIVITY @"MSActivity"
 

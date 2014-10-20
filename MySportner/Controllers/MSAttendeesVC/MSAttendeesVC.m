@@ -12,9 +12,9 @@
 
 @interface MSAttendeesVC ()
 
-@property (strong, nonatomic) MSAttendeesListVC *confirmedAttendeesVC;
-@property (strong, nonatomic) MSAttendeesListVC *awaitingAttendeesVC;
-@property (strong, nonatomic) MSAttendeesListVC *invitedAttendeesVC;
+@property (strong, nonatomic) MSSportnerListVC *confirmedAttendeesVC;
+@property (strong, nonatomic) MSSportnerListVC *awaitingAttendeesVC;
+@property (strong, nonatomic) MSSportnerListVC *invitedAttendeesVC;
 
 @end
 
@@ -105,26 +105,26 @@
 
 #pragma mark - AttendeesListControllers
 
-- (MSAttendeesListVC *)confirmedAttendeesVC
+- (MSSportnerListVC *)confirmedAttendeesVC
 {
     if (!_confirmedAttendeesVC) {
-        _confirmedAttendeesVC = [MSAttendeesListVC newController];
+        _confirmedAttendeesVC = [MSSportnerListVC newController];
     }
     return _confirmedAttendeesVC;
 }
 
-- (MSAttendeesListVC *)awaitingAttendeesVC
+- (MSSportnerListVC *)awaitingAttendeesVC
 {
     if (!_awaitingAttendeesVC) {
-        _awaitingAttendeesVC = [MSAttendeesListVC newController];
+        _awaitingAttendeesVC = [MSSportnerListVC newController];
     }
     return _awaitingAttendeesVC;
 }
 
-- (MSAttendeesListVC *)invitedAttendeesVC
+- (MSSportnerListVC *)invitedAttendeesVC
 {
     if (!_invitedAttendeesVC) {
-        _invitedAttendeesVC = [MSAttendeesListVC newController];
+        _invitedAttendeesVC = [MSSportnerListVC newController];
     }
     return _invitedAttendeesVC;
 }

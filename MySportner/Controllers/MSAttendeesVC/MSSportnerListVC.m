@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 MySportner. All rights reserved.
 //
 
-#import "MSAttendeesListVC.h"
+#import "MSSportnerListVC.h"
 
 #import "MSSportnerCell.h"
 
 #import "MSColorFactory.h"
 
-#define NIB_NAME @"MSAttendeesListVC"
+#define NIB_NAME @"MSSportnerListVC"
 
-@interface MSAttendeesListVC () <UITableViewDataSource, UITableViewDelegate>
+@interface MSSportnerListVC () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
@@ -23,11 +23,11 @@
 
 @end
 
-@implementation MSAttendeesListVC
+@implementation MSSportnerListVC
 
 + (instancetype)newController
 {
-    MSAttendeesListVC *controller = [[MSAttendeesListVC alloc] initWithNibName:NIB_NAME bundle:nil];
+    MSSportnerListVC *controller = [[MSSportnerListVC alloc] initWithNibName:NIB_NAME bundle:nil];
     return controller;
 }
 

@@ -19,7 +19,7 @@
 
 #import "MSAttendeesVC.h"
 #import "MSCommentsVC.h"
-#import "MSVInviteSportnersVC.h"
+#import "MSInviteSportnersVC.h"
 #import "MSProfileVC.h"
 
 #define NIB_NAME @"MSGameProfileVC"
@@ -474,7 +474,7 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 
 - (void)inviteSportners
 {
-    MSVInviteSportnersVC *destination = [MSVInviteSportnersVC newController];
+    MSInviteSportnersVC *destination = [MSInviteSportnersVC newController];
     destination.activity = self.activity;
     [self.navigationController pushViewController:destination animated:YES];
 }
@@ -518,7 +518,17 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 
 - (void)leaveTheGame
 {
-    
+    [self.activity removeParticipant:[MSSportner currentSportner] withBlock:^(BOOL succeeded, NSError *error) {
+        
+        if (succeeded && !error) {
+            [[TKAlertCenter defaultCenter] postAlertWithMessage:@"You left the game"];
+        }
+        
+        if (error) {
+            NSLog(@"%@", error);
+        }
+        
+    }];
 }
 
 

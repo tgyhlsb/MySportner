@@ -1,15 +1,15 @@
 //
-//  MSVInviteSportnersVC.h
+//  MSInviteSportnersVC.h
 //  MySportner
 //
-//  Created by Tanguy Hélesbeux on 19/10/2014.
+//  Created by Tanguy Hélesbeux on 30/01/2014.
 //  Copyright (c) 2014 MySportner. All rights reserved.
 //
 
-#import "MSPageSportnerVC.h"
+#import "MSCenterController.h"
 #import "MSActivity.h"
 
-@interface MSVInviteSportnersVC : MSPageSportnerVC
+@interface MSInviteSportnersVC_OLD : MSCenterController
 
 @property (strong, nonatomic) MSActivity *activity;
 

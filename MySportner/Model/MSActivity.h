@@ -60,9 +60,6 @@ static NSString *MSNotificationActivityAwaitingChanged = @"MSNotificationActivit
 - (void)addAwaiting:(MSSportner *)awaiting withBlock:(PFBooleanResultBlock)block;
 - (void)removeAwaiting:(MSSportner *)awaiting withBlock:(PFBooleanResultBlock)block;
 
-//- (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack;
-//- (void)queryOtherSportnersWithTarger:(id)target callBack:(SEL)callback;
-
 + (NSString *)parseClassName;
 
 - (NSComparisonResult)compareWithCreationDate:(MSActivity *)otherActivity;

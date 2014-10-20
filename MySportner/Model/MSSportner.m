@@ -216,6 +216,7 @@
     return [self relationForKey:@"participant"];
 }
 
+
 - (void)queryActivitiesWithTarget:(id)target callBack:(SEL)callBack
 {
     _tempActivityQueryTarget = target;
@@ -225,7 +226,6 @@
     [activitiesQuery whereKey:@"participant" equalTo:self];
     [activitiesQuery includeKey:@"owner"];
     [activitiesQuery includeKey:@"sport"];
-    [activitiesQuery includeKey:@"comment"];
     [activitiesQuery findObjectsInBackgroundWithTarget:self selector:@selector(didFetchActivities:error:)];
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import "MSCenterController.h"
-#import "MSAttendeesListVC.h"
+#import "MSSportnerListVC.h"
 #import "MSAndroidButton.h"
 
 @interface MSPageSportnerVC : MSCenterController

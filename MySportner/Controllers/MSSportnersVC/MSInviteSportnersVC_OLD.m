@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 MySportner. All rights reserved.
 //
 
-#import "MSInviteSportnersVC.h"
+#import "MSInviteSportnersVC_OLD.h"
 #import "TKAlertCenter.h"
 #import "MBProgressHUD.h"
 #import "MSSportnerCell.h"
@@ -22,18 +22,18 @@ typedef NS_ENUM(int, MSInviteSportnerSection) {
 
 #define SECTION_TITLES @[@"Participants", @"Guests", @"Others"]
 
-@interface MSInviteSportnersVC () <UITableViewDataSource, UITableViewDelegate, MSSportnerCellDelegate>
+@interface MSInviteSportnersVC_OLD () <UITableViewDataSource, UITableViewDelegate, MSSportnerCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) MBProgressHUD *loadingView;
 
 @end
 
-@implementation MSInviteSportnersVC
+@implementation MSInviteSportnersVC_OLD
 
-+ (MSInviteSportnersVC *)newControler
++ (MSInviteSportnersVC_OLD *)newControler
 {
-    MSInviteSportnersVC *vc = [[MSInviteSportnersVC alloc] init];
+    MSInviteSportnersVC_OLD *vc = [[MSInviteSportnersVC_OLD alloc] init];
     vc.hasDirectAccessToDrawer = NO;
     return vc;
 }

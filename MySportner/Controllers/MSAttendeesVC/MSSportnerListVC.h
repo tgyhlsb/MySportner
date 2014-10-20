@@ -11,7 +11,7 @@
 
 @protocol MSAttendeesListDatasource;
 
-@interface MSAttendeesListVC : UIViewController
+@interface MSSportnerListVC : UIViewController
 
 @property (weak, nonatomic) id<MSAttendeesListDatasource> datasource;
 
@@ -29,6 +29,6 @@
 
 @protocol MSAttendeesListDatasource <NSObject>
 
-- (BOOL)sportnerList:(MSAttendeesListVC *)sportListVC shouldDisableCellForSportner:(MSSportner *)sportner;
+- (BOOL)sportnerList:(MSSportnerListVC *)sportListVC shouldDisableCellForSportner:(MSSportner *)sportner;
 
 @end

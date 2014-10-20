@@ -6,24 +6,24 @@
 //  Copyright (c) 2014 MySportner. All rights reserved.
 //
 
-#import "MSVInviteSportnersVC.h"
+#import "MSInviteSportnersVC.h"
 #import "TKAlertCenter.h"
 
 #define NIB_NAME @"MSPageSportnerVC"
 
-@interface MSVInviteSportnersVC () <MSAttendeesListDatasource>
+@interface MSInviteSportnersVC () <MSAttendeesListDatasource>
 
-@property (strong, nonatomic) MSAttendeesListVC *sportnersVC;
-@property (strong, nonatomic) MSAttendeesListVC *facebookVC;
-@property (strong, nonatomic) MSAttendeesListVC *othersVC;
+@property (strong, nonatomic) MSSportnerListVC *sportnersVC;
+@property (strong, nonatomic) MSSportnerListVC *facebookVC;
+@property (strong, nonatomic) MSSportnerListVC *othersVC;
 
 @end
 
-@implementation MSVInviteSportnersVC
+@implementation MSInviteSportnersVC
 
 + (instancetype)newController
 {
-    MSVInviteSportnersVC *controller = [[MSVInviteSportnersVC alloc] initWithNibName:NIB_NAME bundle:nil];
+    MSInviteSportnersVC *controller = [[MSInviteSportnersVC alloc] initWithNibName:NIB_NAME bundle:nil];
     controller.hasDirectAccessToDrawer = NO;
     [controller registerToSportnerNotifications];
     [controller setUpInviteButton];
@@ -85,7 +85,7 @@
     
     if ([selectedSportners count]) {
         [self showLoadingViewInView:self.navigationController.view];
-        __weak MSVInviteSportnersVC *weakSelf = self;
+        __weak MSInviteSportnersVC *weakSelf = self;
         [self.activity addGuests:selectedSportners withBlock:^(BOOL succeeded, NSError *error) {
             [weakSelf hideLoadingView];
             [weakSelf.navigationController popViewControllerAnimated:YES];
@@ -163,30 +163,30 @@
 
 #pragma mark - AttendeesListControllers
 
-- (MSAttendeesListVC *)sportnersVC
+- (MSSportnerListVC *)sportnersVC
 {
     if (!_sportnersVC) {
-        _sportnersVC = [MSAttendeesListVC newController];
+        _sportnersVC = [MSSportnerListVC newController];
         _sportnersVC.allowsMultipleSelection = YES;
         _sportnersVC.datasource = self;
     }
     return _sportnersVC;
 }
 
-- (MSAttendeesListVC *)facebookVC
+- (MSSportnerListVC *)facebookVC
 {
     if (!_facebookVC) {
-        _facebookVC = [MSAttendeesListVC newController];
+        _facebookVC = [MSSportnerListVC newController];
         _facebookVC.allowsMultipleSelection = YES;
         _facebookVC.datasource = self;
     }
     return _facebookVC;
 }
 
-- (MSAttendeesListVC *)othersVC
+- (MSSportnerListVC *)othersVC
 {
     if (!_othersVC) {
-        _othersVC = [MSAttendeesListVC newController];
+        _othersVC = [MSSportnerListVC newController];
         _othersVC.allowsMultipleSelection = YES;
         _othersVC.datasource = self;
     }
@@ -195,7 +195,7 @@
 
 #pragma mark - MSAttendeesListDatasource
 
-- (BOOL)sportnerList:(MSAttendeesListVC *)sportListVC shouldDisableCellForSportner:(MSSportner *)sportner
+- (BOOL)sportnerList:(MSSportnerListVC *)sportListVC shouldDisableCellForSportner:(MSSportner *)sportner
 {
     return [self.activity.guests containsObject:sportner];
 }

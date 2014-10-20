@@ -127,7 +127,7 @@
 
 - (void)setViewControllerAtIndex:(NSInteger)index
 {
-    MSAttendeesListVC *vc = [self.viewControllers objectAtIndex:index];
+    MSSportnerListVC *vc = [self.viewControllers objectAtIndex:index];
     
     UIPageViewControllerNavigationDirection direction = UIPageViewControllerNavigationDirectionForward;
     if (index < [self indexForSelectedViewController]) {
@@ -171,9 +171,9 @@
 {
     NSInteger index = [self.viewControllers indexOfObject:viewController] - 1;
    
-    MSAttendeesListVC *previousController = nil;
+    MSSportnerListVC *previousController = nil;
     if (index >= 0 && index < [self.viewControllers count]) {
-        previousController = (MSAttendeesListVC *)[self.viewControllers objectAtIndex:index];
+        previousController = (MSSportnerListVC *)[self.viewControllers objectAtIndex:index];
     }
     
     return previousController;
@@ -183,9 +183,9 @@
 {
     NSInteger index = [self.viewControllers indexOfObject:viewController] + 1;
     
-    MSAttendeesListVC *previousController = nil;
+    MSSportnerListVC *previousController = nil;
     if (index > 0 && index < [self.viewControllers count]) {
-        previousController = (MSAttendeesListVC *)[self.viewControllers objectAtIndex:index];
+        previousController = (MSSportnerListVC *)[self.viewControllers objectAtIndex:index];
     }
     
     return previousController;

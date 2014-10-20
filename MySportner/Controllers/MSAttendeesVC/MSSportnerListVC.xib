@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSAttendeesListVC">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSSportnerListVC">
             <connections>
                 <outlet property="loadingIndicator" destination="1WJ-s6-fU8" id="MT6-Nc-MWH"/>
                 <outlet property="tableView" destination="amC-17-bSs" id="Ufh-Si-WHa"/>
@@ -41,12 +41,12 @@
                     <exclude reference="1WJ-s6-fU8"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="Zdr-BF-NdS"/>
+                    <exclude reference="bf7-GO-xrh"/>
                     <exclude reference="0cQ-XQ-xLv"/>
                     <exclude reference="MjJ-Uw-LAm"/>
                     <exclude reference="RPe-K2-Ul1"/>
                     <exclude reference="Xdo-Tm-7eu"/>
-                    <exclude reference="Zdr-BF-NdS"/>
-                    <exclude reference="bf7-GO-xrh"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -55,12 +55,12 @@
                     <include reference="1WJ-s6-fU8"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="Zdr-BF-NdS"/>
+                    <include reference="bf7-GO-xrh"/>
                     <include reference="0cQ-XQ-xLv"/>
                     <include reference="MjJ-Uw-LAm"/>
                     <include reference="RPe-K2-Ul1"/>
                     <include reference="Xdo-Tm-7eu"/>
-                    <include reference="Zdr-BF-NdS"/>
-                    <include reference="bf7-GO-xrh"/>
                 </mask>
             </variation>
         </view>

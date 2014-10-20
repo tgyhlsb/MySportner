@@ -68,10 +68,10 @@
 		5A2B1BBB184BF21100413B01 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B1BB9184BF21100413B01 /* arrow@2x.png */; };
 		5A2B1BBE184BF90A00413B01 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B1BBC184BF90A00413B01 /* Montserrat-Bold.ttf */; };
 		5A2B1BBF184BF90A00413B01 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B1BBD184BF90A00413B01 /* Montserrat-Regular.ttf */; };
-		5A2B68F2189A56CD00D82870 /* MSInviteSportnersVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B68F1189A56CD00D82870 /* MSInviteSportnersVC.xib */; };
+		5A2B68F2189A56CD00D82870 /* MSInviteSportnersVC_OLD.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B68F1189A56CD00D82870 /* MSInviteSportnersVC_OLD.xib */; };
 		5A2B68F5189A597A00D82870 /* MSSportnerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B68F4189A597A00D82870 /* MSSportnerCell.m */; };
 		5A2B68F7189A598C00D82870 /* MSSportnerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B68F6189A598C00D82870 /* MSSportnerCell.xib */; };
-		5A2B68FC189A669D00D82870 /* MSInviteSportnersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B68FB189A669D00D82870 /* MSInviteSportnersVC.m */; };
+		5A2B68FC189A669D00D82870 /* MSInviteSportnersVC_OLD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B68FB189A669D00D82870 /* MSInviteSportnersVC_OLD.m */; };
 		5A2B68FF189ACEA400D82870 /* MSAttendeesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B68FE189ACEA400D82870 /* MSAttendeesCell.m */; };
 		5A2B6901189ACEB400D82870 /* MSAttendeesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B6900189ACEB400D82870 /* MSAttendeesCell.xib */; };
 		5A2B6905189AD08100D82870 /* MSHeaderSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B6904189AD08100D82870 /* MSHeaderSectionView.m */; };
@@ -139,8 +139,8 @@
 		5A580EAF19F3D9C300CA3846 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A580EAE19F3D9C300CA3846 /* pin.png */; };
 		5A580EB319F3F1C900CA3846 /* MSPageSportnerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A580EB119F3F1C900CA3846 /* MSPageSportnerVC.m */; };
 		5A580EB419F3F1C900CA3846 /* MSPageSportnerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A580EB219F3F1C900CA3846 /* MSPageSportnerVC.xib */; };
-		5A580EB919F3F4F200CA3846 /* MSAttendeesListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A580EB719F3F4F200CA3846 /* MSAttendeesListVC.m */; };
-		5A580EBA19F3F4F200CA3846 /* MSAttendeesListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A580EB819F3F4F200CA3846 /* MSAttendeesListVC.xib */; };
+		5A580EB919F3F4F200CA3846 /* MSSportnerListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A580EB719F3F4F200CA3846 /* MSSportnerListVC.m */; };
+		5A580EBA19F3F4F200CA3846 /* MSSportnerListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A580EB819F3F4F200CA3846 /* MSSportnerListVC.xib */; };
 		5A580EBD19F3FCD200CA3846 /* MSAndroidButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A580EBC19F3FCD200CA3846 /* MSAndroidButton.m */; };
 		5A622FA318A12F9C00D33349 /* MSProfilePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A622FA218A12F9C00D33349 /* MSProfilePictureCell.m */; };
 		5A622FA518A12FC000D33349 /* MSProfilePictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A622FA418A12FC000D33349 /* MSProfilePictureCell.xib */; };
@@ -264,7 +264,7 @@
 		5AE7E3C919F41E7800C5A1C4 /* MSAttendeesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7E3C819F41E7800C5A1C4 /* MSAttendeesVC.m */; };
 		5AE7E3CD19F444E200C5A1C4 /* MSCommentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7E3CB19F444E200C5A1C4 /* MSCommentsVC.m */; };
 		5AE7E3CE19F444E200C5A1C4 /* MSCommentsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AE7E3CC19F444E200C5A1C4 /* MSCommentsVC.xib */; };
-		5AE7E3D219F46AAA00C5A1C4 /* MSVInviteSportnersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7E3D119F46AAA00C5A1C4 /* MSVInviteSportnersVC.m */; };
+		5AE7E3D219F46AAA00C5A1C4 /* MSInviteSportnersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7E3D119F46AAA00C5A1C4 /* MSInviteSportnersVC.m */; };
 		5AEFA8B21896B580004B3EF7 /* MSPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFA8B11896B580004B3EF7 /* MSPinView.m */; };
 		5AEFA8B41896B92C004B3EF7 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AEFA8B31896B92C004B3EF7 /* pin.png */; };
 		5AF2FBFC188C946A002147FB /* MSPickSportCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF2FBFB188C946A002147FB /* MSPickSportCell2.xib */; };
@@ -377,12 +377,12 @@
 		5A2B1BB9184BF21100413B01 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = SOURCE_ROOT; };
 		5A2B1BBC184BF90A00413B01 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		5A2B1BBD184BF90A00413B01 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
-		5A2B68F1189A56CD00D82870 /* MSInviteSportnersVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSInviteSportnersVC.xib; path = Controllers/MSSportnersVC/MSInviteSportnersVC.xib; sourceTree = "<group>"; };
+		5A2B68F1189A56CD00D82870 /* MSInviteSportnersVC_OLD.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSInviteSportnersVC_OLD.xib; path = Controllers/MSSportnersVC/MSInviteSportnersVC_OLD.xib; sourceTree = "<group>"; };
 		5A2B68F3189A597A00D82870 /* MSSportnerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSportnerCell.h; path = Views/Cells/MSSportnerCell/MSSportnerCell.h; sourceTree = "<group>"; };
 		5A2B68F4189A597A00D82870 /* MSSportnerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSportnerCell.m; path = Views/Cells/MSSportnerCell/MSSportnerCell.m; sourceTree = "<group>"; };
 		5A2B68F6189A598C00D82870 /* MSSportnerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSSportnerCell.xib; path = Views/Cells/MSSportnerCell/MSSportnerCell.xib; sourceTree = "<group>"; };
-		5A2B68FA189A669D00D82870 /* MSInviteSportnersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSInviteSportnersVC.h; path = Controllers/MSSportnersVC/MSInviteSportnersVC.h; sourceTree = "<group>"; };
-		5A2B68FB189A669D00D82870 /* MSInviteSportnersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSInviteSportnersVC.m; path = Controllers/MSSportnersVC/MSInviteSportnersVC.m; sourceTree = "<group>"; };
+		5A2B68FA189A669D00D82870 /* MSInviteSportnersVC_OLD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSInviteSportnersVC_OLD.h; path = Controllers/MSSportnersVC/MSInviteSportnersVC_OLD.h; sourceTree = "<group>"; };
+		5A2B68FB189A669D00D82870 /* MSInviteSportnersVC_OLD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSInviteSportnersVC_OLD.m; path = Controllers/MSSportnersVC/MSInviteSportnersVC_OLD.m; sourceTree = "<group>"; };
 		5A2B68FD189ACEA400D82870 /* MSAttendeesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSAttendeesCell.h; path = Views/Cells/MSAttendeesCell/MSAttendeesCell.h; sourceTree = "<group>"; };
 		5A2B68FE189ACEA400D82870 /* MSAttendeesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSAttendeesCell.m; path = Views/Cells/MSAttendeesCell/MSAttendeesCell.m; sourceTree = "<group>"; };
 		5A2B6900189ACEB400D82870 /* MSAttendeesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSAttendeesCell.xib; path = Views/Cells/MSAttendeesCell/MSAttendeesCell.xib; sourceTree = "<group>"; };
@@ -469,9 +469,9 @@
 		5A580EB019F3F1C900CA3846 /* MSPageSportnerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSPageSportnerVC.h; path = Controllers/MSAttendeesVC/MSPageSportnerVC.h; sourceTree = "<group>"; };
 		5A580EB119F3F1C900CA3846 /* MSPageSportnerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSPageSportnerVC.m; path = Controllers/MSAttendeesVC/MSPageSportnerVC.m; sourceTree = "<group>"; };
 		5A580EB219F3F1C900CA3846 /* MSPageSportnerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSPageSportnerVC.xib; path = Controllers/MSAttendeesVC/MSPageSportnerVC.xib; sourceTree = "<group>"; };
-		5A580EB619F3F4F200CA3846 /* MSAttendeesListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSAttendeesListVC.h; path = Controllers/MSAttendeesVC/MSAttendeesListVC.h; sourceTree = "<group>"; };
-		5A580EB719F3F4F200CA3846 /* MSAttendeesListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSAttendeesListVC.m; path = Controllers/MSAttendeesVC/MSAttendeesListVC.m; sourceTree = "<group>"; };
-		5A580EB819F3F4F200CA3846 /* MSAttendeesListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSAttendeesListVC.xib; path = Controllers/MSAttendeesVC/MSAttendeesListVC.xib; sourceTree = "<group>"; };
+		5A580EB619F3F4F200CA3846 /* MSSportnerListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSportnerListVC.h; path = Controllers/MSAttendeesVC/MSSportnerListVC.h; sourceTree = "<group>"; };
+		5A580EB719F3F4F200CA3846 /* MSSportnerListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSportnerListVC.m; path = Controllers/MSAttendeesVC/MSSportnerListVC.m; sourceTree = "<group>"; };
+		5A580EB819F3F4F200CA3846 /* MSSportnerListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSSportnerListVC.xib; path = Controllers/MSAttendeesVC/MSSportnerListVC.xib; sourceTree = "<group>"; };
 		5A580EBB19F3FCD200CA3846 /* MSAndroidButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSAndroidButton.h; path = Views/MSAndroidButton.h; sourceTree = "<group>"; };
 		5A580EBC19F3FCD200CA3846 /* MSAndroidButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSAndroidButton.m; path = Views/MSAndroidButton.m; sourceTree = "<group>"; };
 		5A622FA118A12F9C00D33349 /* MSProfilePictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSProfilePictureCell.h; path = Views/Cells/MSProfilePictureCell/MSProfilePictureCell.h; sourceTree = "<group>"; };
@@ -653,8 +653,8 @@
 		5AE7E3CA19F444E200C5A1C4 /* MSCommentsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSCommentsVC.h; path = Controllers/MSCommentsVC/MSCommentsVC.h; sourceTree = "<group>"; };
 		5AE7E3CB19F444E200C5A1C4 /* MSCommentsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCommentsVC.m; path = Controllers/MSCommentsVC/MSCommentsVC.m; sourceTree = "<group>"; };
 		5AE7E3CC19F444E200C5A1C4 /* MSCommentsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSCommentsVC.xib; path = Controllers/MSCommentsVC/MSCommentsVC.xib; sourceTree = "<group>"; };
-		5AE7E3D019F46AAA00C5A1C4 /* MSVInviteSportnersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSVInviteSportnersVC.h; path = Controllers/MSAttendeesVC/MSVInviteSportnersVC.h; sourceTree = "<group>"; };
-		5AE7E3D119F46AAA00C5A1C4 /* MSVInviteSportnersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSVInviteSportnersVC.m; path = Controllers/MSAttendeesVC/MSVInviteSportnersVC.m; sourceTree = "<group>"; };
+		5AE7E3D019F46AAA00C5A1C4 /* MSInviteSportnersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSInviteSportnersVC.h; path = Controllers/MSAttendeesVC/MSInviteSportnersVC.h; sourceTree = "<group>"; };
+		5AE7E3D119F46AAA00C5A1C4 /* MSInviteSportnersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSInviteSportnersVC.m; path = Controllers/MSAttendeesVC/MSInviteSportnersVC.m; sourceTree = "<group>"; };
 		5AEFA8B01896B580004B3EF7 /* MSPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSPinView.h; path = Views/MSPinView.h; sourceTree = "<group>"; };
 		5AEFA8B11896B580004B3EF7 /* MSPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSPinView.m; path = Views/MSPinView.m; sourceTree = "<group>"; };
 		5AEFA8B31896B92C004B3EF7 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
@@ -897,9 +897,9 @@
 				5A0D6F49189A55F300C037C8 /* MSSportnersVC.h */,
 				5A0D6F4A189A55F300C037C8 /* MSSportnersVC.m */,
 				5ACB1B1F18D666F8009D568C /* MSSportnersVC.xib */,
-				5A2B68F1189A56CD00D82870 /* MSInviteSportnersVC.xib */,
-				5A2B68FA189A669D00D82870 /* MSInviteSportnersVC.h */,
-				5A2B68FB189A669D00D82870 /* MSInviteSportnersVC.m */,
+				5A2B68F1189A56CD00D82870 /* MSInviteSportnersVC_OLD.xib */,
+				5A2B68FA189A669D00D82870 /* MSInviteSportnersVC_OLD.h */,
+				5A2B68FB189A669D00D82870 /* MSInviteSportnersVC_OLD.m */,
 			);
 			name = MSSportnersVC;
 			sourceTree = "<group>";
@@ -1019,11 +1019,11 @@
 				5A580EB219F3F1C900CA3846 /* MSPageSportnerVC.xib */,
 				5AE7E3C719F41E7800C5A1C4 /* MSAttendeesVC.h */,
 				5AE7E3C819F41E7800C5A1C4 /* MSAttendeesVC.m */,
-				5AE7E3D019F46AAA00C5A1C4 /* MSVInviteSportnersVC.h */,
-				5AE7E3D119F46AAA00C5A1C4 /* MSVInviteSportnersVC.m */,
-				5A580EB619F3F4F200CA3846 /* MSAttendeesListVC.h */,
-				5A580EB719F3F4F200CA3846 /* MSAttendeesListVC.m */,
-				5A580EB819F3F4F200CA3846 /* MSAttendeesListVC.xib */,
+				5AE7E3D019F46AAA00C5A1C4 /* MSInviteSportnersVC.h */,
+				5AE7E3D119F46AAA00C5A1C4 /* MSInviteSportnersVC.m */,
+				5A580EB619F3F4F200CA3846 /* MSSportnerListVC.h */,
+				5A580EB719F3F4F200CA3846 /* MSSportnerListVC.m */,
+				5A580EB819F3F4F200CA3846 /* MSSportnerListVC.xib */,
 			);
 			name = MSAttendeesVC;
 			sourceTree = "<group>";
@@ -1801,7 +1801,7 @@
 				5A580E5B19F2570400CA3846 /* basketball.png in Resources */,
 				5A0CB7EE1891714A0027EE58 /* slider-default-track.png in Resources */,
 				5A0CB7ED1891714A0027EE58 /* slider-default-handle@2x.png in Resources */,
-				5A2B68F2189A56CD00D82870 /* MSInviteSportnersVC.xib in Resources */,
+				5A2B68F2189A56CD00D82870 /* MSInviteSportnersVC_OLD.xib in Resources */,
 				5ABF1E6118B17881008071F9 /* Img-Profile.png in Resources */,
 				5A580E6519F2570400CA3846 /* squash.png in Resources */,
 				5A580EAB19F3B56800CA3846 /* MSGameProfileVC.xib in Resources */,
@@ -1811,7 +1811,7 @@
 				5A85E8F71872D01300F5E8F9 /* MSLocationCell.xib in Resources */,
 				5AC7DAB418A98DA7002063C7 /* perso@2x.png in Resources */,
 				5AFE43F818426CD4001376C7 /* MSBigSportCell.xib in Resources */,
-				5A580EBA19F3F4F200CA3846 /* MSAttendeesListVC.xib in Resources */,
+				5A580EBA19F3F4F200CA3846 /* MSSportnerListVC.xib in Resources */,
 				5A0CB7FC1891714A0027EE58 /* slider-metal-handle-highlighted.png in Resources */,
 				5AA8A75618A9775F0086D0B6 /* settings-icon@2x.png in Resources */,
 				5AA8A75518A9775F0086D0B6 /* settings-icon.png in Resources */,
@@ -1992,15 +1992,15 @@
 				5A78B7EC1895759D0074A5B3 /* MSPickLocalisationVC.m in Sources */,
 				5A210020184E421800CDF460 /* MSStyleFactory.m in Sources */,
 				5A090AD91891948A0017B207 /* MSComment.m in Sources */,
-				5A580EB919F3F4F200CA3846 /* MSAttendeesListVC.m in Sources */,
+				5A580EB919F3F4F200CA3846 /* MSSportnerListVC.m in Sources */,
 				5A96744F1849D20C0079EAC1 /* MSColorFactory.m in Sources */,
 				5AE7E3C919F41E7800C5A1C4 /* MSAttendeesVC.m in Sources */,
 				5A9674551849D8740079EAC1 /* MSTextField.m in Sources */,
 				5ADCF3141840F8DA00E6C8D2 /* MSVenueCell.m in Sources */,
 				5ADCF2A318401E1C00E6C8D2 /* MSSetAGameVC.m in Sources */,
 				5ADCF28A1840144D00E6C8D2 /* MSDrawerMenuVC.m in Sources */,
-				5A2B68FC189A669D00D82870 /* MSInviteSportnersVC.m in Sources */,
-				5AE7E3D219F46AAA00C5A1C4 /* MSVInviteSportnersVC.m in Sources */,
+				5A2B68FC189A669D00D82870 /* MSInviteSportnersVC_OLD.m in Sources */,
+				5AE7E3D219F46AAA00C5A1C4 /* MSInviteSportnersVC.m in Sources */,
 				5A9B2DB31853B8A400AE45D9 /* ExtensiveCellContainer.m in Sources */,
 				5AA609FF184B50A100B09ADD /* MSFontFactory.m in Sources */,
 				5ADCF2831840140000E6C8D2 /* MSProfileVC.m in Sources */,

@@ -7,7 +7,10 @@
 //
 
 #import "SLKTextViewController.h"
+#import "MSActivity.h"
 
 @interface MSMessageVC : SLKTextViewController
+
+@property (strong, nonatomic) MSActivity *activity;
 
 @end

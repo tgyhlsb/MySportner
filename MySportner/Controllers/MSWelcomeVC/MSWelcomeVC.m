@@ -180,6 +180,8 @@
 
 - (void)openApp
 {
+    [MSSportner setActualUserForPushNotifications];
+    
     MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
     [appDelegate setDrawerMenu];

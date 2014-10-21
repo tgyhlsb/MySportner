@@ -58,6 +58,13 @@
     return sportner;
 }
 
++ (void)setActualUserForPushNotifications
+{
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setObject:[MSSportner currentSportner] forKey:@"sportner"];
+    [currentInstallation saveInBackground];
+}
+
 + (NSString *)parseClassName
 {
     return PARSE_CLASSNAME_SPORTNER;

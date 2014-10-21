@@ -548,6 +548,7 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 //    destination.activity = self.activity;
     
     MSMessageVC *destination = [MSMessageVC new];
+    destination.activity = self.activity;
     
     [self.navigationController pushViewController:destination animated:YES];
 }

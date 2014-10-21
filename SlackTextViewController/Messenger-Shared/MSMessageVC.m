@@ -8,6 +8,7 @@
 
 #import "MSMessageVC.h"
 #import "MessageTableViewCell.h"
+#import "MSComment.h"
 
 #import "LoremIpsum/LoremIpsum.h"
 
@@ -44,14 +45,14 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 {
     [super viewDidLoad];
     
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    
-    for (int i = 0; i < 100; i++) {
-        NSInteger words = (arc4random() % 15)+1;
-        [array addObject:[LoremIpsum wordsWithNumber:words]];
-    }
-    
-    NSArray *reversed = [[array reverseObjectEnumerator] allObjects];
+//    NSMutableArray *array = [[NSMutableArray alloc] init];
+//    
+//    for (int i = 0; i < 100; i++) {
+//        NSInteger words = (arc4random() % 15)+1;
+//        [array addObject:[LoremIpsum wordsWithNumber:words]];
+//    }
+//    
+    NSArray *reversed = [[self.activity.comments reverseObjectEnumerator] allObjects];
     
     self.messages = [[NSMutableArray alloc] initWithArray:reversed];
     
@@ -84,7 +85,9 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
     self.typingIndicatorView.canResignByTouch = YES;
     
     [self.autoCompletionView registerClass:[MessageTableViewCell class] forCellReuseIdentifier:AutoCompletionCellIdentifier];
-    [self registerPrefixesForAutoCompletion:@[@"@", @"#", @":"]];
+//    [self registerPrefixesForAutoCompletion:@[@"@", @"#", @":"]];
+    
+    [self registerToActivtyNotifications];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -96,14 +99,63 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 {
     [super viewDidAppear:animated];
     
-    UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_editing"] style:UIBarButtonItemStylePlain target:self action:@selector(editRandomMessage:)];
-    
-    UIBarButtonItem *typeItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_typing"] style:UIBarButtonItemStylePlain target:self action:@selector(simulateUserTyping:)];
-    UIBarButtonItem *appendItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_append"] style:UIBarButtonItemStylePlain target:self action:@selector(fillWithText:)];
-    
-    self.navigationItem.rightBarButtonItems = @[editItem, appendItem, typeItem];
+//    UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_editing"] style:UIBarButtonItemStylePlain target:self action:@selector(editRandomMessage:)];
+//    
+//    UIBarButtonItem *typeItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_typing"] style:UIBarButtonItemStylePlain target:self action:@selector(simulateUserTyping:)];
+//    UIBarButtonItem *appendItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_append"] style:UIBarButtonItemStylePlain target:self action:@selector(fillWithText:)];
+//    
+//    self.navigationItem.rightBarButtonItems = @[editItem, appendItem, typeItem];
 }
 
+#pragma mark - MSActivity
+
+- (void)setActivity:(MSActivity *)activity
+{
+    _activity = activity;
+    
+    [self fetchComments];
+}
+
+- (void)fetchComments
+{
+    [self.activity fetchComments];
+}
+
+- (void)registerToActivtyNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(activityNotificationHandler)
+                                                 name:MSNotificationActivityStateChanged
+                                               object:self.activity];
+}
+
+- (void)activityNotificationHandler
+{
+    NSArray *sorted = [self.activity.comments sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
+    NSArray *reversed = [[sorted reverseObjectEnumerator] allObjects];
+    self.messages = [[NSMutableArray alloc] initWithArray:reversed];
+    [self reloadMessages];
+}
+
+- (void)reloadMessages
+{
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (MSComment *)newMessageWithText:(NSString *)text
+{
+    MSComment *comment = [[MSComment alloc] init];
+    comment.activity = self.activity;
+    comment.author = [MSSportner currentSportner];
+    comment.content = text;
+    
+    [self.activity addComment:comment withBlock:^(BOOL succeeded, NSError *error) {
+        
+    }];
+    
+    return comment;
+}
 
 #pragma mark - Action Methods
 
@@ -130,9 +182,9 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 - (void)editCellMessage:(UIGestureRecognizer *)gesture
 {
     MessageTableViewCell *cell = (MessageTableViewCell *)gesture.view;
-    NSString *message = self.messages[cell.indexPath.row];
+    MSComment *message = self.messages[cell.indexPath.row];
     
-    [self editText:message];
+    [self editText:message.content];
     
     [self.tableView scrollToRowAtIndexPath:cell.indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
@@ -203,7 +255,7 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
     // This little trick validates any pending auto-correction or auto-spelling just after hitting the 'Send' button
     [self.textView refreshFirstResponder];
     
-    NSString *message = [self.textView.text copy];
+    MSComment *message = [self newMessageWithText:[self.textView.text copy]];
     
     [self.tableView beginUpdates];
     [self.messages insertObject:message atIndex:0];
@@ -314,26 +366,10 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
         [cell addGestureRecognizer:longPress];
     }
     
-    NSString *message = self.messages[indexPath.row];
-    cell.textLabel.text = message;
+    MSComment *message = self.messages[indexPath.row];
+    cell.textLabel.text = message.content;
     cell.indexPath = indexPath;
     cell.usedForMessage = YES;
-    
-    if (cell.needsPlaceholder)
-    {
-        CGFloat scale = [UIScreen mainScreen].scale;
-        
-        if ([[UIScreen mainScreen] respondsToSelector:@selector(nativeScale)]) {
-            scale = [UIScreen mainScreen].nativeScale;
-        }
-        
-        CGSize imgSize = CGSizeMake(kAvatarSize*scale, kAvatarSize*scale);
-        
-        [LoremIpsum asyncPlaceholderImageWithSize:imgSize
-                                       completion:^(UIImage *image) {
-                                           [cell setPlaceholder:image scale:scale];
-                                       }];
-    }
     
     // Cells must inherit the table view's transform
     // This is very important, since the main table view may be inverted
@@ -368,7 +404,7 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([tableView isEqual:self.tableView]) {
-        NSString *message = self.messages[indexPath.row];
+        MSComment *message = self.messages[indexPath.row];
         
         NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
         paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
@@ -379,9 +415,9 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
         
         CGFloat width = CGRectGetWidth(tableView.frame)-(kAvatarSize*2.0+10);
         
-        CGRect bounds = [message boundingRectWithSize:CGSizeMake(width, 0.0) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:NULL];
+        CGRect bounds = [message.content boundingRectWithSize:CGSizeMake(width, 0.0) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:NULL];
         
-        if (message.length == 0) {
+        if (message.content.length == 0) {
             return 0.0;
         }
         

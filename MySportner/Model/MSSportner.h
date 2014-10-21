@@ -38,6 +38,7 @@ static NSString *MSNotificationSportnerStateChanged = @"MSNotificationSportnerSt
 @property (strong, nonatomic) NSArray *sportners;
 
 + (MSSportner *)currentSportner;
++ (void)setActualUserForPushNotifications;
 
 - (NSString *)fullName;
 - (BOOL)isEqualToSportner:(MSSportner *)otherSportner;

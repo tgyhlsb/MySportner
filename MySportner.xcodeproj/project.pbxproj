@@ -176,6 +176,8 @@
 		5A85E8F21872CCE200F5E8F9 /* MSLocationPickerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A85E8F11872CCE200F5E8F9 /* MSLocationPickerVC.xib */; };
 		5A85E8F51872CFFF00F5E8F9 /* MSLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A85E8F41872CFFF00F5E8F9 /* MSLocationCell.m */; };
 		5A85E8F71872D01300F5E8F9 /* MSLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A85E8F61872D01300F5E8F9 /* MSLocationCell.xib */; };
+		5A89F6EB19F6DB5A009CC775 /* profil-localisation.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A89F6E919F6DB5A009CC775 /* profil-localisation.png */; };
+		5A89F6EC19F6DB5A009CC775 /* profil-localisation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A89F6EA19F6DB5A009CC775 /* profil-localisation@2x.png */; };
 		5A96744C1849CD180079EAC1 /* QBFlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A96744B1849CD180079EAC1 /* QBFlatButton.m */; };
 		5A96744F1849D20C0079EAC1 /* MSColorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A96744E1849D20C0079EAC1 /* MSColorFactory.m */; };
 		5A9674521849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9674511849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m */; };
@@ -539,6 +541,8 @@
 		5A85E8F31872CFFF00F5E8F9 /* MSLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSLocationCell.h; path = Views/Cells/MSLocationCell/MSLocationCell.h; sourceTree = "<group>"; };
 		5A85E8F41872CFFF00F5E8F9 /* MSLocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSLocationCell.m; path = Views/Cells/MSLocationCell/MSLocationCell.m; sourceTree = "<group>"; };
 		5A85E8F61872D01300F5E8F9 /* MSLocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSLocationCell.xib; path = Views/Cells/MSLocationCell/MSLocationCell.xib; sourceTree = "<group>"; };
+		5A89F6E919F6DB5A009CC775 /* profil-localisation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profil-localisation.png"; sourceTree = "<group>"; };
+		5A89F6EA19F6DB5A009CC775 /* profil-localisation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profil-localisation@2x.png"; sourceTree = "<group>"; };
 		5A96744A1849CD180079EAC1 /* QBFlatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBFlatButton.h; sourceTree = "<group>"; };
 		5A96744B1849CD180079EAC1 /* QBFlatButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBFlatButton.m; sourceTree = "<group>"; };
 		5A96744D1849D20C0079EAC1 /* MSColorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSColorFactory.h; sourceTree = "<group>"; };
@@ -1281,6 +1285,8 @@
 		5AD1FC5418472AE1001D3DFE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5A89F6E919F6DB5A009CC775 /* profil-localisation.png */,
+				5A89F6EA19F6DB5A009CC775 /* profil-localisation@2x.png */,
 				5A580E8219F279EF00CA3846 /* logo.png */,
 				5A580E6D19F25AD000CA3846 /* icon-fb.png */,
 				5AAF981A18E8530900B252FA /* skip.png */,
@@ -1891,6 +1897,7 @@
 				5A580EAF19F3D9C300CA3846 /* pin.png in Resources */,
 				5A580EA119F3B15E00CA3846 /* Splash640.png in Resources */,
 				5A6DD75318A03A2400649A58 /* share_button.png in Resources */,
+				5A89F6EC19F6DB5A009CC775 /* profil-localisation@2x.png in Resources */,
 				5AC7DAB318A98DA7002063C7 /* perso.png in Resources */,
 				5AA8A75418A9775F0086D0B6 /* setagame-icon@2x.png in Resources */,
 				5A0CB80A189171BB0027EE58 /* MSRangeCell.xib in Resources */,
@@ -1985,6 +1992,7 @@
 				5A580EB419F3F1C900CA3846 /* MSPageSportnerVC.xib in Resources */,
 				5A63A2A018A0188F002DE50D /* Trophee3@2x.png in Resources */,
 				5A63A29F18A0188F002DE50D /* Trophee3.png in Resources */,
+				5A89F6EB19F6DB5A009CC775 /* profil-localisation.png in Resources */,
 				5ABF1E5618B16F59008071F9 /* Trophee.png in Resources */,
 				5A0CB7FD1891714A0027EE58 /* slider-metal-handle-highlighted@2x.png in Resources */,
 				5A78B7F7189596AC0074A5B3 /* redCircle.png in Resources */,

@@ -52,9 +52,7 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 //        [array addObject:[LoremIpsum wordsWithNumber:words]];
 //    }
 //    
-    NSArray *reversed = [[self.activity.comments reverseObjectEnumerator] allObjects];
-    
-    self.messages = [[NSMutableArray alloc] initWithArray:reversed];
+    [self loadMessagesFromActivity];
     
     self.bounces = YES;
     self.undoShakingEnabled = YES;
@@ -131,16 +129,14 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 
 - (void)activityNotificationHandler
 {
+    [self loadMessagesFromActivity];
+}
+
+- (void)loadMessagesFromActivity
+{
     NSArray *sorted = [self.activity.comments sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
     NSArray *reversed = [[sorted reverseObjectEnumerator] allObjects];
     self.messages = [[NSMutableArray alloc] initWithArray:reversed];
-    [self reloadMessages];
-}
-
-- (void)reloadMessages
-{
-    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
-    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (MSComment *)newMessageWithText:(NSString *)text

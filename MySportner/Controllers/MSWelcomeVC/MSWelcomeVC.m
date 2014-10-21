@@ -84,6 +84,7 @@
     [super viewDidAppear:animated];
     
     if (self.shouldAutoLoginWithFacebook) {
+        NSLog(@"\n-----> [viewDidAppear:]");
         [self tryAutoLoginWithFacebook];
         self.shouldAutoLoginWithFacebook = NO;
     } else {
@@ -106,15 +107,19 @@
 
 - (void)tryAutoLoginWithFacebook
 {
+    NSLog(@"\n-----> [tryAutoLogin]");
     if ([MSFacebookManager isSessionAvailable]) {
+        NSLog(@"\n-----> facebook session is available");
         [self login];
     } else {
+        NSLog(@"\n-----> no facebook session available");
         [self setButtonsVisible:YES];
     }
 }
 
 - (void)loginWithFacebook
 {
+    NSLog(@"\n-----> [loginWithFacebook]");
     [PFFacebookUtils logInWithPermissions:FACEBOOK_READ_PERMISIONS block:^(PFUser *user, NSError *error) {
         if (!error) {
             if (!user) {
@@ -132,41 +137,59 @@
             [self cancelFacebookLogin];
         }
     }];
+    NSLog(@"\n-----> [loginWithFacebook] call sent");
 }
 
 - (void)requestFacebookInformationsForUser:(MSUser *)user
 {
+    NSLog(@"\n-----> [requestFacebookInfo]");
     [self showLoadingViewInView:self.view];
     [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
         [self hideLoadingView];
         if (!error) {
+            NSLog(@"\n-----> [requestFacebookInfo] no error");
             [user setWithFacebookInfo:result];
             [user saveInBackground];
             [self pushToVerifyProfileWithUser:user];
         } else {
+            NSLog(@"\n-----> [requestFacebookInfo] failed");
             [self cancelFacebookLogin];
         }
     }];
+    NSLog(@"\n-----> [requestFacebookInfo] call sent");
 }
 
 - (void)requestSportnerForUser:(MSUser *)user
 {
+    NSLog(@"\n-----> [requestSportner]");
     [user.sportner fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         //        [self hideLoadingView];
+        if(!error) {
+            NSLog(@"\n-----> [requestSportner] no error");
+            
+        } else {
+            NSLog(@"\n-----> [requestSportner] failed");
+            [self cancelFacebookLogin];
+        }
         if ([MSSportner currentSportner].sportLevels) {
             [self userIsLoggedIn];
         } else {
             [self pushToVerifyProfileWithUser:[MSUser currentUser]];
         }
     }];
+    NSLog(@"\n-----> [requestSportner] call sent");
 }
 
 - (void)userIsLoggedIn
 {
+    NSLog(@"\n-----> [userIsLoggedIn]");
     if ([MSSport allSportsAreLoaded]) {
+        NSLog(@"\n-----> [userIsLoggedIn] all sports are loaded");
         [self openApp];
     } else {
+        NSLog(@"\n-----> [userIsLoggedIn] all sports are not loaded");
         [self registerToSportsLoadingNotification];
+        [MSSport fetchAllSports];
     }
 }
 
@@ -180,6 +203,7 @@
 
 - (void)openApp
 {
+    NSLog(@"\n-----> [openApp]");
     [MSSportner setActualUserForPushNotifications];
     
     MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -191,13 +215,14 @@
 
 - (void)cancelFacebookLogin
 {
+    NSLog(@"\n-----> [cancelFacebookLogin]");
     [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Login with Facebook failed"];
     [self setButtonsVisible:YES];
 }
 
 - (void)setButtonsVisible:(BOOL)visible
 {
-    
+    NSLog(@"\n-----> [setButtonVisible:%d]", visible);
     CGFloat alpha = visible ? 1.0 : 0.0;
     [UIView animateWithDuration:0.5 animations:^{
         self.facebookLoginButton.alpha = alpha;
@@ -207,6 +232,7 @@
 
 - (void)pushToVerifyProfileWithUser:(MSUser *)user
 {
+    NSLog(@"\n-----> [pushToSignUpScreens]");
     MSVerifyAccountVC *destination = [MSVerifyAccountVC newController];
     destination.user = user;
     [self.navigationController pushViewController:destination animated:YES];
@@ -214,6 +240,7 @@
 
 - (void)login
 {
+    NSLog(@"\n-----> [login]");
     if ([MSSportner currentSportner]) {
         [self performLogin];
     } else {
@@ -223,6 +250,7 @@
 
 - (void)performLogin
 {
+    NSLog(@"\n-----> [performLogin]");
     if ([MSSportner currentSportner]) {
         [self requestSportnerForUser:[MSUser currentUser]];
     } else {

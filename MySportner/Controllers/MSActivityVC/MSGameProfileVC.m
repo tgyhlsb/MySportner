@@ -103,7 +103,6 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 
 - (BOOL)allInformationsAreFetched
 {
-    return YES;
     return self.activity.comments && self.activity.participants && self.activity.guests && self.activity.awaitings;
 }
 

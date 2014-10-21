@@ -349,6 +349,9 @@
         } else {
             NSLog(@"Succeeded: %d", succeeded);
             NSLog(@"Error:\n%@", error);
+            if (block) {
+                block(succeeded, error);
+            }            
         }
         
     }];

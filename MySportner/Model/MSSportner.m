@@ -62,7 +62,13 @@
 {
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setObject:[MSSportner currentSportner] forKey:@"sportner"];
-    [currentInstallation saveInBackground];
+    [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            NSLog(@"Could not register installation for push notifications");
+        } else {
+            NSLog(@"Installation set up for notification");
+        }
+    }];
 }
 
 + (NSString *)parseClassName

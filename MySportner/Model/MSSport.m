@@ -66,6 +66,7 @@ static NSArray *allSports;
     PFQuery *query = [MSSport query];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
+            NSLog(@"sports were fetched");
             allSports = objects;
             [[NSNotificationCenter defaultCenter] postNotificationName:MSSportWereFetch object:nil];
         } else {

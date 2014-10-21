@@ -25,6 +25,7 @@
 #import "MSComment.h"
 #import "MSSportner.h"
 #import "MSSport.h"
+#import "MSNotificationCenter.h"
 
 #import "MSWindow.h"
 
@@ -126,7 +127,7 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
+    [MSNotificationCenter handleNotification:userInfo];
 }
 
 - (void)setDrawerMenu

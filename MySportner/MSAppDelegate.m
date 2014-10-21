@@ -25,6 +25,7 @@
 #import "MSComment.h"
 #import "MSSportner.h"
 #import "MSSport.h"
+#import "MSNotificationCenter.h"
 
 #import "MSWindow.h"
 
@@ -53,6 +54,7 @@
     [MSSport fetchAllSports];
     [PFFacebookUtils initializeFacebook];
     
+    [MSNotificationCenter registerApplication];
     [self registerForPushNotification:application];
     
     
@@ -126,7 +128,7 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
+    [MSNotificationCenter handleNotification:userInfo];
 }
 
 - (void)setDrawerMenu

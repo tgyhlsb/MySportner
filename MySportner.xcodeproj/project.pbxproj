@@ -178,6 +178,17 @@
 		5A85E8F71872D01300F5E8F9 /* MSLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A85E8F61872D01300F5E8F9 /* MSLocationCell.xib */; };
 		5A89F6EB19F6DB5A009CC775 /* profil-localisation.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A89F6E919F6DB5A009CC775 /* profil-localisation.png */; };
 		5A89F6EC19F6DB5A009CC775 /* profil-localisation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A89F6EA19F6DB5A009CC775 /* profil-localisation@2x.png */; };
+		5A89F6F619F6E670009CC775 /* MSNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A89F6F519F6E670009CC775 /* MSNotificationCenter.m */; };
+		5A89F6FD19F6E7AD009CC775 /* LNNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A89F6FC19F6E78C009CC775 /* LNNotificationsUI.framework */; };
+		5A89F70919F6EB46009CC775 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A89F70019F6EB46009CC775 /* Icon.png */; };
+		5A89F70A19F6EB46009CC775 /* Icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A89F70119F6EB46009CC775 /* Icon114.png */; };
+		5A89F70B19F6EB46009CC775 /* Icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A89F70219F6EB46009CC775 /* Icon120.png */; };
+		5A89F70C19F6EB46009CC775 /* Icon180.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A89F70319F6EB46009CC775 /* Icon180.png */; };
+		5A89F70D19F6EB46009CC775 /* Icon29.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A89F70419F6EB46009CC775 /* Icon29.png */; };
+		5A89F70E19F6EB46009CC775 /* Icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A89F70519F6EB46009CC775 /* Icon57.png */; };
+		5A89F70F19F6EB46009CC775 /* Icon58.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A89F70619F6EB46009CC775 /* Icon58.png */; };
+		5A89F71019F6EB46009CC775 /* Icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A89F70719F6EB46009CC775 /* Icon80.png */; };
+		5A89F71119F6EB46009CC775 /* Icon87.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A89F70819F6EB46009CC775 /* Icon87.png */; };
 		5A96744C1849CD180079EAC1 /* QBFlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A96744B1849CD180079EAC1 /* QBFlatButton.m */; };
 		5A96744F1849D20C0079EAC1 /* MSColorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A96744E1849D20C0079EAC1 /* MSColorFactory.m */; };
 		5A9674521849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9674511849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m */; };
@@ -296,6 +307,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5A89F6FB19F6E78C009CC775 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5A89F6F719F6E78C009CC775 /* LNNotificationsUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 39FC4F8319B8EFB400E45E37;
+			remoteInfo = LNNotificationsUI;
+		};
 		5ADCF247184004D300E6C8D2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5ADCF219184004D300E6C8D2 /* Project object */;
@@ -543,6 +561,18 @@
 		5A85E8F61872D01300F5E8F9 /* MSLocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSLocationCell.xib; path = Views/Cells/MSLocationCell/MSLocationCell.xib; sourceTree = "<group>"; };
 		5A89F6E919F6DB5A009CC775 /* profil-localisation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profil-localisation.png"; sourceTree = "<group>"; };
 		5A89F6EA19F6DB5A009CC775 /* profil-localisation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profil-localisation@2x.png"; sourceTree = "<group>"; };
+		5A89F6F419F6E670009CC775 /* MSNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSNotificationCenter.h; sourceTree = "<group>"; };
+		5A89F6F519F6E670009CC775 /* MSNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSNotificationCenter.m; sourceTree = "<group>"; };
+		5A89F6F719F6E78C009CC775 /* LNNotificationsUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LNNotificationsUI.xcodeproj; path = "../../Libraries/LNNotificationsUI-master/LNNotificationsUI/LNNotificationsUI.xcodeproj"; sourceTree = "<group>"; };
+		5A89F70019F6EB46009CC775 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		5A89F70119F6EB46009CC775 /* Icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon114.png; sourceTree = "<group>"; };
+		5A89F70219F6EB46009CC775 /* Icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon120.png; sourceTree = "<group>"; };
+		5A89F70319F6EB46009CC775 /* Icon180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon180.png; sourceTree = "<group>"; };
+		5A89F70419F6EB46009CC775 /* Icon29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon29.png; sourceTree = "<group>"; };
+		5A89F70519F6EB46009CC775 /* Icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon57.png; sourceTree = "<group>"; };
+		5A89F70619F6EB46009CC775 /* Icon58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon58.png; sourceTree = "<group>"; };
+		5A89F70719F6EB46009CC775 /* Icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon80.png; sourceTree = "<group>"; };
+		5A89F70819F6EB46009CC775 /* Icon87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon87.png; sourceTree = "<group>"; };
 		5A96744A1849CD180079EAC1 /* QBFlatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBFlatButton.h; sourceTree = "<group>"; };
 		5A96744B1849CD180079EAC1 /* QBFlatButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBFlatButton.m; sourceTree = "<group>"; };
 		5A96744D1849D20C0079EAC1 /* MSColorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSColorFactory.h; sourceTree = "<group>"; };
@@ -697,7 +727,6 @@
 		5AE7E3D119F46AAA00C5A1C4 /* MSInviteSportnersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSInviteSportnersVC.m; path = Controllers/MSAttendeesVC/MSInviteSportnersVC.m; sourceTree = "<group>"; };
 		5AEFA8B01896B580004B3EF7 /* MSPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSPinView.h; path = Views/MSPinView.h; sourceTree = "<group>"; };
 		5AEFA8B11896B580004B3EF7 /* MSPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSPinView.m; path = Views/MSPinView.m; sourceTree = "<group>"; };
-		5AEFA8B31896B92C004B3EF7 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		5AF2FBFB188C946A002147FB /* MSPickSportCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSPickSportCell2.xib; path = Views/Cells/MSPickSportCell/MSPickSportCell2.xib; sourceTree = "<group>"; };
 		5AFE43EC18426A8F001376C7 /* MSChooseSportsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSChooseSportsVC.h; path = Controllers/MSChooseSportsVC/MSChooseSportsVC.h; sourceTree = "<group>"; };
 		5AFE43ED18426A8F001376C7 /* MSChooseSportsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSChooseSportsVC.m; path = Controllers/MSChooseSportsVC/MSChooseSportsVC.m; sourceTree = "<group>"; };
@@ -721,6 +750,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A89F6FD19F6E7AD009CC775 /* LNNotificationsUI.framework in Frameworks */,
 				5A580DB419F015D400CA3846 /* Bolts.framework in Frameworks */,
 				5A580DB519F015D400CA3846 /* FacebookSDK.framework in Frameworks */,
 				5A580DB619F015D400CA3846 /* ParseFacebookUtils.framework in Frameworks */,
@@ -1190,6 +1220,31 @@
 			name = MSLocationPickerVC;
 			sourceTree = "<group>";
 		};
+		5A89F6F819F6E78C009CC775 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5A89F6FC19F6E78C009CC775 /* LNNotificationsUI.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5A89F6FF19F6EB46009CC775 /* App icons */ = {
+			isa = PBXGroup;
+			children = (
+				5A89F70019F6EB46009CC775 /* Icon.png */,
+				5A89F70119F6EB46009CC775 /* Icon114.png */,
+				5A89F70219F6EB46009CC775 /* Icon120.png */,
+				5A89F70319F6EB46009CC775 /* Icon180.png */,
+				5A89F70419F6EB46009CC775 /* Icon29.png */,
+				5A89F70519F6EB46009CC775 /* Icon57.png */,
+				5A89F70619F6EB46009CC775 /* Icon58.png */,
+				5A89F70719F6EB46009CC775 /* Icon80.png */,
+				5A89F70819F6EB46009CC775 /* Icon87.png */,
+			);
+			name = "App icons";
+			path = "Images/App icons";
+			sourceTree = "<group>";
+		};
 		5A9674491849CD180079EAC1 /* QBFlatButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -1311,9 +1366,9 @@
 				5A580E8419F27B9300CA3846 /* Popup icons */,
 				5A63A29D18A0188F002DE50D /* Trophee3.png */,
 				5A63A29E18A0188F002DE50D /* Trophee3@2x.png */,
+				5A89F6FF19F6EB46009CC775 /* App icons */,
 				5A63A29518A01078002DE50D /* Trophee1.png */,
 				5A3A70EA1899518D00799DFA /* no_activity.png */,
-				5AEFA8B31896B92C004B3EF7 /* pin.png */,
 				5A78B7F6189596AC0074A5B3 /* redCircle.png */,
 				5AFE689318508EAC00E40541 /* plus_button_press.png */,
 				5AFE689418508EAC00E40541 /* plus_button_press@2x.png */,
@@ -1396,6 +1451,8 @@
 				5A21001F184E421800CDF460 /* MSStyleFactory.m */,
 				5A580E9719F3233400CA3846 /* MSFacebookManager.h */,
 				5A580E9819F3233400CA3846 /* MSFacebookManager.m */,
+				5A89F6F419F6E670009CC775 /* MSNotificationCenter.h */,
+				5A89F6F519F6E670009CC775 /* MSNotificationCenter.m */,
 				5ADCF2F91840E38D00E6C8D2 /* Connection */,
 				5ADCF2B318402B4B00E6C8D2 /* Model */,
 				5ADCF277184011A500E6C8D2 /* Views */,
@@ -1440,6 +1497,7 @@
 		5ADCF2591840050600E6C8D2 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				5A89F6F719F6E78C009CC775 /* LNNotificationsUI.xcodeproj */,
 				5A71BC3B19F672EA001565A7 /* SlackTextViewController */,
 				5A3DB6AA18AF7A0C00EA389B /* BJImageCropper */,
 				5A0CB7CA189171490027EE58 /* NMRangeSlider */,
@@ -1861,6 +1919,12 @@
 			mainGroup = 5ADCF218184004D300E6C8D2;
 			productRefGroup = 5ADCF222184004D300E6C8D2 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5A89F6F819F6E78C009CC775 /* Products */;
+					ProjectRef = 5A89F6F719F6E78C009CC775 /* LNNotificationsUI.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				5ADCF220184004D300E6C8D2 /* MySportner */,
@@ -1869,6 +1933,16 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		5A89F6FC19F6E78C009CC775 /* LNNotificationsUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LNNotificationsUI.framework;
+			remoteRef = 5A89F6FB19F6E78C009CC775 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		5ADCF21F184004D300E6C8D2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
@@ -1876,6 +1950,7 @@
 			files = (
 				5A580EA019F3B15E00CA3846 /* Splash320.png in Resources */,
 				5A299A8E184BE8B100005733 /* back_button.png in Resources */,
+				5A89F70B19F6EB46009CC775 /* Icon120.png in Resources */,
 				5A580E6B19F2570400CA3846 /* yoga.png in Resources */,
 				5A2B6901189ACEB400D82870 /* MSAttendeesCell.xib in Resources */,
 				5A9B2DAA18539A1A00AE45D9 /* MSGameProfileCell.xib in Resources */,
@@ -1883,6 +1958,7 @@
 				5A3DB6A918AF79E900EA389B /* MSCropperVC.xib in Resources */,
 				5A580E5E19F2570400CA3846 /* biking2.png in Resources */,
 				5ADCF23D184004D300E6C8D2 /* Images.xcassets in Resources */,
+				5A89F70C19F6EB46009CC775 /* Icon180.png in Resources */,
 				5A63A29618A01078002DE50D /* Trophee1.png in Resources */,
 				5A0CB7EF1891714A0027EE58 /* slider-default-track@2x.png in Resources */,
 				5A0CB8001891714A0027EE58 /* slider-metal-track.png in Resources */,
@@ -1955,9 +2031,11 @@
 				5AFE440918427158001376C7 /* MSFindFriendsVC.xib in Resources */,
 				5ABF1E5C18B16FEC008071F9 /* friends.png in Resources */,
 				5A23BB0A186CD1CF00FFF0E0 /* MSFacebookFriendCell.xib in Resources */,
+				5A89F70F19F6EB46009CC775 /* Icon58.png in Resources */,
 				5A2B1BBF184BF90A00413B01 /* Montserrat-Regular.ttf in Resources */,
 				5A1B73791844AC3500555FE4 /* MSLoginFormVC.xib in Resources */,
 				5A0CB7F21891714A0027EE58 /* slider-default-trackCrossedOver@2x.png in Resources */,
+				5A89F70E19F6EB46009CC775 /* Icon57.png in Resources */,
 				5A580E6819F2570400CA3846 /* tennis2.png in Resources */,
 				5A580E5C19F2570400CA3846 /* basketball2.png in Resources */,
 				5AA8A75118A9775F0086D0B6 /* notifications-icon.png in Resources */,
@@ -1969,7 +2047,9 @@
 				5A580E6319F2570400CA3846 /* running.png in Resources */,
 				5ADCF29E18401D2300E6C8D2 /* MSNotificationsVC.xib in Resources */,
 				5ADCF28B1840144D00E6C8D2 /* MSDrawerMenuVC.xib in Resources */,
+				5A89F70A19F6EB46009CC775 /* Icon114.png in Resources */,
 				5ADCF28F1840178900E6C8D2 /* MSActivitiesVC.xib in Resources */,
+				5A89F70919F6EB46009CC775 /* Icon.png in Resources */,
 				5ABF1E5F18B16FEC008071F9 /* logout@2x.png in Resources */,
 				5AAF981D18E8530900B252FA /* skip@2x.png in Resources */,
 				5ADCF2AE184025BB00E6C8D2 /* MSWelcomeVC.xib in Resources */,
@@ -1977,6 +2057,7 @@
 				5A580EAD19F3CF8F00CA3846 /* fleche.png in Resources */,
 				5A580E6419F2570400CA3846 /* running2.png in Resources */,
 				5ADCF2F51840D9C200E6C8D2 /* MSVenuePickerCell.xib in Resources */,
+				5A89F71019F6EB46009CC775 /* Icon80.png in Resources */,
 				5A0CB7F51891714A0027EE58 /* slider-default7-handle@2x.png in Resources */,
 				5AA8A75318A9775F0086D0B6 /* setagame-icon.png in Resources */,
 				5ADCF2DA1840BDBB00E6C8D2 /* MSSmallSportCell.xib in Resources */,
@@ -2004,6 +2085,7 @@
 				5A7C7BDB18A9825E00887926 /* Layer-12.png in Resources */,
 				5ADCF2B818402CC500E6C8D2 /* MSActivityCell.xib in Resources */,
 				5A580E6619F2570400CA3846 /* squash2.png in Resources */,
+				5A89F71119F6EB46009CC775 /* Icon87.png in Resources */,
 				5AF2FBFC188C946A002147FB /* MSPickSportCell2.xib in Resources */,
 				5A0CB7EC1891714A0027EE58 /* slider-default-handle.png in Resources */,
 				5A580E7719F25F2C00CA3846 /* Main.storyboard in Resources */,
@@ -2023,6 +2105,7 @@
 				5AFE689618508EAC00E40541 /* plus_button_press@2x.png in Resources */,
 				5A580E7B19F25FC200CA3846 /* volleyball2.png in Resources */,
 				5A580E5D19F2570400CA3846 /* biking.png in Resources */,
+				5A89F70D19F6EB46009CC775 /* Icon29.png in Resources */,
 				5AA60A0A184B623B00B09ADD /* ProximaNova-Semibold.otf in Resources */,
 				5A2B1BBB184BF21100413B01 /* arrow@2x.png in Resources */,
 				5AFE688E1850883500E40541 /* vertical_gradient@2x.png in Resources */,
@@ -2101,6 +2184,7 @@
 				5A580E7F19F26D6A00CA3846 /* MSFullScreenPopUpVC.m in Sources */,
 				5AA60A0E184B67E700B09ADD /* NKColorSwitch.m in Sources */,
 				5ADCF235184004D300E6C8D2 /* MSAppDelegate.m in Sources */,
+				5A89F6F619F6E670009CC775 /* MSNotificationCenter.m in Sources */,
 				5A71BC5619F672EA001565A7 /* SLKTextView.m in Sources */,
 				5ADCF29C18401D1800E6C8D2 /* MSNotificationsVC.m in Sources */,
 				5A85E8EF1872CCCD00F5E8F9 /* MSLocationPickerVC.m in Sources */,
@@ -2289,7 +2373,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MySportner/MySportner-Prefix.pch";
 				INFOPLIST_FILE = "MySportner/MySportner-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8ceb9a02-07ec-4cc2-a3cc-f336e736ea97";
 				WRAPPER_EXTENSION = app;
@@ -2309,7 +2393,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MySportner/MySportner-Prefix.pch";
 				INFOPLIST_FILE = "MySportner/MySportner-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8ceb9a02-07ec-4cc2-a3cc-f336e736ea97";
 				WRAPPER_EXTENSION = app;

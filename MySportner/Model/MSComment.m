@@ -13,6 +13,7 @@
 
 @dynamic author;
 @dynamic content;
+@dynamic activity;
 
 + (NSString *)parseClassName
 {

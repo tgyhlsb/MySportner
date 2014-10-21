@@ -107,7 +107,7 @@
 {
     _numberOfPlayer = numberOfPlayer;
     
-    self.sizeLabel.text = [NSString stringWithFormat:@"%d", numberOfPlayer];
+    self.sizeLabel.text = [NSString stringWithFormat:@"%ld", (long)numberOfPlayer];
     
     self.fullButton.hidden = (numberOfPlayer > 0);
     self.playerButton.hidden = (numberOfPlayer <=0);

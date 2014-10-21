@@ -266,7 +266,6 @@
 		5AE7E3CE19F444E200C5A1C4 /* MSCommentsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AE7E3CC19F444E200C5A1C4 /* MSCommentsVC.xib */; };
 		5AE7E3D219F46AAA00C5A1C4 /* MSInviteSportnersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7E3D119F46AAA00C5A1C4 /* MSInviteSportnersVC.m */; };
 		5AEFA8B21896B580004B3EF7 /* MSPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFA8B11896B580004B3EF7 /* MSPinView.m */; };
-		5AEFA8B41896B92C004B3EF7 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AEFA8B31896B92C004B3EF7 /* pin.png */; };
 		5AF2FBFC188C946A002147FB /* MSPickSportCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF2FBFB188C946A002147FB /* MSPickSportCell2.xib */; };
 		5AFE43EE18426A8F001376C7 /* MSChooseSportsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFE43ED18426A8F001376C7 /* MSChooseSportsVC.m */; };
 		5AFE43F218426ABD001376C7 /* MSChooseSportsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AFE43F118426ABD001376C7 /* MSChooseSportsVC.xib */; };
@@ -1766,7 +1765,6 @@
 				5A9B2DAA18539A1A00AE45D9 /* MSGameProfileCell.xib in Resources */,
 				5A0CB7F11891714A0027EE58 /* slider-default-trackCrossedOver.png in Resources */,
 				5A3DB6A918AF79E900EA389B /* MSCropperVC.xib in Resources */,
-				5AEFA8B41896B92C004B3EF7 /* pin.png in Resources */,
 				5A580E5E19F2570400CA3846 /* biking2.png in Resources */,
 				5ADCF23D184004D300E6C8D2 /* Images.xcassets in Resources */,
 				5A63A29618A01078002DE50D /* Trophee1.png in Resources */,

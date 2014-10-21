@@ -153,6 +153,18 @@
 		5A653B16189427D900E2B8AE /* MSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A653B15189427D900E2B8AE /* MSCell.m */; };
 		5A653B181894427C00E2B8AE /* ProximaNova-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5A653B171894427C00E2B8AE /* ProximaNova-Light.otf */; };
 		5A6DD75318A03A2400649A58 /* share_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A6DD75218A03A2400649A58 /* share_button.png */; };
+		5A71BC5119F672EA001565A7 /* UIScrollView+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A71BC3F19F672EA001565A7 /* UIScrollView+SLKAdditions.m */; };
+		5A71BC5219F672EA001565A7 /* UITextView+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A71BC4119F672EA001565A7 /* UITextView+SLKAdditions.m */; };
+		5A71BC5319F672EA001565A7 /* UIView+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A71BC4319F672EA001565A7 /* UIView+SLKAdditions.m */; };
+		5A71BC5419F672EA001565A7 /* SLKInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A71BC4619F672EA001565A7 /* SLKInputAccessoryView.m */; };
+		5A71BC5519F672EA001565A7 /* SLKTextInputbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A71BC4819F672EA001565A7 /* SLKTextInputbar.m */; };
+		5A71BC5619F672EA001565A7 /* SLKTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A71BC4A19F672EA001565A7 /* SLKTextView.m */; };
+		5A71BC5719F672EA001565A7 /* SLKTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A71BC4C19F672EA001565A7 /* SLKTextViewController.m */; };
+		5A71BC5819F672EA001565A7 /* SLKTypingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A71BC4E19F672EA001565A7 /* SLKTypingIndicatorView.m */; };
+		5A71BC5919F672EA001565A7 /* UIKeyboard_constants.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5A71BC5019F672EA001565A7 /* UIKeyboard_constants.txt */; };
+		5A71BC6219F67380001565A7 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A71BC5E19F67380001565A7 /* MessageTableViewCell.m */; };
+		5A71BC6319F67380001565A7 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A71BC6019F67380001565A7 /* MessageViewController.m */; };
+		5A71BC6719F67408001565A7 /* LoremIpsum.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A71BC6619F67408001565A7 /* LoremIpsum.m */; };
 		5A78B7EC1895759D0074A5B3 /* MSPickLocalisationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78B7EB1895759D0074A5B3 /* MSPickLocalisationVC.m */; };
 		5A78B7EE189575AA0074A5B3 /* MSPickLocalisationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A78B7ED189575AA0074A5B3 /* MSPickLocalisationVC.xib */; };
 		5A78B7F218958BA70074A5B3 /* MSAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78B7F118958BA70074A5B3 /* MSAnnotation.m */; };
@@ -487,6 +499,31 @@
 		5A653B15189427D900E2B8AE /* MSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSCell.m; path = Views/Cells/MSCell.m; sourceTree = "<group>"; };
 		5A653B171894427C00E2B8AE /* ProximaNova-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Light.otf"; sourceTree = "<group>"; };
 		5A6DD75218A03A2400649A58 /* share_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_button.png; sourceTree = "<group>"; };
+		5A71BC3D19F672EA001565A7 /* SLKUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKUIConstants.h; sourceTree = "<group>"; };
+		5A71BC3E19F672EA001565A7 /* UIScrollView+SLKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SLKAdditions.h"; sourceTree = "<group>"; };
+		5A71BC3F19F672EA001565A7 /* UIScrollView+SLKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SLKAdditions.m"; sourceTree = "<group>"; };
+		5A71BC4019F672EA001565A7 /* UITextView+SLKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+SLKAdditions.h"; sourceTree = "<group>"; };
+		5A71BC4119F672EA001565A7 /* UITextView+SLKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+SLKAdditions.m"; sourceTree = "<group>"; };
+		5A71BC4219F672EA001565A7 /* UIView+SLKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SLKAdditions.h"; sourceTree = "<group>"; };
+		5A71BC4319F672EA001565A7 /* UIView+SLKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SLKAdditions.m"; sourceTree = "<group>"; };
+		5A71BC4519F672EA001565A7 /* SLKInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKInputAccessoryView.h; sourceTree = "<group>"; };
+		5A71BC4619F672EA001565A7 /* SLKInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKInputAccessoryView.m; sourceTree = "<group>"; };
+		5A71BC4719F672EA001565A7 /* SLKTextInputbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKTextInputbar.h; sourceTree = "<group>"; };
+		5A71BC4819F672EA001565A7 /* SLKTextInputbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKTextInputbar.m; sourceTree = "<group>"; };
+		5A71BC4919F672EA001565A7 /* SLKTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKTextView.h; sourceTree = "<group>"; };
+		5A71BC4A19F672EA001565A7 /* SLKTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKTextView.m; sourceTree = "<group>"; };
+		5A71BC4B19F672EA001565A7 /* SLKTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKTextViewController.h; sourceTree = "<group>"; };
+		5A71BC4C19F672EA001565A7 /* SLKTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKTextViewController.m; sourceTree = "<group>"; };
+		5A71BC4D19F672EA001565A7 /* SLKTypingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKTypingIndicatorView.h; sourceTree = "<group>"; };
+		5A71BC4E19F672EA001565A7 /* SLKTypingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKTypingIndicatorView.m; sourceTree = "<group>"; };
+		5A71BC5019F672EA001565A7 /* UIKeyboard_constants.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UIKeyboard_constants.txt; sourceTree = "<group>"; };
+		5A71BC5B19F67380001565A7 /* Bridge-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridge-Header.h"; sourceTree = "<group>"; };
+		5A71BC5D19F67380001565A7 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
+		5A71BC5E19F67380001565A7 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
+		5A71BC5F19F67380001565A7 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		5A71BC6019F67380001565A7 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		5A71BC6519F67408001565A7 /* LoremIpsum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoremIpsum.h; sourceTree = "<group>"; };
+		5A71BC6619F67408001565A7 /* LoremIpsum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoremIpsum.m; sourceTree = "<group>"; };
 		5A78B7EA1895759D0074A5B3 /* MSPickLocalisationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSPickLocalisationVC.h; path = Controllers/MSPickLocalisationVC/MSPickLocalisationVC.h; sourceTree = "<group>"; };
 		5A78B7EB1895759D0074A5B3 /* MSPickLocalisationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSPickLocalisationVC.m; path = Controllers/MSPickLocalisationVC/MSPickLocalisationVC.m; sourceTree = "<group>"; };
 		5A78B7ED189575AA0074A5B3 /* MSPickLocalisationVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSPickLocalisationVC.xib; path = Controllers/MSPickLocalisationVC/MSPickLocalisationVC.xib; sourceTree = "<group>"; };
@@ -1057,6 +1094,78 @@
 			name = MSCommentCell;
 			sourceTree = "<group>";
 		};
+		5A71BC3B19F672EA001565A7 /* SlackTextViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5A71BC5A19F67380001565A7 /* Messenger-Shared */,
+				5A71BC3C19F672EA001565A7 /* Additions */,
+				5A71BC4419F672EA001565A7 /* Classes */,
+				5A71BC4F19F672EA001565A7 /* Docs */,
+			);
+			path = SlackTextViewController;
+			sourceTree = "<group>";
+		};
+		5A71BC3C19F672EA001565A7 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				5A71BC3D19F672EA001565A7 /* SLKUIConstants.h */,
+				5A71BC3E19F672EA001565A7 /* UIScrollView+SLKAdditions.h */,
+				5A71BC3F19F672EA001565A7 /* UIScrollView+SLKAdditions.m */,
+				5A71BC4019F672EA001565A7 /* UITextView+SLKAdditions.h */,
+				5A71BC4119F672EA001565A7 /* UITextView+SLKAdditions.m */,
+				5A71BC4219F672EA001565A7 /* UIView+SLKAdditions.h */,
+				5A71BC4319F672EA001565A7 /* UIView+SLKAdditions.m */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
+		5A71BC4419F672EA001565A7 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5A71BC4519F672EA001565A7 /* SLKInputAccessoryView.h */,
+				5A71BC4619F672EA001565A7 /* SLKInputAccessoryView.m */,
+				5A71BC4719F672EA001565A7 /* SLKTextInputbar.h */,
+				5A71BC4819F672EA001565A7 /* SLKTextInputbar.m */,
+				5A71BC4919F672EA001565A7 /* SLKTextView.h */,
+				5A71BC4A19F672EA001565A7 /* SLKTextView.m */,
+				5A71BC4B19F672EA001565A7 /* SLKTextViewController.h */,
+				5A71BC4C19F672EA001565A7 /* SLKTextViewController.m */,
+				5A71BC4D19F672EA001565A7 /* SLKTypingIndicatorView.h */,
+				5A71BC4E19F672EA001565A7 /* SLKTypingIndicatorView.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		5A71BC4F19F672EA001565A7 /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				5A71BC5019F672EA001565A7 /* UIKeyboard_constants.txt */,
+			);
+			path = Docs;
+			sourceTree = "<group>";
+		};
+		5A71BC5A19F67380001565A7 /* Messenger-Shared */ = {
+			isa = PBXGroup;
+			children = (
+				5A71BC6419F67408001565A7 /* LoremIpsum */,
+				5A71BC5B19F67380001565A7 /* Bridge-Header.h */,
+				5A71BC5D19F67380001565A7 /* MessageTableViewCell.h */,
+				5A71BC5E19F67380001565A7 /* MessageTableViewCell.m */,
+				5A71BC5F19F67380001565A7 /* MessageViewController.h */,
+				5A71BC6019F67380001565A7 /* MessageViewController.m */,
+			);
+			path = "Messenger-Shared";
+			sourceTree = "<group>";
+		};
+		5A71BC6419F67408001565A7 /* LoremIpsum */ = {
+			isa = PBXGroup;
+			children = (
+				5A71BC6519F67408001565A7 /* LoremIpsum.h */,
+				5A71BC6619F67408001565A7 /* LoremIpsum.m */,
+			);
+			path = LoremIpsum;
+			sourceTree = "<group>";
+		};
 		5A78B7EF189575AE0074A5B3 /* MSPickLocalisationVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1325,6 +1434,7 @@
 		5ADCF2591840050600E6C8D2 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				5A71BC3B19F672EA001565A7 /* SlackTextViewController */,
 				5A3DB6AA18AF7A0C00EA389B /* BJImageCropper */,
 				5A0CB7CA189171490027EE58 /* NMRangeSlider */,
 				5A29E3291879ACE9008A8919 /* TKAlertCenter */,
@@ -1896,6 +2006,7 @@
 				5AAF981C18E8530900B252FA /* skip.png in Resources */,
 				5A580EA619F3B28A00CA3846 /* Splashscreen0@2x.png in Resources */,
 				5A299A83184BDF9A00005733 /* ProximaNova-Bold.otf in Resources */,
+				5A71BC5919F672EA001565A7 /* UIKeyboard_constants.txt in Resources */,
 				5A0CB7EA1891714A0027EE58 /* slider-default-handle-highlighted.png in Resources */,
 				5A2B1BBA184BF21100413B01 /* arrow.png in Resources */,
 				5A580E6019F2570400CA3846 /* football2.png in Resources */,
@@ -1930,11 +2041,14 @@
 				5ADCF29918401CD000E6C8D2 /* MSNavigationVC.m in Sources */,
 				5ADCF30E1840F17600E6C8D2 /* MSVenue.m in Sources */,
 				5A580E9119F297B900CA3846 /* MSPlayerSizeView.m in Sources */,
+				5A71BC6719F67408001565A7 /* LoremIpsum.m in Sources */,
 				5A967462184A34160079EAC1 /* MSVenue+MapKit.m in Sources */,
 				5A3DE7C4184133E1001054EB /* MSUser.m in Sources */,
+				5A71BC5119F672EA001565A7 /* UIScrollView+SLKAdditions.m in Sources */,
 				5A85E8F51872CFFF00F5E8F9 /* MSLocationCell.m in Sources */,
 				5ADCF2CD1840B4FD00E6C8D2 /* MSActivitiesFilterCell.m in Sources */,
 				5A580EAA19F3B56800CA3846 /* MSGameProfileVC.m in Sources */,
+				5A71BC5519F672EA001565A7 /* SLKTextInputbar.m in Sources */,
 				5ADCF29618401A0300E6C8D2 /* MSDrawerController.m in Sources */,
 				5A1B73711844AB6200555FE4 /* MZFormSheetBackgroundWindow.m in Sources */,
 				5ADCF3081840E80500E6C8D2 /* MSFourSquareKeyFactory.m in Sources */,
@@ -1969,6 +2083,7 @@
 				5ADCF2B218402B4500E6C8D2 /* MSActivity.m in Sources */,
 				5ADCF2F31840D52C00E6C8D2 /* MSVenuePickerCell.m in Sources */,
 				5ADCF2CA1840AF5300E6C8D2 /* MSActivityCell.m in Sources */,
+				5A71BC6319F67380001565A7 /* MessageViewController.m in Sources */,
 				5ADCF2A918401FF800E6C8D2 /* MSCenterController.m in Sources */,
 				5A580E2919F129F900CA3846 /* MSSetAGameVC2.m in Sources */,
 				5ADCF2D81840BDAD00E6C8D2 /* MSSmallSportCell.m in Sources */,
@@ -1978,6 +2093,7 @@
 				5A580E7F19F26D6A00CA3846 /* MSFullScreenPopUpVC.m in Sources */,
 				5AA60A0E184B67E700B09ADD /* NKColorSwitch.m in Sources */,
 				5ADCF235184004D300E6C8D2 /* MSAppDelegate.m in Sources */,
+				5A71BC5619F672EA001565A7 /* SLKTextView.m in Sources */,
 				5ADCF29C18401D1800E6C8D2 /* MSNotificationsVC.m in Sources */,
 				5A85E8EF1872CCCD00F5E8F9 /* MSLocationPickerVC.m in Sources */,
 				5A78B7F218958BA70074A5B3 /* MSAnnotation.m in Sources */,
@@ -1990,6 +2106,7 @@
 				5A78B7EC1895759D0074A5B3 /* MSPickLocalisationVC.m in Sources */,
 				5A210020184E421800CDF460 /* MSStyleFactory.m in Sources */,
 				5A090AD91891948A0017B207 /* MSComment.m in Sources */,
+				5A71BC6219F67380001565A7 /* MessageTableViewCell.m in Sources */,
 				5A580EB919F3F4F200CA3846 /* MSSportnerListVC.m in Sources */,
 				5A96744F1849D20C0079EAC1 /* MSColorFactory.m in Sources */,
 				5AE7E3C919F41E7800C5A1C4 /* MSAttendeesVC.m in Sources */,
@@ -2011,19 +2128,24 @@
 				5A580E9919F3233400CA3846 /* MSFacebookManager.m in Sources */,
 				5A0D6F4B189A55F300C037C8 /* MSSportnersVC.m in Sources */,
 				5A1B73731844AB6200555FE4 /* MZFormSheetSegue.m in Sources */,
+				5A71BC5219F672EA001565A7 /* UITextView+SLKAdditions.m in Sources */,
 				5A1B73771844AC2700555FE4 /* MSLoginFormVC.m in Sources */,
 				5AFE44071842714D001376C7 /* MSFindFriendsVC.m in Sources */,
 				5A173FE21849C97D00144DB8 /* UIView+MSRoundedView.m in Sources */,
 				5ADCF2EA1840D38B00E6C8D2 /* MSVenuePickerVC.m in Sources */,
 				5ADCF2E61840D23A00E6C8D2 /* MSTextFieldPickerCell.m in Sources */,
 				5A0F9116184242AF0049BBD5 /* MSVerifyAccountVC.m in Sources */,
+				5A71BC5319F672EA001565A7 /* UIView+SLKAdditions.m in Sources */,
 				5ADCF3111840F6A300E6C8D2 /* MSFourSquareParser.m in Sources */,
 				5A34C4E31895293500CE2EF2 /* MSProfilePictureView.m in Sources */,
 				5A2B68F5189A597A00D82870 /* MSSportnerCell.m in Sources */,
 				5A1B73741844AB6200555FE4 /* UIImage+Additional.m in Sources */,
+				5A71BC5719F672EA001565A7 /* SLKTextViewController.m in Sources */,
 				5A29E32E1879ACE9008A8919 /* TKAlertCenter.m in Sources */,
+				5A71BC5819F672EA001565A7 /* SLKTypingIndicatorView.m in Sources */,
 				5ADCF231184004D300E6C8D2 /* main.m in Sources */,
 				5A1B736F1844AB6200555FE4 /* MZAppearance.m in Sources */,
+				5A71BC5419F672EA001565A7 /* SLKInputAccessoryView.m in Sources */,
 				5ADCF30B1840EBEF00E6C8D2 /* MBProgressHUD.m in Sources */,
 				5A0CB8041891714A0027EE58 /* NMRangeSlider.m in Sources */,
 				5A96744C1849CD180079EAC1 /* QBFlatButton.m in Sources */,

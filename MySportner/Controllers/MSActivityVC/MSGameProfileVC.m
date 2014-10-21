@@ -21,6 +21,7 @@
 #import "MSCommentsVC.h"
 #import "MSInviteSportnersVC.h"
 #import "MSProfileVC.h"
+#import "MessageViewController.h"
 
 #define NIB_NAME @"MSGameProfileVC"
 
@@ -543,8 +544,11 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 
 - (void)pushToComments
 {
-    MSCommentsVC *destination = [MSCommentsVC newController];
-    destination.activity = self.activity;
+//    MSCommentsVC *destination = [MSCommentsVC newController];
+//    destination.activity = self.activity;
+    
+    MessageViewController *destination = [MessageViewController new];
+    
     [self.navigationController pushViewController:destination animated:YES];
 }
 

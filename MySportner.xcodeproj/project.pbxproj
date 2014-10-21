@@ -163,7 +163,7 @@
 		5A71BC5819F672EA001565A7 /* SLKTypingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A71BC4E19F672EA001565A7 /* SLKTypingIndicatorView.m */; };
 		5A71BC5919F672EA001565A7 /* UIKeyboard_constants.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5A71BC5019F672EA001565A7 /* UIKeyboard_constants.txt */; };
 		5A71BC6219F67380001565A7 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A71BC5E19F67380001565A7 /* MessageTableViewCell.m */; };
-		5A71BC6319F67380001565A7 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A71BC6019F67380001565A7 /* MessageViewController.m */; };
+		5A71BC6319F67380001565A7 /* MSMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A71BC6019F67380001565A7 /* MSMessageVC.m */; };
 		5A71BC6719F67408001565A7 /* LoremIpsum.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A71BC6619F67408001565A7 /* LoremIpsum.m */; };
 		5A78B7EC1895759D0074A5B3 /* MSPickLocalisationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78B7EB1895759D0074A5B3 /* MSPickLocalisationVC.m */; };
 		5A78B7EE189575AA0074A5B3 /* MSPickLocalisationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A78B7ED189575AA0074A5B3 /* MSPickLocalisationVC.xib */; };
@@ -520,8 +520,8 @@
 		5A71BC5B19F67380001565A7 /* Bridge-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridge-Header.h"; sourceTree = "<group>"; };
 		5A71BC5D19F67380001565A7 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
 		5A71BC5E19F67380001565A7 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
-		5A71BC5F19F67380001565A7 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
-		5A71BC6019F67380001565A7 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		5A71BC5F19F67380001565A7 /* MSMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSMessageVC.h; sourceTree = "<group>"; };
+		5A71BC6019F67380001565A7 /* MSMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSMessageVC.m; sourceTree = "<group>"; };
 		5A71BC6519F67408001565A7 /* LoremIpsum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoremIpsum.h; sourceTree = "<group>"; };
 		5A71BC6619F67408001565A7 /* LoremIpsum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoremIpsum.m; sourceTree = "<group>"; };
 		5A78B7EA1895759D0074A5B3 /* MSPickLocalisationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSPickLocalisationVC.h; path = Controllers/MSPickLocalisationVC/MSPickLocalisationVC.h; sourceTree = "<group>"; };
@@ -1151,8 +1151,8 @@
 				5A71BC5B19F67380001565A7 /* Bridge-Header.h */,
 				5A71BC5D19F67380001565A7 /* MessageTableViewCell.h */,
 				5A71BC5E19F67380001565A7 /* MessageTableViewCell.m */,
-				5A71BC5F19F67380001565A7 /* MessageViewController.h */,
-				5A71BC6019F67380001565A7 /* MessageViewController.m */,
+				5A71BC5F19F67380001565A7 /* MSMessageVC.h */,
+				5A71BC6019F67380001565A7 /* MSMessageVC.m */,
 			);
 			path = "Messenger-Shared";
 			sourceTree = "<group>";
@@ -2083,7 +2083,7 @@
 				5ADCF2B218402B4500E6C8D2 /* MSActivity.m in Sources */,
 				5ADCF2F31840D52C00E6C8D2 /* MSVenuePickerCell.m in Sources */,
 				5ADCF2CA1840AF5300E6C8D2 /* MSActivityCell.m in Sources */,
-				5A71BC6319F67380001565A7 /* MessageViewController.m in Sources */,
+				5A71BC6319F67380001565A7 /* MSMessageVC.m in Sources */,
 				5ADCF2A918401FF800E6C8D2 /* MSCenterController.m in Sources */,
 				5A580E2919F129F900CA3846 /* MSSetAGameVC2.m in Sources */,
 				5ADCF2D81840BDAD00E6C8D2 /* MSSmallSportCell.m in Sources */,

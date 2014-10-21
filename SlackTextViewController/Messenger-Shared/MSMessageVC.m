@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Slack Technologies, Inc. All rights reserved.
 //
 
-#import "MessageViewController.h"
+#import "MSMessageVC.h"
 #import "MessageTableViewCell.h"
 
 #import "LoremIpsum/LoremIpsum.h"
@@ -14,28 +14,20 @@
 static NSString *MessengerCellIdentifier = @"MessengerCell";
 static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 
-@interface MessageViewController ()
+@interface MSMessageVC ()
 
 @property (nonatomic, strong) NSMutableArray *messages;
-
-@property (nonatomic, strong) NSArray *users;
-@property (nonatomic, strong) NSArray *channels;
-@property (nonatomic, strong) NSArray *emojis;
 
 @property (nonatomic, strong) NSArray *searchResult;
 
 @end
 
-@implementation MessageViewController
+@implementation MSMessageVC
 
 - (id)init
 {
     self = [super initWithTableViewStyle:UITableViewStylePlain];
     if (self) {
-        
-        self.users = @[@"Allen", @"Anna", @"Alicia", @"Arnold", @"Armando", @"Antonio", @"Brad", @"Catalaya", @"Christoph", @"Emerson", @"Eric", @"Everyone"];
-        self.channels = @[@"General", @"Random", @"iOS", @"Bugs", @"Sports", @"Android", @"UI", @"SSB"];
-        self.emojis = @[@"m", @"man", @"machine", @"block-a", @"block-b", @"bowtie", @"boar", @"boat", @"book", @"bookmark", @"neckbeard", @"metal", @"fu", @"feelsgood"];
     }
     return self;
 }
@@ -98,6 +90,11 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
     UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_editing"] style:UIBarButtonItemStylePlain target:self action:@selector(editRandomMessage:)];
     
@@ -105,11 +102,6 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
     UIBarButtonItem *appendItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_append"] style:UIBarButtonItemStylePlain target:self action:@selector(fillWithText:)];
     
     self.navigationItem.rightBarButtonItems = @[editItem, appendItem, typeItem];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
 }
 
 
@@ -264,38 +256,7 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 
 - (BOOL)canShowAutoCompletion
 {
-    NSArray *array = nil;
-    NSString *prefix = self.foundPrefix;
-    NSString *word = self.foundWord;
-    
-    self.searchResult = nil;
-    
-    if ([prefix isEqualToString:@"@"])
-    {
-        array = self.users;
-        
-        if (word.length > 0) {
-            array = [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH[c] %@", word]];
-        }
-    }
-    else if ([prefix isEqualToString:@"#"])
-    {
-        array = self.channels;
-        if (word.length > 0) {
-            array = [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH[c] %@", word]];
-        }
-    }
-    else if ([prefix isEqualToString:@":"] && word.length > 0) {
-        array = [self.emojis filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH[c] %@", word]];
-    }
-    
-    if (array.count > 0) {
-        array = [array sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    }
-    
-    self.searchResult = [[NSMutableArray alloc] initWithArray:array];
-    
-    return self.searchResult.count > 0;
+    return NO;
 }
 
 - (CGFloat)heightForAutoCompletionView

@@ -8,6 +8,6 @@
 
 #import "SLKTextViewController.h"
 
-@interface MessageViewController : SLKTextViewController
+@interface MSMessageVC : SLKTextViewController
 
 @end

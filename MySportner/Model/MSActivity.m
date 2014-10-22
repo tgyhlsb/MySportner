@@ -84,13 +84,6 @@
     }];
 }
 
-- (void)addGuest:(MSSportner *)sportner
-{
-    NSMutableArray *tempGuests = [self.guests mutableCopy];
-    [tempGuests addObject:sportner];
-    self.guests = tempGuests;
-}
-
 - (void)addGuests:(NSArray *)sportners
 {
     NSMutableArray *tempGuests = [self.guests mutableCopy];
@@ -98,26 +91,12 @@
     self.guests = tempGuests;
 }
 
-//- (void)addGuest:(MSSportner *)guest withBlock:(PFBooleanResultBlock)block
-//{
-////    [self addGuest:guest];
-////    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-////        if (succeeded && !error) {
-////            [self notifyActivityStateChanged];
-////        }
-////        if (block) {
-////            block(succeeded, error);
-////        }
-////    }];
-//    
-//    [PFCloud callFunctionInBackground:@"inviteSportner"
-//                       withParameters:@{@"activity": self, @"sportner": guest}
-//                                block:^(MSActivity *activity, NSError *error) {
-//                                    if (!error) {
-//                                        // ratings is 4.5
-//                                    }
-//                                }];
-//}
+- (void)removeInvited:(MSSportner *)invited
+{
+    NSMutableArray *tempInvited = [self.guests mutableCopy];
+    [tempInvited removeObject:invited];
+    self.guests = tempInvited;
+}
 
 - (void)addGuests:(NSArray *)guests withBlock:(PFObjectResultBlock)block
 {
@@ -131,6 +110,9 @@
                                 block:^(MSActivity *activity, NSError *error) {
                                     if (!error) {
                                         [self addGuests:guests];
+                                        self.playerNeeded = activity.playerNeeded;
+                                        
+                                        [self notifyActivityStateChanged];
                                     }
                                     
                                     if (block) {
@@ -138,28 +120,6 @@
                                     }
                                 }];
 }
-
-- (void)removeGuest:(MSSportner *)guest
-{
-    PFRelation *relation = [self guestRelation];
-    [relation removeObject:guest];
-    NSMutableArray *tempGuests = [self.guests mutableCopy];
-    [tempGuests removeObject:guest];
-    self.guests = tempGuests;
-}
-
-//- (void)removeGuest:(MSSportner *)guest withBlock:(PFBooleanResultBlock)block
-//{
-//    [self removeGuest:guest];
-//    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (succeeded && !error) {
-//            [self notifyActivityStateChanged];
-//        }
-//        if (block) {
-//            block(succeeded, error);
-//        }
-//    }];
-//}
 
 #pragma mark - Participants
 
@@ -180,82 +140,53 @@
 
 - (void)addParticipant:(MSSportner *)sportner
 {
-    PFRelation *relation = [self participantRelation];
-    [relation addObject:sportner];
     NSMutableArray *tempParticipants = [self.participants mutableCopy];
     [tempParticipants addObject:sportner];
     self.participants = tempParticipants;
-    [self incrementKey:@"playerNeeded" byAmount:@(-1)];
 }
 
-- (void)addParticipants:(NSArray *)sportners
+- (void)addParticipant:(MSSportner *)participant withBlock:(PFObjectResultBlock)block
 {
-    PFRelation *relation = [self participantRelation];
-    NSMutableArray *tempParticipants = [self.participants mutableCopy];
-    
-    for (MSSportner *sportner in sportners) {
-        [relation addObject:sportner];
-        [tempParticipants addObject:sportner];
-    }
-    
-    self.participants = tempParticipants;
-    [self incrementKey:@"playerNeeded" byAmount:@(-1*[sportners count])];
+    [PFCloud callFunctionInBackground:@"addConfirmed"
+                       withParameters:@{@"activity": self.objectId, @"sportner": participant.objectId}
+                                block:^(MSActivity *activity, NSError *error) {
+                                    if (!error) {
+                                        [self removeAwaiting:participant];
+                                        [self removeInvited:participant];
+                                        [self addParticipant:participant];
+                                        self.playerNeeded = activity.playerNeeded;
+                                        
+                                        [self notifyActivityStateChanged];
+                                    }
+                                    
+                                    if (block) {
+                                        block(self, error);
+                                    }
+                                }];
 }
-
-- (void)addParticipant:(MSSportner *)participant withBlock:(PFBooleanResultBlock)block
-{
-    [self addParticipant:participant];
-    if ([self.guests containsObject:participant]) {
-        [self removeGuest:participant];
-    }
-    if ([self.awaitings containsObject:participant]) {
-        [self removeAwaiting:participant];
-    }
-    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded && !error) {
-            [self notifyActivityStateChanged];
-        }
-        if (block) {
-            block(succeeded, error);
-        }
-    }];
-}
-
-- (void)addParticipants:(NSArray *)participants withBlock:(PFBooleanResultBlock)block
-{
-    [self addParticipants:participants];
-    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded && !error) {
-            [self notifyActivityStateChanged];
-        }
-        if (block) {
-            block(succeeded, error);
-        }
-    }];
-}
-
 - (void)removeParticipant:(MSSportner *)participant
 {
-    PFRelation *relation = [self participantRelation];
-    [relation removeObject:participant];
     NSMutableArray *tempParticipants = [self.participants mutableCopy];
     [tempParticipants removeObject:participant];
     self.participants = tempParticipants;
-    [self incrementKey:@"playerNeeded"];
-    self.playerNeeded = [NSNumber numberWithInt:([self.playerNeeded intValue] + 1)];
 }
 
-- (void)removeParticipant:(MSSportner *)participant withBlock:(PFBooleanResultBlock)block
+- (void)removeParticipant:(MSSportner *)participant withBlock:(PFObjectResultBlock)block
 {
-    [self removeParticipant:participant];
-    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded && !error) {
-            [self notifyActivityStateChanged];
-        }
-        if (block) {
-            block(succeeded, error);
-        }
-    }];
+    [PFCloud callFunctionInBackground:@"removeConfirmed"
+                       withParameters:@{@"activity": self.objectId, @"sportner": participant.objectId}
+                                block:^(MSActivity *activity, NSError *error) {
+                                    if (!error) {
+                                        [self removeParticipant:participant];
+                                        self.playerNeeded = activity.playerNeeded;
+                                        
+                                        [self notifyActivityStateChanged];
+                                    }
+                                    
+                                    if (block) {
+                                        block(self, error);
+                                    }
+                                }];
 }
 
 #pragma mark - Awaitings
@@ -276,9 +207,16 @@
 }
 
 - (void)addAwaiting:(MSSportner *)awaiting
-{;
+{
     NSMutableArray *tempAwaitings = [self.awaitings mutableCopy];
     [tempAwaitings addObject:awaiting];
+    self.awaitings = tempAwaitings;
+}
+
+- (void)removeAwaiting:(MSSportner *)awaiting
+{
+    NSMutableArray *tempAwaitings = [self.awaitings mutableCopy];
+    [tempAwaitings removeObject:awaiting];
     self.awaitings = tempAwaitings;
 }
 
@@ -289,34 +227,15 @@
                                 block:^(MSActivity *activity, NSError *error) {
                                     if (!error) {
                                         [self addAwaiting:awaiting];
+                                        self.playerNeeded = activity.playerNeeded;
+                                        
+                                        [self notifyActivityStateChanged];
                                     }
                                     
                                     if (block) {
                                         block(self, error);
                                     }
                                 }];
-}
-
-- (void)removeAwaiting:(MSSportner *)awaiting
-{
-    PFRelation *relation = [self awaitingRelation];
-    [relation removeObject:awaiting];
-    NSMutableArray *tempAwaitings = [self.awaitings mutableCopy];
-    [tempAwaitings removeObject:awaiting];
-    self.awaitings = tempAwaitings;
-}
-
-- (void)removeAwaiting:(MSSportner *)awaiting withBlock:(PFBooleanResultBlock)block
-{
-    [self removeAwaiting:awaiting];
-    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded && !error) {
-            [self notifyActivityStateChanged];
-        }
-        if (block) {
-            block(succeeded, error);
-        }
-    }];
 }
 
 #pragma mark - Messages

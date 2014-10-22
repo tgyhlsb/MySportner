@@ -497,9 +497,9 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
         }
         case MSUserStatusForActivityInvited:
         {
-            [self.activity addParticipant:[MSSportner currentSportner] withBlock:^(BOOL succeeded, NSError *error) {
+            [self.activity addParticipant:[MSSportner currentSportner] withBlock:^(PFObject *activity, NSError *error) {
                 
-                if (succeeded && !error) {
+                if (activity && !error) {
                     [[TKAlertCenter defaultCenter] postAlertWithMessage:@"You joined the game !"];
                 }
                 
@@ -518,9 +518,9 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 
 - (void)leaveTheGame
 {
-    [self.activity removeParticipant:[MSSportner currentSportner] withBlock:^(BOOL succeeded, NSError *error) {
+    [self.activity removeParticipant:[MSSportner currentSportner] withBlock:^(PFObject *activity, NSError *error) {
         
-        if (succeeded && !error) {
+        if (activity && !error) {
             [[TKAlertCenter defaultCenter] postAlertWithMessage:@"You left the game"];
         }
         

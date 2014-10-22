@@ -48,9 +48,9 @@ static NSString *MSNotificationActivityAwaitingChanged = @"MSNotificationActivit
 - (PFRelation *)commentRelation;
 
 - (void)fetchGuests;
-- (void)addGuest:(MSSportner *)guest withBlock:(PFBooleanResultBlock)block;
-- (void)addGuests:(NSArray *)guests withBlock:(PFBooleanResultBlock)block;
-- (void)removeGuest:(MSSportner *)guest withBlock:(PFBooleanResultBlock)block;
+//- (void)addGuest:(MSSportner *)guest withBlock:(PFObjectResultBlock)block;
+- (void)addGuests:(NSArray *)guests withBlock:(PFObjectResultBlock)block;
+//- (void)removeGuest:(MSSportner *)guest withBlock:(PFObjectResultBlock)block;
 
 - (void)fetchParticipants;
 - (void)addParticipant:(MSSportner *)participant withBlock:(PFBooleanResultBlock)block;
@@ -58,7 +58,7 @@ static NSString *MSNotificationActivityAwaitingChanged = @"MSNotificationActivit
 - (void)removeParticipant:(MSSportner *)participant withBlock:(PFBooleanResultBlock)block;
 
 - (void)fetchAwaitings;
-- (void)addAwaiting:(MSSportner *)awaiting withBlock:(PFBooleanResultBlock)block;
+- (void)addAwaiting:(MSSportner *)awaiting withBlock:(PFObjectResultBlock)block;
 - (void)removeAwaiting:(MSSportner *)awaiting withBlock:(PFBooleanResultBlock)block;
 
 + (NSString *)parseClassName;

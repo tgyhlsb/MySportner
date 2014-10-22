@@ -27,9 +27,17 @@
     
     NSMutableDictionary *options = [[MSNotificationCenter options] mutableCopy];
     
-    [options setObject:title forKey:kCRToastTextKey];
-    [options setObject:message forKey:kCRToastSubtitleTextKey];
-    [options setObject:image forKey:kCRToastImageKey];
+    if (title) {
+        [options setObject:title forKey:kCRToastTextKey];
+    }
+    
+    if (message) {
+        [options setObject:message forKey:kCRToastSubtitleTextKey];
+    }
+    
+    if (image) {
+        [options setObject:image forKey:kCRToastImageKey];
+    }
     
     [CRToastManager showNotificationWithOptions:options
                                 completionBlock:^{

@@ -484,9 +484,9 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
     switch (self.sportnerStatus) {
         case MSUserStatusForActivityOther:
         {
-            [self.activity addAwaiting:[MSSportner currentSportner] withBlock:^(BOOL succeeded, NSError *error) {
+            [self.activity addAwaiting:[MSSportner currentSportner] withBlock:^(PFObject *result, NSError *error) {
                 
-                if (succeeded && !error) {
+                if (result && !error) {
                     [[TKAlertCenter defaultCenter] postAlertWithMessage:@"A request has been sent to the owner"];
                 }
                 if (error) {

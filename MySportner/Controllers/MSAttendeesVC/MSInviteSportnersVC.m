@@ -86,7 +86,7 @@
     if ([selectedSportners count]) {
         [self showLoadingViewInView:self.navigationController.view];
         __weak MSInviteSportnersVC *weakSelf = self;
-        [self.activity addGuests:selectedSportners withBlock:^(BOOL succeeded, NSError *error) {
+        [self.activity addGuests:selectedSportners withBlock:^(PFObject *result, NSError *error) {
             [weakSelf hideLoadingView];
             [weakSelf.navigationController popViewControllerAnimated:YES];
             [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Invitations sent"];

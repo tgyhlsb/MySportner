@@ -86,50 +86,57 @@
 
 - (void)addGuest:(MSSportner *)sportner
 {
-    PFRelation *relation = [self guestRelation];
-    [relation addObject:sportner];
     NSMutableArray *tempGuests = [self.guests mutableCopy];
     [tempGuests addObject:sportner];
-    self.participants = tempGuests;
+    self.guests = tempGuests;
 }
 
 - (void)addGuests:(NSArray *)sportners
 {
-    PFRelation *relation = [self guestRelation];
     NSMutableArray *tempGuests = [self.guests mutableCopy];
-    
-    for (MSSportner *sportner in sportners) {
-        [relation addObject:sportner];
-        [tempGuests addObject:sportner];
+    [tempGuests addObjectsFromArray:sportners];
+    self.guests = tempGuests;
+}
+
+//- (void)addGuest:(MSSportner *)guest withBlock:(PFBooleanResultBlock)block
+//{
+////    [self addGuest:guest];
+////    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+////        if (succeeded && !error) {
+////            [self notifyActivityStateChanged];
+////        }
+////        if (block) {
+////            block(succeeded, error);
+////        }
+////    }];
+//    
+//    [PFCloud callFunctionInBackground:@"inviteSportner"
+//                       withParameters:@{@"activity": self, @"sportner": guest}
+//                                block:^(MSActivity *activity, NSError *error) {
+//                                    if (!error) {
+//                                        // ratings is 4.5
+//                                    }
+//                                }];
+//}
+
+- (void)addGuests:(NSArray *)guests withBlock:(PFObjectResultBlock)block
+{
+    NSMutableArray *tempIDs = [[NSMutableArray alloc] init];
+    for (MSSportner *sportner in guests) {
+        [tempIDs addObject:sportner.objectId];
     }
     
-    self.participants = tempGuests;
-}
-
-- (void)addGuest:(MSSportner *)guest withBlock:(PFBooleanResultBlock)block
-{
-    [self addGuest:guest];
-    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded && !error) {
-            [self notifyActivityStateChanged];
-        }
-        if (block) {
-            block(succeeded, error);
-        }
-    }];
-}
-
-- (void)addGuests:(NSArray *)guests withBlock:(PFBooleanResultBlock)block
-{
-    [self addGuests:guests];
-    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded && !error) {
-            [self notifyActivityStateChanged];
-        }
-        if (block) {
-            block(succeeded, error);
-        }
-    }];
+    [PFCloud callFunctionInBackground:@"inviteManySportner"
+                       withParameters:@{@"activity": self.objectId, @"sportners": tempIDs}
+                                block:^(MSActivity *activity, NSError *error) {
+                                    if (!error) {
+                                        [self addGuests:guests];
+                                    }
+                                    
+                                    if (block) {
+                                        block(self, error);
+                                    }
+                                }];
 }
 
 - (void)removeGuest:(MSSportner *)guest
@@ -141,18 +148,18 @@
     self.guests = tempGuests;
 }
 
-- (void)removeGuest:(MSSportner *)guest withBlock:(PFBooleanResultBlock)block
-{
-    [self removeGuest:guest];
-    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded && !error) {
-            [self notifyActivityStateChanged];
-        }
-        if (block) {
-            block(succeeded, error);
-        }
-    }];
-}
+//- (void)removeGuest:(MSSportner *)guest withBlock:(PFBooleanResultBlock)block
+//{
+//    [self removeGuest:guest];
+//    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if (succeeded && !error) {
+//            [self notifyActivityStateChanged];
+//        }
+//        if (block) {
+//            block(succeeded, error);
+//        }
+//    }];
+//}
 
 #pragma mark - Participants
 
@@ -269,25 +276,25 @@
 }
 
 - (void)addAwaiting:(MSSportner *)awaiting
-{
-    PFRelation *relation = [self awaitingRelation];
-    [relation addObject:awaiting];
+{;
     NSMutableArray *tempAwaitings = [self.awaitings mutableCopy];
     [tempAwaitings addObject:awaiting];
     self.awaitings = tempAwaitings;
 }
 
-- (void)addAwaiting:(MSSportner *)awaiting withBlock:(PFBooleanResultBlock)block
+- (void)addAwaiting:(MSSportner *)awaiting withBlock:(PFObjectResultBlock)block
 {
-    [self addAwaiting:awaiting];
-    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded && !error) {
-            [self notifyActivityStateChanged];
-        }
-        if (block) {
-            block(succeeded, error);
-        }
-    }];
+    [PFCloud callFunctionInBackground:@"addAwaiting"
+                       withParameters:@{@"activity": self.objectId, @"sportner": awaiting.objectId}
+                                block:^(MSActivity *activity, NSError *error) {
+                                    if (!error) {
+                                        [self addAwaiting:awaiting];
+                                    }
+                                    
+                                    if (block) {
+                                        block(self, error);
+                                    }
+                                }];
 }
 
 - (void)removeAwaiting:(MSSportner *)awaiting

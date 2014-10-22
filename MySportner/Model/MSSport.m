@@ -80,11 +80,4 @@ static NSArray *allSports;
     return (allSports && [allSports count]);
 }
 
-- (void)notifySportsLoaded
-{
-    [[NSNotificationCenter defaultCenter]
-     postNotificationName:MSNotificationSportsLoaded
-     object:self];
-}
-
 @end

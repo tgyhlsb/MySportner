@@ -12,8 +12,6 @@
 
 static NSString *MSSportWereFetch = @"MSSportWereFetch";
 
-static NSString *MSNotificationSportsLoaded = @"MSNotificationSportsLoaded";
-
 @interface MSSport : PFObject <PFSubclassing>
 
 @property (strong, nonatomic) NSString *name;

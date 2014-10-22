@@ -197,7 +197,7 @@
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(openApp)
-                                                 name:MSNotificationSportsLoaded
+                                                 name:MSSportWereFetch
                                                object:nil];
 }
 

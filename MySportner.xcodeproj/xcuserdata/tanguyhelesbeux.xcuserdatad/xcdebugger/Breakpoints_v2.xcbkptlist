@@ -334,16 +334,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MySportner/MSNotificationCenter.m"
-            timestampString = "435624839.728497"
+            filePath = "MySportner/Model/MSSport.m"
+            timestampString = "435630162.726208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "+handleNotification:"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "+fetchAllSports"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

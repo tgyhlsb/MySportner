@@ -29,6 +29,7 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 {
     self = [super initWithTableViewStyle:UITableViewStylePlain];
     if (self) {
+        self.title = @"COMMENTS";
     }
     return self;
 }

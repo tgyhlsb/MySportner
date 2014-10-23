@@ -45,6 +45,9 @@ static NSString *MSNotificationActivityAwaitingChanged = @"MSNotificationActivit
 - (PFRelation *)awaitingRelation;
 - (PFRelation *)commentRelation;
 
+
+- (void)setWithInfo:(NSDictionary *)activityInfo;
+
 - (void)fetchWithRelationAndBlock:(PFObjectResultBlock)block;
 
 - (void)fetchGuests;

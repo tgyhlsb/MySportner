@@ -425,24 +425,27 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
             [self inviteSportners];
             break;
         }
-        case MSUserStatusForActivityInvited:
-        {
-            [self joinTheGame];
-            break;
-        }
-        case MSUserStatusForActivityOther:
-        {
-            [self joinTheGame];
-            break;
-        }
-        case MSUserStatusForActivityConfirmed:
-        {
-            [self leaveTheGame];
-            break;
-        }
+//        case MSUserStatusForActivityInvited:
+//        {
+//            [self joinTheGame];
+//            break;
+//        }
+//        case MSUserStatusForActivityOther:
+//        {
+//            [self joinTheGame];
+//            break;
+//        }
+//        case MSUserStatusForActivityConfirmed:
+//        {
+//            [self leaveTheGame];
+//            break;
+//        }
             
         default:
+        {
+            [self performMainButtonAction];
             break;
+        }
     }
 }
 
@@ -461,6 +464,17 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
     MSInviteSportnersVC *destination = [MSInviteSportnersVC newController];
     destination.activity = self.activity;
     [self.navigationController pushViewController:destination animated:YES];
+}
+
+- (void)performMainButtonAction
+{
+    [PFCloud callFunctionInBackground:@"gameProfileAction"
+                       withParameters:@{@"activity": self.activity.objectId, @"sportner": [MSSportner currentSportner].objectId}
+                                block:^(NSDictionary *result, NSError *error) {
+                                    if (!error) {
+                                        [self.activity setWithInfo:result];
+                                    }
+                                }];
 }
 
 - (void)joinTheGame

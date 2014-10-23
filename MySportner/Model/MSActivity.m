@@ -47,7 +47,6 @@
 
 - (void)setWithInfo:(NSDictionary *)activityInfo
 {
-//    self = [result objectForKey:@"activity"];
     MSActivity *activity = [activityInfo objectForKey:@"activity"];
     
     self.date = activity.date;

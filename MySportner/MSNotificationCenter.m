@@ -53,7 +53,7 @@ static NSArray *userNotifications;
 + (void)handleNotification:(NSDictionary *)userInfo
 {
     [self fetchUserNotifications];
-    NSString *title = [[userInfo objectForKey:@"aps"] objectForKey:@"title"];
+    NSString *title = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     NSString *imageName = [userInfo objectForKey:@"imageName"];
     
     if (!imageName) {

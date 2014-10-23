@@ -7,6 +7,7 @@
 //
 
 #import "MSGameProfileVC.h"
+#import <Parse/Parse.h>
 
 #import "MSProfilePictureView.h"
 #import "QBFlatButton.h"
@@ -97,8 +98,20 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 {
     [super viewDidAppear:animated];
     
-    [self layoutBasedOnFrames];
-    [self tryToUpdateInformationView];
+//    [self layoutBasedOnFrames];
+    //    [self tryToUpdateInformationView];
+    [PFCloud callFunctionInBackground:@"requestGameProfile"
+                       withParameters:@{@"activity": self.activity.objectId}
+                                block:^(NSDictionary *result, NSError *error) {
+                                    if (!error) {
+                                        self.activity = [result objectForKey:@"activity"];
+                                        self.activity.awaitings = [result objectForKey:@"awaitingSportners"];
+                                        self.activity.guests = [result objectForKey:@"invitedSportners"];
+                                        self.activity.participants = [result objectForKey:@"confirmedSportners"];
+                                        [self updateInformationView];
+                                    }
+                                    [self stopLoading];
+                                }];
 }
 
 - (BOOL)allInformationsAreFetched

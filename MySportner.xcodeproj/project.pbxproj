@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A084D0D19F95DFF00AA6738 /* MSNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A084D0C19F95DFF00AA6738 /* MSNotification.m */; };
 		5A090AD91891948A0017B207 /* MSComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A090AD81891948A0017B207 /* MSComment.m */; };
 		5A0CB7EA1891714A0027EE58 /* slider-default-handle-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7CC189171490027EE58 /* slider-default-handle-highlighted.png */; };
 		5A0CB7EB1891714A0027EE58 /* slider-default-handle-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7CD189171490027EE58 /* slider-default-handle-highlighted@2x.png */; };
@@ -318,6 +319,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A084D0B19F95DFF00AA6738 /* MSNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSNotification.h; path = Model/MSNotification.h; sourceTree = "<group>"; };
+		5A084D0C19F95DFF00AA6738 /* MSNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSNotification.m; path = Model/MSNotification.m; sourceTree = "<group>"; };
 		5A090AD71891948A0017B207 /* MSComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSComment.h; path = Model/MSComment.h; sourceTree = "<group>"; };
 		5A090AD81891948A0017B207 /* MSComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSComment.m; path = Model/MSComment.m; sourceTree = "<group>"; };
 		5A0CB7CC189171490027EE58 /* slider-default-handle-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted.png"; sourceTree = "<group>"; };
@@ -1691,6 +1694,8 @@
 				5A9C90F7187C4C1E00065DBA /* MSSport.m */,
 				5A090AD71891948A0017B207 /* MSComment.h */,
 				5A090AD81891948A0017B207 /* MSComment.m */,
+				5A084D0B19F95DFF00AA6738 /* MSNotification.h */,
+				5A084D0C19F95DFF00AA6738 /* MSNotification.m */,
 				5A78B7F018958BA70074A5B3 /* MSAnnotation.h */,
 				5A78B7F118958BA70074A5B3 /* MSAnnotation.m */,
 			);
@@ -2205,6 +2210,7 @@
 				5A580E9919F3233400CA3846 /* MSFacebookManager.m in Sources */,
 				5A0D6F4B189A55F300C037C8 /* MSSportnersVC.m in Sources */,
 				5A1B73731844AB6200555FE4 /* MZFormSheetSegue.m in Sources */,
+				5A084D0D19F95DFF00AA6738 /* MSNotification.m in Sources */,
 				5A71BC5219F672EA001565A7 /* UITextView+SLKAdditions.m in Sources */,
 				5A1B73771844AC2700555FE4 /* MSLoginFormVC.m in Sources */,
 				5AFE44071842714D001376C7 /* MSFindFriendsVC.m in Sources */,

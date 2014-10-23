@@ -26,6 +26,7 @@
 #import "MSSportner.h"
 #import "MSSport.h"
 #import "MSNotificationCenter.h"
+#import "MSNotification.h"
 
 #import "MSWindow.h"
 
@@ -48,6 +49,7 @@
     [MSActivity registerSubclass];
     [MSSportner registerSubclass];
     [MSSport registerSubclass];
+    [MSNotification registerSubclass];
     
     [Parse setApplicationId:@"mXxe3WBY2KqxbWjjnBruVUyJGtyKjgjDpfuX6pAA"
                   clientKey:@"EFLTeHfWnuHxmwzKbg1xfsfYRRFSksMiWGlKYloM"];

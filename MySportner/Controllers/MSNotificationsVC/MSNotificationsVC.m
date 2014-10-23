@@ -7,6 +7,8 @@
 //
 
 #import "MSNotificationsVC.h"
+#import "MSNotification.h"
+#import "MSNotificationCenter.h"
 
 #define NIB_NAME @"MSNotificationsVC"
 
@@ -16,16 +18,18 @@
 
 @implementation MSNotificationsVC
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
 + (MSNotificationsVC *)newController
 {
     MSNotificationsVC *notificationsVC = [[MSNotificationsVC alloc] initWithNibName:NIB_NAME bundle:nil];
     notificationsVC.hasDirectAccessToDrawer = YES;
     return notificationsVC;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [MSNotificationCenter fetchUserNotifications];
 }
 
 @end

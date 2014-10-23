@@ -9,8 +9,39 @@
 #import "MSNotificationCenter.h"
 #import "CRToast.h"
 #import "UIImage+resize.h"
+#import <Parse/Parse.h>
+#import "MSSportner.h"
+
+static NSArray *userNotifications;
 
 @implementation MSNotificationCenter
+
++ (NSArray *)userNotifications
+{
+    return userNotifications;
+}
+
++ (void)fetchUserNotifications
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"MSNotification"];
+    [query whereKey:@"target" equalTo:[MSSportner currentSportner]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %d scores.", objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+
+#pragma mark - Push Notifications
 
 + (void)handleNotification:(NSDictionary *)userInfo
 {

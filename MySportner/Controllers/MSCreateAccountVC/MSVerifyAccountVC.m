@@ -646,6 +646,7 @@
 //        [weakDestination.navigationController pushViewController:destinationVC animated:YES];
         
         [weakDestination displayCongratulationPopUp];
+        [MSSportner setActualUserForPushNotifications];
     };
     
     self.hasAlreadySignUp = YES;

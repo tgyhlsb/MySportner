@@ -12,4 +12,7 @@
 
 + (void)handleNotification:(NSDictionary *)userInfo;
 
++ (void)fetchUserNotifications;
++ (NSArray *)userNotifications;
+
 @end

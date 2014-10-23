@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5A084D0D19F95DFF00AA6738 /* MSNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A084D0C19F95DFF00AA6738 /* MSNotification.m */; };
+		5A084D1119F96F8900AA6738 /* MSNotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A084D0F19F96F8900AA6738 /* MSNotificationCell.m */; };
+		5A084D1219F96F8900AA6738 /* MSNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A084D1019F96F8900AA6738 /* MSNotificationCell.xib */; };
 		5A090AD91891948A0017B207 /* MSComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A090AD81891948A0017B207 /* MSComment.m */; };
 		5A0CB7EA1891714A0027EE58 /* slider-default-handle-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7CC189171490027EE58 /* slider-default-handle-highlighted.png */; };
 		5A0CB7EB1891714A0027EE58 /* slider-default-handle-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CB7CD189171490027EE58 /* slider-default-handle-highlighted@2x.png */; };
@@ -321,6 +323,9 @@
 /* Begin PBXFileReference section */
 		5A084D0B19F95DFF00AA6738 /* MSNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSNotification.h; path = Model/MSNotification.h; sourceTree = "<group>"; };
 		5A084D0C19F95DFF00AA6738 /* MSNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSNotification.m; path = Model/MSNotification.m; sourceTree = "<group>"; };
+		5A084D0E19F96F8900AA6738 /* MSNotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSNotificationCell.h; path = Views/Cells/MSNotificationCell/MSNotificationCell.h; sourceTree = "<group>"; };
+		5A084D0F19F96F8900AA6738 /* MSNotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSNotificationCell.m; path = Views/Cells/MSNotificationCell/MSNotificationCell.m; sourceTree = "<group>"; };
+		5A084D1019F96F8900AA6738 /* MSNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSNotificationCell.xib; path = Views/Cells/MSNotificationCell/MSNotificationCell.xib; sourceTree = "<group>"; };
 		5A090AD71891948A0017B207 /* MSComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSComment.h; path = Model/MSComment.h; sourceTree = "<group>"; };
 		5A090AD81891948A0017B207 /* MSComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSComment.m; path = Model/MSComment.m; sourceTree = "<group>"; };
 		5A0CB7CC189171490027EE58 /* slider-default-handle-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted.png"; sourceTree = "<group>"; };
@@ -782,6 +787,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A084D1319F96F8E00AA6738 /* MSNotificationCell */ = {
+			isa = PBXGroup;
+			children = (
+				5A084D0E19F96F8900AA6738 /* MSNotificationCell.h */,
+				5A084D0F19F96F8900AA6738 /* MSNotificationCell.m */,
+				5A084D1019F96F8900AA6738 /* MSNotificationCell.xib */,
+			);
+			name = MSNotificationCell;
+			sourceTree = "<group>";
+		};
 		5A0CB7CA189171490027EE58 /* NMRangeSlider */ = {
 			isa = PBXGroup;
 			children = (
@@ -1620,6 +1635,7 @@
 				5A2B68F8189A599200D82870 /* MSSportnerCell */,
 				5A2B6902189AD05800D82870 /* MSAttendeesCell */,
 				5A622FA618A12FC500D33349 /* MSProfilePictureCell */,
+				5A084D1319F96F8E00AA6738 /* MSNotificationCell */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -2050,6 +2066,7 @@
 				5AA8A75318A9775F0086D0B6 /* setagame-icon.png in Resources */,
 				5ADCF2DA1840BDBB00E6C8D2 /* MSSmallSportCell.xib in Resources */,
 				5A580E6219F2570400CA3846 /* golf2.png in Resources */,
+				5A084D1219F96F8900AA6738 /* MSNotificationCell.xib in Resources */,
 				5ADCF2C51840AE0800E6C8D2 /* MSActivityVC.xib in Resources */,
 				5A622FA518A12FC000D33349 /* MSProfilePictureCell.xib in Resources */,
 				5A2B68F7189A598C00D82870 /* MSSportnerCell.xib in Resources */,
@@ -2134,6 +2151,7 @@
 				5ADCF3081840E80500E6C8D2 /* MSFourSquareKeyFactory.m in Sources */,
 				5A653B16189427D900E2B8AE /* MSCell.m in Sources */,
 				5A2D0A2918DF1E5900060F3F /* MSFlatButtonWhite.m in Sources */,
+				5A084D1119F96F8900AA6738 /* MSNotificationCell.m in Sources */,
 				5A9674521849D7CD0079EAC1 /* UITextField+MSTextFieldAppearance.m in Sources */,
 				5A96745C184A0ECA0079EAC1 /* UIImage+ImageEffects.m in Sources */,
 				5ADCF2D31840BA6400E6C8D2 /* MSPickSportCell.m in Sources */,

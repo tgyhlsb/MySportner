@@ -27,12 +27,8 @@ static NSArray *userNotifications;
     [query whereKey:@"target" equalTo:[MSSportner currentSportner]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %d scores.", objects.count);
-            // Do something with the found objects
-            for (PFObject *object in objects) {
-                NSLog(@"%@", object.objectId);
-            }
+            userNotifications = objects;
+            [self notifyUserNotificationsFetched];
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -40,11 +36,19 @@ static NSArray *userNotifications;
     }];
 }
 
++ (void)notifyUserNotificationsFetched
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationUserNotificationsFetched
+                                                        object:nil
+                                                      userInfo:nil];
+}
+
 
 #pragma mark - Push Notifications
 
 + (void)handleNotification:(NSDictionary *)userInfo
 {
+    [self fetchUserNotifications];
     NSString *message = [userInfo objectForKey:@"message"];
     NSString *title = [userInfo objectForKey:@"title"];
     NSString *imageName = [userInfo objectForKey:@"imageName"];

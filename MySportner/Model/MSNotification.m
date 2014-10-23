@@ -23,4 +23,9 @@
     return PARSE_CLASSNAME_NOTIFICATION;
 }
 
+- (NSComparisonResult)compareWithCreationDate:(MSNotification *)otherNotification
+{
+    return [otherNotification.createdAt compare:self.createdAt];
+}
+
 @end

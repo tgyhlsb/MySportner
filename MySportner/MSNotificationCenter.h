@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *MSNotificationUserNotificationsFetched = @"MSNotificationUserNotificationsFetched";
+
 @interface MSNotificationCenter : NSObject
 
 + (void)handleNotification:(NSDictionary *)userInfo;

@@ -24,4 +24,6 @@
 
 + (NSString *)parseClassName;
 
+- (NSComparisonResult)compareWithCreationDate:(MSNotification *)otherNotification;
+
 @end

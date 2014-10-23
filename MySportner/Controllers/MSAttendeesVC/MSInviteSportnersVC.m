@@ -65,12 +65,10 @@
     _activity = activity;
     
     self.sportnersVC.sportnerList = [MSSportner currentSportner].sportners;
-    self.facebookVC.sportnerList = self.activity.awaitings;
+    self.facebookVC.sportnerList = [[NSArray alloc] init];
     self.othersVC.sportnerList = nil;
     
     [self fetchOthersSportners];
-    [self.activity fetchGuests];
-    [self.activity fetchParticipants];
 }
 
 #pragma mark - Handlers

@@ -274,11 +274,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSActivityVC/MSGameProfileVC.m"
-            timestampString = "435782534.495964"
+            timestampString = "435791428.684377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "452"
-            endingLineNumber = "452"
+            startingLineNumber = "423"
+            endingLineNumber = "423"
             landmarkName = "-mainButtonHandler"
             landmarkType = "5">
          </BreakpointContent>
@@ -290,11 +290,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSActivityVC/MSGameProfileVC.m"
-            timestampString = "435782534.495964"
+            timestampString = "435791428.684377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "451"
-            endingLineNumber = "451"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
             landmarkName = "-mainButtonHandler"
             landmarkType = "5">
          </BreakpointContent>
@@ -353,22 +353,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MySportner/MSNotificationCenter.m"
-            timestampString = "435778218.654585"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "+handleNotification:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "SlackTextViewController/Messenger-Shared/MSMessageVC.m"
             timestampString = "435686961.2882"
             startingColumnNumber = "9223372036854775807"
@@ -402,11 +386,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSActivityVC/MSGameProfileVC.m"
-            timestampString = "435782534.495964"
+            timestampString = "435791428.684377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "500"
-            endingLineNumber = "500"
+            startingLineNumber = "471"
+            endingLineNumber = "471"
             landmarkName = "-joinTheGame"
             landmarkType = "5">
             <Locations>
@@ -448,11 +432,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Model/MSActivity.m"
-            timestampString = "435707911.69672"
+            timestampString = "435791207.612909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
             landmarkName = "-addAwaiting:withBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -464,11 +448,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Model/MSActivity.m"
-            timestampString = "435708065.931591"
+            timestampString = "435791207.612909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "-fetchGuests"
             landmarkType = "5">
          </BreakpointContent>
@@ -480,11 +464,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/MSNotificationCenter.m"
-            timestampString = "435774325.013161"
+            timestampString = "435796608.911489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "+fetchUserNotifications"
             landmarkType = "5">
          </BreakpointContent>
@@ -496,12 +480,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/MSNotificationCenter.m"
-            timestampString = "435778910.74169"
+            timestampString = "435796536.203428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "+fetchUserNotifications"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MySportner/Model/MSNotification.m"
+            timestampString = "435796367.76051"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "-title"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -19,8 +19,6 @@
 @implementation MSActivity
 
 @dynamic date;
-@dynamic day;
-@dynamic time;
 @dynamic place;
 @dynamic sport;
 @dynamic level;
@@ -45,6 +43,41 @@
 - (NSComparisonResult)compareWithCreationDate:(MSActivity *)otherActivity
 {
     return [otherActivity.createdAt compare:self.createdAt];
+}
+
+- (void)setWithInfo:(NSDictionary *)activityInfo
+{
+//    self = [result objectForKey:@"activity"];
+    MSActivity *activity = [activityInfo objectForKey:@"activity"];
+    
+    self.date = activity.date;
+    self.place = activity.place;
+    self.sport = activity.sport;
+    self.level = activity.level;
+    self.maxPlayer = activity.maxPlayer;
+    self.whereExactly = activity.whereExactly;
+    self.playerNeeded = activity.playerNeeded;
+    self.nbComment = activity.nbComment;
+    self.owner = self.owner;
+    
+    self.awaitings = [activityInfo objectForKey:@"awaitingSportners"];
+    self.guests = [activityInfo objectForKey:@"invitedSportners"];
+    self.participants = [activityInfo objectForKey:@"confirmedSportners"];
+}
+
+- (void)fetchWithRelationAndBlock:(PFObjectResultBlock)block
+{
+    [PFCloud callFunctionInBackground:@"requestGameProfile"
+                       withParameters:@{@"activity": self.objectId}
+                                block:^(NSDictionary *result, NSError *error) {
+                                    if (!error) {
+                                        [self setWithInfo:result];
+                                        [self notifyActivityStateChanged];
+                                    }
+                                    if (block) {
+                                        block(self, error);
+                                    }
+                                }];
 }
 
 - (PFRelation *)guestRelation

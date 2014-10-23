@@ -32,7 +32,7 @@
 {
     _notification = notification;
     
-    self.messageLabel.text = notification.title;
+    self.messageLabel.attributedText = [notification title];
 }
 
 

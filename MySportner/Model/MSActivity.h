@@ -24,8 +24,6 @@ static NSString *MSNotificationActivityAwaitingChanged = @"MSNotificationActivit
 @interface MSActivity : PFObject <PFSubclassing>
 
 @property (strong, nonatomic) NSDate *date;
-@property (strong, nonatomic) NSString *day;
-@property (strong, nonatomic) NSString *time;
 @property (strong, nonatomic) NSString *place;
 @property (strong, nonatomic) MSSport *sport;
 @property (strong, nonatomic) NSNumber *level;
@@ -46,6 +44,8 @@ static NSString *MSNotificationActivityAwaitingChanged = @"MSNotificationActivit
 - (PFRelation *)participantRelation;
 - (PFRelation *)awaitingRelation;
 - (PFRelation *)commentRelation;
+
+- (void)fetchWithRelationAndBlock:(PFObjectResultBlock)block;
 
 - (void)fetchGuests;
 - (void)addGuests:(NSArray *)guests withBlock:(PFObjectResultBlock)block;

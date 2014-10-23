@@ -24,6 +24,10 @@ static NSArray *userNotifications;
 + (void)fetchUserNotifications
 {
     PFQuery *query = [PFQuery queryWithClassName:@"MSNotification"];
+    [query includeKey:@"sportner"];
+    [query includeKey:@"activity"];
+    [query includeKey:@"activity.sport"];
+    [query includeKey:@"target"];
     [query whereKey:@"target" equalTo:[MSSportner currentSportner]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -49,8 +53,7 @@ static NSArray *userNotifications;
 + (void)handleNotification:(NSDictionary *)userInfo
 {
     [self fetchUserNotifications];
-    NSString *message = [userInfo objectForKey:@"message"];
-    NSString *title = [userInfo objectForKey:@"title"];
+    NSString *title = [[userInfo objectForKey:@"aps"] objectForKey:@"title"];
     NSString *imageName = [userInfo objectForKey:@"imageName"];
     
     if (!imageName) {
@@ -64,10 +67,6 @@ static NSArray *userNotifications;
     
     if (title) {
         [options setObject:title forKey:kCRToastTextKey];
-    }
-    
-    if (message) {
-        [options setObject:message forKey:kCRToastSubtitleTextKey];
     }
     
     if (image) {

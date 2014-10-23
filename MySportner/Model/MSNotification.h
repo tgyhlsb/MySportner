@@ -15,14 +15,15 @@
 
 @interface MSNotification : PFObject <PFSubclassing>
 
-@property (strong, nonatomic) NSString *message;
-@property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *type;
-
 @property (strong, nonatomic) MSSportner *target;
+@property (strong, nonatomic) MSSportner *sportner;
 @property (strong, nonatomic) MSActivity *activity;
 
 + (NSString *)parseClassName;
+
+- (NSAttributedString *)title;
+- (NSAttributedString *)subtitle;
 
 - (NSComparisonResult)compareWithCreationDate:(MSNotification *)otherNotification;
 

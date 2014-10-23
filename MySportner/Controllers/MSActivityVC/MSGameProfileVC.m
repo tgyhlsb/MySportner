@@ -98,25 +98,12 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 {
     [super viewDidAppear:animated];
     
-//    [self layoutBasedOnFrames];
-    //    [self tryToUpdateInformationView];
-    [PFCloud callFunctionInBackground:@"requestGameProfile"
-                       withParameters:@{@"activity": self.activity.objectId}
-                                block:^(NSDictionary *result, NSError *error) {
-                                    if (!error) {
-                                        self.activity = [result objectForKey:@"activity"];
-                                        self.activity.awaitings = [result objectForKey:@"awaitingSportners"];
-                                        self.activity.guests = [result objectForKey:@"invitedSportners"];
-                                        self.activity.participants = [result objectForKey:@"confirmedSportners"];
-                                        [self updateInformationView];
-                                    }
-                                    [self stopLoading];
-                                }];
-}
-
-- (BOOL)allInformationsAreFetched
-{
-    return self.activity.comments && self.activity.participants && self.activity.guests && self.activity.awaitings;
+    [self layoutBasedOnFrames];
+    
+    [self.activity fetchWithRelationAndBlock:^(PFObject *object, NSError *error) {
+        [self updateInformationView];
+        [self stopLoading];
+    }];
 }
 
 #pragma mark - Appearance
@@ -180,20 +167,6 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 {
     [self.roundedView setRounded];
     [self.ownerPictureView setRounded];
-}
-
-- (void)tryToUpdateInformationView
-{
-    [self startLoading];
-    if ([self allInformationsAreFetched]) {
-        [self updateInformationView];
-        [self stopLoading];
-    } else {
-        [self.activity fetchComments];
-        [self.activity fetchGuests];
-        [self.activity fetchParticipants];
-        [self.activity fetchAwaitings];
-    }
 }
 
 - (void)updateInformationView
@@ -396,10 +369,8 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 
 - (void)activityNotificationReceived
 {
-    if ([self allInformationsAreFetched]) {
-        [self updateInformationView];
-        [self stopLoading];
-    }
+    [self updateInformationView];
+    [self stopLoading];
 }
 
 #pragma mark - Handlers
@@ -556,8 +527,8 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 
 - (void)pushToComments
 {
-//    MSCommentsVC *destination = [MSCommentsVC newController];
-//    destination.activity = self.activity;
+    //    MSCommentsVC *destination = [MSCommentsVC newController];
+    //    destination.activity = self.activity;
     
     MSMessageVC *destination = [MSMessageVC new];
     destination.activity = self.activity;

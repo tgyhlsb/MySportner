@@ -16,6 +16,7 @@ static NSString *MSNotificationTypeJoined = @"MSNotificationTypeJoined";
 static NSString *MSNotificationTypeAwaiting = @"MSNotificationTypeAwaiting";
 static NSString *MSNotificationTypeAcceptedInvitation = @"MSNotificationTypeAcceptedInvitation";
 static NSString *MSNotificationTypeLeft = @"MSNotificationTypeLeft";
+static NSString *MSNotificationTypeComment = @"MSNotificationTypeComment";
 
 @implementation MSNotification
 
@@ -67,6 +68,8 @@ static NSString *MSNotificationTypeLeft = @"MSNotificationTypeLeft";
         textString = @" joined ";
     } else if ([self.type isEqualToString:MSNotificationTypeLeft]) {
         textString = @" left ";
+    } else if ([self.type isEqualToString:MSNotificationTypeComment]) {
+        textString = @" commented ";
     }
     NSAttributedString *textAttributedString = [[NSAttributedString alloc] initWithString:textString
                                                                                attributes:textAttributes];

@@ -45,14 +45,6 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-//    NSMutableArray *array = [[NSMutableArray alloc] init];
-//    
-//    for (int i = 0; i < 100; i++) {
-//        NSInteger words = (arc4random() % 15)+1;
-//        [array addObject:[LoremIpsum wordsWithNumber:words]];
-//    }
-//    
     [self loadMessagesFromActivity];
     
     self.bounces = YES;
@@ -138,6 +130,8 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
     NSArray *sorted = [self.activity.comments sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
     NSArray *reversed = [[sorted reverseObjectEnumerator] allObjects];
     self.messages = [[NSMutableArray alloc] initWithArray:reversed];
+    
+    [self.tableView reloadData];
 }
 
 - (MSComment *)newMessageWithText:(NSString *)text

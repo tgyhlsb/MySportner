@@ -62,6 +62,8 @@
     self.awaitings = [activityInfo objectForKey:@"awaitingSportners"];
     self.guests = [activityInfo objectForKey:@"invitedSportners"];
     self.participants = [activityInfo objectForKey:@"confirmedSportners"];
+    
+    [self notifyActivityStateChanged];
 }
 
 - (void)fetchWithRelationAndBlock:(PFObjectResultBlock)block
@@ -71,7 +73,6 @@
                                 block:^(NSDictionary *result, NSError *error) {
                                     if (!error) {
                                         [self setWithInfo:result];
-                                        [self notifyActivityStateChanged];
                                     }
                                     if (block) {
                                         block(self, error);
@@ -116,20 +117,6 @@
     }];
 }
 
-- (void)addGuests:(NSArray *)sportners
-{
-    NSMutableArray *tempGuests = [self.guests mutableCopy];
-    [tempGuests addObjectsFromArray:sportners];
-    self.guests = tempGuests;
-}
-
-- (void)removeInvited:(MSSportner *)invited
-{
-    NSMutableArray *tempInvited = [self.guests mutableCopy];
-    [tempInvited removeObject:invited];
-    self.guests = tempInvited;
-}
-
 - (void)addGuests:(NSArray *)guests withBlock:(PFObjectResultBlock)block
 {
     NSMutableArray *tempIDs = [[NSMutableArray alloc] init];
@@ -139,12 +126,9 @@
     
     [PFCloud callFunctionInBackground:@"inviteManySportner"
                        withParameters:@{@"activity": self.objectId, @"sportners": tempIDs}
-                                block:^(MSActivity *activity, NSError *error) {
+                                block:^(NSDictionary *result, NSError *error) {
                                     if (!error) {
-                                        [self addGuests:guests];
-                                        self.playerNeeded = activity.playerNeeded;
-                                        
-                                        [self notifyActivityStateChanged];
+                                        [self setWithInfo:result];
                                     }
                                     
                                     if (block) {
@@ -170,57 +154,6 @@
     }];
 }
 
-- (void)addParticipant:(MSSportner *)sportner
-{
-    NSMutableArray *tempParticipants = [self.participants mutableCopy];
-    [tempParticipants addObject:sportner];
-    self.participants = tempParticipants;
-}
-
-- (void)addParticipant:(MSSportner *)participant withBlock:(PFObjectResultBlock)block
-{
-    [PFCloud callFunctionInBackground:@"addConfirmed"
-                       withParameters:@{@"activity": self.objectId, @"sportner": participant.objectId}
-                                block:^(MSActivity *activity, NSError *error) {
-                                    if (!error) {
-                                        [self removeAwaiting:participant];
-                                        [self removeInvited:participant];
-                                        [self addParticipant:participant];
-                                        self.playerNeeded = activity.playerNeeded;
-                                        
-                                        [self notifyActivityStateChanged];
-                                    }
-                                    
-                                    if (block) {
-                                        block(self, error);
-                                    }
-                                }];
-}
-- (void)removeParticipant:(MSSportner *)participant
-{
-    NSMutableArray *tempParticipants = [self.participants mutableCopy];
-    [tempParticipants removeObject:participant];
-    self.participants = tempParticipants;
-}
-
-- (void)removeParticipant:(MSSportner *)participant withBlock:(PFObjectResultBlock)block
-{
-    [PFCloud callFunctionInBackground:@"removeConfirmed"
-                       withParameters:@{@"activity": self.objectId, @"sportner": participant.objectId}
-                                block:^(MSActivity *activity, NSError *error) {
-                                    if (!error) {
-                                        [self removeParticipant:participant];
-                                        self.playerNeeded = activity.playerNeeded;
-                                        
-                                        [self notifyActivityStateChanged];
-                                    }
-                                    
-                                    if (block) {
-                                        block(self, error);
-                                    }
-                                }];
-}
-
 #pragma mark - Awaitings
 
 - (void)fetchAwaitings
@@ -236,38 +169,6 @@
             NSLog(@"%@", error);
         }
     }];
-}
-
-- (void)addAwaiting:(MSSportner *)awaiting
-{
-    NSMutableArray *tempAwaitings = [self.awaitings mutableCopy];
-    [tempAwaitings addObject:awaiting];
-    self.awaitings = tempAwaitings;
-}
-
-- (void)removeAwaiting:(MSSportner *)awaiting
-{
-    NSMutableArray *tempAwaitings = [self.awaitings mutableCopy];
-    [tempAwaitings removeObject:awaiting];
-    self.awaitings = tempAwaitings;
-}
-
-- (void)addAwaiting:(MSSportner *)awaiting withBlock:(PFObjectResultBlock)block
-{
-    [PFCloud callFunctionInBackground:@"addAwaiting"
-                       withParameters:@{@"activity": self.objectId, @"sportner": awaiting.objectId}
-                                block:^(MSActivity *activity, NSError *error) {
-                                    if (!error) {
-                                        [self addAwaiting:awaiting];
-                                        self.playerNeeded = activity.playerNeeded;
-                                        
-                                        [self notifyActivityStateChanged];
-                                    }
-                                    
-                                    if (block) {
-                                        block(self, error);
-                                    }
-                                }];
 }
 
 #pragma mark - Messages

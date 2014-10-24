@@ -7,12 +7,15 @@
 //
 
 #import "MSNotificationCenter.h"
+
 #import "CRToast.h"
 #import "UIImage+resize.h"
-#import <Parse/Parse.h>
+
 #import "MSSportner.h"
+#import "MSActivity.h"
 
 static NSArray *userNotifications;
+static PFObject *observedObject;
 
 @implementation MSNotificationCenter
 
@@ -47,12 +50,32 @@ static NSArray *userNotifications;
                                                       userInfo:nil];
 }
 
+#pragma mark - Observed Object
+
++ (void)setObservedObject:(PFObject *)object
+{
+    observedObject = object;
+}
+
++ (void)notifyObservedObjectUpdated
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationObservedObjectUpdated
+                                                        object:nil
+                                                      userInfo:nil];
+}
+
 
 #pragma mark - Push Notifications
 
 + (void)handleNotification:(NSDictionary *)userInfo
 {
     [self fetchUserNotifications];
+    
+    NSString *activityId = [[userInfo objectForKey:@"activity"] objectForKey:@"objectId"];
+    if ([activityId isEqualToString:observedObject.objectId]) {
+        [self notifyObservedObjectUpdated];
+    }
+    
     NSString *title = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     NSString *imageName = [userInfo objectForKey:@"imageName"];
     

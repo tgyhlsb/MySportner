@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
 static NSString *MSNotificationUserNotificationsFetched = @"MSNotificationUserNotificationsFetched";
+
+static NSString *MSNotificationObservedObjectUpdated = @"MSNotificationObservedObjectUpdated";
 
 @interface MSNotificationCenter : NSObject
 
@@ -16,5 +19,7 @@ static NSString *MSNotificationUserNotificationsFetched = @"MSNotificationUserNo
 
 + (void)fetchUserNotifications;
 + (NSArray *)userNotifications;
+
++ (void)setObservedObject:(PFObject *)object;
 
 @end

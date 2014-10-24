@@ -17,6 +17,7 @@
 #import "MSColorFactory.h"
 #import "MSStyleFactory.h"
 #import "TKAlertCenter.h"
+#import "MSNotificationCenter.h"
 
 #import "MSAttendeesVC.h"
 #import "MSCommentsVC.h"
@@ -91,6 +92,11 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
     [self registerToActivityNotifications];
     [self registerGestureRecognizers];
     
+    [self.activity fetchWithRelationAndBlock:^(PFObject *object, NSError *error) {
+        [self updateInformationView];
+        [self stopLoading];
+    }];
+    
     self.navigationController.navigationBar.translucent = NO;
 }
 
@@ -99,11 +105,6 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
     [super viewDidAppear:animated];
     
     [self layoutBasedOnFrames];
-    
-    [self.activity fetchWithRelationAndBlock:^(PFObject *object, NSError *error) {
-        [self updateInformationView];
-        [self stopLoading];
-    }];
 }
 
 #pragma mark - Appearance
@@ -254,7 +255,7 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
         }
         case MSUserStatusForActivityInvited:
         {
-            [self setButtonEnabled:YES withTitle:@"JOIN THE GAME"];
+            [self setButtonEnabled:YES withTitle:@"ACCEPT INVITATION"];
             break;
         }
         case MSUserStatusForActivityInvitedFull:
@@ -302,6 +303,11 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
         [MSStyleFactory setQBFlatButton:self.mainButton withStyle:MSFlatButtonStyleGray];
     }
     self.mainButton.enabled = enabled;
+}
+
+- (void)lockButton
+{
+    [self setButtonEnabled:NO withTitle:self.mainButton.titleLabel.text];
 }
 
 - (void)setViewWithDate:(NSDate *)date
@@ -365,12 +371,25 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
                                              selector:@selector(activityNotificationReceived)
                                                  name:MSNotificationActivityStateChanged
                                                object:self.activity];
+    
+    [MSNotificationCenter setObservedObject:self.activity];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(activityNeedsUpdate)
+                                                 name:MSNotificationObservedObjectUpdated
+                                               object:nil];
 }
 
 - (void)activityNotificationReceived
 {
     [self updateInformationView];
     [self stopLoading];
+}
+
+- (void)activityNeedsUpdate
+{
+    [self.activity fetchWithRelationAndBlock:^(PFObject *object, NSError *error) {
+        
+    }];
 }
 
 #pragma mark - Handlers
@@ -425,21 +444,6 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
             [self inviteSportners];
             break;
         }
-//        case MSUserStatusForActivityInvited:
-//        {
-//            [self joinTheGame];
-//            break;
-//        }
-//        case MSUserStatusForActivityOther:
-//        {
-//            [self joinTheGame];
-//            break;
-//        }
-//        case MSUserStatusForActivityConfirmed:
-//        {
-//            [self leaveTheGame];
-//            break;
-//        }
             
         default:
         {
@@ -468,6 +472,7 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 
 - (void)performMainButtonAction
 {
+    [self lockButton];
     [PFCloud callFunctionInBackground:@"gameProfileAction"
                        withParameters:@{@"activity": self.activity.objectId, @"sportner": [MSSportner currentSportner].objectId}
                                 block:^(NSDictionary *result, NSError *error) {
@@ -475,58 +480,6 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
                                         [self.activity setWithInfo:result];
                                     }
                                 }];
-}
-
-- (void)joinTheGame
-{
-    switch (self.sportnerStatus) {
-        case MSUserStatusForActivityOther:
-        {
-            [self.activity addAwaiting:[MSSportner currentSportner] withBlock:^(PFObject *result, NSError *error) {
-                
-                if (result && !error) {
-                    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"A request has been sent to the owner"];
-                }
-                if (error) {
-                    NSLog(@"%@", error);
-                }
-            }];
-            break;
-        }
-        case MSUserStatusForActivityInvited:
-        {
-            [self.activity addParticipant:[MSSportner currentSportner] withBlock:^(PFObject *activity, NSError *error) {
-                
-                if (activity && !error) {
-                    [[TKAlertCenter defaultCenter] postAlertWithMessage:@"You joined the game !"];
-                }
-                
-                if (error) {
-                    NSLog(@"%@", error);
-                }
-                
-            }];
-            break;
-        }
-            
-        default:
-            break;
-    }
-}
-
-- (void)leaveTheGame
-{
-    [self.activity removeParticipant:[MSSportner currentSportner] withBlock:^(PFObject *activity, NSError *error) {
-        
-        if (activity && !error) {
-            [[TKAlertCenter defaultCenter] postAlertWithMessage:@"You left the game"];
-        }
-        
-        if (error) {
-            NSLog(@"%@", error);
-        }
-        
-    }];
 }
 
 
@@ -541,9 +494,6 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 
 - (void)pushToComments
 {
-    //    MSCommentsVC *destination = [MSCommentsVC newController];
-    //    destination.activity = self.activity;
-    
     MSMessageVC *destination = [MSMessageVC new];
     destination.activity = self.activity;
     

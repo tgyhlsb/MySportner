@@ -49,16 +49,11 @@ static NSString *MSNotificationActivityAwaitingChanged = @"MSNotificationActivit
 - (void)setWithInfo:(NSDictionary *)activityInfo;
 
 - (void)fetchWithRelationAndBlock:(PFObjectResultBlock)block;
-
-- (void)fetchGuests;
 - (void)addGuests:(NSArray *)guests withBlock:(PFObjectResultBlock)block;
 
+- (void)fetchGuests;
 - (void)fetchParticipants;
-- (void)addParticipant:(MSSportner *)participant withBlock:(PFObjectResultBlock)block;
-- (void)removeParticipant:(MSSportner *)participant withBlock:(PFObjectResultBlock)block;
-
 - (void)fetchAwaitings;
-- (void)addAwaiting:(MSSportner *)awaiting withBlock:(PFObjectResultBlock)block;
 
 + (NSString *)parseClassName;
 

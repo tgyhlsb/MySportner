@@ -81,6 +81,13 @@
     [self updateLoadingView];
 }
 
+- (void)setAllowsMultipleSelection:(BOOL)allowsMultipleSelection
+{
+    _allowsMultipleSelection = allowsMultipleSelection;
+    
+    self.tableView.allowsSelection = allowsMultipleSelection;
+}
+
 - (void)updateLoadingView
 {
     if (self.isLoading) {

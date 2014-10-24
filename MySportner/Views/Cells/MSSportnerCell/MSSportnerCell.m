@@ -87,6 +87,7 @@
 - (void)setIsDisabled:(BOOL)isDisabled
 {
     _isDisabled = isDisabled;
+    self.userInteractionEnabled = !isDisabled;
     
     if (isDisabled) {
         self.isSelected = NO;

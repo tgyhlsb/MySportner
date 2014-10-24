@@ -1354,7 +1354,7 @@ CRToastAnimationStepBlock CRToastOutwardAnimationsSetupBlock(CRToastManager *wea
 - (void)dismissNotification:(BOOL)animated {
     if (_notifications.count == 0) return;
     
-    if (animated && (self.notification.state == CRToastStateEntering || self.notification.state == CRToastStateDisplaying)) {
+    if (animated && (self.notification.state == CRToastStateEntering || self.notification.state == CRToastStateDisplaying || self.notification.state == CRToastStateWaiting)) {
         __weak __block typeof(self) weakSelf = self;
         CRToastOutwardAnimationsSetupBlock(weakSelf)();
     } else {

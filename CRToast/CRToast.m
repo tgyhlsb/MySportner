@@ -86,7 +86,7 @@ typedef NS_ENUM(NSInteger, CRToastState) {
 // device is running iOS 8 or later, in order to pass Travis CI. Can be removed
 // once Travis CI is updated to support Xcode 6 and iOS 8 SDK.
 #ifndef NSFoundationVersionNumber_iOS_7_1
-	#define NSFoundationVersionNumber_iOS_7_1 1047.25
+    #define NSFoundationVersionNumber_iOS_7_1 1047.25
 #endif
 
 #pragma mark - CRToast
@@ -277,12 +277,12 @@ static UIInterfaceOrientation CRGetDeviceOrientation() {
 }
 
 static CGFloat CRGetStatusBarHeightForOrientation(UIInterfaceOrientation orientation) {
-	CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-	
-	if (kCRFrameAutoAdjustedForOrientation) {
-		return CGRectGetHeight(statusBarFrame);
-	}
-	
+    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+    
+    if (kCRFrameAutoAdjustedForOrientation) {
+        return CGRectGetHeight(statusBarFrame);
+    }
+    
     return (UIDeviceOrientationIsLandscape(orientation)) ?
     CGRectGetWidth(statusBarFrame) :
     CGRectGetHeight(statusBarFrame);
@@ -293,15 +293,15 @@ static CGFloat CRGetStatusBarHeight() {
 }
 
 static CGFloat CRGetStatusBarWidthForOrientation(UIInterfaceOrientation orientation) {
-	CGRect mainScreenBounds = [UIScreen mainScreen].bounds;
-	
-	if (kCRFrameAutoAdjustedForOrientation) {
-		return CGRectGetWidth(mainScreenBounds);
-	}
-	
+    CGRect mainScreenBounds = [UIScreen mainScreen].bounds;
+    
+    if (kCRFrameAutoAdjustedForOrientation) {
+        return CGRectGetWidth(mainScreenBounds);
+    }
+    
     return (UIDeviceOrientationIsPortrait(orientation)) ?
-	CGRectGetWidth(mainScreenBounds) :
-	CGRectGetHeight(mainScreenBounds);
+    CGRectGetWidth(mainScreenBounds) :
+    CGRectGetHeight(mainScreenBounds);
 }
 
 static CGFloat CRGetStatusBarWidth() {
@@ -450,9 +450,9 @@ NSArray * CRToastGenericRecognizersMake(id target, CRToastInteractionResponder *
 + (void)initialize {
     if (self == [CRToast class]) {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
-		kCRFrameAutoAdjustedForOrientation = (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1);
+        kCRFrameAutoAdjustedForOrientation = (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1);
 #endif
-		
+        
         kCRFontDefault = [UIFont systemFontOfSize:12];
         kCRTextColorDefault = [UIColor whiteColor];
         kCRTextShadowOffsetDefault = CGSizeZero;
@@ -504,7 +504,7 @@ NSArray * CRToastGenericRecognizersMake(id target, CRToastInteractionResponder *
     notification.state = CRToastStateWaiting;
     notification.uuid = [NSUUID UUID];
     notification.appearance = appearance;
-	
+    
     return notification;
 }
 
@@ -1219,7 +1219,7 @@ typedef void (^CRToastAnimationStepBlock)(void);
     [[CRToastManager manager] addNotification:[CRToast notificationWithOptions:options
                                                                appearanceBlock:nil
                                                                completionBlock:completion
-                                                               ]];
+                                               ]];
 }
 
 + (void)showNotificationWithMessage:(NSString*)message completionBlock:(void (^)(void))completion {
@@ -1228,7 +1228,7 @@ typedef void (^CRToastAnimationStepBlock)(void);
 }
 
 + (void)showNotificationWithOptions:(NSDictionary*)options
-                    apperanceBlock:(void (^)(void))appearance
+                     apperanceBlock:(void (^)(void))appearance
                     completionBlock:(void (^)(void))completion
 {
     [[CRToastManager manager] addNotification:[CRToast notificationWithOptions:options
@@ -1386,27 +1386,27 @@ CRToastAnimationStepBlock CRToastOutwardAnimationsSetupBlock(CRToastManager *wea
     CGSize notificationSize = CRNotificationViewSize(notification.notificationType, notification.preferredHeight);
     
     CGRect containerFrame = CGRectMake(0, 0, notificationSize.width, notificationSize.height);
-	
-	if (!kCRFrameAutoAdjustedForOrientation) {
-		UIInterfaceOrientation statusBarOrientation = CRGetDeviceOrientation();
-		switch (statusBarOrientation) {
-			case UIInterfaceOrientationLandscapeLeft: {
-				containerFrame = CGRectMake(0, 0, notificationSize.height, notificationSize.width);
-				break;
-			}
-			case UIInterfaceOrientationLandscapeRight: {
-				containerFrame = CGRectMake(CGRectGetWidth([[UIScreen mainScreen] bounds])-notificationSize.height, 0, notificationSize.height, notificationSize.width);
-				break;
-			}
-			case UIInterfaceOrientationPortraitUpsideDown: {
-				containerFrame = CGRectMake(0, CGRectGetHeight([[UIScreen mainScreen] bounds])-notificationSize.height, notificationSize.width, notificationSize.height);
-				break;
-			}
-			default: {
-				break;
-			}
-		}
-	}
+    
+    if (!kCRFrameAutoAdjustedForOrientation) {
+        UIInterfaceOrientation statusBarOrientation = CRGetDeviceOrientation();
+        switch (statusBarOrientation) {
+            case UIInterfaceOrientationLandscapeLeft: {
+                containerFrame = CGRectMake(0, 0, notificationSize.height, notificationSize.width);
+                break;
+            }
+            case UIInterfaceOrientationLandscapeRight: {
+                containerFrame = CGRectMake(CGRectGetWidth([[UIScreen mainScreen] bounds])-notificationSize.height, 0, notificationSize.height, notificationSize.width);
+                break;
+            }
+            case UIInterfaceOrientationPortraitUpsideDown: {
+                containerFrame = CGRectMake(0, CGRectGetHeight([[UIScreen mainScreen] bounds])-notificationSize.height, notificationSize.width, notificationSize.height);
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+    }
     
     CRToastViewController *rootViewController = (CRToastViewController*)_notificationWindow.rootViewController;
     [rootViewController statusBarStyle:notification.statusBarStyle];
@@ -1446,12 +1446,14 @@ CRToastAnimationStepBlock CRToastOutwardAnimationsSetupBlock(CRToastManager *wea
     CRToastAnimationCompletionBlock inwardAnimationsCompletionBlock = ^void(BOOL finished) {
         if (notification.timeInterval != DBL_MAX && notification.state == CRToastStateEntering) {
             notification.state = CRToastStateDisplaying;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(notification.timeInterval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if (weakSelf.notification.state == CRToastStateDisplaying && [weakSelf.notification.uuid.UUIDString isEqualToString:notificationUUIDString]) {
-                    self.gravityAnimationCompletionBlock = NULL;
-                    CRToastOutwardAnimationsSetupBlock(weakSelf)();
-                }
-            });
+            if (notification.timeInterval > 0) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(notification.timeInterval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    if (weakSelf.notification.state == CRToastStateDisplaying && [weakSelf.notification.uuid.UUIDString isEqualToString:notificationUUIDString]) {
+                        self.gravityAnimationCompletionBlock = NULL;
+                        CRToastOutwardAnimationsSetupBlock(weakSelf)();
+                    }
+                });
+            }
         }
     };
     

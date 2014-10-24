@@ -180,7 +180,7 @@ static BOOL shouldDisplayNotificationOnStatusBar;
                               kCRToastUnderStatusBarKey: @NO,
                               kCRToastBackgroundColorKey: [MSColorFactory mainColor],
                               kCRToastTextColorKey: [UIColor whiteColor],
-                              kCRToastTimeIntervalKey: @(10)
+                              kCRToastTimeIntervalKey: @(DBL_MAX)
                               };
     return options;
 }

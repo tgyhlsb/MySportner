@@ -13,6 +13,14 @@
 
 #define PARSE_CLASSNAME_NOTIFICATION @"MSNotification"
 
+static NSString *MSNotificationTypeInvitation = @"MSNotificationTypeInvitation";
+static NSString *MSNotificationTypeAcceptedAwaiting = @"MSNotificationTypeAcceptedAwaiting";
+static NSString *MSNotificationTypeJoined = @"MSNotificationTypeJoined";
+static NSString *MSNotificationTypeAwaiting = @"MSNotificationTypeAwaiting";
+static NSString *MSNotificationTypeAcceptedInvitation = @"MSNotificationTypeAcceptedInvitation";
+static NSString *MSNotificationTypeLeft = @"MSNotificationTypeLeft";
+static NSString *MSNotificationTypeComment = @"MSNotificationTypeComment";
+
 @interface MSNotification : PFObject <PFSubclassing>
 
 @property (strong, nonatomic) NSString *type;
@@ -21,9 +29,6 @@
 @property (strong, nonatomic) MSActivity *activity;
 
 + (NSString *)parseClassName;
-
-- (NSAttributedString *)title;
-- (NSAttributedString *)subtitle;
 
 - (NSComparisonResult)compareWithCreationDate:(MSNotification *)otherNotification;
 

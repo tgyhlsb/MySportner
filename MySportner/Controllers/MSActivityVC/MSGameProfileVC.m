@@ -234,15 +234,6 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 
 - (void)setButtonForStatus:(MSUserStatusForActivity)status
 {
-    if ([self.activity.playerNeeded integerValue]) {
-        [self.mainButton setTitle:@"INVITE SPORTNERS" forState:UIControlStateNormal];
-        [MSStyleFactory setQBFlatButton:self.mainButton withStyle:MSFlatButtonStyleGreen];
-        self.mainButton.userInteractionEnabled = YES;
-    } else {
-        [self.mainButton setTitle:@"FULL" forState:UIControlStateNormal];
-        [MSStyleFactory setQBFlatButton:self.mainButton withStyle:MSFlatButtonStyleGray];
-        self.mainButton.userInteractionEnabled = NO;
-    }
     
     switch (status) {
         case MSUserStatusForActivityOwner:
@@ -304,7 +295,7 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
     } else {
         [MSStyleFactory setQBFlatButton:self.mainButton withStyle:MSFlatButtonStyleGray];
     }
-    self.mainButton.enabled = enabled;
+    self.mainButton.userInteractionEnabled = enabled;
 }
 
 - (void)lockButton

@@ -115,6 +115,7 @@
         default:
             break;
     }
+    [button setNeedsDisplay];
 }
 
 + (void)setUILabel:(UILabel *)label withStyle:(MSLabelStyle)style

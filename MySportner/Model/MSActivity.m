@@ -62,6 +62,7 @@
     self.awaitings = [activityInfo objectForKey:@"awaitingSportners"];
     self.guests = [activityInfo objectForKey:@"invitedSportners"];
     self.participants = [activityInfo objectForKey:@"confirmedSportners"];
+    self.comments = [activityInfo objectForKey:@"comments"];
     
     [self notifyActivityStateChanged];
 }

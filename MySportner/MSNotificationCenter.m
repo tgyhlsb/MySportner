@@ -16,7 +16,11 @@
 #import "MSActivity.h"
 
 static NSArray *userNotifications;
-static PFObject *observedObject;
+
+static PFObject *observedActivity;
+static MSObservedActivityScreen observedActivityScreen;
+
+
 static BOOL isNotificationDisplayedOnStatusBar;
 static BOOL shouldDisplayNotificationOnStatusBar;
 
@@ -55,14 +59,15 @@ static BOOL shouldDisplayNotificationOnStatusBar;
 
 #pragma mark - Observed Object
 
-+ (void)setObservedObject:(PFObject *)object
++ (void)setObservedActivity:(MSActivity *)activity onScreen:(MSObservedActivityScreen)screen
 {
-    observedObject = object;
+    observedActivity = activity;
+    observedActivityScreen = screen;
 }
 
-+ (void)notifyObservedObjectUpdated
++ (void)notifyObservedActivityNeedsUpdate
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationObservedObjectUpdated
+    [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationObservedActivityNeedsUpdate
                                                         object:nil
                                                       userInfo:nil];
 }
@@ -75,10 +80,19 @@ static BOOL shouldDisplayNotificationOnStatusBar;
     [self fetchUserNotifications];
     
     NSString *activityId = [[userInfo objectForKey:@"activity"] objectForKey:@"objectId"];
-    if ([activityId isEqualToString:observedObject.objectId]) {
-        [self notifyObservedObjectUpdated];
+    if ([activityId isEqualToString:observedActivity.objectId]) {
+        [self notifyObservedActivityNeedsUpdate];
+        
+        if (observedActivityScreen != MSObservedActivityScreenComments) {
+            [self showInAppPushNotification:userInfo];
+        }
+    } else {
+        [self showInAppPushNotification:userInfo];
     }
-    
+}
+
++ (void)showInAppPushNotification:(NSDictionary *)userInfo
+{
     NSString *title = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     NSString *imageName = [userInfo objectForKey:@"imageName"];
     

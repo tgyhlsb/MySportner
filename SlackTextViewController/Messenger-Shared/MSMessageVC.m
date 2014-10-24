@@ -9,6 +9,7 @@
 #import "MSMessageVC.h"
 #import "MessageTableViewCell.h"
 #import "MSComment.h"
+#import "MSNotificationCenter.h"
 
 #import "LoremIpsum/LoremIpsum.h"
 
@@ -29,6 +30,7 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 {
     self = [super initWithTableViewStyle:UITableViewStylePlain];
     if (self) {
+        [self.tableView registerClass:[MessageTableViewCell class] forCellReuseIdentifier:MessengerCellIdentifier];
         self.title = @"COMMENTS";
     }
     return self;
@@ -38,7 +40,6 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 {
     return UITableViewStylePlain;
 }
-
 
 #pragma mark - View lifecycle
 
@@ -53,7 +54,6 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
     self.inverted = YES;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerClass:[MessageTableViewCell class] forCellReuseIdentifier:MessengerCellIdentifier];
 
     self.textView.placeholder = NSLocalizedString(@"Message", nil);
     self.textView.placeholderColor = [UIColor lightGrayColor];
@@ -90,12 +90,7 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 {
     [super viewDidAppear:animated];
     
-//    UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_editing"] style:UIBarButtonItemStylePlain target:self action:@selector(editRandomMessage:)];
-//    
-//    UIBarButtonItem *typeItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_typing"] style:UIBarButtonItemStylePlain target:self action:@selector(simulateUserTyping:)];
-//    UIBarButtonItem *appendItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_append"] style:UIBarButtonItemStylePlain target:self action:@selector(fillWithText:)];
-//    
-//    self.navigationItem.rightBarButtonItems = @[editItem, appendItem, typeItem];
+    [MSNotificationCenter setObservedActivity:self.activity onScreen:MSObservedActivityScreenComments];
 }
 
 #pragma mark - MSActivity
@@ -103,24 +98,17 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 - (void)setActivity:(MSActivity *)activity
 {
     _activity = activity;
-    
-    [self fetchComments];
-}
-
-- (void)fetchComments
-{
-    [self.activity fetchComments];
 }
 
 - (void)registerToActivtyNotifications
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(activityNotificationHandler)
+                                             selector:@selector(activityHasBeenUpdated)
                                                  name:MSNotificationActivityStateChanged
                                                object:self.activity];
 }
 
-- (void)activityNotificationHandler
+- (void)activityHasBeenUpdated
 {
     [self loadMessagesFromActivity];
 }
@@ -330,11 +318,16 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([tableView isEqual:self.tableView]) {
-        return self.messages.count;
+    if (!self.messages) {
+        return 0;
     }
     else {
-        return self.searchResult.count;
+        if ([tableView isEqual:self.tableView]) {
+            return [self.messages count];
+        }
+        else {
+            return [self.searchResult count];
+        }
     }
 }
 

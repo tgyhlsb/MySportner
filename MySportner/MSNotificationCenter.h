@@ -8,10 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "MSActivity.h"
+
+
+typedef NS_ENUM(int, MSObservedActivityScreen) {
+    MSObservedActivityScreenProfile,
+    MSObservedActivityScreenAttendees,
+    MSObservedActivityScreenInvitation,
+    MSObservedActivityScreenComments
+};
 
 static NSString *MSNotificationUserNotificationsFetched = @"MSNotificationUserNotificationsFetched";
-
-static NSString *MSNotificationObservedObjectUpdated = @"MSNotificationObservedObjectUpdated";
+static NSString *MSNotificationObservedActivityNeedsUpdate = @"MSNotificationObservedActivityNeedsUpdate";
 
 @interface MSNotificationCenter : NSObject
 
@@ -20,7 +28,7 @@ static NSString *MSNotificationObservedObjectUpdated = @"MSNotificationObservedO
 + (void)fetchUserNotifications;
 + (NSArray *)userNotifications;
 
-+ (void)setObservedObject:(PFObject *)object;
++ (void)setObservedActivity:(MSActivity *)activity onScreen:(MSObservedActivityScreen)screen;
 
 
 + (void)setStatusBarWithTitle:(NSString *)title;

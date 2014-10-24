@@ -105,6 +105,8 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
     [super viewDidAppear:animated];
     
     [self layoutBasedOnFrames];
+    
+    [MSNotificationCenter setObservedActivity:self.activity onScreen:MSObservedActivityScreenProfile];
 }
 
 #pragma mark - Appearance
@@ -368,18 +370,17 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 - (void)registerToActivityNotifications
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(activityNotificationReceived)
+                                             selector:@selector(activityHasBeenUpdated)
                                                  name:MSNotificationActivityStateChanged
                                                object:self.activity];
     
-    [MSNotificationCenter setObservedObject:self.activity];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(activityNeedsUpdate)
-                                                 name:MSNotificationObservedObjectUpdated
+                                                 name:MSNotificationObservedActivityNeedsUpdate
                                                object:nil];
 }
 
-- (void)activityNotificationReceived
+- (void)activityHasBeenUpdated
 {
     [self updateInformationView];
     [self stopLoading];

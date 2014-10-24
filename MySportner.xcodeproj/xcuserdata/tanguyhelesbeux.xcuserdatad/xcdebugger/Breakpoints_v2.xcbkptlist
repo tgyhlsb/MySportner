@@ -338,11 +338,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/MSNotificationCenter.m"
-            timestampString = "435805816.343816"
+            timestampString = "435860273.312443"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "+fetchUserNotifications"
             landmarkType = "5">
          </BreakpointContent>
@@ -354,11 +354,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/MSNotificationCenter.m"
-            timestampString = "435805816.343816"
+            timestampString = "435860273.312443"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "+fetchUserNotifications"
             landmarkType = "5">
          </BreakpointContent>
@@ -402,11 +402,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/MSNotificationCenter.m"
-            timestampString = "435805879.109921"
+            timestampString = "435860273.312443"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "+handleNotification:"
             landmarkType = "5">
          </BreakpointContent>
@@ -418,11 +418,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/MSNotificationCenter.m"
-            timestampString = "435805932.776716"
+            timestampString = "435860273.312443"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "+notifyObservedObjectUpdated"
             landmarkType = "5">
          </BreakpointContent>
@@ -434,7 +434,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSActivityVC/MSGameProfileVC.m"
-            timestampString = "435805960.985922"
+            timestampString = "435858993.964858"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "384"
@@ -450,7 +450,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSActivityVC/MSGameProfileVC.m"
-            timestampString = "435806142.816138"
+            timestampString = "435858993.964858"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "391"
@@ -466,7 +466,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSActivityVC/MSGameProfileVC.m"
-            timestampString = "435806147.677652"
+            timestampString = "435858993.964858"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "390"
@@ -503,6 +503,22 @@
                   offsetFromSymbolStart = "56">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MySportner/MSNotificationCenter.m"
+            timestampString = "435860273.312443"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "+setStatusBarWithTitle:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

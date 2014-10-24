@@ -8,6 +8,7 @@
 
 #import "MSInviteSportnersVC.h"
 #import "TKAlertCenter.h"
+#import "MSNotificationCenter.h"
 
 #define NIB_NAME @"MSPageSportnerVC"
 
@@ -85,7 +86,7 @@
         [self showLoadingViewInView:self.navigationController.view];
         __weak MSInviteSportnersVC *weakSelf = self;
         [self.activity addGuests:selectedSportners withBlock:^(PFObject *result, NSError *error) {
-            [weakSelf hideLoadingView];
+            [MSNotificationCenter dismissStatusBarNotification];
             [weakSelf.navigationController popViewControllerAnimated:YES];
             [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Invitations sent"];
         }];

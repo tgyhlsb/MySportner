@@ -22,4 +22,8 @@ static NSString *MSNotificationObservedObjectUpdated = @"MSNotificationObservedO
 
 + (void)setObservedObject:(PFObject *)object;
 
+
++ (void)setStatusBarWithTitle:(NSString *)title;
++ (void)dismissStatusBarNotification;
+
 @end

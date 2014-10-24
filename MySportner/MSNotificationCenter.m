@@ -10,12 +10,15 @@
 
 #import "CRToast.h"
 #import "UIImage+resize.h"
+#import "MSColorFactory.h"
 
 #import "MSSportner.h"
 #import "MSActivity.h"
 
 static NSArray *userNotifications;
 static PFObject *observedObject;
+static BOOL isNotificationDisplayedOnStatusBar;
+static BOOL shouldDisplayNotificationOnStatusBar;
 
 @implementation MSNotificationCenter
 
@@ -98,7 +101,7 @@ static PFObject *observedObject;
     
     [CRToastManager showNotificationWithOptions:options
                                 completionBlock:^{
-                                    NSLog(@"Received notification while app was open");
+                                    
                                 }];
 }
 
@@ -109,13 +112,11 @@ static PFObject *observedObject;
                                                                                                             block:^(CRToastInteractionType interactionType){
                                                                                                                 NSLog(@"Dismissed with %@ interaction", NSStringFromCRToastInteractionType(interactionType));
                                                                                                             }];
-    
     NSDictionary *options = @{
                               kCRToastAnimationInDirectionKey: @0,
                               kCRToastAnimationInTypeKey: @0,
                               kCRToastAnimationOutDirectionKey: @0,
                               kCRToastAnimationOutTypeKey: @0,
-//                              kCRToastImageKey = "<UIImage: 0x7fb0cbc62750>",
                               kCRToastInteractionRespondersKey: @[responder],
                               kCRToastNotificationPresentationTypeKey: @0,
                               kCRToastNotificationTypeKey: @1,
@@ -123,9 +124,64 @@ static PFObject *observedObject;
                               kCRToastTextAlignmentKey: @0,
                               kCRToastUnderStatusBarKey: @NO,
                               kCRToastBackgroundColorKey: [UIColor colorWithWhite:0 alpha:0.8],
-                              kCRToastTextColorKey: [UIColor whiteColor]
+                              kCRToastTextColorKey: [UIColor whiteColor],
+                              kCRToastTimeIntervalKey: @3
                               };
     
+    
+    return options;
+}
+
++ (void)setStatusBarWithTitle:(NSString *)title
+{
+    if (isNotificationDisplayedOnStatusBar) {
+        [self dismissStatusBarNotification];
+    }
+    
+    shouldDisplayNotificationOnStatusBar = YES;
+    
+    NSMutableDictionary *options = [[MSNotificationCenter optionsForStatusBarText] mutableCopy];
+    [options setObject:title forKey:kCRToastTextKey];
+    
+    [CRToastManager showNotificationWithOptions:options
+                                 apperanceBlock:^{
+                                     isNotificationDisplayedOnStatusBar = YES;
+                                     //Auto dismiss if notification no more need when it appears on screen
+                                     if (!shouldDisplayNotificationOnStatusBar) {
+                                         [CRToastManager dismissNotification:YES];
+                                     }
+                                     
+                                 } completionBlock:^{
+                                     isNotificationDisplayedOnStatusBar = NO;
+                                 }];
+}
+
++ (void)dismissStatusBarNotification
+{
+    if (shouldDisplayNotificationOnStatusBar && isNotificationDisplayedOnStatusBar) {
+        [CRToastManager dismissNotification:YES];
+    }
+    shouldDisplayNotificationOnStatusBar = NO;
+}
+
++ (NSDictionary *)optionsForStatusBarText
+{
+    
+    NSDictionary *options = @{
+                              kCRToastAnimationInDirectionKey: @0,
+                              kCRToastAnimationInTypeKey: @0,
+                              kCRToastAnimationOutDirectionKey: @0,
+                              kCRToastAnimationOutTypeKey: @0,
+                              kCRToastInteractionRespondersKey: @[],
+                              kCRToastNotificationPresentationTypeKey: @1,
+                              kCRToastNotificationTypeKey: @0,
+                              kCRToastSubtitleTextAlignmentKey: @1,
+                              kCRToastTextAlignmentKey: @1,
+                              kCRToastUnderStatusBarKey: @NO,
+                              kCRToastBackgroundColorKey: [MSColorFactory mainColor],
+                              kCRToastTextColorKey: [UIColor whiteColor],
+                              kCRToastTimeIntervalKey: @(10)
+                              };
     return options;
 }
 

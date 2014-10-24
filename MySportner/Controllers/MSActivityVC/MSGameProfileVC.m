@@ -92,9 +92,9 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
     [self registerToActivityNotifications];
     [self registerGestureRecognizers];
     
+    [MSNotificationCenter setStatusBarWithTitle:@"Fetching activity..."];
     [self.activity fetchWithRelationAndBlock:^(PFObject *object, NSError *error) {
-        [self updateInformationView];
-        [self stopLoading];
+        [MSNotificationCenter dismissStatusBarNotification];
     }];
     
     self.navigationController.navigationBar.translucent = NO;
@@ -473,9 +473,11 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 - (void)performMainButtonAction
 {
     [self lockButton];
+    [MSNotificationCenter setStatusBarWithTitle:@"Sending request..."];
     [PFCloud callFunctionInBackground:@"gameProfileAction"
                        withParameters:@{@"activity": self.activity.objectId, @"sportner": [MSSportner currentSportner].objectId}
                                 block:^(NSDictionary *result, NSError *error) {
+                                    [MSNotificationCenter dismissStatusBarNotification];
                                     if (!error) {
                                         [self.activity setWithInfo:result];
                                     }

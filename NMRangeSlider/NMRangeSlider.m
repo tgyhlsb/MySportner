@@ -143,7 +143,7 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         value = roundf(value / _stepValueInternal) * _stepValueInternal;
     }
-
+    
     value = MAX(value, _minimumValue);
     value = MIN(value, _maximumValue);
     
@@ -154,7 +154,7 @@ NSUInteger DeviceSystemMajorVersion() {
     value = MAX(value, _lowerValue+_minimumRange);
     
     _upperValue = value;
-
+    
     [self setNeedsLayout];
 }
 
@@ -197,7 +197,7 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         setValuesBlock();
     }
-
+    
 }
 
 - (void)setLowerValue:(float)lowerValue animated:(BOOL) animated
@@ -304,7 +304,7 @@ NSUInteger DeviceSystemMajorVersion() {
             UIImage* image = [UIImage imageNamed:@"slider-default7-handle"];
             _lowerHandleImageNormal = image;
         }
-
+        
     }
     
     return _lowerHandleImageNormal;
@@ -421,7 +421,7 @@ NSUInteger DeviceSystemMajorVersion() {
     
     retValue.origin = CGPointMake(xLowerValue, (self.bounds.size.height/2.0f) - (retValue.size.height/2.0f));
     retValue.size.width = xUpperValue-xLowerValue;
-
+    
     return retValue;
 }
 
@@ -438,7 +438,7 @@ NSUInteger DeviceSystemMajorVersion() {
 }
 
 //returns the rect for the background image
- -(CGRect) trackBackgroundRect
+-(CGRect) trackBackgroundRect
 {
     CGRect trackBackgroundRect;
     
@@ -464,7 +464,7 @@ NSUInteger DeviceSystemMajorVersion() {
 {
     CGRect thumbRect;
     UIEdgeInsets insets = thumbImage.capInsets;
-
+    
     thumbRect.size = CGSizeMake(thumbImage.size.width, thumbImage.size.height);
     
     if(insets.top || insets.bottom)
@@ -476,7 +476,7 @@ NSUInteger DeviceSystemMajorVersion() {
     thumbRect.origin = CGPointMake(xValue, (self.bounds.size.height/2.0f) - (thumbRect.size.height/2.0f));
     
     return CGRectIntegral(thumbRect);
-
+    
 }
 
 // ------------------------------------------------------------------------------------------------------
@@ -511,6 +511,8 @@ NSUInteger DeviceSystemMajorVersion() {
     [self addSubview:self.track];
     [self addSubview:self.lowerHandle];
     [self addSubview:self.upperHandle];
+    
+    self.userInteractionEnabled = YES;
 }
 
 
@@ -531,11 +533,11 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         _upperValue = _maximumValue;
     }
-
+    
     self.trackBackground.frame = [self trackBackgroundRect];
     self.track.frame = [self trackRect];
     self.track.image = [self trackImageForCurrentValues];
-
+    
     // Layout the lower handle
     self.lowerHandle.frame = [self thumbRectForValue:_lowerValue image:self.lowerHandleImageNormal];
     self.lowerHandle.image = self.lowerHandleImageNormal;
@@ -552,7 +554,7 @@ NSUInteger DeviceSystemMajorVersion() {
 
 - (CGSize)intrinsicContentSize
 {
-   return CGSizeMake(UIViewNoIntrinsicMetric, MAX(self.lowerHandleImageNormal.size.height, self.upperHandleImageNormal.size.height));
+    return CGSizeMake(UIViewNoIntrinsicMetric, MAX(self.lowerHandleImageNormal.size.height, self.upperHandleImageNormal.size.height));
 }
 
 // ------------------------------------------------------------------------------------------------------
@@ -566,7 +568,7 @@ NSUInteger DeviceSystemMajorVersion() {
 {
     float xPadding = 5;
     float yPadding = 5; //(self.bounds.size.height-touchRect.size.height)/2.0f
-
+    
     // expands rect by xPadding in both x-directions, and by yPadding in both y-directions
     CGRect touchRect = CGRectInset(handleImageView.frame, -xPadding, -yPadding);;
     return touchRect;
@@ -630,7 +632,7 @@ NSUInteger DeviceSystemMajorVersion() {
     if(_upperHandle.highlighted )
     {
         float newValue = [self upperValueForCenterX:(touchPoint.x - _upperTouchOffset)];
-
+        
         //if both upper and lower is selected, then the new value must be HIGHER
         //otherwise the touch event is ignored.
         if(!_lowerHandle.highlighted || newValue>_upperValue)
@@ -644,7 +646,7 @@ NSUInteger DeviceSystemMajorVersion() {
             _upperHandle.highlighted=NO;
         }
     }
-     
+    
     
     //send the control event
     if(_continuous)
@@ -654,7 +656,7 @@ NSUInteger DeviceSystemMajorVersion() {
     
     //redraw
     [self setNeedsLayout];
-
+    
     return YES;
 }
 
@@ -674,6 +676,11 @@ NSUInteger DeviceSystemMajorVersion() {
     }
     
     [self sendActionsForControlEvents:UIControlEventValueChanged];
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    return self;
 }
 
 @end

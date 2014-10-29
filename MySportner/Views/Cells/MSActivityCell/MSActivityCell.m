@@ -13,6 +13,7 @@
 #import "MSFontFactory.h"
 #import "MSStyleFactory.h"
 #import "MSProfilePictureView.h"
+#import "MSPlayerSizeView.h"
 
 
 #define IDENTIFIER @"MSActivityCell"
@@ -25,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
+@property (strong, nonatomic) MSPlayerSizeView *playerSizeView;
 
 @property (nonatomic) BOOL oddIndex;
 
@@ -42,7 +45,17 @@
 {
     [super awakeFromNib];
     
-    [self registerGestureRecognizers];
+//    [self registerGestureRecognizers];
+    
+    self.playerSizeView = [MSPlayerSizeView viewWithFrame:self.actionButton.frame];
+    [self addSubview:self.playerSizeView];
+    self.actionButton.hidden = YES;
+//    self.playerSizeView.backgroundColor = [UIColor redColor];
+    
+//    UIButton *fullButton = [[UIButton alloc] initWithFrame:self.actionButton.frame];
+//    [self.contentView addSubview:fullButton];
+//    [fullButton setTitle:@"button" forState:UIControlStateNormal];
+//    fullButton.backgroundColor = [UIColor redColor];
 }
 
 - (void)registerGestureRecognizers
@@ -69,10 +82,11 @@
     _activity = activity;
     [self setViewWithDate:activity.date];
     
-    self.titleLabel.text = activity.sport;
+    self.titleLabel.text = activity.sport.name;
     self.placeLabel.text = activity.place;
-    self.ownerNameLabel.text = [activity.owner fullName];
+    self.ownerNameLabel.text = activity.owner.firstName;
     self.ownerProfilePictureView.sportner = activity.owner;
+    self.playerSizeView.numberOfPlayer = [activity.playerNeeded intValue];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -135,14 +149,20 @@
 {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     
+    [dateFormat setDateFormat:@"EEE"];
+    self.dayLabel.text = [dateFormat stringFromDate:date];
+    
+    
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
-    self.dayLabel.text = [NSString stringWithFormat:@"%ld", (long)[components day]];
-    
     [dateFormat setDateFormat:@"MMM"];
-    self.monthLabel.text = [dateFormat stringFromDate:date];
-    [dateFormat setDateFormat:@"hh:mm"];
-    self.timeLabel.text = [dateFormat stringFromDate:date];
+    NSString *shortMonth = [dateFormat stringFromDate:date];
+    self.monthLabel.text = [NSString stringWithFormat:@"%@ %ld", shortMonth, (long)[components day]];
+
+    
+    NSDateFormatter* timeFormat = [[NSDateFormatter alloc] init];
+    [timeFormat setTimeStyle:NSDateFormatterShortStyle];
+    self.timeLabel.text = [timeFormat stringFromDate:date];
 }
 
 + (void)registerToTableview:(UITableView *)tableView

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 #import "MSSportner.h"
+#import "MSActivity.h"
 
 #define PARSE_CLASSNAME_COMMENT @"MSComment"
 
@@ -16,6 +17,7 @@
 
 @property (strong, nonatomic) NSString *content;
 @property (strong, nonatomic) MSSportner *author;
+@property (strong, nonatomic) MSActivity *activity;
 
 
 //// Remove when not using Parse.com

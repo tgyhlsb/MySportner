@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSProfileVC">
@@ -12,6 +11,9 @@
                 <outlet property="coverPictureView" destination="P1n-Ks-zFC" id="RrH-9h-hEx"/>
                 <outlet property="locationLabel" destination="ZRT-P6-W66" id="omB-c3-GyM"/>
                 <outlet property="profilePictureView" destination="MyY-pT-9Tl" id="kPx-cQ-bfH"/>
+                <outlet property="sportImageView1" destination="RLn-tc-ing" id="9Oz-Z6-DOb"/>
+                <outlet property="sportImageView2" destination="MuF-eg-6jP" id="6Z7-ll-3Ez"/>
+                <outlet property="sportImageView3" destination="btr-an-nW4" id="WL0-NA-VK5"/>
                 <outlet property="sportnerNameLabel" destination="YcJ-h7-Zu1" id="XWF-ah-98k"/>
                 <outlet property="sportnersButton" destination="x8a-R5-xPD" id="qcg-Dn-l1E"/>
                 <outlet property="tableView" destination="Cr4-re-ZLr" id="wWh-YM-KK1"/>
@@ -26,7 +28,6 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Cr4-re-ZLr">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <view key="tableHeaderView" contentMode="scaleToFill" id="C7x-0G-Ob2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="295"/>
@@ -34,11 +35,9 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P1n-Ks-zFC">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MyY-pT-9Tl" customClass="MSProfilePictureView">
                                 <rect key="frame" x="15" y="154" width="80" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="FKO-bQ-Yfh"/>
@@ -47,7 +46,6 @@
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcJ-h7-Zu1">
                                 <rect key="frame" x="110" y="160" width="190" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="MFA-Lv-u6G"/>
                                 </constraints>
@@ -56,7 +54,6 @@
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRT-P6-W66">
                                 <rect key="frame" x="123" y="183" width="177" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="UwY-XQ-6Ke"/>
                                 </constraints>
@@ -65,7 +62,6 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehc-71-xLB" customClass="QBFlatButton">
                                 <rect key="frame" x="0.0" y="249" width="160" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="cDa-jH-l2e"/>
                                     <constraint firstAttribute="width" constant="160" id="wkn-WH-vWk"/>
@@ -79,7 +75,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8a-R5-xPD" customClass="QBFlatButton">
                                 <rect key="frame" x="160" y="249" width="160" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="nP1-sD-sE3"/>
                                     <constraint firstAttribute="height" constant="45" id="ulR-Fn-B5i"/>
@@ -93,15 +88,13 @@
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profil-localisation@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="4qa-vb-mt0">
                                 <rect key="frame" x="110" y="188" width="7" height="11"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="11" id="KWH-VW-4bx"/>
                                     <constraint firstAttribute="width" constant="7" id="un8-yv-YvI"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WFT-st-mG2" customClass="QBFlatButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WFT-st-mG2" customClass="MSFlatButtonWhite">
                                 <rect key="frame" x="259" y="200" width="46" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="C7I-hI-d1X"/>
                                 </constraints>
@@ -112,11 +105,36 @@
                                     <action selector="actionButtonHandler:" destination="-1" eventType="touchUpInside" id="5aH-Ru-HOU"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RLn-tc-ing">
+                                <rect key="frame" x="110" y="214" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="asN-mv-CaX"/>
+                                    <constraint firstAttribute="height" constant="20" id="pO2-Me-szT"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MuF-eg-6jP">
+                                <rect key="frame" x="138" y="214" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="Fok-q7-DtF"/>
+                                    <constraint firstAttribute="height" constant="20" id="dPj-aZ-eVx"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="btr-an-nW4">
+                                <rect key="frame" x="166" y="214" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="XMt-f6-Ukt"/>
+                                    <constraint firstAttribute="width" constant="20" id="eOR-ng-0l8"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="RLn-tc-ing" firstAttribute="leading" secondItem="MyY-pT-9Tl" secondAttribute="trailing" constant="15" id="2AK-79-a9E"/>
                             <constraint firstItem="YcJ-h7-Zu1" firstAttribute="top" secondItem="C7x-0G-Ob2" secondAttribute="top" constant="160" id="2gv-Ce-ISw"/>
+                            <constraint firstItem="btr-an-nW4" firstAttribute="bottom" secondItem="MuF-eg-6jP" secondAttribute="bottom" id="6jv-zE-XwQ"/>
                             <constraint firstItem="ehc-71-xLB" firstAttribute="leading" secondItem="C7x-0G-Ob2" secondAttribute="leading" id="BjX-Jg-f2s"/>
+                            <constraint firstItem="btr-an-nW4" firstAttribute="bottom" secondItem="RLn-tc-ing" secondAttribute="bottom" id="GTx-kx-CLR"/>
+                            <constraint firstItem="btr-an-nW4" firstAttribute="leading" secondItem="MuF-eg-6jP" secondAttribute="trailing" constant="8" id="GbB-be-uIN"/>
                             <constraint firstItem="P1n-Ks-zFC" firstAttribute="top" secondItem="C7x-0G-Ob2" secondAttribute="top" id="IH0-CQ-Now"/>
                             <constraint firstItem="4qa-vb-mt0" firstAttribute="centerY" secondItem="ZRT-P6-W66" secondAttribute="centerY" id="KyV-Cd-wS2"/>
                             <constraint firstItem="YcJ-h7-Zu1" firstAttribute="leading" secondItem="MyY-pT-9Tl" secondAttribute="trailing" constant="15" id="L5n-t9-vzZ"/>
@@ -126,6 +144,7 @@
                             <constraint firstAttribute="trailing" secondItem="P1n-Ks-zFC" secondAttribute="trailing" id="Weu-7P-mI7"/>
                             <constraint firstItem="ehc-71-xLB" firstAttribute="centerY" secondItem="x8a-R5-xPD" secondAttribute="centerY" id="Xwd-dl-83L"/>
                             <constraint firstItem="MyY-pT-9Tl" firstAttribute="leading" secondItem="C7x-0G-Ob2" secondAttribute="leading" constant="15" id="cA6-SK-a09"/>
+                            <constraint firstItem="MuF-eg-6jP" firstAttribute="leading" secondItem="RLn-tc-ing" secondAttribute="trailing" constant="8" id="fah-sf-GRr"/>
                             <constraint firstAttribute="trailing" secondItem="WFT-st-mG2" secondAttribute="trailing" constant="15" id="fp7-HY-HhM"/>
                             <constraint firstAttribute="trailing" secondItem="YcJ-h7-Zu1" secondAttribute="trailing" constant="20" id="g25-Ak-leQ"/>
                             <constraint firstItem="ehc-71-xLB" firstAttribute="top" secondItem="MyY-pT-9Tl" secondAttribute="bottom" constant="15" id="gmb-MJ-hem"/>
@@ -135,6 +154,7 @@
                             <constraint firstItem="P1n-Ks-zFC" firstAttribute="leading" secondItem="C7x-0G-Ob2" secondAttribute="leading" id="pdw-o2-Lxo"/>
                             <constraint firstItem="ZRT-P6-W66" firstAttribute="top" secondItem="YcJ-h7-Zu1" secondAttribute="top" constant="23" id="t2u-MR-V7M"/>
                             <constraint firstAttribute="trailing" secondItem="x8a-R5-xPD" secondAttribute="trailing" id="tO7-YT-BnQ"/>
+                            <constraint firstItem="btr-an-nW4" firstAttribute="bottom" secondItem="MyY-pT-9Tl" secondAttribute="bottom" id="zjB-Ge-XVc"/>
                         </constraints>
                     </view>
                 </tableView>
@@ -146,10 +166,15 @@
                 <constraint firstItem="Cr4-re-ZLr" firstAttribute="leading" secondItem="3Yz-vR-1hQ" secondAttribute="leading" id="qoe-i3-NUv"/>
                 <constraint firstAttribute="trailing" secondItem="Cr4-re-ZLr" secondAttribute="trailing" id="rox-vF-abO"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <nil key="simulatedStatusBarMetrics"/>
         </view>
     </objects>
     <resources>
         <image name="profil-localisation@2x.png" width="16" height="16"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

@@ -19,12 +19,15 @@
 #import "MBProgressHUD.h"
 #import "TKAlertCenter.h"
 #import "MSSport.h"
+#import "MSFullScreenPopUpVC.h"
+#import "MSAppDelegate.h"
+#import "MSFacebookManager.h"
 
 #define DEFAULT_SPORT_LEVEL -1
 
 #define NIB_NAME @"MSChooseSportsVC"
 
-@interface MSChooseSportsVC () <UICollectionViewDataSource, UICollectionViewDelegate, MZFormSheetBackgroundWindowDelegate>
+@interface MSChooseSportsVC () <UICollectionViewDataSource, UICollectionViewDelegate, MZFormSheetBackgroundWindowDelegate, MSFullScreenPopUpDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet QBFlatButton *nextButton;
@@ -43,6 +46,8 @@
 {
     [super viewDidLoad];
     
+    [self registerSportNotification];
+    
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
@@ -51,10 +56,27 @@
     self.collectionView.allowsSelection = YES;
     self.collectionView.allowsMultipleSelection = YES;
     
-    self.data = SAMPLE_SPORTS;
+    self.data = [MSSport allSports];
     
     [self setAppearance];
     [self setBackButton];
+}
+
+- (void)registerSportNotification
+{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(sportsWereFetch)
+                                                 name:MSSportWereFetch
+                                               object:nil];
+    
+    
+}
+
+- (void)sportsWereFetch
+{
+    self.data = [MSSport allSports];
+    [self.collectionView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -93,7 +115,7 @@
 {
     self.title = @"CHOOSE YOUR SPORTS";
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_blur_light.png"]];
+    self.view.backgroundColor = [UIColor colorWithRed:238.0/255.0 green:241.0/255.0 blue:243.0/255.0 alpha:1.0];
     self.collectionView.backgroundColor = [UIColor clearColor];
     
     [MSStyleFactory setQBFlatButton:self.nextButton withStyle:MSFlatButtonStyleGreen];
@@ -141,10 +163,85 @@
 {
     [self hideLoadingView];
     if (!error) {
-        self.validateBlock();
+        if (self.validateBlock) {
+            self.validateBlock();
+            self.validateBlock = nil;
+        }
     } else {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:[error.userInfo objectForKey:@"error"]];
     }
+}
+
+- (void)displayCongratulationPopUp
+{
+    MSFullScreenPopUpVC *vc = [MSFullScreenPopUpVC newController];
+    CGSize formSheetSize = self.navigationController.view.frame.size;
+    
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithSize:formSheetSize viewController:vc];
+    //    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+    
+    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
+    formSheet.shadowRadius = 0.0;
+    formSheet.shadowOpacity = 0.94;
+    formSheet.cornerRadius = 3.0;
+    formSheet.shouldDismissOnBackgroundViewTap = YES;
+    formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
+    formSheet.shouldCenterVertically = YES;
+    
+    vc.textTitle = @"Congratulations";
+    vc.text = @"You can now train like an Athlete, Win like a Champion and Sleep like a Baby !";
+    vc.otherButonTitle = @"or skip this step";
+    vc.mainButtonTitle = @"SHARE";
+    vc.imageName = @"m.png";
+    
+    formSheet.willPresentCompletionHandler = ^(UIViewController *presentedFSViewController) {
+        
+    };
+    
+    vc.delegate = self;
+    //    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
+    
+    [self presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        
+    }];
+}
+
+
+
+#pragma mark - MSFullScreenPopUpDelegate
+
+- (void)fullScreenPopUpDidTapMainButton
+{
+    [self dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        [self shareSignUpOnFacebook];
+        [self openApp];
+    }];
+}
+
+- (void)fullScreenPopUpDidTapOtherButton
+{
+    [self dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        [self openApp];
+    }];
+}
+
+- (void)fullScreenPopUpDidTapText
+{
+    
+}
+
+- (void)shareSignUpOnFacebook
+{
+    [MSFacebookManager shareSignUp];
+}
+
+- (void)openApp
+{
+    MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    [appDelegate setDrawerMenu];
+    
+    [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
 }
 
 #pragma mark UICollectionViewDataSource
@@ -163,12 +260,15 @@
 {
     MSBigSportCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[MSBigSportCell reusableIdentifier] forIndexPath:indexPath];
     
-    NSString *sport = [self.data objectAtIndex:indexPath.item];
-    cell.sportName = sport;
-    cell.imageNameNormal = [[sport stringByAppendingString:@".png"] lowercaseString];
-    cell.imageNameSelected = [[sport stringByAppendingString:@"(select).png"] lowercaseString];
+    MSSport *sport = [self.data objectAtIndex:indexPath.item];
+    cell.sport = sport;
     
-    cell.level = [self.sportner sportLevelForSportIndex:indexPath.row defaultValue:DEFAULT_SPORT_LEVEL];
+    NSNumber *sportLevel = [self.sportner levelForSport:sport];
+    if (sportLevel) {
+        cell.level = [sportLevel intValue];
+    } else {
+        cell.level = DEFAULT_SPORT_LEVEL;
+    }
     
     cell.layer.shouldRasterize = YES;
     cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
@@ -209,16 +309,15 @@
     __weak MSSportLevelFormVC *weakFormSheet = vc;
     
     vc.doneBlock = ^{
-        
-        NSInteger sportKey = [MSSport keyForSportName:weakSportCell.sportName];
-        [self.sportner setSport:sportKey withLevel:weakFormSheet.level];
+        MSSport *sport = weakSportCell.sport;
+        [self.sportner setLevel:@(weakFormSheet.level) forSport:sport];
         [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
         [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
     };
     
     vc.unSelectBlock = ^{
-        NSInteger sportKey = [MSSport keyForSportName:weakSportCell.sportName];
-        [self.sportner setSport:sportKey withLevel:-1];
+        MSSport *sport = weakSportCell.sport;
+        [self.sportner setLevel:nil forSport:sport];
         [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
         [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
     };

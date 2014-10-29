@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSSport.h"
 
 @interface MSSmallSportCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) MSSport *sport;
 
 + (void)registerToCollectionView:(UICollectionView *)collectionView;
 + (NSString *)reusableIdentifier;

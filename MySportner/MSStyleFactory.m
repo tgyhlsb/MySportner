@@ -26,6 +26,17 @@
             button.backgroundColor = [UIColor clearColor];
             break;
         }
+        case MSFlatButtonStyleGray:
+        {
+            button.faceColor = [MSColorFactory gray];
+            button.sideColor = [MSColorFactory grayDark];
+            button.titleLabel.font = [MSFontFactory fontForButton];
+            [button setTitleShadowColor:[MSColorFactory mainColorShadow] forState:UIControlStateNormal];
+            button.titleLabel.shadowOffset = CGSizeMake(0.2, 1.8);
+            [button setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
+            button.backgroundColor = [UIColor clearColor];
+            break;
+        }
         case MSFlatButtonStyleRed:
         {
             button.faceColor = [MSColorFactory redLight];
@@ -69,7 +80,7 @@
             button.titleLabel.shadowOffset = CGSizeMake(0.2, 1.8);
             [button setTitleColor:[MSColorFactory whiteLight] forState:UIControlStateNormal];
             button.backgroundColor = [UIColor clearColor];
-            button.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+            button.contentEdgeInsets = UIEdgeInsetsMake(0, 55, 0, 0);
             button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
             break;
         }
@@ -104,6 +115,7 @@
         default:
             break;
     }
+    [button setNeedsDisplay];
 }
 
 + (void)setUILabel:(UILabel *)label withStyle:(MSLabelStyle)style
@@ -160,6 +172,26 @@
             //            [label setShadowColor:[MSColorFactory grayLight]];
             [label setTextColor:[MSColorFactory gray]];
             //            [label setShadowOffset:CGSizeMake(0.05, 0.45)];
+            break;
+        }
+        case MSLabelStyleFormTitle:
+        {
+            UIColor *focusBorderColor = [MSColorFactory redLight];
+            UIColor *textFieldTextColorNormal = [MSColorFactory gray];
+            
+            label.layer.borderColor = [focusBorderColor CGColor];
+            label.font = [UIFont fontWithName:@"Helvetica-Light" size:14.0];
+            label.textColor = textFieldTextColorNormal;
+            break;
+        }
+        case MSLabelStyleFormValue:
+        {
+            UIColor *focusBorderColor = [MSColorFactory redLight];
+            UIColor *textFieldTextColorNormal = [MSColorFactory redLight];
+            
+            label.layer.borderColor = [focusBorderColor CGColor];
+            label.font = [UIFont fontWithName:@"Helvetica-Light" size:14.0];
+            label.textColor = textFieldTextColorNormal;
             break;
         }
             

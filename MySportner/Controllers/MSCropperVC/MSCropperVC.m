@@ -30,14 +30,9 @@
 
 #pragma mark - View lifecycle
 
-- (void)updateDisplay {
-//    self.boundsText.text = [NSString stringWithFormat:@"(%f, %f) (%f, %f)", CGOriginX(self.imageCropper.crop), CGOriginY(self.imageCropper.crop), CGWidth(self.imageCropper.crop), CGHeight(self.imageCropper.crop)];
-
-}
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([object isEqual:self.imageCropper] && [keyPath isEqualToString:@"crop"]) {
-        [self updateDisplay];
     }
 }
 
@@ -46,7 +41,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iOS_blur.png"]];
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iOS_blur.png"]];
+    self.view.backgroundColor = [UIColor colorWithRed:238.0/255.0 green:241.0/255.0 blue:243.0/255.0 alpha:1.0];
     
     self.imageCropper = [[BJImageCropper alloc] initWithImage:self.image andMaxSize:self.view.bounds.size];
     [self.view addSubview:self.imageCropper];

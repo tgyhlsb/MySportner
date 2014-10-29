@@ -87,7 +87,7 @@
     NSString *identifier = [MSSmallSportCell reusableIdentifier];
     MSSmallSportCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
-    cell.titleLabel.text = [self.data objectAtIndex:indexPath.row];
+    cell.sport = [self.data objectAtIndex:indexPath.row];
     
     cell.layer.shouldRasterize = YES;
     cell.layer.rasterizationScale = [UIScreen mainScreen].scale;

@@ -13,6 +13,7 @@
 typedef NS_ENUM(int, MSGameProfileMode) {
     MSGameProfileModeOwner,
     MSGameProfileModeParticipant,
+    MSGameProfileModeAwaiting,
     MSGameProfileModeOther,
     MSGameProfileModeLoading
 };
@@ -27,6 +28,9 @@ typedef NS_ENUM(int, MSGameProfileMode) {
 
 + (void)registerToTableView:(UITableView *)tableView;
 + (NSString *)reusableIdentifier;
+
+
+- (void)updateButtonTitle;
 
 @end
 

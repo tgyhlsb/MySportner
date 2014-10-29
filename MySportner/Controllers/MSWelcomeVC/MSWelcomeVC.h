@@ -10,6 +10,10 @@
 
 @interface MSWelcomeVC : UIViewController
 
+@property (nonatomic) BOOL shouldAutoLoginWithFacebook;
+
+@property (nonatomic) BOOL shouldHideLoadingWhenAppOpens;
+
 + (MSWelcomeVC *)newController;
 
 - (void)performLogin;

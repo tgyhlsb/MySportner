@@ -17,7 +17,7 @@
 
 #define HEIGHT 230
 
-#define NIB_NAME @"MSGameProfileCell"
+#define NIB_NAME @"MSGameProfileCell2"
 
 
 @interface MSGameProfileCell()
@@ -33,9 +33,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dayAndMonthLabel;
+
+@property (strong, nonatomic) UIView *separatorView;
 
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
+@property (weak, nonatomic) IBOutlet QBFlatButton *backgroundButton;
 
 @end
 
@@ -68,9 +72,22 @@
     // do nothing
 }
 
+- (UIView *)separatorView
+{
+    if (_separatorView) {
+        CGRect frame = CGRectMake(14, 10, 10, 140);
+        _separatorView = [[UIView alloc] initWithFrame:frame];
+        _separatorView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:_separatorView];
+    }
+    return _separatorView;
+}
+
 - (void)awakeFromNib
 {
     self.backgroundColor = [MSColorFactory backgroundColorGrayLight];
+    
+    self.userMode = MSGameProfileModeLoading;
     
     self.roundedView.backgroundColor = [MSColorFactory redLight];
     [self.roundedView setRounded];
@@ -79,23 +96,28 @@
     [self.addressLabel setLineBreakMode:NSLineBreakByWordWrapping];
     
     [self.titleLabel setFont:[MSFontFactory fontForGameProfileSportTitle]];
-    [self.titleLabel setTextColor:[MSColorFactory redLight]];
+    [self.titleLabel setTextColor:[UIColor whiteColor]];
     
     [self.locationLabel setFont:[MSFontFactory fontForGameProfileSportInfo]];
-    [self.locationLabel setTextColor:[MSColorFactory grayDark]];
+    [self.locationLabel setTextColor:[UIColor whiteColor]];
     
     [self.addressLabel setFont:[MSFontFactory fontForGameProfileSportInfo]];
-    [self.addressLabel setTextColor:[MSColorFactory grayDark]];
+    [self.addressLabel setTextColor:[UIColor whiteColor]];
     
     [self.fbProfilePictureView setRounded];
     [self.ownerLabel setFont:[MSFontFactory fontForGameProfileSportInfo]];
-    [self.ownerLabel setTextColor:[MSColorFactory grayDark]];
+    [self.ownerLabel setTextColor:[UIColor whiteColor]];
     [self.fbProfilePictureView setBackgroundColor:[UIColor clearColor]];
     
     [MSStyleFactory setUILabel:self.dayLabel withStyle:MSLabelStyleActivityDateBig];
     [MSStyleFactory setUILabel:self.monthLabel withStyle:MSLabelStyleActivityDateBig];
+    [MSStyleFactory setUILabel:self.dayAndMonthLabel withStyle:MSLabelStyleActivityDateBig];
     [MSStyleFactory setUILabel:self.timeLabel withStyle:MSLabelStyleActivityDateBig];
     [self.timeLabel setFont:[MSFontFactory fontForGameProfileTime]];
+    
+    self.backgroundButton.faceColor = [MSColorFactory redLight];
+    self.backgroundButton.sideColor = [MSColorFactory redDark];
+    self.backgroundButton.backgroundColor = [UIColor clearColor];
     
     [MSStyleFactory setQBFlatButton:self.actionButton withStyle:MSFlatButtonStyleGreen];
     
@@ -121,29 +143,36 @@
     if ([self.activity.owner isEqualToSportner:[MSSportner currentSportner]]) {
         self.userMode = MSGameProfileModeOwner;
     } else {
-        if (self.activity.guests && self.activity.participants) {
+        if (self.activity.guests && self.activity.participants && self.activity.awaitings) {
             [self updateButtonTitle];
         } else {
-            [self.activityIndicatorView startAnimating];
-            [self queryParticipantsAndGuests];
+            NSLog(@"Can't display participants / guests / awaitings");
         }
     }    
 }
 
 - (void)updateButtonTitle
 {
-    if (self.activity.guests && self.activity.participants) {
+    MSSportner *currentSportner = [MSSportner currentSportner];
+    if ([self.activity.owner isEqualToSportner:currentSportner]) {
+        self.userMode = MSGameProfileModeOwner;
+    } else if (self.activity.guests && self.activity.participants && self.activity.awaitings) {
         [self.activityIndicatorView stopAnimating];
         
-        MSSportner *currentSportner = [MSSportner currentSportner];
-        BOOL canJoin = YES;
+        BOOL isParticipant = NO;
         for (MSSportner *sportner in self.activity.participants) {
             if ([sportner isEqualToSportner:currentSportner]) {
-                canJoin = NO;
+                isParticipant = YES;
+            }
+        }
+        BOOL isAwaiting = NO;
+        for (MSSportner *sportner in self.activity.awaitings) {
+            if ([sportner isEqualToSportner:currentSportner]) {
+                isAwaiting = YES;
             }
         }
         
-        self.userMode = canJoin ? MSGameProfileModeOther : MSGameProfileModeParticipant;
+        self.userMode = (isParticipant ? MSGameProfileModeParticipant : (isAwaiting ? MSGameProfileModeAwaiting : MSGameProfileModeOther));
     }
 }
 
@@ -163,6 +192,12 @@
             [self.actionButton setTitle:@"LEAVE" forState:UIControlStateNormal];
             break;
         }
+        case MSGameProfileModeAwaiting:
+        {
+            [self.activityIndicatorView stopAnimating];
+            [self.actionButton setTitle:@"WAITING" forState:UIControlStateNormal];
+            break;
+        }
         case MSGameProfileModeOther:
         {
             [self.activityIndicatorView stopAnimating];
@@ -175,21 +210,6 @@
             [self.actionButton setTitle:@"" forState:UIControlStateNormal];
             break;
         }
-    }
-}
-
-
-- (void)queryParticipantsAndGuests
-{
-    [self.activity querySportnersWithTarget:self callBack:@selector(didLoadGuestsAndParticipantsWithError:)];
-}
-
-- (void)didLoadGuestsAndParticipantsWithError:(NSError *)error
-{
-    if (!error) {
-        [self updateButtonTitle];
-    } else {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection failed"];
     }
 }
 
@@ -224,12 +244,21 @@
     
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
-    self.dayLabel.text = [NSString stringWithFormat:@"%ld", (long)[components day]];
+    NSString *day = [NSString stringWithFormat:@"%ld", (long)[components day]];
+    self.dayLabel.text = day;
     
     [dateFormat setDateFormat:@"MMM"];
-    self.monthLabel.text = [dateFormat stringFromDate:date];
-    [dateFormat setDateFormat:@"hh:mm"];
-    self.timeLabel.text = [dateFormat stringFromDate:date];
+    NSString *month = [dateFormat stringFromDate:date];
+    self.monthLabel.text = month;
+    
+    self.dayAndMonthLabel.text = [day stringByAppendingFormat:@" %@", month];
+    
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale: [NSLocale currentLocale]];
+    [dateFormatter setDateStyle:NSDateFormatterNoStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    self.timeLabel.text = [dateFormatter stringFromDate:date];
 }
 
 - (void)setActivity:(MSActivity *)activity
@@ -237,8 +266,8 @@
     _activity = activity;
     
     if (activity) {
-        [self queryInfoToSetButtonTitle];
-        self.titleLabel.text = activity.sport;
+        [self updateButtonTitle];
+        self.titleLabel.text = activity.sport.name;
         self.locationLabel.text = activity.place;
         self.addressLabel.text = activity.place;
         self.fbProfilePictureView.sportner = activity.owner;

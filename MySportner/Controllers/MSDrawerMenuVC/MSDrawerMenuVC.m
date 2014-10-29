@@ -31,6 +31,8 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomContainerView;
 @property (weak, nonatomic) IBOutlet QBFlatButton *fiendFriendsButton;
 @property (weak, nonatomic) IBOutlet QBFlatButton *logoutButton;
+@property (weak, nonatomic) IBOutlet UIView *topContainer;
+@property (weak, nonatomic) IBOutlet UIButton *viewProfileButton;
 
 @property (weak, nonatomic) QBFlatButton *selectedButton;
 
@@ -75,11 +77,29 @@
 - (void)setAppearance
 {
     UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"drawer_background.png"]];
+    
+    self.view.backgroundColor = [UIColor colorWithRed:80.0/255.0 green:93.0/255.0 blue:101.0/255.0 alpha:1.0];
     int width = 320;
     int height = self.view.bounds.size.height;
     imgView.frame = CGRectMake(0, 0, width, height);
     [self.view insertSubview:imgView atIndex:0];
-    self.bottomContainerView.backgroundColor = [UIColor colorWithRed:0.30f green:0.30f blue:0.30f alpha:0.5f];
+    imgView.hidden = YES;
+    
+    self.topContainer.backgroundColor = [UIColor clearColor];
+    self.topContainer.layer.borderColor = [[UIColor colorWithWhite:1.0 alpha:0.08] CGColor];
+    self.topContainer.layer.borderWidth = 1.0;
+    self.topContainer.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.topContainer.layer.shadowRadius = 0.4;
+    self.topContainer.layer.shadowOpacity = 0.08;
+    self.topContainer.layer.shadowOffset = CGSizeMake(0.0, 1.0);
+    
+    self.viewProfileButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [self.viewProfileButton setTitle:@"View profile" forState:UIControlStateNormal];
+    [self.viewProfileButton setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5] forState:UIControlStateNormal];
+    self.viewProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNova-Light" size:12.0];
+    
+    
+    self.bottomContainerView.backgroundColor = [UIColor colorWithRed:62.0/255.0 green:73.0/255.0 blue:82.0/255.0 alpha:1.0];
     self.fbProfilePictureView.backgroundColor = [UIColor clearColor];
     
     self.fbProfilePictureView.layer.shadowColor = [[[UIColor blackColor] colorWithAlphaComponent:0.4] CGColor];
@@ -87,6 +107,7 @@
     
     [MSStyleFactory setUILabel:self.userNameLabel withStyle:MSLabelStyleUserName];
     [MSStyleFactory setUILabel:self.welcomeLabel withStyle:MSLabelStyleUserName];
+    self.welcomeLabel.font = [UIFont fontWithName:@"ProximaNova-Light" size:16.0];
     
     [self.activitiesButton setTitle:@"ACTIVITIES" forState:UIControlStateNormal];
     [MSStyleFactory setQBFlatButton:self.activitiesButton withStyle:MSFlatButtonStyleDrawerMenu];
@@ -135,8 +156,8 @@
 - (void)updateView
 {
     self.fbProfilePictureView.sportner = [MSSportner currentSportner];
-    self.welcomeLabel.text = [[MSSportner currentSportner].firstName uppercaseString];
-    self.userNameLabel.text = [[MSSportner currentSportner].lastName uppercaseString];
+    self.welcomeLabel.text = @"HELLO";
+    self.userNameLabel.text = [[MSSportner currentSportner].firstName uppercaseString];
 }
 
 
@@ -153,7 +174,7 @@
 - (IBAction)profileButtonPress:(UIButton *)sender
 {
     [self.mm_drawerController displayCenterControlerForView:MSCenterViewProfile];
-    self.selectedButton = (QBFlatButton *)sender;
+    self.selectedButton = nil;
 }
 
 - (IBAction)activitiesButtonPress:(UIButton *)sender

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSWelcomeVC">
             <connections>
                 <outlet property="createAccountButton" destination="Z5Q-R2-uOY" id="5lo-uy-CzE"/>
+                <outlet property="facebookIconView" destination="Vru-7b-Kw3" id="EME-bf-Lma"/>
                 <outlet property="facebookLoginButton" destination="v7c-ml-F4f" id="BX7-Z9-5gm"/>
                 <outlet property="loginButton" destination="yqk-31-Md8" id="VNa-cc-1o3"/>
                 <outlet property="view" destination="C6N-oI-cKQ" id="wqF-St-5qV"/>
@@ -19,26 +20,27 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v7c-ml-F4f" customClass="QBFlatButton">
-                    <rect key="frame" x="20" y="343" width="280" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="24" y="494" width="272" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="Pix-Xu-bph"/>
-                        <constraint firstAttribute="width" constant="280" id="UZi-b1-k5J"/>
                     </constraints>
-                    <state key="normal" title="CONNECT VIA     ">
+                    <inset key="contentEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="Login with facebook">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="logInWithFacebookButtonPress:" destination="-1" eventType="touchUpInside" id="6Cd-Yy-8fu"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5Q-R2-uOY" customClass="QBFlatButton">
-                    <rect key="frame" x="20" y="423" width="280" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-fb.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vru-7b-Kw3">
+                    <rect key="frame" x="37" y="507.5" width="20" height="20"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="280" id="1TX-AW-NVa"/>
-                        <constraint firstAttribute="height" constant="50" id="Y4S-RK-47f"/>
+                        <constraint firstAttribute="height" constant="20" id="dwb-2w-WqH"/>
+                        <constraint firstAttribute="width" constant="20" id="p74-yN-Fcy"/>
                     </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5Q-R2-uOY" customClass="QBFlatButton">
+                    <rect key="frame" x="20" y="194" width="280" height="50"/>
                     <state key="normal" title="Sign up">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -46,13 +48,8 @@
                         <action selector="signUpButtonPress:" destination="-1" eventType="touchUpInside" id="cVU-24-5H1"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqk-31-Md8" customClass="QBFlatButton">
-                    <rect key="frame" x="20" y="488" width="280" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="280" id="ETm-3u-7Ol"/>
-                        <constraint firstAttribute="height" constant="50" id="hF9-Kq-WHp"/>
-                    </constraints>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqk-31-Md8" customClass="QBFlatButton">
+                    <rect key="frame" x="20" y="259" width="280" height="50"/>
                     <state key="normal" title="Sign in">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -61,30 +58,24 @@
                         <action selector="signInButtonPress:" destination="-1" eventType="touchUpInside" id="vS8-Mj-q7c"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fb.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vru-7b-Kw3">
-                    <rect key="frame" x="210" y="354" width="25" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="25" id="dwb-2w-WqH"/>
-                        <constraint firstAttribute="width" constant="25" id="p74-yN-Fcy"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="v7c-ml-F4f" secondAttribute="bottom" constant="24" id="4kj-TU-PRP"/>
+                <constraint firstAttribute="trailing" secondItem="v7c-ml-F4f" secondAttribute="trailing" constant="24" id="Or4-DL-pv2"/>
                 <constraint firstItem="v7c-ml-F4f" firstAttribute="centerY" secondItem="Vru-7b-Kw3" secondAttribute="centerY" constant="1.5" id="WPA-Rh-Pse"/>
-                <constraint firstItem="Z5Q-R2-uOY" firstAttribute="top" secondItem="v7c-ml-F4f" secondAttribute="bottom" constant="30" id="Xhh-II-upp"/>
-                <constraint firstAttribute="centerX" secondItem="v7c-ml-F4f" secondAttribute="centerX" id="fLG-un-53i"/>
-                <constraint firstAttribute="centerX" secondItem="Z5Q-R2-uOY" secondAttribute="centerX" id="hfC-7k-bIw"/>
-                <constraint firstAttribute="trailing" secondItem="Vru-7b-Kw3" secondAttribute="trailing" constant="85" id="jo3-qi-AXw"/>
-                <constraint firstAttribute="bottom" secondItem="yqk-31-Md8" secondAttribute="bottom" constant="30" id="kPY-70-nk9"/>
-                <constraint firstItem="yqk-31-Md8" firstAttribute="top" secondItem="Z5Q-R2-uOY" secondAttribute="bottom" constant="15" id="n8x-Xy-PGV"/>
-                <constraint firstAttribute="centerX" secondItem="yqk-31-Md8" secondAttribute="centerX" id="yEL-ct-hCm"/>
+                <constraint firstItem="Vru-7b-Kw3" firstAttribute="leading" secondItem="C6N-oI-cKQ" secondAttribute="leading" constant="37" id="jSC-T8-1MW"/>
+                <constraint firstItem="v7c-ml-F4f" firstAttribute="leading" secondItem="C6N-oI-cKQ" secondAttribute="leading" constant="24" id="vg5-ME-O6j"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <nil key="simulatedStatusBarMetrics"/>
         </view>
     </objects>
     <resources>
-        <image name="fb.png" width="47" height="47"/>
+        <image name="icon-fb.png" width="40" height="40"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

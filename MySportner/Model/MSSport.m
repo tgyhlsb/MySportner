@@ -6,20 +6,78 @@
 //  Copyright (c) 2014 MySportner. All rights reserved.
 //
 
+#import <Parse/PFObject+Subclass.h>
 #import "MSSport.h"
+#import "TKAlertCenter.h"
+
+static NSArray *allSports;
 
 @implementation MSSport
 
-+ (NSInteger)keyForSportName:(NSString *)sportName
+@dynamic name;
+@dynamic slug;
+
+//+ (NSInteger)keyForSportName:(NSString *)sportName
+//{
+//    NSInteger key = [SAMPLE_SPORTS indexOfObject:sportName];
+//    return key;
+//}
+//
+//+ (NSString *)sportNameForKey:(NSInteger)sportKey
+//{
+//    NSString *sportName = [SAMPLE_SPORTS objectAtIndex:sportKey];
+//    return sportName;
+//}
+
++ (MSSport *)sportWithSlug:(NSString *)slug
 {
-    NSInteger key = [SAMPLE_SPORTS indexOfObject:sportName];
-    return key;
+    for (MSSport *sport in allSports) {
+        if ([sport.slug isEqualToString:slug]) {
+            return sport;
+        }
+    }
+    return nil;
 }
 
-+ (NSString *)sportNameForKey:(NSInteger)sportKey
++ (NSArray *)allSports
 {
-    NSString *sportName = [SAMPLE_SPORTS objectAtIndex:sportKey];
-    return sportName;
+    return allSports;
+}
+
+- (BOOL)isEqualToSport:(MSSport *)otherSport
+{
+    return [self.slug isEqualToString:otherSport.slug];
+}
+
++ (NSString *)parseClassName
+{
+    return PARSE_CLASSNAME_SPORT;
+}
+
++ (void)fetchAllSportsIfNeeded
+{
+    if (![MSSport allSportsAreLoaded]) {
+        [MSSport fetchAllSports];
+    }
+}
+
++ (void)fetchAllSports
+{
+    PFQuery *query = [MSSport query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSLog(@"sports were fetched");
+            allSports = objects;
+            [[NSNotificationCenter defaultCenter] postNotificationName:MSSportWereFetch object:nil];
+        } else {
+            [[TKAlertCenter defaultCenter] postAlertWithMessage:[error localizedDescription]];
+        }
+    }];
+}
+
++ (BOOL)allSportsAreLoaded
+{
+    return (allSports && [allSports count]);
 }
 
 @end

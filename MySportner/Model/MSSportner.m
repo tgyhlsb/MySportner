@@ -10,7 +10,6 @@
 #import "MSActivity.h"
 #import "MSUser.h"
 #import <Parse/PFObject+Subclass.h>
-#import "MSSport.h"
 
 
 #define FACEBOOK_VALUE_GENDER_MALE @"male"
@@ -39,12 +38,14 @@
 @synthesize tempSportnersQueryCallBack = _tempSportnersQueryCallBack;
 @synthesize sportners = _sportners;
 
+@dynamic lastPlace;
 @dynamic username;
 @dynamic firstName;
 @dynamic lastName;
 @dynamic facebookID;
 @dynamic birthday;
 @dynamic gender;
+@dynamic sports;
 @dynamic sportLevels;
 @dynamic imageFile;
 
@@ -57,6 +58,19 @@
     return sportner;
 }
 
++ (void)setActualUserForPushNotifications
+{
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setObject:[MSSportner currentSportner] forKey:@"sportner"];
+    [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            NSLog(@"Could not register installation for push notifications");
+        } else {
+            NSLog(@"Installation set up for notification");
+        }
+    }];
+}
+
 + (NSString *)parseClassName
 {
     return PARSE_CLASSNAME_SPORTNER;
@@ -65,15 +79,6 @@
 - (NSString *)fullName
 {
     return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
-}
-
-- (BOOL)isEqual:(id)object
-{
-    if ([object isKindOfClass:[MSSportner class]]) {
-        return [self isEqualToSportner:(MSSportner *)object];
-    } else {
-        return NO;
-    }
 }
 
 - (BOOL)isEqualToSportner:(MSSportner *)otherSportner
@@ -91,7 +96,7 @@
 
 - (void)setWithFacebookInfo:(id<FBGraphUser>)userInfo
 {
-    self.facebookID = userInfo.id;
+    self.facebookID = userInfo.objectID;
     self.firstName = userInfo.first_name;
     self.lastName = userInfo.last_name;
     if ([userInfo[FACEBOOK_KEY_GENDER] isEqualToString:FACEBOOK_VALUE_GENDER_MALE])
@@ -102,6 +107,12 @@
         self.gender = MSUserGenderFemale;
     }
     self.birthday = [self stringToDate:[userInfo objectForKey:FACEBOOK_KEY_BIRTHDAY]];
+    
+    
+    self.lastPlace = [[userInfo objectForKey:@"location"] objectForKey:@"name"];
+    if (!self.lastPlace) {
+        self.lastPlace = [[userInfo objectForKey:@"hometown"] objectForKey:@"name"];
+    }
 }
 
 - (NSDate *)stringToDate:(NSString *)stringDate
@@ -113,35 +124,69 @@
 }
 
 #pragma mark - Sports
-- (void)setSport:(NSInteger)sportKey withLevel:(NSInteger)level
-{
-    if (!self.sportLevels) {
-        self.sportLevels = [[NSDictionary alloc] init];
-    }
-    NSMutableDictionary *tempSportLevels = [self.sportLevels mutableCopy];
-    NSString *sportKeyString = [NSString stringWithFormat:@"%ld", (long)sportKey];
-    [tempSportLevels setObject:@(level) forKey:sportKeyString];
-    self.sportLevels = tempSportLevels;
-}
 
 - (NSArray *)getSports
 {
-    NSMutableArray *sports = [[NSMutableArray alloc] init];
-    for (NSString *sportKeyString in self.sportLevels) {
-        NSInteger sportKey = [sportKeyString integerValue];
-
-        NSInteger sportLevel = [self sportLevelForSportIndex:sportKey defaultValue:-1];
-        if (sportLevel >= 0) {
-            [sports addObject:[MSSport sportNameForKey:sportKey]];
-        }
+    NSMutableArray *tempSports = [[NSMutableArray alloc] init];
+    
+    for (NSString *sportSlug in [self.sportLevels allKeys]) {
+        MSSport *sport = [MSSport sportWithSlug:sportSlug];
+        [tempSports addObject:sport];
     }
-    return sports;
+    
+    return tempSports;
 }
 
-- (NSInteger)sportLevelForSportIndex:(NSInteger)index defaultValue:(NSInteger)defaultValue
+- (void)setLevel:(NSNumber *)level forSport:(MSSport *)sport
 {
-    NSDecimalNumber *sportLevel = [self.sportLevels valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
-    return (sportLevel) ? [sportLevel integerValue] : defaultValue;
+    if (level) {
+        // set level
+        NSMutableDictionary *tempSportLevels = [self.sportLevels mutableCopy];
+        if (!tempSportLevels) {
+            tempSportLevels = [[NSMutableDictionary alloc] init];
+        }
+        [tempSportLevels setObject:level forKey:sport.slug];
+        self.sportLevels = tempSportLevels;
+        [self addSport:sport];
+    } else {
+        // look for actual level
+        NSNumber *oldLevel = [self levelForSport:sport];
+        if (oldLevel) {
+            // remove it
+            NSMutableDictionary *tempSportLevels = [self.sportLevels mutableCopy];
+            if (!tempSportLevels) {
+                tempSportLevels = [[NSMutableDictionary alloc] init];
+            }
+            [tempSportLevels removeObjectForKey:sport.slug];
+            self.sportLevels = tempSportLevels;
+            [self removeSport:sport];
+        }
+    }
+}
+
+- (NSNumber *)levelForSport:(MSSport *)sport
+{
+    return [self.sportLevels objectForKey:sport.slug];
+}
+
+- (void)removeSport:(MSSport *)sport
+{
+    NSMutableArray *tempSports = [self.sports mutableCopy];
+    if (!tempSports) {
+        tempSports = [[NSMutableArray alloc] init];
+    }
+    [tempSports removeObject:sport.slug];
+    self.sports = tempSports;
+}
+
+- (void)addSport:(MSSport *)sport
+{
+    NSMutableArray *tempSports = [self.sports mutableCopy];
+    if (!tempSports) {
+        tempSports = [[NSMutableArray alloc] init];
+    }
+    [tempSports addObject:sport.slug];
+    self.sports = tempSports;
 }
 
 #pragma mark - ProfilePciture
@@ -181,8 +226,9 @@
 
 - (PFRelation *)participantRelation
 {
-    return [self relationforKey:@"participant"];
+    return [self relationForKey:@"participant"];
 }
+
 
 - (void)queryActivitiesWithTarget:(id)target callBack:(SEL)callBack
 {
@@ -192,6 +238,7 @@
     PFQuery *activitiesQuery = [MSActivity query];
     [activitiesQuery whereKey:@"participant" equalTo:self];
     [activitiesQuery includeKey:@"owner"];
+    [activitiesQuery includeKey:@"sport"];
     [activitiesQuery findObjectsInBackgroundWithTarget:self selector:@selector(didFetchActivities:error:)];
 }
 
@@ -202,14 +249,17 @@
     } else {
         NSLog(@"%@",error);
     }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [self.tempActivityQueryTarget performSelector:self.tempActivityQueryCallBack withObject:activities withObject:error];
+#pragma clang diagnostic pop
 }
 
 #pragma mark - Sportners
 
 - (PFRelation *)sportnersRelation
 {
-    return [self relationforKey:@"sportner"];
+    return [self relationForKey:@"sportner"];
 }
 
 - (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack
@@ -228,7 +278,26 @@
     } else {
         NSLog(@"%@",error);
     }
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:sportners withObject:error];
+#pragma clang diagnostic pop
+}
+
+
+- (void)fetchSportners
+{
+    PFQuery *query = [[self sportnersRelation] query];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            self.sportners = objects;
+            [self notifySportnerStateChanged];
+        } else {
+            NSLog(@"%@", error);
+        }
+    }];
 }
 
 - (void)addSportner:(MSSportner *)sportner
@@ -247,6 +316,26 @@
     NSMutableArray *tempSportners = [self.sportners mutableCopy];
     [tempSportners removeObject:sportner];
     self.sportners = tempSportners;
+}
+
+
+#pragma mark - Notifications
+
+
+- (void)notifySportnerStateChanged
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationSportnerStateChanged
+                                                        object:self];
+}
+
+#pragma mark - Overrides
+
+- (BOOL)isEqual:(id)object
+{
+    if ([object isMemberOfClass:[MSSportner class]]) {
+        return [self.objectId isEqualToString:((MSSportner *)object).objectId];
+    }
+    return NO;
 }
 
 @end

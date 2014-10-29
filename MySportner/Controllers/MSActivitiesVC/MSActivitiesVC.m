@@ -12,13 +12,13 @@
 #import "MSActivity.h"
 #import "MSActivityCell.h"
 #import "MSActivitiesFilterCell.h"
-#import "MSActivityVC.h"
+#import "MSGameProfileVC.h"
 #import "MBProgressHUD.h"
 #import "QBFlatButton.h"
 #import "MSStyleFactory.h"
-#import "MSSetAGameVC.h"
-//#import <FacebookSDK/FacebookSDK.h>
+#import "MSSetAGameVC2.h"
 #import "MSProfileVC.h"
+#import "MSSportnersVC.h"
 
 #define NIB_NAME @"MSActivitiesVC"
 
@@ -26,6 +26,7 @@
 
 @property (strong, nonatomic) MBProgressHUD *loadingView;
 @property (weak, nonatomic) IBOutlet UIButton *plusButton;
+@property (weak, nonatomic) IBOutlet QBFlatButton *createActivityButton;
 
 @property (strong, nonatomic) NSArray *data;
 
@@ -42,8 +43,6 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    self.title = @"ACTIVITIES";
-    
     [MSActivityCell registerToTableview:self.tableView];
     [MSActivitiesFilterCell registerToTableView:self.tableView];
     
@@ -58,6 +57,31 @@
 - (void)reloadData
 {
     [self.tableView reloadData];
+}
+
+- (void)setReferenceActivity:(MSActivity *)referenceActivity
+{
+    _referenceActivity = referenceActivity;
+    
+    if (referenceActivity) {
+        [self setUpLeftButton];
+        
+        self.plusButton.hidden = YES;
+    }
+}
+
+- (void)setUpLeftButton
+{
+    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"skip.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(leftButtonHandler)];
+    self.navigationItem.rightBarButtonItem = nextButton;
+}
+
+- (void)leftButtonHandler
+{
+    MSSportnersVC *destination = [MSSportnersVC newControler];
+    destination.hasDirectAccessToDrawer = NO;
+    destination.referenceActivity = self.referenceActivity;
+    [self.navigationController pushViewController:destination animated:YES];
 }
 
 - (void)setData:(NSArray *)data
@@ -96,6 +120,8 @@
 {
     [self setBackgroundWithEmptyData:YES];
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button.png"] forState:UIControlStateNormal];
     [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button_press.png"] forState:UIControlStateHighlighted|UIControlStateHighlighted];
     [self.plusButton setTitle:@"" forState:UIControlStateNormal];
@@ -105,16 +131,64 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self.tableView setContentInset:UIEdgeInsetsMake(63, 0, 80, 0)];
     });
+    
+    [self.createActivityButton setTitle:@"CREATE ACTIVITY" forState:UIControlStateNormal];
+    [MSStyleFactory setQBFlatButton:self.createActivityButton withStyle:MSFlatButtonStyleGreen];
+    
+    if (self.referenceActivity) {
+        self.plusButton.hidden = YES;
+        self.title = @"SUGGESTED ACTIVITIES";
+        self.createActivityButton.hidden = NO;
+    } else {
+        self.title = @"ACTIVITIES";
+        self.plusButton.hidden = NO;
+        self.createActivityButton.hidden = YES;
+    }
 }
 - (IBAction)plusButtonHandler:(id)sender
 {
-    MSSetAGameVC *destinationVC = [MSSetAGameVC newController];
+    MSSetAGameVC2 *destinationVC = [MSSetAGameVC2 newController];
     destinationVC.hasDirectAccessToDrawer = NO;
     [self.navigationController pushViewController:destinationVC animated:YES];
 }
 
+- (IBAction)createActivityButtonHandler:(id)sender
+{
+        [self showLoadingViewInView:self.navigationController.view];
+        [self.referenceActivity saveInBackgroundWithTarget:self selector:@selector(handleActivityCreation:error:)];
+}
+
+- (void)handleActivityCreation:(BOOL)succeed error:(NSError *)error
+{
+    [self hideLoadingView];
+    if (!error) {
+        [self activityCreationDidSucceed];
+    } else {
+        NSLog(@"%@", error);
+    }
+}
+
+- (void)activityCreationDidSucceed
+{
+    MSGameProfileVC *destinationVC = [MSGameProfileVC newController];
+    destinationVC.hasDirectAccessToDrawer = YES;
+    destinationVC.activity = self.referenceActivity;
+    
+    [self.navigationController setViewControllers:@[destinationVC] animated:YES];
+}
 
 #pragma mark BackEnd process
+
+- (void)registerSportNotification
+{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(requestActivitiesFromBackEnd)
+                                                 name:MSSportWereFetch
+                                               object:nil];
+    
+    
+}
 
 - (void)activitiesCallback:(NSArray *)objects error:(NSError *)error
 {
@@ -129,11 +203,34 @@
 
 - (void)requestActivitiesFromBackEnd
 {
-    PFQuery *query = [PFQuery queryWithClassName:PARSE_CLASSNAME_ACTIVITY];
     
     [self showLoadingViewInView:self.view];
+    PFQuery *query = [PFQuery queryWithClassName:PARSE_CLASSNAME_ACTIVITY];
     
+    if (self.referenceActivity) {
+        [query whereKey:@"sport" equalTo:self.referenceActivity.sport];
+        [query whereKey:@"level" lessThanOrEqualTo:self.referenceActivity.level];
+    } else {
+        NSMutableArray *subQueries = [[NSMutableArray alloc] init];
+        for (NSString *sportSlug in [[MSSportner currentSportner] sports]) {
+            MSSport *sport = [MSSport sportWithSlug:sportSlug];
+            if (sport) {
+                NSInteger level = [[[MSSportner currentSportner] levelForSport:sport] integerValue];
+                PFQuery *subQuery = [PFQuery queryWithClassName:PARSE_CLASSNAME_ACTIVITY];
+                [subQuery whereKey:@"sport" equalTo:sport];
+                [subQuery whereKey:@"level" containedIn:@[@(level-1), @(level), @(level+1)]];
+                [subQueries addObject:subQuery];
+            }
+        }
+        
+        if ([subQueries count]) {
+            query = [PFQuery orQueryWithSubqueries:subQueries];
+        }
+        
+    }
     [query includeKey:@"owner"];
+    [query includeKey:@"sport"];
+    
     [query findObjectsInBackgroundWithTarget:self
                                     selector:@selector(activitiesCallback:error:)];
 }
@@ -207,7 +304,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    MSActivityVC *destinationVC = [MSActivityVC newController];
+    MSGameProfileVC *destinationVC = [MSGameProfileVC newController];
     MSActivityCell *cell = (MSActivityCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     destinationVC.activity = cell.activity;
     

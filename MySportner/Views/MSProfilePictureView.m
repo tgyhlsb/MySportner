@@ -32,7 +32,7 @@
 - (UIActivityIndicatorView *)activityIndicatorView
 {
     if (!_activityIndicatorView) {
-        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         _activityIndicatorView.color = [UIColor blackColor];
         _activityIndicatorView.frame = self.bounds;
         _activityIndicatorView.hidesWhenStopped = YES;

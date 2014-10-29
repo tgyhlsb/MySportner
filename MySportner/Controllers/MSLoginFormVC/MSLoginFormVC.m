@@ -67,7 +67,7 @@
     // Navigation bar
     NSDictionary *navbarTitleTextAttributes = @{
                                                 NSForegroundColorAttributeName:[MSColorFactory grayLight],
-                                                UITextAttributeFont:[MSFontFactory fontForNavigationTitle]};
+                                                NSFontAttributeName:[MSFontFactory fontForNavigationTitle]};
     
     [self.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
     [self.navigationBar setTintColor:[MSColorFactory whiteLight]];

@@ -25,6 +25,7 @@
 @interface MSTextFieldPickerCell()
 
 @property (strong, nonatomic) UIImageView *iconView;
+@property (weak, nonatomic) IBOutlet UILabel *placeHolderLabel;
 
 @end
 
@@ -95,6 +96,28 @@
         default:
             break;
     }
+}
+
+- (void)setTitle:(NSString *)title
+{
+    _title = title;
+    
+    if (title) {
+        self.textField.textAlignment = NSTextAlignmentRight;
+        self.placeHolderLabel.hidden = NO;
+        self.placeHolderLabel.text = title;
+        self.textField.placeholder = @"";
+    } else {
+        self.textField.textAlignment = NSTextAlignmentLeft;
+        self.placeHolderLabel.hidden = YES;
+    }
+}
+
+- (void)setShowIcon:(BOOL)showIcon
+{
+    _showIcon = showIcon;
+    
+    self.iconView.hidden = !showIcon;
 }
 
 + (void)registerToTableView:(UITableView *)tableView

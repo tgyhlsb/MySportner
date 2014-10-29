@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *placeLabel;
 @property (weak, nonatomic) IBOutlet MSProfilePictureView *profilePictureView;
 @property (weak, nonatomic) IBOutlet QBFlatButton *actionButton;
+@property (weak, nonatomic) IBOutlet UIView *selectedView;
+@property (weak, nonatomic) IBOutlet UIView *disabledView;
 
 
 @end
@@ -56,7 +58,7 @@
     _sportner = sportner;
     self.profilePictureView.sportner = sportner;
     self.nameLabel.text = [sportner fullName];
-    self.placeLabel.text = @"Place, country";
+    self.placeLabel.text = self.sportner.lastPlace;
 }
 
 - (void)setActionButtonHidden:(BOOL)hidden
@@ -66,12 +68,32 @@
 
 - (void)setActionButtonTitle:(NSString *)title
 {
+    self.actionButton.hidden = (title == nil);
     [self.actionButton setTitle:title forState:UIControlStateNormal];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    // do nothing
+//    [super setSelected:selected animated:animated];
+}
+
+- (void)setIsSelected:(BOOL)isSelected
+{
+    _isSelected = isSelected;
+    
+    self.selectedView.hidden = !isSelected;
+}
+
+- (void)setIsDisabled:(BOOL)isDisabled
+{
+    _isDisabled = isDisabled;
+    self.userInteractionEnabled = !isDisabled;
+    
+    if (isDisabled) {
+        self.isSelected = NO;
+    }
+    
+    self.disabledView.hidden = !isDisabled;
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
@@ -97,8 +119,8 @@
     
     self.nameLabel.textColor = [MSColorFactory redLight];
     
-    self.placeLabel.font = [MSFontFactory fontForCellInfo];
-    self.nameLabel.font = [MSFontFactory fontForCellAcivityTitle];
+    self.placeLabel.font = [UIFont fontWithName:@"ProximaNova-Regular" size:13.0];
+    self.nameLabel.font = [UIFont fontWithName:@"ProximaNova-SemiBold" size:16.0];
     
     self.actionButton.faceColor = [MSColorFactory redLight];
     self.actionButton.margin = 0.0f;

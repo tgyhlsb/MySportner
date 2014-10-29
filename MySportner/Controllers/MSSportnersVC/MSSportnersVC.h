@@ -8,9 +8,10 @@
 
 #import "MSCenterController.h"
 #import "MSSportnerCell.h"
+#import "MSActivity.h"
 
 @interface MSSportnersVC : MSCenterController <MSSportnerCellDelegate>
-
+@property (strong, nonatomic) MSActivity *referenceActivity;
 
 + (MSSportnersVC *)newControler;
 

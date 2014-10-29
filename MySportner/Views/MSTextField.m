@@ -92,16 +92,16 @@
 
 - (BOOL)canBecomeFirstResponder
 {
-    [self setBorderColor:self.focusBorderColor];
-    self.textColor = self.textFocusedColor;
+//    [self setBorderColor:self.focusBorderColor];
+//    self.textColor = self.textFocusedColor;
     
     return [super canBecomeFirstResponder];
 }
 
 - (BOOL)canResignFirstResponder
 {
-    [self setBorderColor:self.normalBorderColor];
-    [self setTextColor:self.textNormalColor];
+//    [self setBorderColor:self.normalBorderColor];
+//    [self setTextColor:self.textNormalColor];
     
     return [super canResignFirstResponder];
 }

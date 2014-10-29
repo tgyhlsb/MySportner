@@ -9,10 +9,16 @@
 #import "MSSportnersVC.h"
 #import "MBProgressHUD.h"
 #import "MSProfileVC.h"
+#import "MSGameProfileVC.h"
+#import "QBFlatButton.h"
+#import "MSStyleFactory.h"
+
+#define NIB_NAME @"MSSportnersVC"
 
 @interface MSSportnersVC () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) MBProgressHUD *loadingView;
+@property (weak, nonatomic) IBOutlet QBFlatButton *createActivityButton;
 
 @property (strong, nonatomic) NSArray *data;
 
@@ -27,18 +33,26 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    self.title = @"INVITE SPORTNERS";
+    self.title = @"SUGGESTED SPORTNERS";
     
     [self querySportners];
+    
+    [self setUpAppearance];
     
     [MSSportnerCell registerToTableview:self.tableView];
 }
 
 + (MSSportnersVC *)newControler
 {
-    MSSportnersVC *vc = [[MSSportnersVC alloc] init];
+    MSSportnersVC *vc = [[MSSportnersVC alloc] initWithNibName:NIB_NAME bundle:nil];
     vc.hasDirectAccessToDrawer = NO;
     return vc;
+}
+
+- (void)setUpAppearance
+{
+    [self.createActivityButton setTitle:@"CREATE ACTIVITY" forState:UIControlStateNormal];
+    [MSStyleFactory setQBFlatButton:self.createActivityButton withStyle:MSFlatButtonStyleGreen];
 }
 
 - (void)reloadData
@@ -46,11 +60,40 @@
     [self.tableView reloadData];
 }
 
+- (IBAction)createActivityButtonHandler:(id)sender
+{
+    [self showLoadingViewInView:self.navigationController.view];
+    [self.referenceActivity saveInBackgroundWithTarget:self selector:@selector(handleActivityCreation:error:)];
+}
+
+- (void)handleActivityCreation:(BOOL)succeed error:(NSError *)error
+{
+    [self hideLoadingView];
+    if (!error) {
+        [self activityCreationDidSucceed];
+    } else {
+        NSLog(@"%@", error);
+    }
+}
+
+- (void)activityCreationDidSucceed
+{
+    MSGameProfileVC *destinationVC = [MSGameProfileVC newController];
+    destinationVC.hasDirectAccessToDrawer = YES;
+    destinationVC.activity = self.referenceActivity;
+    
+    [self.navigationController setViewControllers:@[destinationVC] animated:YES];
+}
+
 #pragma mark - PARSE Backend
 
 - (void)querySportners
 {
     PFQuery *query = [MSSportner query];
+    
+    if (self.referenceActivity) {
+        [query whereKey:@"sports" equalTo:self.referenceActivity.sport.slug];
+    }
     
     [self showLoadingViewInView:self.view];
     
@@ -62,11 +105,50 @@
 {
     [self hideLoadingView];
     if (!error) {
-        self.data = objects;
+        NSMutableArray *tempObjects = [objects mutableCopy];
+        [tempObjects removeObject:[MSSportner currentSportner]];
+        self.data = tempObjects;
         [self reloadData];
     } else {
         NSLog(@"Error: %@ %@", error, [error userInfo]);
     }
+}
+
+#pragma mark - MSSportnerCellDelegate
+
+- (void)sportnerCell:(MSSportnerCell *)cell didTrigerActionWithSportner:(MSSportner *)sportner
+{
+    if ([self.referenceActivity.guests containsObject:sportner]) {
+        [self sportnerCell:cell didUninviteSportner:sportner];
+    } else {
+        [self sportnerCell:cell didInviteSportner:sportner];
+    }
+}
+
+
+- (void)sportnerCell:(MSSportnerCell *)cell didInviteSportner:(MSSportner *)sportner
+{
+    PFRelation *relation = [self.referenceActivity guestRelation];
+    [relation addObject:sportner];
+    
+    NSMutableArray *tempGuests = [self.referenceActivity.guests mutableCopy];
+    [tempGuests insertObject:cell.sportner atIndex:0];
+    self.referenceActivity.guests = tempGuests;
+    
+    NSIndexPath *indexPAth = [self.tableView indexPathForCell:cell];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPAth] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)sportnerCell:(MSSportnerCell *)cell didUninviteSportner:(MSSportner *)sportner
+{
+    PFRelation *relation = [self.referenceActivity guestRelation];
+    [relation removeObject:sportner];
+    NSMutableArray *tempGuests = [self.referenceActivity.guests mutableCopy];
+    [tempGuests removeObject:cell.sportner];
+    self.referenceActivity.guests = tempGuests;
+    
+    NSIndexPath *indexPAth = [self.tableView indexPathForCell:cell];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPAth] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 
@@ -92,6 +174,12 @@
     [cell setAppearanceWithOddIndex:(indexPath.row % 2)];
     cell.delegate = self;
     
+    if ([self.referenceActivity.guests containsObject:sportner]) {
+        [cell setActionButtonTitle:@"CANCEL"];
+    } else {
+        [cell setActionButtonTitle:@"INVITE"];
+    }
+    
     cell.layer.shouldRasterize = YES;
     cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
     
@@ -116,17 +204,6 @@
     [self.navigationController pushViewController:destinationVC animated:YES];
 }
 
-#pragma mark - MSSportnerCellDelegate
-
-- (void)sportnerCell:(MSSportnerCell *)cell didTrigerActionWithSportner:(MSSportner *)sportner
-{
-    
-}
-
-- (void)sportnerCell:(MSSportnerCell *)cell didUninviteSportner:(MSSportner *)sportner
-{
-    
-}
 
 #pragma mark - MBProgressHUD
 

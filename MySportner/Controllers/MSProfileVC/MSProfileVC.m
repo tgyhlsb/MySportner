@@ -11,7 +11,7 @@
 #import "UIImage+BlurredFrame.h"
 #import "MSColorFactory.h"
 #import "MSActivityCell.h"
-#import "MSActivityVC.h"
+#import "MSGameProfileVC.h"
 #import "MSChooseSportsVC.h"
 #import "MSProfilePictureView.h"
 #import "TKAlertCenter.h"
@@ -19,8 +19,9 @@
 #import "MSFontFactory.h"
 #import "MSStyleFactory.h"
 #import "MSCropperVC.h"
-#import "MSCreateAccountVC.h"
+#import "MSVerifyAccountVC.h"
 #import "MSSportnerCell.h"
+
 
 #define NIB_NAME @"MSProfileVC"
 
@@ -31,7 +32,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     MSProfileTableViewModeSportners
 };
 
-@interface MSProfileVC () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MSCropperVCDelegate, MSSportnerCellDelegate>
+@interface MSProfileVC () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MSCropperVCDelegate, MSSportnerCellDelegate, UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *topView;
@@ -42,8 +43,12 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 @property (weak, nonatomic) IBOutlet QBFlatButton *activitiesButton;
 @property (weak, nonatomic) IBOutlet QBFlatButton *sportnersButton;
 @property (weak, nonatomic) IBOutlet QBFlatButton *actionbutton;
+@property (weak, nonatomic) IBOutlet UIImageView *sportImageView1;
+@property (weak, nonatomic) IBOutlet UIImageView *sportImageView2;
+@property (weak, nonatomic) IBOutlet UIImageView *sportImageView3;
 
 @property (strong, nonatomic) UIImagePickerController *imagePickerVC;
+@property (strong, nonatomic) UIImagePickerController *imageTakerVC;
 
 @property (nonatomic) MSProfileTableViewMode tableViewMode;
 
@@ -96,6 +101,12 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
         self.imagePickerVC = [[UIImagePickerController alloc] init];
         self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         self.imagePickerVC.delegate = self;
+        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+            // Has camera
+            self.imageTakerVC = [[UIImagePickerController alloc] init];
+            self.imageTakerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+            self.imageTakerVC.delegate = self;
+        }
     });
 }
 
@@ -154,7 +165,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     
     [self setUpActionButton];
     
-    self.profilePictureView.layer.borderWidth = 2.0f;
+    self.profilePictureView.layer.borderWidth = 1.0f;
     self.profilePictureView.layer.borderColor = [[[UIColor whiteColor] colorWithAlphaComponent:0.8] CGColor];
     self.profilePictureView.layer.shadowOffset = CGSizeMake(2.0, 2.0);
     self.profilePictureView.layer.shadowColor = [[[UIColor blackColor] colorWithAlphaComponent:1.0] CGColor];
@@ -207,11 +218,56 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 
 - (void)pictureTapHandler
 {
+    if ([self.sportner isEqualToSportner:[MSSportner currentSportner]]) {
+        UIActionSheet *pictureSheet = [[UIActionSheet alloc] initWithTitle:@"Profile picture"
+                                                                  delegate:self
+                                                         cancelButtonTitle:@"Cancel"
+                                                    destructiveButtonTitle:Nil
+                                                         otherButtonTitles:@"Take a picture", @"Use an existing picture", @"Resize picture", nil];
+        pictureSheet.actionSheetStyle = UIActionSheetStyleAutomatic;
+        pictureSheet.delegate = self;
+        [pictureSheet showInView:self.view];
+    }
+}
 
-    [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+#pragma mark - UIActionsheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0: // Camera
+        {
+            if (self.imageTakerVC) {
+                [self presentViewController:self.imageTakerVC animated:YES completion:nil];
+            } else {
+                [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Your camera is not available"];
+            }
+            break;
+        }
+            
+        case 1: // Library
+        {
+            [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+            break;
+        }
+            
+        case 2: // Resize
+        {
+            [self openImageCropperWithSportnerImage];
+            break;
+        }
+    }
 }
 
 #pragma mark UIImagePickerControllerDelegate
+
+- (void)openImageCropperWithSportnerImage
+{
+    MSCropperVC *cropperVC = [MSCropperVC newControllerWithImage:self.sportner.image];
+    cropperVC.delegate = self;
+    UINavigationController *destination = [[UINavigationController alloc] initWithRootViewController:cropperVC];
+    [self presentViewController:destination animated:YES completion:nil];
+}
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -276,7 +332,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
         [self setCoverPictureWithImage:[UIImage imageNamed:@"Img-Profile.png"]];
         self.profilePictureView.sportner = self.sportner;
         self.sportnerNameLabel.text = [self.sportner fullName];
-        self.locationLabel.text = [@"Lyon, France" uppercaseString];
+        self.locationLabel.text = self.sportner.lastPlace.uppercaseString;
     }
 }
 
@@ -302,7 +358,11 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 
 - (IBAction)actionButtonHandler:(id)sender
 {
-    [[MSSportner currentSportner] addSportner:self.sportner];
+    if ([[MSSportner currentSportner].sportners containsObject:self.sportner]) {
+        [[MSSportner currentSportner] removeSportner:self.sportner];
+    } else {
+        [[MSSportner currentSportner] addSportner:self.sportner];
+    }
     [self setUpActionButton];
 }
 
@@ -377,7 +437,11 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
             
             cell.delegate = self;
             
-            [cell setActionButtonTitle:@"REMOVE"];
+            if ([self.sportner isEqual:[MSSportner currentSportner]]) {
+                [cell setActionButtonTitle:@"REMOVE"];
+            } else {
+                [cell setActionButtonTitle:nil];
+            }
             
             return cell;
         }
@@ -399,14 +463,20 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     switch (self.tableViewMode) {
         case MSProfileTableViewModeActivities:
         {
-            MSActivityVC *destinationVC = [MSActivityVC newController];
+            MSGameProfileVC *destinationVC = [MSGameProfileVC newController];
             MSActivityCell *cell = (MSActivityCell *)[self.tableView cellForRowAtIndexPath:indexPath];
             destinationVC.activity = cell.activity;
             [self.navigationController pushViewController:destinationVC animated:YES];
+            break;
         }
         case MSProfileTableViewModeSportners:
         {
-            
+            MSProfileVC *destinationVC = [MSProfileVC newController];
+            destinationVC.hasDirectAccessToDrawer = NO;
+            MSSportnerCell *cell = (MSSportnerCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            destinationVC.sportner = cell.sportner;
+            [self.navigationController pushViewController:destinationVC animated:YES];
+            break;
         }
     }
 }

@@ -13,6 +13,8 @@
 
 @property (nonatomic) BOOL hasDirectAccessToDrawer;
 
++ (instancetype)newController;
+
 - (void)setTranslucentNavigationBar;
 
 - (void)setNormalNavigationBar;

@@ -14,6 +14,7 @@
 typedef NS_ENUM(int, MSFlatButtonStyle) {
     MSFlatButtonStyleRed,
     MSFlatButtonStyleGreen,
+    MSFlatButtonStyleGray,
     MSFlatButtonStyleRoundedGreen,
     MSFlatButtonStyleWhite,
     MSFlatButtonStyleDrawerMenu,
@@ -27,7 +28,9 @@ typedef NS_ENUM(int, MSLabelStyle) {
     MSLabelStyleCommentAuthor,
     MSLabelStyleCommentText,
     MSLabelStyleCommentTime,
-    MSLabelStyleSectionHeader
+    MSLabelStyleSectionHeader,
+    MSLabelStyleFormTitle,
+    MSLabelStyleFormValue
 };
 typedef NS_ENUM(int, MSTextFieldStyle) {
     MSTextFieldStyleWhiteForm

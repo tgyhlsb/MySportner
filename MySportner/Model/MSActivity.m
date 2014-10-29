@@ -9,20 +9,9 @@
 #import "MSActivity.h"
 #import <Parse/PFObject+Subclass.h>
 #import "TKAlertCenter.h"
+#import "MSComment.h"
 
 @interface MSActivity()
-
-@property (weak, nonatomic) id tempMessageQueryTarget;
-@property (nonatomic) SEL tempMessageQueryCallBack;
-
-@property (weak, nonatomic) id tempSportnersQueryTarget;
-@property (nonatomic) SEL tempSportnersQueryCallBack;
-
-@property (weak, nonatomic) id tempOthersQueryTarget;
-@property (nonatomic) SEL tempOthersQueryCallBack;
-
-@property (strong, nonatomic) id tempQueryMessagesTarget;
-@property (nonatomic) SEL tempQueryMessagesCallBack;
 
 @end
 
@@ -30,30 +19,20 @@
 @implementation MSActivity
 
 @dynamic date;
-@dynamic day;
-@dynamic time;
 @dynamic place;
 @dynamic sport;
-
+@dynamic level;
+@dynamic maxPlayer;
+@dynamic playerNeeded;
+@dynamic whereExactly;
+@dynamic nbComment;
 @dynamic owner;
 
 
 @synthesize guests = _guests;
 @synthesize participants = _participants;
-
-@synthesize tempMessageQueryCallBack = _tempMessageQueryCallBack;
-@synthesize tempMessageQueryTarget = _tempMessageQueryTarget;
-
-@synthesize tempSportnersQueryTarget = _tempSportnersQueryTarget;
-@synthesize tempSportnersQueryCallBack = _tempSportnersQueryCallBack;
-
-@synthesize tempOthersQueryTarget = _tempOthersQueryTarget;
-@synthesize tempOthersQueryCallBack = _tempOthersQueryCallBack;
-
-@synthesize tempQueryMessagesCallBack = _tempQueryMessagesCallBack;
-@synthesize tempQueryMessagesTarget = _tempQueryMessagesTarget;
-
-@dynamic messages;
+@synthesize awaitings = _awaitings;
+@synthesize comments = _comments;
 
 
 + (NSString *)parseClassName
@@ -66,197 +45,206 @@
     return [otherActivity.createdAt compare:self.createdAt];
 }
 
+- (void)setWithInfo:(NSDictionary *)activityInfo
+{
+    MSActivity *activity = [activityInfo objectForKey:@"activity"];
+    
+    self.date = activity.date;
+    self.place = activity.place;
+    self.sport = activity.sport;
+    self.level = activity.level;
+    self.maxPlayer = activity.maxPlayer;
+    self.whereExactly = activity.whereExactly;
+    self.playerNeeded = activity.playerNeeded;
+    self.nbComment = activity.nbComment;
+    self.owner = self.owner;
+    
+    self.awaitings = [activityInfo objectForKey:@"awaitingSportners"];
+    self.guests = [activityInfo objectForKey:@"invitedSportners"];
+    self.participants = [activityInfo objectForKey:@"confirmedSportners"];
+    self.comments = [activityInfo objectForKey:@"comments"];
+    
+    [self notifyActivityStateChanged];
+}
+
+- (void)fetchWithRelationAndBlock:(PFObjectResultBlock)block
+{
+    [PFCloud callFunctionInBackground:@"requestGameProfile"
+                       withParameters:@{@"activity": self.objectId}
+                                block:^(NSDictionary *result, NSError *error) {
+                                    if (!error) {
+                                        [self setWithInfo:result];
+                                    }
+                                    if (block) {
+                                        block(self, error);
+                                    }
+                                }];
+}
+
 - (PFRelation *)guestRelation
 {
-    return [self relationforKey:@"guest"];
+    return [self relationForKey:@"guest"];
 }
 
 - (PFRelation *)participantRelation
 {
-    return [self relationforKey:@"participant"];
+    return [self relationForKey:@"participant"];
 }
 
-#pragma mark - PARSE Backend
-
-- (void)querySportnersWithTarget:(id)target callBack:(SEL)callBack
+- (PFRelation *)awaitingRelation
 {
-    self.tempSportnersQueryTarget = target;
-    self.tempSportnersQueryCallBack = callBack;
-    if (!self.participants) {
-        self.participants = [[NSArray alloc] init];
-    }
-    if (!self.guests) {
-        self.guests = [[NSArray alloc] init];
-    }
-    PFQuery *participantQuery = [[self participantRelation] query];
-    [participantQuery findObjectsInBackgroundWithTarget:self
-                                               selector:@selector(participantsCallback:error:)];
+    return [self relationForKey:@"awaiting"];
 }
 
-- (void)participantsCallback:(NSArray *)objects error:(NSError *)error
+- (PFRelation *)commentRelation
 {
-    if (!error) {
-        self.participants = objects;
-        
-        PFQuery *guestQuery = [[self guestRelation] query];
-        [guestQuery findObjectsInBackgroundWithTarget:self
-                                             selector:@selector(guestsCallback:error:)];
-    } else {
-        NSLog(@"Error: %@ %@", error, [error userInfo]);
-        [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
-    }
+    return [self relationForKey:@"comment"];
 }
 
-- (void)guestsCallback:(NSArray *)objects error:(NSError *)error
+#pragma mark - Guests
+
+- (void)fetchGuests
 {
-    if (!error) {
-        self.guests = objects;
-    } else {
-        NSLog(@"Error: %@ %@", error, [error userInfo]);
+    PFQuery *query = [[self guestRelation] query];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            self.guests = objects;
+            [self notifyActivityStateChanged];
+            [self notifyActivityInvitedChanged];
+        } else {
+            NSLog(@"%@", error);
+        }
+    }];
+}
+
+- (void)addGuests:(NSArray *)guests withBlock:(PFObjectResultBlock)block
+{
+    NSMutableArray *tempIDs = [[NSMutableArray alloc] init];
+    for (MSSportner *sportner in guests) {
+        [tempIDs addObject:sportner.objectId];
     }
     
-    [self.tempSportnersQueryTarget performSelector:self.tempSportnersQueryCallBack withObject:error];
+    [PFCloud callFunctionInBackground:@"inviteManySportner"
+                       withParameters:@{@"activity": self.objectId, @"sportners": tempIDs}
+                                block:^(NSDictionary *result, NSError *error) {
+                                    if (!error) {
+                                        [self setWithInfo:result];
+                                    }
+                                    
+                                    if (block) {
+                                        block(self, error);
+                                    }
+                                }];
 }
 
-- (void)queryOtherSportnersWithTarger:(id)target callBack:(SEL)callback
+#pragma mark - Participants
+
+- (void)fetchParticipants
 {
-    if (self.guests && self.guests) {
-        self.tempOthersQueryTarget = target;
-        self.tempOthersQueryCallBack = callback;
-        
-        NSMutableArray *userNames = [[NSMutableArray alloc] initWithCapacity:([self.guests count] + [self.participants count])];
-        for (MSSportner *guest in self.guests) {
-            [userNames addObject:guest.username];
+    PFQuery *query = [[self participantRelation] query];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            self.participants = objects;
+            [self notifyActivityStateChanged];
+            [self notifyActivityConfirmedChanged];
+        } else {
+            NSLog(@"%@", error);
         }
-        for (MSSportner *participant in self.participants) {
-            [userNames addObject:participant.username];
+    }];
+}
+
+#pragma mark - Awaitings
+
+- (void)fetchAwaitings
+{
+    PFQuery *query = [[self awaitingRelation] query];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            self.awaitings = objects;
+            [self notifyActivityStateChanged];
+            [self notifyActivityAwaitingChanged];
+        } else {
+            NSLog(@"%@", error);
         }
-        [userNames addObject:[MSSportner currentSportner].username];
-        
-        PFQuery *otherSportnersQuery = [MSSportner query];
-        [otherSportnersQuery whereKey:@"username" notContainedIn:userNames];
-        [otherSportnersQuery findObjectsInBackgroundWithTarget:self
-                                                      selector:@selector(sportnersCallback:error:)];
-    } else {
-//        [self querySportners];
-        NSLog(@"Query sportners before");
-    }
-}
-
-- (void)sportnersCallback:(NSArray *)objects error:(NSError *)error
-{
-    if (!error) {
-        [self.tempOthersQueryTarget performSelector:self.tempOthersQueryCallBack withObject:objects withObject:error];
-    } else {
-        NSLog(@"Error: %@ %@", error, [error userInfo]);
-    }
-}
-
-#pragma mark - Participants & Guests
-
-- (void)addGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack
-{
-    PFRelation *relation = [self guestRelation];
-    [relation addObject:guest];
-    NSMutableArray *tempGuests = [self.guests mutableCopy];
-    [tempGuests addObject:guest];
-    self.guests = tempGuests;
-    [self saveInBackgroundWithTarget:target selector:callBack];
-}
-
-- (void)removeGuest:(MSSportner *)guest WithTarget:(id)target callBack:(SEL)callBack
-{
-    PFRelation *relation = [self guestRelation];
-    [relation removeObject:guest];
-    NSMutableArray *tempGuests = [self.guests mutableCopy];
-    [tempGuests removeObject:guest];
-    self.guests = tempGuests;
-    [self saveInBackgroundWithTarget:target selector:callBack];
-}
-
-- (void)addParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack
-{
-    PFRelation *relation = [self participantRelation];
-    [relation addObject:participant];
-    NSMutableArray *tempParticipants = [self.participants mutableCopy];
-    [tempParticipants addObject:participant];
-    self.participants = tempParticipants;
-    [self saveInBackgroundWithTarget:target selector:callBack];
-}
-
-- (void)removeParticipant:(MSSportner *)participant WithTarget:(id)target callBack:(SEL)callBack
-{
-    PFRelation *relation = [self participantRelation];
-    [relation removeObject:participant];
-    NSMutableArray *tempParticipants = [self.participants mutableCopy];
-    [tempParticipants removeObject:participant];
-    self.participants = tempParticipants;
-    [self saveInBackgroundWithTarget:target selector:callBack];
+    }];
 }
 
 #pragma mark - Messages
 
-- (void)requestMessagesWithTarget:(id)target callBack:(SEL)callback
+- (void)fetchComments
 {
-    self.tempQueryMessagesCallBack = callback;
-    self.tempQueryMessagesTarget = target;
-    [PFObject fetchAllInBackground:self.messages target:self selector:@selector(messagesCallBack:error:)];
-}
-
-
-- (void)messagesCallBack:(NSArray *)objects error:(NSError *)error
-{
-    if (!error) {
-        NSMutableArray *objectsToFetch = [[NSMutableArray alloc] initWithCapacity:[objects count]];
-        for (MSComment *comment in objects)
-        {
-            [objectsToFetch addObject:comment.author];
-        }
-        [PFObject fetchAllInBackground:objectsToFetch target:self selector:@selector(messagesAuthorsCallBack:error:)];
-    } else {
-        NSLog(@"Error: %@ %@", error, [error userInfo]);
-    }
-}
-
-- (void)messagesAuthorsCallBack:(NSArray *)objects error:(NSError *)error
-{
-    if (!error) {
-        // Same as : [target performSelector:@selector(callback)]
-        // Explanations : http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
-        // In order not to get warning
-        //        ((void (*)(id, SEL))[self.tempTarget methodForSelector:self.tempCallBack])(self.tempTarget, self.tempCallBack);
-        [self.tempQueryMessagesTarget performSelector:self.tempQueryMessagesCallBack withObject:Nil withObject:Nil];
-    } else {
-        NSLog(@"Error: %@ %@", error, [error userInfo]);
-    }
-}
-
-- (PFRelation *)messageRelation
-{
-    return [self relationforKey:@"message"];
-}
-
-- (void)addMessage:(MSComment *)message inBackgroundWithBlock:(PFBooleanResultBlock)block
-{
+    PFQuery *query = [[self commentRelation] query];
+    [query includeKey:@"author"];
     
-    [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            
-            if (!self.messages) self.messages = [[NSArray alloc] init];
-            NSMutableArray *tempMessages = [self.messages mutableCopy];
-            [tempMessages addObject:message];
-            self.messages = [tempMessages sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
-            
-            [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                block(succeeded, error);
-            }];
-            
+            self.comments = objects;
+            [self notifyActivityStateChanged];
         } else {
-            block(succeeded, error);
+            NSLog(@"%@", error);
         }
     }];
-    
 }
+
+- (void)addComment:(MSComment *)comment withBlock:(PFBooleanResultBlock)block
+{
+    comment.activity = self;
+    [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        if (succeeded && !error) {
+            PFRelation *relation = [self commentRelation];
+            [relation addObject:comment];
+            NSMutableArray *tempComments = [self.comments mutableCopy];
+            [tempComments addObject:comment];
+            self.comments = tempComments;
+            [self incrementKey:@"nbComment"];
+            [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (block) {
+                    block(succeeded, error);
+                }
+            }];
+        } else {
+            NSLog(@"Succeeded: %d", succeeded);
+            NSLog(@"Error:\n%@", error);
+            if (block) {
+                block(succeeded, error);
+            }            
+        }
+        
+    }];
+}
+
+#pragma mark - Notifications
+
+
+- (void)notifyActivityStateChanged
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationActivityStateChanged
+                                                        object:self];
+}
+
+- (void)notifyActivityConfirmedChanged
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationActivityConfirmedChanged
+                                                        object:self];
+}
+
+- (void)notifyActivityInvitedChanged
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationActivityInvitedChanged
+                                                        object:self];
+}
+
+- (void)notifyActivityAwaitingChanged
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:MSNotificationActivityAwaitingChanged
+                                                        object:self];
+}
+
+#pragma mark - Push notifications
 
 
 @end

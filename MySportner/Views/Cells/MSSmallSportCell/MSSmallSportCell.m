@@ -16,6 +16,13 @@
 #define WIDTH 80
 
 
+@interface MSSmallSportCell()
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
+@end
+
 @implementation MSSmallSportCell
 
 + (void)registerToCollectionView:(UICollectionView *)collectionView
@@ -34,6 +41,22 @@
     return CGSizeMake(WIDTH, HEIGHT);
 }
 
+- (void)updateImage
+{
+    NSString *format = self.selected ? @"%@2.png" : @"%@.png";
+    NSString *name = [NSString stringWithFormat:format, self.sport.slug];
+    UIImage *img = [UIImage imageNamed:name];
+    self.imageView.image = img;
+}
+
+- (void)setSport:(MSSport *)sport
+{
+    _sport = sport;
+    
+    self.titleLabel.text = sport.name;
+    [self updateImage];
+}
+
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
@@ -48,6 +71,7 @@
         self.titleLabel.textColor = [MSColorFactory grayDark];
         self.backgroundColor = [MSColorFactory whiteLight];
     }
+    [self updateImage];
 }
 
 - (void)awakeFromNib

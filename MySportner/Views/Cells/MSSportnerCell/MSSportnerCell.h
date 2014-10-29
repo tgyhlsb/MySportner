@@ -17,6 +17,9 @@
 @property (strong, nonatomic) MSSportner *sportner;
 @property (nonatomic) BOOL oddIndex;
 
+@property (nonatomic) BOOL isSelected;
+@property (nonatomic) BOOL isDisabled;
+
 
 + (void)registerToTableview:(UITableView *)tableView;
 

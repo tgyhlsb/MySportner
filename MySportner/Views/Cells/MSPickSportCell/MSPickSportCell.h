@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSSport.h"
 
 @interface MSPickSportCell : UITableViewCell
 
-@property (strong, nonatomic) NSString *sport;
+@property (strong, nonatomic) MSSport *sport;
 
 + (void)registerToTableView:(UITableView *)tableView;
 + (NSString *)reusableIdentifier;

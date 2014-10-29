@@ -19,4 +19,6 @@
 
 - (void)setValidateButtonTitle:(NSString *)title;
 
+- (void)displayCongratulationPopUp;
+
 @end

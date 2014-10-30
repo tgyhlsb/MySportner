@@ -213,6 +213,10 @@
 		5AA60A08184B5A3100B09ADD /* pick_a_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AA60A07184B5A3100B09ADD /* pick_a_pic.png */; };
 		5AA60A0A184B623B00B09ADD /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5AA60A09184B623700B09ADD /* ProximaNova-Semibold.otf */; };
 		5AA60A0E184B67E700B09ADD /* NKColorSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA60A0D184B67E700B09ADD /* NKColorSwitch.m */; };
+		5AA76F041A02590600DBE53B /* accept.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AA76F021A02590600DBE53B /* accept.png */; };
+		5AA76F051A02590600DBE53B /* decline.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AA76F031A02590600DBE53B /* decline.png */; };
+		5AA76F0B1A02596200DBE53B /* MSNotificationRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA76F0A1A02596200DBE53B /* MSNotificationRequestCell.m */; };
+		5AA76F0D1A02597400DBE53B /* MSNotificationRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AA76F0C1A02597400DBE53B /* MSNotificationRequestCell.xib */; };
 		5AA8A74F18A9775F0086D0B6 /* activities-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AA8A74518A9775F0086D0B6 /* activities-icon.png */; };
 		5AA8A75018A9775F0086D0B6 /* activities-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AA8A74618A9775F0086D0B6 /* activities-icon@2x.png */; };
 		5AA8A75118A9775F0086D0B6 /* notifications-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AA8A74718A9775F0086D0B6 /* notifications-icon.png */; };
@@ -614,6 +618,11 @@
 		5AA60A09184B623700B09ADD /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
 		5AA60A0C184B67E700B09ADD /* NKColorSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKColorSwitch.h; sourceTree = "<group>"; };
 		5AA60A0D184B67E700B09ADD /* NKColorSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKColorSwitch.m; sourceTree = "<group>"; };
+		5AA76F021A02590600DBE53B /* accept.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = accept.png; path = Images/accept.png; sourceTree = "<group>"; };
+		5AA76F031A02590600DBE53B /* decline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = decline.png; path = Images/decline.png; sourceTree = "<group>"; };
+		5AA76F091A02596200DBE53B /* MSNotificationRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSNotificationRequestCell.h; path = Views/Cells/MSNotificationCell/MSNotificationRequestCell.h; sourceTree = "<group>"; };
+		5AA76F0A1A02596200DBE53B /* MSNotificationRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSNotificationRequestCell.m; path = Views/Cells/MSNotificationCell/MSNotificationRequestCell.m; sourceTree = "<group>"; };
+		5AA76F0C1A02597400DBE53B /* MSNotificationRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSNotificationRequestCell.xib; path = Views/Cells/MSNotificationCell/MSNotificationRequestCell.xib; sourceTree = "<group>"; };
 		5AA8A74518A9775F0086D0B6 /* activities-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activities-icon.png"; sourceTree = "<group>"; };
 		5AA8A74618A9775F0086D0B6 /* activities-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activities-icon@2x.png"; sourceTree = "<group>"; };
 		5AA8A74718A9775F0086D0B6 /* notifications-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notifications-icon.png"; sourceTree = "<group>"; };
@@ -798,6 +807,9 @@
 				5A084D0E19F96F8900AA6738 /* MSNotificationCell.h */,
 				5A084D0F19F96F8900AA6738 /* MSNotificationCell.m */,
 				5A084D1019F96F8900AA6738 /* MSNotificationCell.xib */,
+				5AA76F091A02596200DBE53B /* MSNotificationRequestCell.h */,
+				5AA76F0A1A02596200DBE53B /* MSNotificationRequestCell.m */,
+				5AA76F0C1A02597400DBE53B /* MSNotificationRequestCell.xib */,
 			);
 			name = MSNotificationCell;
 			sourceTree = "<group>";
@@ -1370,6 +1382,8 @@
 		5AD1FC5418472AE1001D3DFE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5AA76F021A02590600DBE53B /* accept.png */,
+				5AA76F031A02590600DBE53B /* decline.png */,
 				5A94D24919F717820086B37A /* App icons */,
 				5A89F6E919F6DB5A009CC775 /* profil-localisation.png */,
 				5A89F6EA19F6DB5A009CC775 /* profil-localisation@2x.png */,
@@ -1980,10 +1994,12 @@
 				5ADCF23D184004D300E6C8D2 /* Images.xcassets in Resources */,
 				5A94D25619F717820086B37A /* Icon180.png in Resources */,
 				5A63A29618A01078002DE50D /* Trophee1.png in Resources */,
+				5AA76F0D1A02597400DBE53B /* MSNotificationRequestCell.xib in Resources */,
 				5A0CB7EF1891714A0027EE58 /* slider-default-track@2x.png in Resources */,
 				5A0CB8001891714A0027EE58 /* slider-metal-track.png in Resources */,
 				5A78B7EE189575AA0074A5B3 /* MSPickLocalisationVC.xib in Resources */,
 				5AA8A74F18A9775F0086D0B6 /* activities-icon.png in Resources */,
+				5AA76F051A02590600DBE53B /* decline.png in Resources */,
 				5A9B2DB41853B8A400AE45D9 /* ExtensiveCellContainer.xib in Resources */,
 				5A0CB7F41891714A0027EE58 /* slider-default7-handle.png in Resources */,
 				5A0CB8011891714A0027EE58 /* slider-metal-track@2x.png in Resources */,
@@ -2010,6 +2026,7 @@
 				5A580E8719F27B9300CA3846 /* check.png in Resources */,
 				5AA8A75218A9775F0086D0B6 /* notifications-icon@2x.png in Resources */,
 				5A0CB7FF1891714A0027EE58 /* slider-metal-handle@2x.png in Resources */,
+				5AA76F041A02590600DBE53B /* accept.png in Resources */,
 				5A580E5B19F2570400CA3846 /* basketball.png in Resources */,
 				5A0CB7EE1891714A0027EE58 /* slider-default-track.png in Resources */,
 				5A0CB7ED1891714A0027EE58 /* slider-default-handle@2x.png in Resources */,
@@ -2229,6 +2246,7 @@
 				5A9674551849D8740079EAC1 /* MSTextField.m in Sources */,
 				5AA2A10919FB226E0036D021 /* MSMessageCell.m in Sources */,
 				5ADCF3141840F8DA00E6C8D2 /* MSVenueCell.m in Sources */,
+				5AA76F0B1A02596200DBE53B /* MSNotificationRequestCell.m in Sources */,
 				5ADCF2A318401E1C00E6C8D2 /* MSSetAGameVC.m in Sources */,
 				5ADCF28A1840144D00E6C8D2 /* MSDrawerMenuVC.m in Sources */,
 				5A2B68FC189A669D00D82870 /* MSInviteSportnersVC_OLD.m in Sources */,

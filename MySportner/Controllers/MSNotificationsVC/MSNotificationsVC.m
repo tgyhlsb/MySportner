@@ -10,6 +10,7 @@
 #import "MSGameProfileVC.h"
 
 #import "MSNotificationCell.h"
+#import "MSNotificationRequestCell.h"
 
 #import "MSNotification.h"
 #import "TKAlertCenter.h"
@@ -18,7 +19,7 @@
 
 #define NIB_NAME @"MSNotificationsVC"
 
-@interface MSNotificationsVC () <UITableViewDataSource, UITableViewDelegate>
+@interface MSNotificationsVC () <UITableViewDataSource, UITableViewDelegate, MSNotificationRequestCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *notifications;
@@ -45,6 +46,7 @@
     self.navigationController.navigationBar.translucent = NO;
     
     [MSNotificationCell registerToTableview:self.tableView];
+    [MSNotificationRequestCell registerToTableview:self.tableView];
     [self registerToLocalNotifications];
     
     self.loadingIndicator.tintColor = [MSColorFactory mainColor];
@@ -125,11 +127,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = [MSNotificationCell reusableIdentifier];
+    MSNotification *notification = [self.notifications objectAtIndex:indexPath.row];
+    NSString *identifier = nil;
+    
+    if ([notification.type isEqualToString:MSNotificationTypeInvitation]) {
+        identifier = [MSNotificationRequestCell reusableIdentifier];
+    } else if ([notification.type isEqualToString:MSNotificationTypeAwaiting]) {
+        identifier = [MSNotificationRequestCell reusableIdentifier];
+    } else {
+        identifier = [MSNotificationCell reusableIdentifier];
+    }
+        
     MSNotificationCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
-    cell.notification = [self.notifications objectAtIndex:indexPath.row];
+    cell.notification = notification;
     
+    if ([cell isKindOfClass:[MSNotificationRequestCell class]]) {
+        ((MSNotificationRequestCell *)cell).delegate = self;
+    }
     
     return cell;
 }
@@ -153,6 +168,18 @@
     } else {
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"No action available"];
     }
+}
+
+#pragma mark - MSNotificationRequestCellDelegate
+
+- (void)notificationRequestCellDidTapAccept:(MSNotificationRequestCell *)cell
+{
+    
+}
+
+- (void)notificationRequestCellDidTapDecline:(MSNotificationRequestCell *)cell
+{
+    
 }
 
 @end

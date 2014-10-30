@@ -206,6 +206,8 @@
 		5A9B2DB31853B8A400AE45D9 /* ExtensiveCellContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9B2DB01853B8A400AE45D9 /* ExtensiveCellContainer.m */; };
 		5A9B2DB41853B8A400AE45D9 /* ExtensiveCellContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A9B2DB11853B8A400AE45D9 /* ExtensiveCellContainer.xib */; };
 		5A9C90F8187C4C1E00065DBA /* MSSport.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9C90F7187C4C1E00065DBA /* MSSport.m */; };
+		5AA2A10919FB226E0036D021 /* MSMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2A10719FB226E0036D021 /* MSMessageCell.m */; };
+		5AA2A10A19FB226E0036D021 /* MSMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AA2A10819FB226E0036D021 /* MSMessageCell.xib */; };
 		5AA609FF184B50A100B09ADD /* MSFontFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA609FE184B50A100B09ADD /* MSFontFactory.m */; };
 		5AA60A02184B549C00B09ADD /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5AA60A00184B548600B09ADD /* ProximaNova-Regular.otf */; };
 		5AA60A08184B5A3100B09ADD /* pick_a_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AA60A07184B5A3100B09ADD /* pick_a_pic.png */; };
@@ -602,6 +604,9 @@
 		5A9B2DB11853B8A400AE45D9 /* ExtensiveCellContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExtensiveCellContainer.xib; sourceTree = "<group>"; };
 		5A9C90F6187C4C1E00065DBA /* MSSport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSport.h; path = Model/MSSport.h; sourceTree = "<group>"; };
 		5A9C90F7187C4C1E00065DBA /* MSSport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSport.m; path = Model/MSSport.m; sourceTree = "<group>"; };
+		5AA2A10619FB226E0036D021 /* MSMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSMessageCell.h; path = Views/Cells/MSMessageCell/MSMessageCell.h; sourceTree = "<group>"; };
+		5AA2A10719FB226E0036D021 /* MSMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSMessageCell.m; path = Views/Cells/MSMessageCell/MSMessageCell.m; sourceTree = "<group>"; };
+		5AA2A10819FB226E0036D021 /* MSMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MSMessageCell.xib; path = Views/Cells/MSMessageCell/MSMessageCell.xib; sourceTree = "<group>"; };
 		5AA609FD184B50A100B09ADD /* MSFontFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFontFactory.h; sourceTree = "<group>"; };
 		5AA609FE184B50A100B09ADD /* MSFontFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFontFactory.m; sourceTree = "<group>"; };
 		5AA60A00184B548600B09ADD /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
@@ -1305,6 +1310,16 @@
 			path = ExtensiveCell;
 			sourceTree = "<group>";
 		};
+		5AA2A10B19FB22730036D021 /* MSMessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				5AA2A10619FB226E0036D021 /* MSMessageCell.h */,
+				5AA2A10719FB226E0036D021 /* MSMessageCell.m */,
+				5AA2A10819FB226E0036D021 /* MSMessageCell.xib */,
+			);
+			name = MSMessageCell;
+			sourceTree = "<group>";
+		};
 		5AA60A01184B548900B09ADD /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1636,6 +1651,7 @@
 				5A2B6902189AD05800D82870 /* MSAttendeesCell */,
 				5A622FA618A12FC500D33349 /* MSProfilePictureCell */,
 				5A084D1319F96F8E00AA6738 /* MSNotificationCell */,
+				5AA2A10B19FB22730036D021 /* MSMessageCell */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1979,6 +1995,7 @@
 				5A6DD75318A03A2400649A58 /* share_button.png in Resources */,
 				5A89F6EC19F6DB5A009CC775 /* profil-localisation@2x.png in Resources */,
 				5AC7DAB318A98DA7002063C7 /* perso.png in Resources */,
+				5AA2A10A19FB226E0036D021 /* MSMessageCell.xib in Resources */,
 				5AA8A75418A9775F0086D0B6 /* setagame-icon@2x.png in Resources */,
 				5A0CB80A189171BB0027EE58 /* MSRangeCell.xib in Resources */,
 				5A0CB7F31891714A0027EE58 /* slider-default_trackBackground@2x.png in Resources */,
@@ -2210,6 +2227,7 @@
 				5A96744F1849D20C0079EAC1 /* MSColorFactory.m in Sources */,
 				5AE7E3C919F41E7800C5A1C4 /* MSAttendeesVC.m in Sources */,
 				5A9674551849D8740079EAC1 /* MSTextField.m in Sources */,
+				5AA2A10919FB226E0036D021 /* MSMessageCell.m in Sources */,
 				5ADCF3141840F8DA00E6C8D2 /* MSVenueCell.m in Sources */,
 				5ADCF2A318401E1C00E6C8D2 /* MSSetAGameVC.m in Sources */,
 				5ADCF28A1840144D00E6C8D2 /* MSDrawerMenuVC.m in Sources */,

@@ -57,7 +57,7 @@
     self.whereExactly = activity.whereExactly;
     self.playerNeeded = activity.playerNeeded;
     self.nbComment = activity.nbComment;
-    self.owner = self.owner;
+    self.owner = activity.owner;
     
     self.awaitings = [activityInfo objectForKey:@"awaitingSportners"];
     self.guests = [activityInfo objectForKey:@"invitedSportners"];

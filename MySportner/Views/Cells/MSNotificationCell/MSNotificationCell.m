@@ -97,14 +97,14 @@
         return @"Less than a minute ago";
     } else if (time < 60*60) {
         value = floor(time/60);
-        pattern = value > 1 ? @"%d minutes ago" : @"%d minute ago";
+        pattern = value > 1 ? @"%.0f minutes ago" : @"%.0f minute ago";
     } else if (time < 60*60*24) {
         value = floor(time/(60*60));
-        pattern = value > 1 ? @"%d hours ago" : @"%d hour ago";
+        pattern = value > 1 ? @"%.0f hours ago" : @"%.0f hour ago";
     } else if (time < 60*60*24*7) {
         value = floor(time/(60*60*24));
-        pattern = value > 1 ? @"%d days ago" : @"%d day ago";
-    } else if (time < 60*60*24*7) {
+        pattern = value > 1 ? @"%.0f days ago" : @"%.0f day ago";
+    } else if (time < 60*60*24*7*2) {
         return @"Last week";
     } else {
         NSDateFormatter* timeFormat = [[NSDateFormatter alloc] init];

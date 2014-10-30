@@ -7,11 +7,14 @@
 //
 
 #import "MSNotificationsVC.h"
+#import "MSGameProfileVC.h"
 
 #import "MSNotificationCell.h"
 
 #import "MSNotification.h"
+#import "TKAlertCenter.h"
 #import "MSNotificationCenter.h"
+#import "MSColorFactory.h"
 
 #define NIB_NAME @"MSNotificationsVC"
 
@@ -19,6 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *notifications;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 @end
 
@@ -28,6 +32,7 @@
 {
     MSNotificationsVC *notificationsVC = [[MSNotificationsVC alloc] initWithNibName:NIB_NAME bundle:nil];
     notificationsVC.hasDirectAccessToDrawer = YES;
+    notificationsVC.title = @"NOTIFICATIONS";
     return notificationsVC;
 }
 
@@ -37,8 +42,12 @@
 {
     [super viewDidLoad];
     
+    self.navigationController.navigationBar.translucent = NO;
+    
     [MSNotificationCell registerToTableview:self.tableView];
     [self registerToLocalNotifications];
+    
+    self.loadingIndicator.tintColor = [MSColorFactory mainColor];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -48,8 +57,22 @@
 {
     [super viewWillAppear:animated];
     
+    [self startLoading];
+    
     [MSNotificationCenter fetchUserNotifications];
     [self loadNotifications];
+}
+
+#pragma mark - Loading
+
+- (void)startLoading
+{
+    self.tableView.hidden = YES;
+}
+
+- (void)stopLoading
+{
+    self.tableView.hidden = NO;
 }
 
 #pragma mark - Getters & Setters
@@ -79,6 +102,7 @@
 - (void)loadNotifications
 {
     self.notifications = [[MSNotificationCenter userNotifications] sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
+    [self stopLoading];
 }
 
 #pragma mark - UITableViewDataSource
@@ -115,6 +139,20 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [MSNotificationCell height];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MSNotification *notification = [self.notifications objectAtIndex:indexPath.row];
+    
+    if (notification.activity) {
+        MSGameProfileVC *destination = [MSGameProfileVC newController];
+        destination.hasDirectAccessToDrawer = NO;
+        destination.activity = notification.activity;
+        [self.navigationController pushViewController:destination animated:YES];
+    } else {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"No action available"];
+    }
 }
 
 @end

@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Pg-jQ-mNC">
-                        <rect key="frame" x="65" y="34" width="42" height="20.5"/>
+                        <rect key="frame" x="65" y="36" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -30,7 +30,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uep-NV-fbc">
-                        <rect key="frame" x="65" y="59.5" width="42" height="20.5"/>
+                        <rect key="frame" x="65" y="62" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -43,7 +43,7 @@
                     <constraint firstItem="Uep-NV-fbc" firstAttribute="top" secondItem="6Pg-jQ-mNC" secondAttribute="bottom" constant="5" id="LZJ-Nu-EwU"/>
                     <constraint firstItem="6Pg-jQ-mNC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Yei-ys-Uht"/>
                     <constraint firstAttribute="centerY" secondItem="NIN-M0-5ob" secondAttribute="centerY" id="qqq-bd-IFY"/>
-                    <constraint firstAttribute="centerY" secondItem="6Pg-jQ-mNC" secondAttribute="centerY" constant="8" id="znN-tm-Zjs"/>
+                    <constraint firstAttribute="centerY" secondItem="6Pg-jQ-mNC" secondAttribute="centerY" constant="6" id="znN-tm-Zjs"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">

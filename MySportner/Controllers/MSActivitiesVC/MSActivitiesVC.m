@@ -219,6 +219,7 @@
                 PFQuery *subQuery = [PFQuery queryWithClassName:PARSE_CLASSNAME_ACTIVITY];
                 [subQuery whereKey:@"sport" equalTo:sport];
                 [subQuery whereKey:@"level" containedIn:@[@(level-1), @(level), @(level+1)]];
+                [subQuery whereKey:@"date" greaterThan:[NSDate date]];
                 [subQueries addObject:subQuery];
             }
         }

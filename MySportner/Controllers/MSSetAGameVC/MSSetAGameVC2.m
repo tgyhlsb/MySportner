@@ -25,7 +25,7 @@
 
 #define DATEPICKERS_HEIGHT 170
 
-@interface MSSetAGameVC2 () <UICollectionViewDataSource, UICollectionViewDelegate, MSLocationPickerDelegate>
+@interface MSSetAGameVC2 () <UICollectionViewDataSource, UICollectionViewDelegate, MSLocationPickerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *whereTextField;
 @property (weak, nonatomic) IBOutlet UILabel *collectionViewTitleLabel;
@@ -181,6 +181,8 @@
     
     self.buttonView.backgroundColor = [UIColor clearColor];
     
+    self.whereTextField.delegate = self;
+    
     [MSStyleFactory setUILabel:self.cityTitleLabel withStyle:MSLabelStyleFormTitle];
     [MSStyleFactory setUILabel:self.cityValueLabel withStyle:MSLabelStyleFormValue];
     [MSStyleFactory setUILabel:self.whereTitleLabel withStyle:MSLabelStyleFormTitle];
@@ -257,6 +259,12 @@
 }
 
 #pragma mark - Handlers
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.whereTextField resignFirstResponder];
+    return YES;
+}
 
 - (void)playersTapHandler
 {

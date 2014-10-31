@@ -14,8 +14,7 @@
 #import "MSColorFactory.h"
 #import "TKAlertCenter.h"
 
-#define LEVEL_STATUS @[@"BEGINNER", @"CASUAL", @"INTERMEDIATE", @"GOOD", @"PRO"]
-#define LEVEL_COMMENTS @[@"I have never played", @"I played few times", @"I Think I'm good enough", @"I'll handle this", @"Trust me..."]
+#define LEVEL_STATUS @[@"Novice", @"Rookie", @"Intermediate", @"Expert", @"Legend"]
 
 #define DEFAULT_LEVEL -1
 
@@ -42,6 +41,8 @@
     
     self.navigationBar.topItem.title = @"CHOOSE YOUR LEVEL";
     self.tempRatingView.hidden = YES;
+    
+    self.commentLabel.text = @"Tap the trophees to set the level";
     
     [self setAppearance];
     
@@ -104,8 +105,7 @@
         self.showUnSelectButton = NO;
     }
     
-    self.levelLabel.text = (_level >= 0) ? [LEVEL_STATUS objectAtIndex:_level] : @"";
-    self.commentLabel.text = (_level >= 0) ? [LEVEL_COMMENTS objectAtIndex:_level] : @"";
+    self.levelLabel.text = (_level >= 0) ? [[LEVEL_STATUS objectAtIndex:_level] uppercaseString] : @"";
 }
 
 - (void)setShowUnSelectButton:(BOOL)showUnSelectButton

@@ -226,6 +226,7 @@
         
         if ([subQueries count]) {
             query = [PFQuery orQueryWithSubqueries:subQueries];
+            [query orderByAscending:@"date"];
         }
         
     }

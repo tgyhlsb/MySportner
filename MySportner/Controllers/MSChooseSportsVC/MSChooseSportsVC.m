@@ -189,7 +189,7 @@
     formSheet.shouldCenterVertically = YES;
     
     vc.textTitle = @"Congratulations";
-    vc.text = @"You can now train like an Athlete, Win like a Champion and Sleep like a Baby !";
+    vc.text = @"You can now train like an Athlete,\n Win like a Champion and\n Sleep like a Baby !";
     vc.otherButonTitle = @"or skip this step";
     vc.mainButtonTitle = @"SHARE";
     vc.imageName = @"m.png";

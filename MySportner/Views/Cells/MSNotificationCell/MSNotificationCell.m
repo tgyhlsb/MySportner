@@ -79,6 +79,10 @@
         textString = @" left ";
     } else if ([notification.type isEqualToString:MSNotificationTypeComment]) {
         textString = @" commented ";
+    } else if ([notification.type isEqualToString:MSNotificationTypeDeclinedAwaiting]) {
+        textString = @" declined your request to join ";
+    } else if ([notification.type isEqualToString:MSNotificationTypeDeclinedInvitation]) {
+        textString = @" declined your invitation to join ";
     }
     NSAttributedString *textAttributedString = [[NSAttributedString alloc] initWithString:textString
                                                                                attributes:textAttributes];

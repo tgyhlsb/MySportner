@@ -20,6 +20,8 @@ static NSString *MSNotificationTypeAwaiting = @"MSNotificationTypeAwaiting";
 static NSString *MSNotificationTypeAcceptedInvitation = @"MSNotificationTypeAcceptedInvitation";
 static NSString *MSNotificationTypeLeft = @"MSNotificationTypeLeft";
 static NSString *MSNotificationTypeComment = @"MSNotificationTypeComment";
+static NSString *MSNotificationTypeDeclinedAwaiting = @"MSNotificationTypeDeclinedAwaiting";
+static NSString *MSNotificationTypeDeclinedInvitation = @"MSNotificationTypeDeclinedInvitation";
 
 @interface MSNotification : PFObject <PFSubclassing>
 

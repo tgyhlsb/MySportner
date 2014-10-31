@@ -7,6 +7,7 @@
 //
 
 #import "MSNotification.h"
+#import <Parse/Parse.h>
 #import <Parse/PFObject+Subclass.h>
 #import "MSColorFactory.h"
 
@@ -16,6 +17,7 @@
 @dynamic target;
 @dynamic sportner;
 @dynamic activity;
+@dynamic expired;
 
 + (NSString *)parseClassName
 {
@@ -29,5 +31,46 @@
 
 #pragma mark - Getters & Setters
 
+- (BOOL)isExpired
+{
+    return [self.expired boolValue];
+}
+
+- (void)setExpired
+{
+    self.expired = [NSNumber numberWithBool:YES];
+}
+
+- (void)copyFromNotification:(MSNotification *)notification
+{
+    self.expired = notification.expired;
+}
+
+#pragma mark - Request
+
+- (void)acceptWithBlock:(PFObjectResultBlock)block
+{
+    [self respondToRequestWithBlock:block accepted:YES];
+}
+
+- (void)declineWithBlock:(PFObjectResultBlock)block
+{
+    [self respondToRequestWithBlock:block accepted:NO];
+}
+
+- (void)respondToRequestWithBlock:(PFObjectResultBlock)block accepted:(BOOL)accepted
+{
+    [PFCloud callFunctionInBackground:@"respondToNotificationRequest"
+                       withParameters:@{@"notification": self.objectId, @"accepted": [NSNumber numberWithBool:accepted]}
+                                block:^(MSNotification *result, NSError *error) {
+                                    if (!error) {
+                                        [self copyFromNotification:result];
+                                    }
+                                    
+                                    if (block) {
+                                        block(self, error);
+                                    }
+                                }];
+}
 
 @end

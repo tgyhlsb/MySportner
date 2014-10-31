@@ -126,11 +126,11 @@
     [self.plusButton setBackgroundImage:[UIImage imageNamed:@"plus_button_press.png"] forState:UIControlStateHighlighted|UIControlStateHighlighted];
     [self.plusButton setTitle:@"" forState:UIControlStateNormal];
     
-    double delayInSeconds = 2.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self.tableView setContentInset:UIEdgeInsetsMake(63, 0, 80, 0)];
-    });
+//    double delayInSeconds = 2.0;
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//        [self.tableView setContentInset:UIEdgeInsetsMake(63, 0, 80, 0)];
+//    });
     
     [self.createActivityButton setTitle:@"CREATE ACTIVITY" forState:UIControlStateNormal];
     [MSStyleFactory setQBFlatButton:self.createActivityButton withStyle:MSFlatButtonStyleGreen];
@@ -219,12 +219,14 @@
                 PFQuery *subQuery = [PFQuery queryWithClassName:PARSE_CLASSNAME_ACTIVITY];
                 [subQuery whereKey:@"sport" equalTo:sport];
                 [subQuery whereKey:@"level" containedIn:@[@(level-1), @(level), @(level+1)]];
+                [subQuery whereKey:@"date" greaterThan:[NSDate date]];
                 [subQueries addObject:subQuery];
             }
         }
         
         if ([subQueries count]) {
             query = [PFQuery orQueryWithSubqueries:subQueries];
+            [query orderByAscending:@"date"];
         }
         
     }

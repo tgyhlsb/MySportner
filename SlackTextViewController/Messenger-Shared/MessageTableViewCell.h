@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSComment.h"
 
 #define kAvatarSize 30.0
 #define kMinimumHeight 40.0
@@ -14,9 +15,9 @@
 @interface MessageTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
-@property (nonatomic) BOOL needsPlaceholder;
 @property (nonatomic) BOOL usedForMessage;
 
-- (void)setPlaceholder:(UIImage *)image scale:(CGFloat)scale;
+@property (strong, nonatomic) MSComment *comment;
+
 
 @end

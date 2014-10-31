@@ -7,18 +7,23 @@
 //
 
 #import "MSNotificationsVC.h"
+#import "MSGameProfileVC.h"
 
 #import "MSNotificationCell.h"
+#import "MSNotificationRequestCell.h"
 
 #import "MSNotification.h"
+#import "TKAlertCenter.h"
 #import "MSNotificationCenter.h"
+#import "MSColorFactory.h"
 
 #define NIB_NAME @"MSNotificationsVC"
 
-@interface MSNotificationsVC () <UITableViewDataSource, UITableViewDelegate>
+@interface MSNotificationsVC () <UITableViewDataSource, UITableViewDelegate, MSNotificationRequestCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *notifications;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 @end
 
@@ -28,6 +33,7 @@
 {
     MSNotificationsVC *notificationsVC = [[MSNotificationsVC alloc] initWithNibName:NIB_NAME bundle:nil];
     notificationsVC.hasDirectAccessToDrawer = YES;
+    notificationsVC.title = @"NOTIFICATIONS";
     return notificationsVC;
 }
 
@@ -37,8 +43,13 @@
 {
     [super viewDidLoad];
     
+    self.navigationController.navigationBar.translucent = NO;
+    
     [MSNotificationCell registerToTableview:self.tableView];
+    [MSNotificationRequestCell registerToTableview:self.tableView];
     [self registerToLocalNotifications];
+    
+    self.loadingIndicator.tintColor = [MSColorFactory mainColor];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -48,8 +59,22 @@
 {
     [super viewWillAppear:animated];
     
+    [self startLoading];
+    
     [MSNotificationCenter fetchUserNotifications];
     [self loadNotifications];
+}
+
+#pragma mark - Loading
+
+- (void)startLoading
+{
+    self.tableView.hidden = YES;
+}
+
+- (void)stopLoading
+{
+    self.tableView.hidden = NO;
 }
 
 #pragma mark - Getters & Setters
@@ -79,6 +104,7 @@
 - (void)loadNotifications
 {
     self.notifications = [[MSNotificationCenter userNotifications] sortedArrayUsingSelector:@selector(compareWithCreationDate:)];
+    [self stopLoading];
 }
 
 #pragma mark - UITableViewDataSource
@@ -101,11 +127,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = [MSNotificationCell reusableIdentifier];
+    MSNotification *notification = [self.notifications objectAtIndex:indexPath.row];
+    NSString *identifier = nil;
+    
+    if ([notification.type isEqualToString:MSNotificationTypeInvitation] && ![notification isExpired]) {
+        identifier = [MSNotificationRequestCell reusableIdentifier];
+    } else if ([notification.type isEqualToString:MSNotificationTypeAwaiting] && ![notification isExpired]) {
+        identifier = [MSNotificationRequestCell reusableIdentifier];
+    } else {
+        identifier = [MSNotificationCell reusableIdentifier];
+    }
+        
     MSNotificationCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
-    cell.notification = [self.notifications objectAtIndex:indexPath.row];
+    cell.notification = notification;
     
+    if ([cell isKindOfClass:[MSNotificationRequestCell class]]) {
+        ((MSNotificationRequestCell *)cell).delegate = self;
+    }
     
     return cell;
 }
@@ -115,6 +154,49 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [MSNotificationCell height];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MSNotification *notification = [self.notifications objectAtIndex:indexPath.row];
+    
+    if (notification.activity) {
+        MSGameProfileVC *destination = [MSGameProfileVC newController];
+        destination.hasDirectAccessToDrawer = NO;
+        destination.activity = notification.activity;
+        [self.navigationController pushViewController:destination animated:YES];
+    } else {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"No action available"];
+    }
+}
+
+#pragma mark - MSNotificationRequestCellDelegate
+
+- (void)notificationRequestCellDidTapAccept:(MSNotificationRequestCell *)cell
+{
+    
+    [MSNotificationCenter setStatusBarWithTitle:@"Sending answer..."];
+    MSNotification *notification = cell.notification;
+    [notification acceptWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+        [MSNotificationCenter dismissStatusBarNotification];
+    }];
+}
+
+- (void)notificationRequestCellDidTapDecline:(MSNotificationRequestCell *)cell
+{
+    [MSNotificationCenter setStatusBarWithTitle:@"Sending answer..."];
+    MSNotification *notification = cell.notification;
+    [notification declineWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+        [MSNotificationCenter dismissStatusBarNotification];
+    }];
 }
 
 @end

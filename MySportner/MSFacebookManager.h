@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import <Parse/Parse.h>
 
 #define FACEBOOK_PERMISSIONS @[@"public_profile", @"email", @"user_friends"]
 
@@ -29,6 +30,9 @@ static NSString *DTNotificationFacebookUserLoggedOut = @"DTFacebookUserLoggetOut
 + (void)fetchFriendsWithCompletionHandler:(FBRequestHandler)completionHandler;
 
 + (void)handleAppColdStart;
+
+
++ (void)requestForMyFriendsWithBlock:(PFArrayResultBlock)block;
 
 
 + (void)shareSignUp;

@@ -17,12 +17,15 @@
 #import "MBProgressHUD.h"
 #import "MSStyleFactory.h"
 #import "MSColorFactory.h"
+#import "MSSportLevelFormVC.h"
 
 #define NIB_NAME @"MSSetAGameVC2"
 
+#define DEFAULT_TEXT_FOR_CITY @"Select"
+
 #define DATEPICKERS_HEIGHT 170
 
-@interface MSSetAGameVC2 () <UICollectionViewDataSource, UICollectionViewDelegate, MSLocationPickerDelegate>
+@interface MSSetAGameVC2 () <UICollectionViewDataSource, UICollectionViewDelegate, MSLocationPickerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *whereTextField;
 @property (weak, nonatomic) IBOutlet UILabel *collectionViewTitleLabel;
@@ -47,6 +50,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *playersTitleLabel;
 @property (weak, nonatomic) IBOutlet QBFlatButton *doneButton;
 @property (weak, nonatomic) IBOutlet UILabel *whereTitleLabel;
+
+@property (strong, nonatomic) NSNumber *sportLevel;
 
 @property (strong, nonatomic) MSSport *selectedSport;
 @property (strong, nonatomic) NSArray *sports;
@@ -129,7 +134,7 @@
     self.whereTextField.placeholder = @"Optional";
     
     self.cityTitleLabel.text = @"City";
-    self.cityValueLabel.text = @"Select";
+    self.cityValueLabel.text = DEFAULT_TEXT_FOR_CITY;
     
 #define BACKGROUND_COLOR [UIColor whiteColor]
 #define CORNER_RADIUS 3.0
@@ -176,6 +181,8 @@
     
     self.buttonView.backgroundColor = [UIColor clearColor];
     
+    self.whereTextField.delegate = self;
+    
     [MSStyleFactory setUILabel:self.cityTitleLabel withStyle:MSLabelStyleFormTitle];
     [MSStyleFactory setUILabel:self.cityValueLabel withStyle:MSLabelStyleFormValue];
     [MSStyleFactory setUILabel:self.whereTitleLabel withStyle:MSLabelStyleFormTitle];
@@ -192,7 +199,7 @@
     [MSStyleFactory setQBFlatButton:self.doneButton withStyle:MSFlatButtonStyleGreen];
     [self.doneButton setTitle:@"PUBLISH" forState:UIControlStateNormal];
     
-    self.playersStepper.maximumValue = 19.0;
+    self.playersStepper.maximumValue = 99.0;
     self.playersStepper.minimumValue = 1.0;
     self.playersStepper.stepValue = 1.0;
     self.playersStepper.value = 4;
@@ -240,7 +247,24 @@
     [self updateStartDateView];
 }
 
+#pragma mark - Getters & Setters
+
+- (void)setSportLevel:(NSNumber *)sportLevel
+{
+    if (!sportLevel) {
+        [self showSportLevelPickerControllerForIndexPath:nil withUnSelectButton:NO];
+    } else {
+        _sportLevel = sportLevel;
+    }
+}
+
 #pragma mark - Handlers
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.whereTextField resignFirstResponder];
+    return YES;
+}
 
 - (void)playersTapHandler
 {
@@ -435,14 +459,14 @@
     NSString *errorMessage = nil;
     if (!self.selectedSport) {
         errorMessage = @"Select a sport";
-    } else if ([self.cityValueLabel.text isEqualToString:@"Chose"]) {
+    } else if ([self.cityValueLabel.text isEqualToString:DEFAULT_TEXT_FOR_CITY]) {
         errorMessage = @"Select a city";
     }
     
     if (!errorMessage) {
         MSActivity *activity = [[MSActivity alloc] init];
         activity.sport = self.selectedSport;
-        activity.level = [[MSSportner currentSportner] levelForSport:activity.sport];
+        activity.level = self.sportLevel;
         activity.place = self.cityValueLabel.text;
         activity.owner = [MSSportner currentSportner];
         activity.date = self.startDatePicker.date;
@@ -550,6 +574,36 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     self.selectedSport = [self.sports objectAtIndex:indexPath.item];
+    
+    self.sportLevel = [[MSSportner currentSportner] levelForSport:self.selectedSport];
+}
+
+
+#pragma mark MZFormSheetBackgroundWindowDelegate
+
+- (void)showSportLevelPickerControllerForIndexPath:(NSIndexPath *)indexPath withUnSelectButton:(BOOL)showUnSelectButton
+{
+    MSSportLevelFormVC *vc = [MSSportLevelFormVC new];
+    
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithSize:CGSizeMake(280, 350) viewController:vc];
+    
+    formSheet.shadowRadius = 2.0;
+    formSheet.shadowOpacity = 0.5;
+    formSheet.shouldDismissOnBackgroundViewTap = NO;
+    //    formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
+    formSheet.shouldCenterVertically = YES;
+    formSheet.cornerRadius = 3.0f;
+    
+    __weak MSSportLevelFormVC *weakFormSheet = vc;
+    
+    vc.doneBlock = ^{
+        self.sportLevel = [NSNumber numberWithInt:weakFormSheet.level];
+        [weakFormSheet dismissFormSheetControllerAnimated:YES completionHandler:nil];
+    };
+    
+    vc.level = -1;
+    
+    [self presentFormSheetController:formSheet animated:YES completionHandler:nil];
 }
 
 

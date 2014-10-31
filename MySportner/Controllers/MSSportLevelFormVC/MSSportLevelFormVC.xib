@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSSportLevelFormVC">
@@ -23,7 +23,6 @@
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gso-wV-Bco">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="R3r-QI-wGm"/>
                     </constraints>
@@ -33,15 +32,13 @@
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaM-Uv-sAf">
                     <rect key="frame" x="40" y="74" width="240" height="60"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.47843137250000001" green="0.75686274509999996" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="055-Gc-s8B"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOr-bB-mYC" customClass="QBFlatButton">
-                    <rect key="frame" x="40" y="289" width="240" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="40" y="288" width="240" height="44"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="CSU-6r-1hF"/>
@@ -56,7 +53,6 @@
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTi-Ni-nGW">
                     <rect key="frame" x="20" y="154" width="280" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="RwX-kB-qg7"/>
                     </constraints>
@@ -64,18 +60,16 @@
                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BU3-pN-AxM">
-                    <rect key="frame" x="20" y="184" width="280" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BU3-pN-AxM">
+                    <rect key="frame" x="20" y="184" width="280" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="21" id="op5-FV-IDq"/>
+                        <constraint firstAttribute="height" constant="40" id="op5-FV-IDq"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vjs-X9-2xV" customClass="QBFlatButton">
-                    <rect key="frame" x="40" y="235" width="240" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="40" y="234" width="240" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="94x-xK-3DP"/>
                         <constraint firstAttribute="width" constant="240" id="cRv-Cf-Oby"/>
@@ -95,7 +89,7 @@
                 <constraint firstItem="xaM-Uv-sAf" firstAttribute="leading" secondItem="Rir-d7-dmu" secondAttribute="leading" constant="40" id="DjT-ps-SYH"/>
                 <constraint firstItem="Gso-wV-Bco" firstAttribute="top" secondItem="Rir-d7-dmu" secondAttribute="top" id="Kkm-q3-VAt"/>
                 <constraint firstAttribute="trailing" secondItem="xaM-Uv-sAf" secondAttribute="trailing" constant="40" id="Pes-dA-Bvw"/>
-                <constraint firstItem="Vjs-X9-2xV" firstAttribute="top" secondItem="BU3-pN-AxM" secondAttribute="bottom" constant="30" id="Wfs-AO-4kf"/>
+                <constraint firstItem="Vjs-X9-2xV" firstAttribute="top" secondItem="BU3-pN-AxM" secondAttribute="bottom" constant="10" id="Wfs-AO-4kf"/>
                 <constraint firstItem="jTi-Ni-nGW" firstAttribute="top" secondItem="xaM-Uv-sAf" secondAttribute="bottom" constant="20" id="cgA-Oo-GIx"/>
                 <constraint firstAttribute="centerX" secondItem="Vjs-X9-2xV" secondAttribute="centerX" id="f08-Zv-VFt"/>
                 <constraint firstItem="ZOr-bB-mYC" firstAttribute="top" secondItem="Vjs-X9-2xV" secondAttribute="bottom" constant="10" id="mUX-wc-4Vl"/>
@@ -107,7 +101,12 @@
                 <constraint firstAttribute="trailing" secondItem="jTi-Ni-nGW" secondAttribute="trailing" constant="20" id="sVz-ZC-fQR"/>
                 <constraint firstItem="xaM-Uv-sAf" firstAttribute="top" secondItem="Gso-wV-Bco" secondAttribute="bottom" constant="30" id="vYr-7O-1qh"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <nil key="simulatedStatusBarMetrics"/>
         </view>
     </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

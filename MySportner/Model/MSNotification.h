@@ -20,6 +20,8 @@ static NSString *MSNotificationTypeAwaiting = @"MSNotificationTypeAwaiting";
 static NSString *MSNotificationTypeAcceptedInvitation = @"MSNotificationTypeAcceptedInvitation";
 static NSString *MSNotificationTypeLeft = @"MSNotificationTypeLeft";
 static NSString *MSNotificationTypeComment = @"MSNotificationTypeComment";
+static NSString *MSNotificationTypeDeclinedAwaiting = @"MSNotificationTypeDeclinedAwaiting";
+static NSString *MSNotificationTypeDeclinedInvitation = @"MSNotificationTypeDeclinedInvitation";
 
 @interface MSNotification : PFObject <PFSubclassing>
 
@@ -27,9 +29,18 @@ static NSString *MSNotificationTypeComment = @"MSNotificationTypeComment";
 @property (strong, nonatomic) MSSportner *target;
 @property (strong, nonatomic) MSSportner *sportner;
 @property (strong, nonatomic) MSActivity *activity;
+@property (strong, nonatomic) NSNumber *expired;
 
 + (NSString *)parseClassName;
 
 - (NSComparisonResult)compareWithCreationDate:(MSNotification *)otherNotification;
+
+
+- (BOOL)isExpired;
+- (void)setExpired;
+
+
+- (void)acceptWithBlock:(PFObjectResultBlock)block;
+- (void)declineWithBlock:(PFObjectResultBlock)block;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "MSFacebookManager.h"
 #import <ParseFacebookUtils/PFFacebookUtils.h>
+#import "MSSportner.h"
 
 #define CAPTION @"MySportner"
 
@@ -37,6 +38,31 @@
         [tempIDs addObject:[MSFacebookManager facebookIDForUser:user]];
     }
     return tempIDs;
+}
+
++ (void)requestForMyFriendsWithBlock:(PFArrayResultBlock)block
+{
+    FBRequest* friendsRequest = [FBRequest requestForMyFriends];
+    
+    [friendsRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
+                                                  NSDictionary* result,
+                                                  NSError *error) {
+        NSArray *facebookFriends = [result objectForKey:@"data"];
+        NSMutableArray *facebookIDs = [[NSMutableArray alloc] init];
+        
+        for (NSDictionary<FBGraphUser>* friend in facebookFriends) {
+            [facebookIDs addObject:friend.objectID];
+        }
+        
+        [self getSportnersFromFacebookIDArray:facebookIDs withBlock:block];
+    }];
+}
+
++ (void)getSportnersFromFacebookIDArray:(NSArray *)facebookIDs withBlock:(PFArrayResultBlock)block
+{
+    PFQuery *query = [MSSportner query];
+    [query whereKey:@"facebookID" containedIn:facebookIDs];
+    [query findObjectsInBackgroundWithBlock:block];
 }
 
 + (void)toggleSession

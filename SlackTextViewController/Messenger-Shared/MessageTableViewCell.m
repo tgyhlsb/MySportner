@@ -7,6 +7,13 @@
 //
 
 #import "MessageTableViewCell.h"
+#import "MSProfilePictureView.h"
+
+@interface MessageTableViewCell()
+
+@property (strong, nonatomic) MSProfilePictureView *profilePictureView;
+
+@end
 
 @implementation MessageTableViewCell
 
@@ -18,8 +25,6 @@
         self.textLabel.font = [UIFont systemFontOfSize:16.0];
         self.textLabel.numberOfLines = 0;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        [self setPlaceholder:nil scale:1.0];
 
         self.imageView.layer.cornerRadius = kAvatarSize/2.0;
         self.imageView.layer.masksToBounds = YES;
@@ -38,19 +43,23 @@
     }
 }
 
-- (void)setPlaceholder:(UIImage *)image scale:(CGFloat)scale
+#pragma mark - Getters & Setters
+
+- (MSProfilePictureView *)profilePictureView
 {
-    if (!image) {
-        self.imageView.image = blankImage([UIColor colorWithWhite:0.9 alpha:1.0]);
-        self.needsPlaceholder = YES;
+    if (!_profilePictureView) {
+        _profilePictureView = [[MSProfilePictureView alloc] initWithFrame:self.imageView.frame];
+        [self addSubview:_profilePictureView];
     }
-    else {
-        self.imageView.image = [UIImage imageWithCGImage:image.CGImage scale:scale orientation:UIImageOrientationUp];
-        self.needsPlaceholder = NO;
-    }
+    return _profilePictureView;
+}
+
+- (void)setComment:(MSComment *)comment
+{
+    _comment = comment;
     
-    self.imageView.layer.shouldRasterize = YES;
-    self.imageView.layer.rasterizationScale = scale;
+    self.profilePictureView.sportner = comment.author;
+    self.textLabel.text = comment.content;
 }
 
 #pragma mark - Helpers

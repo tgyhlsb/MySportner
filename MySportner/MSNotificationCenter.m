@@ -38,6 +38,8 @@ static BOOL shouldDisplayNotificationOnStatusBar;
     [query includeKey:@"activity"];
     [query includeKey:@"activity.sport"];
     [query includeKey:@"target"];
+    [query orderByDescending:@"createdAt"];
+    [query setLimit:30];
     [query whereKey:@"target" equalTo:[MSSportner currentSportner]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {

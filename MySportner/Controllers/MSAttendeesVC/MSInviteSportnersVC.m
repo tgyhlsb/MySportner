@@ -9,6 +9,7 @@
 #import "MSInviteSportnersVC.h"
 #import "TKAlertCenter.h"
 #import "MSNotificationCenter.h"
+#import "MSFacebookManager.h"
 
 #define NIB_NAME @"MSPageSportnerVC"
 
@@ -66,10 +67,11 @@
     _activity = activity;
     
     self.sportnersVC.sportnerList = [MSSportner currentSportner].sportners;
-    self.facebookVC.sportnerList = [[NSArray alloc] init];
+    self.facebookVC.sportnerList = nil;
     self.othersVC.sportnerList = nil;
     
     [self fetchOthersSportners];
+    [self fetchFacebookSportners];
 }
 
 #pragma mark - Handlers
@@ -97,6 +99,16 @@
 }
 
 #pragma mark - Fetch & network
+
+- (void)fetchFacebookSportners
+{
+    [self.facebookVC startLoading];
+    [MSFacebookManager requestForMyFriendsWithBlock:^(NSArray *objects, NSError *error) {
+        [self.facebookVC stopLoading];
+        self.facebookVC.sportnerList = objects;
+        [self filterOthersSportners];
+    }];
+}
 
 - (void)fetchOthersSportners
 {

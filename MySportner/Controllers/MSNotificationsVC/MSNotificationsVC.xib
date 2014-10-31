@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSNotificationsVC">
             <connections>
+                <outlet property="loadingIndicator" destination="4pO-vX-0vm" id="1YM-cS-Gfz"/>
                 <outlet property="tableView" destination="H2V-GP-BLU" id="Fti-qQ-BQN"/>
                 <outlet property="view" destination="nvT-z8-u53" id="Bjf-S9-nYs"/>
             </connections>
@@ -16,15 +17,21 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="4pO-vX-0vm">
+                    <rect key="frame" x="141" y="265" width="37" height="37"/>
+                </activityIndicatorView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="H2V-GP-BLU">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="0.62745098040000002" green="0.85490196080000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="H2V-GP-BLU" firstAttribute="leading" secondItem="nvT-z8-u53" secondAttribute="leading" id="Fwp-UM-4t9"/>
                 <constraint firstAttribute="bottom" secondItem="H2V-GP-BLU" secondAttribute="bottom" id="H3w-xy-tkZ"/>
+                <constraint firstAttribute="centerX" secondItem="4pO-vX-0vm" secondAttribute="centerX" id="Lwr-WJ-xIj"/>
+                <constraint firstAttribute="centerY" secondItem="4pO-vX-0vm" secondAttribute="centerY" id="PVd-ty-8pA"/>
                 <constraint firstAttribute="trailing" secondItem="H2V-GP-BLU" secondAttribute="trailing" id="W8K-hw-2SE"/>
                 <constraint firstItem="H2V-GP-BLU" firstAttribute="top" secondItem="nvT-z8-u53" secondAttribute="top" id="b3W-nr-Ssn"/>
             </constraints>

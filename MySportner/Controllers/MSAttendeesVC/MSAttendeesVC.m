@@ -7,10 +7,11 @@
 //
 
 #import "MSAttendeesVC.h"
+#import "MSProfileVC.h"
 
 #define NIB_NAME @"MSPageSportnerVC"
 
-@interface MSAttendeesVC ()
+@interface MSAttendeesVC () <MSAttendeesListDelegate>
 
 @property (strong, nonatomic) MSSportnerListVC *confirmedAttendeesVC;
 @property (strong, nonatomic) MSSportnerListVC *awaitingAttendeesVC;
@@ -101,6 +102,7 @@
 {
     if (!_confirmedAttendeesVC) {
         _confirmedAttendeesVC = [MSSportnerListVC newController];
+        _confirmedAttendeesVC.delegate = self;
     }
     return _confirmedAttendeesVC;
 }
@@ -109,6 +111,7 @@
 {
     if (!_awaitingAttendeesVC) {
         _awaitingAttendeesVC = [MSSportnerListVC newController];
+        _awaitingAttendeesVC.delegate = self;
     }
     return _awaitingAttendeesVC;
 }
@@ -117,8 +120,19 @@
 {
     if (!_invitedAttendeesVC) {
         _invitedAttendeesVC = [MSSportnerListVC newController];
+        _invitedAttendeesVC.delegate = self;
     }
     return _invitedAttendeesVC;
+}
+
+#pragma mark - MSAttendeesListDelegate
+
+- (void)sportnerList:(MSSportnerListVC *)sportnerListVC didSelectSportner:(MSSportner *)sportner atIndexPath:(NSIndexPath *)indexPath
+{
+    MSProfileVC *destination = [MSProfileVC newController];
+    destination.hasDirectAccessToDrawer = NO;
+    destination.sportner = sportner;
+    [self.navigationController pushViewController:destination animated:YES];
 }
 
 @end

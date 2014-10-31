@@ -84,8 +84,6 @@
 - (void)setAllowsMultipleSelection:(BOOL)allowsMultipleSelection
 {
     _allowsMultipleSelection = allowsMultipleSelection;
-    
-    self.tableView.allowsSelection = allowsMultipleSelection;
 }
 
 - (void)updateLoadingView
@@ -163,6 +161,10 @@
         }
         
         [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    } else {
+        if ([self.delegate respondsToSelector:@selector(sportnerList:didSelectSportner:atIndexPath:)]) {
+            [self.delegate sportnerList:self didSelectSportner:cell.sportner atIndexPath:indexPath];
+        }
     }
 }
 

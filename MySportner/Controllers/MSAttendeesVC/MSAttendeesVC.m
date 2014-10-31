@@ -37,13 +37,13 @@
     
     self.viewControllers = @[
                              self.confirmedAttendeesVC,
-                             self.awaitingAttendeesVC,
-                             self.invitedAttendeesVC
+                             self.invitedAttendeesVC,
+                             self.awaitingAttendeesVC
                              ];
     
     [self.firstListButton setTitle:@"CONFIRMED" forState:UIControlStateNormal];
-    [self.secondListButton setTitle:@"AWAITING" forState:UIControlStateNormal];
-    [self.thirdListButton setTitle:@"INVITED" forState:UIControlStateNormal];
+    [self.secondListButton setTitle:@"INVITED" forState:UIControlStateNormal];
+    [self.thirdListButton setTitle:@"AWAITING" forState:UIControlStateNormal];
 }
 
 #pragma mark - Getters & Setters

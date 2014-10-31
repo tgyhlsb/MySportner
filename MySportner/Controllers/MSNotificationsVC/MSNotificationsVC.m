@@ -130,9 +130,9 @@
     MSNotification *notification = [self.notifications objectAtIndex:indexPath.row];
     NSString *identifier = nil;
     
-    if ([notification.type isEqualToString:MSNotificationTypeInvitation]) {
+    if ([notification.type isEqualToString:MSNotificationTypeInvitation] && ![notification isExpired]) {
         identifier = [MSNotificationRequestCell reusableIdentifier];
-    } else if ([notification.type isEqualToString:MSNotificationTypeAwaiting]) {
+    } else if ([notification.type isEqualToString:MSNotificationTypeAwaiting] && ![notification isExpired]) {
         identifier = [MSNotificationRequestCell reusableIdentifier];
     } else {
         identifier = [MSNotificationCell reusableIdentifier];
@@ -175,11 +175,28 @@
 - (void)notificationRequestCellDidTapAccept:(MSNotificationRequestCell *)cell
 {
     
+    [MSNotificationCenter setStatusBarWithTitle:@"Sending answer..."];
+    MSNotification *notification = cell.notification;
+    [notification acceptWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+        [MSNotificationCenter dismissStatusBarNotification];
+    }];
 }
 
 - (void)notificationRequestCellDidTapDecline:(MSNotificationRequestCell *)cell
 {
-    
+    [MSNotificationCenter setStatusBarWithTitle:@"Sending answer..."];
+    MSNotification *notification = cell.notification;
+    [notification declineWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+        [MSNotificationCenter dismissStatusBarNotification];
+    }];
 }
 
 @end

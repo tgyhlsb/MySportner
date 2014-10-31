@@ -23,7 +23,7 @@
                             <constraint firstAttribute="height" constant="50" id="yyn-b6-MaK"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QtR-uR-dwY">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QtR-uR-dwY">
                         <rect key="frame" x="76" y="18" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -39,6 +39,7 @@
                 <constraints>
                     <constraint firstItem="m6g-M4-CKl" firstAttribute="top" secondItem="QtR-uR-dwY" secondAttribute="top" id="80y-qi-oPp"/>
                     <constraint firstItem="W7n-JI-GeP" firstAttribute="top" secondItem="QtR-uR-dwY" secondAttribute="bottom" constant="8" id="FgJ-Wi-lgi"/>
+                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="QtR-uR-dwY" secondAttribute="trailing" constant="10" id="MuE-Gc-O3M"/>
                     <constraint firstItem="m6g-M4-CKl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="PTK-3T-4Vl"/>
                     <constraint firstItem="m6g-M4-CKl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="Ssb-at-tru"/>
                     <constraint firstItem="QtR-uR-dwY" firstAttribute="leading" secondItem="W7n-JI-GeP" secondAttribute="leading" id="ZJS-xX-fCj"/>

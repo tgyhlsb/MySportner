@@ -9,6 +9,7 @@
 #import "MSMessageVC.h"
 #import "MessageTableViewCell.h"
 #import "MSComment.h"
+#import "MSMessageCell.h"
 #import "MSNotificationCenter.h"
 
 #import "LoremIpsum/LoremIpsum.h"
@@ -31,6 +32,7 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
     self = [super initWithTableViewStyle:UITableViewStylePlain];
     if (self) {
         [self.tableView registerClass:[MessageTableViewCell class] forCellReuseIdentifier:MessengerCellIdentifier];
+        [MSMessageCell registerToTableView:self.tableView];
         self.title = @"COMMENTS";
     }
     return self;
@@ -341,9 +343,10 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
     }
 }
 
-- (MessageTableViewCell *)messageCellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (MSMessageCell *)messageCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MessageTableViewCell *cell = (MessageTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:MessengerCellIdentifier];
+    NSString *identifier = [MSMessageCell reusableIdentifier];
+    MSMessageCell *cell = (MSMessageCell *)[self.tableView dequeueReusableCellWithIdentifier:identifier];
     
     if (!cell.textLabel.text) {
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(editCellMessage:)];
@@ -351,9 +354,8 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
     }
     
     MSComment *message = self.messages[indexPath.row];
-    cell.textLabel.text = message.content;
+    cell.comment = message;
     cell.indexPath = indexPath;
-    cell.usedForMessage = YES;
     
     // Cells must inherit the table view's transform
     // This is very important, since the main table view may be inverted
@@ -411,7 +413,7 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
             height = kMinimumHeight;
         }
         
-        return height;
+        return height + 50;
     }
     else {
         return kMinimumHeight;

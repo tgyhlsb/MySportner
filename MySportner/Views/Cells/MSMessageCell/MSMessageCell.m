@@ -7,8 +7,11 @@
 //
 
 #import "MSMessageCell.h"
+#import "UIView+MSRoundedView.h"
 
 #import "MSProfilePictureView.h"
+
+#import "MSColorFactory.h"
 
 #define NIB_NAME @"MSMessageCell"
 
@@ -22,6 +25,16 @@
 
 @implementation MSMessageCell
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    [self.profilePicture setRounded];
+    
+    self.timeLabel.font = [UIFont fontWithName:@"ProximaNova-SemiBold" size:13.0];
+    self.timeLabel.textColor = [UIColor colorWithRed:0.31f green:0.36f blue:0.40f alpha:0.40f];
+}
+
 
 #pragma mark - Getters & Setters
 
@@ -29,13 +42,36 @@
 {
     _comment = comment;
     
-    self.contentLabel.text = comment.content;
+    self.contentLabel.attributedText = [self contentForComment:comment];
     self.profilePicture.sportner = comment.author;
     self.timeLabel.text = [self stringTimeForNotification:comment.createdAt];
     
 }
 
 #pragma mark - Helpers
+
+- (NSAttributedString *)contentForComment:(MSComment *)comment
+{
+    UIFont *redFont = [UIFont fontWithName:@"ProximaNova-SemiBold" size:16.0];
+    UIFont *grayFont = [UIFont fontWithName:@"ProximaNova-Regular" size:16.0];
+    NSDictionary *authorAttributes = @{
+                                         NSFontAttributeName: redFont,
+                                         NSForegroundColorAttributeName: [MSColorFactory redLight]
+                                         };
+    NSDictionary *textAttributes = @{
+                                     NSFontAttributeName: grayFont,
+                                     NSForegroundColorAttributeName: [MSColorFactory gray]
+                                     };
+    NSString *sportnerName = comment.author ? comment.author.firstName : @"Unknown";
+    NSMutableAttributedString *authorAttributedName = [[NSMutableAttributedString alloc] initWithString:sportnerName
+                                                                                               attributes:authorAttributes];
+
+    NSString *textSring = [NSString stringWithFormat:@" %@", comment.content];
+    NSAttributedString *textAttributedString = [[NSAttributedString alloc] initWithString:textSring
+                                                                               attributes:textAttributes];
+    [authorAttributedName appendAttributedString:textAttributedString];
+    return authorAttributedName;
+}
 
 - (NSString *)stringTimeForNotification:(NSDate *)date
 {
@@ -80,7 +116,7 @@
 
 + (CGFloat)heightForComment:(MSComment *)comment
 {
-    return 44.0;
+    return 244.0;
 }
 
 @end

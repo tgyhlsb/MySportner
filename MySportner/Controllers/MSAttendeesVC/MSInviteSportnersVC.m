@@ -115,18 +115,21 @@
 
 - (void)fetchFacebookSportners
 {
+    [self.othersVC startLoading];
     [self.facebookVC startLoading];
     [MSFacebookManager requestForMyFriendsWithBlock:^(NSArray *objects, NSError *error) {
         [self.facebookVC stopLoading];
         self.facebookVC.sportnerList = objects;
+        [self fetchOthersSportners];
         [self filterOthersSportners];
     }];
 }
 
 - (void)fetchOthersSportners
 {
-    [self.othersVC startLoading];
     PFQuery *query = [MSSportner query];
+    [query whereKey:@"self" notContainedIn:self.facebookVC.sportnerList];
+    [query whereKey:@"self" notContainedIn:self.sportnersVC.sportnerList];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
         if (!error) {

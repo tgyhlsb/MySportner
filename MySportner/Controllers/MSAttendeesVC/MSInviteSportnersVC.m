@@ -13,11 +13,13 @@
 
 #define NIB_NAME @"MSPageSportnerVC"
 
-@interface MSInviteSportnersVC () <MSAttendeesListDatasource>
+@interface MSInviteSportnersVC () <MSAttendeesListDatasource, MSAttendeesListDelegate>
 
 @property (strong, nonatomic) MSSportnerListVC *sportnersVC;
 @property (strong, nonatomic) MSSportnerListVC *facebookVC;
 @property (strong, nonatomic) MSSportnerListVC *othersVC;
+
+@property (strong,nonatomic) UIBarButtonItem *inviteButton;
 
 @end
 
@@ -28,19 +30,15 @@
     MSInviteSportnersVC *controller = [[MSInviteSportnersVC alloc] initWithNibName:NIB_NAME bundle:nil];
     controller.hasDirectAccessToDrawer = NO;
     [controller registerToSportnerNotifications];
-    [controller setUpInviteButton];
+    [controller setUpInviteButtonVisible:NO];
     return controller;
 }
 
 #pragma mark - Appearance
 
-- (void)setUpInviteButton
+- (void)setUpInviteButtonVisible:(BOOL)visible
 {
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Invite"
-                                                                    style:UIBarButtonItemStylePlain
-                                                                   target:self
-                                                                   action:@selector(inviteButtonHandler)];
-    self.navigationItem.rightBarButtonItem = rightButton;
+    self.navigationItem.rightBarButtonItem = visible ? self.inviteButton : nil;
 }
 
 - (void)setUpAppearance
@@ -74,15 +72,30 @@
     [self fetchFacebookSportners];
 }
 
+- (UIBarButtonItem *)inviteButton
+{
+    if (!_inviteButton) {
+        _inviteButton = [[UIBarButtonItem alloc] initWithTitle:@"Invite"
+                                                         style:UIBarButtonItemStylePlain
+                                                        target:self
+                                                        action:@selector(inviteButtonHandler)];
+    }
+    return _inviteButton;
+}
+
+- (NSArray *)allSelectedSportners
+{
+    NSMutableArray *selectedSportners = [self.sportnersVC.selectedSportners mutableCopy];
+    [selectedSportners addObjectsFromArray:self.facebookVC.selectedSportners];
+    [selectedSportners addObjectsFromArray:self.othersVC.selectedSportners];
+    return selectedSportners;
+}
+
 #pragma mark - Handlers
 
 - (void)inviteButtonHandler
 {
-    
-    NSMutableArray *selectedSportners = [self.sportnersVC.selectedSportners mutableCopy];
-    [selectedSportners addObjectsFromArray:self.facebookVC.selectedSportners];
-    [selectedSportners addObjectsFromArray:self.othersVC.selectedSportners];
-    
+    NSArray *selectedSportners = [self allSelectedSportners];
     
     if ([selectedSportners count]) {
         [self showLoadingViewInView:self.navigationController.view];
@@ -180,6 +193,7 @@
         _sportnersVC = [MSSportnerListVC newController];
         _sportnersVC.allowsMultipleSelection = YES;
         _sportnersVC.datasource = self;
+        _sportnersVC.delegate = self;
     }
     return _sportnersVC;
 }
@@ -190,6 +204,7 @@
         _facebookVC = [MSSportnerListVC newController];
         _facebookVC.allowsMultipleSelection = YES;
         _facebookVC.datasource = self;
+        _facebookVC.delegate = self;
     }
     return _facebookVC;
 }
@@ -200,6 +215,7 @@
         _othersVC = [MSSportnerListVC newController];
         _othersVC.allowsMultipleSelection = YES;
         _othersVC.datasource = self;
+        _othersVC.delegate = self;
     }
     return _othersVC;
 }
@@ -211,5 +227,11 @@
     return [self.activity.guests containsObject:sportner];
 }
 
+#pragma mark - MSAttendeesListDelegate
+
+- (void)sportnerList:(MSSportnerListVC *)sportnerListVC didSelectSportner:(MSSportner *)sportner atIndexPath:(NSIndexPath *)indexPath
+{
+    [self setUpInviteButtonVisible:([[self allSelectedSportners] count] > 0)];
+}
 
 @end

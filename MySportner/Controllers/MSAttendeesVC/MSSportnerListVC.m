@@ -160,7 +160,8 @@
             [self.selectedSportners addObject:sportner];
         }
         
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        cell.isSelected = [self.selectedSportners containsObject:cell.sportner];
+        
     } else {
         if ([self.delegate respondsToSelector:@selector(sportnerList:didSelectSportner:atIndexPath:)]) {
             [self.delegate sportnerList:self didSelectSportner:cell.sportner atIndexPath:indexPath];

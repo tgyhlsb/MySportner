@@ -22,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *placeLabel;
 @property (weak, nonatomic) IBOutlet MSProfilePictureView *profilePictureView;
 @property (weak, nonatomic) IBOutlet QBFlatButton *actionButton;
-@property (weak, nonatomic) IBOutlet UIView *selectedView;
 @property (weak, nonatomic) IBOutlet UIView *disabledView;
 
 
@@ -81,7 +80,7 @@
 {
     _isSelected = isSelected;
     
-    self.selectedView.hidden = !isSelected;
+    self.accessoryType = isSelected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 }
 
 - (void)setIsDisabled:(BOOL)isDisabled

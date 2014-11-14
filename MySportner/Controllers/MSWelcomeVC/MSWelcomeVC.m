@@ -120,7 +120,7 @@
 - (void)loginWithFacebook
 {
     NSLog(@"\n-----> [loginWithFacebook]");
-    [PFFacebookUtils logInWithPermissions:FACEBOOK_READ_PERMISIONS block:^(PFUser *user, NSError *error) {
+    [PFFacebookUtils logInWithPermissions:FACEBOOK_PERMISSIONS block:^(PFUser *user, NSError *error) {
         if (!error) {
             if (!user) {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");

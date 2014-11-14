@@ -10,7 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <Parse/Parse.h>
 
-#define FACEBOOK_PERMISSIONS @[@"public_profile", @"email", @"user_friends"]
+#define FACEBOOK_PERMISSIONS @[@"public_profile",@"user_birthday" @"user_hometown", @"user_location", @"email", @"user_friends"]
 
 static NSString *DTNotificationFacebookUserLoggedIn = @"DTFacebookUserLoggedIn";
 static NSString *DTNotificationFacebookUserLoggedOut = @"DTFacebookUserLoggetOut";

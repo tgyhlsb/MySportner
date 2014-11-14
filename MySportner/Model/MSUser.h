@@ -11,8 +11,6 @@
 #import <Parse/Parse.h>
 #import "MSSportner.h"
 
-#define FACEBOOK_READ_PERMISIONS @[@"email", @"user_birthday", @"user_hometown", @"user_location"]
-
 #define FACEBOOK_DEFAULT_ID @[@"moufle.troufle", @"100007174114158"]
 
 @protocol MSUserAuthentificationDelegate;
@@ -24,10 +22,6 @@
 @property (weak, nonatomic) id<MSUserAuthentificationDelegate> delegate;
 
 @property (strong, nonatomic) MSSportner *sportner;
-
-
-
-+ (void)tryLoginWithFacebook:(id<MSUserAuthentificationDelegate>)sender;
 
 + (MSUser *)currentUser;
 

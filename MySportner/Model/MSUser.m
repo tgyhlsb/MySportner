@@ -117,57 +117,6 @@
     }];
 }
 
-+ (void)tryLoginWithFacebook:(id<MSUserAuthentificationDelegate>)sender
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [PFFacebookUtils logInWithPermissions:FACEBOOK_READ_PERMISIONS block:^(PFUser *user, NSError *error) {
-            if (!user) {
-                NSLog(@"Uh oh. The user cancelled the Facebook login.");
-            } else {
-                MSUser *user = [MSUser currentUser];
-                user.delegate = sender;
-                
-                if (user.isNew) {
-                    NSLog(@"User signed up and logged in through Facebook!");
-                    [user requestFacebookInformations];
-                } else {
-                    NSLog(@"User logged in through Facebook!");
-                    [user logInDidSucceed];
-                }
-            }
-        }];
-    });
-
-}
-
-- (void)signUpToBackEnd
-{
-    //    PFUser *user = [PFUser user];
-    //    user.username = self.email;
-    //    user.password = self.password;
-    //    user.email = self.email;
-    //
-    //    // other fields can be set just like with PFObject
-    //    user[PARSE_KEY_FIRSTNAME] = self.firstName;
-    //    user[PARSE_KEY_LASTNAME] = self.lastName;
-    //    user[PARSE_KEY_FACEBOOKID] = self.facebookID;
-    //    user[PARSE_KEY_BIRTHDAY] = self.birthday;
-    //    user[PARSE_KEY_GENDER] = @(self.gender);
-    
-    self.sportner.username = self.username;
-    [self signUpInBackgroundWithTarget:self
-                              selector:@selector(handleSignUp:error:)];
-}
-
-- (void)handleSignUp:(NSNumber *)result error:(NSError *)error
-{
-    if (!error) {
-        [self signUpToBackEndDidSucceed];
-    } else {
-        [self signUpToBackEndDidFailWithError:error];
-    }
-}
-
 #pragma mark Delegate notifications
 
 - (void)signUpToBackEndDidSucceed

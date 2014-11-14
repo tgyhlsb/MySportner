@@ -84,6 +84,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     [self setNormalNavigationBar];
     self.navigationItem.title = [[self.sportner fullName] uppercaseString];
     //[self setTranslucentNavigationBar];
+    [self updateFavoriteSportsIcons];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -333,6 +334,33 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
         self.profilePictureView.sportner = self.sportner;
         self.sportnerNameLabel.text = [self.sportner fullName];
         self.locationLabel.text = self.sportner.lastPlace.uppercaseString;
+    }
+}
+
+- (void)updateFavoriteSportsIcons
+{
+    if (self.sportner) {
+        NSArray *sports = [self.sportner.sportLevels keysSortedByValueUsingSelector:@selector(compare:)];
+        
+        self.sportImageView1.hidden = NO;
+        self.sportImageView2.hidden = NO;
+        self.sportImageView3.hidden = NO;
+        switch ([sports count]) {
+            case 0:
+                self.sportImageView1.hidden = YES;
+            case 1:
+                self.sportImageView2.hidden = YES;
+            case 2:
+                self.sportImageView3.hidden = YES;
+        }
+        
+        NSArray *imageViews = @[self.sportImageView1, self.sportImageView2, self.sportImageView3];
+        
+        for (int i = 0; i < MIN([sports count], 3); i++) {
+            UIImageView *imageView = [imageViews objectAtIndex:i];
+            NSString *imageName = [NSString stringWithFormat:@"%@2.png", [sports objectAtIndex:i]];
+            imageView.image = [UIImage imageNamed:imageName];
+        }
     }
 }
 

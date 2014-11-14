@@ -24,6 +24,7 @@ static NSString *MSNotificationActivityAwaitingChanged = @"MSNotificationActivit
 @interface MSActivity : PFObject <PFSubclassing>
 
 @property (strong, nonatomic) NSDate *date;
+@property (strong, nonatomic) NSDate *endDate;
 @property (strong, nonatomic) NSString *place;
 @property (strong, nonatomic) MSSport *sport;
 @property (strong, nonatomic) NSNumber *level;

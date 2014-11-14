@@ -19,6 +19,7 @@
 @implementation MSActivity
 
 @dynamic date;
+@dynamic endDate;
 @dynamic place;
 @dynamic sport;
 @dynamic level;

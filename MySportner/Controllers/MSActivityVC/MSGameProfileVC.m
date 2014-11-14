@@ -28,6 +28,7 @@
 #define NIB_NAME @"MSGameProfileVC"
 
 typedef NS_ENUM(int, MSUserStatusForActivity) {
+    MSUserStatusForActivityExpired,
     MSUserStatusForActivityOwner,
     MSUserStatusForActivityOwnerFull,
     MSUserStatusForActivityConfirmed,
@@ -182,6 +183,8 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
     self.levelLabel.attributedText = [self attributedStringForLevel:[self.activity.level integerValue]];
     self.playerSizeView.numberOfPlayer = [self.activity.playerNeeded integerValue];
     
+
+    
     [self setViewWithDate:self.activity.date];
     
     NSInteger nbPlayers = [self.activity.maxPlayer integerValue] - [self.activity.playerNeeded integerValue];
@@ -191,13 +194,18 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
     self.commentsValueLabel.text = [NSString stringWithFormat:@"%ld", (long)nbComments];
     
     self.sportnerStatus = [self statusForSportner:[MSSportner currentSportner]];
+    self.playerSizeView.hidden = (self.sportnerStatus == MSUserStatusForActivityExpired) || ([self.activity.playerNeeded intValue] == 0);
 }
 
 - (MSUserStatusForActivity)statusForSportner:(MSSportner *)sportner
 {
     MSUserStatusForActivity status = 0;
     
-    if ([self.activity.owner isEqualToSportner:sportner]) {
+    if (!self.activity.endDate || [self.activity.endDate timeIntervalSinceNow] < 0) {
+        
+        status = MSUserStatusForActivityExpired;
+        
+    } else if ([self.activity.owner isEqualToSportner:sportner]) {
         
         if ([self.activity.playerNeeded integerValue]) {
             status = MSUserStatusForActivityOwner;
@@ -236,6 +244,11 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 {
     
     switch (status) {
+        case MSUserStatusForActivityExpired:
+        {
+            [self setButtonEnabled:NO withTitle:@"GAME EXPIRED"];
+            break;
+        }
         case MSUserStatusForActivityOwner:
         {
             [self setButtonEnabled:YES withTitle:@"INVITE SPORTNER"];

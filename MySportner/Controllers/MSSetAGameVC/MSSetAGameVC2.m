@@ -470,6 +470,7 @@
         activity.place = self.cityValueLabel.text;
         activity.owner = [MSSportner currentSportner];
         activity.date = self.startDatePicker.date;
+        activity.endDate = self.endDatePicker.date;
         activity.maxPlayer = @(self.playersStepper.value+1);
         activity.playerNeeded = @(self.playersStepper.value);
         activity.whereExactly = self.whereTextField.text;

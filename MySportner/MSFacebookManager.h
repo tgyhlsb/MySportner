@@ -36,5 +36,6 @@ static NSString *DTNotificationFacebookUserLoggedOut = @"DTFacebookUserLoggetOut
 
 
 + (void)shareSignUp;
++ (void)shareInviteFriends;
 
 @end

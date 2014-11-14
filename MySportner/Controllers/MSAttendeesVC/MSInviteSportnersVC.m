@@ -20,6 +20,7 @@
 @property (strong, nonatomic) MSSportnerListVC *othersVC;
 
 @property (strong,nonatomic) UIBarButtonItem *inviteButton;
+@property (strong,nonatomic) UIBarButtonItem *facebookButton;
 
 @end
 
@@ -83,6 +84,16 @@
     return _inviteButton;
 }
 
+- (UIBarButtonItem *)facebookButton
+{
+    if (!_facebookButton) {
+        _facebookButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                        target:self
+                                                                        action:@selector(facebookButtonHandler)];
+    }
+    return _facebookButton;
+}
+
 - (NSArray *)allSelectedSportners
 {
     NSMutableArray *selectedSportners = [self.sportnersVC.selectedSportners mutableCopy];
@@ -109,6 +120,11 @@
         [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Select sportners to invite"];
     }
     
+}
+
+- (void)facebookButtonHandler
+{
+    [MSFacebookManager shareInviteFriends];
 }
 
 #pragma mark - Fetch & network
@@ -235,6 +251,26 @@
 - (void)sportnerList:(MSSportnerListVC *)sportnerListVC didSelectSportner:(MSSportner *)sportner atIndexPath:(NSIndexPath *)indexPath
 {
     [self setUpInviteButtonVisible:([[self allSelectedSportners] count] > 0)];
+}
+
+#pragma mark - Overrides
+
+
+- (void)setViewControllerAtIndex:(NSInteger)index
+{
+    [super setViewControllerAtIndex:index];
+    
+    if (index == 1) {
+        NSMutableArray *rightItems = [[NSMutableArray alloc] init];
+        [rightItems addObjectsFromArray:self.navigationItem.rightBarButtonItems];
+        [rightItems addObject:self.facebookButton];
+        self.navigationItem.rightBarButtonItems = rightItems;
+    } else {
+        NSMutableArray *rightItems = [[NSMutableArray alloc] init];
+        [rightItems addObjectsFromArray:self.navigationItem.rightBarButtonItems];
+        [rightItems removeObject:self.facebookButton];
+        self.navigationItem.rightBarButtonItems = rightItems;
+    }
 }
 
 @end

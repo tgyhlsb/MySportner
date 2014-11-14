@@ -216,7 +216,29 @@
 
 + (void)shareSignUp
 {
-    NSString *shareTitlePattern = NSLocalizedString(@"I just signed up on MySportner, join me !", @"Facebook share pattern");
+    NSString *shareTitlePattern = NSLocalizedString(@"What a great App!! Hurry to join!!", @"Facebook share pattern");
+    
+    // Check if the Facebook app is installed and we can present the share dialog
+    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
+    params.link = [NSURL URLWithString:@"http://www.mysportner.com"];
+    params.name = shareTitlePattern;
+    params.caption = CAPTION;
+    params.picture = [NSURL URLWithString:@"https://pbs.twimg.com/profile_images/378800000551667532/b81759440b14ba757bb8b0d7ccceae34.png"];
+    params.linkDescription = @"blabla";
+    
+    // If the Facebook app is installed and we can present the share dialog
+    if ([FBDialogs canPresentShareDialogWithParams:params]) {
+        // Present the share dialog
+        [MSFacebookManager presentShareDialogWithParameters:params];
+    } else {
+        // Present the feed dialog
+        [MSFacebookManager presentFeedDialogWithParameters:params];
+    }
+}
+
++ (void)shareInviteFriends
+{
+    NSString *shareTitlePattern = NSLocalizedString(@"We need more players, join us on MySportner!", @"Facebook invite pattern");
     
     // Check if the Facebook app is installed and we can present the share dialog
     FBLinkShareParams *params = [[FBLinkShareParams alloc] init];

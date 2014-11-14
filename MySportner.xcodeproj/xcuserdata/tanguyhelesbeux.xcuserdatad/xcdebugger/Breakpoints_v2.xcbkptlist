@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/MSFacebookManager.m"
-            timestampString = "436465928.167954"
+            timestampString = "437658314.827832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "+presentFeedDialogWithParameters:"
             landmarkType = "5">
          </BreakpointContent>

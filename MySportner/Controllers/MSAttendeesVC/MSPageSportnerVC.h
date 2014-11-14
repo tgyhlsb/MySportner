@@ -18,7 +18,7 @@
 @property (strong, nonatomic) NSArray *viewControllers;
 
 - (void)setUpAppearance;
-
+- (void)setViewControllerAtIndex:(NSInteger)index;
 
 - (void)showLoadingViewInView:(UIView*)view;
 - (void)hideLoadingView;

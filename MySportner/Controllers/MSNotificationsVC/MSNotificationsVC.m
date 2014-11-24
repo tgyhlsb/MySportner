@@ -178,11 +178,13 @@
     [MSNotificationCenter setStatusBarWithTitle:@"Sending answer..."];
     MSNotification *notification = cell.notification;
     [notification acceptWithBlock:^(PFObject *object, NSError *error) {
+        [MSNotificationCenter dismissStatusBarNotification];
         if (!error) {
+            cell.notification.expired = @(YES);
+            [cell.notification saveEventually];
             NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
-        [MSNotificationCenter dismissStatusBarNotification];
     }];
 }
 
@@ -191,11 +193,13 @@
     [MSNotificationCenter setStatusBarWithTitle:@"Sending answer..."];
     MSNotification *notification = cell.notification;
     [notification declineWithBlock:^(PFObject *object, NSError *error) {
+        [MSNotificationCenter dismissStatusBarNotification];
         if (!error) {
+            cell.notification.expired = @(YES);
+            [cell.notification saveEventually];
             NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
-        [MSNotificationCenter dismissStatusBarNotification];
     }];
 }
 

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySportner/Controllers/MSSetAGameVC/MSSetAGameVC2.m"
-            timestampString = "437655780.926136"
+            timestampString = "438547921.65315"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "537"
-            endingLineNumber = "537"
+            startingLineNumber = "542"
+            endingLineNumber = "542"
             landmarkName = "-sports"
             landmarkType = "5">
          </BreakpointContent>
@@ -543,13 +543,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MySportner/Controllers/MSWelcomeVC/MSWelcomeVC.m"
-            timestampString = "436794729.871009"
+            filePath = "MySportner/Controllers/MSCreateAccountVC/MSVerifyAccountVC.m"
+            timestampString = "438549118.753043"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
-            landmarkName = "-cancelFacebookLogin"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
+            landmarkName = "-showTermPopUp"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

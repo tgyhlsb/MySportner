@@ -7,14 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSCenterController.h"
 #import "MSUser.h"
 
+typedef NS_ENUM(int, MSVerifyAccountUserState) {
+    MSVerifyAccountUserStateNew,
+    MSVerifyAccountUserStateExisting,
+};
 
 #define IMAGE_SIZE_FOR_UPLOAD 200
 
-@interface MSVerifyAccountVC : UIViewController
+@interface MSVerifyAccountVC : MSCenterController
 
 @property (strong,nonatomic) MSUser *user;
+@property (nonatomic) MSVerifyAccountUserState state;
 
 + (MSVerifyAccountVC *)newController;
 

@@ -204,6 +204,11 @@
     self.playersStepper.stepValue = 1.0;
     self.playersStepper.value = 4;
     
+    NSString *lastPlace = [MSSportner currentSportner].lastPlace;
+    if (lastPlace && ![lastPlace isEqualToString:@""]) {
+        self.cityValueLabel.text = lastPlace;
+    }
+    
     [self.playersStepper addTarget:self action:@selector(playersStepperValueDidChange) forControlEvents:UIControlEventValueChanged];
     
     [self updatePlayersTitle];

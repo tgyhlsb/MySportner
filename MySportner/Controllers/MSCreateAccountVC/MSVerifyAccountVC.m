@@ -176,6 +176,19 @@
 
 - (IBAction)nextButtonHandler
 {
+    switch (self.state) {
+        case MSVerifyAccountUserStateNew:
+            [self nextForNewUser];
+            break;
+            
+        case MSVerifyAccountUserStateExisting:
+            [self saveForExistingUser];
+            break;
+    }
+}
+
+- (void)nextForNewUser
+{
     NSString *message = [self errorForFields];
     if (message)
     {
@@ -185,17 +198,20 @@
     }
 }
 
+- (void)saveForExistingUser
+{
+    NSString *message = [self errorForFields];
+    if (message)
+    {
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:message];
+    } else {
+        [self saveUser];
+    }
+}
+
 - (void)saveUser
 {
     [self showLoadingViewInView:self.view];
-    
-    if (!self.user) {
-        self.user = [MSUser currentUser];
-    }
-    
-    if (!self.user.sportner) {
-        self.user.sportner = [[MSSportner alloc] init];
-    }
     
     self.user.sportner.firstName = self.firstNameTextField.text;
     self.user.sportner.lastName = self.lastNameTextField.text;
@@ -210,7 +226,7 @@
         self.user.sportner.image = self.imageView.image;
     }
     
-    [self.user saveInBackgroundWithTarget:self selector:@selector(handlSignUp:error:)];
+    [self.user saveInBackgroundWithTarget:self selector:@selector(handlSave:error:)];
 }
 
 - (void)showTermPopUp
@@ -393,9 +409,15 @@
     self.cityTitleLabel.textColor = TITLE_TEXTCOLOR;
     self.cityTitleLabel.font = TITLE_FONT;
     
-    
+    switch (self.state) {
+        case MSVerifyAccountUserStateNew: {
+            [self.nextButton setTitle:@"NEXT" forState:UIControlStateNormal];
+        }
+        case MSVerifyAccountUserStateExisting: {
+            [self.nextButton setTitle:@"SAVE" forState:UIControlStateNormal];
+        }
+    }
     [MSStyleFactory setQBFlatButton:self.nextButton withStyle:MSFlatButtonStyleGreen];
-    [self.nextButton setTitle:@"NEXT" forState:UIControlStateNormal];
     
     self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2.0;
     self.facebookPictureView.layer.cornerRadius = self.facebookPictureView.frame.size.width/2.0;
@@ -538,6 +560,7 @@
 
 - (void)didSelectLocation:(NSString *)location
 {
+    self.user.sportner.lastPlace = location;
     self.cityValueLabel.text = location;
 }
 
@@ -653,11 +676,11 @@
     [self.navigationController pushViewController:destinationVC animated:YES];
 }
 
-- (void)handlSignUp:(NSNumber *)result error:(NSError *)error
+- (void)handlSave:(NSNumber *)result error:(NSError *)error
 {
     [self hideLoadingView];
     if (!error) {
-        [self performTransitionToNextScreen];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Your informations have been saved"];
     } else {
         NSString *errorMessage = [error.userInfo objectForKey:@"error"];
         [[TKAlertCenter defaultCenter] postAlertWithMessage:errorMessage];
@@ -666,7 +689,9 @@
 
 + (MSVerifyAccountVC *)newController
 {
-    return [[MSVerifyAccountVC alloc] initWithNibName:NIB_NAME bundle:nil];
+    MSVerifyAccountVC *vc = [[MSVerifyAccountVC alloc] initWithNibName:NIB_NAME bundle:nil];
+    vc.hasDirectAccessToDrawer = NO;
+    return vc;
 }
 
 #pragma mark UITextFieldDelegate

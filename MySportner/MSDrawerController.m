@@ -13,6 +13,8 @@
 #import "MSSetAGameVC2.h"
 #import "MSFindFriendsVC.h"
 #import "MSAppDelegate.h"
+#import "MSVerifyAccountVC.h"
+#import "MSUser.h"
 
 @interface MSDrawerController ()
 
@@ -67,6 +69,10 @@
         }
         case MSCenterViewSettings:
         {
+            newCenterVC = [MSVerifyAccountVC newController];
+            ((MSVerifyAccountVC *)newCenterVC).user = [MSUser currentUser];
+            ((MSVerifyAccountVC *)newCenterVC).state = MSVerifyAccountUserStateExisting;
+            newCenterVC.hasDirectAccessToDrawer = YES;
             break;
         }
         case MSCenterViewFiendFriends:

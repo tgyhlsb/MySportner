@@ -243,7 +243,7 @@
 
 - (BOOL)sportnerList:(MSSportnerListVC *)sportListVC shouldDisableCellForSportner:(MSSportner *)sportner
 {
-    return [self.activity.guests containsObject:sportner];
+    return [self.activity.guests containsObject:sportner] || [self.activity.participants containsObject:sportner];
 }
 
 #pragma mark - MSAttendeesListDelegate
@@ -263,6 +263,7 @@
     if (index == 1) {
         NSMutableArray *rightItems = [[NSMutableArray alloc] init];
         [rightItems addObjectsFromArray:self.navigationItem.rightBarButtonItems];
+        [rightItems removeObject:self.facebookButton];
         [rightItems addObject:self.facebookButton];
         self.navigationItem.rightBarButtonItems = rightItems;
     } else {

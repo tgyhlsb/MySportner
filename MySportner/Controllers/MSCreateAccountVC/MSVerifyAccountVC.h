@@ -12,6 +12,7 @@
 
 typedef NS_ENUM(int, MSVerifyAccountUserState) {
     MSVerifyAccountUserStateNew,
+    MSVerifyAccountUserStateAgreedConditions,
     MSVerifyAccountUserStateExisting,
 };
 

@@ -92,13 +92,6 @@
     }];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [self nextButtonPress:self.nextButton];
-    
-    [super viewWillDisappear:animated];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -151,10 +144,14 @@
 - (IBAction)nextButtonPress:(UIButton *)sender
 {
     if (self.sportner) {
-        [self showLoadingViewInView:self.view];
-        [self.sportner saveInBackgroundWithTarget:self selector:@selector(handleSportnerSave:error:)];
+        if (self.sportner.sportLevels) {
+            [self showLoadingViewInView:self.view];
+            [self.sportner saveInBackgroundWithTarget:self selector:@selector(handleSportnerSave:error:)];
+        } else {
+            [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Pick at least one sport"];
+        }
     } else {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Connection lost"];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Unknown error"];
     }
 }
 

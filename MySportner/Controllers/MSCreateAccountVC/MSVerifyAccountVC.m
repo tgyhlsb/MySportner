@@ -181,6 +181,10 @@
             [self nextForNewUser];
             break;
             
+        case MSVerifyAccountUserStateAgreedConditions:
+            [self performTransitionToNextScreen];
+            break;
+            
         case MSVerifyAccountUserStateExisting:
             [self saveForExistingUser];
             break;
@@ -412,9 +416,15 @@
     switch (self.state) {
         case MSVerifyAccountUserStateNew: {
             [self.nextButton setTitle:@"NEXT" forState:UIControlStateNormal];
+            break;
+        }
+        case MSVerifyAccountUserStateAgreedConditions: {
+            [self.nextButton setTitle:@"NEXT" forState:UIControlStateNormal];
+            break;
         }
         case MSVerifyAccountUserStateExisting: {
             [self.nextButton setTitle:@"SAVE" forState:UIControlStateNormal];
+            break;
         }
     }
     [MSStyleFactory setQBFlatButton:self.nextButton withStyle:MSFlatButtonStyleGreen];
@@ -608,6 +618,9 @@
 
 - (void)fullScreenPopUpDidTapMainButton
 {
+    if (self.state == MSVerifyAccountUserStateNew) {
+        self.state = MSVerifyAccountUserStateAgreedConditions;
+    }
     [self dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController *formSheetController) {
         [self performTransitionToNextScreen];
     }];

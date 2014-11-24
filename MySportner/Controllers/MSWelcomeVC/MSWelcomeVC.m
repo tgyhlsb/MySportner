@@ -261,6 +261,7 @@
 
 - (IBAction)logInWithFacebookButtonPress:(UIButton *)sender
 {
+    [self setButtonsVisible:NO];
     [self loginWithFacebook];
 }
 

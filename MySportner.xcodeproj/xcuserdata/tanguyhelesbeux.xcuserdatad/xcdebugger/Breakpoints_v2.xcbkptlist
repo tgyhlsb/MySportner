@@ -540,16 +540,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MySportner/Controllers/MSCreateAccountVC/MSVerifyAccountVC.m"
-            timestampString = "438549118.753043"
+            filePath = "MySportner/Controllers/MSWelcomeVC/MSWelcomeVC.m"
+            timestampString = "438549439.067854"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
-            landmarkName = "-showTermPopUp"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "-loginWithFacebook"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

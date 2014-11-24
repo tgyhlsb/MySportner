@@ -131,7 +131,9 @@
     
     for (NSString *sportSlug in [self.sportLevels allKeys]) {
         MSSport *sport = [MSSport sportWithSlug:sportSlug];
-        [tempSports addObject:sport];
+        if (sport) {
+            [tempSports addObject:sport];
+        }
     }
     
     return tempSports;

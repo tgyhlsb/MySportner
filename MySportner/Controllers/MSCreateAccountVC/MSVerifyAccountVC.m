@@ -693,7 +693,7 @@
 {
     [self hideLoadingView];
     if (!error) {
-        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Your informations have been saved"];
+        [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Your information have been saved"];
     } else {
         NSString *errorMessage = [error.userInfo objectForKey:@"error"];
         [[TKAlertCenter defaultCenter] postAlertWithMessage:errorMessage];

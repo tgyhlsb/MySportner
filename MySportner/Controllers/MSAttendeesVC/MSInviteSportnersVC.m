@@ -69,7 +69,6 @@
     self.facebookVC.sportnerList = nil;
     self.othersVC.sportnerList = nil;
     
-    [self fetchOthersSportners];
     [self fetchFacebookSportners];
 }
 
@@ -137,7 +136,6 @@
         [self.facebookVC stopLoading];
         self.facebookVC.sportnerList = objects;
         [self fetchOthersSportners];
-        [self filterOthersSportners];
     }];
 }
 
@@ -160,16 +158,16 @@
 
 - (void)filterOthersSportners
 {
-    NSMutableArray *sportners = [self.facebookVC.sportnerList mutableCopy];
-    [sportners removeObject:[MSSportner currentSportner]];
-    [sportners removeObjectsInArray:self.sportnersVC.sportnerList];
-    self.facebookVC.sportnerList = sportners;
+    NSMutableArray *fbSportners = [self.facebookVC.sportnerList mutableCopy];
+    [fbSportners removeObject:[MSSportner currentSportner]];
+    [fbSportners removeObjectsInArray:self.sportnersVC.sportnerList];
+    self.facebookVC.sportnerList = fbSportners;
     
-    sportners = [self.othersVC.sportnerList mutableCopy];
-    [sportners removeObject:[MSSportner currentSportner]];
-    [sportners removeObjectsInArray:self.sportnersVC.sportnerList];
-    [sportners removeObjectsInArray:self.facebookVC.sportnerList];
-    self.othersVC.sportnerList = sportners;
+    NSMutableArray *otherSportners = [self.othersVC.sportnerList mutableCopy];
+    [otherSportners removeObject:[MSSportner currentSportner]];
+    [otherSportners removeObjectsInArray:self.sportnersVC.sportnerList];
+    [otherSportners removeObjectsInArray:self.facebookVC.sportnerList];
+    self.othersVC.sportnerList = otherSportners;
 }
 
 #pragma mark - Sportner notification

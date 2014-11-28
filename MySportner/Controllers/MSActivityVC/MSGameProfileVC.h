@@ -12,5 +12,7 @@
 @interface MSGameProfileVC : MSCenterController
 
 @property (strong, nonatomic) MSActivity *activity;
+@property (strong, nonatomic) NSString *activityId;
+@property (nonatomic) BOOL shouldPushToComments;
 
 @end

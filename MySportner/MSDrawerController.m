@@ -17,6 +17,8 @@
 #import "MSUser.h"
 #import "MSFacebookManager.h"
 #import "MSNavigationVC.h"
+#import "MSGameProfileVC.h"
+#import "MSMessageVC.h"
 
 @interface MSDrawerController ()
 
@@ -87,25 +89,50 @@
             break;
     }
     
-    if (newCenterVC)
-    {
+    [self presentCenterViewController:newCenterVC animated:YES];
+}
+
+- (void)presentCenterViewController:(MSCenterController *)destination animated:(BOOL)animated
+{
+    if (destination) {
         MSCenterController *actualCenter = (MSCenterController *)self.centerViewController;
         if ([actualCenter isKindOfClass:[UINavigationController class]]) {
             actualCenter = (MSCenterController *)((UINavigationController *)actualCenter).topViewController;
         }
         
-        if ([actualCenter isEqual:newCenterVC])
+        if ([actualCenter isEqual:destination])
         {
             [self closeDrawerAnimated:YES completion:nil];
         }
         else
         {
-            MSNavigationVC *navigationController = [[MSNavigationVC alloc] initWithRootViewController:newCenterVC];
-            newCenterVC.hasDirectAccessToDrawer = YES;
-            [self setCenterViewController:navigationController withFullCloseAnimation:YES completion:^(BOOL finished) {
-            }];
+            MSNavigationVC *navigationController = [[MSNavigationVC alloc] initWithRootViewController:destination];
+            destination.hasDirectAccessToDrawer = YES;
+            
+            if (animated) {
+                [self setCenterViewController:navigationController withFullCloseAnimation:YES completion:^(BOOL finished) {
+                    
+                }];
+            } else {
+                [self setCenterViewController:navigationController];
+            }
         }
     }
+}
+
+- (void)openViewControllerForActivityId:(NSString *)activityId
+{
+    MSGameProfileVC *destination = [MSGameProfileVC newController];
+    destination.activityId = activityId;
+    [self presentCenterViewController:destination animated:NO];
+}
+
+- (void)openViewControllerForMessagesWithActivityId:(NSString *)activityId
+{
+    MSGameProfileVC *destination = [MSGameProfileVC newController];
+    destination.activityId = activityId;
+    destination.shouldPushToComments = YES;
+    [self presentCenterViewController:destination animated:NO];
 }
 
 @end

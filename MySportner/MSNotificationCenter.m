@@ -14,12 +14,17 @@
 
 #import "MSSportner.h"
 #import "MSActivity.h"
+#import "MSNotification.h"
+
+#import "MSAppDelegate.h"
+#import "MSDrawerController.h"
 
 static NSArray *userNotifications;
 
 static PFObject *observedActivity;
 static MSObservedActivityScreen observedActivityScreen;
 
+static NSDictionary *displayedNotification;
 
 static BOOL isNotificationDisplayedOnStatusBar;
 static BOOL shouldDisplayNotificationOnStatusBar;
@@ -115,9 +120,9 @@ static BOOL shouldDisplayNotificationOnStatusBar;
         [options setObject:image forKey:kCRToastImageKey];
     }
     
+    displayedNotification = userInfo;
     [CRToastManager showNotificationWithOptions:options
                                 completionBlock:^{
-                                    
                                 }];
 }
 
@@ -126,7 +131,7 @@ static BOOL shouldDisplayNotificationOnStatusBar;
     CRToastInteractionResponder *responder = [CRToastInteractionResponder interactionResponderWithInteractionType:CRToastInteractionTypeTap
                                                                                              automaticallyDismiss:YES
                                                                                                             block:^(CRToastInteractionType interactionType){
-                                                                                                                NSLog(@"Dismissed with %@ interaction", NSStringFromCRToastInteractionType(interactionType));
+                                                                                                                [MSNotificationCenter handleNotificationTap:interactionType];
                                                                                                             }];
     NSDictionary *options = @{
                               kCRToastAnimationInDirectionKey: @0,
@@ -146,6 +151,20 @@ static BOOL shouldDisplayNotificationOnStatusBar;
     
     
     return options;
+}
+
++ (void)handleNotificationTap:(CRToastInteractionType)interactionType
+{
+    
+    NSString *activityId = [[displayedNotification objectForKey:@"activity"] objectForKey:@"objectId"];
+    NSString *notificationType = [displayedNotification objectForKey:@"type"];
+    
+    MSAppDelegate *appDelegate = (MSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if ([notificationType isEqualToString:MSNotificationTypeComment]) {
+        [appDelegate.drawerController openViewControllerForMessagesWithActivityId:activityId];
+    } else {
+        [appDelegate.drawerController openViewControllerForActivityId:activityId];
+    }
 }
 
 + (void)setStatusBarWithTitle:(NSString *)title

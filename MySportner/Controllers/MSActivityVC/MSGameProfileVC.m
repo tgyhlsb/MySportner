@@ -91,14 +91,24 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
     [super viewDidLoad];
     
     [self setUpAppearance];
-    
-    [self startLoading];
     [self registerToActivityNotifications];
     [self registerGestureRecognizers];
     
+    [self startLoading];
     [MSNotificationCenter setStatusBarWithTitle:@"Fetching activity..."];
+    if (!self.activity) {
+        self.activity = [self activityWithId:self.activityId];
+    }
     [self.activity fetchWithRelationAndBlock:^(PFObject *object, NSError *error) {
+        
+        [self layoutBasedOnFrames];
+        [self updateInformationView];
         [MSNotificationCenter dismissStatusBarNotification];
+        
+        if (self.shouldPushToComments) {
+            self.shouldPushToComments = NO;
+            [self pushToComments];
+        }
     }];
     
     self.navigationController.navigationBar.translucent = NO;
@@ -107,9 +117,6 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [self layoutBasedOnFrames];
-    [self updateInformationView];
     
     [MSNotificationCenter setObservedActivity:self.activity onScreen:MSObservedActivityScreenProfile];
 }
@@ -383,6 +390,45 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 - (void)stopLoading
 {
     self.containerView.hidden = NO;
+}
+
+#pragma mark - Setters
+
+- (void)setActivity:(MSActivity *)activity
+{
+    _activity = activity;
+}
+
+- (MSActivity *)activityWithId:(NSString *)activityId
+{
+    MSActivity *activity = [MSActivity new];
+    activity.objectId = activityId;
+    return activity;
+}
+
+- (void)setActivityId:(NSString *)activityId
+{
+    _activityId = activityId;
+    
+//    [self startLoading];
+//    MSActivity *activity = [MSActivity new];
+//    [activity setObjectId:activityId];
+    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        self.activity = activity;
+//    });
+    
+    
+//    PFQuery *query = [MSActivity query];
+//    [query whereKey:@"objectId" equalTo:activityId];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (!error && (objects.count == 1)) {
+//            _activity = [objects firstObject];
+//            [self activityHasBeenUpdated];
+//        } else {
+//            
+//        }
+//    }];
 }
 
 #pragma mark - Activity notification

@@ -7,6 +7,7 @@
 //
 
 #import "MMDrawerController.h"
+#import "MSActivity.h"
 
 typedef NS_ENUM(int, MSCenterView) {
     MSCenterViewProfile,
@@ -22,5 +23,8 @@ typedef NS_ENUM(int, MSCenterView) {
 
 - (void)setGestureRecognizerBlock;
 - (void)displayCenterControlerForView:(MSCenterView)view;
+
+- (void)openViewControllerForActivityId:(NSString *)activityId;
+- (void)openViewControllerForMessagesWithActivityId:(NSString *)activityId;
 
 @end

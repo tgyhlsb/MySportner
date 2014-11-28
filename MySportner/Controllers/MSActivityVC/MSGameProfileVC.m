@@ -18,6 +18,7 @@
 #import "MSStyleFactory.h"
 #import "TKAlertCenter.h"
 #import "MSNotificationCenter.h"
+#import "MSFacebookManager.h"
 
 #import "MSAttendeesVC.h"
 #import "MSCommentsVC.h"
@@ -66,6 +67,8 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 @property (weak, nonatomic) IBOutlet UIView *attendeesView;
 @property (weak, nonatomic) IBOutlet UILabel *attendeesTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *attendeesValueLabel;
+
+@property (strong, nonatomic) UIBarButtonItem *facebookButton;
 
 @property (nonatomic) MSUserStatusForActivity sportnerStatus;
 
@@ -166,6 +169,8 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
     
     self.commentsView.layer.borderColor = [[UIColor colorWithWhite:0.0 alpha:0.08] CGColor];
     self.commentsView.layer.borderWidth = 1.0;
+    
+    self.navigationItem.rightBarButtonItem = self.facebookButton;
 }
 
 - (void)layoutBasedOnFrames
@@ -337,6 +342,16 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
     self.dateLabel3.text = [timeFormat stringFromDate:date];
 }
 
+- (UIBarButtonItem *)facebookButton
+{
+    if (!_facebookButton) {
+        _facebookButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                        target:self
+                                                                        action:@selector(facebookButtonHandler)];
+    }
+    return _facebookButton;
+}
+
 #define LEVEL_NAMES @[@"Novice", @"Rookie", @"Intermediate", @"Expert", @"Legend"]
 
 - (NSAttributedString *)attributedStringForLevel:(NSInteger)level
@@ -465,6 +480,11 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
     destination.sportner = self.activity.owner;
     destination.hasDirectAccessToDrawer = NO;
     [self.navigationController pushViewController:destination animated:YES];
+}
+
+- (void)facebookButtonHandler
+{
+    [MSFacebookManager shareInviteFriends];
 }
 
 #pragma mark - Game Actions

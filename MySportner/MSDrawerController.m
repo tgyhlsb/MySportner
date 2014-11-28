@@ -15,6 +15,8 @@
 #import "MSAppDelegate.h"
 #import "MSVerifyAccountVC.h"
 #import "MSUser.h"
+#import "MSFacebookManager.h"
+#import "MSNavigationVC.h"
 
 @interface MSDrawerController ()
 
@@ -77,8 +79,7 @@
         }
         case MSCenterViewFiendFriends:
         {
-            newCenterVC = [MSFindFriendsVC newController];
-            ((MSFindFriendsVC *)newCenterVC).hasDirectAccessToDrawer = YES;
+            [MSFacebookManager shareInviteFriends];
             break;
         }
             
@@ -88,16 +89,20 @@
     
     if (newCenterVC)
     {
-        __weak UINavigationController *weakNavVC = (UINavigationController *)self.centerViewController;
+        MSCenterController *actualCenter = (MSCenterController *)self.centerViewController;
+        if ([actualCenter isKindOfClass:[UINavigationController class]]) {
+            actualCenter = (MSCenterController *)((UINavigationController *)actualCenter).topViewController;
+        }
         
-        if ([newCenterVC isKindOfClass:[[weakNavVC.viewControllers lastObject] class]])
+        if ([actualCenter isEqual:newCenterVC])
         {
             [self closeDrawerAnimated:YES completion:nil];
         }
         else
-        {            
-            [weakNavVC setViewControllers:@[newCenterVC]];
-            [self setCenterViewController:self.centerViewController withFullCloseAnimation:YES completion:^(BOOL finished) {
+        {
+            MSNavigationVC *navigationController = [[MSNavigationVC alloc] initWithRootViewController:newCenterVC];
+            newCenterVC.hasDirectAccessToDrawer = YES;
+            [self setCenterViewController:navigationController withFullCloseAnimation:YES completion:^(BOOL finished) {
             }];
         }
     }

@@ -106,6 +106,7 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
     [super viewDidAppear:animated];
     
     [self layoutBasedOnFrames];
+    [self updateInformationView];
     
     [MSNotificationCenter setObservedActivity:self.activity onScreen:MSObservedActivityScreenProfile];
 }
@@ -511,8 +512,6 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 
 - (void)messageViewController:(MSMessageVC *)viewController didDissmissWithMessages:(NSArray *)messages
 {
-    self.activity.nbComment = @(messages.count);
-    [self updateInformationView];
 }
 
 @end

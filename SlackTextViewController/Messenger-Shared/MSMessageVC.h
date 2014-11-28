@@ -9,8 +9,19 @@
 #import "SLKTextViewController.h"
 #import "MSActivity.h"
 
+
+@protocol MSMessageVCDelegate;
+
 @interface MSMessageVC : SLKTextViewController
 
+@property (weak, nonatomic) id<MSMessageVCDelegate> delegate;
 @property (strong, nonatomic) MSActivity *activity;
+
+@end
+
+@protocol MSMessageVCDelegate <NSObject>
+
+@optional
+- (void)messageViewController:(MSMessageVC *)viewController didDissmissWithMessages:(NSArray *)messages;
 
 @end

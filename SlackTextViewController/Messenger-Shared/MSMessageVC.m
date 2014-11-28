@@ -95,6 +95,14 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
     [MSNotificationCenter setObservedActivity:self.activity onScreen:MSObservedActivityScreenComments];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if ([self.delegate respondsToSelector:@selector(messageViewController:didDissmissWithMessages:)]) {
+        [self.delegate messageViewController:self didDissmissWithMessages:self.messages];
+    }
+    [super viewWillDisappear:animated];
+}
+
 #pragma mark - MSActivity
 
 - (void)setActivity:(MSActivity *)activity

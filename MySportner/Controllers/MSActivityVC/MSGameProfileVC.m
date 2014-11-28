@@ -39,7 +39,7 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
     MSUserStatusForActivityOtherFull
 };
 
-@interface MSGameProfileVC ()
+@interface MSGameProfileVC () <MSMessageVCDelegate>
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
@@ -503,8 +503,16 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 {
     MSMessageVC *destination = [MSMessageVC new];
     destination.activity = self.activity;
-    
+    destination.delegate = self;
     [self.navigationController pushViewController:destination animated:YES];
+}
+
+#pragma mark - MSMessageVCDelegate
+
+- (void)messageViewController:(MSMessageVC *)viewController didDissmissWithMessages:(NSArray *)messages
+{
+    self.activity.nbComment = @(messages.count);
+    [self updateInformationView];
 }
 
 @end

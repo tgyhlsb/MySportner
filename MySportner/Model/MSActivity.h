@@ -62,5 +62,6 @@ static NSString *MSNotificationActivityAwaitingChanged = @"MSNotificationActivit
 
 - (void)fetchComments;
 - (void)addComment:(MSComment *)comment withBlock:(PFBooleanResultBlock)block;
+- (BOOL)expired;
 
 @end

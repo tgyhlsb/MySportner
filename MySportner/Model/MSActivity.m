@@ -41,6 +41,11 @@
     return PARSE_CLASSNAME_ACTIVITY;
 }
 
+- (BOOL)expired
+{
+    return [self.endDate timeIntervalSinceNow] < 0;
+}
+
 - (NSComparisonResult)compareWithCreationDate:(MSActivity *)otherActivity
 {
     return [otherActivity.createdAt compare:self.createdAt];

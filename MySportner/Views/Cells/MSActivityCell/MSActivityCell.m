@@ -45,17 +45,12 @@
 {
     [super awakeFromNib];
     
-//    [self registerGestureRecognizers];
-    
     self.playerSizeView = [MSPlayerSizeView viewWithFrame:self.actionButton.frame];
     [self addSubview:self.playerSizeView];
-    self.actionButton.hidden = YES;
-//    self.playerSizeView.backgroundColor = [UIColor redColor];
     
-//    UIButton *fullButton = [[UIButton alloc] initWithFrame:self.actionButton.frame];
-//    [self.contentView addSubview:fullButton];
-//    [fullButton setTitle:@"button" forState:UIControlStateNormal];
-//    fullButton.backgroundColor = [UIColor redColor];
+    [self.actionButton setTitle:@"EXPIRED" forState:UIControlStateNormal];
+    self.actionButton.userInteractionEnabled = NO;
+    self.actionButton.hidden = YES;
 }
 
 - (void)registerGestureRecognizers
@@ -87,6 +82,14 @@
     self.ownerNameLabel.text = activity.owner.firstName;
     self.ownerProfilePictureView.sportner = activity.owner;
     self.playerSizeView.numberOfPlayer = [activity.playerNeeded intValue];
+    
+    if ([self.activity expired]) {
+        self.actionButton.hidden = NO;
+        self.playerSizeView.hidden = YES;
+    } else {
+        self.actionButton.hidden = YES;
+        self.playerSizeView.hidden = NO;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

@@ -198,7 +198,11 @@
 {
     _image = image;
     NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
-    self.imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+    if (image) {
+        self.imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+    } else {
+        self.imageFile = nil;
+    }
 }
 
 - (UIImage *)image

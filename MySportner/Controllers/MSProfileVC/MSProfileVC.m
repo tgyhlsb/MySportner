@@ -224,7 +224,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
                                                                   delegate:self
                                                          cancelButtonTitle:@"Cancel"
                                                     destructiveButtonTitle:Nil
-                                                         otherButtonTitles:@"Take a picture", @"Use an existing picture", @"Resize picture", nil];
+                                                         otherButtonTitles:@"Take a picture", @"Use an existing picture", @"Use facebook picture", nil];
         pictureSheet.actionSheetStyle = UIActionSheetStyleAutomatic;
         pictureSheet.delegate = self;
         [pictureSheet showInView:self.view];
@@ -252,11 +252,19 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
             break;
         }
             
-        case 2: // Resize
+        case 2: // Facebook picture
         {
-            [self openImageCropperWithSportnerImage];
+            self.sportner.image = nil;
+            [self.sportner saveInBackground];
+            [self reloadCoverPictureView];
             break;
         }
+            
+//        case 2: // Resize
+//        {
+//            [self openImageCropperWithSportnerImage];
+//            break;
+//        }
     }
 }
 

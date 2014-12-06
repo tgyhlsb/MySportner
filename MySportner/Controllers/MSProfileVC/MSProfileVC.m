@@ -47,6 +47,8 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 @property (weak, nonatomic) IBOutlet UIImageView *sportImageView1;
 @property (weak, nonatomic) IBOutlet UIImageView *sportImageView2;
 @property (weak, nonatomic) IBOutlet UIImageView *sportImageView3;
+@property (weak, nonatomic) IBOutlet UIImageView *sportImageView4;
+@property (weak, nonatomic) IBOutlet UIImageView *sportImageView5;
 
 @property (strong, nonatomic) UIImagePickerController *imagePickerVC;
 @property (strong, nonatomic) UIImagePickerController *imageTakerVC;
@@ -361,6 +363,7 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     }
 }
 
+#define NB_SPORT_ICONS 5
 - (void)updateFavoriteSportsIcons
 {
     if (self.sportner) {
@@ -369,6 +372,8 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
         self.sportImageView1.hidden = NO;
         self.sportImageView2.hidden = NO;
         self.sportImageView3.hidden = NO;
+        self.sportImageView4.hidden = NO;
+        self.sportImageView5.hidden = NO;
         switch ([sports count]) {
             case 0:
                 self.sportImageView1.hidden = YES;
@@ -376,11 +381,15 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
                 self.sportImageView2.hidden = YES;
             case 2:
                 self.sportImageView3.hidden = YES;
+            case 3:
+                self.sportImageView4.hidden = YES;
+            case 4:
+                self.sportImageView5.hidden = YES;
         }
         
-        NSArray *imageViews = @[self.sportImageView1, self.sportImageView2, self.sportImageView3];
+        NSArray *imageViews = @[self.sportImageView1, self.sportImageView2, self.sportImageView3, self.sportImageView4, self.sportImageView5];
         
-        for (int i = 0; i < MIN([sports count], 3); i++) {
+        for (int i = 0; i < MIN([sports count], NB_SPORT_ICONS); i++) {
             UIImageView *imageView = [imageViews objectAtIndex:i];
             NSString *imageName = [NSString stringWithFormat:@"%@2.png", [sports objectAtIndex:i]];
             imageView.image = [UIImage imageNamed:imageName];

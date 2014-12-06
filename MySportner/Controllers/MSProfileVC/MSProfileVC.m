@@ -21,6 +21,7 @@
 #import "MSCropperVC.h"
 #import "MSVerifyAccountVC.h"
 #import "MSSportnerCell.h"
+#import "MSNotificationsVC.h"
 
 
 #define NIB_NAME @"MSProfileVC"
@@ -51,6 +52,8 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
 @property (strong, nonatomic) UIImagePickerController *imageTakerVC;
 
 @property (nonatomic) MSProfileTableViewMode tableViewMode;
+
+@property (strong, nonatomic) UIBarButtonItem *notificationButton;
 
 @end
 
@@ -92,6 +95,17 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     [super viewWillDisappear:animated];
     
     [self setNormalNavigationBar];
+}
+
+- (UIBarButtonItem *)notificationButton
+{
+    if (!_notificationButton) {
+        UIImage *img = [UIImage imageNamed:@"drapeau.png"];
+        _notificationButton = [[UIBarButtonItem alloc] initWithImage:img
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:self action:@selector(notificationButtonHandler)];
+    }
+    return _notificationButton;
 }
 
 - (void)setUpImagePicker
@@ -200,6 +214,8 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
     UITapGestureRecognizer *profilePictureTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pictureTapHandler)];
     [self.profilePictureView addGestureRecognizer:profilePictureTap];
     self.profilePictureView.userInteractionEnabled = YES;
+    
+    self.navigationItem.rightBarButtonItem = self.notificationButton;
 }
 
 - (void)setUpActionButton
@@ -400,6 +416,13 @@ typedef NS_ENUM(int, MSProfileTableViewMode) {
         [[MSSportner currentSportner] addSportner:self.sportner];
     }
     [self setUpActionButton];
+}
+
+- (void)notificationButtonHandler
+{
+    MSNotificationsVC *destination = [MSNotificationsVC newController];
+    destination.hasDirectAccessToDrawer = NO;
+    [self.navigationController pushViewController:destination animated:YES];
 }
 
 #pragma mark - PARSE Backend

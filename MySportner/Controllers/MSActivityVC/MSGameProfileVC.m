@@ -578,6 +578,8 @@ typedef NS_ENUM(int, MSUserStatusForActivity) {
 
 - (void)messageViewController:(MSMessageVC *)viewController didDissmissWithMessages:(NSArray *)messages
 {
+    self.activity.nbComment = @(messages.count);
+    [self updateInformationView];
 }
 
 @end

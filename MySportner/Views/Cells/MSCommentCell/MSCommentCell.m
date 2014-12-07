@@ -84,8 +84,13 @@
 + (CGFloat)heightForCommentText:(NSString *)comment
 {
     CGSize labelSize = CGSizeMake(223.0, 99999999); // self.contentLabel.frame.width
-    CGSize textSize = [comment sizeWithFont:[MSFontFactory fontForCommentText] constrainedToSize:labelSize lineBreakMode:NSLineBreakByWordWrapping];
-//    NSLog(@"%f - %f", textSize.width, textSize.height);
+    
+    UILabel *sizedLabel = [[UILabel alloc] init];
+    [MSStyleFactory setUILabel:sizedLabel withStyle:MSLabelStyleCommentText];
+    sizedLabel.text = comment;
+    sizedLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    sizedLabel.numberOfLines = 0;
+    CGSize textSize = [sizedLabel sizeThatFits:labelSize];
     
     return HEIGHT_WITH_ONE_LINE_COMMENT + textSize.height;
 }

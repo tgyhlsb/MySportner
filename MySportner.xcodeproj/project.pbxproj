@@ -2428,7 +2428,7 @@
 				INFOPLIST_FILE = "MySportner/MySportner-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0ec2dc8f-38ad-4fba-b606-e2a953620a47";
+				PROVISIONING_PROFILE = "8ceb9a02-07ec-4cc2-a3cc-f336e736ea97";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2448,7 +2448,7 @@
 				INFOPLIST_FILE = "MySportner/MySportner-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0ec2dc8f-38ad-4fba-b606-e2a953620a47";
+				PROVISIONING_PROFILE = "8ceb9a02-07ec-4cc2-a3cc-f336e736ea97";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

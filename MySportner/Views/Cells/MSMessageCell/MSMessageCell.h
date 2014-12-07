@@ -17,6 +17,5 @@
 
 + (NSString *)reusableIdentifier;
 + (void)registerToTableView:(UITableView *)tableView;
-+ (CGFloat)heightForComment:(MSComment *)comment;
 
 @end

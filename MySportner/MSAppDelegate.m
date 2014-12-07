@@ -56,8 +56,7 @@
     [MSSport fetchAllSports];
     [PFFacebookUtils initializeFacebook];
     
-    [self registerForPushNotification:application];
-    
+    [self registerForPushNotification:application];    
     
     [self setDrawerMenu];
     [self setAppearance];

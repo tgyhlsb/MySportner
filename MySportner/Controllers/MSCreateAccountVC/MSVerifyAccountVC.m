@@ -559,7 +559,9 @@
     self.lastNameTextField.text = self.user.sportner.lastName;
     [self.genderPicker selectRow:self.user.sportner.gender inComponent:0 animated:NO];
     [self genderPickerValueDidChange];
-    self.birthdatePicker.date = self.user.sportner.birthday;
+    if (self.user.sportner.birthday) {
+        self.birthdatePicker.date = self.user.sportner.birthday;
+    }
     [self birthdatePickerValueDidChange];
     self.emailTextField.text = self.user.email;
     self.cityValueLabel.text = self.user.sportner.lastPlace;

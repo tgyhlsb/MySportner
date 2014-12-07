@@ -12,6 +12,8 @@
 
 #define CAPTION @"MySportner"
 
+#define DEFAULT_SHARE_PICTURE_URL @"http://marouane.co/MySportner/share.png"
+
 @implementation MSFacebookManager
 
 + (void)fetchUserWithCompletionHandler:(FBRequestHandler)completionHandler
@@ -223,8 +225,8 @@
     params.link = [NSURL URLWithString:@"http://www.mysportner.com"];
     params.name = shareTitlePattern;
     params.caption = CAPTION;
-    params.picture = [NSURL URLWithString:@"https://pbs.twimg.com/profile_images/378800000551667532/b81759440b14ba757bb8b0d7ccceae34.png"];
-    params.linkDescription = @"blabla";
+    params.picture = [NSURL URLWithString:DEFAULT_SHARE_PICTURE_URL];
+    params.linkDescription = @"";
     
     // If the Facebook app is installed and we can present the share dialog
     if ([FBDialogs canPresentShareDialogWithParams:params]) {
@@ -245,8 +247,8 @@
     params.link = [NSURL URLWithString:@"http://www.mysportner.com"];
     params.name = shareTitlePattern;
     params.caption = CAPTION;
-    params.picture = [NSURL URLWithString:@"https://pbs.twimg.com/profile_images/378800000551667532/b81759440b14ba757bb8b0d7ccceae34.png"];
-    params.linkDescription = @"blabla";
+    params.picture = [NSURL URLWithString:DEFAULT_SHARE_PICTURE_URL];
+    params.linkDescription = @"";
     
     // If the Facebook app is installed and we can present the share dialog
     if ([FBDialogs canPresentShareDialogWithParams:params]) {

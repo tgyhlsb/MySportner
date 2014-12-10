@@ -407,7 +407,7 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
         NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:16.0],
                                      NSParagraphStyleAttributeName: paragraphStyle};
         
-        CGFloat width = CGRectGetWidth(tableView.frame)-(88.0);
+        CGFloat width = CGRectGetWidth(tableView.frame)-(kAvatarSize*2.0+10);
         
         CGRect bounds = [message.content boundingRectWithSize:CGSizeMake(width, 0.0) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:NULL];
         
@@ -415,13 +415,13 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
             return 0.0;
         }
         
-        CGFloat height = roundf(CGRectGetHeight(bounds)+56.0);
+        CGFloat height = roundf(CGRectGetHeight(bounds)+kAvatarSize);
         
         if (height < kMinimumHeight) {
             height = kMinimumHeight;
         }
         
-        return height;
+        return height + 50;
     }
     else {
         return kMinimumHeight;

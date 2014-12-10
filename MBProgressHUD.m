@@ -526,7 +526,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
     CGSize maxSize = CGSizeMake(maxWidth, remainingHeight);
     
     
-    CGSize detailsLabelSize = [detailsLabel sizeThatFits:maxSize];
+    CGSize s = [detailsLabel sizeThatFits:maxSize];
     
 	totalSize.width = MAX(totalSize.width, detailsLabelSize.width);
 	totalSize.height += detailsLabelSize.height;

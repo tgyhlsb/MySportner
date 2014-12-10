@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="42" translatesAutoresizingMaskIntoConstraints="NO" id="6Pg-jQ-mNC">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Pg-jQ-mNC">
                         <rect key="frame" x="65" y="36" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -28,7 +29,7 @@
                             <constraint firstAttribute="width" constant="30" id="v60-Vz-R26"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="42" translatesAutoresizingMaskIntoConstraints="NO" id="Uep-NV-fbc">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uep-NV-fbc">
                         <rect key="frame" x="65" y="62" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -40,8 +41,8 @@
                     <constraint firstItem="6Pg-jQ-mNC" firstAttribute="leading" secondItem="NIN-M0-5ob" secondAttribute="trailing" constant="20" id="9os-GU-Nvi"/>
                     <constraint firstItem="NIN-M0-5ob" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Iep-4T-bxP"/>
                     <constraint firstItem="Uep-NV-fbc" firstAttribute="top" secondItem="6Pg-jQ-mNC" secondAttribute="bottom" constant="5" id="LZJ-Nu-EwU"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6Pg-jQ-mNC" secondAttribute="trailing" constant="10" id="QuL-aP-1kl"/>
-                    <constraint firstItem="6Pg-jQ-mNC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Yei-ys-Uht"/>
+                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="6Pg-jQ-mNC" secondAttribute="trailing" constant="10" id="QuL-aP-1kl"/>
+                    <constraint firstItem="6Pg-jQ-mNC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Yei-ys-Uht"/>
                     <constraint firstAttribute="centerY" secondItem="NIN-M0-5ob" secondAttribute="centerY" id="qqq-bd-IFY"/>
                     <constraint firstAttribute="centerY" secondItem="6Pg-jQ-mNC" secondAttribute="centerY" constant="6" id="znN-tm-Zjs"/>
                 </constraints>

@@ -44,7 +44,7 @@
     
     self.contentLabel.attributedText = [self contentForComment:comment];
     self.profilePicture.sportner = comment.author;
-    self.timeLabel.text = [self stringTimeForNotification:comment.createdAt ? comment.createdAt : [NSDate date]];
+    self.timeLabel.text = [self stringTimeForNotification:comment.createdAt];
     
 }
 
@@ -112,6 +112,11 @@
 {
     UINib *nib = [UINib nibWithNibName:NIB_NAME bundle:nil];
     [tableView registerNib:nib forCellReuseIdentifier:[MSMessageCell reusableIdentifier]];
+}
+
++ (CGFloat)heightForComment:(MSComment *)comment
+{
+    return 244.0;
 }
 
 @end

@@ -69,13 +69,7 @@
 	[[UIColor colorWithWhite:0 alpha:0.8] set];
 	[UIView drawRoundRectangleInRect:rect withRadius:10];
 	[[UIColor whiteColor] set];
-    
-    NSMutableParagraphStyle *textStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
-    textStyle.lineBreakMode = NSLineBreakByWordWrapping;
-    textStyle.alignment = NSTextAlignmentCenter;
-    NSDictionary *attributes = @{ NSFontAttributeName: [UIFont boldSystemFontOfSize:14],
-                                  NSParagraphStyleAttributeName: textStyle};
-    [_text drawInRect:_messageRect withAttributes:attributes];
+    [_text drawInRect:_messageRect withFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
 	
 	CGRect r = CGRectZero;
 	r.origin.y = 15;
@@ -87,13 +81,8 @@
 
 #pragma mark Setter Methods
 - (void) adjust{
-    
-    UILabel *sizedLabel = [[UILabel alloc] init];
-    sizedLabel.text = _text;
-    sizedLabel.font = [UIFont boldSystemFontOfSize:14];
-    sizedLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    sizedLabel.numberOfLines = 0;
-    CGSize s = [sizedLabel sizeThatFits:CGSizeMake(160,200)];
+	
+	CGSize s = [_text sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(160,200) lineBreakMode:NSLineBreakByWordWrapping];
 	
 	float imageAdjustment = 0;
 	if (_image) {

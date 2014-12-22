@@ -21,6 +21,7 @@
 #import "MSFindFriendsVC.h"
 #import "MSFacebookManager.h"
 #import <ParseFacebookUtils/PFFacebookUtils.h>
+#import "MSNotificationCenter.h"
 
 #define NIB_NAME @"MSWelcomeVC"
 
@@ -208,9 +209,12 @@
     
     MSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
-    [appDelegate setDrawerMenu];
+    [appDelegate setDrawerMenuWithOptions:self.launchOptions];
     
-    [self presentViewController:appDelegate.drawerController animated:YES completion:nil];
+    [self presentViewController:appDelegate.drawerController animated:YES completion:^{
+        
+    }];
+    
 }
 
 - (void)cancelFacebookLogin

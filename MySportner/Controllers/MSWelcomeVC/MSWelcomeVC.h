@@ -14,6 +14,8 @@
 
 @property (nonatomic) BOOL shouldHideLoadingWhenAppOpens;
 
+@property (strong, nonatomic) NSDictionary *launchOptions;
+
 + (MSWelcomeVC *)newController;
 
 - (void)performLogin;

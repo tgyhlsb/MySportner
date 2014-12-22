@@ -155,11 +155,16 @@ static BOOL shouldDisplayNotificationOnStatusBar;
 
 + (void)handleNotificationTap:(CRToastInteractionType)interactionType
 {
-    
-    NSString *activityId = [[displayedNotification objectForKey:@"activity"] objectForKey:@"objectId"];
-    NSString *notificationType = [displayedNotification objectForKey:@"type"];
+    [MSNotificationCenter displayNotification:displayedNotification];
+}
+
++ (void)displayNotification:(NSDictionary *)userInfo
+{
+    NSString *activityId = [[userInfo objectForKey:@"activity"] objectForKey:@"objectId"];
+    NSString *notificationType = [userInfo objectForKey:@"type"];
     
     MSAppDelegate *appDelegate = (MSAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     if ([notificationType isEqualToString:MSNotificationTypeComment]) {
         [appDelegate.drawerController openViewControllerForMessagesWithActivityId:activityId];
     } else {

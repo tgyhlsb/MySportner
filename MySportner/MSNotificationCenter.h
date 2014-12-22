@@ -24,6 +24,7 @@ static NSString *MSNotificationObservedActivityNeedsUpdate = @"MSNotificationObs
 @interface MSNotificationCenter : NSObject
 
 + (void)handleNotification:(NSDictionary *)userInfo;
++ (void)displayNotification:(NSDictionary *)userInfo;
 
 + (void)fetchUserNotifications;
 + (NSArray *)userNotifications;

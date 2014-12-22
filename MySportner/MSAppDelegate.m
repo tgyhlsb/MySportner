@@ -27,6 +27,7 @@
 #import "MSSport.h"
 #import "MSNotificationCenter.h"
 #import "MSNotification.h"
+#import "MSGameProfileVC.h"
 
 #import "MSWindow.h"
 
@@ -57,9 +58,6 @@
     [PFFacebookUtils initializeFacebook];
     
     [self registerForPushNotification:application];
-    
-    
-    [self setDrawerMenu];
     [self setAppearance];
     
     [MSSport fetchAllSports];
@@ -68,6 +66,7 @@
     
     MSWelcomeVC *rootVC = [MSWelcomeVC newController];
     rootVC.shouldAutoLoginWithFacebook = YES;
+    rootVC.launchOptions = launchOptions;
     MSNavigationVC *mainVC = [[MSNavigationVC alloc] initWithRootViewController:rootVC];
     
     [self.window setRootViewController:mainVC];
@@ -132,11 +131,33 @@
     [MSNotificationCenter handleNotification:userInfo];
 }
 
-- (void)setDrawerMenu
+- (void)setDrawerMenuWithOptions:(NSDictionary *)launchOptions
 {
     MSDrawerMenuVC * leftSideDrawerViewController = [MSDrawerMenuVC newController];
     
-    UIViewController * centerViewController = [MSActivitiesVC newController];
+    MSGameProfileVC *invitationVC = nil;
+    if (launchOptions) {
+        
+        NSDictionary *notificationInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        if (notificationInfo) {
+            NSString *activityId = [[notificationInfo objectForKey:@"activity"] objectForKey:@"objectId"];
+            NSString *notificationType = [notificationInfo objectForKey:@"type"];
+            
+            if ([notificationType isEqualToString:MSNotificationTypeComment]) {
+                invitationVC = [MSGameProfileVC newController];
+                invitationVC.activityId = activityId;
+                invitationVC.hasDirectAccessToDrawer = YES;
+                invitationVC.shouldPushToComments = YES;
+            } else {
+                invitationVC = [MSGameProfileVC newController];
+                invitationVC.activityId = activityId;
+                invitationVC.hasDirectAccessToDrawer = YES;
+                invitationVC.shouldPushToComments = NO;
+            }
+        }
+    }
+    
+    UIViewController * centerViewController = invitationVC ? invitationVC : [MSActivitiesVC newController];
     
     UIViewController * rightSideDrawerViewController = nil;
     

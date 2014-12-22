@@ -71,6 +71,9 @@
     
     [self.window setRootViewController:mainVC];
     
+    // Reset badge 
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
 //    [self checkFontsName];
     
     return YES;

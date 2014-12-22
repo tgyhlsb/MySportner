@@ -56,6 +56,7 @@
     MSActivity *activity = [activityInfo objectForKey:@"activity"];
     
     self.date = activity.date;
+    self.endDate = activity.endDate;
     self.place = activity.place;
     self.sport = activity.sport;
     self.level = activity.level;
